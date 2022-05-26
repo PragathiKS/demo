@@ -1,0 +1,63 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "Dashboard",
+		"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+		"jcr:created": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"cq:lastModified": "Wed Feb 05 2020 17:09:43 GMT+0530",
+		"sling:resourceType": "customerhub/components/structure/pages/landingpage",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+      		"jcr:primaryType": "nt:unstructured",
+      		"sling:resourceType": "wcm/foundation/components/responsivegrid",
+      		"responsivegrid_622605362": {
+        		"jcr:primaryType": "nt:unstructured",
+        		"sling:resourceType": "wcm/foundation/components/responsivegrid"
+      		},
+      		"responsivegrid": {	
+        		"jcr:primaryType": "nt:unstructured",
+        		"sling:resourceType": "wcm/foundation/components/responsivegrid",
+					"mediaLink": {
+						"jcr:primaryType": "nt:unstructured",
+						"jcr:createdBy": "admin",
+						"jcr:lastModifiedBy": "admin",
+						"jcr:created": "Mon Apr 20 2020 16:29:12 GMT+0530",
+						"columnThreeTitle": "title 3",
+						"heading": "Heading",
+						"columnTwoTitle": "title 2",
+						"jcr:lastModified": "Mon Apr 20 2020 18:16:31 GMT+0530",
+						"columnOneTitle": "title 1",
+						"sling:resourceType": "customerhub/components/content/mediaLink",
+							"columnOneList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkText": "Link Label 1",
+									"linkUrl": "/content/tetrapak/customerhub/global/en/about-us"
+								}
+							},
+							"columnTwoList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkText": "Link Label 2",
+									"linkUrl": "/content/tetrapak/customerhub/global/en/about-us"
+								}
+							},
+							"columnThreeList": {
+								"jcr:primaryType": "nt:unstructured",
+								"item0": {
+									"jcr:primaryType": "nt:unstructured",
+									"linkText": "Link Label 3",
+									"linkUrl": "/content/tetrapak/customerhub/global/en/about-us"
+								}
+							}
+					}
+			}
+		}
+	}
+}
