@@ -1,18 +1,20 @@
 .tp_pw-breadcrumb {
     @include max-width($body-max-width);
     @include padding($padding-zero);
+    @include margin($spacing-big $margin-zero);
     display: block;
     color: $color-tundora;
     overflow: hidden;
     position: relative;
     width: 100%;
 
+
     @media #{$desktop} {
         @include margin($spacing-big auto);
     }
     &__wrapper {
-        margin: 0;
-        padding: 0 48px 0 0;
+        @include margin($margin-zero);
+        @include padding($padding-zero);
     }
 
     .icon-Chevron_Right {
