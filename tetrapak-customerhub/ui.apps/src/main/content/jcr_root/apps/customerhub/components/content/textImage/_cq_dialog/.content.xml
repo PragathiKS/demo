@@ -164,6 +164,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Image alt text"
+                                required="{Boolean}true"
                                 name="./imageAltText"/>
                             <linkText
                                 jcr:primaryType="nt:unstructured"
