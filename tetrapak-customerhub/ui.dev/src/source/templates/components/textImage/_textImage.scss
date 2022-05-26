@@ -1,9 +1,46 @@
 .pw-text-image {
     @include border-radius($border-radius);
     @include padding($padding-md);
-    @include margin($margin-zero);
+    @include margin-top($margin-l);
     @media #{$desktop} {
         @include padding($padding-l);
+    }
+
+    .tpatom-heading {
+        &--regular {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                line-height: $font-d-xl;
+            }
+        }
+    }
+
+    h3 {
+        &.tpatom-heading {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            font-weight: 400;
+
+            @media #{$desktop} {
+                @include font-size($font-l);
+                @include line-height($font-xl, $font-l);
+            }
+        }
+    }
+
+    h4 {
+        &.tpatom-heading {
+            @include font-size($font-normal);
+            @include line-height($font-m-md, $font-normal);
+            font-weight: 500;
+
+            @media #{$desktop} {
+                @include font-size($font-md);
+                @include line-height($font-l, $font-md);
+            }
+        }
     }
 
     &--display-row {
@@ -198,6 +235,20 @@
                 color: $color-sky-blue;
             }
         }
+
+        h3 {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            @include margin-bottom($margin-md);
+            font-weight: 400;
+        }
+
+        h4 {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            @include margin-bottom($margin-sm);
+            font-weight: 500;
+        }
     }
 
     &__link {
@@ -213,22 +264,19 @@
             background-color: none;
         }
 
-        a.tpatom-link {
-            display: inline-flex;
-            align-items: center;
+        .tpatom-link {
             .icon {
-                @include font-size($font-baseline);
-                @include padding-left(6px);
+                @include font-size($font-sm);
                 display: inline-block;
                 &::before {
-                    @include font-size($font-baseline);
+                    @include font-size($font-sm);
                 }
             }
 
             &--internal {
                 .icon {
                     &::before {
-                        @include font-size($font-normal);
+                        @include font-size($font-baseline);
                     }
                 }
             }
@@ -236,16 +284,8 @@
     }
 
     &__image {
+        border-radius: 4px;
+        max-width: 100%;
         width: 100%;
-    }
-}
-.tpatom-heading {
-    &--regular {
-        @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
-        @media #{$desktop} {
-            @include font-size($font-xl);
-            line-height: $font-d-xl;
-        }
     }
 }

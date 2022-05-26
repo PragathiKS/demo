@@ -17,7 +17,7 @@ class TextImage {
     e.preventDefault();
     const dataObj = {};
     dataObj['linkType'] = $(e.target).attr('data-link-type');
-    getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics', null, dataObj);
+    getLinkClickAnalytics(e,'image-title','Text & Image','.js-textImage-analytics', true, dataObj);
   };
 
 
