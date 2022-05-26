@@ -3,13 +3,23 @@ package com.tetrapak.customerhub.core.beans;
 /**
  * The Class AnchorBean.
  */
-public class AnchorBean {
+public final class AnchorBean {
 
     /** The anchor id. */
     private String anchorId;
 
     /** The anchor title. */
     private String anchorTitle;
+
+    /**
+     * Create immutable AnchorBean
+     * @param anchorId
+     * @param anchorTitle
+     */
+    public AnchorBean(String anchorId, String anchorTitle) {
+        this.anchorId = anchorId;
+        this.anchorTitle = anchorTitle;
+    }
 
     /**
      * Gets the anchor id.
@@ -21,16 +31,6 @@ public class AnchorBean {
     }
 
     /**
-     * Sets the anchor id.
-     *
-     * @param anchorId
-     *            the new anchor id
-     */
-    public void setAnchorId(String anchorId) {
-        this.anchorId = anchorId;
-    }
-
-    /**
      * Gets the anchor title.
      *
      * @return the anchor title
@@ -38,15 +38,4 @@ public class AnchorBean {
     public String getAnchorTitle() {
         return anchorTitle;
     }
-
-    /**
-     * Sets the anchor title.
-     *
-     * @param anchorTitle
-     *            the new anchor title
-     */
-    public void setAnchorTitle(String anchorTitle) {
-        this.anchorTitle = anchorTitle;
-    }
-
 }

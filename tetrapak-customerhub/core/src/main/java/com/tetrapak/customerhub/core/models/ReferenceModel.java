@@ -21,6 +21,8 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ReferenceModel {
 
+    public static final String RESOURCE_TYPE = "customerhub/components/content/reference";
+
     @SlingObject
     private SlingHttpServletRequest request;
 
