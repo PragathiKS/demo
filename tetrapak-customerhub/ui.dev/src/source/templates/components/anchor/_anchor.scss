@@ -1,0 +1,58 @@
+.pw-anchor {
+    @include padding(0 $padding-xxxl);
+    &.tp-container {
+        @include padding(0);
+        @include margin($margin-l $margin-xl);
+        @media #{$desktop} {
+            @include margin($margin-l $margin-xl $margin-zero $margin-xl);
+            @include margin-bottom(-$margin-md);
+        }
+    }
+    &__regular {
+        @media #{$desktop} {
+            @include padding($padding-zero $padding-xxxl);
+            @include margin($margin-zero $margin-xxxl);
+        }
+    }
+
+    .pw-anchor-list > .pw-anchor-content {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-md);
+        color: $color-congress-blue;
+        font-weight: 500;
+        border-bottom: 1px solid $color-mercury;
+    }
+
+    @media #{$desktop} {
+        display: flex;
+        justify-content: center;
+        &.tp-container {
+            @include max-width($body-max-width);
+            @include padding(0);
+            @include margin($margin-l auto $margin-zero auto);
+        }
+        .pw-anchor-list {
+            @include border-radius($border-radius);
+            @include padding(0);
+            border: 1px solid $color-mercury;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pw-anchor-list > .pw-anchor-content {
+            @include padding($padding-sm $padding-md);
+            border-right: 1px solid $color-mercury;
+            border-bottom: 0;
+            &:last-child {
+                border-right: 0;
+            }
+            &:hover {
+                a {
+                    color: $color-sky-blue;
+                }
+            }
+        }
+    }
+}
