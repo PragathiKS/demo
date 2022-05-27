@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { IS_MOBILE_REGEX, IS_TABLET_REGEX } from '../utils/constants';
 import { trackAnalytics } from '../utils/analytics';
 import { templates } from '../utils/templates';
+import { $global } from '../utils/commonSelectors';
 import Handlebars from 'handlebars';
 import * as money from 'argon-formatter';
 
@@ -342,3 +343,35 @@ export function hasOwn(obj, key) {
   }
   return false;
 }
+
+/**
+ * Scrolls the page to a particular element
+ * @param {function} callback Callback function
+ * @param {string|object} selector Selector or element
+ * @param {number} duration Duration in number
+ */
+export const scrollToElement = (callback, selector = document.body, duration = 500) => {
+  let executed = false;
+  let stickyViewHeight = $('.tp-pw-header__container').outerHeight();
+
+  if ($('.sticky-section-menu').length > 0) {
+    stickyViewHeight = stickyViewHeight + $('.sticky-section-menu .js-pw-navigation').outerHeight();
+  }
+
+  $global.animate(
+    {
+      scrollTop: $(selector).offset().top - parseInt(stickyViewHeight, 10)
+    },
+    {
+      duration,
+      complete() {
+        if (!executed) {
+          executed = true;
+          if (isCallable(callback)) {
+            callback.apply(this, arguments);
+          }
+        }
+      }
+    }
+  );
+};
