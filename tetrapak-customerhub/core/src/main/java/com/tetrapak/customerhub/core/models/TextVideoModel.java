@@ -14,7 +14,6 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
-import com.tetrapak.customerhub.core.utils.LinkUtils;
 
 /**
  * Model class for Text Video component.
@@ -84,15 +83,15 @@ public class TextVideoModel {
 
     @PostConstruct
     protected void init() {
+	if(StringUtils.isNotBlank(linkURL)) {
+            linkType = LinkUtil.checkLinkType(linkURL);
+        }
         linkURL = LinkUtil.getValidLink(resource, linkURL);
         if (youtubeVideoID != null) {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
         }
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
             damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
-        }
-        if(StringUtils.isNotBlank(linkURL)) {
-            linkType = LinkUtils.linkType(linkURL);
         }
     }
 
