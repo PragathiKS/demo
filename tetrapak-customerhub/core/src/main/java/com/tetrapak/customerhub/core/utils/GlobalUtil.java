@@ -674,4 +674,39 @@ public class GlobalUtil {
         }
         return aipEndpointURL;
     }
+
+    /**
+     * Gets the active license api endpoint URL.
+     *
+     * @param apiServiceUrl the api service url
+     * @param apiMapping    the api mapping
+     * @return the AIP endpoint URL
+     */
+    public static String getActiveLicenseEndpointURL(String apiServiceUrl, String apiMapping) {
+        String aipEndpointURL = StringUtils.EMPTY;
+        if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping)) {
+            aipEndpointURL =
+                   apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping;
+        }
+        return aipEndpointURL;
+    }
+
+    /**
+     * Gets the scene 7 file name.
+     *
+     * @param resourceResolver
+     *            the resource resolver
+     * @param path
+     *            the path
+     * @return the scene 7 file name
+     */
+    public static String getScene7FileName(final ResourceResolver resourceResolver, final String path) {
+        String fileName = StringUtils.EMPTY;
+        final Resource resource = resourceResolver.getResource(path + "/jcr:content/metadata");
+        if (Objects.nonNull(resource)) {
+            final ValueMap properties = resource.getValueMap();
+            fileName = properties.get("dam:scene7Name", StringUtils.EMPTY);
+        }
+        return fileName;
+    }
 }
