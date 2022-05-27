@@ -83,15 +83,15 @@ public class TextVideoModel {
 
     @PostConstruct
     protected void init() {
+	if(StringUtils.isNotBlank(linkURL)) {
+            linkType = LinkUtil.checkLinkType(linkURL);
+        }
         linkURL = LinkUtil.getValidLink(resource, linkURL);
         if (youtubeVideoID != null) {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
         }
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
             damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
-        }
-        if(StringUtils.isNotBlank(linkURL)) {
-            linkType = LinkUtil.checkLinkType(linkURL);
         }
     }
 
