@@ -1,0 +1,33 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:title": "Homepage",
+		"cq:template": "/conf/customerhub/settings/wcm/templates/global-landing-page",
+		"sling:resourceType": "customerhub/components/structure/pages/landingpage",
+		"banner": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "customerhub/components/content/banner",
+			"bannerType": "textImage",
+			"subtitle": "Subtitle",
+			"title": "Title",
+			"text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+			"link": {
+				"linkText":"Link Label",
+				"linkUrl": "/content/tetrapak/publicweb/global/en.html"
+			},
+			"fileReference":"/content/dam/tetrapak/publicweb/image.png",
+			"alt":"Image",
+			"pwDisplay":"display-row-reversed",
+			"pwTheme":"grayscale-white",
+			"pwButtonTheme":"link",
+			"pwLinkTheme":"download",
+			"headingTag":"h1",
+			"pwCardTheme":"gray",
+			"anchorId":"test",
+			"anchorTitle":"title",
+			"imageCrop":"103,146,629,672"
+			}
+		}
+	
+}
