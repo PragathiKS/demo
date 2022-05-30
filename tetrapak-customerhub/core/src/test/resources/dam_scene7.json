@@ -1,0 +1,153 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:mixinTypes": [
+    "mix:referenceable",
+    "mix:versionable"
+  ],
+  "jcr:createdBy": "admin",
+  "jcr:versionHistory": "3cd5926a-cc22-4e88-91d3-18a959c63b4d",
+  "jcr:predecessors": [
+    "4dd20de2-0cbe-413c-80e5-1cbcba85c36b"
+  ],
+  "jcr:created": "Fri May 27 2022 11:45:18 GMT+0200",
+  "jcr:baseVersion": "4dd20de2-0cbe-413c-80e5-1cbcba85c36b",
+  "jcr:isCheckedOut": true,
+  "jcr:uuid": "7a7d4edd-1ee5-451d-a722-de014554df1a",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus"
+    ],
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "sapient-user",
+    "jcr:lastModifiedBy": "admin",
+    "status": "Finished",
+    "cq:lastReplicated": "Thu May 26 2022 08:49:45 GMT+0000",
+    "dam:imageServerAsset": true,
+    "dam:s7damType": "Image",
+    "dam:assetState": "processed",
+    "cq:name": "Paper_Inks_Chart.png",
+    "jcr:lastModified": "Fri May 27 2022 11:46:43 GMT+0200",
+    "cq:parentPath": "/content/dam/customerhub",
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Fri May 27 2022 11:45:18 GMT+0200",
+      "cq5dam.web.1280.1280.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 27 2022 11:45:18 GMT+0200",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Fri May 27 2022 11:46:43 GMT+0200",
+          ":jcr:data": 408240
+        }
+      },
+      "cq5dam.thumbnail.48.48.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 27 2022 11:45:18 GMT+0200",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Fri May 27 2022 11:46:43 GMT+0200",
+          ":jcr:data": 1712
+        }
+      },
+      "cq5dam.thumbnail.140.100.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 27 2022 11:45:19 GMT+0200",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Fri May 27 2022 11:46:43 GMT+0200",
+          ":jcr:data": 9903
+        }
+      },
+      "original": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 27 2022 11:45:19 GMT+0200",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Fri May 27 2022 11:46:34 GMT+0200",
+          ":jcr:data": 1348859
+        }
+      },
+      "cq5dam.thumbnail.319.319.png": {
+        "jcr:primaryType": "nt:file",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri May 27 2022 11:45:19 GMT+0200",
+        "jcr:content": {
+          "jcr:primaryType": "oak:Resource",
+          "jcr:lastModifiedBy": "workflow-process-service",
+          "jcr:mimeType": "image/png",
+          "jcr:lastModified": "Fri May 27 2022 11:46:43 GMT+0200",
+          ":jcr:data": 38343
+        }
+      }
+    },
+    "related": {
+      "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:mixinTypes": [
+        "cq:Taggable"
+      ],
+      "dam:Physicalheightininches": "-1.0",
+      "dam:Physicalwidthininches": "-1.0",
+      "dam:Fileformat": "PNG",
+      "dam:Progressive": "no",
+      "tiff:ImageLength": 1620,
+      "jcr:lastModifiedBy": "admin",
+      "xmp:CreatorTool": "Adobe Illustrator 25.2 (Windows)",
+      "dam:scene7CompanyID": "c|26828",
+      "dam:scene7PublishedBy": "sapient-user",
+      "dam:extracted": "Fri May 27 2022 11:46:39 GMT+0200",
+      "dc:format": "image/png",
+      "dam:Bitsperpixel": 24,
+      "dam:scene7ID": "a|716389219",
+      "xmpMM:DocumentID": "xmp.did:113596DAD93811ECAC92B3CA5F48A5D5",
+      "dam:scene7CloudConfigPath": "/conf/global/settings/cloudconfigs/dmscene7",
+      "dam:MIMEtype": "image/png",
+      "dam:Comments": "Software: Adobe ImageReady\nXML:com.adobe.xmp: <?xpacket begin=\"﻿\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\n<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"Adobe XMP Core 5.6-c148 79.164050, 2019/10/01-18:03:16        \">\n <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n  <rdf:Description rdf:about=\"\"\n    xmlns:dam=\"http://www.day.com/dam/1.0\"\n    xmlns:tiff=\"http://ns.adobe.com/tiff/1.0/\"\n    xmlns:xmp=\"http://ns.adobe.com/xap/1.0/\"\n    xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n    xmlns:xmpMM=\"http://ns.adobe.com/xap/1.0/mm/\"\n    xmlns:stRef=\"http://ns.adobe.com/xap/1.0/sType/ResourceRef#\"\n   dam:Physicalheightininches=\"-1.0\"\n   dam:Physicalwidthininches=\"-1.0\"\n   dam:Fileformat=\"PNG\"\n   dam:Progressive=\"no\"\n   dam:scene7CompanyID=\"c|26828\"\n   dam:scene7PublishedBy=\"sapient-user\"\n   dam:extracted=\"2022-05-25T13:51:43.276Z\"\n   dam:Bitsperpixel=\"24\"\n   dam:scene7ID=\"a|716389219\"\n   dam:scene7CloudConfigPath=\"/conf/global/settings/cloudconfigs/dmscene7\"\n   dam:MIMEtype=\"image/png\"\n   dam:Comments=\"Software: Adobe ImageReady&#xA;XML:com.adobe.xmp: &lt;?xpacket begin=&quot;﻿&quot; id=&quot;W5M0MpCehiHzreSzNTczkc9d&quot;?&gt; &lt;x:xmpmeta xmlns:x=&quot;adobe:ns:meta/&quot; x:xmptk=&quot;Adobe XMP Core 7.1-c000 79.eda2b3fac, 2021/11/17-17:23:19        &quot;&gt; &lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt; &lt;rdf:Description rdf:about=&quot;&quot; xmlns:xmpMM=&quot;http://ns.adobe.com/xap/1.0/mm/&quot; xmlns:stRef=&quot;http://ns.adobe.com/xap/1.0/sType/ResourceRef#&quot; xmlns:xmp=&quot;http://ns.adobe.com/xap/1.0/&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmpMM:OriginalDocumentID=&quot;uuid:5D20892493BFDB11914A8590D31508C8&quot; xmpMM:DocumentID=&quot;xmp.did:113596DAD93811ECAC92B3CA5F48A5D5&quot; xmpMM:InstanceID=&quot;xmp.iid:113596D9D93811ECAC92B3CA5F48A5D5&quot; xmp:CreatorTool=&quot;Adobe Illustrator 25.2 (Windows)&quot;&gt; &lt;xmpMM:DerivedFrom stRef:instanceID=&quot;xmp.iid:8492546d-d8c8-bf45-9391-83defbe45da6&quot; stRef:documentID=&quot;xmp.did:58fe3ba4-da63-8041-83cf-abe0e1c18076&quot;/&gt; &lt;dc:title&gt; &lt;rdf:Alt&gt; &lt;rdf:li xml:lang=&quot;x-default&quot;&gt;ratios&lt;/rdf:li&gt; &lt;/rdf:Alt&gt; &lt;/dc:title&gt; &lt;/rdf:Description&gt; &lt;/rdf:RDF&gt; &lt;/x:xmpmeta&gt; &lt;?xpacket end=&quot;r&quot;?&gt;&#xA;\"\n   dam:Physicalwidthindpi=\"-1\"\n   dam:Physicalheightindpi=\"-1\"\n   dam:scene7FileStatus=\"PublishComplete\"\n   dam:scene7File=\"tetrapaktest/Paper_Inks_Chart-1\"\n   dam:scene7Name=\"Paper_Inks_Chart-1\"\n   dam:scene7Type=\"Image\"\n   dam:Numberofimages=\"1\"\n   dam:scene7UploadTimeStamp=\"2022-05-25T13:52:17.301Z\"\n   dam:Numberoftextualcomments=\"2\"\n   dam:scene7PublishTimeStamp=\"2022-05-26T08:49:46.268Z\"\n   dam:scene7JobStartDate=\"1653486694702\"\n   dam:scene7Domain=\"http://s7e5a.scene7.com/\"\n   dam:scene7Folder=\"tetrapaktest/tetrapak/customerhub/english/package-design/paperboards_inks/\"\n   dam:sha1=\"59c918b9b75fcdb9c930860d6f021469eae6a76b\"\n   dam:size=\"1346093\"\n   dam:scene7APIServer=\"https://s7sps3apissl.scene7.com\"\n   dam:scene7LastModified=\"1653486737301\"\n   tiff:ImageLength=\"1620\"\n   tiff:ImageWidth=\"2880\"\n   xmp:CreatorTool=\"Adobe Illustrator 25.2 (Windows)\"\n   dc:format=\"image/png\"\n   dc:modified=\"2022-05-27T11:46:31.061+02:00\"\n   xmpMM:DocumentID=\"xmp.did:113596DAD93811ECAC92B3CA5F48A5D5\"\n   xmpMM:OriginalDocumentID=\"uuid:5D20892493BFDB11914A8590D31508C8\"\n   xmpMM:InstanceID=\"xmp.iid:113596D9D93811ECAC92B3CA5F48A5D5\">\n   <dc:title>\n    <rdf:Alt>\n     <rdf:li xml:lang=\"x-default\">ratios</rdf:li>\n    </rdf:Alt>\n   </dc:title>\n   <xmpMM:DerivedFrom\n    stRef:instanceID=\"xmp.iid:8492546d-d8c8-bf45-9391-83defbe45da6\"\n    stRef:documentID=\"xmp.did:58fe3ba4-da63-8041-83cf-abe0e1c18076\"/>\n  </rdf:Description>\n </rdf:RDF>\n</x:xmpmeta>\n<?xpacket end=\"r\"?>\n",
+      "dam:Physicalwidthindpi": -1,
+      "dam:Physicalheightindpi": -1,
+      "dam:scene7FileStatus": "PublishComplete",
+      "xmpMM:OriginalDocumentID": "uuid:5D20892493BFDB11914A8590D31508C8",
+      "dc:modified": "Fri May 27 2022 11:46:31 GMT+0200",
+      "dam:scene7File": "tetrapaktest/Paper_Inks_Chart-1",
+      "dam:scene7Name": "Paper_Inks_Chart-1",
+      "dam:scene7Type": "Image",
+      "dam:Numberofimages": 1,
+      "jcr:lastModified": "Fri May 27 2022 11:46:31 GMT+0200",
+      "dam:scene7UploadTimeStamp": "Wed May 25 2022 13:52:17 GMT+0000",
+      "dam:Numberoftextualcomments": 2,
+      "dam:scene7PublishTimeStamp": "Thu May 26 2022 08:49:46 GMT+0000",
+      "dam:scene7JobStartDate": 1653486694702,
+      "xmpMM:InstanceID": "xmp.iid:113596D9D93811ECAC92B3CA5F48A5D5",
+      "tiff:ImageWidth": 2880,
+      "dam:scene7Domain": "http://s7e5a.scene7.com/",
+      "dam:scene7Folder": "tetrapaktest/tetrapak/customerhub/english/package-design/paperboards_inks/",
+      "dam:sha1": "bede254f3313378629bcc57814c80563f10d6e79",
+      "dam:size": 1348859,
+      "dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+      "dc:title": "ratios",
+      "dam:scene7LastModified": 1653486737301,
+      "xmpMM:DerivedFrom": {
+        "jcr:primaryType": "nt:unstructured",
+        "stRef:instanceID": "xmp.iid:8492546d-d8c8-bf45-9391-83defbe45da6",
+        "xmpNodeType": "xmpStruct",
+        "stRef:documentID": "xmp.did:58fe3ba4-da63-8041-83cf-abe0e1c18076"
+      }
+    }
+  }
+}
