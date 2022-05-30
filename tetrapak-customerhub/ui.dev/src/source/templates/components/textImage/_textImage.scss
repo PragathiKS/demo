@@ -135,16 +135,12 @@
 
         li {
             display: table;
-            margin-top: $margin-sm;
-
-            &:first-child {
-                margin-top: $margin-zero;
-            }
+            margin-top: $margin-zero;
         }
 
         ol,
         ul {
-            @include margin-bottom(8px);
+            @include margin-bottom($margin-zero);
             @include padding-left($padding-sm);
         }
 
@@ -192,7 +188,7 @@
 
         ul li,
         ol li {
-            @include padding-bottom($padding-md);
+            @include padding-bottom($padding-zero);
             &::before {
                 color: $color-tundora;
             }
@@ -200,13 +196,13 @@
                 @include padding-bottom($padding-zero);
             }
             li {
-                @include padding-bottom($padding-sm);
+                @include padding-bottom($padding-zero);
             }
         }
 
         ol li ol,
         ul li ul {
-            @include padding-top($padding-md);
+            @include padding-top($padding-zero);
         }
 
         ul ul ul {
@@ -265,6 +261,7 @@
         }
 
         .tpatom-link {
+            font-weight: 500;
             .icon {
                 @include font-size($font-sm);
                 display: inline-block;
