@@ -27,20 +27,28 @@ public class DynamicImageModel {
 
     @SlingObject
     private SlingHttpServletRequest request;
+
     @Inject
     private String imagePath;
+
     @Inject
     private String dheight;
+
     @Inject
     private String dwidth;
+
     @Inject
     private String mheightl;
+
     @Inject
     private String mwidthl;
+
     @Inject
     private String mheightp;
+
     @Inject
     private String mwidthp;
+
     @Inject
     private String imageCrop;
     /**
@@ -48,33 +56,41 @@ public class DynamicImageModel {
      */
     @Inject
     private String altText;
+
     @Inject
     private String finalPath;
+
     /**
      * The configuration service.
      */
     @OSGiService
     private DynamicMediaService dynamicMediaService;
+
     /**
      * The desktop url.
      */
     private String desktopUrl;
+
     /**
      * The desktop large url.
      */
     private String desktopLargeUrl;
+
     /**
      * The mobile url.
      */
     private String mobilePortraitUrl;
+
     /**
      * The mobile landscape url.
      */
     private String mobileLandscapeUrl;
+
     /**
      * The default image url.
      */
     private String defaultImageUrl;
+
     /**
      * The has configuration.
      */
