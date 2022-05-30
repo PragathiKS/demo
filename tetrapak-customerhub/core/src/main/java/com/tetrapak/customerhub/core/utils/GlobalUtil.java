@@ -55,6 +55,11 @@ public class GlobalUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
+     * File name for Scene 7 property
+     */
+    private static final String SCENE_7_NAME_PROPERTY = "dam:scene7Name";
+
+    /**
      * Method to get API GEE URL.
      *
      * @param apigeeService API GEE Service
@@ -701,10 +706,10 @@ public class GlobalUtil {
      */
     public static String getScene7FileName(final ResourceResolver resourceResolver, final String path) {
         String fileName = StringUtils.EMPTY;
-        final Resource resource = resourceResolver.getResource(path + "/jcr:content/metadata");
+        final Resource resource = resourceResolver.getResource(path + CustomerHubConstants.DAM_METADATA_PATH);
         if (Objects.nonNull(resource)) {
             final ValueMap properties = resource.getValueMap();
-            fileName = properties.get("dam:scene7Name", StringUtils.EMPTY);
+            fileName = properties.get(SCENE_7_NAME_PROPERTY, StringUtils.EMPTY);
         }
         return fileName;
     }

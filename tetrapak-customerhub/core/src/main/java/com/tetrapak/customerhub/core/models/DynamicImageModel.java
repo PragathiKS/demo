@@ -254,7 +254,7 @@ public class DynamicImageModel {
     }
 
     private String getCroppingFromMobile() {
-        Resource imageResource = request.getResourceResolver().getResource(imagePath + "/jcr:content/metadata");
+        Resource imageResource = request.getResourceResolver().getResource(imagePath + CustomerHubConstants.DAM_METADATA_PATH);
         if (null == imageResource) {
             return StringUtils.EMPTY;
         }
