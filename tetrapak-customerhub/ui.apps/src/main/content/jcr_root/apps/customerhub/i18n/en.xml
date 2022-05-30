@@ -1245,6 +1245,9 @@
     <cuhu.plantmasterlicense.engineering.inputFormatErrorMsg
             jcr:primaryType="sling:MessageEntry"
             sling:message="Error message"/>
+    <cuhu.plantmasterlicense.engineering.numberFieldErrorMsg
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Error message"/>
     <cuhu.plantmasterlicense.engineering.errorCheckbox
             jcr:primaryType="sling:MessageEntry"
             sling:message="Please select at least one option"/>

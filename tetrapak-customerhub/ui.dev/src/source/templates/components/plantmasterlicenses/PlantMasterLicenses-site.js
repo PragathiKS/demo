@@ -1,8 +1,7 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
-import { REG_NUM } from '../../../scripts/utils/constants';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods} from '../../../scripts/utils/constants';
+import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
