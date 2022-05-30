@@ -25,54 +25,6 @@ import java.util.Map;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class DynamicImageModel {
 
-    /**
-     * The Constant FMT_PNG_ALPHA.
-     */
-    private static final String FMT_PNG_ALPHA = "fmt=png-alpha";
-    /**
-     * The Constant HEIGHT.
-     */
-    private static final String HEIGHT = "hei";
-    /**
-     * The Constant AMPERSAND.
-     */
-    private static final String AMPERSAND = "&";
-    /**
-     * The Constant EQUALS.
-     */
-    private static final String EQUALS = "=";
-    /**
-     * The Constant WIDTH.
-     */
-    private static final String WIDTH = "wid";
-    /**
-     * The Constant QUERY_PARAMETER.
-     */
-    private static final String QUERY_PARAMETER = "?";
-    /**
-     * The Constant HYPHEN.
-     */
-    private static final String HYPHEN = "-";
-    /**
-     * The Constant CROPN.
-     */
-    private static final String CROPN = "cropn";
-    /**
-     * The Constant DESKTOP.
-     */
-    private static final String DESKTOP = "desktop";
-    /**
-     * The Constant DESKTOP.
-     */
-    private static final String DESKTOP_LARGE = "desktopL";
-    /**
-     * The Constant MOBILELANDSCAPE.
-     */
-    private static final String MOBILELANDSCAPE = "mobileL";
-    /**
-     * The Constant MOBILEPORTRAIT.
-     */
-    private static final String MOBILEPORTRAIT = "mobileP";
     @SlingObject
     private SlingHttpServletRequest request;
     @Inject
@@ -127,80 +79,73 @@ public class DynamicImageModel {
      * The has configuration.
      */
     private boolean hasConfiguraton;
+
+    /**
+     * The Constant FMT_PNG_ALPHA.
+     */
+    private static final String FMT_PNG_ALPHA = "fmt=png-alpha";
+
+    /**
+     * The Constant HEIGHT.
+     */
+    private static final String HEIGHT = "hei";
+
+    /**
+     * The Constant AMPERSAND.
+     */
+    private static final String AMPERSAND = "&";
+
+    /**
+     * The Constant EQUALS.
+     */
+    private static final String EQUALS = "=";
+
+    /**
+     * The Constant WIDTH.
+     */
+    private static final String WIDTH = "wid";
+
+    /**
+     * The Constant QUERY_PARAMETER.
+     */
+    private static final String QUERY_PARAMETER = "?";
+
+    /**
+     * The Constant HYPHEN.
+     */
+    private static final String HYPHEN = "-";
+
+    /**
+     * The Constant CROPN.
+     */
+    private static final String CROPN = "cropn";
+
+    /**
+     * The Constant DESKTOP.
+     */
+    private static final String DESKTOP = "desktop";
+
+    /**
+     * The Constant DESKTOP.
+     */
+    private static final String DESKTOP_LARGE = "desktopL";
+
+    /**
+     * The Constant MOBILELANDSCAPE.
+     */
+    private static final String MOBILELANDSCAPE = "mobileL";
+
+    /**
+     * The Constant MOBILEPORTRAIT.
+     */
+    private static final String MOBILEPORTRAIT = "mobileP";
+
     private Map<String, String> dynamicMediaConfiguration = new HashMap<>();
-
-    /**
-     * Append transparency.
-     *
-     * @param url             the url
-     * @param appendingString the appending string
-     * @return the string builder
-     */
-    private static StringBuilder appendTransparency(final StringBuilder url, final String appendingString) {
-        return url.append(appendingString).append(FMT_PNG_ALPHA);
-    }
-
-    /**
-     * Check image transparency.
-     *
-     * @param paramUrl the param url
-     * @return true, if successful
-     */
-    private static boolean checkImageTransparency(final String paramUrl) {
-        return StringUtils.contains(paramUrl, ".png") || StringUtils.contains(paramUrl, ".svg");
-    }
-
-    /**
-     * Gets the component name.
-     *
-     * @param resource the resource
-     * @return the component name
-     */
-    private static String getComponentName(final Resource resource) {
-        return StringUtils.substringAfterLast(resource.getResourceType(), CustomerHubConstants.PATH_SEPARATOR);
-    }
-
-    /**
-     * Gets the url.
-     *
-     * @param paramUrl the param url
-     * @param width    the width
-     * @param height   the height
-     * @param crop     the crop
-     * @return the url
-     */
-    private static String getUrl(final String paramUrl, final String width, final String height, final String crop) {
-        boolean queryFlag = false;
-        StringBuilder url = new StringBuilder(paramUrl);
-        if (StringUtils.isNotEmpty(width)) {
-            url.append(QUERY_PARAMETER).append(WIDTH).append(EQUALS).append(width);
-            queryFlag = true;
-        }
-        if (StringUtils.isNotEmpty(height)) {
-            url = queryFlag ?
-                    url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height) :
-                    url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
-            queryFlag = true;
-        }
-        if (StringUtils.isNotEmpty(crop)) {
-            url = queryFlag ?
-                    url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop) :
-                    url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
-            queryFlag = true;
-        }
-
-        if (checkImageTransparency(paramUrl)) {
-            url = queryFlag ? appendTransparency(url, AMPERSAND) : appendTransparency(url, QUERY_PARAMETER);
-        }
-
-        return url.toString();
-    }
 
     @PostConstruct
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
         String rootPath = getRootPath();
-        ;
         String assetName;
         if (imagePath != null) {
             assetName = GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
@@ -236,6 +181,27 @@ public class DynamicImageModel {
             assetName = StringUtils.substringAfterLast(assetName, CustomerHubConstants.PATH_SEPARATOR);
         }
         return assetName;
+    }
+
+    /**
+     * Append transparency.
+     *
+     * @param url             the url
+     * @param appendingString the appending string
+     * @return the string builder
+     */
+    private static StringBuilder appendTransparency(final StringBuilder url, final String appendingString) {
+        return url.append(appendingString).append(FMT_PNG_ALPHA);
+    }
+
+    /**
+     * Check image transparency.
+     *
+     * @param paramUrl the param url
+     * @return true, if successful
+     */
+    private static boolean checkImageTransparency(final String paramUrl) {
+        return StringUtils.contains(paramUrl, ".png") || StringUtils.contains(paramUrl, ".svg");
     }
 
     /**
@@ -298,6 +264,52 @@ public class DynamicImageModel {
         double normHeight = (lowH - topH) / height;
 
         return normTopW + "," + normTopH + "," + normWidth + "," + normHeight;
+    }
+
+    /**
+     * Gets the component name.
+     *
+     * @param resource the resource
+     * @return the component name
+     */
+    private static String getComponentName(final Resource resource) {
+        return StringUtils.substringAfterLast(resource.getResourceType(), CustomerHubConstants.PATH_SEPARATOR);
+    }
+
+    /**
+     * Gets the url.
+     *
+     * @param paramUrl the param url
+     * @param width    the width
+     * @param height   the height
+     * @param crop     the crop
+     * @return the url
+     */
+    private static String getUrl(final String paramUrl, final String width, final String height, final String crop) {
+        boolean queryFlag = false;
+        StringBuilder url = new StringBuilder(paramUrl);
+        if (StringUtils.isNotEmpty(width)) {
+            url.append(QUERY_PARAMETER).append(WIDTH).append(EQUALS).append(width);
+            queryFlag = true;
+        }
+        if (StringUtils.isNotEmpty(height)) {
+            url = queryFlag ?
+                    url.append(AMPERSAND).append(HEIGHT).append(EQUALS).append(height) :
+                    url.append(QUERY_PARAMETER).append(HEIGHT).append(EQUALS).append(height);
+            queryFlag = true;
+        }
+        if (StringUtils.isNotEmpty(crop)) {
+            url = queryFlag ?
+                    url.append(AMPERSAND).append(CROPN).append(EQUALS).append(crop) :
+                    url.append(QUERY_PARAMETER).append(CROPN).append(EQUALS).append(crop);
+            queryFlag = true;
+        }
+
+        if (checkImageTransparency(paramUrl)) {
+            url = queryFlag ? appendTransparency(url, AMPERSAND) : appendTransparency(url, QUERY_PARAMETER);
+        }
+
+        return url.toString();
     }
 
     /**
@@ -372,16 +384,8 @@ public class DynamicImageModel {
         return defaultImageUrl;
     }
 
-    public void setDefaultImageUrl(final String defaultImageUrl) {
-        this.defaultImageUrl = defaultImageUrl;
-    }
-
     public String getDesktopUrl() {
         return desktopUrl;
-    }
-
-    public void setDesktopUrl(final String desktopUrl) {
-        this.desktopUrl = desktopUrl;
     }
 
     public String[] getDynamicMediaConfiguration() {
@@ -400,16 +404,8 @@ public class DynamicImageModel {
         return mobileLandscapeUrl;
     }
 
-    public void setMobileLandscapeUrl(final String mobileLandscapeUrl) {
-        this.mobileLandscapeUrl = mobileLandscapeUrl;
-    }
-
     public String getMobilePortraitUrl() {
         return mobilePortraitUrl;
-    }
-
-    public void setMobilePortraitUrl(final String mobilePortraitUrl) {
-        this.mobilePortraitUrl = mobilePortraitUrl;
     }
 
     /**
@@ -421,12 +417,28 @@ public class DynamicImageModel {
         }
     }
 
+    public void setDefaultImageUrl(final String defaultImageUrl) {
+        this.defaultImageUrl = defaultImageUrl;
+    }
+
+    public void setDesktopUrl(final String desktopUrl) {
+        this.desktopUrl = desktopUrl;
+    }
+
     public String getDesktopLargeUrl() {
         return desktopLargeUrl;
     }
 
     public void setDesktopLargeUrl(String desktopLargeUrl) {
         this.desktopLargeUrl = desktopLargeUrl;
+    }
+
+    public void setMobileLandscapeUrl(final String mobileLandscapeUrl) {
+        this.mobileLandscapeUrl = mobileLandscapeUrl;
+    }
+
+    public void setMobilePortraitUrl(final String mobilePortraitUrl) {
+        this.mobilePortraitUrl = mobilePortraitUrl;
     }
 
     public String getFinalPath() {

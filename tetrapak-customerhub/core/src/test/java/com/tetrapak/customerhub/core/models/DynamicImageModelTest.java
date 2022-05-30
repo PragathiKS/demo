@@ -73,7 +73,7 @@ public class DynamicImageModelTest {
     }
 
     @Test
-    public void testGetStartedMessage2() {
+    public void testScene7testImage() {
         aemContext.currentResource(COMPONENT_PATH);
         aemContext.request()
                 .setAttribute("imagePath", "/content/dam/customerhub/paperboards_inks/Paper_Inks_Chart.png");
