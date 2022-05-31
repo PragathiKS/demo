@@ -13,8 +13,10 @@
       pardotUrl = $form.find('input[name="./befPardotURL"]').val(),
       pardotChinaUrl = $form.find('input[name="./befChinaPardotURL"]').val(),
         patterns = {
-          pardotUrlRegex: /^(https:\/\/)?(go.demo.pardot)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?$/,
-	      pardotChinaUrlRegex:  /^(https:\/\/)?(go.demo.pardot)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+          
+	      
+			pardotUrlRegex: /^(http:\/\/)?(go.demo.pardot)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?[ddx]$/,		
+			pardotChinaUrlRegex: /^(https:\/\/)?(go.demo.pardot|go-cn.tetrapak)*\.[com]{2,5}(:[0-9]{1,5})?(\/.*)?$/
         };
 
       if (!patterns.pardotUrlRegex.test(pardotUrl)) {
