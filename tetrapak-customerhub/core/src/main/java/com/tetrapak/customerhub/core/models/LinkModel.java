@@ -1,15 +1,14 @@
 package com.tetrapak.customerhub.core.models;
 
-import javax.annotation.PostConstruct;
-
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import javax.annotation.PostConstruct;
 
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 /**
  * The Class LinkModel.
  */
@@ -33,12 +32,12 @@ public class LinkModel {
 
     @PostConstruct
     protected void init() {
-	if (StringUtils.isNotEmpty(linkUrl)) {
-	    linkType = LinkUtil.checkLinkType(linkUrl);
-	    if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
-		assetName = LinkUtil.getAssetName(linkUrl);
-	    }
-	}
+        if (StringUtils.isNotEmpty(linkUrl)) {
+            linkType = LinkUtil.checkLinkType(linkUrl);
+            if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
+                assetName = LinkUtil.getAssetName(linkUrl);
+            }
+        }
     }
 
     /**
