@@ -9,7 +9,7 @@
         <div class="pw-banner ${heroBanner ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
             data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}"
             data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}"
-            data-asset-name="${data.assetName}" data-href="${data.formType ? '': data.link.linkUrl}">
+            data-asset-name="${data.assetName}" data-href="${data.formType ? '': data.link.linkUrl}" target="${bannerData.link.linkType == 'internal' ? '_self' : '_blank'}">
                 <sly data-sly-test="${wcmmode.edit}">
                     <div class="pw-banner__image-wrapper">
                         <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">

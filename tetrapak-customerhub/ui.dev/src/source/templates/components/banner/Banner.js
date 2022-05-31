@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import { isDesktopMode,getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
-import { isExternal, isDownloable  } from '../../../scripts/utils/updateLink';
+import { isDesktopMode,getLinkClickAnalytics } from '../../../scripts/common/common';
+
 class Banner {
   constructor({ el }) {
     this.root = $(el);
@@ -48,7 +48,7 @@ class Banner {
 
     if ($sideSection.length) {
       if(zoomLevel === 100) {
-        $sideSection.css('width', bannerOffset.left +'px');
+        $sideSection.css('width', `${bannerOffset.left}px`);
       } else {
         $sideSection.css('width', (bannerOffset.left - pwBannerContainerOffset.left)  +'px');
       }
@@ -59,7 +59,7 @@ class Banner {
     if ($sideSectionright.length) {
       if(zoomLevel === 100) {
         const finalWidth = windowWidth - bannerOffset.left -  bannerWidth - 48;
-        $sideSectionright.css('width', finalWidth +'px');
+        $sideSectionright.css('width', `${finalWidth}px`);
       } else {
         const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
         const bannerRightOffset = bannerOffset.left + bannerWidth;
@@ -106,33 +106,21 @@ class Banner {
 
     $itbLink.off().on('click', this.trackAnalytics);
 
-    // Open SoftConversion Form
-    this.root.find('.js-softconversion-pw-banner').on('click', (e) => {
-      getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-softconversion-pw-banner', false);
-      $('body').find('.'+this.cache.componentName).trigger('showsoftconversion-pw');
-    });
-
-    // Open Subscription Form
-    this.root.find('.js-subscription-pw-banner').on('click', (e) => {
-      getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.js-subscription-pw-banner', false);
-      $('body').find('.'+this.cache.componentName).trigger('showSubscription-pw');
-    });
-
   }
-  onScroll = () =>{
+  onScroll = () => {
     const scrollBarPosition = window.pageYOffset || document.body.scrollTop;
     this.cache.calculatedHeight = this.cache.eles[this.cache.currentElement].offsetTop - this.cache.currentElement *16;
     if(scrollBarPosition > 0 && scrollBarPosition >= this.cache.calculatedHeight) {
       if(this.cache.currentElement < this.cache.lastElement) {
-        $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
+        $(this.cache.eles[this.cache.currentElement]).css('top', `${this.cache.topElement}px`);
         this.cache.topElement=this.cache.topElement + 16;
         $(this.cache.eles[this.cache.currentElement]).addClass('fixed');
         this.cache.currentElement++;
       }
       else if(this.cache.currentElement === this.cache.lastElement){
-        $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
+        $(this.cache.eles[this.cache.currentElement]).css('top', `${this.cache.topElement}px`);
         $(this.cache.eles[this.cache.lastElement]).addClass('fixed');
-        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px'); 
+        $(this.cache.eles[this.cache.lastElement]).css('top', `${this.cache.topElement}px`);
       }
     }
   }
@@ -156,17 +144,9 @@ class Banner {
         return true;
       }
 
-      if (isDownloable($anchor)) {
-        $this.attr('target', '_blank');
-      }
-
-      if (isExternal($anchor)) {
-        $this.attr('target', '_blank');
-      }
-
       getLinkClickAnalytics(e, 'link-banner-title','Hero Image','.pw-banner', false);
 
-      if (isExternal($anchor) || (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224)) {
+      if ((e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224)) {
         window.open($anchor, '_blank');
       } else {
         window.location.href = $anchor;
@@ -196,11 +176,11 @@ class Banner {
     if(($('body').find('.tp-container-hero').length > 1 || $('body').find('.tp-container-hero-wide').length > 1) && ($('body').find('.bannercontainer').length)) {
       $('.tp-container-hero , .tp-container-hero-wide').each(function(){
         $(this).parent().addClass('banner-stack');
-      }); 
+      });
     }
+
     this.initCache();
     this.bindEvents();
-    addLinkAttr('.js-banner-analytics');
     this.addBannerLink();
   }
 }
