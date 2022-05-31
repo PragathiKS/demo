@@ -14,9 +14,9 @@
 			"text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
 			"link": {
 				"linkText":"Link Label",
-				"linkUrl": "/content/tetrapak/publicweb/global/en.html"
+				"linkUrl": "/content/tetrapak/customerhub/global/en"
 			},
-			"fileReference":"/content/dam/tetrapak/publicweb/image.png",
+			"fileReference":"/content/dam/tetrapak/customerhub/image.png",
 			"alt":"Image",
 			"pwDisplay":"display-row-reversed",
 			"pwTheme":"grayscale-white",

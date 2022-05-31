@@ -64,8 +64,9 @@ public class BannerModelTest {
         assertEquals("Title", model.getTitle());
         assertEquals("Lorem Ipsum is simply dummy text of the printing and typesetting industry.", model.getText());
         assertEquals("Link Label", model.getLink().getLinkText());
-        assertEquals("/content/tetrapak/publicweb/global/en.html", model.getLink().getLinkUrl());
-        assertEquals("/content/dam/tetrapak/publicweb/image.png", model.getFileReference());
+        assertEquals("/content/tetrapak/customerhub/global/en.html", model.getLink().getLinkUrl());
+        assertEquals("internal", model.getLink().getLinkType());
+        assertEquals("/content/dam/tetrapak/customerhub/image.png", model.getFileReference());
         assertEquals("Image", model.getAlt());
         assertEquals("display-row-reversed", model.getPwDisplay());
         assertEquals("grayscale-white", model.getPwTheme());
@@ -75,5 +76,6 @@ public class BannerModelTest {
         assertEquals("103,146,629,672", model.getImageCrop());
         assertEquals("en.html", model.getAssetName());
         assertEquals("gray", model.getPwCardTheme());
+
     }
 }

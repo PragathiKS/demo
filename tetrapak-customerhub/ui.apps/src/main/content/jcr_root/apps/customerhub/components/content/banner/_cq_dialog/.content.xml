@@ -100,12 +100,12 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Link Label"
-                                name="./linkLabel"/>
+                                name="./link/linkText"/>
                             <linkpath
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldLabel="Link path"
-                                name="./linkPath"
+                                name="./link/linkUrl"
                                 rootPath="/content"/>
                             <fileReference
                                 jcr:primaryType="nt:unstructured"
