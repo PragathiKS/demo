@@ -20,7 +20,6 @@
         var componentName = (dialog != null) ? dialog.editable.name : null;
         if(componentName!=null && componentName.indexOf('banner') == 0){
             var bannerTypeDropDown = $('coral-select[name="./bannerType"]');
-            var pwCardThemeDropDown = $('coral-select[name="./pwCardTheme"]');
             bannerTypeDropDown.change(bannerTypeOnChange);
         }
     }
