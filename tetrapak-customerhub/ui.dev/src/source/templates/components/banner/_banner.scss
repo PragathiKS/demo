@@ -10,7 +10,7 @@
         .pw-banner__bgcolor {
             &.display-row-reversed-wrapper {
                 @media #{$desktop} {
-                    width: 540px;
+                    width: 415px;
                 }
             }
         }
@@ -18,7 +18,7 @@
             @include margin(0);
             @include padding($padding-l);
             @media #{$desktop} {
-                width: 540px;
+                width: 415px;
             }
             &.sky-blue {
                 color: $color-white;
@@ -116,7 +116,7 @@
             height: 100%;
             position: absolute;
             top: 0;
-            width: 540px;
+            width: 415px;
             &.black {
                 background: linear-gradient(90deg, rgba($color-black, 0.7), rgba(0, 0, 0, 0) 99.61%);
                 width: 70%;
@@ -155,12 +155,12 @@
         opacity: unset;
         position: relative;
         @media #{$desktop} {
-            @include margin-top(0);
+            @include margin-top($margin-zero);
             @include padding($padding-l $padding-xl);
-            @include margin(0);
+            @include margin($margin-zero);
             color: $color-tundora;
             background-color: transparent;
-            width: 540px;
+            width: 415px;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -217,8 +217,8 @@
             }
         }
         &__description {
-            @include font-size(16px);
-            @include line-height(28px, 16px);
+            @include font-size($font-normal);
+            @include line-height($font-m-xl, $font-normal);
             ul {
                 li {
                     display: flex;
@@ -231,8 +231,8 @@
                 }
             }
             @media #{$desktop} {
-                @include font-size(14px);
-                @include line-height(24px, 14px);
+                @include font-size($font-baseline);
+                @include line-height($font-l, $font-baseline);
             }
         }
         .tpatom-link {
