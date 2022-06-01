@@ -1,6 +1,5 @@
 import $ from 'jquery';
-import { isDesktopMode,getLinkClickAnalytics } from '../../../scripts/common/common';
-
+import { isDesktopMode,getLinkClickAnalytics} from '../../../scripts/common/common';
 class Banner {
   constructor({ el }) {
     this.root = $(el);
@@ -16,21 +15,10 @@ class Banner {
     this.cache.$sideSectionright = this.root.find('.pw-banner__sideSection.right');
     this.cache.componentName = this.root.find('.componentName-banner').val();
     this.cache.currentElement=0 ;
-    this.cache.stickyHeight= $('body').find('.pw-navigation.sticky').css('top');
 
     if (this.cache.bannerContainer.length){
-      if($('.pw-navigation.sticky').length &&  isDesktopMode()){
-        this.cache.headerHeight= $('body').find('.tp-pw-header').height() + parseInt(this.cache.stickyHeight ,10);
-        this.cache.topElement = this.cache.headerHeight - 20;
-      }
-      else if ($('.pw-navigation.sticky').length &&  !(isDesktopMode())){
-        this.cache.headerHeight= $('body').find('.tp-pw-header').height() + parseInt(this.cache.stickyHeight ,10);
-        this.cache.topElement = this.cache.headerHeight - 8;
-      }
-      else {
-        this.cache.headerHeight= $('body').find('.tp-pw-header').height();
-        this.cache.topElement = this.cache.headerHeight;
-      }
+      this.cache.headerHeight= $('body').find('.tp-pw-header').height();
+      this.cache.topElement = this.cache.headerHeight;
       this.cache.calculatedHeight=0 ;
       this.cache.eles = document.getElementsByClassName('banner-stack');
       this.cache.lastElement = this.cache.eles.length -1;
