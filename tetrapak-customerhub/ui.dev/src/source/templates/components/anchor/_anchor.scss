@@ -1,17 +1,16 @@
 .pw-anchor {
-    @include padding(0 $padding-xxxl);
+    @include padding($padding-zero $padding-l);
     &.tp-container {
-        @include padding(0);
-        @include margin($margin-l $margin-xl);
+        @include padding($padding-zero);
+        @include margin($margin-l $margin-zero $margin-zero $margin-zero);
         @media #{$desktop} {
-            @include margin($margin-l $margin-xl $margin-zero $margin-xl);
-            @include margin-bottom(-$margin-md);
+            @include margin($margin-l $margin-zero $margin-zero $margin-zero);
         }
     }
     &__regular {
         @media #{$desktop} {
-            @include padding($padding-zero $padding-xxxl);
-            @include margin($margin-zero $margin-xxxl);
+            @include padding($padding-zero $padding-l);
+            @include margin($margin-zero);
         }
     }
 
@@ -26,11 +25,10 @@
 
     @media #{$desktop} {
         display: flex;
-        justify-content: center;
         &.tp-container {
             @include max-width($body-max-width);
             @include padding(0);
-            @include margin($margin-l auto $margin-zero auto);
+            @include margin($margin-l $margin-zero);
         }
         .pw-anchor-list {
             @include border-radius($border-radius);
