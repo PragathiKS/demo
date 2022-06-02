@@ -43,8 +43,8 @@
    <div data-sly-list.child="${mediaLinkData}">
       <sly data-sly-test.linkTypeInternal="${child.linkType == 'internal' ? 'icon-Chevron_Right' : ''}" />
       <sly data-sly-test.linkTypeExternal="${child.linkType == 'external' ? 'icon-External_Link' : ''}" />
-      <sly data-sly-test.linkTypeDownload="${child.linkType == 'download' ? 'icon-Chevron_Right' : ''}" />
-      <sly data-sly-test.linkTypeDownload="${child.linkType == 'pdf' ? 'icon-PDF' : ''}" />
+      <sly data-sly-test.linkTypeDownload="${child.linkType == 'download' ? 'icon-Download' : ''}" />
+      <sly data-sly-test.linkTypePDF="${child.linkType == 'pdf' ? 'icon-PDF' : ''}" />
       <sly data-sly-test.sectionValue ="${mediaSectionName == '' ? mediaHeading : mediaSectionName } "/>
       <a  data-sly-test="${child.linkText}" href="${child.linkUrl}"
          class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
@@ -54,7 +54,7 @@
          data-section-name="${sectionValue}"
          data-link-name="${child.linkText}">
       <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span>
-      <i class="icon ${linkTypeInternal} ${linkTypeExternal} ${linkTypeDownload}"></i>
+      <i class="icon ${linkTypeInternal} ${linkTypeExternal} ${linkTypeDownload} ${linkTypePDF}"></i>
       </a>
    </div>
 </sly>
