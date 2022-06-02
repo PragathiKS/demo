@@ -352,11 +352,11 @@ export function hasOwn(obj, key) {
  */
 export const scrollToElement = (callback, selector = document.body, duration = 500) => {
   let executed = false;
-  let stickyViewHeight = $('.tp-pw-header__container').outerHeight();
+  const stickyViewHeight = $('.tp-header').outerHeight();
 
-  if ($('.sticky-section-menu').length > 0) {
-    stickyViewHeight = stickyViewHeight + $('.sticky-section-menu .js-pw-navigation').outerHeight();
-  }
+  // if ($('.sticky-section-menu').length > 0) {
+  //   stickyViewHeight = stickyViewHeight + $('.sticky-section-menu .js-pw-navigation').outerHeight();
+  // }
 
   $global.animate(
     {
