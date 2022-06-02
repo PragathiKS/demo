@@ -206,7 +206,8 @@
         "source/templates/components/inactivitydialog/",
         "source/templates/components/teaser/",
         "source/templates/components/mediaLink/",
-        "source/templates/components/breadcrumb/"
+        "source/templates/components/breadcrumb/",
+        "source/templates/components/banner/"
       ],
       "dashboard": [
         "source/templates/components/contactcard/",
