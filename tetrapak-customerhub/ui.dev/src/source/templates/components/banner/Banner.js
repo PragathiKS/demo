@@ -38,7 +38,7 @@ class Banner {
       if(zoomLevel === 100) {
         $sideSection.css('width', `${bannerOffset.left}px`);
       } else {
-        $sideSection.css('width', (bannerOffset.left - pwBannerContainerOffset.left)  +'px');
+        $sideSection.css('width', `${(bannerOffset.left - pwBannerContainerOffset.left)}px`);
       }
       if($('.pw-banner-herowrapper').length) {
         $('.pw-banner-herowrapper').css('visibility','visible');
@@ -93,7 +93,6 @@ class Banner {
     }
 
     $itbLink.off().on('click', this.trackAnalytics);
-
   }
   onScroll = () => {
     const scrollBarPosition = window.pageYOffset || document.body.scrollTop;
