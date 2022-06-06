@@ -8,7 +8,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
+import org.apache.commons.io.FilenameUtils;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 /**
  * The Class LinkModel.
@@ -35,10 +35,23 @@ public class LinkModel {
     protected void init() {
 	if (StringUtils.isNotEmpty(linkUrl)) {
 	    linkType = LinkUtil.checkLinkType(linkUrl);
+        if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
+            linkType = checkPDF(linkType);
+        }
 	    if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
 		assetName = LinkUtil.getAssetName(linkUrl);
 	    }
 	}
+    }
+
+    private String checkPDF(String linkType) {
+        if(FilenameUtils.getExtension(linkUrl).matches(CustomerHubConstants.PDF)){
+            return linkType = CustomerHubConstants.PDF;
+        }
+        else{
+            return linkType;
+        }
+
     }
 
     /**
