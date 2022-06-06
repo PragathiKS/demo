@@ -1,10 +1,10 @@
 .tp-container-textImage,
 .tp-container-textImage-wide {
-    @include padding(0);
+    @include padding($padding-zero $padding-l $padding-zero $padding-l);
     max-width: 100%;
     @media #{$desktop} {
         @include max-width($body-max-width);
-        margin: 24px auto 0;
+        @include margin($margin-l auto $margin-zero auto);
     }
     .pw-banner {
         .pw-banner__bgcolor {
@@ -15,7 +15,7 @@
             }
         }
         &__content {
-            @include margin(0);
+            @include margin($margin-zero);
             @include padding($padding-l);
             @media #{$desktop} {
                 width: 415px;
@@ -42,7 +42,7 @@
 .pw-banner {
     @include margin-bottom(20px);
     @media #{$desktop} {
-        margin: 0;
+        margin: $margin-zero;
     }
     $self: &;
     position: relative;
@@ -239,6 +239,16 @@
             font-family: $font-monsterrat;
             &.no-desc {
                 @include margin-top($margin-zero);
+            }
+
+            &__text {
+                font-weight: 500;
+            }
+
+            .icon {
+                &::before {
+                    @include font-size($font-baseline);
+                }
             }
         }
         &.sky-blue {
