@@ -510,18 +510,25 @@ public class GlobalUtil {
     /**
      * get scene 7 video url.
      *
+     * @param resourceResolver    Resource Resolver
      * @param damVideoPath        video path
      * @param dynamicMediaService dynamic media service
      * @return video path from scene 7
      */
-    public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
-        damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
-        damVideoPath = StringUtils.substringAfterLast(damVideoPath, CustomerHubConstants.PATH_SEPARATOR);
-        damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
-                + CustomerHubConstants.PATH_SEPARATOR + damVideoPath;
-        return damVideoPath;
+    public static String getVideoUrlFromScene7(ResourceResolver resourceResolver,String damVideoPath, DynamicMediaService dynamicMediaService) {
+        String scene7VideoPath = "";
+        if(StringUtils.isNotBlank(damVideoPath)) {
+            String fileName = getScene7FileName(resourceResolver,damVideoPath);
+            if(StringUtils.isBlank(fileName)) {
+        	fileName = StringUtils.substringBeforeLast(damVideoPath, ".");
+        	fileName = StringUtils.substringAfterLast(fileName, CustomerHubConstants.PATH_SEPARATOR);
+            }
+            scene7VideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
+                + CustomerHubConstants.PATH_SEPARATOR + fileName;
+        }
+        return scene7VideoPath;
     }
-
+    
     /**
      * Get a name with special characters replaced by underscore.
      *
