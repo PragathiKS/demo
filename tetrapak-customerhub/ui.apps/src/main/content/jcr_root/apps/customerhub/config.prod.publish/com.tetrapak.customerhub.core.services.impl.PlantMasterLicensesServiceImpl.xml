@@ -3,4 +3,3 @@
     jcr:primaryType="sling:OsgiConfig"
     isLicensesEmailEnabled="{Boolean}true"
     recipientAddresses="[TPPM.COTS.Requests@tetrapak.com]"/>
-

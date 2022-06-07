@@ -1,0 +1,443 @@
+.tp-container-textImage,
+.tp-container-textImage-wide {
+    @include padding($padding-zero $padding-l $padding-zero $padding-l);
+    max-width: 100%;
+    @media #{$desktop} {
+        @include max-width($body-max-width);
+        @include margin($margin-l auto $margin-zero auto);
+    }
+    .pw-banner {
+        .pw-banner__bgcolor {
+            &.display-row-reversed-wrapper {
+                @media #{$desktop} {
+                    width: 415px;
+                }
+            }
+        }
+        &__content {
+            @include margin($margin-zero);
+            @include padding($padding-l);
+            @media #{$desktop} {
+                width: 415px;
+            }
+            &.sky-blue {
+                color: $color-white;
+                background: linear-gradient(to top, $color-sky-blue 84.01%, rgba(0, 189, 242, 0.8) 98.8%);
+                @media #{$desktop} {
+                    background: transparent;
+                }
+            }
+        }
+        .banner-sibling {
+            display: none;
+            @media #{$desktop} {
+                display: inline-block;
+                background-color: $color-wild-sand;
+                position: absolute;
+                opacity: 0.9;
+            }
+        }
+    }
+}
+.pw-banner {
+    @include margin-bottom(20px);
+    @media #{$desktop} {
+        margin: $margin-zero;
+    }
+    $self: &;
+    position: relative;
+
+    &.pw-theme--grayscale-white {
+        background-color: transparent;
+        @media #{$desktop} {
+            background-color: $color-white;
+        }
+    }
+
+    &__image-wrapper {
+        position: relative;
+        width: 100%;
+        @media #{$desktop} {
+            width: unset;
+        }
+        img {
+            max-width: unset;
+            width: 100%;
+            border-radius: 0;
+        }
+    }
+
+    &__image {
+        @include border-radius($border-radius);
+        width: 100%;
+    }
+
+    &__contentwrapper {
+        cursor: context-menu;
+        @media #{$desktop-xl} {
+            position: absolute;
+            max-width: 1440px;
+            top: 0;
+            height: 100%;
+            width: 1440px;
+            margin: 0 auto;
+            justify-content: center;
+            left: 0;
+            right: 0;
+        }
+    }
+    &__sideSection {
+        display: none;
+        @media #{$desktop} {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+        &.right {
+            @media #{$desktop} {
+                right: 0;
+                left: auto;
+            }
+        }
+        &.sky-blue {
+            background-color: $color-sky-blue;
+        }
+        &.black {
+            background-color: $color-black;
+            opacity: $opacity-banner;
+        }
+    }
+    .pw-banner__bgcolor {
+        @media #{$desktop} {
+            @include padding-top($padding-l);
+            @include padding-bottom($padding-l);
+            height: 100%;
+            position: absolute;
+            top: 0;
+            width: 415px;
+            &.black {
+                background: linear-gradient(90deg, rgba($color-black, 0.7), rgba(0, 0, 0, 0) 99.61%);
+                width: 70%;
+            }
+            &.sky-blue {
+                background: linear-gradient(to right, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
+            }
+        }
+        &.no-subtitle {
+            @media #{$desktop} {
+                @include padding-bottom($padding-xl);
+                @include padding-top($padding-xl);
+            }
+        }
+        &.display-row-reversed-wrapper {
+            &.sky-blue {
+                @media #{$desktop} {
+                    background: linear-gradient(to left, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
+                    width: 588px;
+                    right: 0;
+                }
+            }
+            &.black {
+                @media #{$desktop} {
+                    background: linear-gradient(270deg, rgba($color-black, 0.7), rgba(0, 0, 0, 0) 99.61%);
+                    width: 70%;
+                    right: 0;
+                }
+            }
+        }
+    }
+    &__content {
+        @include margin(-35px 0 0 0);
+        @include padding($padding-l);
+        background-color: $color-white;
+        opacity: unset;
+        position: relative;
+        @media #{$desktop} {
+            @include margin-top($margin-zero);
+            @include margin($margin-zero);
+            color: $color-tundora;
+            background-color: transparent;
+            width: 415px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+        &__subtitle {
+            @include font-size($font-sm);
+            @include margin-bottom($margin-sm);
+            color: $color-boulder;
+            text-transform: $uppercase;
+            line-height: $font-normal;
+            font-weight: 500;
+            @media #{$desktop} {
+                @include margin-bottom($margin-zero);
+                display: block;
+                text-transform: $uppercase;
+            }
+            &.sky-blue {
+                color: $color-white;
+            }
+            &.black {
+                color: $color-boulder;
+                @media #{$desktop} {
+                    color: $color-white;
+                }
+            }
+        }
+        &__title {
+            @include margin-bottom($margin-md);
+            @include margin-top($margin-sm);
+            max-height: unset;
+            h1,
+            h2,
+            h3 {
+                @include font-size($font-l);
+                @include line-height($font-xl, $font-l);
+                font-weight: 400;
+            }
+            &.hero-title {
+                h1,
+                h2,
+                h3 {
+                    @include font-size($font-xl);
+                    line-height: 40px;
+                    @media #{$mobile-large} {
+                        @include font-size($font-xxl);
+                        line-height: 48px;
+                    }
+                    @media #{$desktop} {
+                        @include font-size($font-xxxl);
+                        line-height: 60px;
+                    }
+                }
+            }
+        }
+        &__description {
+            @include font-size($font-normal);
+            @include line-height($font-m-xl, $font-normal);
+            ul {
+                li {
+                    display: flex;
+                    &::before {
+                        @include margin-right($margin-sm);
+                        display: inline-block;
+                        color: $color-tundora;
+                        content: '\2022';
+                    }
+                }
+            }
+            @media #{$desktop} {
+                @include font-size($font-baseline);
+                @include line-height($font-l, $font-baseline);
+            }
+        }
+        .tpatom-link {
+            @include margin-top($margin-md);
+            font-family: $font-monsterrat;
+            &.no-desc {
+                @include margin-top($margin-zero);
+            }
+
+            &__text {
+                font-weight: 500;
+            }
+
+            .icon {
+                &::before {
+                    @include font-size($font-baseline);
+                }
+            }
+        }
+        &.sky-blue {
+            color: $color-white;
+            background: $color-sky-blue;
+            @media #{$desktop} {
+                background: transparent;
+                width: 367px;
+            }
+            .tpatom-link {
+                &--primary {
+                    color: $color-congress-blue;
+                    background-color: $color-white;
+                    &:hover {
+                        color: $color-white;
+                        background-color: $color-congress-blue;
+                    }
+                }
+                &--transparent {
+                    color: $color-white;
+                    background-color: transparent;
+                    &:hover {
+                        color: $color-congress-blue;
+                    }
+                }
+            }
+            &.display-row {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    left: 0;
+                }
+            }
+            &.display-row-reversed {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    right: 48px;
+                }
+            }
+        }
+        &.black {
+            color: $color-tundora;
+            background: $color-white;
+            @media #{$desktop} {
+                color: $color-white;
+                background: transparent;
+            }
+            .tpatom-link {
+                &--primary {
+                    color: $color-white;
+                    background-color: $color-congress-blue;
+                    @media #{$desktop} {
+                        color: $color-congress-blue;
+                        background-color: $color-white;
+                    }
+                    &:hover {
+                        color: $color-white;
+                        background-color: $color-sky-blue;
+                        @media #{$desktop} {
+                            color: $color-white;
+                            background-color: $color-sky-blue;
+                        }
+                    }
+                }
+                &--transparent {
+                    color: $color-congress-blue;
+                    @media #{$desktop} {
+                        color: $color-white;
+                        background-color: transparent;
+                    }
+                    &:hover {
+                        color: $color-sky-blue;
+                        @media #{$desktop} {
+                            color: $color-congress-blue;
+                        }
+                    }
+                }
+            }
+            &.display-row {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    left: 0;
+                }
+            }
+            &.display-row-reversed {
+                @media #{$desktop} {
+                    @include padding($padding-zero);
+                    right: 48px;
+                }
+            }
+        }
+    }
+    .banner-sibling {
+        display: none;
+        @media #{$desktop} {
+            display: inline-block;
+            background-color: $color-wild-sand;
+            position: absolute;
+            opacity: 0.9;
+        }
+        &.sky-blue,
+        &.black {
+            background-color: $color-sky-blue;
+            @media #{$desktop} {
+                background: unset;
+            }
+        }
+    }
+    .display-row {
+        @media #{$desktop} {
+            left: $margin-xxxl;
+        }
+    }
+    .display-row-reversed {
+        @media #{$desktop} {
+            right: $margin-xxxl;
+        }
+    }
+
+    &--right {
+        #{ $self }__content {
+            @include right($margin-xxl);
+            left: auto;
+        }
+    }
+}
+
+.no-subtitle {
+    .pw-banner__content {
+        @include margin-top(-41px);
+        @media #{$desktop} {
+            @include padding-bottom($padding-xl);
+            margin-top: unset;
+        }
+        &.sky-blue {
+            @media #{$desktop} {
+                @include padding-bottom($padding-zero);
+            }
+        }
+    }
+}
+
+.tp-container-textImage .pw-banner__content.sky-blue.display-row-reversed,
+.tp-container-textImage .pw-banner__content.black.display-row-reversed,
+.tp-container-textImage-wide .pw-banner__content.sky-blue.display-row-reversed,
+.tp-container-textImage-wide .pw-banner__content.black.display-row-reversed {
+    @media #{$desktop} {
+        @include padding-right($padding-zero);
+        @include padding-left($padding-xxxl);
+    }
+}
+.tp-container-textImage .pw-banner__content.sky-blue.display-row,
+.tp-container-textImage .pw-banner__content.black.display-row,
+.tp-container-textImage-wide .pw-banner__content.sky-blue.display-row,
+.tp-container-textImage-wide .pw-banner__content.black.display-row  {
+    @media #{$desktop} {
+        @include padding-left($padding-xxxl);
+    }
+}
+.pw-banner-herowrapper {
+    @media #{$desktop} {
+        visibility: hidden;
+    }
+}
+.pw-banner__gradient-bg {
+    background: linear-gradient(to top, $color-sky-blue 25.01%, rgba(0, 189, 242, 0.8) 98.8%);
+    height: 34px;
+    width: 100%;
+    top: -32px;
+    position: relative;
+    @media #{$desktop} {
+        display: none;
+    }
+}
+
+.black .pw-banner__gradient-bg {
+    background: linear-gradient(0, $color-white 8.01%, rgba(255, 255, 255, 0.8) 98.8%);
+    transform: rotate(-360deg);
+}
+
+.gray .pw-banner__gradient-bg {
+    background: $color-white;
+}
+
+.tp-container-textImage .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper,
+.tp-container-textImage-wide .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper {
+    @media #{$desktop} {
+        width: 415px;
+    }
+}
+.banner-stack {
+    @include margin-bottom($margin-sm);
+}
