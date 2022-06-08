@@ -37,7 +37,7 @@ public class AnchorModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(AnchorModel.class);
 
     /**
-     * path to components on the page
+     * Components root path on the page
      */
     private static final String CONTENT_COMPONENT_PATH = "/jcr:content/root/responsivegrid";
 
@@ -67,19 +67,22 @@ public class AnchorModel {
     @PostConstruct
     protected void init() {
         final String rootPath = currentPage.getPath() + CONTENT_COMPONENT_PATH;
-        Optional.ofNullable(request.getResourceResolver().getResource(rootPath)).map(Resource::getChildren)
-                .map(children -> StreamSupport.stream(children.spliterator(), false)).orElse(Stream.empty())
-                .filter(Objects::nonNull).forEach(resource -> {
-            ValueMap vMap;
-            if (ReferenceModel.RESOURCE_TYPE.equals(resource.getResourceType())) {
-                vMap = getValuesFromReference(resource);
-            } else {
-                vMap = resource.getValueMap();
-            }
+        Optional.ofNullable(request.getResourceResolver().getResource(rootPath))
+                .map(Resource::getChildren)
+                .map(children -> StreamSupport.stream(children.spliterator(), false))
+                .orElse(Stream.empty())
+                .filter(Objects::nonNull)
+                .forEach(resource -> {
+                    ValueMap vMap;
+                    if (ReferenceModel.RESOURCE_TYPE.equals(resource.getResourceType())) {
+                        vMap = getValuesFromReference(resource);
+                    } else {
+                        vMap = resource.getValueMap();
+                    }
 
-            final String anchorId = vMap.get("anchorId", StringUtils.EMPTY);
-            final String anchorTitle = vMap.get("anchorTitle", StringUtils.EMPTY);
-            setAnchorBean(new AnchorBean(anchorId, anchorTitle));
+                    final String anchorId = vMap.get("anchorId", StringUtils.EMPTY);
+                    final String anchorTitle = vMap.get("anchorTitle", StringUtils.EMPTY);
+                    setAnchorBean(new AnchorBean(anchorId, anchorTitle));
         });
     }
 
