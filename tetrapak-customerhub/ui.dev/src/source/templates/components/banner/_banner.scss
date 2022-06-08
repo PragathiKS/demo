@@ -289,7 +289,7 @@
             &.display-row-reversed {
                 @media #{$desktop} {
                     @include padding($padding-zero);
-                    right: 24px;
+                    right: $padding-l;
                 }
             }
         }
@@ -340,7 +340,7 @@
             &.display-row-reversed {
                 @media #{$desktop} {
                     @include padding($padding-zero);
-                    right: 24px;
+                    right: $padding-l;
                 }
             }
         }
@@ -363,12 +363,12 @@
     }
     .display-row {
         @media #{$desktop} {
-            left: $margin-xxxl;
+            left: $padding-l;
         }
     }
     .display-row-reversed {
         @media #{$desktop} {
-            right: $margin-xxxl;
+            right: $padding-l;
         }
     }
 
