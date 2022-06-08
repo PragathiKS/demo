@@ -16,8 +16,9 @@
         }
         &__content {
             @include margin($margin-zero);
-            @include padding($padding-l);
+            @include padding($padding-l $padding-zero);
             @media #{$desktop} {
+                @include padding($padding-l);
                 width: 415px;
             }
             &.sky-blue {
@@ -242,12 +243,16 @@
             }
 
             &__text {
+                @include line-height($font-l, $font-baseline);
+                display: inline;
                 font-weight: 500;
             }
 
             .icon {
                 &::before {
+                    @include line-height($font-l, $font-baseline);
                     @include font-size($font-baseline);
+                    display: inline;
                 }
             }
         }
@@ -284,7 +289,7 @@
             &.display-row-reversed {
                 @media #{$desktop} {
                     @include padding($padding-zero);
-                    right: 48px;
+                    right: 24px;
                 }
             }
         }
@@ -335,7 +340,7 @@
             &.display-row-reversed {
                 @media #{$desktop} {
                     @include padding($padding-zero);
-                    right: 48px;
+                    right: 24px;
                 }
             }
         }
