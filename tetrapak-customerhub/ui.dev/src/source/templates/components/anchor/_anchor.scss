@@ -21,6 +21,11 @@
         color: $color-congress-blue;
         font-weight: 500;
         border-bottom: 1px solid $color-mercury;
+
+        @media #{$mobile} {
+            @include margin($margin-zero $margin-md);
+            @include padding($padding-sm $padding-zero);
+        }
     }
 
     @media #{$desktop} {
