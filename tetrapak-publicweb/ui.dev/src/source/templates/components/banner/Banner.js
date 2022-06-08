@@ -38,58 +38,72 @@ class Banner {
     }
   }
 
+  setSideSection = () => {
+    const { $existingBanner, $sideSection, $sideSectionright, $pwBanner } = this.cache;
+    const bannerWidth = $existingBanner.outerWidth();
+    const zoomLevel = (( window.outerWidth) / window.innerWidth) * 100;
+    const bannerOffset = $existingBanner.offset();
+    const pwBannerContainerOffset = $pwBanner.offset();
+    const windowWidth = $('body').outerWidth();
+
+    if ($sideSection.length) {
+      if(zoomLevel === 100) {
+        $sideSection.css('width', bannerOffset.left +'px');
+      } else {
+        $sideSection.css('width', (bannerOffset.left - pwBannerContainerOffset.left)  +'px');
+      }
+      if($('.pw-banner-herowrapper').length) {
+        $('.pw-banner-herowrapper').css('visibility','visible');
+      }
+    }
+    if ($sideSectionright.length) {
+      if(zoomLevel === 100) {
+        const finalWidth = windowWidth - bannerOffset.left -  bannerWidth - 48;
+        $sideSectionright.css('width', finalWidth +'px');
+      } else {
+        const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
+        const bannerRightOffset = bannerOffset.left + bannerWidth;
+        $sideSectionright.css('width', `${(pwContainerRightOffset - bannerRightOffset)}px`);
+      }
+      if($('.pw-banner-herowrapper').length) {
+        $('.pw-banner-herowrapper').css('visibility','visible');
+      }
+    }
+  }
+
   bindEvents() {
     const { $itbLink } = this.cache;
     if (
       isDesktopMode()) {
-      const { $existingBanner } = this.cache;
-      const { $siblingBanner } = this.cache;
-      const { $sideSection } = this.cache;
-      const { $sideSectionright } = this.cache;
-      const { $pwBanner } = this.cache;
+      const { $existingBanner, $siblingBanner, $sideSection, $sideSectionright, $pwBanner } = this.cache;
+      let bannerHeight = $existingBanner.outerHeight();
+      let bannerWidth = $existingBanner.outerWidth();
+
+      $siblingBanner.css('width', bannerWidth);
+      $siblingBanner.css('height', bannerHeight);
+
       if($sideSection.length || $sideSectionright.length) {
         $pwBanner.css({'max-width':window.screen.availWidth,'margin-left':'auto','margin-right':'auto'});
       }
-      $(window).on('load resize', function () {
-        const zoomLevel = (( window.outerWidth) / window.innerWidth) * 100;
-        const bannerHeight = $existingBanner.outerHeight();
-        const bannerWidth = $existingBanner.outerWidth();
-        const bannerOffset = $existingBanner.offset();
-        const pwBannerContainerOffset = $pwBanner.offset();
-        const windowWidth = $('body').outerWidth();
+
+      this.setSideSection();
+
+      $(window).on('resize', () => {
+        bannerHeight = $existingBanner.outerHeight();
+        bannerWidth = $existingBanner.outerWidth();
         $siblingBanner.css('width', bannerWidth);
         $siblingBanner.css('height', bannerHeight);
-        if ($sideSection.length) {
-          if(zoomLevel === 100) {
-            $sideSection.css('width', bannerOffset.left +'px');
-          } else {
-            $sideSection.css('width', (bannerOffset.left - pwBannerContainerOffset.left)  +'px');
-          }
-          if($('.pw-banner-herowrapper').length) {
-            $('.pw-banner-herowrapper').css('visibility','visible');
-          }
-        }
-        if ($sideSectionright.length) {
-          if(zoomLevel === 100) {
-            const finalWidth = windowWidth - bannerOffset.left -  bannerWidth - 48;
-            $sideSectionright.css('width', finalWidth +'px');
-          } else {
-            const pwContainerRightOffset = pwBannerContainerOffset.left + $pwBanner.outerWidth();
-            const bannerRightOffset = bannerOffset.left + bannerWidth;
-            $sideSectionright.css('width', `${(pwContainerRightOffset - bannerRightOffset)}px`);
-          }
-          if($('.pw-banner-herowrapper').length) {
-            $('.pw-banner-herowrapper').css('visibility','visible');
-          }
-        }
+
+        this.setSideSection();
       });
     }
+
     if(this.cache.eles && this.cache.bannerContainer){
       if(this.cache.eles.length > 1) {
         window.addEventListener('scroll', this.onScroll, false);
       }
     }
-   
+
     $itbLink.off().on('click', this.trackAnalytics);
 
     // Open SoftConversion Form
