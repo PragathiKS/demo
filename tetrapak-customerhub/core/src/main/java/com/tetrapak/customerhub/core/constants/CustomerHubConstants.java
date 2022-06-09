@@ -650,9 +650,6 @@ public final class CustomerHubConstants {
     /** The Constant LANGUAGE_LEVEL. */
     public static final int LANGUAGE_PAGE_LEVEL = 4;
 
-    /** The Constant PARAM_LINK. */
-    public static final String PARAM_LINK = "linkPath";
-
     /**
      * Instantiates a new customer hub constants.
      */

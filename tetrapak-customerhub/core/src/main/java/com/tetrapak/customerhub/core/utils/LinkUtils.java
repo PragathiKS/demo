@@ -40,7 +40,6 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     /**
-<<<<<<< HEAD
      * Gets the root path.
      *
      * @param pagePath
@@ -52,8 +51,6 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     /**
-=======
->>>>>>> 21c5d52265911435a769399efeb0e4e8edc08184
      * Checks if is preview URL.
      *
      * @param request the request
@@ -96,7 +93,6 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     /**
-<<<<<<< HEAD
      * Gets the sanitized link.
      *
      * @return the sanitized link
@@ -121,8 +117,6 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     /**
-=======
->>>>>>> 21c5d52265911435a769399efeb0e4e8edc08184
      * Gets the substring after last.
      *
      * @param path
