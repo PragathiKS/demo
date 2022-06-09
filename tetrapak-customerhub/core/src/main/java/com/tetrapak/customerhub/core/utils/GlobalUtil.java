@@ -172,6 +172,9 @@ public class GlobalUtil {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getService(final Class<T> clazz) {
+        if (FrameworkUtil.getBundle(clazz) == null) {
+            return null;
+        }
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
         ServiceReference serviceReference = bundleContext.getServiceReference(clazz.getName());
         if (null == serviceReference) {

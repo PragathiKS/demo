@@ -1,0 +1,5 @@
+{
+    "homePagePath": "#",
+    "homeLabel": "Home",
+    "breadcrumbSubpages" : {"subpage1": "/google/link", "subpage2": "#","subpage322": "#"}
+}
