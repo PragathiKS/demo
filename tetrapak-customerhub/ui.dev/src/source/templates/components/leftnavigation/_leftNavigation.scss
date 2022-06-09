@@ -73,16 +73,10 @@
         will-change: transform;
     }
 
-    &__close-btn {
-        @include right($spacing-small);
+    .tp-close-btn {
+        @include top($spacing-small);
         color: $color-white;
         position: absolute;
-        top: 50%;
         transform: translateY(-50%);
-
-        .icon-Close {
-            @include font-size($font-normal);
-            color: $color-white;
-        }
     }
 }
