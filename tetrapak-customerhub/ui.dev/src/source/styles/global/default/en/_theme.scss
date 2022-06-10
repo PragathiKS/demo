@@ -1,11 +1,11 @@
 body {
     font-family: $font-monsterrat;
-   	font-weight: 400;
+    font-weight: 400;
 }
 a {
     font-family: $font-monsterrat;
     font-weight: 400;
-    
+
     &:hover {
         color: $color-sky-blue;
     }
@@ -21,12 +21,12 @@ a {
 }
 .pw-margin {
     &--zero {
-        margin: 0;
+        margin: $margin-zero;
     }
 }
 .pw-padding {
     &--zero {
-        @include padding($padding-zero);
+        @include padding($padding-zero $padding-l);
     }
 
     &--regular {

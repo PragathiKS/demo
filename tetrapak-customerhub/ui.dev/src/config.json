@@ -203,7 +203,10 @@
         "source/templates/components/introscreen/",
         "source/templates/components/tabslist/",
         "source/templates/components/textvideo/",
-        "source/templates/components/inactivitydialog/"
+        "source/templates/components/inactivitydialog/",
+        "source/templates/components/breadcrumb/",
+        "source/templates/components/teaser/",
+        "source/templates/components/mediaLink/"
       ],
       "dashboard": [
         "source/templates/components/contactcard/",

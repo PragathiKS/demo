@@ -584,6 +584,9 @@ public final class CustomerHubConstants {
     /** The Constant PARAM_LINK. */
     public static final String PARAM_LINK = "linkPath";
 
+    /** The Constant VALUE. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+
     /** The Constant CONTENT_DAM_PATH. */
     public static final String CONTENT_DAM_PATH = "/content/dam/";
 
@@ -641,6 +644,12 @@ public final class CustomerHubConstants {
     /** The Constant VALUE. */
     public static final String VALUE = "Value";
 
+    /** The Constant HOME_PAGE_REL_PATH. */
+    public static final String HOME_PAGE_REL_PATH = "dashboard";
+
+    /** The Constant LANGUAGE_LEVEL. */
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
+
     /**
      * Instantiates a new customer hub constants.
      */
@@ -648,3 +657,4 @@ public final class CustomerHubConstants {
         throw new IllegalStateException("Utility class");
     }
 }
+

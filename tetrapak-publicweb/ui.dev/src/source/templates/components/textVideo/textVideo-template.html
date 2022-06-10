@@ -59,7 +59,7 @@
           <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.videoName}"
             data-video-type="${data.videoSource}" data-video-name="${data.videoName}">
             <sly data-sly-test = "${!wcmmode.edit}">
-            <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=data.thumbnailPath}"></sly>
+            <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=data.thumbnailPath, videoPath=data.originalDamVideoPath}"></sly>
             <video class="js-dam-player" controls poster="${dynamicImageModel.desktopUrl}">
               <source src="${data.damVideoPath}" type="video/mp4">
             </video>
