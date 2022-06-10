@@ -7,6 +7,7 @@ import com.tetrapak.customerhub.core.beans.LeftNavigationBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.NavigationUtil;
 import com.tetrapak.customerhub.core.utils.PageUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -19,10 +20,8 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Model class for left navigation component
@@ -125,7 +124,7 @@ public class LeftNavigationModel {
         LeftNavigationBean bean = new LeftNavigationBean();
         bean.setIconClass((String) valueMap.get("iconClass"));
         bean.setExternalLink(isExternalLink(valueMap));
-        bean.setIconLabel(getPageNameI18key(valueMap));
+        bean.setIconLabel(NavigationUtil.getPageTitle(childPage));
         bean.setHref(getResolvedPagePath(childPage));
         bean.setActive(PageUtil.isCurrentPage(childPage, request.getResource()) || isChildPageActive(childPage, request.getResource()));
         bean.setPageName((String) valueMap.get("tabName"));
@@ -137,16 +136,6 @@ public class LeftNavigationModel {
 
     private String getResolvedPagePath(Page childPage) {
         return request.getResourceResolver().map(childPage.getPath() + CustomerHubConstants.HTML_EXTENSION);
-    }
-
-    private String getPageNameI18key(ValueMap valueMap) {
-        if (valueMap.containsKey("iconLabel")) {
-            return (String) valueMap.get("iconLabel");
-        }
-        if (valueMap.containsKey("jcr:title")) {
-            return (String) valueMap.get("jcr:title");
-        }
-        return "";
     }
 
     private boolean isNotHiddenInNavigation(ValueMap valueMap) {
