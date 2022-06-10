@@ -578,7 +578,7 @@ public final class CustomerHubConstants {
     /** TheConstant SORT */
     public static final String EQUIPMENT_API_SORT = "sort";
 
-    /** The Constant for Email ID. */
+	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
 
     /** The Constant PARAM_LINK. */
@@ -586,7 +586,7 @@ public final class CustomerHubConstants {
 
     /** The Constant VALUE. */
     public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
-    
+
     /** The Constant CONTENT_DAM_PATH. */
     public static final String CONTENT_DAM_PATH = "/content/dam/";
 

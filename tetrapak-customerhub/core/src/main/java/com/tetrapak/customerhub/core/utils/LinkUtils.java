@@ -40,10 +40,23 @@ public class LinkUtils extends WCMUsePojo {
     }
 
     /**
+     * Gets the asset name.
+     *
+     * @param path the asset path.
+     * @return the asset name.
+     */
+    public static String getAssetName(final String path) {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotBlank(path)) {
+            assetName = getSubstringAfterLast(path);
+        }
+        return assetName;
+    }
+
+    /**
      * Gets the root path.
      *
-     * @param pagePath
-     *            the page path
+     * @param pagePath the page path
      * @return the root path
      */
     public static String getRootPath(final String pagePath) {
@@ -99,21 +112,6 @@ public class LinkUtils extends WCMUsePojo {
      */
     public String getSanitizedLink() {
         return LinkUtils.sanitizeLink(sanitizedLink, getRequest());
-    }
-
-    /**
-     * Gets the asset name.
-     *
-     * @param path
-     *            the asset path.
-     * @return the asset name.
-     */
-    public static String getAssetName(final String path) {
-        String assetName = StringUtils.EMPTY;
-        if (StringUtils.isNotBlank(path)) {
-            assetName = getSubstringAfterLast(path);
-        }
-        return assetName;
     }
 
     /**
