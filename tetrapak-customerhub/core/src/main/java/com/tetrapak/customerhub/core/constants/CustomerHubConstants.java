@@ -637,15 +637,18 @@ public final class CustomerHubConstants {
     
     /** The Constant SESSION_NULL_MESSAGE. */
     public static final String SESSION_NULL_MESSAGE = "Session is null";
-    
-    /** The Constant TRAINING_NAME. */
-    public static final String TRAINING_NAME = "trainingName";
 
     /** The Constant VALUE. */
     public static final String VALUE = "Value";
 
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+
+    /** The Constant HOME_PAGE_REL_PATH. */
+    public static final String HOME_PAGE_REL_PATH = "dashboard";
+
+    /** The Constant LANGUAGE_LEVEL. */
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
 
     /**
      * Instantiates a new customer hub constants.

@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.utils;
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.jackrabbit.vault.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
 
 /**
@@ -36,6 +37,17 @@ public class LinkUtils extends WCMUsePojo {
             return link + ".html";
         }
         return link;
+    }
+
+    /**
+     * Gets the root path.
+     *
+     * @param pagePath
+     *            the page path
+     * @return the root path
+     */
+    public static String getRootPath(final String pagePath) {
+        return Text.getAbsoluteParent(pagePath, CustomerHubConstants.LANGUAGE_PAGE_LEVEL);
     }
 
     /**
@@ -78,6 +90,30 @@ public class LinkUtils extends WCMUsePojo {
     public void activate() throws Exception {
         sanitizedLink = get(CustomerHubConstants.PARAM_LINK, String.class);
 
+    }
+
+    /**
+     * Gets the sanitized link.
+     *
+     * @return the sanitized link
+     */
+    public String getSanitizedLink() {
+        return LinkUtils.sanitizeLink(sanitizedLink, getRequest());
+    }
+
+    /**
+     * Gets the asset name.
+     *
+     * @param path
+     *            the asset path.
+     * @return the asset name.
+     */
+    public static String getAssetName(final String path) {
+        String assetName = StringUtils.EMPTY;
+        if (StringUtils.isNotBlank(path)) {
+            assetName = getSubstringAfterLast(path);
+        }
+        return assetName;
     }
 
     /**

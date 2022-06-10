@@ -15,5 +15,12 @@
 	"sling:resourceType":"customerhub/components/content/textvideo",
 	"isExternal":"true",
 	"thumbnailPath":"/content/dam/customerhub/get_started-3.PNG",
-	"textAlignment":"right"
+	"textAlignment":"right",
+	"packageDesign":"true",
+	"subTitle": "Design Submission",
+	"pwTheme": "grayscale-lighter",
+	"pwButtonTheme": "link",
+	"anchorId": "features",
+	"anchorTitle": "Features"
+	
 }
