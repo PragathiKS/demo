@@ -53,6 +53,11 @@ public class GlobalUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
+     * File name for Scene 7 property
+     */
+    private static final String SCENE_7_NAME_PROPERTY = "dam:scene7Name";
+
+    /**
      * Method to get API GEE URL.
      *
      * @param apigeeService API GEE Service
@@ -676,5 +681,40 @@ public class GlobalUtil {
                     + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
         }
         return aipEndpointURL;
+    }
+
+    /**
+     * Gets the active license api endpoint URL.
+     *
+     * @param apiServiceUrl the api service url
+     * @param apiMapping    the api mapping
+     * @return the AIP endpoint URL
+     */
+    public static String getActiveLicenseEndpointURL(String apiServiceUrl, String apiMapping) {
+        String aipEndpointURL = StringUtils.EMPTY;
+        if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping)) {
+            aipEndpointURL =
+                   apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping;
+        }
+        return aipEndpointURL;
+    }
+
+    /**
+     * Gets the scene 7 file name.
+     *
+     * @param resourceResolver
+     *            the resource resolver
+     * @param path
+     *            the path
+     * @return the scene 7 file name
+     */
+    public static String getScene7FileName(final ResourceResolver resourceResolver, final String path) {
+        String fileName = StringUtils.EMPTY;
+        final Resource resource = resourceResolver.getResource(path + CustomerHubConstants.DAM_METADATA_PATH);
+        if (Objects.nonNull(resource)) {
+            final ValueMap properties = resource.getValueMap();
+            fileName = properties.get(SCENE_7_NAME_PROPERTY, StringUtils.EMPTY);
+        }
+        return fileName;
     }
 }
