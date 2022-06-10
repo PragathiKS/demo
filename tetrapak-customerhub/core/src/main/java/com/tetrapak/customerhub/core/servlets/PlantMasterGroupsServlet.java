@@ -38,8 +38,7 @@ import java.util.Optional;
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
         "sling.servlet.resourceTypes=" + "customerhub/components/content/plantmasterlicenses",
         "sling.servlet.resourceTypes=" + "customerhub/components/content/plantmastertrainings",
-        "sling.servlet.selectors=" + "plantmaster",
-        "sling.servlet.extensions=" + "json"
+        "sling.servlet.selectors=" + "plantmaster", "sling.servlet.extensions=" + "json"
 })
 public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
 
@@ -87,16 +86,21 @@ public class PlantMasterGroupsServlet extends SlingSafeMethodsServlet {
     }
 
     private JsonObject getJsonGroups(ResourceResolver resolver) {
-        Node node = resolver.getResource(STATIC_GROUPS_DEFINITION_JSON).adaptTo(Node.class);
-        JsonObject jsonGroups = new JsonObject();
-        JsonParser parser = new JsonParser();
-        try (InputStream io = node.getNode(RepositoryUtils.JCR_CONTENT_NODE_NAME).getProperty("jcr:data").getBinary()
-                .getStream()) {
-            Object obj = parser.parse(new InputStreamReader(io, "UTF-8"));
-            jsonGroups = (JsonObject) obj;
-        } catch (IOException | RepositoryException e) {
-            LOGGER.error("Cannot read file with mapping PING Group <-> License/Training ID", e);
-        }
-        return jsonGroups;
+        final JsonParser parser = new JsonParser();
+        return Optional.ofNullable(resolver.getResource(STATIC_GROUPS_DEFINITION_JSON))
+                .map(r -> r.adaptTo(Node.class))
+                .map(node -> {
+                    try (InputStream io = node.getNode(RepositoryUtils.JCR_CONTENT_NODE_NAME).getProperty("jcr:data")
+                            .getBinary().getStream()) {
+                        Object obj = parser.parse(new InputStreamReader(io, "UTF-8"));
+                        return (JsonObject) obj;
+                    } catch (IOException | RepositoryException e) {
+                        LOGGER.error("Cannot read file with mapping PING Group <-> License/Training ID", e);
+                        return new JsonObject();
+                    }
+                }).orElseGet(() -> {
+                    LOGGER.error("Cannot read file with mapping PING Group <-> License/Training ID");
+                    return new JsonObject();
+                });
     }
 }

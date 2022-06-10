@@ -166,7 +166,7 @@ class Softconversion {
       }
     });
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
-    
+
     // do the analytics call for not me
     changeStepNext('Welcome back', { 'return Type': $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
 
@@ -184,7 +184,7 @@ class Softconversion {
     $('.dropdown-toggle span').each(function() {
       $(this).text($(this).data('placeholder'));
     });
-    
+
     // Reset Cookie
     this.cache.$userType = 1;
     storageUtil.setCookie('userType', '', -1);
@@ -211,7 +211,7 @@ class Softconversion {
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`.heading_${this.cache.$componentName}`, this.root).text($(`#heading_${this.cache.$componentName}`).val());
-      
+
       $partiallyUser.find('input').each(function () {
         $(this).attr('required', 'required');
       });
@@ -264,7 +264,7 @@ class Softconversion {
         }
       );
     }
-    
+
     // do the analytics call for yes its me
     changeStepNext('Welcome back', { 'return Type': $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
   }
@@ -326,7 +326,7 @@ class Softconversion {
     else {
       apiPayload.pardotUrl = pardotUrl;
     }
-    
+
     apiPayload.pageurl = this.getPageURL();
     Object.keys(this.cache.requestPayload).forEach(key => {
       if(key === 'utm_campaign') {
@@ -363,7 +363,12 @@ class Softconversion {
       storageUtil.setCookie('visitor-mail', apiPayload.email, 365);
     }
     storageUtil.setCookie('userType', this.cache.$userType, 365);
-    storageUtil.setCookie('countryValue', this.cache.requestPayload['country'], 365);
+    if(countryCookie){
+      storageUtil.setCookie('countryValue', countryCookie, 365);
+    }
+    else {
+      storageUtil.setCookie('countryValue', this.cache.requestPayload['country'], 365);
+    }
     $(`.heading_${this.cache.$componentName}`, this.root).text('');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
     $(`#cf-step-downloadReady-${this.cache.$componentName}`, this.root).addClass('active');
@@ -381,7 +386,7 @@ class Softconversion {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
       return params[key] = value;
     });
-    
+
     Object.keys(params).forEach(key => {
       if(key === 'utm_campaign') {
         requestPayload['utm_campaign'] = params[key];
@@ -405,10 +410,10 @@ class Softconversion {
 
     return pageURL;
   }
-  
+
   bindEvents() {
     const {requestPayload, $radio, $submitBtn, $componentName, $parentComponent, $downloadbtn, $notmebtn, $yesmebtn, $moreBtn, $dropItem, $partiallyUser } = this.cache;
-    
+
     const self = this;
     $($partiallyUser).hide();
     $(window).ready(function() {
@@ -447,7 +452,7 @@ class Softconversion {
           requestPayload[fieldName] = $('input[name="market-consent"]:checked').length > 0;
         }
         if (($(this).prop('required') && $(this).val() === '')) {
-          
+
           const errmsg = $(this).closest('.form-group, .formfield').find('.errorMsg').text().trim();
           let erLbl = '';
 
@@ -499,7 +504,7 @@ class Softconversion {
             }
             $(this).closest('.form-group, .formfield').addClass('field-error');
           }
-          
+
           errObj.push({
             formErrorMessage: errmsg,
             formErrorField: erLbl

@@ -5,7 +5,7 @@
     enabled="{Boolean}true"
     generatorType="htmlparser"
     order="{Long}3"
-    path="[/content/tetrapak/customerhub]"
+    paths="[/content/tetrapak/customerhub]"
     serializerType="htmlwriter"
     transformerTypes="[mtplinkrewriter]">
     <generate-htmlparser

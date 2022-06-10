@@ -4,4 +4,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Theme Selector"
     sling:resourceSuperType="core/wcm/components/tabs/v1/tabs"
-    componentGroup="hidden"/>
+    componentGroup=".hidden"/>

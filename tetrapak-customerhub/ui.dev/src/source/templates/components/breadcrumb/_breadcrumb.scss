@@ -1,0 +1,92 @@
+.white-bg {
+    .tp_pw-breadcrumb {
+        &__wrapper {
+            @include padding($padding-l $padding-zero $padding-zero $padding-l);
+        }
+  }
+}
+
+.tp_pw-breadcrumb {
+    @include max-width($body-max-width);
+    @include padding($padding-zero);
+    @include margin($spacing-big $margin-zero);
+    display: block;
+    color: $color-tundora;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+
+    @media #{$desktop} {
+        @include margin($spacing-big auto);
+    }
+    &__wrapper {
+        @include margin($margin-zero);
+        @include padding($padding-zero);
+    }
+
+    .icon-Chevron_Right {
+        @include margin($margin-zero $margin-xs+2);
+        @include font-size($font-xxs);
+        @include line-height($font-xxs, $font-xxs);
+        display: inline;
+        vertical-align: middle;
+    }
+
+    &__link {
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-sm);
+        display: none;
+        color: $color-tundora;
+        font-weight: 500;
+        &:hover {
+            color: $color-sky-blue;
+        }
+        &:first-child {
+            .icon-Chevron_Right {
+                display: none;
+            }
+        }
+        &.last {
+            &:hover {
+                color: inherit;
+            }
+        }
+        &.secondlast {
+            display: inline-block;
+        }
+        .icon {
+            &-Chevron_Left {
+                display: inline;
+                &::before {
+                    @include padding-right($padding-xs);
+                }
+            }
+            &-Chevron_Right {
+                display: none;
+            }
+        }
+
+        @media #{$desktop} {
+            display: inline-block;
+            font-weight: normal;
+
+            .icon {
+                &-Chevron_Left {
+                    display: none;
+                }
+                &-Chevron_Right {
+                    @include font-size($font-sm);
+                    display: inline;
+                }
+            }
+        }
+    }
+
+    span {
+        @include font-size($font-sm);
+        @include line-height($font-m-md, $font-sm);
+        color: $color-tundora;
+        font-weight: normal;
+    }
+}

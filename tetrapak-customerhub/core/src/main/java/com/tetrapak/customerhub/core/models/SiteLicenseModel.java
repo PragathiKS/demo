@@ -125,6 +125,10 @@ public class SiteLicenseModel {
     @ValueMapValue
     @Expose(serialize = true)
     private String inputFieldError;
+	
+	@ValueMapValue
+    @Expose(serialize = true)
+    private String numberFieldError;
     
     @ValueMapValue
     @Expose(serialize = true)
@@ -250,6 +254,10 @@ public class SiteLicenseModel {
     
     public String getInputFieldError() {
         return inputFieldError;
+    }
+
+    public String getNumberFieldError() {
+        return numberFieldError;
     }
     
     public String getSelectFieldError() {
