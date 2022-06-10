@@ -2,7 +2,7 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import moment from 'moment';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods} from '../../../scripts/utils/constants';
+import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
@@ -61,6 +61,15 @@ function _handleFormSubmit(formEl) {
       isFormValid = false;
       $this.addErrorMsg(el, '.js-aip__error-msg-required');
     }
+
+    const $numberField = this.root.find(':input[type="number"]:visible');
+    $numberField.each((idx, ele) => {
+      const numberFieldVal = $(ele).val();
+      if (numberFieldVal && (!this.isNumeric(numberFieldVal) || (numberFieldVal < 1))) {
+        isFormValid = false;
+        this.addErrorMsg(ele, '.js-aip__error-msg-invalid-number');
+      }
+    });
 
     if ($el.hasClass('js-aip-trainings__date-input') && $.trim($el.val())) {
       const date = moment($el.val(), 'YYYY-MM-DD', true);
@@ -222,6 +231,10 @@ class PlantMasterTrainings {
       e.preventDefault();
       this.handleFormSubmit(e.target);
     });
+  }
+
+  isNumeric(number) {
+    return REG_NUM.test(number);
   }
 
   renderTrainings() {

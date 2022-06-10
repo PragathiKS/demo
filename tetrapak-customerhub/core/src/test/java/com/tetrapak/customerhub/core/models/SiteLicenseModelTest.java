@@ -74,6 +74,7 @@ public class SiteLicenseModelTest {
         assertEquals("Unexpected value","body",siteLicenseModel.getBody());
         assertEquals("Unexpected value","Application",siteLicenseModel.getApplication());
         assertEquals("Unexpected value","Input field error",siteLicenseModel.getInputFieldError());
+		assertEquals("Unexpected value","Number field error",siteLicenseModel.getNumberFieldError());
         assertEquals("Unexpected value","select field error",siteLicenseModel.getSelectFieldError());
 
     }
