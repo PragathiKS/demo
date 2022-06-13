@@ -184,8 +184,8 @@ class PlantMasterLicensesActive {
         licenseKey: $btn.data('licenseKey'),
         countryName: $btn.data('countryName'),
         site: $btn.data('site'),
-        startDate: $btn.data('validFromDate'),
-        endDate: $btn.data('validToDate')
+        startDate: $btn.data('startDate'),
+        endDate: $btn.data('endDate')
       };
 
       this.renderLicenseWithdrawModal(licenseDetails);
