@@ -68,7 +68,6 @@ public class PlantMasterTrainingsModelTest {
 		assertEquals("Unexpected value", "cuhu.plantmastertrainings.availableTrainings", model.getAvailableTrainings());
 		assertEquals("Unexpected value", "cuhu.plantmastertrainings.title", model.getTitle());
 		assertEquals("Unexpected value", "cuhu.plantmastertrainings.availableTrainings", model.getAvailableTrainings());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.learningHistory", model.getLearningHistory());
 		assertEquals("Unexpected value", "cuhu.plantmastertrainings.trainingMaterialHandouts", model.getTrainingMaterialHandouts());
 		assertEquals("Unexpected value", "cuhu.plantmastertrainings.courseDescription", model.getCourseDescription());
 		assertEquals("Unexpected value", "cuhu.plantmastertrainings.principleObjectives", model.getPrincipleObjectives());

@@ -47,6 +47,27 @@ public class PlantMasterTrainingsModel {
         /** The available trainings. */
         AVAILABLE_TRAININGS("availableTrainings"),
 
+        /** The learning history text. */
+        LEARNING_HISTORY_TEXT("learninghistorytext"),
+
+        /** The diploma. */
+        DIPLOMA_TEXT("diplomatext"),
+
+        /** The accredited. */
+        ACCREDITED_TEXT("accreditedtext"),
+
+        /** The authenticated. */
+        AUTHENTICATED_TEXT("authenticatedtext"),
+
+        /** The user text. */
+        USER_TEXT("usertext"),
+
+        /** The item text. */
+        ITEM_TEXT("itemtext"),
+
+        /** The completion date text. */
+        COMPLETION_DATE_TEXT("completiondatetext"),
+
         /** The training material handouts. */
         TRAINING_MATERIAL_HANDOUTS("trainingMaterialHandouts"),
 
@@ -340,7 +361,20 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TITLE.getI18nJsonKey(), getTitle());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.AVAILABLE_TRAININGS.getI18nJsonKey(),
                 getAvailableTrainings());
-        i18KeyMap.put(LEARNING_HISTORY_CHILD_RESOURCE_NAME, plantMasterLearningHistoryModel);
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.LEARNING_HISTORY_TEXT.getI18nJsonKey(),
+                plantMasterLearningHistoryModel.getLearninghistorytext());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.ACCREDITED_TEXT.getI18nJsonKey(),
+                plantMasterLearningHistoryModel.getAccreditedtext());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.AUTHENTICATED_TEXT.getI18nJsonKey(),
+                plantMasterLearningHistoryModel.getAuthenticatedtext());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.DIPLOMA_TEXT.getI18nJsonKey(),
+                plantMasterLearningHistoryModel.getDiplomatext());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.USER_TEXT.getI18nJsonKey(),
+                plantMasterLearningHistoryModel.getUsertext());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.ITEM_TEXT.getI18nJsonKey(),
+                plantMasterLearningHistoryModel.getItemtext());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMPLETION_DATE_TEXT.getI18nJsonKey(),
+                plantMasterLearningHistoryModel.getCompletiondatetext());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_MATERIAL_HANDOUTS.getI18nJsonKey(),
                 getTrainingMaterialHandouts());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.COURSE_DESCRIPTION.getI18nJsonKey(), getCourseDescription());
