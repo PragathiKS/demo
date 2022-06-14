@@ -18,12 +18,12 @@
                 <sly data-sly-test="${!wcmmode.edit}">
                     <div class="pw-banner__image-wrapper" auto_locator="bannerImage">
                         <sly data-sly-test="${heroBanner}">
-                            <sly data-sly-use.image="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=data.fileReference , altText=data.alt}" />
+                            <sly data-sly-use.image="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=data.fileReference , altText=data.alt, imageCrop=data.imageCrop}" />
                             <sly data-sly-test = "${data.fileReference}"  data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" data-sly-call="${dynamicMediaImage.dynamicimage_template @image=image, className='img-responsive'}" />
                         </sly>
                         <sly data-sly-test="${textImageBanner}">
                             <sly data-sly-test.textImageBannerType="${data.bannerType == 'textImage' ? 'banner' : 'banner-wide'}" />
-                            <sly data-sly-use.image="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=data.fileReference , altText=data.alt}" />
+                            <sly data-sly-use.image="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=data.fileReference , altText=data.alt, imageCrop=data.imageCrop}" />
                             <sly data-sly-test = "${data.fileReference}"  data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" data-sly-call="${dynamicMediaImage.dynamicimage_template @image=image, className='img-responsive'}" />
                         </sly>
                     </div>
