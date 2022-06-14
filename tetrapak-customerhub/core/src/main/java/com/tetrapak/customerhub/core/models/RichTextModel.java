@@ -13,9 +13,47 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class RichTextModel {
 
+    /** The anchor id. */
+    @ValueMapValue
+    private String anchorId;
+
+    /** The anchor title. */
+    @ValueMapValue
+    private String anchorTitle;
+
     /** The text. */
     @ValueMapValue
     private String text;
+
+    /** The pw theme. */
+    @ValueMapValue
+    private String pwTheme;
+
+    /** The pw padding. */
+    @ValueMapValue
+    private String pwPadding;
+
+    /** The top spacing. */
+    @ValueMapValue
+    private String topSpacing;
+
+    /**
+     * Gets the anchor id.
+     *
+     * @return the anchor id
+     */
+    public String getAnchorId() {
+        return anchorId;
+    }
+
+    /**
+     * Gets the anchor title.
+     *
+     * @return the anchor title
+     */
+    public String getAnchorTitle() {
+        return anchorTitle;
+    }
 
     /**
      * Gets the text.
@@ -24,5 +62,32 @@ public class RichTextModel {
      */
     public String getText() {
         return text;
+    }
+
+    /**
+     * Gets the pw theme.
+     *
+     * @return the pw theme
+     */
+    public String getPwTheme() {
+        return pwTheme;
+    }
+
+    /**
+     * Gets the pw padding.
+     *
+     * @return the pw padding
+     */
+    public String getPwPadding() {
+        return pwPadding;
+    }
+
+    /**
+     * Gets the top spacing.
+     *
+     * @return the top spacing
+     */
+    public String getTopSpacing() {
+        return topSpacing;
     }
 }

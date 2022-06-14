@@ -51,5 +51,10 @@ public class RichTextModelTest {
     @Test
     public void testLoadAndGetters() throws Exception {
         Assert.assertNotNull(model.getText());
+        Assert.assertNotNull(model.getPwPadding());
+        Assert.assertNotNull(model.getPwTheme());
+        Assert.assertNotNull(model.getTopSpacing());
+        Assert.assertNotNull(model.getAnchorTitle());
+        Assert.assertNotNull(model.getAnchorId());
     }
 }

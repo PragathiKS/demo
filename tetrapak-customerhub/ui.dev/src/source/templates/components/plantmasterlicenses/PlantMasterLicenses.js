@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import PlantMasterLicensesEngineering from './PlantMasterLicenses-engineering';
 import PlantMasterLicensesSite from './PlantMasterLicenses-site';
+import PlantMasterLicensesActive from './PlantMasterLicenses-active';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
-
 
 class PlantMasterLicenses {
   constructor({ el }) {
@@ -12,12 +12,12 @@ class PlantMasterLicenses {
     this.$engineeringLicensesEl = this.root.find('#nav-engineering-licenses');
     this.$siteLicensesEl = this.root.find('#nav-site-licenses');
     this.$siteLicensesTab = this.root.find('#nav-site-licenses-tab');
+    this.$activeLicensesEl = this.root.find('#nav-active-licenses');
   }
 
   cache = {};
 
   init() {
-
     ajaxWrapper.getXhrObj({
       url: this.root.data('group-servlet-url'),
       method: ajaxMethods.GET,
@@ -48,9 +48,11 @@ class PlantMasterLicenses {
 
       this.pmLicensesEngineering = new PlantMasterLicensesEngineering(this.$engineeringLicensesEl,engLicenseUerGroup);
       this.pmLicensesSite = new PlantMasterLicensesSite(this.$siteLicensesEl,siteLicenseUerGroup);
+      this.pmLicensesActive = new PlantMasterLicensesActive(this.$activeLicensesEl,siteLicenseUerGroup);
 
       this.pmLicensesEngineering.init();
       this.pmLicensesSite.init();
+      this.pmLicensesActive.init();
 
       if(showSiteLicenseTab === true) {
         this.$siteLicensesTab.removeClass('d-none');

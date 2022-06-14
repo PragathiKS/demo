@@ -165,6 +165,12 @@
 										fieldLabel="Input format error message (i18N key)"
 										name="./inputFormatErrorMsg"
 										required="true"/>
+									<numberFieldErrorMsg
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Invalid number error message (i18N key)"
+										name="./numberFieldErrorMsg"
+										required="true"/>
 									<successMessage
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

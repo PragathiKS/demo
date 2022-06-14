@@ -40,14 +40,14 @@
                             <apiurl
 								jcr:primaryType="nt:unstructured"
 								sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-								fieldDescription="Provide Global BU form handler URL. Valid URL starts with - http://go.demo.pardot.com and end with ddx"
+								fieldDescription="Provide Global BU Form Handler URL. Valid URL starts with - https://go.tetrapak.com/"
 								fieldLabel="Global BU form handler URL"
 								name="./befPardotURL"
 								required="{Boolean}true"/>
 							<chinaapiurl
 								jcr:primaryType="nt:unstructured"
 								sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-								fieldDescription="Provide China BU form handler URL. Valid URL starts with either - http://go.demo.pardot.com and end with bvb"
+								fieldDescription="Provide China BU form handler URL. Valid URL starts with either - https://go.demo.pardot.com/ or https://go-cn.tetrapak.com/"
 								fieldLabel="China BU Form Handler URL"
 								name="./befChinaPardotURL"
 								required="{Boolean}true"/>

@@ -391,6 +391,12 @@
                                                 fieldLabel="Input field error text (i18N key)"
                                                 name="./siteLicense/inputFieldError"
                                                 required="true"/>
+                                            <numberFieldError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number field error text (i18N key)"
+                                                name="./siteLicense/numberFieldError"
+                                                required="true"/>
                                             <selectFieldError
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -455,6 +461,187 @@
                             </fieldSetContainer>
                         </items>
                     </siteLicenseTab>
+                    <activeLicenseTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Active Licenses Configuration"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <fieldSetContainer
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <editor
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Component labels configuration"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Title label (i18N key)"
+                                                name="./activeLicense/title"
+                                                required="true"/>
+                                            <engLicenseTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Annual Engineering License field label (i18N key)"
+                                                name="./activeLicense/engLicenseTitle"
+                                                required="true"/>
+                                            <siteLicenseTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Site License Title label (i18N key)"
+                                                name="./activeLicense/siteLicenseTitle"
+                                                required="true"/>
+                                            <name
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Name label (i18N key)"
+                                                name="./activeLicense/name"
+                                                required="true"/>
+                                            <licenceKey
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Licence Key label (i18N key)"
+                                                name="./activeLicense/licenceKey"
+                                                required="true"/>
+                                            <platformText
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Platform label (i18N key)"
+                                                name="./activeLicense/platformText"
+                                                required="true"/>
+                                            <startDate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Start date label (i18N key)"
+                                                name="./activeLicense/startDate"
+                                                required="true"/>
+                                            <endDate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="End date label (i18N key)"
+                                                name="./activeLicense/endDate"
+                                                required="true"/>
+                                            <withdrawBtn
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Withdraw Button label (i18N key)"
+                                                name="./activeLicense/withdrawBtn"
+                                                required="true"/>
+                                            <country
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Country label (i18N key)"
+                                                name="./activeLicense/country"
+                                                required="true"/>
+                                            <site
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Site label (i18N key)"
+                                                name="./activeLicense/site"
+                                                required="true"/>
+                                            <siteDate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Site Date (i18N key)"
+                                                name="./activeLicense/siteDate"
+                                                required="true"/>
+                                            <modalConfirmTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Confirm Withdrawal Modal Title (i18N key)"
+                                                name="./activeLicense/modalConfirmTitle"
+                                                required="true"/>
+                                            <modalComments
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Confirm Withdrawal comments field label (i18N key)"
+                                                name="./activeLicense/modalComments"
+                                                required="true"/>
+                                            <modalConfirmText
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Confirm Withdrawal text (i18N key)"
+                                                name="./activeLicense/modalConfirmText"
+                                                required="true"/>
+                                            <modalConfirmBtn
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Confirm Withdrawal button label (i18N key)"
+                                                name="./activeLicense/modalConfirmBtn"
+                                                required="true"/>
+                                            <modalCancelBtn
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Confirm Withdrawal Cancel button label (i18N key)"
+                                                name="./activeLicense/modalCancelBtn"
+                                                required="true"/>
+                                            <modalWithdrawSuccessTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Withdraw Success Modal Title (i18N key)"
+                                                name="./activeLicense/modalWithdrawSuccessTitle"
+                                                required="true"/>
+                                            <modalWithdrawSuccessText
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Withdraw Success Modal text (i18N key)"
+                                                name="./activeLicense/modalWithdrawSuccessText"
+                                                required="true"/>
+                                            <modalWithdrawBack
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Withdraw Success Modal Back button label (i18N key)"
+                                                name="./activeLicense/modalWithdrawBack"
+                                                required="true"/>
+                                        </items>
+                                    </editor>
+                                    <email
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Email Configuration"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <subject
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Subject (i18N key)"
+                                                name="./activeLicense/subject"
+                                                required="true"/>
+                                            <salutation
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Salutation text (i18N key)"
+                                                name="./activeLicense/salutation"/>
+                                            <usernameText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Username text (i18N key)"
+                                                    name="./activeLicense/usernameText"
+                                                    required="true"/>
+                                            <body
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Body text (i18N key)"
+                                                name="./activeLicense/body"/>
+                                            <emailCommentText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Comments (i18N key)"
+                                                    name="./activeLicense/emailCommentText"/>
+                                            <requestorText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Requestor Text (i18N key)"
+                                                    name="./activeLicense/requestorText"
+                                                    required="true"/>
+                                        </items>
+                                    </email>
+                                </items>
+                            </fieldSetContainer>
+                        </items>
+                    </activeLicenseTab>
                 </items>
             </tabs>
         </items>

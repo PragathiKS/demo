@@ -1,0 +1,46 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Tue Mar 24 2020 12:02:55 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:mixinTypes": [
+			"mix:versionable"
+		],
+		"jcr:createdBy": "admin",
+		"jcr:title": "Sustainability",
+		"cq:lastReplicationAction": "Activate",
+		"jcr:versionHistory": "74e8dcc2-6834-429f-9523-855040dcf656",
+		"iconClass": "icon-Install",
+    	"cq:template": "/conf/customerhub/settings/wcm/templates/landing-page",
+		"cq:lastReplicatedBy": "admin",
+		"jcr:predecessors": [
+			"2abdb2c1-ca0f-4d8a-83c3-9130ad8ceca2"
+		],
+		"jcr:created": "Tue Mar 24 2020 12:02:55 GMT+0530",
+		"cq:lastReplicated": "Thu Mar 19 2020 07:08:33 GMT+0000",
+		"cq:lastModified": "Wed Apr 01 2020 12:07:34 GMT+0530",
+		"jcr:baseVersion": "2abdb2c1-ca0f-4d8a-83c3-9130ad8ceca2",
+		"jcr:uuid": "e881ef77-981c-410e-9ae9-89a95d543bec",
+		"sling:resourceType": "customerhub/components/structure/pages/page",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"fullbleedimage": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"fileReference": "/content/dam/tetrapak/publicweb/TetraPak.png",					
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Wed Apr 01 2020 12:01:13 GMT+0530",
+					"alt": "alt",
+					"linkURL": "/content/tetrapak/customerhub/global/en/dashboard",
+					"jcr:lastModified": "Wed Apr 01 2020 12:07:34 GMT+0530",
+					"sling:resourceType": "customerhub/components/content/fullbleedimage"
+				}
+			}
+		}
+	}
+}

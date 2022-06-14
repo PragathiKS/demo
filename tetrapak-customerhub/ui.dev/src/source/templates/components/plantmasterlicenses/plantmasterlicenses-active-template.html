@@ -1,0 +1,26 @@
+<sly data-sly-template.plantmasterlicenses_active_template="${@ data, flag}">
+    <div class="tp-aip-licenses-active">
+        <div class="tp-aip__accordion" id="tp-aip-licenses__accordion">
+            <div class="tp-aip__acc-item">
+                <button class="tp-aip__btn-link btn btn-link" type="button" data-toggle="collapse" data-target="#tp-aip-licenses__acc1" aria-expanded="false" aria-controls="collapseOne">
+                    <span>${data.engLicenseTitle @ i18n}</span>
+                    <i class="icon icon-Arrow_Down"></i>
+                </button>
+                <div id="tp-aip-licenses__acc1" class="tp-aip__collapse collapse" aria-labelledby="headingOne" data-parent="#tp-aip-licenses__accordion">
+                    <div class="js-tp-aip-licenses-active__eng"></div>
+                </div>
+            </div>
+            <div class="tp-aip__acc-item">
+                <button class="tp-aip__btn-link btn btn-link" type="button" data-toggle="collapse" data-target="#tp-aip-licenses__acc2" aria-expanded="false" aria-controls="collapseOne">
+                    <span>${data.siteLicenseTitle @ i18n}</span>
+                    <i class="icon icon-Arrow_Down"></i>
+                </button>
+                <div id="tp-aip-licenses__acc2" class="tp-aip__collapse collapse" aria-labelledby="headingOne" data-parent="#tp-aip-licenses__accordion">
+                    <div class="js-tp-aip-licenses-active__site"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tp-aip-licenses-active__modal" class="modal js-tp-aip-licenses-active__modal tp-modal fade" tabindex="-1" aria-hidden="true" role="dialog"></div>
+    </div>
+</sly>

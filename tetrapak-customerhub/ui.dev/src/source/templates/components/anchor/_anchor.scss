@@ -1,0 +1,61 @@
+.pw-anchor {
+    @include padding($padding-zero $padding-l);
+    &.tp-container {
+        @include padding($padding-zero);
+        @include margin($margin-l $margin-zero $margin-zero $margin-zero);
+        @media #{$desktop} {
+            @include margin($margin-l $margin-zero $margin-zero $margin-zero);
+        }
+    }
+    &__regular {
+        @media #{$desktop} {
+            @include padding($padding-zero $padding-l);
+            @include margin($margin-zero);
+        }
+    }
+
+    .pw-anchor-list > .pw-anchor-content {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-md);
+        color: $color-congress-blue;
+        font-weight: 500;
+        border-bottom: 1px solid $color-mercury;
+
+        @media #{$mobile} {
+            @include margin($margin-zero $margin-md);
+            @include padding($padding-sm $padding-zero);
+        }
+    }
+
+    @media #{$desktop} {
+        display: flex;
+        &.tp-container {
+            @include max-width($body-max-width);
+            @include padding(0);
+            @include margin($margin-l $margin-zero);
+        }
+        .pw-anchor-list {
+            @include border-radius($border-radius);
+            @include padding(0);
+            border: 1px solid $color-mercury;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pw-anchor-list > .pw-anchor-content {
+            @include padding($padding-sm $padding-md);
+            border-right: 1px solid $color-mercury;
+            border-bottom: 0;
+            &:last-child {
+                border-right: 0;
+            }
+            &:hover {
+                a {
+                    color: $color-sky-blue;
+                }
+            }
+        }
+    }
+}

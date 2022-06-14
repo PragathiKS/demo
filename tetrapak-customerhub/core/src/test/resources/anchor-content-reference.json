@@ -1,0 +1,15 @@
+{
+  "jcr:primaryType": "nt:unstructured",
+  "jcr:createdBy": "admin",
+  "anchorTitle": "What is this?",
+  "jcr:lastModifiedBy": "admin",
+  "anchorId": "anchorTest",
+  "jcr:created": "Mon May 23 2022 11:02:53 GMT+0200",
+  "pwTheme": "grayscale-white",
+  "text": "<p>This. is a test. What do you think?</p>\r\n",
+  "jcr:lastModified": "Mon May 23 2022 11:03:20 GMT+0200",
+  "sling:resourceType": "customerhub/components/content/richtext",
+  "topSpacing": "topmargin",
+  "pwPadding": "regular",
+  "textIsRich": "true"
+}

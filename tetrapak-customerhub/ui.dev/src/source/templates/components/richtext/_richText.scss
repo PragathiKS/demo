@@ -1,5 +1,5 @@
 .pw-container.reference-class {
-    @include margin-top(0);
+    @include margin-top($margin-zero);
 }
 
 .pw-container.pw-margin--regular.reference-class {
@@ -7,7 +7,7 @@
 }
 
 .pw-container.pw-margin--zero.reference-class {
-    @include margin-bottom(0);
+    @include margin-bottom($margin-zero);
     .tp-pw-richText.tp-pw-richText-container {
         @include padding-bottom($padding-l);
     }
@@ -25,8 +25,6 @@
 
 .tp-pw-richText {
     &.tp-pw-richText-container {
-        @include margin($margin-zero);
-        @include padding($padding-zero);
         width: auto;
     }
 
@@ -35,18 +33,9 @@
     }
 
     .tp-pw-richText-wrapper a {
-        @include line-height($font-baseline, $font-l);
         @include padding($padding-zero);
-        display: inline-flex;
         align-items: center;
         font-weight: 400;
-        & > .icon {
-            @include padding-left($padding-xs);
-            @include padding-top($padding-xxs);
-            &::before {
-                @include font-size($font-sm);
-            }
-        }
     }
 
     .fullBleed {
@@ -105,7 +94,7 @@
         display: table;
         li {
             &::before {
-                @include margin-right($padding-sm);
+                @include padding-right($padding-sm);
                 display: table-cell;
                 color: $color-tundora;
                 content: '\2022';
@@ -234,10 +223,6 @@
         }
     }
     @media #{$desktop} {
-        &.tp-pw-richText-container {
-            @include margin($margin-zero);
-            @include padding($padding-zero);
-        }
         h1 {
             @include font-size($font-xl);
             @include line-height($font-d-xl, $font-xl);
