@@ -1605,5 +1605,37 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.ordering.ETA"
-        sling:message="ETA"/>
+        sling:message="ETA"/>,
+	<cuhu_pack_design_introduction
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_introduction"
+        sling:message="Johdanto"/>
+	<cuhu_pack_design_design_manual
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_design_manual"
+        sling:message="Suunnittelun käsikirja"/>
+	<cuhu_pack_design_package_visualizer
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_package_visualizer"
+        sling:message="Paketin visualisointityökalu"/>
+	<cuhu_pack_design_easy_design
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_easy_design"
+        sling:message="Helppo muotoilu"/>
 </jcr:root>

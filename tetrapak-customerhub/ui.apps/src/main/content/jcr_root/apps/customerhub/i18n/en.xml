@@ -1185,6 +1185,153 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="All Statuses"/>
+    <cuhu.plantmasterlicense.heading
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Tetra Pak® PlantMaster licenses"/>
+    <cuhu.plantmasterlicense.name
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Requested By"/>
+    <cuhu.plantmasterlicense.email
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Email"/>
+    <cuhu.plantmasterlicense.engineering.title
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Request annual engineering licenses"/>
+    <cuhu.plantmasterlicense.engineering.description
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Please remember that the users specified who will be working in engineering projects must have completed first the relevant training in the PLC, HMI or MES platforms they have a license for. &lt;a href='#licensesInfo'&gt;Licenses product information&lt;a/&gt;"/>
+    <cuhu.plantmasterlicense.engineering.userdetails
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="User details"/>
+    <cuhu.plantmasterlicense.engineering.name
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Name"/>
+    <cuhu.plantmasterlicense.engineering.nameplaceholder
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="First name and last name"/>
+    <cuhu.plantmasterlicense.engineering.activationDate
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Activation date for licenses"/>
+    <cuhu.plantmasterlicense.engineering.activationdatePlaceholder
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Select a date"/>
+    <cuhu.plantmasterlicense.engineering.licenseTitle
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Licenses"/>
+    <cuhu.plantmasterlicense.engineering.addUser
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Add another user"/>
+    <cuhu.plantmasterlicense.engineering.removeUser
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Remove licence holder"/>
+    <cuhu.plantmasterlicense.engineering.comment
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Comments (Optional)"/>
+    <cuhu.plantmasterlicense.engineering.submitButton
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Submit request"/>
+    <cuhu.plantmasterlicense.engineering.licenseDescriptions
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Licenses descriptions"/>
+    <cuhu.plantmasterlicense.engineering.successMessage.heading
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Request sent"/>
+    <cuhu.plantmasterlicense.engineering.successMessage.description
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="You will have a confirmation when the licenses are added. "/>
+    <cuhu.plantmasterlicense.engineering.errorText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Please enter this field"/>
+    <cuhu.plantmasterlicense.engineering.inputFormatErrorMsg
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Error message"/>
+    <cuhu.plantmasterlicense.engineering.numberFieldErrorMsg
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Error message"/>
+    <cuhu.plantmasterlicense.engineering.errorCheckbox
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Please select at least one option"/>
+    <cuhu.plantmasterlicense.engineering.correctformsError
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Please correct the errors above"/>
+    <cuhu.plantmasterlicense.active.title
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Active licenses"/>
+    <cuhu.plantmasterlicense.active.engineeringLicenseTitle
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Annual engineering licenses"/>
+    <cuhu.plantmasterlicense.active.siteDate
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Date"/>
+    <cuhu.plantmasterlicense.active.siteLicenseTitle
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Site licenses"/>
+    <cuhu.plantmasterlicense.active.nameLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Name"/>
+    <cuhu.plantmasterlicense.active.licenseKeyLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Licence Key"/>
+    <cuhu.plantmasterlicense.active.platformText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Platform"/>
+    <cuhu.plantmasterlicense.active.startDateLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Start date"/>
+    <cuhu.plantmasterlicense.active.endDateLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="End date"/>
+    <cuhu.plantmasterlicense.active.withdrawlButtonLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Withdraw"/>
+    <cuhu.plantmasterlicense.active.countryLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Country"/>
+    <cuhu.plantmasterlicense.active.siteLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Site"/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.title
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Confirm license withdrawal"/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.commentLabel
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Comment to Tetra Pak (Optional)"/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.confirmationText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Are you sure you want to withdraw this license?"/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.buttonText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Yes - Confirm withdrawal"/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.cancelButtonText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="No - Go back to listing"/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.successTitle
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Licence will soon be withdrawn"/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.successText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Your request has been submitted and we will withdraw the license once it has been processed. Thank you."/>
+    <cuhu.plantmasterlicense.active.withdrawlModel.successBackButtonText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Ok, go back to listing"/>
+    <cuhu.plantmasterlicense.active.email.subject
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Annual engineering licenses - Withdraw"/>
+    <cuhu.plantmasterlicense.active.email.salutationText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message=""/>
+    <cuhu.plantmasterlicense.active.email.usernameText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="UsernameText"/>
+    <cuhu.plantmasterlicense.active.email.bodyText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message=""/>
+    <cuhu.plantmasterlicense.active.email.requesterText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Requestor"/>
+    <cuhu.plantmasterlicense.active.email.commentText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Comments"/>
     <cuhu_demo
         cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
         cq:lastReplicatedBy="sapient-tarun"
@@ -1444,4 +1591,36 @@
         jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
         jcr:primaryType="nt:folder"
         sling:message="test4"/>
+		<cuhu_pack_design_introduction
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_introduction"
+        sling:message="Introduction"/>
+	<cuhu_pack_design_design_manual
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_design_manual"
+        sling:message="Design Manual"/>
+	<cuhu_pack_design_package_visualizer
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_package_visualizer"
+        sling:message="Package Visualizer"/>
+	<cuhu_pack_design_easy_design
+        cq:lastReplicated="{Date}2019-09-04T03:45:40.745Z"
+        cq:lastReplicatedBy="sapient-tarun"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus,sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu_pack_design_easy_design"
+        sling:message="Easy Design"/>
 </jcr:root>

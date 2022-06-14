@@ -391,6 +391,12 @@
                                                 fieldLabel="Input field error text (i18N key)"
                                                 name="./siteLicense/inputFieldError"
                                                 required="true"/>
+                                            <numberFieldError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Number field error text (i18N key)"
+                                                name="./siteLicense/numberFieldError"
+                                                required="true"/>
                                             <selectFieldError
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
