@@ -10,6 +10,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
@@ -33,6 +34,7 @@ public class PlantMasterTrainingsModel {
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterTrainingsModel.class);
     public static final String GROUP_SERVLET_URL_POSTFIX= ".plantmaster.json";
+    private static final String LEARNING_HISTORY_CHILD_RESOURCE_NAME = "learningHistory";
 
     /**
      * The Enum PlantMasterTrainingsComponentDialog.
@@ -44,18 +46,6 @@ public class PlantMasterTrainingsModel {
 
         /** The available trainings. */
         AVAILABLE_TRAININGS("availableTrainings"),
-
-        /** The learning history. */
-        LEARNING_HISTORY("learningHistory"),
-
-        /** The diploma. */
-        DIPLOMA("diploma"),
-
-        /** The accredited. */
-        ACCREDITED("accredited"),
-
-        /** The authenticated. */
-        AUTHENTICATED("authenticated"),
 
         /** The training material handouts. */
         TRAINING_MATERIAL_HANDOUTS("trainingMaterialHandouts"),
@@ -187,22 +177,6 @@ public class PlantMasterTrainingsModel {
     @ValueMapValue
     private String availableTrainings;
 
-    /** The learning history. */
-    @ValueMapValue
-    private String learningHistory;
-
-    /** The diploma. */
-    @ValueMapValue
-    private String diploma;
-
-    /** The accredited. */
-    @ValueMapValue
-    private String accredited;
-
-    /** The authenticated. */
-    @ValueMapValue
-    private String authenticated;
-
     /** The training material handouts. */
     @ValueMapValue
     private String trainingMaterialHandouts;
@@ -327,6 +301,9 @@ public class PlantMasterTrainingsModel {
     @OSGiService
     private AIPCategoryService aipCategoryService;
 
+    @ChildResource(name = LEARNING_HISTORY_CHILD_RESOURCE_NAME)
+    private PlantMasterLearningHistoryModel plantMasterLearningHistoryModel;
+
     /** The i18n keys. */
     private String i18nKeys;
 
@@ -363,10 +340,7 @@ public class PlantMasterTrainingsModel {
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TITLE.getI18nJsonKey(), getTitle());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.AVAILABLE_TRAININGS.getI18nJsonKey(),
                 getAvailableTrainings());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.LEARNING_HISTORY.getI18nJsonKey(), getLearningHistory());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.DIPLOMA.getI18nJsonKey(), getDiploma());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.ACCREDITED.getI18nJsonKey(), getAccredited());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.AUTHENTICATED.getI18nJsonKey(), getAuthenticated());
+        i18KeyMap.put(LEARNING_HISTORY_CHILD_RESOURCE_NAME, plantMasterLearningHistoryModel);
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_MATERIAL_HANDOUTS.getI18nJsonKey(),
                 getTrainingMaterialHandouts());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.COURSE_DESCRIPTION.getI18nJsonKey(), getCourseDescription());
@@ -461,41 +435,6 @@ public class PlantMasterTrainingsModel {
         return availableTrainings;
     }
 
-    /**
-     * Gets the learning history.
-     *
-     * @return the learning history
-     */
-    public String getLearningHistory() {
-        return learningHistory;
-    }
-
-    /**
-     * Gets the diploma.
-     *
-     * @return the diploma
-     */
-    public String getDiploma() {
-        return diploma;
-    }
-
-    /**
-     * Gets the accredited.
-     *
-     * @return the accredited
-     */
-    public String getAccredited() {
-        return accredited;
-    }
-
-    /**
-     * Gets the authenticated.
-     *
-     * @return the authenticated
-     */
-    public String getAuthenticated() {
-        return authenticated;
-    }
 
     /**
      * Gets the training material handouts.
