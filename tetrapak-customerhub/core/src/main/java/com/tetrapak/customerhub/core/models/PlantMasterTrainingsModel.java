@@ -342,6 +342,9 @@ public class PlantMasterTrainingsModel {
     /** The component path extension. */
     private String componentPathExtension;
 
+    /** The learning history api. */
+    private String learningHistoryApi;
+
     /**
      * Checks if is publish environment.
      *
@@ -421,11 +424,16 @@ public class PlantMasterTrainingsModel {
             isPublishEnvironment = Boolean.TRUE;
         }
 
-        String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+        final String productDetailsApiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
                 CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
-        trainingDetailsApi = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+        final String licenseHistoryApiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+                CustomerHubConstants.AIP_LEARNING_HISTORY_API);
+        trainingDetailsApi = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), productDetailsApiMapping,
                 aipCategoryService.getAutomationTrainingsId());
         LOGGER.debug("Engineering Trainings API : {}", trainingDetailsApi);
+        learningHistoryApi = GlobalUtil.getAPIEndpointURL(apigeeService.getApigeeServiceUrl(),licenseHistoryApiMapping);
+        LOGGER.debug("Learning history API : {}", learningHistoryApi);
+
     }
 
     /**
@@ -750,6 +758,14 @@ public class PlantMasterTrainingsModel {
         return trainingDetailsApi;
     }
 
+    /**
+     * Gets the learning history api.
+     *
+     * @return the learning history api
+     */
+    public String getLearningHistoryApi() {
+        return learningHistoryApi;
+    }
     /**
      * Gets the i18n keys.
      *
