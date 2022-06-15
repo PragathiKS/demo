@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.tetrapak.customerhub.core.models.PlantMasterEngineeringTrainingsModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.event.jobs.JobManager;
@@ -64,8 +65,6 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
     /**
      * Send email.
      *
-     * @param trainingName
-     *            the training name
      * @param plantMasterTrainingsFormBean
      *            the plant master trainings form bean
      * @param request
@@ -76,7 +75,7 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
     public boolean sendEmail(PlantMasterTrainingsFormBean plantMasterTrainingsFormBean,
             SlingHttpServletRequest request) {
         LOGGER.debug("Inside sendEmail method of PlantMasterTrainingsServiceImpl");
-        PlantMasterTrainingsModel model = request.adaptTo(PlantMasterTrainingsModel.class);
+        PlantMasterEngineeringTrainingsModel model = request.adaptTo(PlantMasterEngineeringTrainingsModel.class);
         boolean isSuccess = false;
         boolean isFeatureEnabled = config.isPlantMasterEmailServiceEnabled();
         String[] recipientEmailFromOsgiConfig = config.plantMasterRecipientAddresses();
@@ -115,7 +114,7 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
      * @param prefix
      *            the prefix
      */
-    private void extractPlantMasterTrainingsModelProps(Map<String, String> emailParams, PlantMasterTrainingsModel model,
+    private void extractPlantMasterTrainingsModelProps(Map<String, String> emailParams, PlantMasterEngineeringTrainingsModel model,
             SlingHttpServletRequest request, String prefix) {
 
         String salutation = StringUtils.isNotEmpty(model.getSalutation())

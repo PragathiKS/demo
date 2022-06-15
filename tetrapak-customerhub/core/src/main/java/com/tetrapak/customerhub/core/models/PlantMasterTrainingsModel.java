@@ -13,12 +13,13 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -190,125 +191,9 @@ public class PlantMasterTrainingsModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
-    /** The title. */
-    @ValueMapValue
-    private String title;
-
-    /** The available trainings. */
-    @ValueMapValue
-    private String availableTrainings;
-
     /** The training material handouts. */
     @ValueMapValue
     private String trainingMaterialHandouts;
-
-    /** The course description. */
-    @ValueMapValue
-    private String courseDescription;
-
-    /** The principle objectives. */
-    @ValueMapValue
-    private String principleObjectives;
-
-    /** The target groups. */
-    @ValueMapValue
-    private String targetGroups;
-
-    /** The duration. */
-    @ValueMapValue
-    private String duration;
-    
-    /** The hours. */
-    @ValueMapValue
-    private String hours;
-
-    /** The max participants. */
-    @ValueMapValue
-    private String maxParticipants;
-
-    /** The knowledge requirements. */
-    @ValueMapValue
-    private String knowledgeRequirements;
-
-    /** The no of participants label. */
-    @ValueMapValue
-    private String noOfParticipantsLabel;
-
-    /** The preferred location label. */
-    @ValueMapValue
-    private String preferredLocationLabel;
-
-    /** The preferred date label. */
-    @ValueMapValue
-    private String preferredDateLabel;
-
-    /** The preferred date placeholder. */
-    @ValueMapValue
-    private String preferredDatePlaceholder;
-
-    /** The comments label. */
-    @ValueMapValue
-    private String commentsLabel;
-
-    /** The confirmation text. */
-    @ValueMapValue
-    private String confirmationText;
-
-    /** The submit button label. */
-    @ValueMapValue
-    private String submitButtonLabel;
-
-    /** The input error message label. */
-    @ValueMapValue
-    private String inputErrorMsg;
-
-    /** The confirmation error message label. */
-    @ValueMapValue
-    private String confirmationErrorMsg;
-
-    /** The input format error message label. */
-    @ValueMapValue
-    private String inputFormatErrorMsg;
-
-    /** The input format error message label. */
-    @ValueMapValue
-    private String numberFieldErrorMsg;
-
-    /** The success message. */
-    @ValueMapValue
-    private String successMessage;
-
-    /** The subject. */
-    @ValueMapValue
-    private String subject;
-
-    /** The salutation text in email. */
-    @ValueMapValue
-    private String salutation;
-
-    /** The body text in email. */
-    @ValueMapValue
-    private String body;
-
-    /** The consent label. */
-    @ValueMapValue
-    private String consentLabel;
-
-    /** The contact details. */
-    @ValueMapValue
-    private String contactDetails;
-
-    /** The training id label. */
-    @ValueMapValue
-    private String trainingIdLabel;
-
-    /** The training name label. */
-    @ValueMapValue
-    private String trainingNameLabel;
-
-    /** The form title. */
-    @ValueMapValue
-    private String formTitle;
 
     /** The training details api. */
     @ValueMapValue
@@ -324,6 +209,10 @@ public class PlantMasterTrainingsModel {
 
     @ChildResource(name = LEARNING_HISTORY_CHILD_RESOURCE_NAME)
     private PlantMasterLearningHistoryModel plantMasterLearningHistoryModel;
+
+    @Inject
+    @Self
+    private PlantMasterEngineeringTrainingsModel engineeringTrainingsModel;
 
     /** The i18n keys. */
     private String i18nKeys;
@@ -357,61 +246,8 @@ public class PlantMasterTrainingsModel {
      */
     @PostConstruct
     protected void init() {
-        Map<String, Object> i18KeyMap = new HashMap<>();
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TITLE.getI18nJsonKey(), getTitle());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.AVAILABLE_TRAININGS.getI18nJsonKey(),
-                getAvailableTrainings());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.LEARNING_HISTORY_TEXT.getI18nJsonKey(),
-                plantMasterLearningHistoryModel.getLearninghistorytext());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.ACCREDITED_TEXT.getI18nJsonKey(),
-                plantMasterLearningHistoryModel.getAccreditedtext());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.AUTHENTICATED_TEXT.getI18nJsonKey(),
-                plantMasterLearningHistoryModel.getAuthenticatedtext());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.DIPLOMA_TEXT.getI18nJsonKey(),
-                plantMasterLearningHistoryModel.getDiplomatext());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.USER_TEXT.getI18nJsonKey(),
-                plantMasterLearningHistoryModel.getUsertext());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.ITEM_TEXT.getI18nJsonKey(),
-                plantMasterLearningHistoryModel.getItemtext());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMPLETION_DATE_TEXT.getI18nJsonKey(),
-                plantMasterLearningHistoryModel.getCompletiondatetext());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_MATERIAL_HANDOUTS.getI18nJsonKey(),
-                getTrainingMaterialHandouts());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COURSE_DESCRIPTION.getI18nJsonKey(), getCourseDescription());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PRINCIPLE_OBJECTIVES.getI18nJsonKey(),
-                getPrincipleObjectives());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TARGET_GROUPS.getI18nJsonKey(), getTargetGroups());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.DURATION.getI18nJsonKey(), getDuration());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.HOURS.getI18nJsonKey(), getHours());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.MAX_PARTICIPANTS.getI18nJsonKey(), getMaxParticipants());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.KNOWLEDGE_REQUIREMENTS.getI18nJsonKey(),
-                getKnowledgeRequirements());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NO_OF_PARTICIPANTS_LABEL.getI18nJsonKey(),
-                getNoOfParticipantsLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_LOCATION_LABEL.getI18nJsonKey(),
-                getPreferredLocationLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_LABEL.getI18nJsonKey(),
-                getPreferredDateLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_PLACEHOLDER.getI18nJsonKey(),
-                getPreferredDatePlaceholder());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMMENTS_LABEL.getI18nJsonKey(), getCommentsLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_TEXT.getI18nJsonKey(), getConfirmationText());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_ERROR_MESSAGE.getI18nJsonKey(), getInputErrorMsg());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_FORMAT_ERROR_MESSAGE.getI18nJsonKey(), getInputFormatErrorMsg());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NUMBER_FIELD_ERROR_MESSAGE.getI18nJsonKey(), getNumberFieldErrorMsg());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_ERROR_MESSAGE.getI18nJsonKey(), getConfirmationErrorMsg());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUCCESS_MESSAGE.getI18nJsonKey(), getSuccessMessage());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(), getSubmitButtonLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBJECT.getI18nJsonKey(), getSubject());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SALUTATION.getI18nJsonKey(), getSalutation());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.BODY.getI18nJsonKey(), getBody());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONTACT_DETAILS.getI18nJsonKey(), getContactDetails());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_ID_LABEL.getI18nJsonKey(), getTrainingIdLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_NAME_LABEL.getI18nJsonKey(), getTrainingNameLabel());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.FORM_TITLE.getI18nJsonKey(), getFormTitle());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONSENT_LABEL.getI18nJsonKey(), getConsentLabel());
 
+        Map<String, Object> i18KeyMap = getPlantMasterTrainingI18KeyMap();
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}", i18nKeys);
@@ -441,7 +277,71 @@ public class PlantMasterTrainingsModel {
         LOGGER.debug("Engineering Trainings API : {}", trainingDetailsApi);
         learningHistoryApi = GlobalUtil.getAPIEndpointURL(apigeeService.getApigeeServiceUrl(),licenseHistoryApiMapping);
         LOGGER.debug("Learning history API : {}", learningHistoryApi);
+    }
 
+    private Map<String, Object> getPlantMasterTrainingI18KeyMap(){
+        Map<String, Object> i18KeyMap = new HashMap<>();
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TITLE.getI18nJsonKey(), engineeringTrainingsModel.getTitle());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.AVAILABLE_TRAININGS.getI18nJsonKey(),
+                engineeringTrainingsModel.getAvailableTrainings());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_MATERIAL_HANDOUTS.getI18nJsonKey(),
+                getTrainingMaterialHandouts());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COURSE_DESCRIPTION.getI18nJsonKey(),
+                engineeringTrainingsModel.getCourseDescription());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PRINCIPLE_OBJECTIVES.getI18nJsonKey(),
+                engineeringTrainingsModel.getPrincipleObjectives());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TARGET_GROUPS.getI18nJsonKey(), engineeringTrainingsModel.getTargetGroups());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.DURATION.getI18nJsonKey(), engineeringTrainingsModel.getDuration());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.HOURS.getI18nJsonKey(), engineeringTrainingsModel.getHours());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.MAX_PARTICIPANTS.getI18nJsonKey(),
+                engineeringTrainingsModel.getMaxParticipants());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.KNOWLEDGE_REQUIREMENTS.getI18nJsonKey(),
+                engineeringTrainingsModel.getKnowledgeRequirements());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NO_OF_PARTICIPANTS_LABEL.getI18nJsonKey(),
+                engineeringTrainingsModel.getNoOfParticipantsLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_LOCATION_LABEL.getI18nJsonKey(),
+                engineeringTrainingsModel.getPreferredLocationLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_LABEL.getI18nJsonKey(),
+                engineeringTrainingsModel.getPreferredDateLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.PREFERRED_DATE_PLACEHOLDER.getI18nJsonKey(),
+                engineeringTrainingsModel.getPreferredDatePlaceholder());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.COMMENTS_LABEL.getI18nJsonKey(),
+                engineeringTrainingsModel.getCommentsLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_TEXT.getI18nJsonKey(),
+                engineeringTrainingsModel.getConfirmationText());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(),
+                engineeringTrainingsModel.getSubmitButtonLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_ERROR_MESSAGE.getI18nJsonKey(),
+                engineeringTrainingsModel.getInputErrorMsg());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.INPUT_FORMAT_ERROR_MESSAGE.getI18nJsonKey(),
+                engineeringTrainingsModel.getInputFormatErrorMsg());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.NUMBER_FIELD_ERROR_MESSAGE.getI18nJsonKey(),
+                engineeringTrainingsModel.getNumberFieldErrorMsg());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONFIRMATION_ERROR_MESSAGE.getI18nJsonKey(),
+                engineeringTrainingsModel.getConfirmationErrorMsg());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUCCESS_MESSAGE.getI18nJsonKey(),
+                engineeringTrainingsModel.getSuccessMessage());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBMIT_BUTTON.getI18nJsonKey(),
+                engineeringTrainingsModel.getSubmitButtonLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBJECT.getI18nJsonKey(),
+                engineeringTrainingsModel.getSubject());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SALUTATION.getI18nJsonKey(),
+                engineeringTrainingsModel.getSalutation());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.BODY.getI18nJsonKey(),
+                engineeringTrainingsModel.getBody());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONTACT_DETAILS.getI18nJsonKey(),
+                engineeringTrainingsModel.getContactDetails());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_ID_LABEL.getI18nJsonKey(),
+                engineeringTrainingsModel.getTrainingIdLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_NAME_LABEL.getI18nJsonKey(),
+                engineeringTrainingsModel.getTrainingNameLabel());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.FORM_TITLE.getI18nJsonKey(),
+                engineeringTrainingsModel.getFormTitle());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.CONSENT_LABEL.getI18nJsonKey(),
+                engineeringTrainingsModel.getConsentLabel());
+        i18KeyMap.put(LEARNING_HISTORY_CHILD_RESOURCE_NAME,
+                plantMasterLearningHistoryModel);
+        return i18KeyMap;
     }
 
     /**
@@ -452,274 +352,12 @@ public class PlantMasterTrainingsModel {
     }
 
     /**
-     * Gets the title.
-     *
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Gets the available trainings.
-     *
-     * @return the available trainings
-     */
-    public String getAvailableTrainings() {
-        return availableTrainings;
-    }
-
-
-    /**
      * Gets the training material handouts.
      *
      * @return the training material handouts
      */
     public String getTrainingMaterialHandouts() {
         return trainingMaterialHandouts;
-    }
-
-    /**
-     * Gets the course description.
-     *
-     * @return the course description
-     */
-    public String getCourseDescription() {
-        return courseDescription;
-    }
-
-    /**
-     * Gets the principle objectives.
-     *
-     * @return the principle objectives
-     */
-    public String getPrincipleObjectives() {
-        return principleObjectives;
-    }
-
-    /**
-     * Gets the target groups.
-     *
-     * @return the target groups
-     */
-    public String getTargetGroups() {
-        return targetGroups;
-    }
-
-    /**
-     * Gets the duration.
-     *
-     * @return the duration
-     */
-    public String getDuration() {
-        return duration;
-    }
-
-    /**
-     * Gets the hours.
-     *
-     * @return the hours
-     */
-    public String getHours() {
-        return hours;
-    }
-
-    /**
-     * Gets the max participants.
-     *
-     * @return the max participants
-     */
-    public String getMaxParticipants() {
-        return maxParticipants;
-    }
-
-    /**
-     * Gets the knowledge requirements.
-     *
-     * @return the knowledge requirements
-     */
-    public String getKnowledgeRequirements() {
-        return knowledgeRequirements;
-    }
-
-    /**
-     * Gets the no of participants label.
-     *
-     * @return the no of participants label
-     */
-    public String getNoOfParticipantsLabel() {
-        return noOfParticipantsLabel;
-    }
-
-    /**
-     * Gets the preferred location label.
-     *
-     * @return the preferred location label
-     */
-    public String getPreferredLocationLabel() {
-        return preferredLocationLabel;
-    }
-
-    /**
-     * Gets the preferred date label.
-     *
-     * @return the preferred date label
-     */
-    public String getPreferredDateLabel() {
-        return preferredDateLabel;
-    }
-
-    /**
-     * Gets the preferred date placeholder.
-     *
-     * @return the preferred date placeholder
-     */
-    public String getPreferredDatePlaceholder() {
-        return preferredDatePlaceholder;
-    }
-
-    /**
-     * Gets the comments label.
-     *
-     * @return the comments label
-     */
-    public String getCommentsLabel() {
-        return commentsLabel;
-    }
-
-    /**
-     * Gets the confirmation text.
-     *
-     * @return the confirmation text
-     */
-    public String getConfirmationText() {
-        return confirmationText;
-    }
-
-    /**
-     * Gets the submit button label.
-     *
-     * @return the submit button label
-     */
-    public String getSubmitButtonLabel() {
-        return submitButtonLabel;
-    }
-
-    /**
-     * Gets the input error msg.
-     *
-     * @return the input error msg
-     */
-    public String getInputErrorMsg() {
-        return inputErrorMsg;
-    }
-
-    /**
-     * Gets the confirmation error msg.
-     *
-     * @return the confirmation error msg
-     */
-    public String getConfirmationErrorMsg() {
-        return confirmationErrorMsg;
-    }
-
-    /**
-     * Gets the input format error msg.
-     *
-     * @return the format input error msg
-     */
-    public String getInputFormatErrorMsg() {
-        return inputFormatErrorMsg;
-    }
-
-    /**
-     * Gets the number field error msg.
-     *
-     * @return the number input error msg
-     */
-    public String getNumberFieldErrorMsg() {
-        return numberFieldErrorMsg;
-    }
-
-    /**
-     * Gets the success message.
-     *
-     * @return the success message
-     */
-    public String getSuccessMessage() {
-        return successMessage;
-    }
-
-    /**
-     * Gets the subject.
-     *
-     * @return the subject
-     */
-    public String getSubject() {
-        return subject;
-    }
-
-    /**
-     * Gets the salutation.
-     *
-     * @return the salutation
-     */
-    public String getSalutation() {
-        return salutation;
-    }
-
-    /**
-     * Gets the body.
-     *
-     * @return the body
-     */
-    public String getBody() {
-        return body;
-    }
-
-    /**
-     * Gets the consent label.
-     *
-     * @return the consent label
-     */
-    public String getConsentLabel() {
-        return consentLabel;
-    }
-
-    /**
-     * Gets the contact details.
-     *
-     * @return the contact details
-     */
-    public String getContactDetails() {
-        return contactDetails;
-    }
-
-    /**
-     * Gets the training id label.
-     *
-     * @return the training id label
-     */
-    public String getTrainingIdLabel() {
-        return trainingIdLabel;
-    }
-
-    /**
-     * Gets the training name label.
-     *
-     * @return the training name label
-     */
-    public String getTrainingNameLabel() {
-        return trainingNameLabel;
-    }
-
-    /**
-     * Gets the form title.
-     *
-     * @return the form title
-     */
-    public String getFormTitle() {
-        return formTitle;
     }
 
     /**
