@@ -237,7 +237,7 @@ public class BusinessInquiryModel extends FormModel {
      * @return the bef china pardot URL
      */
     public String getBefChinaPardotURL() {
-        return LinkUtils.getUrlWithoutProtocol(befChinaPardotURL);
+        return befChinaPardotURL;
     }
 
 }
