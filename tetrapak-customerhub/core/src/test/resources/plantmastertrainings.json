@@ -12,7 +12,6 @@
                "jcr:primaryType":"nt:unstructured",
                "title":"cuhu.plantmastertrainings.title",
                "availableTrainings":"cuhu.plantmastertrainings.availableTrainings",
-               "learningHistory":"cuhu.plantmastertrainings.learningHistory",
                "courseDescription":"cuhu.plantmastertrainings.courseDescription",
                "trainingMaterialHandouts":"cuhu.plantmastertrainings.trainingMaterialHandouts",
                "principleObjectives":"cuhu.plantmastertrainings.principleObjectives",
@@ -35,7 +34,17 @@
                "subject":"cuhu.plantmastertrainings.subject",
                "salutation":"cuhu.plantmastertrainings.salutation",
                "body":"cuhu.plantmastertrainings.body",
-               "contactDetails":"cuhu.plantmastertrainings.contactDetails"
+               "contactDetails":"cuhu.plantmastertrainings.contactDetails",
+               "learningHistory": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "authenticatedtext": "cuhu.plantmastertraining.lh.authenticatedText",
+                  "accreditedtext": "cuhu.plantmastertraining.lh.accreditedText",
+                  "diplomatext": "cuhu.plantmastertraining.lh.diplomaText",
+                  "usertext": "cuhu.plantmastertraining.lh.userText",
+                  "learninghistorytext": "cuhu.plantmastertraining.lh.learningHistoryText",
+                  "itemtext": "cuhu.plantmastertraining.lh.itemText",
+                  "completiondatetext": "cuhu.plantmastertraining.lh.completionDateText"
+               }
             }
          }
       }
