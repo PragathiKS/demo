@@ -161,7 +161,7 @@ public class SoftConversionModel extends FormModel {
      * @return the pardot china url
      */
     public String getPardotChinaUrl() {
-        return pardotChinaUrl;
+        return LinkUtils.getUrlWithoutProtocol(pardotChinaUrl);
     }
 
     /**

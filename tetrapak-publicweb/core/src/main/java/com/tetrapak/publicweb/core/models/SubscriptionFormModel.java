@@ -187,7 +187,7 @@ public class SubscriptionFormModel extends FormModel {
      * @return the pardot china url subscription
      */
     public String getPardotChinaUrlSubscription() {
-        return pardotChinaUrlSubscription; 
+        return LinkUtils.getUrlWithoutProtocol(pardotChinaUrlSubscription); 
     }
 
     /**
