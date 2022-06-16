@@ -33,6 +33,40 @@ function _processTrainingsData(data,pingUserGroup) {
   return processedDataArr;
 }
 
+function _processLearningHistoryData(data) {
+  data = data ? data : [];
+
+  const learningHistoryObj = {
+    diploma: [],
+    accredited: [],
+    authenticated: []
+  };
+
+  data.forEach((learningItem) => {
+    const { labTags } = learningItem;
+
+    if (labTags) {
+      labTags.forEach(tag => {
+        switch (tag) {
+          case 'Diploma':
+            learningHistoryObj['diploma'].push(learningItem);
+            break;
+          case 'Accredited':
+            learningHistoryObj['accredited'].push(learningItem);
+            break;
+          case 'Authenticated':
+            learningHistoryObj['authenticated'].push(learningItem);
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  });
+
+  return learningHistoryObj;
+}
+
 function _addErrorMsg(el, errorMsgSelector) {
   $(el)
     .closest('.js-aip__form-element')
@@ -148,7 +182,7 @@ function _getTrainingsData() {
         },
         showLoader: true
       }).done(res => {
-        $this.cache.trainingsData = _processTrainingsData(res.data,this.cache.trainingUerGroup);
+        $this.cache.trainingsData = $this.processTrainingsData(res.data,this.cache.trainingUserGroup);
         $this.renderTrainings();
         $this.cache.$contentWrapper.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
@@ -176,16 +210,22 @@ function _getUserGroup() {
     showLoader: true
   }).done(res => {
     const userGroup = res.groups;
-    if(userGroup){
+    const learningPingGroup = 'cuhu_tppm_access';
+
+    if (userGroup) {
       userGroup.forEach(group => {
-        if(group.trainingId === '' || group.trainingId !== undefined){
-          this.cache.trainingUerGroup.push(group.trainingId);
+        if (group.trainingId === '' || group.trainingId !== undefined) {
+          this.cache.trainingUserGroup.push(group.trainingId);
+        }
+
+        // if user has access to Learning History tab, get data
+        if (group.groupName === learningPingGroup) {
+          this.getLearningHistoryData();
         }
       });
     }
 
-    // TODO check right user group
-    this.getLearningHistoryData();
+    this.getTrainingsData();
   });
 }
 
@@ -219,8 +259,8 @@ function _getLearningHistoryData() {
         },
         showLoader: true
       }).done(res => {
-        $this.renderLearningHistory(res);
-        //TODO SHOW TAB
+        $this.cache.learningHistoryData = $this.processLearningHistoryData(res.data);
+        $this.renderLearningHistory();
       }).fail((e) => {
         logger.error(e);
       });
@@ -229,13 +269,15 @@ function _getLearningHistoryData() {
 
 function _renderLearningHistory() {
   const $this = this;
-  const {trainingsData} = $this.cache;
+  const { learningHistoryData } = $this.cache;
 
   render.fn({
     template: 'plantmasterTrainingsLearningTab',
     target: '.js-aip-trainings__accordion-learning',
-    data: { i18nKeys: $this.cache.i18nKeys, trainingsDataArr: trainingsData}
+    data: { i18nKeys: $this.cache.i18nKeys, learningHistoryData: learningHistoryData}
   });
+
+  $('#nav-learning-tab').removeClass('d-none');
 }
 
 class PlantMasterTrainings {
@@ -264,7 +306,7 @@ class PlantMasterTrainings {
     this.cache.$formWrapper = this.root.find('.js-aip-trainings__form-content');
     this.cache.$tabPaneAvailableTrainings = this.root.find('.js-aip-trainings__accordion');
     this.cache.usergroupurl = this.root.data('group-servlet-url');
-    this.cache.trainingUerGroup = [];
+    this.cache.trainingUserGroup = [];
   }
 
   bindEvents() {
@@ -276,6 +318,14 @@ class PlantMasterTrainings {
 
   isNumeric(number) {
     return REG_NUM.test(number);
+  }
+
+  processTrainingsData() {
+    return _processTrainingsData.apply(this, arguments);
+  }
+
+  processLearningHistoryData() {
+    return _processLearningHistoryData.apply(this, arguments);
   }
 
   renderTrainings() {
@@ -313,7 +363,6 @@ class PlantMasterTrainings {
   init() {
     this.initCache();
     this.getUserGroup();
-    this.getTrainingsData();
     this.bindEvents();
   }
 }
