@@ -79,36 +79,26 @@ describe('PlantMasterTrainings', function () {
     done();
   });
 
-  it('should call get trainings data', function (done) {
-    expect(this.getTrainingsDataSpy.called).to.be.true;
-    expect(this.processLearningHistoryDataSpy.called).to.be.true;
-    done();
-  });
-
-  it('should call get learning history data', function (done) {
-    expect(this.getLearningHistoryDataSpy.called).to.be.true;
-    expect(this.processTrainingsDataSpy.called).to.be.true;
-    done();
-  });
-
   it('should call get trainings User Group', function (done) {
     expect(this.getUserGroupSpy.called).to.be.true;
     done();
   });
 
-  it('should get and render trainings data', function (done) {
+  it('should call and render trainings data', function (done) {
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(plantMasterTrainingsData));
+    expect(this.getTrainingsDataSpy.called).to.be.true;
     expect(this.renderTrainingsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();
   });
 
-  it('should get and render learning history data', function (done) {
+  it('should call and render learning history data', function (done) {
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(plantMasterLearningHistoryData));
+    expect(this.getLearningHistoryDataSpy.called).to.be.true;
     expect(this.renderLearningHistorySpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();
