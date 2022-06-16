@@ -117,19 +117,24 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
     private void extractPlantMasterTrainingsModelProps(Map<String, String> emailParams, PlantMasterEngineeringTrainingsModel model,
             SlingHttpServletRequest request, String prefix) {
 
-        String salutation = StringUtils.isNotEmpty(model.getSalutation())
-                ? getI18nValue(request, prefix, model.getSalutation())
-                : StringUtils.EMPTY;
+        String salutation = StringUtils.EMPTY;
+        if(StringUtils.isNotEmpty(model.getSalutation())){
+            salutation = getI18nValue(request, prefix, model.getSalutation());
+        }
         emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.SALUTATION.i18nJsonKey,
                 getI18nValue(request, prefix, salutation));
 
-        String body = StringUtils.isNotEmpty(model.getBody()) ? getI18nValue(request, prefix, model.getBody())
-                : StringUtils.EMPTY;
+        String body = StringUtils.EMPTY;
+        if(StringUtils.isNotEmpty(model.getBody())){
+            body = getI18nValue(request, prefix, model.getBody());
+        }
         emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.BODY.i18nJsonKey,
                 getI18nValue(request, prefix, body));
 
-        String subject = StringUtils.isNotEmpty(model.getSubject()) ? getI18nValue(request, prefix, model.getSubject())
-                : StringUtils.EMPTY;
+        String subject = StringUtils.EMPTY;
+        if(StringUtils.isNotEmpty(model.getSubject())){
+            subject = getI18nValue(request, prefix, model.getSubject());
+        }
         emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.SUBJECT.i18nJsonKey,
                 getI18nValue(request, prefix, subject));
 
