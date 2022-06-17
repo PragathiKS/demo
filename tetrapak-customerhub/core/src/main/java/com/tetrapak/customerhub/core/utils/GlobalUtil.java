@@ -667,13 +667,13 @@ public class GlobalUtil {
     }
 
     /**
-     * Gets the active license api endpoint URL.
+     * Gets the api endpoint URL when no api manipulation needed.
      *
      * @param apiServiceUrl the api service url
      * @param apiMapping    the api mapping
-     * @return the AIP endpoint URL
+     * @return the API endpoint URL
      */
-    public static String getActiveLicenseEndpointURL(String apiServiceUrl, String apiMapping) {
+    public static String getAPIEndpointURL(String apiServiceUrl, String apiMapping) {
         String aipEndpointURL = StringUtils.EMPTY;
         if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping)) {
             aipEndpointURL =

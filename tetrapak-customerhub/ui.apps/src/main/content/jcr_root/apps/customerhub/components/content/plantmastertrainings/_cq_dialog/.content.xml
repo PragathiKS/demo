@@ -34,12 +34,6 @@
 										fieldLabel="Available Trainings label (i18N key)"
 										name="./availableTrainings"
 										required="true"/>
-									<learninghistory
-										jcr:primaryType="nt:unstructured"
-										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-										fieldLabel="Learning History label (i18N key)"
-										name="./learningHistory"
-										required="true"/>
 									<trainingmaterialhandouts
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -187,6 +181,62 @@
 						</items>
                     </column1>
 					<column2
+							jcr:primaryType="nt:unstructured"
+							jcr:title="Learning History Configuration"
+							sling:resourceType="granite/ui/components/coral/foundation/container"
+							maximized="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<content
+									jcr:primaryType="nt:unstructured"
+									sling:resourceType="granite/ui/components/coral/foundation/container">
+								<items jcr:primaryType="nt:unstructured">
+									<learninghistorytext
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Learning History label (i18N key)"
+											name="./learningHistory/learninghistorytext"
+											required="true"/>
+									<diplomatext
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Diploma label (i18N key)"
+											name="./learningHistory/diplomatext"
+											required="true"/>
+									<accreditedtext
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Accredited label (i18N key)"
+											name="./learningHistory/accreditedtext"
+											required="true"/>
+									<authenticatedtext
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Authenticated label (i18N key)"
+											name="./learningHistory/authenticatedtext"
+											required="true"/>
+									<usertext
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="User Text (i18N key)"
+											name="./learningHistory/usertext"
+											required="true"/>
+									<itemtext
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Item Text (i18N key)"
+											name="./learningHistory/itemtext"
+											required="true"/>
+									<completiondatetext
+											jcr:primaryType="nt:unstructured"
+											sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+											fieldLabel="Completion Date Text (i18N key)"
+											name="./learningHistory/completiondatetext"
+											required="true"/>
+								</items>
+							</content>
+						</items>
+					</column2>
+					<column3
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Email Configuration"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -219,7 +269,7 @@
 									</items>
 							</content>
                         </items>
-                    </column2>
+                    </column3>
                 </items>
             </tabs>
         </items>

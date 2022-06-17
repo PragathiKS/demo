@@ -7,9 +7,11 @@ import com.tetrapak.customerhub.core.services.AIPCategoryService;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Spy;
 
 import static org.junit.Assert.*;
 
@@ -29,7 +31,17 @@ public class PlantMasterTrainingsModelTest {
 
 	/** The Constant COMPONENT_PATH. */
 	private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/automation-digital/plantmaster-trainings/_jcr_content/root/responsivegrid/plantmastertrainings";
-	
+
+	/** The Constant GROUP_SERVLET_URL. */
+	private static final String GROUP_SERVLET_URL =
+			"/content/tetrapak/customerhub/global/en/automation-digital/plantmaster-trainings/jcr:content/root/responsivegrid/plantmastertrainings.plantmaster.json";
+
+	/** The Constant LEARNING_HISTORY_MIG_API. */
+	private static final String LEARNING_HISTORY_MIG_API = "https://api-mig.tetrapak.com/application/vmware/learningplatform/transcripts";
+
+	/** The Constant TRAINING_DETAILS_API. */
+	private static final String TRAINING_DETAILS_MIG_API =
+	"https://api-mig.tetrapak.com/productinformation/categories/1234/products?includechildren=true&details=true";
 	/** The aem context. */
 	@Rule
     public final AemContext aemContext = CuhuCoreAemContext.getAemContext(TEST_CONTENT, TEST_CONTENT_ROOT);
@@ -42,18 +54,16 @@ public class PlantMasterTrainingsModelTest {
 	
 	/** The aip category service. */
 	private AIPCategoryService aipCategoryService;
-	
+
 	/**
 	 * Sets the up.
 	 */
 	@Before
 	public void setUp () {
-	    
 	    apigeeService = new MockAPIGEEServiceImpl();
         aemContext.registerService(APIGEEService.class, apigeeService);
         aipCategoryService = new MockAIPCategoryServiceImpl();
         aemContext.registerService(AIPCategoryService.class, aipCategoryService);
-        
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		aemContext.request().setResource(resource);
 		model = aemContext.request().adaptTo(PlantMasterTrainingsModel.class);
@@ -65,29 +75,13 @@ public class PlantMasterTrainingsModelTest {
 	@Test
 	public void testModelNotNull() {
 		assertNotNull("Model Not null", model);
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.availableTrainings", model.getAvailableTrainings());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.title", model.getTitle());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.availableTrainings", model.getAvailableTrainings());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.learningHistory", model.getLearningHistory());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.trainingMaterialHandouts", model.getTrainingMaterialHandouts());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.courseDescription", model.getCourseDescription());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.principleObjectives", model.getPrincipleObjectives());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.targetGroups", model.getTargetGroups());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.duration", model.getDuration());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.hours", model.getHours());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.maxParticipants", model.getMaxParticipants());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.knowledgeRequirements", model.getKnowledgeRequirements());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.noOfParticipants", model.getNoOfParticipantsLabel());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.preferredDate", model.getPreferredDateLabel());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.submitButtonLabel", model.getSubmitButtonLabel());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.subject", model.getSubject());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.salutation", model.getSalutation());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.body", model.getBody());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.consent", model.getConsentLabel());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.comments", model.getCommentsLabel());
 		assertEquals("Unexpected value", COMPONENT_PATH, model.getComponentPath());
 		assertEquals("Unexpected value", ".email.html", model.getComponentPathExtension());
-		assertEquals("Unexpected value", "cuhu.plantmastertrainings.confirmationText", model.getConfirmationText());
 		assertTrue("Publish Env is true", model.isPublishEnvironment());
+		assertEquals("Unexpected value", LEARNING_HISTORY_MIG_API, model.getLearningHistoryApi());
+		assertEquals("Unexpected value", GROUP_SERVLET_URL, model.getGroupServletUrl());
+		assertEquals("Unexpected value",TRAINING_DETAILS_MIG_API, model.getTrainingDetailsApi());
+		assertEquals("Unexpected value","cuhu.plantmastertrainings.trainingMaterialHandouts", model.getTrainingMaterialHandouts());
+		MockSlingHttpServletRequest request = aemContext.request();
 	}
 }
