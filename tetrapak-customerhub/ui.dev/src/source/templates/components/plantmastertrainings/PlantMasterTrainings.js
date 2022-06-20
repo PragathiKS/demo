@@ -48,13 +48,13 @@ function _processLearningHistoryData(data) {
     if (labTags) {
       labTags.forEach(tag => {
         switch (tag) {
-          case 'Diploma':
+          case 'Training':
             learningHistoryObj['diploma'].push(learningItem);
             break;
-          case 'Accredited':
+          case 'L1 Certification':
             learningHistoryObj['accredited'].push(learningItem);
             break;
-          case 'Authenticated':
+          case 'L2 Certification':
             learningHistoryObj['authenticated'].push(learningItem);
             break;
           default:
