@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Teaser Component Configurations"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <keylines
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Keylines"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Title"
+                                name="./title"/>
+                            <packageShapes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                fieldDescription="List of Package Shapes">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <shapes
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="&#x9;&#xa;Configure Package Shapes"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="&#x9;&#xa;Configure Package Shapes">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./shapes">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <packageShape
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                            fieldLabel="Package Shape"
+                                                            name="./packageShape"/>
+                                                        <fileReference
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                            fieldLabel="Image path"
+                                                            path="core/wcm/components/image/v2/image/cq:dialog/content/items/tabs/items/asset/items/columns/items/column/items/file"/>
+                                                        <alt
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                                                            path="customerhub/components/content/image/cq:dialog/content/items/tabs/items/config/items/columns/items/column/items/alt"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </shapes>
+                                </items>
+                            </packageShapes>
+                        </items>
+                    </column>
+                </items>
+            </keylines>
+            <anchor
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                    path="customerhub/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
+            <design
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Design"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <pwThemes
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                                    path="customerhub/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
+                        </items>
+                    </column>
+                </items>
+            </design>
+        </items>
+    </content>
+</jcr:root>
