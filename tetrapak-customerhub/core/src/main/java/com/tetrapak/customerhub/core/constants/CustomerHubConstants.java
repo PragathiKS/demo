@@ -644,6 +644,9 @@ public final class CustomerHubConstants {
     /** The Constant VALUE. */
     public static final String VALUE = "Value";
 
+    /** Path to asset's metatada. */
+    public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+
     /**
      * Instantiates a new customer hub constants.
      */
