@@ -1,22 +1,16 @@
 .tp-container-textImage,
 .tp-container-textImage-wide {
-    @include padding($padding-zero $padding-l $padding-zero $padding-l);
+    @include padding($padding-zero);
     max-width: 100%;
     @media #{$desktop} {
         @include max-width($body-max-width);
+        @include padding($padding-zero);
         @include margin($margin-l auto $margin-zero auto);
     }
     .pw-banner {
-        .pw-banner__bgcolor {
-            &.display-row-reversed-wrapper {
-                @media #{$desktop} {
-                    width: 415px;
-                }
-            }
-        }
         &__content {
             @include margin($margin-zero);
-            @include padding($padding-l $padding-zero);
+            @include padding($padding-l $padding-md);
             @media #{$desktop} {
                 @include padding($padding-l);
                 width: 415px;
@@ -136,7 +130,7 @@
             &.sky-blue {
                 @media #{$desktop} {
                     background: linear-gradient(to left, $color-sky-blue 75.01%, rgba(0, 189, 242, 0.8) 90.08%);
-                    width: 588px;
+                    width: 415px;
                     right: 0;
                 }
             }
@@ -437,12 +431,6 @@
     background: $color-white;
 }
 
-.tp-container-textImage .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper,
-.tp-container-textImage-wide .pw-banner .pw-banner__bgcolor.display-row-reversed-wrapper {
-    @media #{$desktop} {
-        width: 415px;
-    }
-}
 .banner-stack {
     @include margin-bottom($margin-sm);
 }
