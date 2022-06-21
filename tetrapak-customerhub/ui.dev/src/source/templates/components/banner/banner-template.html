@@ -1,15 +1,14 @@
 <sly data-sly-template.banner_template="${@data, flag}">
     <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
-    <sly data-sly-test.heroBanner="${data.bannerType == 'hero' || data.bannerType == 'hero-wide'}" />
-    <sly data-sly-test.textImageBanner="${data.bannerType == 'textImage' || data.bannerType == 'textImage-wide'}" />            
+    <sly data-sly-test.textImageBanner="${data.bannerType == 'textImage' || data.bannerType == 'textImage-wide'}" />
     <sly data-sly-test.cardTheme="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row-reversed')}" />
     <sly data-sly-test.cardThemeReverse="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row')}" />
 
     <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner" auto_locator="${data.bannerType}">
-        <div class="pw-banner ${heroBanner ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
+        <div class="pw-banner pw-theme--${data.pwTheme}"
             data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}"
             data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}"
-            data-asset-name="${data.assetName}" data-href="${data.formType ? '': data.link.linkUrl}" target="${bannerData.link.linkType == 'internal' ? '_self' : '_blank'}">
+            data-asset-name="${data.assetName}" data-href="${data.formType ? '': data.link.linkUrl}">
                 <sly data-sly-test="${wcmmode.edit}">
                     <div class="pw-banner__image-wrapper">
                         <img src="${data.fileReference}" alt="${data.alt}" class="cq-dd-image">
@@ -17,10 +16,6 @@
                 </sly>
                 <sly data-sly-test="${!wcmmode.edit}">
                     <div class="pw-banner__image-wrapper" auto_locator="bannerImage">
-                        <sly data-sly-test="${heroBanner}">
-                            <sly data-sly-use.image="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=data.fileReference , altText=data.alt, imageCrop=data.imageCrop}" />
-                            <sly data-sly-test = "${data.fileReference}"  data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html" data-sly-call="${dynamicMediaImage.dynamicimage_template @image=image, className='img-responsive'}" />
-                        </sly>
                         <sly data-sly-test="${textImageBanner}">
                             <sly data-sly-test.textImageBannerType="${data.bannerType == 'textImage' ? 'banner' : 'banner-wide'}" />
                             <sly data-sly-use.image="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=data.fileReference , altText=data.alt, imageCrop=data.imageCrop}" />
@@ -28,26 +23,15 @@
                         </sly>
                     </div>
                 </sly>
-                <sly data-sly-test="${heroBanner}">
-                    <div class="pw-banner-herowrapper">
-                        <div class="pw-banner__sideSection ${(data.pwDisplay =='display-row') ? 'left' : 'right'} ${data.pwCardTheme}"></div>
-                        <section class="pw-banner__contentwrapper" auto_locator="bannerCard">
-                                <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} ${data.pwDisplay =='display-row-reversed' ? 'display-row-reversed-wrapper' : ''}">
-                                    <div class="pw-banner__gradient-bg"></div>
-                                    <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
-                                </div>
-                        </section>
-                    </div>
-                </sly>
                 <sly data-sly-test="${textImageBanner}">
                     <sly data-sly-test="${cardTheme || cardThemeReverse}">
                         <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${cardTheme ? 'display-row-reversed-wrapper' : ''}">
-                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
+                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
                     </sly>
                      <sly data-sly-test="${data.pwCardTheme == null || data.pwCardTheme =='gray'}">
                         <div class="${data.subtitle ? '' : 'no-subtitle'}">
-                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
+                            <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
                     </sly>
                 </sly>
@@ -56,7 +40,7 @@
 </sly>
 
 
-<sly data-sly-template.bannerCommon="${@bannerData, dataLinkSectionCTAText, heroBanner, textImageBanner, cardTheme, cardThemeReverse}">
+<sly data-sly-template.bannerCommon="${@bannerData, dataLinkSectionCTAText, textImageBanner, cardTheme, cardThemeReverse}">
     <div class="pw-banner__content banner-sibling ${bannerData.pwDisplay} ${bannerData.pwCardTheme}"></div>
     <div class="pw-banner__content banner-parent ${bannerData.pwDisplay}
         ${bannerData.pwCardTheme}">
