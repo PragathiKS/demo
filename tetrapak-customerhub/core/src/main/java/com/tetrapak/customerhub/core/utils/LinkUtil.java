@@ -81,8 +81,9 @@ public final class LinkUtil {
         String linkType = StringUtils.EMPTY;
         if (StringUtils.isBlank(link)) {
             linkType = "#";
-        } else if (link.startsWith(CustomerHubConstants.CONTENT_DAM_PATH)
-                && FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)) {
+	} else if (link.startsWith(CustomerHubConstants.CONTENT_DAM_PATH)
+		&& (FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)
+			|| FilenameUtils.getExtension(link).matches(DOWNLOADABLE_DOCS))) {
             linkType = CustomerHubConstants.DOWNLOAD_LINK;
         } else if (Boolean.TRUE.equals(isExternalLink(link))
 		&& (FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)
