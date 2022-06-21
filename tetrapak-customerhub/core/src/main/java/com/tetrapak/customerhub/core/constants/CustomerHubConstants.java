@@ -652,7 +652,7 @@ public final class CustomerHubConstants {
 
     /** The Constant LANGUAGE_LEVEL. */
     public static final int LANGUAGE_PAGE_LEVEL = 4;
-
+    
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
 
