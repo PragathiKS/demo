@@ -48,7 +48,7 @@ public class TabsListModel {
     @SlingObject
     private ResourceResolver resourceResolver;
 
-    private String componentId = "tushar";
+    private String componentId;
 
     private List<TabsListBean> tabsListContent = new ArrayList<>();
 
