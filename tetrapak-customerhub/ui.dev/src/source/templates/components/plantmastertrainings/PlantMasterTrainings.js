@@ -44,6 +44,8 @@ function _processLearningHistoryData(data) {
 
   data.forEach((learningItem) => {
     const { labTags } = learningItem;
+    const { completionDateTime } = learningItem;
+    learningItem['completionDateTime'] = moment(completionDateTime).format('YYYY-MM-DD');
 
     if (labTags) {
       labTags.forEach(tag => {
