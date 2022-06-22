@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
-    jcr:title="Teaser Component Configurations"
+    jcr:title="Keylines Component Configurations"
     sling:resourceType="cq/gui/components/authoring/dialog">
     <content
         jcr:primaryType="nt:unstructured"
@@ -21,6 +21,11 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Title"
                                 name="./title"/>
+                            <dowloadText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Download Text"
+                                name="./dowloadText"/>    
                             <packageShapes
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -45,7 +50,7 @@
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="cq/gui/components/coral/common/form/tagfield"
                                                             fieldLabel="Package Shape"
-                                                            name="./packageShape"/>
+                                                            name="./shape"/>
                                                         <fileReference
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/include"
