@@ -4,8 +4,8 @@
     <sly data-sly-test.cardTheme="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row-reversed')}" />
     <sly data-sly-test.cardThemeReverse="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row')}" />
 
-    <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner" auto_locator="${data.bannerType}">
-        <div class="pw-banner pw-theme--${data.pwTheme}"
+    <div class="tp-container-${data.bannerType} pw-theme--${data.pwTheme}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner" auto_locator="${data.bannerType}">
+        <div class="pw-banner"
             data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}"
             data-link-section="Hero Image_imageClick" data-link-name="${data.linkLabel}"
             data-asset-name="${data.assetName}" data-href="${data.formType ? '': data.link.linkUrl}">
