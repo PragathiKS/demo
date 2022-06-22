@@ -4,7 +4,7 @@
     max-width: 100%;
     @media #{$desktop} {
         @include max-width($body-max-width);
-        @include padding($padding-zero);
+        @include padding($padding-zero $padding-l);
         @include margin($margin-l auto $margin-zero auto);
     }
     .pw-banner {
