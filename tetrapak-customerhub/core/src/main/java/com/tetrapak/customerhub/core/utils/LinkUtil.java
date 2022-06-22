@@ -13,13 +13,15 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
  * @author Ruhee sharma
  */
 public final class LinkUtil {
+    
+    /** The Constant DOWNLOADABLE_DOCS. */
+    private static final String DOWNLOADABLE_DOCS = "(css|js|xls|xlsx|doc|docx|pdf|json|ppt|pptx|xml|txt)$";
 
     /** The Constant DOWNLOADABLE_ASSETS. */
-    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml)$";
+    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|jpeg|mp4|ico|woff|ttf|svg|eps|tif)$";
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
-
 
     private LinkUtil() {
         throw new IllegalStateException("Utility class");
@@ -55,7 +57,7 @@ public final class LinkUtil {
     private static boolean isInternalLink(String path) {
         return StringUtils.isNotBlank(path) && path.startsWith("/content") && !path.startsWith("/content/dam/") && !path.endsWith(".html");
     }
-
+    
     /**
      * Checks if is external link.
      *
@@ -67,7 +69,7 @@ public final class LinkUtil {
         return (!StringUtils.isEmpty(link) && !link.startsWith(CustomerHubConstants.CONTENT_PATH)
                 && (link.startsWith(CustomerHubConstants.HTTP) || link.startsWith(CustomerHubConstants.WWW)));
     }
-
+    
     /**
      * Check link type.
      *
@@ -79,11 +81,13 @@ public final class LinkUtil {
         String linkType = StringUtils.EMPTY;
         if (StringUtils.isBlank(link)) {
             linkType = "#";
-        } else if (link.startsWith(CustomerHubConstants.CONTENT_DAM_PATH)
-                && FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)) {
+	} else if (link.startsWith(CustomerHubConstants.CONTENT_DAM_PATH)
+		&& (FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)
+			|| FilenameUtils.getExtension(link).matches(DOWNLOADABLE_DOCS))) {
             linkType = CustomerHubConstants.DOWNLOAD_LINK;
         } else if (Boolean.TRUE.equals(isExternalLink(link))
-                && FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)) {
+		&& (FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)
+			|| FilenameUtils.getExtension(link).matches(DOWNLOADABLE_DOCS))) {
             linkType = CustomerHubConstants.EXTERNAL_DOWNLOAD_LINK;
         } else if (Boolean.TRUE.equals(isInternalLink(link))) {
             linkType = CustomerHubConstants.INTERNAL_LINK;
@@ -92,7 +96,7 @@ public final class LinkUtil {
         }
         return linkType;
     }
-
+    
     /**
      * Gets the asset name.
      *
