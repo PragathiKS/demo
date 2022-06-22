@@ -30,6 +30,15 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.http.Cookie;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.Collections;
@@ -634,6 +643,19 @@ public class GlobalUtil {
     }
 
     /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
+    }
+
+    /**
      * Gets the groups for customer from resource/request
      *
      * @param request the request
@@ -687,19 +709,6 @@ public class GlobalUtil {
                    apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping;
         }
         return aipEndpointURL;
-    }
-
-    /**
-     * Checks if it is publish.
-     *
-     * @return true, if is publish
-     */
-    public static boolean isPublish() {
-        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
-        if (slingSettingsService == null) {
-            return false;
-        }
-        return slingSettingsService.getRunModes().contains("publish");
     }
 
     /**

@@ -15,19 +15,27 @@ import javax.annotation.PostConstruct;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LinkModel {
 
-    /** The link text. */
+    /**
+     * The link text.
+     */
     @ValueMapValue
     private String linkText;
 
-    /** The link path. */
+    /**
+     * The link path.
+     */
     @ValueMapValue
     private String linkUrl;
 
-    /** The link type. */
+    /**
+     * The link type.
+     */
     @ValueMapValue
     private String linkType;
 
-    /** The asset name. */
+    /**
+     * The asset name.
+     */
     private String assetName;
 
     @PostConstruct
@@ -93,5 +101,6 @@ public class LinkModel {
      */
     public void setLinkType(String linkType) {
 	    this.linkType = linkType;
+
     }
 }

@@ -246,7 +246,6 @@ public class PlantMasterTrainingsModel {
      */
     @PostConstruct
     protected void init() {
-
         Map<String, Object> i18KeyMap = getPlantMasterTrainingI18KeyMap();
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);

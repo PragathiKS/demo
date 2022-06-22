@@ -80,7 +80,6 @@ public class DynamicImageModelTest {
         aemContext.request().setAttribute("dwidth", "500");
         aemContext.request().setAttribute("dheight", "600");
         dynamicImageModel = aemContext.request().adaptTo(DynamicImageModel.class);
-
         assertEquals("http://s7g10.scene7.com/is/image/tetrapak/Paper_Inks_Chart-1?wid=500&hei=600",
                 dynamicImageModel.getDesktopUrl());
         assertEquals("/tetrapak/Paper_Inks_Chart-1", dynamicImageModel.getFinalPath());

@@ -1,5 +1,4 @@
 const myDomainAdobe = 'adobecqms.net';
-
 const isInternalUrl = url => {
   let isInternal = false;
   const setOfInternalUrl = [
@@ -47,3 +46,4 @@ export const isDownloable = function(url) {
   }
   return flag;
 };
+
