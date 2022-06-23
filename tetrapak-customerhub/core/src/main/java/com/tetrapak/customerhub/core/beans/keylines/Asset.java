@@ -1,7 +1,6 @@
 
 package com.tetrapak.customerhub.core.beans.keylines;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

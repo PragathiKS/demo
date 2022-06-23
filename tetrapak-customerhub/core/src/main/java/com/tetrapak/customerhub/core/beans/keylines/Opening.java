@@ -1,7 +1,6 @@
 
 package com.tetrapak.customerhub.core.beans.keylines;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,19 +14,19 @@ public class Opening {
     private String value;
 
     public String getKey() {
-        return key;
+	return key;
     }
 
     public void setKey(String key) {
-        this.key = key;
+	this.key = key;
     }
 
     public String getValue() {
-        return value;
+	return value;
     }
 
     public void setValue(String value) {
-        this.value = value;
+	this.value = value;
     }
 
     @Override
@@ -54,18 +53,18 @@ public class Opening {
 	    return false;
 	Opening other = (Opening) obj;
 	if (key == null) {
-	    if (other.key != null)
+	    if (other.key != null) {
 		return false;
+	    }
 	} else if (!key.equals(other.key))
 	    return false;
 	if (value == null) {
-	    if (other.value != null)
+	    if (other.value != null) {
 		return false;
+	    }
 	} else if (!value.equals(other.value))
 	    return false;
 	return true;
     }
-    
-    
 
 }

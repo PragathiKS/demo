@@ -55,18 +55,18 @@ public class Keylines {
 	    return false;
 	Keylines other = (Keylines) obj;
 	if (assets == null) {
-	    if (other.assets != null)
+	    if (other.assets != null) {
 		return false;
+	    }
 	} else if (!assets.equals(other.assets))
 	    return false;
 	if (shapes == null) {
-	    if (other.shapes != null)
+	    if (other.shapes != null) {
 		return false;
+	    }
 	} else if (!shapes.equals(other.shapes))
 	    return false;
 	return true;
     }
-    
-    
 
 }
