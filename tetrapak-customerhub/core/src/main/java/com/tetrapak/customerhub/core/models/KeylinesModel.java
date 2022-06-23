@@ -63,7 +63,7 @@ public class KeylinesModel {
     @PostConstruct
     protected void init() {
 	apiUrl = String.format("%s.%s.%s", resource.getPath(), CustomerHubConstants.KEYLINES_SLING_SERVLET_SELECTOR,
-		CustomerHubConstants.JSON_EXT);
+		CustomerHubConstants.JSON_SERVLET_EXTENSION);
 	LOGGER.debug("API URL {}", apiUrl);
     }
 
