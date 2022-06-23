@@ -5,4 +5,4 @@
           jcr:title="Keylines"
           jcr:description="Keylines component"
           sling:resourceSuperType="foundation/components/parbase"
-          componentGroup="tetrapak-global-components"/>
+          componentGroup="tetrapak-content-components"/>
