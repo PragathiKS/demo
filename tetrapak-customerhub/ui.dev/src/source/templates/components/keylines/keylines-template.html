@@ -25,10 +25,10 @@
 						data-sly-test="${child.fileReference}" alt="${child.alt}"
 						src="${child.fileReference}" class="image img-responsive" /> </sly>
 				</span>
-				<h4 data-sly-test="${child.shape}"
-					class="title ${child.fileReference ? 'noTopPad' : ''}">${child.shape
+				<h4 data-sly-test="${child.title}"
+					class="title ${child.fileReference ? 'noTopPad' : ''}">${child.title
 					@ context='html'}</h4>
-
+				
 				<div class="link" data-sly-test="${download}">
 					<a href="#"
 						class="tpatom-link tpatom-link--secondary js-teaser-analytics"
