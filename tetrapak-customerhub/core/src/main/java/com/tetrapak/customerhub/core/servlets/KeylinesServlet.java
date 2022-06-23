@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.keylines.Keylines;
 import com.tetrapak.customerhub.core.beans.keylines.KeylinesError;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.KeylinesService;
 
 /**
@@ -30,9 +31,9 @@ import com.tetrapak.customerhub.core.services.KeylinesService;
  * @author selennys
  *
  */
-@Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-	"sling.servlet.selectors=" + KeylinesServlet.SLING_SERVLET_SELECTOR,
-	"sling.servlet.extensions=" + KeylinesServlet.SLING_SERVLET_EXTENSION,
+@Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+	"sling.servlet.selectors=" + CustomerHubConstants.KEYLINES_SLING_SERVLET_SELECTOR,
+	"sling.servlet.extensions=" + CustomerHubConstants.JSON_SERVLET_EXTENSION,
 	"sling.servlet.resourceTypes=" + KeylinesServlet.SLING_SERVLET_RESOURCE_TYPES })
 public class KeylinesServlet extends SlingSafeMethodsServlet {
 
@@ -44,8 +45,6 @@ public class KeylinesServlet extends SlingSafeMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(KeylinesServlet.class);
 
     public static final String SLING_SERVLET_RESOURCE_TYPES = "customerhub/components/content/keylines";
-    public static final String SLING_SERVLET_EXTENSION = "json";
-    public static final String SLING_SERVLET_SELECTOR = "keylines";
 
     @Reference
     private transient KeylinesService keylinesService;

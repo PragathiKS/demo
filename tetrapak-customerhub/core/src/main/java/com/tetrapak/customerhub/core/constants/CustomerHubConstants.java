@@ -651,10 +651,10 @@ public final class CustomerHubConstants {
     public static final int LANGUAGE_PAGE_LEVEL = 4;
     
     /** The Constant for JSON **/
-    public static final String JSON_EXT = "json";
+    public static final String JSON_SERVLET_EXTENSION = "json";
     
     /** The Constant for keylines selector **/
-    public static final String KEYLINES_SLING_SERVLET_SELECTOR = "keylines";
+    public static final String KEYLINES_SLING_SERVLET_SELECTOR = "assets";
 
     /**
      * Instantiates a new customer hub constants.
