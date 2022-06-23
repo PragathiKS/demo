@@ -53,18 +53,18 @@ public class Volume {
 	    return false;
 	Volume other = (Volume) obj;
 	if (key == null) {
-	    if (other.key != null)
+	    if (other.key != null) {
 		return false;
+	    }
 	} else if (!key.equals(other.key))
 	    return false;
 	if (value == null) {
-	    if (other.value != null)
+	    if (other.value != null) {
 		return false;
+	    }
 	} else if (!value.equals(other.value))
 	    return false;
 	return true;
     }
-    
-    
 
 }
