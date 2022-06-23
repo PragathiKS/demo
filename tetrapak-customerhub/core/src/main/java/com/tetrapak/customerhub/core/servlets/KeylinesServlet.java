@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.servlet.Servlet;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -22,7 +21,6 @@ import org.slf4j.LoggerFactory;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.keylines.Keylines;
 import com.tetrapak.customerhub.core.beans.keylines.KeylinesError;
-import com.tetrapak.customerhub.core.exceptions.KeylinesException;
 import com.tetrapak.customerhub.core.services.KeylinesService;
 
 /**
@@ -32,7 +30,7 @@ import com.tetrapak.customerhub.core.services.KeylinesService;
  * @author selennys
  *
  */
-@Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_GET,
+@Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_POST,
 	"sling.servlet.selectors=" + KeylinesServlet.SLING_SERVLET_SELECTOR,
 	"sling.servlet.extensions=" + KeylinesServlet.SLING_SERVLET_EXTENSION,
 	"sling.servlet.resourceTypes=" + KeylinesServlet.SLING_SERVLET_RESOURCE_TYPES })
