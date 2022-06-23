@@ -1,5 +1,5 @@
 <sly data-sly-template.keylines_template.html="${@data, flag}">
-<div data-module="keylines">
+<div data-module="keylines" data-url="${data.apiUrl}">
 	<section class="tp-teaser pw-theme--${data.pwTheme}"
 		id="${data.anchorId}" title="${data.anchorTitle}">
 		<div data-sly-test="${data.title}" class="tp-teaser__heading">
@@ -25,7 +25,7 @@
 						data-sly-test="${child.fileReference}" alt="${child.alt}"
 						src="${child.fileReference}" class="image img-responsive" /> </sly>
 				</span>
-				<h4 data-sly-test="${child.title}"
+				<h4 data-sly-test="${child.title}" data-shape="${child.shape}"
 					class="title ${child.fileReference ? 'noTopPad' : ''}">${child.title
 					@ context='html'}</h4>
 				
