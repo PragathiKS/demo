@@ -4,6 +4,7 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {sanitize} from '../../../scripts/common/common';
 
 /**
  * Render Active Licenses data
@@ -210,7 +211,7 @@ class PlantMasterLicensesActive {
         site: $btn.data('site'),
         startDate: $btn.data('startDate'),
         endDate: $btn.data('endDate'),
-        comments
+        comments: sanitize(comments)
       };
 
       this.submitLicenseWithdraw(licenseDetails);
