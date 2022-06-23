@@ -655,6 +655,12 @@ public final class CustomerHubConstants {
     
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+    
+    /** The Constant for JSON **/
+    public static final String JSON_EXT = "json";
+    
+    /** The Constant for keylines selector **/
+    public static final String KEYLINES_SLING_SERVLET_SELECTOR = "keylines";
 
     /**
      * Instantiates a new customer hub constants.
