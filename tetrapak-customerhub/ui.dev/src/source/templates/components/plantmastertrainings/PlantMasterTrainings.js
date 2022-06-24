@@ -5,6 +5,7 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {sanitize} from '../../../scripts/common/common';
 
 function _processTrainingsData(data,pingUserGroup) {
   data = data ? data : [];
@@ -100,7 +101,7 @@ function _handleFormSubmit(formEl) {
     // due to multiple forms on page, input fields are suffixed with index that is removed before submitting
     for (const [key, value] of formData) {
       const updatedKey = key.split('-')[0];
-      processedFormData.set(updatedKey, value);
+      processedFormData.set(updatedKey, sanitize(value));
     }
 
     processedFormData.set('name', username);
