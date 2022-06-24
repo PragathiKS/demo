@@ -1,5 +1,5 @@
 <sly data-sly-template.keylines_template.html="${@data, flag}">
-<div data-module="keylines" data-url="${data.apiUrl}" data-packageType="${data.packageType}">
+<div data-module="keylines" class="tp-keylines" data-api-url="${data.apiUrl}" data-packageType="${data.packageType}">
 	<section class="tp-teaser pw-theme--${data.pwTheme}"
 		id="${data.anchorId}" title="${data.anchorTitle}">
 		<div data-sly-test="${data.title}" class="tp-teaser__heading">
@@ -25,25 +25,28 @@
 						data-sly-test="${child.fileReference}" alt="${child.alt}"
 						src="${child.fileReference}" class="image img-responsive" /> </sly>
 				</span>
-				<h4 data-sly-test="${child.title}" data-shape="${child.shape}"
+				<h4 data-sly-test="${child.title}"
 					class="title ${child.fileReference ? 'noTopPad' : ''}">${child.title
 					@ context='html'}</h4>
-				
+
 				<div class="link" data-sly-test="${download}">
-					<a href="#"
-						class="tpatom-link tpatom-link--secondary js-teaser-analytics"
+					<button type="button"
+						class="tpatom-link tp-keylines__download js-tp-keylines__download"
+						data-shape="${child.shape}"
 						title="${download}" data-link-section="Teaser_Text Hyperlink"
 						data-link-name="${download}"
 						data-parent-link-title="${data.title}:${child.shape}"
-						data-anchor-type="Text Hyperlink"> <span
-						class="tpatom-link__text sly-text">${download @
-							context='html'}<span class="nowrap-text">&#8288;<i
-								class="icon icon-Chevron_Right"></i></span>
-					</span>
-					</a>
+						data-anchor-type="Text Hyperlink">
+						<span class="tpatom-link__text sly-text">
+							${download}
+							<span class="nowrap-text">&#8288;<i class="icon icon-Chevron_Right"></i></span>
+						</span>
+					</button>
 				</div>
 			</div>
 		</div>
+
+		<div id="keylines_modal" class="modal js-tp-keylines__modal tp-modal fade" tabindex="-1" aria-hidden="true" role="dialog"></div>
 	</section>
 </div>
 </sly>
