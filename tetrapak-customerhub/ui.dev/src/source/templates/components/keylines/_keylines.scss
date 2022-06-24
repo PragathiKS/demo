@@ -1,0 +1,9 @@
+.tp-keylines {
+    &__download {
+        color: $color-congress-blue;
+
+        &:hover {
+            color: $color-sky-blue;
+        }
+    }
+}
