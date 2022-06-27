@@ -1,9 +1,7 @@
-{{log this}}
-
-<div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
-    <div class="modal-content tp-my-equipment__modal-content tp-modal-content js-tp-aip-licenses-active__modal-content">
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+    <div class="modal-content tp-my-equipment__modal-content tp-modal-content">
         <div class="modal-header tpmol-modal-header">
-            <div class="tp-aip-licenses-active__modal-header" auto_locator="headlineOverlay">
+            <div>
                 <h2>{{i18n key=i18nKeys.activeLicense.modalConfirmTitle}}</h2>
             </div>
             <button type="button" auto_locator="closebtnOverlay"
@@ -15,29 +13,29 @@
         <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
             {{> atoms/dropdown/dropdown
                     defaultValue="Select volume"
-                    options=this.openings
-                    name="addEquipmentSite"
+                    options=this.volumes
+                    name="volumes"
                     labelText="Options 1"
-                    wrapClasses="tp-add-equipment__field-wrapper"
+                    eleClasses="js-tp-keylines__dropdown js-tp-keylines__volumes"
                     required="true"
-                    disabled=isDisabled
             }}
 
             {{> atoms/dropdown/dropdown
                     defaultValue="Select opening"
-                    options=this.volumes
-                    name="addEquipmentSite"
+                    options=this.openings
+                    name="openings"
                     labelText="Options 2"
-                    wrapClasses="tp-add-equipment__field-wrapper"
+                    eleClasses="js-tp-keylines__dropdown js-tp-keylines__openings"
                     required="true"
-                    disabled=isDisabled
             }}
         </div>
 
         <div class="modal-footer tpmol-modal-footer">
             {{> atoms/buttons/button/button text="Download"
+                    data-shape-name=this.shapeName
                     modifier="primary"
                     disabled=true
+                    iconClass="icon-Download"
                     baseClass="tp-keylines__modal-download"
                     jsClass="js-tp-keylines__modal-download"}}
         </div>
