@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.models;
 
+import java.util.Locale;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +14,8 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ShapeModel {
@@ -28,20 +32,32 @@ public class ShapeModel {
     @ValueMapValue
     private String alt;
 
+    /** The title of shape tag **/
     private String title;
 
+    /** The name of shape tag **/
     private String name;
 
     @Self
     @Via("resourceResolver")
     TagManager tagManager;
 
+    @Self
+    @Via("resourceResolver")
+    PageManager pageManager;
+
+    @Self
+    private Resource resource;
+
     @PostConstruct
     protected void init() {
+	Page currentPage = pageManager.getContainingPage(resource);
+
+	Locale currentLocale = currentPage.getLanguage(true);
 	if (StringUtils.isNotBlank(shape)) {
 	    Tag tag = tagManager.resolve(shape);
 	    if (null != tag) {
-		title = tag.getTitle();
+		title = tag.getTitle(currentLocale);
 		name = tag.getName();
 	    }
 	}
