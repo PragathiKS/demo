@@ -5,7 +5,6 @@ import assetsData from './data/keylines.json';
 import KeylinesTemplate from '../../../test-templates-hbs/keylines.hbs';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {render} from "../../../scripts/utils/render";
-import { EVT_DROPDOWN_CHANGE } from '../../../scripts/utils/constants';
 
 describe('Keylines', function () {
   const jqRef = {
@@ -65,9 +64,9 @@ describe('Keylines', function () {
 
   it('should enable download button after selecting dropdowns', function (done) {
     $('.js-tp-keylines__volumes').val('1000');
-    $('.js-tp-keylines__volumes').trigger(EVT_DROPDOWN_CHANGE);
+    $('.js-tp-keylines__volumes').trigger('change');
     $('.js-tp-keylines__openings').val('no-opening');
-    $('.js-tp-keylines__openings').trigger(EVT_DROPDOWN_CHANGE);
+    $('.js-tp-keylines__openings').trigger('change');
     expect(this.setDownloadBtnSpy.called).to.be.true;
     done();
   });

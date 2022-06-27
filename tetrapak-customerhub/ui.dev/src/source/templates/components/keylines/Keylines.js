@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import {render} from '../../../scripts/utils/render';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods, EVT_DROPDOWN_CHANGE} from '../../../scripts/utils/constants';
+import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 
 class Keylines {
@@ -93,7 +93,7 @@ class Keylines {
       this.getShapeAssets(shapeTag, shapeName);
     });
 
-    this.root.on(EVT_DROPDOWN_CHANGE, '.js-tp-keylines__dropdown', e => {
+    this.root.on('change', '.js-tp-keylines__dropdown', e => {
       const $select = $(e.currentTarget);
       this.setDownloadBtn($select);
     });
