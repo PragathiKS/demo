@@ -30,6 +30,8 @@ public class ShapeModel {
 
     private String title;
 
+    private String name;
+
     @Self
     @Via("resourceResolver")
     TagManager tagManager;
@@ -39,7 +41,8 @@ public class ShapeModel {
 	if (StringUtils.isNotBlank(shape)) {
 	    Tag tag = tagManager.resolve(shape);
 	    if (null != tag) {
-		title = (tag.getTitle());
+		title = tag.getTitle();
+		name = tag.getName();
 	    }
 	}
 
@@ -75,6 +78,14 @@ public class ShapeModel {
 
     public void setTitle(String title) {
 	this.title = title;
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public void setName(String name) {
+	this.name = name;
     }
 
 }
