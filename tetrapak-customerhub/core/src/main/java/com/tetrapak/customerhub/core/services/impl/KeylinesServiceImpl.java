@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,8 +65,8 @@ public class KeylinesServiceImpl implements KeylinesService {
 	this.config = config;
     }
 
-    public Keylines getKeylines(ResourceResolver resourceResolver, String packageType, List<String> shapes)
-	    throws KeylinesException {
+    public Keylines getKeylines(ResourceResolver resourceResolver, String packageType, List<String> shapes,
+	    Locale locale) throws KeylinesException {
 	LOGGER.trace("Inside getKeylines Method");
 	Keylines keylines = null;
 	TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
@@ -74,7 +75,7 @@ public class KeylinesServiceImpl implements KeylinesService {
 	if (StringUtils.isNotBlank(packageType) && null != shapes && !shapes.isEmpty()) {
 	    String packageTypeTagID = validateTags(tagManager, packageType, shapes, tagIDs, tags);
 	    keylines = new Keylines();
-	    keylines.setShapes(getShapesBean(tags));
+	    keylines.setShapes(getShapes(tags, locale));
 	    List<Asset> keylineAssets = new ArrayList<>();
 	    SearchResult result = query(resourceResolver, tagIDs);
 	    if (null != result) {
@@ -173,21 +174,21 @@ public class KeylinesServiceImpl implements KeylinesService {
 	return packageTypeTagID;
     }
 
-    private List<Shape> getShapesBean(List<Tag> tags) {
+    private List<Shape> getShapes(List<Tag> tags, Locale locale) {
 	LOGGER.trace("Inside getShapesBean Method");
 	List<Shape> shapes = new ArrayList<>();
 	for (Tag tag : tags) {
 	    Shape shape = new Shape();
 	    LOGGER.debug("Shape name {}", tag.getName());
 	    shape.setName(tag.getName());
-	    setOpeningsAndVolumes(shape, tag);
+	    setOpeningsAndVolumes(shape, tag, locale);
 	    shapes.add(shape);
 	}
 	LOGGER.trace("End getShapesBean Method");
 	return shapes;
     }
 
-    private void setOpeningsAndVolumes(Shape shape, Tag tag) {
+    private void setOpeningsAndVolumes(Shape shape, Tag tag, Locale locale) {
 	LOGGER.trace("Inside setOpeningsAndVolumes Method");
 	Set<Volume> volumes = new HashSet<>();
 	Set<Opening> openings = new HashSet<>();
@@ -197,11 +198,11 @@ public class KeylinesServiceImpl implements KeylinesService {
 	    Tag childTag = childTags.next();
 	    volume.setKey(childTag.getName());
 	    LOGGER.debug("Volume name {}", childTag.getName());
-	    volume.setValue(childTag.getTitle());
-	    LOGGER.debug("Volume Title {}", childTag.getTitle());
+	    volume.setValue(childTag.getTitle(locale));
+	    LOGGER.debug("Volume Title {}", childTag.getTitle(locale));
 	    volumes.add(volume);
 	    /* As openings is outside, creating a list and adding it to shapes */
-	    openings.addAll(getOpenings(childTag));
+	    openings.addAll(getOpenings(childTag, locale));
 
 	}
 	shape.setOpenings(openings);
@@ -209,7 +210,7 @@ public class KeylinesServiceImpl implements KeylinesService {
 	LOGGER.trace("End setOpeningsAndVolumes Method");
     }
 
-    private Set<Opening> getOpenings(Tag tag) {
+    private Set<Opening> getOpenings(Tag tag, Locale locale) {
 	LOGGER.trace("Inside getOpenings Method");
 	Set<Opening> openings = new HashSet<>();
 	Iterator<Tag> childTags = tag.listChildren();
@@ -219,7 +220,7 @@ public class KeylinesServiceImpl implements KeylinesService {
 	    String openingName = childTag.getName();
 	    opening.setKey(openingName);
 	    LOGGER.debug("Opening name {}", openingName);
-	    String openingTitle = childTag.getTitle();
+	    String openingTitle = childTag.getTitle(locale);
 	    opening.setValue(openingTitle);
 	    LOGGER.debug("Opening Title {}", openingTitle);
 	    openings.add(opening);

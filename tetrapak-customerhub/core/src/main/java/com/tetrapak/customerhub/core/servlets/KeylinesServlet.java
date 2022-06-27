@@ -5,12 +5,14 @@ import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.Servlet;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.osgi.service.component.annotations.Component;
@@ -18,6 +20,8 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.beans.keylines.Keylines;
 import com.tetrapak.customerhub.core.beans.keylines.KeylinesError;
@@ -63,12 +67,22 @@ public class KeylinesServlet extends SlingSafeMethodsServlet {
 		}
 	    }
 	}
-	LOGGER.debug("Package Type: {} --- Package Shape:{}", packageTypeParameter, shapes);
+	Locale locale = request.getLocale();
+	try {
+	    Resource resource = request.getResource();
+	    PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
+	    Page page = pageManager.getContainingPage(resource);
+	    locale = page.getLanguage(true);
+	} catch (Exception e) {
+	    LOGGER.error("Error while getting locale from resource: {}", e.getMessage());
+	}
+	LOGGER.debug("Locale from Resource {}: ", locale);
+	LOGGER.debug("Package Type: {} --- Package Shape:{} --- Locale: {}", packageTypeParameter, shapes, locale);
 	String responseString = "";
 	Gson gson = new Gson();
 	try {
-	    Keylines keylines = keylinesService.getKeylines(request.getResourceResolver(), packageTypeParameter,
-		    shapes);
+	    Keylines keylines = keylinesService.getKeylines(request.getResourceResolver(), packageTypeParameter, shapes,
+		    locale);
 
 	    if (keylines != null) {
 		responseString = gson.toJson(keylines, Keylines.class);

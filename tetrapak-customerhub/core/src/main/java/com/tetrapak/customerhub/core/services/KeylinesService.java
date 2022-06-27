@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.services;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.sling.api.resource.ResourceResolver;
 
@@ -15,6 +16,6 @@ import com.tetrapak.customerhub.core.exceptions.KeylinesException;
  */
 public interface KeylinesService {
 
-    public Keylines getKeylines(ResourceResolver resourceResolver, String packageType, List<String> shapes)
-	    throws KeylinesException;
+    public Keylines getKeylines(ResourceResolver resourceResolver, String packageType, List<String> shapes,
+	    Locale locale) throws KeylinesException;
 }
