@@ -7,7 +7,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import org.apache.commons.io.FilenameUtils;
 import javax.annotation.PostConstruct;
 
 /**
@@ -31,28 +30,28 @@ public class LinkModel {
     /** The asset name. */
     private String assetName;
 
+    private boolean pdfType;
+
+    public boolean isPdfType() {
+        if((StringUtils.isNotBlank(linkUrl) && linkUrl.startsWith("/content") && linkUrl.endsWith(".pdf"))){
+            pdfType=true;
+        }
+        else{
+            pdfType=false; 
+        }
+      return pdfType;           
+    }
+
     @PostConstruct
     protected void init() {
 	if (StringUtils.isNotEmpty(linkUrl)) {
 	    linkType = LinkUtil.checkLinkType(linkUrl);
-        if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
-            linkType = checkPDF(linkType);
-        }
 	    if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
 		assetName = LinkUtil.getAssetName(linkUrl);
 	    }
 	}
     }
 
-    private String checkPDF(String linkType) {
-        if(FilenameUtils.getExtension(linkUrl).matches(CustomerHubConstants.PDF)){
-            return linkType = CustomerHubConstants.PDF;
-        }
-        else{
-            return linkType;
-        }
-
-    }
 
     /**
      * Gets the asset name.
