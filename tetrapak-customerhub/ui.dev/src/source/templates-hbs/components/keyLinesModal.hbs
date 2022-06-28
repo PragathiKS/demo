@@ -1,8 +1,12 @@
 <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
     <div class="modal-content tp-my-equipment__modal-content tp-modal-content">
-        <div class="modal-header tpmol-modal-header">
+        <div class="modal-header tpmol-modal-header tp-keylines__modal-header">
             <div>
-                <h2>{{i18n key=i18nKeys.activeLicense.modalConfirmTitle}}</h2>
+                <h2 class="tp-keylines__modal-title">Select Base Keyline</h2>
+
+                <p class="tp-keylines__modal-subtitle">
+                    Choose volume and opening to download your keyline file
+                </p>
             </div>
             <button type="button" auto_locator="closebtnOverlay"
                     class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
@@ -30,7 +34,7 @@
             }}
         </div>
 
-        <div class="modal-footer tpmol-modal-footer">
+        <div class="modal-footer tpmol-modal-footer tp-keylines__modal-footer">
             {{> atoms/buttons/button/button text="Download"
                     data-shape-name=this.shapeName
                     modifier="primary"
