@@ -2,10 +2,10 @@
     <div class="modal-content tp-my-equipment__modal-content tp-modal-content">
         <div class="modal-header tpmol-modal-header tp-keylines__modal-header">
             <div>
-                <h2 class="tp-keylines__modal-title">Select Base Keyline</h2>
+                <h2 class="tp-keylines__modal-title">{{i18n key=i18nKeys.modalTitle}}</h2>
 
                 <p class="tp-keylines__modal-subtitle">
-                    Choose volume and opening to download your keyline file
+                    {{i18n key=i18nKeys.modalDescription}}
                 </p>
             </div>
             <button type="button" auto_locator="closebtnOverlay"
@@ -16,26 +16,24 @@
 
         <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
             {{> atoms/dropdown/dropdown
-                    defaultValue="Select volume"
+                    defaultValue=i18nKeys.selectVolumes
                     options=this.volumes
                     name="volumes"
-                    labelText="Options 1"
                     eleClasses="js-tp-keylines__dropdown js-tp-keylines__volumes"
                     required="true"
             }}
 
             {{> atoms/dropdown/dropdown
-                    defaultValue="Select opening"
+                    defaultValue=i18nKeys.selectOpenings
                     options=this.openings
                     name="openings"
-                    labelText="Options 2"
                     eleClasses="js-tp-keylines__dropdown js-tp-keylines__openings"
                     required="true"
             }}
         </div>
 
         <div class="modal-footer tpmol-modal-footer tp-keylines__modal-footer">
-            {{> atoms/buttons/button/button text="Download"
+            {{> atoms/buttons/button/button text=i18nKeys.downloadKeyline
                     data-shape-name=this.shapeName
                     modifier="primary"
                     disabled=true

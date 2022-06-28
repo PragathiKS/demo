@@ -8,6 +8,7 @@
     }
 
     .tpatom-dropdown {
+        @include margin-bottom($margin-md);
         @include max-width(257px);
     }
 
@@ -16,12 +17,8 @@
         @include max-width(348px);
     }
 
-    &__modal-header {
-        @include padding-bottom($padding-zero);
-    }
-
     &__modal-footer {
-        @include padding-top($padding-md);
+        @include padding-top($padding-zero);
     }
 
     &__modal-title {
