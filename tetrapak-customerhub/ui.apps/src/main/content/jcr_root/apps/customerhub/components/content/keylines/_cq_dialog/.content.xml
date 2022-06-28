@@ -24,7 +24,7 @@
                             <dowloadText
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Download Text"
+                                fieldLabel="Download Text (i18N key)"
                                 name="./dowloadText"/>    
                             <packageShapes
                                 jcr:primaryType="nt:unstructured"
@@ -72,6 +72,44 @@
                     </column>
                 </items>
             </keylines>
+            <modal
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Modal"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <modalTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Modal Title  (i18N key)"
+                                name="./modal/modalTitle"/>
+                            <modalDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Modal Description  (i18N key)"
+                                name="./modal/modalDescription"/>
+                            <selectVolumesLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Select Volumes (i18N key)"
+                                name="./modal/selectVolumes"/> 
+                            <selectOpeningsLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Select Openings (i18N key)"
+                                name="./modal/selectOpenings"/>
+                            <downloadKeyline
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Download Keyline Text (i18N key)"
+                                name="./modal/downloadKeyline"/>            
+                        </items>
+                    </column>
+                </items>
+            </modal>  
             <anchor
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/coral/foundation/include"

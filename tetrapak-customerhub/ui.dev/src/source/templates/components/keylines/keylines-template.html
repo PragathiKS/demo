@@ -7,7 +7,10 @@
 				data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
 				data-sly-call="${heading.heading_h3_template @ headingText=data.title}" />
 		</div>
-		<sly data-sly-test.download="${data.dowloadText}" />
+		<sly data-sly-test.download="${data.dowloadText || 'cuhu.packDesign.keylines.download'  @ i18n}" />
+		
+		<code class="d-none js-keylines__config">${data.i18nKeys}</code>
+		
 		<sly data-sly-test.shapeSize="${data.shapes.size}" />
 		<div data-parent-link-title="${data.title}"
 			class="tp-teaser__details row no-gutters"
