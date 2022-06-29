@@ -1,0 +1,26 @@
+<div class="tp-aip__acc-item-body">
+    <div class="tp-aip__table-wrap">
+        <table class="tp-aip__table">
+            <thead class="tp-aip__thead-primary">
+                <tr>
+                    <th>{{i18n key=i18nKeys.activeLicense.licenceKey}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.platformText}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.country}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.site}}</th>
+                    <th>{{i18n key=i18nKeys.activeLicense.siteDate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each siteLicenses}}
+                    <tr>
+                        <td>{{this.licenseKey}}</td>
+                        <td>{{this.platform}}</td>
+                        <td>{{this.countryName}}</td>
+                        <td>{{this.site}}</td>
+                        <td>{{this.validFromDate}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
