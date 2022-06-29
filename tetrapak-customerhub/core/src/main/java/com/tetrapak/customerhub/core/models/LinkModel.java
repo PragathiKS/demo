@@ -33,7 +33,7 @@ public class LinkModel {
     private boolean pdfType;
 
     public boolean isPdfType() {
-        if((StringUtils.isNotBlank(linkUrl) && linkUrl.startsWith("/content") && linkUrl.endsWith(".pdf"))){
+    if((StringUtils.isNotBlank(linkUrl) && linkUrl.startsWith(CustomerHubConstants.CONTENT_PATH ) && linkUrl.endsWith(CustomerHubConstants.PDF))){
             pdfType=true;
         }
         else{
