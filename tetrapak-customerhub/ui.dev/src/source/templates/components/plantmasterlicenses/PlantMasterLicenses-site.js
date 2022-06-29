@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods} from '../../../scripts/utils/constants';
+import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
@@ -82,6 +82,9 @@ class PlantMasterLicensesSite {
     }
   }
 
+  isNumeric(number) {
+    return REG_NUM.test(number);
+  }
 
   showContent = () => {
     this.cache.$contentWrapper.removeClass('d-none');
@@ -104,11 +107,11 @@ class PlantMasterLicensesSite {
     );
   }
 
-  addErrorMsg(ele) {
+  addErrorMsg(ele, errorMsgSelector) {
     $(ele)
       .closest('.js-tp-aip-licenses__form-element')
       .addClass('tp-aip-licenses__form-element--error')
-      .find('.js-tp-aip-licenses__error-msg-required')
+      .find(errorMsgSelector)
       .addClass('error-msg--active');
   }
 
@@ -128,7 +131,16 @@ class PlantMasterLicensesSite {
     $requiredFormElements.each((idx, ele) => {
       if (!$(ele).val()) {
         isFormValid = false;
-        this.addErrorMsg(ele);
+        this.addErrorMsg(ele, '.js-tp-aip-licenses__error-msg-required');
+      }
+    });
+
+    const $numberField = this.root.find(':input[type="number"]:visible');
+    $numberField.each((idx, ele) => {
+      const numberFieldVal = $(ele).val();
+      if (numberFieldVal && (!this.isNumeric(numberFieldVal) || (numberFieldVal < 1))) {
+        isFormValid = false;
+        this.addErrorMsg(ele, '.js-tp-aip-licenses__error-msg-invalid-number');
       }
     });
 

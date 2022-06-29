@@ -30,6 +30,15 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.http.Cookie;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -42,6 +51,11 @@ public class GlobalUtil {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
+
+    /**
+     * File name for Scene 7 property
+     */
+    private static final String SCENE_7_NAME_PROPERTY = "dam:scene7Name";
 
     /**
      * Method to get API GEE URL.
@@ -163,6 +177,9 @@ public class GlobalUtil {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getService(final Class<T> clazz) {
+        if (FrameworkUtil.getBundle(clazz) == null) {
+            return null;
+        }
         final BundleContext bundleContext = FrameworkUtil.getBundle(clazz).getBundleContext();
         ServiceReference serviceReference = bundleContext.getServiceReference(clazz.getName());
         if (null == serviceReference) {
@@ -610,6 +627,19 @@ public class GlobalUtil {
     }
 
     /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
+    }
+
+    /**
      * Gets the groups for customer from resource/request
      *
      * @param request the request
@@ -670,15 +700,21 @@ public class GlobalUtil {
     }
 
     /**
-     * Checks if it is publish.
+     * Gets the scene 7 file name.
      *
-     * @return true, if is publish
+     * @param resourceResolver
+     *            the resource resolver
+     * @param path
+     *            the path
+     * @return the scene 7 file name
      */
-    public static boolean isPublish() {
-        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
-        if (slingSettingsService == null) {
-            return false;
+    public static String getScene7FileName(final ResourceResolver resourceResolver, final String path) {
+        String fileName = StringUtils.EMPTY;
+        final Resource resource = resourceResolver.getResource(path + CustomerHubConstants.DAM_METADATA_PATH);
+        if (Objects.nonNull(resource)) {
+            final ValueMap properties = resource.getValueMap();
+            fileName = properties.get(SCENE_7_NAME_PROPERTY, StringUtils.EMPTY);
         }
-        return slingSettingsService.getRunModes().contains("publish");
+        return fileName;
     }
 }

@@ -578,8 +578,38 @@ public final class CustomerHubConstants {
     /** TheConstant SORT */
     public static final String EQUIPMENT_API_SORT = "sort";
 
-    /** The Constant for Email ID. */
+	/** The Constant for Email ID. */
     public static final String CUSTOMER_EMAIL_ID = "emailId";
+
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
+
+    /** The Constant VALUE. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+
+    /** The Constant CONTENT_DAM_PATH. */
+    public static final String CONTENT_DAM_PATH = "/content/dam/";
+
+    /** The Constant CONTENT_PATH . */
+    public static final String CONTENT_PATH = "/content/";
+
+    /** The Constant INTERNAL_LINK. */
+    public static final String INTERNAL_LINK = "internal";
+
+    /** The Constant EXTERNAL_LINK. */
+    public static final String EXTERNAL_LINK = "external";
+
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String DOWNLOAD_LINK = "download";
+
+    /** The Constant DOWNLOAD_LINK. */
+    public static final String EXTERNAL_DOWNLOAD_LINK = "externalDownload";
+
+    /** The Constant HTTP. */
+    public static final String HTTP = "http";
+
+    /** The Constant WWW. */
+    public static final String WWW = "www";
 
     /** The Constant for user groups */
     public static final String CUSTOMER_GROUPS = "groups";
@@ -610,12 +640,18 @@ public final class CustomerHubConstants {
     
     /** The Constant SESSION_NULL_MESSAGE. */
     public static final String SESSION_NULL_MESSAGE = "Session is null";
-    
-    /** The Constant TRAINING_NAME. */
-    public static final String TRAINING_NAME = "trainingName";
 
     /** The Constant VALUE. */
     public static final String VALUE = "Value";
+
+    /** Path to asset's metatada. */
+    public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+
+    /** The Constant HOME_PAGE_REL_PATH. */
+    public static final String HOME_PAGE_REL_PATH = "dashboard";
+
+    /** The Constant LANGUAGE_LEVEL. */
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
 
     /**
      * Instantiates a new customer hub constants.
@@ -624,3 +660,4 @@ public final class CustomerHubConstants {
         throw new IllegalStateException("Utility class");
     }
 }
+
