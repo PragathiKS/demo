@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -21,7 +22,7 @@ import java.util.Map;
  *
  * @author Nitin Kumar
  */
-@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class DynamicImageModel {
 
     @SlingObject
@@ -50,7 +51,6 @@ public class DynamicImageModel {
 
     @Inject
     private String imageCrop;
-
     /**
      * The asset alt text.
      */
@@ -162,18 +162,13 @@ public class DynamicImageModel {
     protected void postConstruct() {
         String dynamicMediaUrl = getImageServiceURL();
         String rootPath = getRootPath();
-        String damPath;
         String assetName;
         if (imagePath != null) {
-            String subString;
-            int iend = imagePath.indexOf('.');
-            if (iend != -1) {
-                subString = imagePath.substring(0, iend);
-                damPath = StringUtils.substringBeforeLast(subString, CustomerHubConstants.PATH_SEPARATOR);
-                assetName = StringUtils.substringAfterLast(subString, CustomerHubConstants.PATH_SEPARATOR);
-                damPath = damPath.replace(damPath, rootPath);
-                finalPath = damPath + CustomerHubConstants.PATH_SEPARATOR + assetName;
+            assetName = GlobalUtil.getScene7FileName(request.getResourceResolver(), imagePath);
+            if (StringUtils.isEmpty(assetName)) {
+                assetName = getFileNameFromPath(imagePath);
             }
+            finalPath = rootPath + CustomerHubConstants.PATH_SEPARATOR + assetName;
         }
 
         if (null != dynamicMediaUrl) {
@@ -182,12 +177,26 @@ public class DynamicImageModel {
         }
 
         if (StringUtils.isNotBlank(dynamicMediaUrl) && StringUtils.isNotBlank(altText)) {
-            setDesktopUrl(createDynamicMediaUrl(DESKTOP, dynamicMediaUrl));
-            setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
-            setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
-            setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
+            initImageUrls(dynamicMediaUrl);
         }
         setDefaultImage();
+    }
+
+    private void initImageUrls(String dynamicMediaUrl) {
+        setDesktopUrl(createDynamicMediaUrl(DESKTOP, dynamicMediaUrl));
+        setDesktopLargeUrl(createDynamicMediaUrl(DESKTOP_LARGE, dynamicMediaUrl));
+        setMobilePortraitUrl(createDynamicMediaUrl(MOBILEPORTRAIT, dynamicMediaUrl));
+        setMobileLandscapeUrl(createDynamicMediaUrl(MOBILELANDSCAPE, dynamicMediaUrl));
+    }
+
+    private String getFileNameFromPath(String path) {
+        String assetName = StringUtils.EMPTY;
+        int iend = path.lastIndexOf('.');
+        if (iend != -1) {
+            assetName = path.substring(0, iend);
+            assetName = StringUtils.substringAfterLast(assetName, CustomerHubConstants.PATH_SEPARATOR);
+        }
+        return assetName;
     }
 
     /**
@@ -249,16 +258,16 @@ public class DynamicImageModel {
 	 *
 	 * @return the cropping from mobile
 	 */
-	private String getCroppingFromMobile() {
-		final Resource imageResource = request.getResourceResolver().getResource(imagePath + CustomerHubConstants.DAM_METADATA_PATH);
-		if (null == imageResource) {
-			return StringUtils.EMPTY;
-		}
-		final ValueMap vMap = imageResource.getValueMap();
-		final Long height = (Long) vMap.get("tiff:ImageLength");
-		final Long width = (Long) vMap.get("tiff:ImageWidth");
-		return getCropParameterForScene7(height, width);
-	}
+    private String getCroppingFromMobile() {
+        final Resource imageResource = request.getResourceResolver().getResource(imagePath + CustomerHubConstants.DAM_METADATA_PATH);
+        if (null == imageResource) {
+            return StringUtils.EMPTY;
+        }
+        final ValueMap vMap = imageResource.getValueMap();
+        final Long height = (Long) vMap.get("tiff:ImageLength");
+        final Long width = (Long) vMap.get("tiff:ImageWidth");
+        return getCropParameterForScene7(height, width);
+    }
 
 	/**
 	 * Gets the crop parameter for scene 7.
@@ -362,7 +371,7 @@ public class DynamicImageModel {
     }
 
     private String getImageConfigurations(String deviceType, Map<String, String> dynamicMediaConfiguration,
-                                          StringBuilder key) {
+            StringBuilder key) {
         String imageConfiguration;
         String cropping = getCroppingFromMobile();
         if (deviceType.equals(DESKTOP) && StringUtils.isNotBlank(dwidth) && StringUtils.isNotBlank(dheight)) {
@@ -380,7 +389,7 @@ public class DynamicImageModel {
     }
 
     private String getImageConfigurationForMobile(java.util.Map<String, String> dynamicMediaConfiguration,
-                                                  StringBuilder key, String cropping, String mWidth, String mHeight) {
+            StringBuilder key, String cropping, String mWidth, String mHeight) {
         if (StringUtils.isNotEmpty(mWidth) && StringUtils.isNotEmpty(mHeight)) {
             return mWidth + "," + mHeight + "," + cropping;
         } else if (StringUtils.isNotEmpty(cropping)) {

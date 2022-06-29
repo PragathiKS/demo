@@ -1,0 +1,13 @@
+<sly data-sly-template.anchor_template="${@data, flag}">
+  <div class="pw-anchor tp-container" data-module="Anchor">
+  	<div class="pw-anchor__regular">
+    <ul class="pw-anchor-list">
+      <sly data-sly-list.anchorItem="${data.anchorDetailList}">
+        <li class="pw-anchor-content">
+          <a data-link-section='${anchorItem.anchorId}' data-link-name="${anchorItem.anchorTitle}" href="#${anchorItem.anchorId}">${anchorItem.anchorTitle}</a>
+        </li>
+      </sly>
+    </ul>
+  </div>
+</div>
+</sly>

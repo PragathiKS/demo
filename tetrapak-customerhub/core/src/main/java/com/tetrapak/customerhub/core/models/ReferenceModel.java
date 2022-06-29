@@ -10,7 +10,6 @@ import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.inject.Inject;
@@ -20,6 +19,8 @@ import javax.inject.Inject;
  */
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class ReferenceModel {
+
+    public static final String RESOURCE_TYPE = "customerhub/components/content/reference";
 
     @SlingObject
     private SlingHttpServletRequest request;

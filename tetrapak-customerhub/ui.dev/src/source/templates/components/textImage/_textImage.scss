@@ -1,0 +1,288 @@
+.pw-text-image {
+    @include border-radius($border-radius);
+    @include padding($padding-md);
+    @include margin-top($margin-l);
+    @media #{$desktop} {
+        @include padding($padding-l);
+    }
+
+    .tpatom-heading {
+        &--regular {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            @media #{$desktop} {
+                @include font-size($font-xl);
+                line-height: $font-d-xl;
+            }
+        }
+    }
+
+    h3 {
+        &.tpatom-heading {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            font-weight: 400;
+
+            @media #{$desktop} {
+                @include font-size($font-l);
+                @include line-height($font-xl, $font-l);
+            }
+        }
+    }
+
+    h4 {
+        &.tpatom-heading {
+            @include font-size($font-normal);
+            @include line-height($font-m-md, $font-normal);
+            font-weight: 500;
+
+            @media #{$desktop} {
+                @include font-size($font-md);
+                @include line-height($font-l, $font-md);
+            }
+        }
+    }
+
+    &--display-row {
+        > .row {
+            flex-direction: row;
+            flex-wrap: wrap-reverse;
+        }
+        .leftPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-md);
+            @media #{$desktop} {
+                @include padding-left($padding-zero);
+                @include padding-right($padding-l);
+                @include margin-top($margin-zero);
+            }
+        }
+        .rightPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @media #{$desktop} {
+                @include padding-right($padding-zero);
+                @include padding-left($padding-l);
+            }
+        }
+    }
+
+    &--display-row-reversed {
+        > .row {
+            flex-direction: row-reverse;
+            flex-wrap: wrap-reverse;
+        }
+        .rightPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @media #{$desktop} {
+                @include padding-left($padding-zero);
+                @include padding-right($padding-l);
+            }
+        }
+        .leftPad {
+            @include padding-left($padding-zero);
+            @include padding-right($padding-zero);
+            @include margin-top($margin-md);
+            @media #{$desktop} {
+                @include padding-right($padding-zero);
+                @include padding-left($padding-l);
+                @include margin-top($margin-zero);
+            }
+        }
+    }
+
+    &__innerpadding {
+        @include margin-top(0);
+        @include margin-bottom(0);
+
+        @media #{$desktop} {
+            @include margin-top(0);
+            @include margin-bottom(0);
+        }
+    }
+
+    &__subTitle {
+        @include font-size($font-sm);
+        @include margin-top($margin-zero);
+        @include margin-bottom($margin-sm);
+        @include line-height($font-normal, $font-sm);
+        color: $color-boulder;
+        font-weight: 500;
+        text-transform: $uppercase;
+        letter-spacing: normal;
+        @media #{$desktop} {
+            @include margin-top($margin-zero);
+            @include margin-bottom($margin-sm);
+            text-transform: $uppercase;
+        }
+        span.tpatom-subheading {
+            @include font-size($font-sm);
+            @include line-height($font-normal, $font-sm);
+            font-family: $font-monsterrat;
+            font-weight: 500;
+        }
+    }
+
+    &__title {
+        @include margin-bottom($margin-md);
+    }
+
+    &__description {
+        @include font-size($font-normal);
+        @include line-height($font-m-xl, $font-normal);
+
+        li {
+            display: table;
+            margin-top: $margin-zero;
+        }
+
+        ol,
+        ul {
+            @include margin-bottom($margin-zero);
+            @include padding-left($padding-sm);
+        }
+
+        ul {
+            display: table;
+            li {
+                &::before {
+                    @include margin-right($margin-sm);
+                    @include padding-right($padding-sm);
+                    display: table-cell;
+                    color: $color-tundora;
+                    content: '\2022';
+                }
+            }
+        }
+
+        ol {
+            display: table;
+            counter-reset: section;
+            list-style-type: none;
+            li {
+                &::before {
+                    @include margin-right($margin-sm);
+                    @include font-size(14px);
+                    @include padding-right($padding-sm);
+                    display: table-cell;
+                    content: counters(section, '.') ' ';
+                    counter-increment: section;
+                }
+            }
+        }
+
+        ol ol,
+        ul ul {
+            @include padding($padding-zero $padding-zero $padding-zero 20px);
+        }
+
+        ul > li > ul,
+        ol > li > ol {
+            @include margin-bottom($margin-zero);
+            :last-child {
+                @include padding-bottom($margin-zero);
+            }
+        }
+
+        ul li,
+        ol li {
+            @include padding-bottom($padding-zero);
+            &::before {
+                color: $color-tundora;
+            }
+            &:last-child {
+                @include padding-bottom($padding-zero);
+            }
+            li {
+                @include padding-bottom($padding-zero);
+            }
+        }
+
+        ol li ol,
+        ul li ul {
+            @include padding-top($padding-zero);
+        }
+
+        ul ul ul {
+            li {
+                @include padding-bottom($padding-sm);
+                &::before {
+                    content: '\2012';
+                    font-weight: 400;
+                }
+            }
+        }
+
+        ol ol ol {
+            @include padding-left(28px);
+            li {
+                @include padding-bottom($padding-sm);
+            }
+        }
+
+        @media #{$desktop} {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+        }
+        a {
+            &:hover {
+                color: $color-sky-blue;
+            }
+        }
+
+        h3 {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            @include margin-bottom($margin-md);
+            font-weight: 400;
+        }
+
+        h4 {
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            @include margin-bottom($margin-sm);
+            font-weight: 500;
+        }
+    }
+
+    &__link {
+        @include margin-bottom(0);
+        @include margin-top($margin-md);
+        @include padding($padding-zero);
+        @include line-height($font-m-xl, $font-normal);
+        background-color: none;
+        @media #{$desktop} {
+            @include margin-bottom($margin-zero);
+            @include padding($padding-zero);
+            @include line-height($font-l, $font-baseline);
+            background-color: none;
+        }
+
+        .tpatom-link {
+            font-weight: 500;
+            .icon {
+                @include font-size($font-sm);
+                display: inline-block;
+                &::before {
+                    @include font-size($font-sm);
+                }
+            }
+
+            &--internal {
+                .icon {
+                    &::before {
+                        @include font-size($font-baseline);
+                    }
+                }
+            }
+        }
+    }
+
+    &__image {
+        border-radius: 4px;
+        max-width: 100%;
+        width: 100%;
+    }
+}

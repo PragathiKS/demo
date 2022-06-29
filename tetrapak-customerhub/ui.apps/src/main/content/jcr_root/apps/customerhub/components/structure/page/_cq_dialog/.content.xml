@@ -44,6 +44,33 @@
                                                 name="./showTitle"/>
                                         </items>
                                     </section1>
+                                    <breadcrumbs
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Breadcrumbs"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <hideBreadcrumbs
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="Hide Breadcrumbs"
+                                                    uncheckedValue="{Boolean}false"
+                                                    fieldDescription="Check this to hide breadcrumbs"
+                                                    fieldLabel="Hide Breadcrumbs"
+                                                    value="{Boolean}true"
+                                                    name="./hideBreadcrumbs"/>
+                                            <disableClickInBreadcrumbs
+                                                    cq:showOnCreate="{Boolean}true"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    text="Disable clickable link in breadcrumbs"
+                                                    uncheckedValue="{Boolean}false"
+                                                    fieldDescription="Disable clickable link in breadcrumbs for this page"
+                                                    fieldLabel="Disable clickable link"
+                                                    value="{Boolean}true"
+                                                    name="./disableClickInBreadcrumbs"/>
+                                        </items>
+                                    </breadcrumbs>
                                     <section2
                                             jcr:primaryType="nt:unstructured"
                                             jcr:title="Left Navigation"
@@ -148,6 +175,16 @@
 										    name="./errorPages"
 										    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
 										    rootPath="/content/tetrapak/customerhub"/>
+                                    <whiteBackground
+                                        cq:showOnCreate="{Boolean}true"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Check this for white background"
+                                        fieldLabel="White background "
+                                        name="./whiteBackground"
+                                        text="White background"
+                                        uncheckedValue="{Boolean}false"
+                                        value="{Boolean}true"/>
                                 </items>
                             </column>
                         </items>

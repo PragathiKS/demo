@@ -1,11 +1,11 @@
 body {
     font-family: $font-monsterrat;
-   	font-weight: 400;
+    font-weight: 400;
 }
 a {
     font-family: $font-monsterrat;
     font-weight: 400;
-    
+
     &:hover {
         color: $color-sky-blue;
     }
@@ -35,4 +35,7 @@ a {
             @include padding($padding-l $padding-l $padding-zero $padding-l);
         }
     }
+}
+.white-bg {
+    background-color: $color-white;
 }
