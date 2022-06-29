@@ -4,6 +4,10 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 
+function _replaceLabel(label, value) {
+  return label.replace('{}', value);
+}
+
 class Keylines {
   constructor({ el }) {
     this.root = $(el);
@@ -12,17 +16,26 @@ class Keylines {
   cache = {};
 
   initCache() {
+    this.cache.configJson = this.root.find('.js-keylines__config').text();
+    try {
+      this.cache.i18nKeys = JSON.parse(this.cache.configJson);
+    } catch (e) {
+      this.cache.i18nKeys = {};
+      logger.error(e);
+    }
     this.cache.$keyLinesModal = this.root.find('.js-tp-keylines__modal');
     this.cache.apiUrl = this.root.data('apiUrl');
     this.cache.packageType = this.root.data('packagetype');
     this.cache.keylinesData = {};
   }
 
-  renderModal(shapeName) {
-    const { $keyLinesModal, keylinesData } = this.cache;
+  renderModal(shapeName, shapeTitle) {
+    const { $keyLinesModal, keylinesData, i18nKeys } = this.cache;
     const { shapes, assets } = keylinesData;
     const openings = shapes[0].openings.map(item => ({ key: item.key, desc: item.value }));
     const volumes = shapes[0].volumes.map(item => ({ key: item.key, desc: item.value }));
+    const updatedi18nKeys = {...i18nKeys};
+    updatedi18nKeys.modalTitle = _replaceLabel(i18nKeys.modalTitle, shapeTitle);
 
     render.fn({
       template: 'keyLinesModal',
@@ -31,14 +44,15 @@ class Keylines {
         assets,
         openings,
         volumes,
-        shapeName
+        shapeName,
+        i18nKeys: updatedi18nKeys
       }
     });
 
     $keyLinesModal.modal();
   }
 
-  getShapeAssets(shapeTag, shapeName) {
+  getShapeAssets(shapeTag, shapeName, shapeTitle) {
     const { apiUrl, packageType } = this.cache;
 
     ajaxWrapper
@@ -50,7 +64,7 @@ class Keylines {
         contentType: 'application/json'
       }).done(res => {
         this.cache.keylinesData = res;
-        this.renderModal(shapeName);
+        this.renderModal(shapeName, shapeTitle);
       }).fail((e) => {
         logger.error(e);
       });
@@ -90,7 +104,9 @@ class Keylines {
       const $btn = $(e.currentTarget);
       const shapeTag = $btn.data('shape');
       const shapeName = $btn.data('shape-name');
-      this.getShapeAssets(shapeTag, shapeName);
+      const shapeTitle = $btn.data('shape-title');
+
+      this.getShapeAssets(shapeTag, shapeName, shapeTitle);
     });
 
     this.root.on('change', '.js-tp-keylines__dropdown', e => {
