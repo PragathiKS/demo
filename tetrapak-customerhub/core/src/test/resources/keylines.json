@@ -1,0 +1,50 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"keylines": {
+					"jcr:primaryType": "nt:unstructured",
+					"pwTheme": "grayscale-white",
+					"title": "Keylines",
+					"sling:resourceType": "customerhub/components/content/keylines",
+					"dowloadText": "cuhu.packDesign.keylines.download",
+					"anchorTitle": "Keylines",
+					"anchorId": "keylines",
+					"shapes": {
+						"jcr:primaryType": "nt:unstructured",
+						"item0": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/media-box/global/en/packaging/package-type/tetra-classic-aseptic/images/test-Adobe-Image.jpg",
+							"alt": "Mid",
+							"shape": "tetrapak:keylines/tetra-rex/mid"
+						},
+						"item1": {
+							"jcr:primaryType": "nt:unstructured",
+							"fileReference": "/content/dam/tetrapak/media-box/global/en/packaging/package-type/tetra-classic-aseptic/images/test-Adobe-Image.jpg",
+							"alt": "base",
+							"shape": "tetrapak:keylines/tetra-rex/base"
+						},
+						"item2": {
+							"jcr:primaryType": "nt:unstructured",
+							"alt": "high",
+							"shape": "tetrapak:keylines/tetra-rex/high"
+						}
+					},
+					"modal":{
+						"modalTitle": "cuhu.packDesign.keylines.modalTitle",
+						"modalDescription": "cuhu.packDesign.keylines.modalDescription",
+						"selectVolumes": "cuhu.packDesign.keylines.selectVolumes",
+						"selectOpenings": "cuhu.packDesign.keylines.selectOpenings",
+						"downloadKeyline": "cuhu.packDesign.keylines.downloadKeyline"
+					}
+				}
+			}
+		}
+	}
+}
