@@ -38,15 +38,28 @@ public class LinkModel {
      */
     private String assetName;
 
+    private boolean pdfType;
+
+    public boolean isPdfType() {
+    if((StringUtils.isNotBlank(linkUrl) && linkUrl.startsWith(CustomerHubConstants.CONTENT_PATH ) && linkUrl.endsWith(CustomerHubConstants.PDF))){
+            pdfType=true;
+        }
+        else{
+            pdfType=false; 
+        }
+      return pdfType;           
+    }
+
     @PostConstruct
     protected void init() {
-        if (StringUtils.isNotEmpty(linkUrl)) {
-            linkType = LinkUtil.checkLinkType(linkUrl);
-            if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
-                assetName = LinkUtil.getAssetName(linkUrl);
-            }
-        }
+	if (StringUtils.isNotEmpty(linkUrl)) {
+	    linkType = LinkUtil.checkLinkType(linkUrl);
+	    if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
+		assetName = LinkUtil.getAssetName(linkUrl);
+	    }
+	}
     }
+
 
     /**
      * Gets the asset name.
