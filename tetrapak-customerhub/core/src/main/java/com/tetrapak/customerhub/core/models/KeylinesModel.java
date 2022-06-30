@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -82,9 +83,7 @@ public class KeylinesModel {
 	LOGGER.debug("API URL {}", apiUrl);
 	if (null != shapes && !shapes.isEmpty()) {
 	    String shape = shapes.get(0).getShape();
-	    if (null != tagManager.resolve(shape)) {
-		packageType = tagManager.resolve(shape).getParent().getTagID();
-	    }
+	    packageType = StringUtils.substringBeforeLast(shape, "/");
 	}
 	LOGGER.debug("Package Type {}:", packageType);
 
