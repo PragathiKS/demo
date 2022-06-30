@@ -7,11 +7,13 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +44,11 @@ public class TabsListModel {
 
     @Inject
     private String heading;
+    
+    @SlingObject
+    private ResourceResolver resourceResolver;
 
-    private String componentId = "tushar";
+    private String componentId;
 
     private List<TabsListBean> tabsListContent = new ArrayList<>();
 
@@ -76,7 +81,7 @@ public class TabsListModel {
                 tabsListBean.setVideoSource((String) valueMap.get("videoSource"));
                 String damVideoPath = (String) valueMap.get("damVideoPath");
                 if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
-                    damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+                    damVideoPath = GlobalUtil.getVideoUrlFromScene7(resourceResolver, damVideoPath, dynamicMediaService);
                 }
                 tabsListBean.setDamVideoPath(damVideoPath);
                 String youtubeVideoID = (String) valueMap.get("youtubeVideoID");
