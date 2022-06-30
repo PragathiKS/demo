@@ -253,34 +253,52 @@ public class DynamicImageModel {
         return url;
     }
 
+    /**
+	 * Gets the cropping from mobile.
+	 *
+	 * @return the cropping from mobile
+	 */
     private String getCroppingFromMobile() {
-        Resource imageResource = request.getResourceResolver().getResource(imagePath + CustomerHubConstants.DAM_METADATA_PATH);
+        final Resource imageResource = request.getResourceResolver().getResource(imagePath + CustomerHubConstants.DAM_METADATA_PATH);
         if (null == imageResource) {
             return StringUtils.EMPTY;
         }
-        ValueMap vMap = imageResource.getValueMap();
-        Long height = (Long) vMap.get("tiff:ImageLength");
-        Long width = (Long) vMap.get("tiff:ImageWidth");
+        final ValueMap vMap = imageResource.getValueMap();
+        final Long height = (Long) vMap.get("tiff:ImageLength");
+        final Long width = (Long) vMap.get("tiff:ImageWidth");
         return getCropParameterForScene7(height, width);
     }
 
-    private String getCropParameterForScene7(Long height, Long width) {
-        if (null == imageCrop) {
-            return StringUtils.EMPTY;
-        }
-        String[] cropArray = imageCrop.split(",");
-        Double topW = Double.valueOf(cropArray[0]);
-        Double topH = Double.valueOf(cropArray[1]);
-        Double lowW = Double.valueOf(cropArray[2]);
-        Double lowH = Double.valueOf(cropArray[3]);
+	/**
+	 * Gets the crop parameter for scene 7.
+	 *
+	 * @param height
+	 *            the height
+	 * @param width
+	 *            the width
+	 * @return the crop parameter for scene 7
+	 */
+	private String getCropParameterForScene7(Long height, Long width) {
+		if (null == imageCrop) {
+			return StringUtils.EMPTY;
+		}
+		if (width > 1280) {
+			width = (long) 1280;
+			height = (long) 468;
+		}
+		final String[] cropArray = imageCrop.split(",");
+		final Double topW = Double.valueOf(cropArray[0]);
+		final Double topH = Double.valueOf(cropArray[1]);
+		final Double lowW = Double.valueOf(cropArray[2]);
+		final Double lowH = Double.valueOf(cropArray[3]);
 
-        double normTopW = topW / width;
-        double normTopH = topH / height;
-        double normWidth = (lowW - topW) / width;
-        double normHeight = (lowH - topH) / height;
+		final double normTopW = topW / width;
+		final double normTopH = topH / height;
+		final double normWidth = (lowW - topW) / width;
+		final double normHeight = (lowH - topH) / height;
 
-        return normTopW + "," + normTopH + "," + normWidth + "," + normHeight;
-    }
+		return normTopW + "," + normTopH + "," + normWidth + "," + normHeight;
+	}
 
     /**
      * Gets the component name.
@@ -390,6 +408,10 @@ public class DynamicImageModel {
 
     public String getAltText() {
         return StringUtils.isNotEmpty(altText) ? altText : "";
+    }
+
+    public String getImageCrop() {
+        return imageCrop;
     }
 
     public String getImagePath() {

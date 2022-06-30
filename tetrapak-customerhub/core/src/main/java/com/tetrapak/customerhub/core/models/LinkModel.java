@@ -46,7 +46,6 @@ public class LinkModel {
             if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
                 assetName = LinkUtil.getAssetName(linkUrl);
             }
-
         }
     }
 
