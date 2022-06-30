@@ -14,22 +14,30 @@
             </button>
         </div>
 
-        <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
-            {{> atoms/dropdown/dropdown
-                    defaultValue=i18nKeys.selectVolumes
-                    options=this.volumes
-                    name="volumes"
-                    eleClasses="js-tp-keylines__dropdown js-tp-keylines__volumes"
-                    required="true"
-            }}
+        <div class='modal-body tp-modal-body tp-keylines__modal-body'>
+            <div class="row">
+                <div class="col-lg-11">
+                    {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.selectVolumes
+                            options=this.volumes
+                            name="volumes"
+                            eleClasses="js-tp-keylines__dropdown js-tp-keylines__volumes"
+                            required="true"
+                    }}
+                </div>
+            </div>
 
-            {{> atoms/dropdown/dropdown
-                    defaultValue=i18nKeys.selectOpenings
-                    options=this.openings
-                    name="openings"
-                    eleClasses="js-tp-keylines__dropdown js-tp-keylines__openings"
-                    required="true"
-            }}
+            <div class="row">
+                <div class="col-lg-11">
+                    {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.selectOpenings
+                            options=this.openings
+                            name="openings"
+                            eleClasses="js-tp-keylines__dropdown js-tp-keylines__openings"
+                            required="true"
+                    }}
+                </div>
+            </div>
         </div>
 
         <div class="modal-footer tpmol-modal-footer tp-keylines__modal-footer">
