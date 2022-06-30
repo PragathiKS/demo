@@ -584,9 +584,6 @@ public final class CustomerHubConstants {
     /** The Constant PARAM_LINK. */
     public static final String PARAM_LINK = "linkPath";
 
-    /** The Constant VALUE. */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
-
     /** The Constant CONTENT_DAM_PATH. */
     public static final String CONTENT_DAM_PATH = "/content/dam/";
 
@@ -617,6 +614,9 @@ public final class CustomerHubConstants {
     /** The Constant AIP_PRODUCT_DETAILS_API. */
     public static final String AIP_PRODUCT_DETAILS_API = "aip-product-details";
 
+    /** The Constant AIP_LEARNING_HISTORY_API. */
+    public static final String AIP_LEARNING_HISTORY_API = "aip-learning-history";
+
     /** The Constant AIP_ACTIVE_LICENSES. */
     public static final String AIP_ACTIVE_LICENSES = "aip-active-licenses";
     
@@ -640,18 +640,24 @@ public final class CustomerHubConstants {
     
     /** The Constant SESSION_NULL_MESSAGE. */
     public static final String SESSION_NULL_MESSAGE = "Session is null";
+    
+    /** The Constant TRAINING_NAME. */
+    public static final String TRAINING_NAME = "trainingName";
 
     /** The Constant VALUE. */
     public static final String VALUE = "Value";
 
-    /** Path to asset's metatada. */
-    public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+    /** The Constant VALUE. */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
 
     /** The Constant HOME_PAGE_REL_PATH. */
     public static final String HOME_PAGE_REL_PATH = "dashboard";
 
     /** The Constant LANGUAGE_LEVEL. */
     public static final int LANGUAGE_PAGE_LEVEL = 4;
+
+    /** Path to asset's metatada. */
+    public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
 
     /**
      * Instantiates a new customer hub constants.
@@ -660,4 +666,3 @@ public final class CustomerHubConstants {
         throw new IllegalStateException("Utility class");
     }
 }
-
