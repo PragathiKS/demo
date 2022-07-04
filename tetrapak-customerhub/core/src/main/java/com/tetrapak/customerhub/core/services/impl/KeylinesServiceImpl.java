@@ -67,24 +67,20 @@ public class KeylinesServiceImpl implements KeylinesService {
 
     public Keylines getKeylines(ResourceResolver resourceResolver, String packageType, List<String> shapes,
 	    Locale locale) throws KeylinesException {
-	LOGGER.trace("Inside getKeylines Method");
+	LOGGER.debug("Inside getKeylines Method");
 	Keylines keylines = null;
-	TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
-	List<String> tagIDs = new ArrayList<>();
-	List<Tag> tags = new ArrayList<>();
 	if (StringUtils.isNotBlank(packageType) && null != shapes && !shapes.isEmpty()) {
-	    String packageTypeTagID = validateTags(tagManager, packageType, shapes, tagIDs, tags);
 	    keylines = new Keylines();
-	    keylines.setShapes(getShapes(tags, locale));
+	    keylines.setShapes(getShapes(resourceResolver, shapes, locale));
 	    List<Asset> keylineAssets = new ArrayList<>();
-	    SearchResult result = query(resourceResolver, tagIDs);
+	    SearchResult result = query(resourceResolver, shapes);
 	    if (null != result) {
 		List<Hit> hits = result.getHits();
 		LOGGER.debug("Hit size: {}", hits.size());
 
 		for (Hit hit : hits) {
 		    try {
-			keylineAssets.addAll(getKeylineAssets(resourceResolver, packageTypeTagID, hit));
+			keylineAssets.addAll(getKeylineAssets(resourceResolver, packageType, hit));
 
 		    } catch (RepositoryException e) {
 			LOGGER.error("Error while fetching the query", e);
@@ -96,14 +92,14 @@ public class KeylinesServiceImpl implements KeylinesService {
 	    LOGGER.error("Package Type/Shape cannot be empty");
 	    throw new KeylinesException("Package Type/Shape cannot be empty");
 	}
-	LOGGER.trace("End getKeylines Method");
+	LOGGER.debug("End getKeylines Method");
 	return keylines;
 
     }
 
     private List<Asset> getKeylineAssets(ResourceResolver resourceResolver, String packageTypeTagID, Hit hit)
 	    throws RepositoryException {
-	LOGGER.trace("Inside getKeylineAssets Method");
+	LOGGER.debug("Inside getKeylineAssets Method");
 	List<Asset> keylineAssets = new ArrayList<>();
 
 	String path = hit.getPath();
@@ -132,7 +128,7 @@ public class KeylinesServiceImpl implements KeylinesService {
 		}
 	    }
 	}
-	LOGGER.trace("End getKeylineAssets Method");
+	LOGGER.debug("End getKeylineAssets Method");
 	return keylineAssets;
     }
 
@@ -144,52 +140,26 @@ public class KeylinesServiceImpl implements KeylinesService {
 	return keyname;
     }
 
-    private String validateTags(TagManager tagManager, String packageType, List<String> shapes, List<String> tagIDs,
-	    List<Tag> tags) {
-	LOGGER.trace("Inside validateTags Method");
-	String packageTypeTagID = "";
-	Tag packageTypeTag = tagManager.resolve(packageType);
-
-	if (null != packageTypeTag) {
-	    packageTypeTagID = packageTypeTag.getTagID();
-	    for (String shape : shapes) {
-		Tag shapeTag = tagManager.resolve(shape);
-		/*
-		 * Check if the shapes tags are child tags of package type, if so, add to the
-		 * list of tags to be used for querying the assets
-		 */
-		if (null != shapeTag && StringUtils.contains(shapeTag.getTagID(), packageTypeTagID)) {
-		    LOGGER.debug("Adding tag {}", shapeTag);
-		    tagIDs.add(shapeTag.getTagID());
-		    tags.add(shapeTag);
-		} else {
-		    LOGGER.debug("Could not resolve Shape tag {}", shapeTag);
-		}
-	    }
-	} else {
-	    LOGGER.debug("Could not resolve Package Type tag {}", packageType);
-	}
-	LOGGER.debug("Package Type ID {}", packageTypeTag);
-	LOGGER.trace("End validateTags Method");
-	return packageTypeTagID;
-    }
-
-    private List<Shape> getShapes(List<Tag> tags, Locale locale) {
-	LOGGER.trace("Inside getShapesBean Method");
+    private List<Shape> getShapes(ResourceResolver resourceResolver, List<String> tagsIDs, Locale locale) {
+	LOGGER.debug("Inside getShapesBean Method");
+	TagManager tagManager = resourceResolver.adaptTo(TagManager.class);
 	List<Shape> shapes = new ArrayList<>();
-	for (Tag tag : tags) {
-	    Shape shape = new Shape();
-	    LOGGER.debug("Shape name {}", tag.getName());
-	    shape.setName(tag.getName());
-	    setOpeningsAndVolumes(shape, tag, locale);
-	    shapes.add(shape);
+	for (String tagID : tagsIDs) {
+	    Tag tag = tagManager.resolve(tagID);
+	    if (null != tag) {
+		Shape shape = new Shape();
+		LOGGER.debug("Shape name {}", tag.getName());
+		shape.setName(tag.getName());
+		setOpeningsAndVolumes(shape, tag, locale);
+		shapes.add(shape);
+	    }
 	}
-	LOGGER.trace("End getShapesBean Method");
+	LOGGER.debug("End getShapesBean Method");
 	return shapes;
     }
 
     private void setOpeningsAndVolumes(Shape shape, Tag tag, Locale locale) {
-	LOGGER.trace("Inside setOpeningsAndVolumes Method");
+	LOGGER.debug("Inside setOpeningsAndVolumes Method");
 	Set<Volume> volumes = new HashSet<>();
 	Set<Opening> openings = new HashSet<>();
 	Iterator<Tag> childTags = tag.listChildren();
@@ -207,11 +177,11 @@ public class KeylinesServiceImpl implements KeylinesService {
 	}
 	shape.setOpenings(openings);
 	shape.setVolumes(volumes);
-	LOGGER.trace("End setOpeningsAndVolumes Method");
+	LOGGER.debug("End setOpeningsAndVolumes Method");
     }
 
     private Set<Opening> getOpenings(Tag tag, Locale locale) {
-	LOGGER.trace("Inside getOpenings Method");
+	LOGGER.debug("Inside getOpenings Method");
 	Set<Opening> openings = new HashSet<>();
 	Iterator<Tag> childTags = tag.listChildren();
 	while (childTags.hasNext()) {
@@ -225,12 +195,12 @@ public class KeylinesServiceImpl implements KeylinesService {
 	    LOGGER.debug("Opening Title {}", openingTitle);
 	    openings.add(opening);
 	}
-	LOGGER.trace("End getOpenings Method");
+	LOGGER.debug("End getOpenings Method");
 	return openings;
     }
 
     private SearchResult query(ResourceResolver resourceResolver, List<String> tags) {
-	LOGGER.trace("Inside query Method");
+	LOGGER.debug("Inside query Method");
 
 	/* Query media box keyline assets based on tags */
 	SearchResult result = null;
@@ -240,9 +210,13 @@ public class KeylinesServiceImpl implements KeylinesService {
 
 	if (!tags.isEmpty()) {
 	    String path = this.config.path();
+	    if (StringUtils.isBlank(path)) {
+		LOGGER.error("Path not configured");
+		throw new KeylinesException("Path not configured");
+	    }
 	    map.put("path", path);
 	    LOGGER.debug("path={}", path);
-	    String type = this.config.type();
+	    String type = CustomerHubConstants.DAM_ASSETS_PROPERTY;
 	    map.put("type", type);
 	    LOGGER.debug("type={}", type);
 	    map.put("1_group.p.or", "true");
@@ -261,7 +235,7 @@ public class KeylinesServiceImpl implements KeylinesService {
 	    result = query.getResult();
 	    LOGGER.debug("Query Result: {}", result);
 	}
-	LOGGER.trace("End query Method");
+	LOGGER.debug("End query Method");
 	return result;
     }
 

@@ -11,13 +11,11 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.tagging.TagManager;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
@@ -67,12 +65,9 @@ public class KeylinesModel {
     @Inject
     Resource resource;
 
-    @Self
-    @Via("resourceResolver")
-    TagManager tagManager;
-
     private String apiUrl;
 
+    @ValueMapValue
     private String packageType;
 
     @PostConstruct
@@ -80,14 +75,7 @@ public class KeylinesModel {
 	apiUrl = String.format("%s.%s.%s", resource.getPath(), CustomerHubConstants.KEYLINES_SLING_SERVLET_SELECTOR,
 		CustomerHubConstants.JSON_SERVLET_EXTENSION);
 	LOGGER.debug("API URL {}", apiUrl);
-	if (null != shapes && !shapes.isEmpty()) {
-	    String shape = shapes.get(0).getShape();
-	    if (null != tagManager.resolve(shape)) {
-		packageType = tagManager.resolve(shape).getParent().getTagID();
-	    }
-	}
 	LOGGER.debug("Package Type {}:", packageType);
-
 	Gson gson = new Gson();
 	i18nKeys = gson.toJson(modal, ModalKeylines.class);
 	LOGGER.debug("i18nKeys {}:", i18nKeys);

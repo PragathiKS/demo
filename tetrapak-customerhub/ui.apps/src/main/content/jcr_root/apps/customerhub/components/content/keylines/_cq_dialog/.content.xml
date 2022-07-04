@@ -25,7 +25,16 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Download Text (i18N key)"
-                                name="./dowloadText"/>    
+                                name="./dowloadText"/> 
+                            <packageType
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                fieldLabel="Package Type"
+                                name="./packageType">
+                                <granite:data
+	                                jcr:primaryType="nt:unstructured"
+	                                package-type="fetch-value"/>
+                            </packageType>            
                             <packageShapes
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -51,7 +60,12 @@
                                                             sling:resourceType="cq/gui/components/coral/common/form/tagfield"
                                                             rootPath="/content/cq:tags/tetrapak/keylines"
                                                             fieldLabel="Package Shape"
-                                                            name="./shape"/>
+                                                            name="./shape"
+                                                            required="true">
+                                                            <granite:data
+							                                    jcr:primaryType="nt:unstructured"
+							                                    validation="package-shape"/>
+							                            </packageShape>        
                                                         <fileReference
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/include"
@@ -65,6 +79,9 @@
                                                 </column>
                                             </items>
                                         </field>
+                                        <granite:data
+		                                    jcr:primaryType="nt:unstructured"
+		                                    validation="package-type"/>
                                     </shapes>
                                 </items>
                             </packageShapes>

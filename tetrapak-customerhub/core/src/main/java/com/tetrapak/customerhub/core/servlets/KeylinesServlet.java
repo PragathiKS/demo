@@ -54,8 +54,9 @@ public class KeylinesServlet extends SlingSafeMethodsServlet {
     private transient KeylinesService keylinesService;
 
     @Override
-    protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response) {
-	LOGGER.trace("Inside KeylinesServlet servlet : Get method");
+    protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
+	    throws IOException {
+	LOGGER.debug("Inside KeylinesServlet servlet : Get method");
 	List<String> shapes = new ArrayList<>();
 	String packageTypeParameter = request.getParameter("type");
 	LOGGER.debug("Package Type: {}", packageTypeParameter);
@@ -67,15 +68,12 @@ public class KeylinesServlet extends SlingSafeMethodsServlet {
 		}
 	    }
 	}
-	Locale locale = request.getLocale();
-	try {
-	    Resource resource = request.getResource();
-	    PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
-	    Page page = pageManager.getContainingPage(resource);
-	    locale = page.getLanguage(true);
-	} catch (Exception e) {
-	    LOGGER.error("Error while getting locale from resource: {}", e.getMessage());
-	}
+
+	Resource resource = request.getResource();
+	PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
+	Page page = pageManager.getContainingPage(resource);
+	Locale locale = page.getLanguage(true);
+
 	LOGGER.debug("Locale from Resource {}: ", locale);
 	LOGGER.debug("Package Type: {} --- Package Shape:{} --- Locale: {}", packageTypeParameter, shapes, locale);
 	String responseString = "";
@@ -96,13 +94,10 @@ public class KeylinesServlet extends SlingSafeMethodsServlet {
 	    responseString = setKeylineErrorResponse(gson, HttpURLConnection.HTTP_INTERNAL_ERROR, e.getMessage());
 	    response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
 	}
-	try {
-	    response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-	    response.getWriter().print(responseString);
-	} catch (IOException e) {
-	    LOGGER.error("IOException", e);
-	}
-	LOGGER.trace("End KeylinesServlet servlet : Get method");
+	response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+	response.getWriter().print(responseString);
+
+	LOGGER.debug("End KeylinesServlet servlet : Get method");
 
     }
 

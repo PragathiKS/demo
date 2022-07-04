@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.services.impl;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.jcr.Session;
@@ -18,7 +19,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
+import com.day.cq.search.PredicateGroup;
+import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
+import com.day.cq.search.result.Hit;
+import com.day.cq.search.result.SearchResult;
 import com.day.cq.tagging.TagManager;
 import com.tetrapak.customerhub.core.exceptions.KeylinesException;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
@@ -48,9 +53,21 @@ public class KeylinesServiceImplTest {
 
     @Mock
     private QueryBuilder queryBuilder;
-    
+
     @Mock
     private Session session;
+
+    /** The result. */
+    @Mock
+    SearchResult searchResult;
+
+    /** The query. */
+    @Mock
+    private Query query;
+
+    /** The hit. */
+    @Mock
+    private Hit hit;
 
     @Spy
     @InjectMocks
@@ -62,14 +79,23 @@ public class KeylinesServiceImplTest {
     @Before
     public void setUp() throws Exception {
 	MockitoAnnotations.initMocks(this);
-	aemContext.registerService(KeylinesConfiguration.class, configuration);
+	Resource resource = aemContext.currentResource(RESOURCE_PATH);
+	aemContext.load().json("/keyline-tags.json", "/content/cq:tags/tetrapak/keylines");
+	aemContext.request().setResource(resource);
+
 	when(configuration.path()).thenReturn("/content/dam/tetrapak/media-box/global/en/keylines");
-	when(configuration.type()).thenReturn("dam:Asset");
-	aemContext.registerService(KeylinesServiceImpl.class, keylinesServiceImpl);
 	Mockito.when(resourceResolver.adaptTo(TagManager.class)).thenReturn(tagManager);
 	Mockito.when(resourceResolver.adaptTo(QueryBuilder.class)).thenReturn(queryBuilder);
 	Mockito.when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-
+	Mockito.when(queryBuilder.createQuery(Mockito.any(PredicateGroup.class), Mockito.any(Session.class)))
+		.thenReturn(query);
+	Mockito.when(query.getResult()).thenReturn(searchResult);
+	final List<Hit> hits = new ArrayList<Hit>();
+	hits.add(hit);
+	Mockito.when(searchResult.getHits()).thenReturn(hits);
+	Mockito.when(hit.getPath()).thenReturn("/content/dam/tetrapak/media-box/global/en/keylines");
+	aemContext.registerService(KeylinesConfiguration.class, configuration);
+	aemContext.registerService(KeylinesServiceImpl.class, keylinesServiceImpl);
     }
 
     @Test
@@ -79,16 +105,7 @@ public class KeylinesServiceImplTest {
 	ArrayList<String> shapes = new ArrayList<String>();
 	shapes.add("tetrapak:keylines/tetra-rex/mid");
 	shapes.add("tetrapak:keylines/tetra-rex/base");
-	keylinesServiceImpl.getKeylines(resourceResolver, "tetrapak:keylines/tetra-rex", shapes, new Locale("en"));
-
-    }
-
-    @Test(expected = KeylinesException.class)
-    public void testGetKeylinesEmpty() throws KeylinesException {
-	Resource resource = aemContext.currentResource(RESOURCE_PATH);
-	aemContext.request().setResource(resource);
-	ArrayList<String> shapes = new ArrayList<String>();
-	keylinesServiceImpl.getKeylines(resourceResolver, "tetrapak:keylines/tetra-rex", shapes, new Locale("en"));
+	keylinesServiceImpl.getKeylines(resourceResolver, "tetrapak:keylines/tetra-rex/mid", shapes, new Locale("en"));
 
     }
 }
