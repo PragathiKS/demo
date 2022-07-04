@@ -20,6 +20,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.customerhub.core.beans.keylines.Keylines;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.services.KeylinesService;
 
@@ -55,27 +56,26 @@ public class KeylinesServletTest {
     @Mock
     private Page mockPage;
 
+    @Mock
+    private KeylinesService keylinesService;
+
     private static final String[] SHAPES = new String[] { "tetrapak:keylines/tetra-rex/mid",
 	    "tetrapak:keylines/tetra-rex/base", "tetrapak:keylines/tetra-rex/high" };
 
     /** The Constant TEST_CONTENT. */
-    private static final String TEST_CONTENT = "keylines.json";
+    private static final String TEST_CONTENT = "keylines/keylines.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
     private static final String TEST_CONTENT_ROOT = "/content/tetrapak/customerhub/content-components/en/keyline";
-
-    /** The Constant RESOURCE_PATH. */
-    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/keylines";
 
     @Rule
     public final AemContext aemContext = CuhuCoreAemContext.getAemContext(TEST_CONTENT, TEST_CONTENT_ROOT);
 
     @Before
     public void setUp() throws IOException {
-	Resource resource = aemContext.currentResource(RESOURCE_PATH);
-	aemContext.load().json("/keyline-tags.json", "/content/cq:tags/tetrapak/keylines");
+	Resource resource = aemContext.currentResource(TEST_CONTENT_ROOT);
+	aemContext.load().json("/keylines/keyline-tags.json", "/content/cq:tags/tetrapak");
 	aemContext.request().setResource(resource);
-
 	Mockito.when(request.getResourceResolver()).thenReturn(mockResResolver);
 	Mockito.when(request.getParameter("type")).thenReturn("tetrapak:keylines/tetra-rex");
 	Mockito.when(request.getParameterValues("shapes")).thenReturn(SHAPES);
@@ -89,7 +89,25 @@ public class KeylinesServletTest {
 
     @Test
     public void testDoGetOk() throws IOException {
+	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+		.thenReturn(new Keylines());
+	servlet.doGet(request, response);
+	Mockito.verify(response).getWriter();
+    }
 
+    @Test
+    public void testErrorResponse() throws IOException {
+	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+		.thenReturn(null);
+	servlet.doGet(request, response);
+	Mockito.verify(response).getWriter();
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testException() throws IOException {
+	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+		.thenThrow(Exception.class);
 	servlet.doGet(request, response);
 	Mockito.verify(response).getWriter();
     }
