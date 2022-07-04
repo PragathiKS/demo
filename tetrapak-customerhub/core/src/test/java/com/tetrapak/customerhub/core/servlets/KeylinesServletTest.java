@@ -73,7 +73,7 @@ public class KeylinesServletTest {
     @Before
     public void setUp() throws IOException {
 	Resource resource = aemContext.currentResource(RESOURCE_PATH);
-
+	aemContext.load().json("/keyline-tags.json", "/content/cq:tags/tetrapak/keylines");
 	aemContext.request().setResource(resource);
 
 	Mockito.when(request.getResourceResolver()).thenReturn(mockResResolver);

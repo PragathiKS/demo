@@ -31,42 +31,4 @@ public class Keylines {
 	this.assets = assets;
     }
 
-    @Override
-    public String toString() {
-	return "Keylines [shapes=" + shapes + ", assets=" + assets + "]";
-    }
-
-    @Override
-    public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((assets == null) ? 0 : assets.hashCode());
-	result = prime * result + ((shapes == null) ? 0 : shapes.hashCode());
-	return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (obj == null)
-	    return false;
-	if (getClass() != obj.getClass())
-	    return false;
-	Keylines other = (Keylines) obj;
-	if (assets == null) {
-	    if (other.assets != null) {
-		return false;
-	    }
-	} else if (!assets.equals(other.assets))
-	    return false;
-	if (shapes == null) {
-	    if (other.shapes != null) {
-		return false;
-	    }
-	} else if (!shapes.equals(other.shapes))
-	    return false;
-	return true;
-    }
-
 }

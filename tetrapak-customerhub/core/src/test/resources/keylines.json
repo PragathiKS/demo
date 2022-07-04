@@ -14,6 +14,7 @@
 					"title": "Keylines",
 					"sling:resourceType": "customerhub/components/content/keylines",
 					"dowloadText": "cuhu.packDesign.keylines.download",
+					"packageType": "tetrapak:keylines/tetra-rex",
 					"anchorTitle": "Keylines",
 					"anchorId": "keylines",
 					"shapes": {

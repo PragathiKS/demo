@@ -17,7 +17,4 @@ public @interface KeylinesConfiguration {
     @AttributeDefinition(name = "Path", description = "Path of keyline assets", type = AttributeType.STRING, defaultValue = "/content/dam/tetrapak/media-box/global/en/keylines")
     String path();
 
-    @AttributeDefinition(name = "Type", description = "Type of content to query", type = AttributeType.STRING, defaultValue = "dam:Asset")
-    String type();
-
 }
