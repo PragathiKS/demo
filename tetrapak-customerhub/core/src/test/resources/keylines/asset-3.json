@@ -1,0 +1,180 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:mixinTypes": [
+    "mix:referenceable",
+    "mix:versionable"
+  ],
+  "jcr:createdBy": "mediabox-service",
+  "jcr:versionHistory": "ce1debd4-d620-4325-a074-69f274603060",
+  "jcr:predecessors": [
+    "19912384-6b7f-4f31-b8e3-6c25b1c1e143"
+  ],
+  "jcr:created": "Fri Jun 17 2022 10:31:30 GMT+0200",
+  "jcr:baseVersion": "19912384-6b7f-4f31-b8e3-6c25b1c1e143",
+  "jcr:isCheckedOut": true,
+  "jcr:uuid": "efabc879-9814-4a5a-9496-96195854aafe",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus"
+    ],
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "mediabox-service",
+    "jcr:lastModifiedBy": "mediabox-service",
+    "status": "Finished",
+    "cq:lastReplicated": "Fri Jun 17 2022 10:35:37 GMT+0200",
+    "dam:assetState": "processed",
+    "cq:name": "Keyline 8026 TR 500 Base EO 6th.pdf",
+    "jcr:lastModified": "Fri Jun 17 2022 10:40:04 GMT+0200",
+    "cq:parentPath": "/content/dam/tetrapak/media-box/global/en/keylines/tetra-rex/base/500/easyopening/documents",
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "mediabox-service",
+      "jcr:created": "Fri Jun 17 2022 10:31:30 GMT+0200"
+    },
+    "related": {
+      "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:mixinTypes": [
+        "cq:Taggable"
+      ],
+      "tp:packagingFoodCategories": [],
+      "dam:Trapped": "False",
+      "jcr:title": "TR_500Base_EO_6th",
+      "egGr:hshrink": "1.000000",
+      "dam:Physicalheightininches": "19.685",
+      "xmpTPg:PlateNames": [
+        "Cyan",
+        "Magenta",
+        "Yellow",
+        "Black"
+      ],
+      "dam:Physicalwidthininches": "19.685",
+      "dam:numPages": 3,
+      "xmpTPg:HasVisibleTransparency": "True",
+      "tp:packagingFoodSubCategories": [],
+      "tp:itemModificationDate": "Wed Jun 15 2022 06:04:51 GMT+0200",
+      "egGr:margright": "0",
+      "tp:parts": [],
+      "tp:assetModificationDate": "Sun May 29 2022 00:01:43 GMT+0200",
+      "tp:consumablesPackaging": [],
+      "tp:assetEditor": "Martin Heiligenschmidt",
+      "tp:packageType": [
+        "tetrapak:packaging/package-type/tetra-rex"
+      ],
+      "tp:assetOwner": "Martin Heiligenschmidt",
+      "stVer:version": 1,
+      "tp:automationProducts": [],
+      "xmpTPg:PlateNames_xmpArrayType": "rdf:Seq",
+      "tp:trainingServicesProcessing": [],
+      "tp:approvalStatus": "pending",
+      "jcr:lastModifiedBy": "mediabox-service",
+      "xmp:CreatorTool": "Adobe Illustrator 24.0 (Windows)",
+      "tp:assetStatus": "",
+      "tp:technologyareaIceCream": [],
+      "tp:maintenanceServicePackaging": [],
+      "dam:scene7CompanyID": "c|25988",
+      "tp:openingsandClosures": [
+        "tetrapak:packaging/openings-and-closures/easyopening"
+      ],
+      "dam:extracted": "Fri Jun 17 2022 10:33:24 GMT+0200",
+      "egGr:nrpages": 1,
+      "dc:format": "application/pdf",
+      "egGr:startlogpage": 1,
+      "tp:mtp": true,
+      "dc:description": "TR_500Base_EO_6th\nTechnical drawing to design a package",
+      "dam:Producer": "Adobe PDF library 15.00",
+      "egGr:hsize": "500",
+      "egGr:units": "mm",
+      "egGr:vsize": "500",
+      "tp:technologyAreaCheese": [],
+      "ns4:CreatorSubTool": "Adobe Illustrator",
+      "dam:scene7ID": "a|724222499",
+      "xmpMM:DocumentID": "xmp.did:27221f49-a18e-1c4a-81f1-824011eefa53",
+      "dam:scene7CloudConfigPath": "/conf/global/settings/cloudconfigs/dmscene7",
+      "egGr:screenreg": "False",
+      "tp:expertServices": [],
+      "egGr:margleft": "0",
+      "tp:assetID": "",
+      "dam:scene7FileStatus": "PublishIncomplete",
+      "tp:maintenanceServiceProcessing": [],
+      "egGr:trapped": "False",
+      "xmpMM:OriginalDocumentID": "xmp.did:0d61f581-bfda-574e-93fc-0ca7f63bb108",
+      "tp:deletedAtSource": false,
+      "xmpTPg:NPages": 1,
+      "tp:downstreamEquipment": [],
+      "tp:keylines": [
+        "tetrapak:keylines/tetra-rex/base/500/easyopening"
+      ],
+      "tp:materialType": [
+        "tetrapak:material-type/keylines"
+      ],
+      "dc:modified": "Fri Jun 17 2022 10:40:03 GMT+0200",
+      "dam:scene7File": "tetrapakdev/Keyline 8026 TR 500 Base EO 6thpdf",
+      "dam:scene7Name": "Keyline 8026 TR 500 Base EO 6thpdf",
+      "dam:scene7Type": "Pdf",
+      "tp:packageVolume": [
+        "tetrapak:packaging/package-volume/500"
+      ],
+      "tp:securityClassification": "public",
+      "stVer:modifier": "rsvidojevicn",
+      "egGr:readerspread": "False",
+      "tp:plantComponentsProcessing": [],
+      "tp:packagingMaterialEffects": [],
+      "tp:packageShape": [
+        "tetrapak:packaging/package-shape/base"
+      ],
+      "xmp:MetadataDate": "Mon Apr 06 2020 17:54:17 GMT+0200",
+      "xmpMM:RenditionClass": "proof:pdf",
+      "cq:tags": [
+        "tetrapak:packaging/package-shape/base",
+        "tetrapak:material-type/keylines",
+        "tetrapak:keylines/tetra-rex/base/500/easyopening",
+        "tetrapak:packaging/openings-and-closures/easyopening",
+        "tetrapak:packaging/package-type/tetra-rex",
+        "tetrapak:packaging/package-volume/500"
+      ],
+      "jcr:lastModified": "Fri Jun 17 2022 10:40:03 GMT+0200",
+      "tp:automationServices": [],
+      "pdf:Producer": "Adobe PDF library 15.00",
+      "dam:scene7UploadTimeStamp": "Fri Jun 17 2022 10:35:36 GMT+0200",
+      "xmpTPg:HasVisibleOverprint": "False",
+      "tp:upgrades": [],
+      "dam:scene7JobStartDate": 1655454787367,
+      "tp:printingMethods": [],
+      "xmpMM:InstanceID": "uuid:798b402c-02cc-4622-95d5-e2545d0a84b4",
+      "xmp:ModifyDate": "Mon Apr 06 2020 17:54:17 GMT+0200",
+      "tp:assetName": "Keyline 8026 TR 500 Base EO 6th.pdf",
+      "tp:processingCategories": [],
+      "tp:publicWeb": true,
+      "xmp:CreateDate": "Mon Apr 06 2020 17:54:17 GMT+0200",
+      "pdf:Trapped": false,
+      "dam:scene7Domain": "http://s7g10.scene7.com/",
+      "tp:copyright": "",
+      "dam:scene7Folder": "tetrapakdev/tetrapak/media-box/global/en/keylines/tetra-rex/base/500/easyopening/documents/",
+      "tp:technologyAreaGeneral": [],
+      "tp:trainingServicesPackaging": [],
+      "dam:sha1": "e0db0674fff57889a22d38377598aaa87da53f85",
+      "dam:size": 296286,
+      "dam:scene7PublishPending": true,
+      "tp:cantoAssetID": "v2tvh28vs95in4r6ni4hhdmh05",
+      "dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+      "tp:straws": [],
+      "egGr:vshrink": "1.000000",
+      "tp:fillingMachines": [],
+      "dc:title": "TR_500Base_EO_6th",
+      "egGr:margbot": "0",
+      "egGr:margtop": "0",
+      "tp:subtitle": "",
+      "tp:gatedContent": false,
+      "tp:processingSubCategories": [],
+      "stVer:modifyDate": "Mon Dec 16 2019 12:39:50 GMT+0100",
+      "tp:plantCare": [],
+      "tp:installationServicesPackaging": [],
+      "tp:openingsSpecifics": [],
+      "dam:scene7LastModified": 1655454936275
+    }
+  }
+}
