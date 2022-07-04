@@ -30,11 +30,6 @@ public class Volume {
     }
 
     @Override
-    public String toString() {
-	return "Volume [key=" + key + ", value=" + value + "]";
-    }
-
-    @Override
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
