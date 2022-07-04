@@ -30,11 +30,6 @@ public class Opening {
     }
 
     @Override
-    public String toString() {
-	return "Opening [key=" + key + ", value=" + value + "]";
-    }
-
-    @Override
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
