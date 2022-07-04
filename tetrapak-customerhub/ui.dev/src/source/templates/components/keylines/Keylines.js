@@ -26,14 +26,15 @@ class Keylines {
     this.cache.$keyLinesModal = this.root.find('.js-tp-keylines__modal');
     this.cache.apiUrl = this.root.data('apiUrl');
     this.cache.packageType = this.root.data('packagetype');
-    this.cache.keylinesData = {};
+    this.cache.keylinesData = null;
   }
 
   renderModal(shapeName, shapeTitle) {
     const { $keyLinesModal, keylinesData, i18nKeys } = this.cache;
     const { shapes, assets } = keylinesData;
-    const openings = shapes[0].openings.map(item => ({ key: item.key, desc: item.value }));
-    const volumes = shapes[0].volumes.map(item => ({ key: item.key, desc: item.value }));
+    const targetShapeObj = shapes.find(item => item.name === shapeName);
+    const openings = targetShapeObj.openings.map(item => ({ key: item.key, desc: item.value }));
+    const volumes = targetShapeObj.volumes.map(item => ({ key: item.key, desc: item.value }));
     const updatedi18nKeys = {...i18nKeys};
     updatedi18nKeys.modalTitle = _replaceLabel(i18nKeys.modalTitle, shapeTitle);
 
@@ -52,12 +53,17 @@ class Keylines {
     $keyLinesModal.modal();
   }
 
-  getShapeAssets(shapeTag, shapeName, shapeTitle) {
+  getShapeAssets(allShapeTags, shapeName, shapeTitle) {
     const { apiUrl, packageType } = this.cache;
+    let requestUrl = `${apiUrl}?type=${packageType}`;
+
+    allShapeTags.forEach(shape => {
+      requestUrl += `&shapes=${shape}`;
+    });
 
     ajaxWrapper
       .getXhrObj({
-        url: `${apiUrl}?type=${packageType}&shapes=${shapeTag}`,
+        url: requestUrl,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -102,11 +108,24 @@ class Keylines {
   bindEvents() {
     this.root.on('click', '.js-tp-keylines__download', e => {
       const $btn = $(e.currentTarget);
-      const shapeTag = $btn.data('shape');
       const shapeName = $btn.data('shape-name');
       const shapeTitle = $btn.data('shape-title');
+      const $downloadBtns = this.root.find('.js-tp-keylines__download');
+      const allShapeTags = [];
+      const { keylinesData } = this.cache;
 
-      this.getShapeAssets(shapeTag, shapeName, shapeTitle);
+      $downloadBtns.each((idx, item) => {
+        const $item = $(item);
+        if ($item.data('shape') !== '') {
+          allShapeTags.push($item.data('shape'));
+        }
+      });
+
+      if (keylinesData) {
+        this.renderModal(shapeName, shapeTitle);
+      } else {
+        this.getShapeAssets(allShapeTags, shapeName, shapeTitle);
+      }
     });
 
     this.root.on('change', '.js-tp-keylines__dropdown', e => {
