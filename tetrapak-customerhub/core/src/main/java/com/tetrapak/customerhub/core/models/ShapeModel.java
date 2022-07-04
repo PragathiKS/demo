@@ -68,40 +68,20 @@ public class ShapeModel {
 	return shape;
     }
 
-    public void setShape(String shape) {
-	this.shape = shape;
-    }
-
     public String getFileReference() {
 	return fileReference;
-    }
-
-    public void setFileReference(String fileReference) {
-	this.fileReference = fileReference;
     }
 
     public String getAlt() {
 	return alt;
     }
 
-    public void setAlt(String alt) {
-	this.alt = alt;
-    }
-
     public String getTitle() {
 	return title;
     }
 
-    public void setTitle(String title) {
-	this.title = title;
-    }
-
     public String getName() {
 	return name;
-    }
-
-    public void setName(String name) {
-	this.name = name;
     }
 
 }
