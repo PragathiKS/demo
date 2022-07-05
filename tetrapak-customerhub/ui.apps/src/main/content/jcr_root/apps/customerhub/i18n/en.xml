@@ -1644,4 +1644,34 @@
         jcr:primaryType="nt:folder"
         sling:key="cuhu_pack_design_easy_design"
         sling:message="Easy Design"/>
+    <cuhu.packDesign.keylines.download
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.packDesign.keylines.download"
+        sling:message="Download"/>
+    <cuhu.packDesign.keylines.modalTitle
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.packDesign.keylines.modalTitle"
+        sling:message="Select {} Keyline"/>
+    <cuhu.packDesign.keylines.modalDescription
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.packDesign.keylines.modalDescription"
+        sling:message="Choose volumes and openings to download your keyline file"/>  
+    <cuhu.packDesign.keylines.selectVolumes
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.packDesign.keylines.selectVolumes"
+        sling:message="Select Volume"/> 
+    <cuhu.packDesign.keylines.selectOpenings
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.packDesign.keylines.selectOpenings"
+        sling:message="Select Opening"/> 
+    <cuhu.packDesign.keylines.downloadKeyline
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.packDesign.keylines.downloadKeyline"
+        sling:message="Download Keyline"/>                     
 </jcr:root>

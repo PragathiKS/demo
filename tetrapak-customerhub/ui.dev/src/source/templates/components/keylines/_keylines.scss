@@ -1,0 +1,32 @@
+.tp-keylines {
+    &__download {
+        color: $color-congress-blue;
+
+        &:hover {
+            color: $color-sky-blue;
+        }
+    }
+
+    .tpatom-dropdown {
+        @include margin-bottom($margin-md);
+    }
+
+
+    .modal-dialog {
+        @include max-width(348px);
+    }
+
+    &__modal-footer {
+        @include padding-top($padding-zero);
+    }
+
+    &__modal-body {
+        @media #{$desktop} {
+            @include padding($padding-zero $padding-l);
+        }
+    }
+
+    &__modal-title {
+        @include margin-bottom($margin-md);
+    }
+}
