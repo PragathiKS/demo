@@ -14,12 +14,14 @@ function _processTrainingsData(data,pingUserGroup) {
   data.forEach((item) => {
     if(trainingUserGroup.length > 0){
       if(trainingUserGroup.includes(item.extRef.material.number)){
-        const {learningItemDetail, name, id} = item;
+        const {learningItemDetail, name, extRef} = item;
+        const {material} = extRef;
+        const {number} = material;
         const {itemGoals, audience, duration, maximumEnrollments, comments} = learningItemDetail;
 
         processedDataArr.push({
           name,
-          id,
+          id: number,
           description: item.descriptions[0].body,
           itemGoals,
           audience,
