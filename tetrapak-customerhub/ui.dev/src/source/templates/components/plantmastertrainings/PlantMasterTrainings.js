@@ -5,6 +5,7 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {sanitize} from '../../../scripts/common/common';
 import {_trackAccordionClick} from './PlantMasterTrainings.analytics';
 
 function _processTrainingsData(data,pingUserGroup) {
