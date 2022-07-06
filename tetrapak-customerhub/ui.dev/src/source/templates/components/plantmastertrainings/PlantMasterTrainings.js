@@ -6,6 +6,7 @@ import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 import {sanitize} from '../../../scripts/common/common';
+import {_trackAccordionClick} from './PlantMasterTrainings.analytics';
 
 function _processTrainingsData(data,pingUserGroup) {
   data = data ? data : [];
@@ -318,6 +319,17 @@ class PlantMasterTrainings {
     this.root.on('submit', '.js-aip-trainings__form', e => {
       e.preventDefault();
       this.handleFormSubmit(e.target);
+    });
+
+    this.root.on('click', '.js-aip-trainings__accordion-learning .btn-link', e => {
+      const $btn = $(e.currentTarget);
+      const text = $btn.find('span').text();
+
+      if ($btn.attr('aria-expanded') === 'true') {
+        _trackAccordionClick(text, false);
+      } else {
+        _trackAccordionClick(text, true);
+      }
     });
   }
 
