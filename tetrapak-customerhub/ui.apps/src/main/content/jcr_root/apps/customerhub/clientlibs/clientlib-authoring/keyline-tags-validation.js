@@ -12,12 +12,12 @@
 				if (value.length != 3) {
 					return "Please select a Package Shape for Keylines";
 				}
-				var packageShapes = document.querySelectorAll('[data-validation=package-shape] input:not([type="hidden"]');
+				var packageShapes = document.querySelectorAll('[data-validation=package-shape]');
 				var packageTypeElement = document.querySelector('[data-package-type=fetch-value]');
 				var packageType = "";
 				var type = new Set();
 				packageShapes.forEach(element =>{
-					var elementVal = element.value;
+					var elementVal = $(element).val();
 					packageType = elementVal.substring(0, elementVal
 							.lastIndexOf("/"));
 					type.add(packageType);
