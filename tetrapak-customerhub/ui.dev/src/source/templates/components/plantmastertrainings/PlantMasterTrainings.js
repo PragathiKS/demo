@@ -6,7 +6,7 @@ import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 import {sanitize} from '../../../scripts/common/common';
-import {_trackAccordionClick} from './PlantMasterTrainings.analytics';
+import {_trackAccordionClick, _trackFormError, _trackFormComplete, _trackFormStart} from './PlantMasterTrainings.analytics';
 
 function _processTrainingsData(data,pingUserGroup) {
   data = data ? data : [];
@@ -72,16 +72,28 @@ function _processLearningHistoryData(data) {
 }
 
 function _addErrorMsg(el, errorMsgSelector) {
-  $(el)
+  const $el = $(el);
+  const $this = this;
+  const formErrorMessage = $el.closest('.js-aip__form-element').find(errorMsgSelector).text();
+  const formErrorField = $el.attr('id').split('-')[0];
+
+  $el
     .closest('.js-aip__form-element')
     .addClass('tp-aip__form-element--error')
     .find(errorMsgSelector)
     .addClass('error-msg--active');
+
+  $this.cache.formError.push({
+    formErrorMessage,
+    formErrorField
+  });
 }
 
 function _removeAllErrorMessages($form) {
+  const $this = this;
   $form.find('.error-msg--active').removeClass('error-msg--active');
   $form.find('.tp-aip__form-element--error').removeClass('tp-aip__form-element--error');
+  $this.cache.formError = [];
 }
 
 function _handleFormSubmit(formEl) {
@@ -155,15 +167,22 @@ function _handleFormSubmit(formEl) {
         data: processedFormData,
         showLoader: true
       }).done(() => {
+        const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
         $this.cache.$spinner.addClass('d-none');
         $formWrapper.addClass('d-none');
         $trainingBody.addClass('d-none');
         $this.cache.$contentWrapper.removeClass('d-none');
         $confirmationTxt.removeClass('d-none');
+        _trackFormComplete(trainingName, processedFormData);
       }).fail(() => {
         $this.cache.$spinner.addClass('d-none');
         $this.cache.$contentWrapper.removeClass('d-none');
       });
+  } else {
+    const $formWrapper = $form.parent();
+    const { formError } = $this.cache;
+    const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
+    _trackFormError(trainingName, formError);
   }
 }
 
@@ -311,6 +330,7 @@ class PlantMasterTrainings {
     this.cache.$tabPaneAvailableTrainings = this.root.find('.js-aip-trainings__accordion');
     this.cache.usergroupurl = this.root.data('group-servlet-url');
     this.cache.trainingUserGroup = [];
+    this.cache.formError = [];
   }
 
   bindEvents() {
@@ -319,7 +339,8 @@ class PlantMasterTrainings {
       this.handleFormSubmit(e.target);
     });
 
-    this.root.on('click', '.js-aip-trainings__accordion-learning .btn-link', e => {
+    // track Accordion click analytics
+    this.root.on('click', '.js-aip-trainings__accordion .btn-link', e => {
       const $btn = $(e.currentTarget);
       const text = $btn.find('span').text();
 
@@ -327,6 +348,17 @@ class PlantMasterTrainings {
         _trackAccordionClick(text, false);
       } else {
         _trackAccordionClick(text, true);
+      }
+    });
+
+    // track Form Start analytics
+    this.root.on('input change', '.tpatom-input-box__input, .tpatom-textarea-box__input, .tpatom-checkbox__input', e => {
+      const $formWrapper = $(e.currentTarget).parents('.js-aip-trainings__form');
+      const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
+
+      if ($formWrapper.data('form-touched') !== true) {
+        $formWrapper.attr('data-form-touched', true);
+        _trackFormStart(trainingName);
       }
     });
   }
