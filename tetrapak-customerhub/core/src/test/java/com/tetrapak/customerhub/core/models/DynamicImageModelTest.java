@@ -67,8 +67,7 @@ public class DynamicImageModelTest {
         assertEquals("default image URL",
                 "http://s7g10.scene7.com/is/image/tetrapak/p2.test?wid=250&hei=100&cropn=0.3046875,0.12179487179487179,0.43515625,0.8888888888888888",
                 dynamicImageModel.getMobilePortraitUrl());
-        assertEquals("default image URL", "/content/dam/customerhub/p2.test.png",
-                dynamicImageModel.getImagePath());
+        assertEquals("default image URL", "/content/dam/customerhub/p2.test.png", dynamicImageModel.getImagePath());
     }
 
     @Test

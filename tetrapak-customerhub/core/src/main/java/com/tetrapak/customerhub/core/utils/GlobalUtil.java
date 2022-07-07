@@ -643,19 +643,6 @@ public class GlobalUtil {
     }
 
     /**
-     * Checks if it is publish.
-     *
-     * @return true, if is publish
-     */
-    public static boolean isPublish() {
-        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
-        if (slingSettingsService == null) {
-            return false;
-        }
-        return slingSettingsService.getRunModes().contains("publish");
-    }
-
-    /**
      * Gets the groups for customer from resource/request
      *
      * @param request the request
@@ -709,6 +696,19 @@ public class GlobalUtil {
                    apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping;
         }
         return aipEndpointURL;
+    }
+
+    /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
     }
 
     /**

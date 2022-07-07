@@ -116,7 +116,6 @@ public class PlantMasterLicensesServiceImplTest {
         when(configuration.recipientAddresses()).thenReturn(null);
         assertEquals(ERROR_MESSAGE, false, plantMasterLicensesServiceImpl.sendEmail(resourceBundle,
                 aemContext.request().getHeader(LICENSE_TYPE_REQUEST_PARAMETER), requestData, masterLicensesModel));
-
     }
 
     @Test
