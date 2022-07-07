@@ -27,7 +27,7 @@ export const _trackFormStart = function (trainingName) {
     event: 'PlantMaster Trainings form'
   };
 
-  trackAnalytics(formObj, 'form', 'formstart', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 export const _trackFormComplete = function (trainingName, processedFormData) {
@@ -53,7 +53,7 @@ export const _trackFormComplete = function (trainingName, processedFormData) {
     event: 'PlantMaster Trainings form'
   };
 
-  trackAnalytics(formObj, 'form', 'formcomplete', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
 export const _trackFormError = function (trainingName, formError) {
@@ -68,6 +68,6 @@ export const _trackFormError = function (trainingName, formError) {
     event: 'PlantMaster Trainings form'
   };
 
-  trackAnalytics(formObj, 'form', 'formerror', undefined, false, eventObj);
+  trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
