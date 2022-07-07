@@ -13,12 +13,15 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +43,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.exceptions.KeylinesException;
 import com.tetrapak.customerhub.core.services.KeylinesService;
 import com.tetrapak.customerhub.core.services.config.KeylinesConfiguration;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
  * Implementaion of the Keylines Service class
@@ -60,41 +64,54 @@ public class KeylinesServiceImpl implements KeylinesService {
 
     private KeylinesConfiguration config;
 
+    /** The resolver factory. */
+    @Reference
+    private ResourceResolverFactory resourceResolverFactory;
+
     @Activate
     public void activate(final KeylinesConfiguration config) {
 	this.config = config;
     }
 
-    public Keylines getKeylines(ResourceResolver resourceResolver, String packageType, List<String> shapes,
-	    Locale locale) throws KeylinesException {
+    public Keylines getKeylines(String packageType, List<String> shapes, Locale locale) throws KeylinesException {
 	LOGGER.debug("Inside getKeylines Method");
 	Keylines keylines = null;
-	if (StringUtils.isNotBlank(packageType) && null != shapes && !shapes.isEmpty()) {
-	    keylines = new Keylines();
-	    keylines.setShapes(getShapes(resourceResolver, shapes, locale));
-	    List<Asset> keylineAssets = new ArrayList<>();
-	    SearchResult result = query(resourceResolver, shapes);
-	    if (null != result) {
-		List<Hit> hits = result.getHits();
-		LOGGER.debug("Hit size: {}", hits.size());
-
-		for (Hit hit : hits) {
-		    try {
-			keylineAssets.addAll(getKeylineAssets(resourceResolver, packageType, hit));
-
-		    } catch (RepositoryException e) {
-			LOGGER.error("Error while fetching the query", e);
-		    }
-		}
+	try (ResourceResolver resourceResolver = GlobalUtil
+		.getResourceResolverFromSubService(resourceResolverFactory)) {
+	    if (StringUtils.isNotBlank(packageType) && null != shapes && !shapes.isEmpty()) {
+		keylines = new Keylines();
+		keylines.setShapes(getShapes(resourceResolver, shapes, locale));
+		SearchResult result = query(resourceResolver, shapes);
+		setKeylineAssets(packageType, keylines, resourceResolver, result);
+	    } else {
+		LOGGER.error("Package Type/Shape cannot be empty");
+		throw new KeylinesException("Package Type/Shape cannot be empty");
 	    }
-	    keylines.setAssets(keylineAssets);
-	} else {
-	    LOGGER.error("Package Type/Shape cannot be empty");
-	    throw new KeylinesException("Package Type/Shape cannot be empty");
+	} catch (LoginException e1) {
+	    throw new KeylinesException("Unable to retrive data");
 	}
 	LOGGER.debug("End getKeylines Method");
 	return keylines;
 
+    }
+
+    private void setKeylineAssets(String packageType, Keylines keylines, ResourceResolver resourceResolver,
+	    SearchResult result) {
+	List<Asset> keylineAssets = new ArrayList<>();
+	if (null != result) {
+	    List<Hit> hits = result.getHits();
+	    LOGGER.debug("Hit size: {}", hits.size());
+
+	    for (Hit hit : hits) {
+		try {
+		    keylineAssets.addAll(getKeylineAssets(resourceResolver, packageType, hit));
+
+		} catch (RepositoryException e) {
+		    LOGGER.error("Error while fetching the query", e);
+		}
+	    }
+	}
+	keylines.setAssets(keylineAssets);
     }
 
     private List<Asset> getKeylineAssets(ResourceResolver resourceResolver, String packageTypeTagID, Hit hit)

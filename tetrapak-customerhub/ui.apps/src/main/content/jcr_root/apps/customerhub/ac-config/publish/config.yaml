@@ -75,10 +75,6 @@
           permission: allow
           actions: read
           privileges:
-          
-        - path: /content/cq:tags/tetrapak
-          permission: allow
-          privileges: jcr:read
 
         - path: /content/tetrapak/customerhub/global/en/dashboard
           permission: allow

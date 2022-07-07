@@ -1,7 +1,5 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -23,8 +21,6 @@ import org.mockito.Spy;
 import com.day.cq.search.QueryBuilder;
 import com.google.common.base.Function;
 import com.tetrapak.customerhub.core.beans.keylines.Keylines;
-import com.tetrapak.customerhub.core.beans.keylines.Opening;
-import com.tetrapak.customerhub.core.beans.keylines.Volume;
 import com.tetrapak.customerhub.core.exceptions.KeylinesException;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.MockHelper;
@@ -94,8 +90,7 @@ public class KeylinesServiceImplTest {
 	ArrayList<String> shapes = new ArrayList<String>();
 	shapes.add("tetrapak:keylines/tetra-rex/mid");
 	shapes.add("tetrapak:keylines/tetra-rex/base");
-	Keylines keylines = keylinesServiceImpl.getKeylines(aemContext.resourceResolver(),
-		"tetrapak:keylines/tetra-rex", shapes, new Locale("en"));
+	Keylines keylines = keylinesServiceImpl.getKeylines("tetrapak:keylines/tetra-rex", shapes, new Locale("en"));
 	assertTrue(keylines.getAssets().size() > 0);
 	assertNotNull(keylines.getAssets().get(0));
 	assertNotNull(keylines.getAssets().get(0).getAssetname());
@@ -109,8 +104,7 @@ public class KeylinesServiceImplTest {
     @Test(expected = KeylinesException.class)
     public void testKeylinesException() throws KeylinesException {
 	ArrayList<String> shapes = new ArrayList<String>();
-	keylinesServiceImpl.getKeylines(aemContext.resourceResolver(), "tetrapak:keylines/tetra-rex", shapes,
-		new Locale("en"));
+	keylinesServiceImpl.getKeylines("tetrapak:keylines/tetra-rex", shapes, new Locale("en"));
 
     }
 }
