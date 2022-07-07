@@ -173,7 +173,7 @@ function _handleFormSubmit(formEl) {
         $trainingBody.addClass('d-none');
         $this.cache.$contentWrapper.removeClass('d-none');
         $confirmationTxt.removeClass('d-none');
-        _trackFormComplete(trainingName, processedFormData);
+        $this.trackFormComplete(trainingName, processedFormData);
       }).fail(() => {
         $this.cache.$spinner.addClass('d-none');
         $this.cache.$contentWrapper.removeClass('d-none');
@@ -182,7 +182,7 @@ function _handleFormSubmit(formEl) {
     const $formWrapper = $form.parent();
     const { formError } = $this.cache;
     const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
-    _trackFormError(trainingName, formError);
+    $this.trackFormError(trainingName, formError);
   }
 }
 
@@ -343,22 +343,24 @@ class PlantMasterTrainings {
     this.root.on('click', '.js-aip-trainings__accordion .btn-link', e => {
       const $btn = $(e.currentTarget);
       const text = $btn.find('span').text();
+      const $this = this;
 
       if ($btn.attr('aria-expanded') === 'true') {
-        _trackAccordionClick(text, false);
+        $this.trackAccordionClick(text, false);
       } else {
-        _trackAccordionClick(text, true);
+        $this.trackAccordionClick(text, true);
       }
     });
 
     // track Form Start analytics
     this.root.on('input change', '.tpatom-input-box__input, .tpatom-textarea-box__input, .tpatom-checkbox__input', e => {
+      const $this = this;
       const $formWrapper = $(e.currentTarget).parents('.js-aip-trainings__form');
       const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
 
       if ($formWrapper.data('form-touched') !== true) {
         $formWrapper.attr('data-form-touched', true);
-        _trackFormStart(trainingName);
+        $this.trackFormStart(trainingName);
       }
     });
   }
@@ -405,6 +407,22 @@ class PlantMasterTrainings {
 
   renderLearningHistory() {
     return _renderLearningHistory.apply(this, arguments);
+  }
+
+  trackAccordionClick() {
+    return _trackAccordionClick.apply(this, arguments);
+  }
+
+  trackFormError() {
+    return _trackFormError.apply(this, arguments);
+  }
+
+  trackFormComplete() {
+    return _trackFormComplete.apply(this, arguments);
+  }
+
+  trackFormStart() {
+    return _trackFormStart.apply(this, arguments);
   }
 
   init() {
