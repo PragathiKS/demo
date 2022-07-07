@@ -89,7 +89,7 @@ public class KeylinesServletTest {
 
     @Test
     public void testDoGetOk() throws IOException {
-	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any()))
 		.thenReturn(new Keylines());
 	servlet.doGet(request, response);
 	Mockito.verify(response).getWriter();
@@ -97,8 +97,7 @@ public class KeylinesServletTest {
 
     @Test
     public void testErrorResponse() throws IOException {
-	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
-		.thenReturn(null);
+	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(null);
 	servlet.doGet(request, response);
 	Mockito.verify(response).getWriter();
     }
@@ -106,7 +105,7 @@ public class KeylinesServletTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testException() throws IOException {
-	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any()))
+	Mockito.when(keylinesService.getKeylines(Mockito.any(), Mockito.any(), Mockito.any()))
 		.thenThrow(Exception.class);
 	servlet.doGet(request, response);
 	Mockito.verify(response).getWriter();

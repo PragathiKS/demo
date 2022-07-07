@@ -79,8 +79,7 @@ public class KeylinesServlet extends SlingSafeMethodsServlet {
 	String responseString = "";
 	Gson gson = new Gson();
 	try {
-	    Keylines keylines = keylinesService.getKeylines(request.getResourceResolver(), packageTypeParameter, shapes,
-		    locale);
+	    Keylines keylines = keylinesService.getKeylines(packageTypeParameter, shapes, locale);
 
 	    if (keylines != null) {
 		responseString = gson.toJson(keylines, Keylines.class);

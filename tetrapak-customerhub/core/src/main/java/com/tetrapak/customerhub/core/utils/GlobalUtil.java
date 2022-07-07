@@ -15,9 +15,11 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
@@ -728,5 +730,22 @@ public class GlobalUtil {
             fileName = properties.get(SCENE_7_NAME_PROPERTY, StringUtils.EMPTY);
         }
         return fileName;
+    }
+    
+    /**
+     * This method returns service resolver based on parameter map.
+     *
+     * @param resourceFactory ResourceResolverFactory
+     * @return sling resource resolver
+     * @throws LoginException 
+     */
+    public static ResourceResolver getResourceResolverFromSubService(final ResourceResolverFactory resourceFactory) throws LoginException {
+	LOGGER.debug("Inside getResourceResolverFromSubService method");
+	ResourceResolver resourceResolver = null;
+	final Map<String, Object> paramMap = new HashMap<>();
+	paramMap.put(ResourceResolverFactory.SUBSERVICE, "tetrapak-system-user");
+	resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);
+	LOGGER.debug("End getResourceResolverFromSubService method");
+	return resourceResolver;
     }
 }
