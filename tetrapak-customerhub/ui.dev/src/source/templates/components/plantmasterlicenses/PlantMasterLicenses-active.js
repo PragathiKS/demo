@@ -5,6 +5,12 @@ import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 import {sanitize} from '../../../scripts/common/common';
+import {
+  _trackAccordionClick,
+  _trackWithdrawStart,
+  _trackWithdrawCancel,
+  _trackWithdrawComplete
+} from './PlantMasterLicenses-active.analytics';
 
 /**
  * Render Active Licenses data
@@ -124,6 +130,7 @@ function _submitLicenseWithdraw(licenseDetails) {
       showLoader: true
     }).done(() => {
       this.renderLicenseWithdrawSuccess();
+      this.trackWithdrawComplete(licenseDetails);
     }).fail(() => {
       this.showModalContent();
     });
@@ -190,11 +197,16 @@ class PlantMasterLicensesActive {
       };
 
       this.renderLicenseWithdrawModal(licenseDetails);
+      this.trackWithdrawStart();
     });
 
     this.root.on('click', '.js-close-btn, .js-tp-aip-licenses-active__cancel, .js-tp-aip-licenses-active__back',  () => {
       const { $activeLicensesModal } = this.cache;
       $activeLicensesModal.modal('hide');
+    });
+
+    this.root.on('click', '.js-tp-aip-licenses-active__cancel',  () => {
+      this.trackWithdrawCancel();
     });
 
     this.root.on('click', '.js-tp-aip-licenses-active__confirm',  (e) => {
@@ -216,6 +228,19 @@ class PlantMasterLicensesActive {
 
       this.submitLicenseWithdraw(licenseDetails);
     });
+
+    // track Accordion click analytics
+    this.root.on('click', '.tp-aip__accordion .btn-link', e => {
+      const $btn = $(e.currentTarget);
+      const text = $btn.find('span').text();
+      const $this = this;
+
+      if ($btn.attr('aria-expanded') === 'true') {
+        $this.trackAccordionClick(text, false);
+      } else {
+        $this.trackAccordionClick(text, true);
+      }
+    });
   }
 
   getActiveLicensesData() {
@@ -236,6 +261,22 @@ class PlantMasterLicensesActive {
 
   submitLicenseWithdraw(licenseDetails) {
     return _submitLicenseWithdraw.call(this, licenseDetails);
+  }
+
+  trackAccordionClick() {
+    return _trackAccordionClick.apply(this, arguments);
+  }
+
+  trackWithdrawStart() {
+    return _trackWithdrawStart.apply(this, arguments);
+  }
+
+  trackWithdrawCancel() {
+    return _trackWithdrawCancel.apply(this, arguments);
+  }
+
+  trackWithdrawComplete() {
+    return _trackWithdrawComplete.apply(this, arguments);
   }
 
   init() {
