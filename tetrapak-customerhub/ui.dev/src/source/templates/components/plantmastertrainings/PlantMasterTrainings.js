@@ -360,9 +360,9 @@ class PlantMasterTrainings {
       const $formWrapper = $(e.currentTarget).parents('.js-aip-trainings__form');
       const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
 
-      if ($formWrapper.data('form-touched') !== true) {
-        $formWrapper.attr('data-form-touched', true);
+      if (!$formWrapper.data('form-touched')) {
         $this.trackFormStart(trainingName);
+        $formWrapper.attr('data-form-touched', true);
       }
     });
   }
