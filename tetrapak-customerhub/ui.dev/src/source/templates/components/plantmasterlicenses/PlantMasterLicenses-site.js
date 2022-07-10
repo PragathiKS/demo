@@ -7,7 +7,8 @@ import {render} from '../../../scripts/utils/render';
 import {
   _trackFormComplete,
   _trackFormError,
-  _trackFormStart
+  _trackFormStart,
+  _trackTabClick
 } from './PlantMasterLicenses-site.analytics';
 
 function _renderSiteLicensesData() {
@@ -214,6 +215,9 @@ class PlantMasterLicensesSite {
         this.trackFormStart();
       }
     });
+
+    // track Tab click analytics
+    $('#nav-site-licenses-tab').on('click', this.trackTabClick);
   }
 
   renderSiteLicensesData() {
@@ -234,6 +238,10 @@ class PlantMasterLicensesSite {
 
   trackFormStart() {
     return _trackFormStart.apply(this, arguments);
+  }
+
+  trackTabClick() {
+    return _trackTabClick.apply(this, arguments);
   }
 
   showTooltip(){

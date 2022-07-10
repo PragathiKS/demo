@@ -1,19 +1,19 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const _trackAccordionClick = function (linkName, expand) {
+export const _trackTabClick = function () {
   const eventObj = {
-    event: expand ? 'accordion expand' : 'accordion collapse',
+    event: 'breadcrumb',
     eventType: 'linkClick'
   };
 
   const linkClickObj = {
-    linkName: linkName,
+    linkName: 'Request site licenses',
     linkType: 'internal',
-    linkSection: 'Active licenses',
-    linkParentTitle: ''
+    linkSection: 'hyperlink click',
+    linkParentTitle: 'Tetra Pak® PlantMaster licenses'
   };
 
-  trackAnalytics(linkClickObj, 'linkClick', 'accordionClick', undefined, false, eventObj);
+  trackAnalytics(linkClickObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 };
 
 export const _trackFormStart = function () {
