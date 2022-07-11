@@ -346,11 +346,12 @@ class PlantMasterTrainings {
       const $btn = $(e.currentTarget);
       const text = $btn.find('span').text();
       const $this = this;
+      const linkSection = $btn.parents('#tp-aip-trainings__accordion').length ? 'Available Automation Engineering Trainings' : 'Learning History';
 
       if ($btn.attr('aria-expanded') === 'true') {
-        $this.trackAccordionClick(text, false);
+        $this.trackAccordionClick(text, false, linkSection);
       } else {
-        $this.trackAccordionClick(text, true);
+        $this.trackAccordionClick(text, true, linkSection);
       }
     });
 
