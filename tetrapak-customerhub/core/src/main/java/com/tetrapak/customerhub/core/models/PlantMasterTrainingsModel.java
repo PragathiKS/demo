@@ -44,6 +44,9 @@ public class PlantMasterTrainingsModel {
 
         /** The title. */
         TITLE("title"),
+        
+        /** The subTitle. */
+        SUBTITLE("subTitle"),
 
         /** The available trainings. */
         AVAILABLE_TRAININGS("availableTrainings"),
@@ -281,6 +284,7 @@ public class PlantMasterTrainingsModel {
     private Map<String, Object> getPlantMasterTrainingI18KeyMap(){
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TITLE.getI18nJsonKey(), engineeringTrainingsModel.getTitle());
+        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBTITLE.getI18nJsonKey(), engineeringTrainingsModel.getSubTitle());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.AVAILABLE_TRAININGS.getI18nJsonKey(),
                 engineeringTrainingsModel.getAvailableTrainings());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_MATERIAL_HANDOUTS.getI18nJsonKey(),
