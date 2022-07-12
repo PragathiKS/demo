@@ -45,13 +45,16 @@
       <sly data-sly-test.linkTypeExternal="${child.linkType == 'external' ? 'icon-External_Link' : ''}" />
       <sly data-sly-test.linkTypeDownload="${child.linkType == 'download' ? 'icon-PDF' : ''}" />
       <sly data-sly-test.sectionValue ="${mediaSectionName == '' ? mediaHeading : mediaSectionName } "/>
-      <a  data-sly-test="${child.linkText}" href="${child.linkUrl}"
-         class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-         title="${child.linkText}"
-         data-asset-name="${child.assetName}"
-         data-link-section="Related links and downloads_Text Hyperlink"
-         data-section-name="${sectionValue}"
-         data-link-name="${child.linkText}">
+      <a  data-sly-test="${child.linkText}"
+        href="${child.linkUrl}"
+        class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+        title="${child.linkText}"
+        target="${child.linkType == 'internal' ? '_self' : '_blank'}"
+        data-link-type="${child.linkType}"
+        data-asset-name="${child.assetName}"
+        data-link-section="Related links and downloads_Text Hyperlink"
+        data-section-name="${sectionValue}"
+        data-link-name="${child.linkText}">
       <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span>
       <i class="icon ${linkTypeInternal} ${linkTypeExternal} ${linkTypeDownload}"></i>
       </a>
