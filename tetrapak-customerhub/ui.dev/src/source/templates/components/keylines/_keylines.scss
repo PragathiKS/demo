@@ -28,5 +28,8 @@
 
     &__modal-title {
         @include margin-bottom($margin-md);
+        @include font-size($font-m-l);
+        @include line-height(32px, $font-m-l);
+        font-weight: 400;
     }
 }
