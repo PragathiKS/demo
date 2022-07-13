@@ -3,6 +3,7 @@ import {render} from '../../../scripts/utils/render';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
+import {getI18n} from '../../../scripts/common/common';
 
 function _replaceLabel(label, value) {
   return label.replace('{}', value);
@@ -36,7 +37,7 @@ class Keylines {
     const openings = targetShapeObj.openings.map(item => ({ key: item.key, desc: item.value }));
     const volumes = targetShapeObj.volumes.map(item => ({ key: item.key, desc: item.value }));
     const updatedi18nKeys = {...i18nKeys};
-    updatedi18nKeys.modalTitle = _replaceLabel(i18nKeys.modalTitle, shapeTitle);
+    updatedi18nKeys.modalTitle = _replaceLabel(getI18n(i18nKeys.modalTitle), shapeTitle);
 
     render.fn({
       template: 'keyLinesModal',
@@ -96,7 +97,7 @@ class Keylines {
 
       if (assetObj) {
         const { assetpath } = assetObj;
-        $downloadBtn.attr('onclick', `window.location.href='${assetpath}'`);
+        $downloadBtn.attr('onclick', `window.open('${assetpath}', '_blank')`);
         $downloadBtn.removeAttr('disabled');
       } else {
         $downloadBtn.removeAttr('onclick');
