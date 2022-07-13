@@ -13,7 +13,9 @@
 
 
     .modal-dialog {
-        @include max-width(348px);
+        @media #{$desktop} {
+            @include max-width(348px);
+        }
     }
 
     &__modal-header {
