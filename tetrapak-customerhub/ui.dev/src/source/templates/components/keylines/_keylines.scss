@@ -16,6 +16,16 @@
         @include max-width(348px);
     }
 
+    &__modal-header {
+        div {
+            @include padding-right($padding-xl);
+
+            @media #{$desktop} {
+                @include padding-right($padding-l);
+            }
+        }
+    }
+
     &__modal-footer {
         @include padding-top($padding-zero);
     }
