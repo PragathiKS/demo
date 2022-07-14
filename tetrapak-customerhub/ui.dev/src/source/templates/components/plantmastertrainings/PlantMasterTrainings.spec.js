@@ -148,8 +148,7 @@ describe('PlantMasterTrainings', function () {
 
   it('should track form start', function (done) {
     $(document.body).empty().html(PlantMasterTrainingsTemplate());
-    $('#noOfParticipants-0').val('3');
-    $('#noOfParticipants-0').trigger('input');
+    $('#preferredLocation-0').val('Test').trigger('change');
     expect(this.trackFormStartSpy.called).to.be.true;
     done();
   });

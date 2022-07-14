@@ -346,11 +346,12 @@ class PlantMasterTrainings {
       const $btn = $(e.currentTarget);
       const text = $btn.find('span').text();
       const $this = this;
+      const linkSection = $btn.parents('#tp-aip-trainings__accordion').length ? 'Available Automation Engineering Trainings' : 'Learning History';
 
       if ($btn.attr('aria-expanded') === 'true') {
-        $this.trackAccordionClick(text, false);
+        $this.trackAccordionClick(text, false, linkSection);
       } else {
-        $this.trackAccordionClick(text, true);
+        $this.trackAccordionClick(text, true, linkSection);
       }
     });
 
@@ -360,9 +361,9 @@ class PlantMasterTrainings {
       const $formWrapper = $(e.currentTarget).parents('.js-aip-trainings__form');
       const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
 
-      if ($formWrapper.data('form-touched') !== true) {
-        $formWrapper.attr('data-form-touched', true);
+      if (!$formWrapper.data('form-touched')) {
         $this.trackFormStart(trainingName);
+        $formWrapper.attr('data-form-touched', true);
       }
     });
   }

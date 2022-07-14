@@ -1,6 +1,6 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const _trackAccordionClick = function (linkName, expand) {
+export const _trackAccordionClick = function (linkName, expand, linkSection) {
   const eventObj = {
     event: expand ? 'accordion expand' : 'accordion collapse',
     eventType: 'linkClick'
@@ -9,7 +9,7 @@ export const _trackAccordionClick = function (linkName, expand) {
   const linkClickObj = {
     linkName: linkName,
     linkType: 'internal',
-    linkSection: 'Learning History',
+    linkSection: linkSection,
     linkParentTitle: ''
   };
 
