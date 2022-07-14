@@ -13,7 +13,19 @@
 
 
     .modal-dialog {
-        @include max-width(348px);
+        @media #{$desktop} {
+            @include max-width(348px);
+        }
+    }
+
+    &__modal-header {
+        div {
+            @include padding-right($padding-xl);
+
+            @media #{$desktop} {
+                @include padding-right($padding-l);
+            }
+        }
     }
 
     &__modal-footer {
@@ -28,5 +40,8 @@
 
     &__modal-title {
         @include margin-bottom($margin-md);
+        @include font-size($font-m-l);
+        @include line-height(32px, $font-m-l);
+        font-weight: 400;
     }
 }
