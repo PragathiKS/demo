@@ -17,10 +17,6 @@ public class PlantMasterEngineeringTrainingsModel {
     /** The title. */
     @ValueMapValue
     private String title;
-    
-    /** The subtitle */
-    @ValueMapValue
-    private String subTitle;
 
     /** The available trainings. */
     @ValueMapValue
@@ -137,10 +133,6 @@ public class PlantMasterEngineeringTrainingsModel {
     public String getTitle() {
         return title;
     }    
-    
-    public String getSubTitle() {
-        return subTitle;
-    }
 
     public String getAvailableTrainings() {
         return availableTrainings;

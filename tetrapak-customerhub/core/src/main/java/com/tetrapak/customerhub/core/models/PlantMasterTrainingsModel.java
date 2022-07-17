@@ -200,7 +200,11 @@ public class PlantMasterTrainingsModel {
 
     /** The training details api. */
     @ValueMapValue
-    private String trainingDetailsApi;
+    private String trainingDetailsApi;    
+    
+    /** The subtitle */
+    @ValueMapValue
+    private String subTitle;
 
     /** The apigee service. */
     @OSGiService
@@ -284,7 +288,6 @@ public class PlantMasterTrainingsModel {
     private Map<String, Object> getPlantMasterTrainingI18KeyMap(){
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TITLE.getI18nJsonKey(), engineeringTrainingsModel.getTitle());
-        i18KeyMap.put(PlantMasterTrainingsComponentDialog.SUBTITLE.getI18nJsonKey(), engineeringTrainingsModel.getSubTitle());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.AVAILABLE_TRAININGS.getI18nJsonKey(),
                 engineeringTrainingsModel.getAvailableTrainings());
         i18KeyMap.put(PlantMasterTrainingsComponentDialog.TRAINING_MATERIAL_HANDOUTS.getI18nJsonKey(),
@@ -432,5 +435,10 @@ public class PlantMasterTrainingsModel {
      */
     public String getGroupServletUrl() {
         return resource.getPath() + GROUP_SERVLET_URL_POSTFIX;
+    }    
+    
+    public String getSubTitle() {
+        return subTitle;
     }
+
 }
