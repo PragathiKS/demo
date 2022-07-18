@@ -5,10 +5,12 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.settings.SlingSettingsService;
 
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
@@ -80,6 +82,9 @@ public class TextVideoModel {
 
     @Inject
     private String anchorTitle;
+    
+    @SlingObject
+    private ResourceResolver resourceResolver;
 
     @PostConstruct
     protected void init() {
@@ -91,7 +96,7 @@ public class TextVideoModel {
             youtubeEmbedURL = "https://www.youtube.com/embed/" + youtubeVideoID;
         }
         if (!slingSettingsService.getRunModes().contains("author") && null != dynamicMediaService) {
-            damVideoPath = GlobalUtil.getVideoUrlFromScene7(damVideoPath, dynamicMediaService);
+            damVideoPath = GlobalUtil.getVideoUrlFromScene7(resourceResolver, damVideoPath, dynamicMediaService);
         }
     }
 

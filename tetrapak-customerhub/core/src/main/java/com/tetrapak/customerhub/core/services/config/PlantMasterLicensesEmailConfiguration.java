@@ -17,7 +17,7 @@ public @interface PlantMasterLicensesEmailConfiguration {
     @AttributeDefinition(name = "Recipient Email Address", description = "Recipient Email Address",
             type = AttributeType.STRING)
     String[] recipientAddresses();
-    
+
     /**
      * Enable sending of email
      * @return Enable sending of email

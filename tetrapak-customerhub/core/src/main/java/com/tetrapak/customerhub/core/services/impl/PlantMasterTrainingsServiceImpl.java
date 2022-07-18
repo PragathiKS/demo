@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import com.tetrapak.customerhub.core.models.PlantMasterEngineeringTrainingsModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.event.jobs.JobManager;
@@ -64,8 +65,6 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
     /**
      * Send email.
      *
-     * @param trainingName
-     *            the training name
      * @param plantMasterTrainingsFormBean
      *            the plant master trainings form bean
      * @param request
@@ -76,7 +75,7 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
     public boolean sendEmail(PlantMasterTrainingsFormBean plantMasterTrainingsFormBean,
             SlingHttpServletRequest request) {
         LOGGER.debug("Inside sendEmail method of PlantMasterTrainingsServiceImpl");
-        PlantMasterTrainingsModel model = request.adaptTo(PlantMasterTrainingsModel.class);
+        PlantMasterEngineeringTrainingsModel model = request.adaptTo(PlantMasterEngineeringTrainingsModel.class);
         boolean isSuccess = false;
         boolean isFeatureEnabled = config.isPlantMasterEmailServiceEnabled();
         String[] recipientEmailFromOsgiConfig = config.plantMasterRecipientAddresses();
@@ -115,22 +114,27 @@ public class PlantMasterTrainingsServiceImpl implements PlantMasterTrainingsServ
      * @param prefix
      *            the prefix
      */
-    private void extractPlantMasterTrainingsModelProps(Map<String, String> emailParams, PlantMasterTrainingsModel model,
+    private void extractPlantMasterTrainingsModelProps(Map<String, String> emailParams, PlantMasterEngineeringTrainingsModel model,
             SlingHttpServletRequest request, String prefix) {
 
-        String salutation = StringUtils.isNotEmpty(model.getSalutation())
-                ? getI18nValue(request, prefix, model.getSalutation())
-                : StringUtils.EMPTY;
+        String salutation = StringUtils.EMPTY;
+        if(StringUtils.isNotEmpty(model.getSalutation())){
+            salutation = getI18nValue(request, prefix, model.getSalutation());
+        }
         emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.SALUTATION.i18nJsonKey,
                 getI18nValue(request, prefix, salutation));
 
-        String body = StringUtils.isNotEmpty(model.getBody()) ? getI18nValue(request, prefix, model.getBody())
-                : StringUtils.EMPTY;
+        String body = StringUtils.EMPTY;
+        if(StringUtils.isNotEmpty(model.getBody())){
+            body = getI18nValue(request, prefix, model.getBody());
+        }
         emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.BODY.i18nJsonKey,
                 getI18nValue(request, prefix, body));
 
-        String subject = StringUtils.isNotEmpty(model.getSubject()) ? getI18nValue(request, prefix, model.getSubject())
-                : StringUtils.EMPTY;
+        String subject = StringUtils.EMPTY;
+        if(StringUtils.isNotEmpty(model.getSubject())){
+            subject = getI18nValue(request, prefix, model.getSubject());
+        }
         emailParams.put(PlantMasterTrainingsModel.PlantMasterTrainingsComponentDialog.SUBJECT.i18nJsonKey,
                 getI18nValue(request, prefix, subject));
 

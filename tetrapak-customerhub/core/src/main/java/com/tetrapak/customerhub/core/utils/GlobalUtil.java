@@ -173,7 +173,7 @@ public class GlobalUtil {
     /**
      * Method to get service.
      *
-     * @param <T> the generic type
+     * @param <T>   the generic type
      * @param clazz class type
      * @return T
      */
@@ -314,16 +314,16 @@ public class GlobalUtil {
      * @param locale              locale
      * @param pageContentPath     page component path
      */
-    public static void setPageReferences(ResourceResolver resourceResolver, List<String> componentsReference,
-                                         String locale, String pageContentPath) {
+    public static void setPageReferences(ResourceResolver resourceResolver, List<String> componentsReference, String locale, String pageContentPath) {
         locale = StringUtils.isNotBlank(locale) ? locale : CustomerHubConstants.DEFAULT_LOCALE;
         String pagePath = String.valueOf(pageContentPath);
         pagePath = pagePath.replace(CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.DEFAULT_LOCALE,
                 CustomerHubConstants.PATH_SEPARATOR + locale);
         String resGridPathWithoutJcrContent = CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.ROOT_NODE
                 + CustomerHubConstants.PATH_SEPARATOR + CustomerHubConstants.RESPONSIVE_GRID_NODE;
-        String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ? resGridPathWithoutJcrContent
-                : CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
+        String resGridPath = pagePath.endsWith(JcrConstants.JCR_CONTENT) ?
+                resGridPathWithoutJcrContent :
+                CustomerHubConstants.PATH_SEPARATOR + JcrConstants.JCR_CONTENT + resGridPathWithoutJcrContent;
         pagePath = pagePath + resGridPath;
         GlobalUtil.pageReferenceComponents(resourceResolver, componentsReference, pagePath);
     }
@@ -336,7 +336,7 @@ public class GlobalUtil {
      * @param path                path
      */
     private static void pageReferenceComponents(ResourceResolver resourceResolver, List<String> componentsReference,
-                                                String path) {
+            String path) {
         Resource componentResources = resourceResolver.getResource(path);
         if (Objects.nonNull(componentResources)) {
             Iterator<Resource> iterators = componentResources.listChildren();
@@ -362,8 +362,7 @@ public class GlobalUtil {
         if (null == checkResource || ResourceUtil.isNonExistingResource(checkResource)) {
             language = CustomerHubConstants.DEFAULT_LOCALE;
         }
-        Resource languagePageResource = request.getResourceResolver().getResource
-                ("/content/tetrapak/customerhub/content-components/" + language);
+        Resource languagePageResource = request.getResourceResolver().getResource("/content/tetrapak/customerhub/content-components/" + language);
         if (null == languagePageResource) {
             return null;
         }
@@ -474,8 +473,7 @@ public class GlobalUtil {
      * @return global config resource
      */
     private static Resource getGlobalConfigResource(Resource resource) {
-        Resource childResource = resource.getResourceResolver().getResource(
-                GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
+        Resource childResource = resource.getResourceResolver().getResource(GlobalUtil.getCustomerhubConfigPagePath(resource) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
             return getGlobalConfigNode(childResource);
         }
@@ -512,18 +510,25 @@ public class GlobalUtil {
     /**
      * get scene 7 video url.
      *
+     * @param resourceResolver    Resource Resolver
      * @param damVideoPath        video path
      * @param dynamicMediaService dynamic media service
      * @return video path from scene 7
      */
-    public static String getVideoUrlFromScene7(String damVideoPath, DynamicMediaService dynamicMediaService) {
-        damVideoPath = StringUtils.substringBeforeLast(damVideoPath, ".");
-        damVideoPath = StringUtils.substringAfterLast(damVideoPath, CustomerHubConstants.PATH_SEPARATOR);
-        damVideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
-                + CustomerHubConstants.PATH_SEPARATOR + damVideoPath;
-        return damVideoPath;
+    public static String getVideoUrlFromScene7(ResourceResolver resourceResolver,String damVideoPath, DynamicMediaService dynamicMediaService) {
+        String scene7VideoPath = "";
+        if(StringUtils.isNotBlank(damVideoPath)) {
+            String fileName = getScene7FileName(resourceResolver,damVideoPath);
+            if(StringUtils.isBlank(fileName)) {
+        	fileName = StringUtils.substringBeforeLast(damVideoPath, ".");
+        	fileName = StringUtils.substringAfterLast(fileName, CustomerHubConstants.PATH_SEPARATOR);
+            }
+            scene7VideoPath = dynamicMediaService.getVideoServiceUrl() + dynamicMediaService.getRootPath()
+                + CustomerHubConstants.PATH_SEPARATOR + fileName;
+        }
+        return scene7VideoPath;
     }
-
+    
     /**
      * Get a name with special characters replaced by underscore.
      *
@@ -629,19 +634,6 @@ public class GlobalUtil {
     }
 
     /**
-     * Checks if it is publish.
-     *
-     * @return true, if is publish
-     */
-    public static boolean isPublish() {
-        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
-        if (slingSettingsService == null) {
-            return false;
-        }
-        return slingSettingsService.getRunModes().contains("publish");
-    }
-
-    /**
      * Gets the groups for customer from resource/request
      *
      * @param request the request
@@ -653,8 +645,7 @@ public class GlobalUtil {
             ValueMap vMap = getUserResourceValueMap(request);
             if (vMap.containsKey(CustomerHubConstants.CUSTOMER_GROUPS)) {
                 String groupsString = (String) vMap.get(CustomerHubConstants.CUSTOMER_GROUPS);
-                groups = Arrays.stream(groupsString.split("[\\]\\[, ]"))
-                        .filter(s -> !s.isEmpty())
+                groups = Arrays.stream(groupsString.split("[\\]\\[, ]")).filter(s -> !s.isEmpty())
                         .collect(Collectors.toList());
             }
         } catch (RepositoryException e) {
@@ -666,39 +657,49 @@ public class GlobalUtil {
     /**
      * Gets the AIP endpoint URL.
      *
-     * @param apiServiceUrl
-     *            the api service url
-     * @param apiMapping
-     *            the api mapping
-     * @param categoryId
-     *            the category id
+     * @param apiServiceUrl the api service url
+     * @param apiMapping    the api mapping
+     * @param categoryId    the category id
      * @return the AIP endpoint URL
      */
     public static String getAIPEndpointURL(String apiServiceUrl, String apiMapping, String categoryId) {
         String aipEndpointURL = StringUtils.EMPTY;
         if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping) && Objects.nonNull(categoryId)) {
-            aipEndpointURL = (apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping).replace("{id}",
-                    categoryId) + CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.INCLUDE_CHILDREN
-                    + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE + CustomerHubConstants.AMPERSAND
-                    + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
+            aipEndpointURL =
+                    (apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping).replace("{id}", categoryId) + CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.INCLUDE_CHILDREN
+                            + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE + CustomerHubConstants.AMPERSAND
+                            + CustomerHubConstants.DETAILS + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.TRUE;
         }
         return aipEndpointURL;
     }
 
     /**
-     * Gets the active license api endpoint URL.
+     * Gets the api endpoint URL when no api manipulation needed.
      *
      * @param apiServiceUrl the api service url
      * @param apiMapping    the api mapping
-     * @return the AIP endpoint URL
+     * @return the API endpoint URL
      */
-    public static String getActiveLicenseEndpointURL(String apiServiceUrl, String apiMapping) {
+    public static String getAPIEndpointURL(String apiServiceUrl, String apiMapping) {
         String aipEndpointURL = StringUtils.EMPTY;
         if (Objects.nonNull(apiServiceUrl) && Objects.nonNull(apiMapping)) {
             aipEndpointURL =
                    apiServiceUrl + CustomerHubConstants.PATH_SEPARATOR + apiMapping;
         }
         return aipEndpointURL;
+    }
+
+    /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
+    public static boolean isPublish() {
+        final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
+        if (slingSettingsService == null) {
+            return false;
+        }
+        return slingSettingsService.getRunModes().contains("publish");
     }
 
     /**

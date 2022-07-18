@@ -1,0 +1,52 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
+    <div class="modal-content tp-my-equipment__modal-content tp-modal-content js-tp-aip-licenses-active__modal-content">
+        <div class="modal-header tpmol-modal-header">
+            <div class="tp-aip-licenses-active__modal-header" auto_locator="headlineOverlay">
+                <h2>{{i18n key=i18nKeys.activeLicense.modalConfirmTitle}}</h2>
+            </div>
+            <button type="button" auto_locator="closebtnOverlay"
+                    class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
+            <div class="tp-aip-licenses-active__info-line">
+                <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.name}}</div>
+                <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.name}}</div>
+            </div>
+            <div class="tp-aip-licenses-active__info-line">
+                <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.platformText}}</div>
+                <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.platform}}</div>
+            </div>
+            <div class="tp-aip-licenses-active__info-line">
+                <div class="tp-aip-licenses-active__info-cell-1">{{i18n key=i18nKeys.activeLicense.licenceKey}}</div>
+                <div class="tp-aip-licenses-active__info-cell-2">{{licenseDetails.licenseKey}}</div>
+            </div>
+            <div class="tp-aip-licenses-active__form-element">
+                {{> atoms/textarea/textarea labelText=i18nKeys.activeLicense.modalComments name="comments" eleClasses="js-tp-aip-licenses-active__input" maxlength=300}}
+            </div>
+            <p>{{i18n key=i18nKeys.activeLicense.modalConfirmText}}</p>
+            <div class="js-equipment-details__error tp-aip-licenses-active__error d-none">
+                {{i18n key="cuhu.error.message"}}
+                Failure of sent data, please try again
+            </div>
+        </div>
+        <div class="modal-footer tpmol-modal-footer">
+            {{> atoms/buttons/button/button text=i18nKeys.activeLicense.modalConfirmBtn
+                    data-name=licenseDetails.name
+                    data-platform=licenseDetails.platform
+                    data-license-key=licenseDetails.licenseKey
+                    data-country-name=licenseDetails.countryName
+                    data-site=licenseDetails.site
+                    data-start-date=licenseDetails.startDate
+                    data-end-date=licenseDetails.endDate
+                    modifier="primary"
+                    baseClass="tp-aip-licenses-active__confirm"
+                    jsClass="js-tp-aip-licenses-active__confirm"}}
+            {{> atoms/buttons/button/button text=i18nKeys.activeLicense.modalCancelBtn modifier="secondary" baseClass="tp-aip-licenses-active__cancel" jsClass="js-tp-aip-licenses-active__cancel"}}
+        </div>
+        <div class="tpatom-loader js-loader js-tp-aip-licenses-active__modal-spinner d-none">
+            {{> atoms/loader/tpLoader}}
+        </div>
+    </div>
+</div>

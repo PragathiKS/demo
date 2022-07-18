@@ -1332,6 +1332,27 @@
     <cuhu.plantmasterlicense.active.email.commentText
             jcr:primaryType="sling:MessageEntry"
             sling:message="Comments"/>
+    <cuhu.plantmastertraining.lh.learningHistoryText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Learning history"/>
+    <cuhu.plantmastertraining.lh.diplomaText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Diploma"/>
+    <cuhu.plantmastertraining.lh.accreditedText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Accredited"/>
+    <cuhu.plantmastertraining.lh.authenticatedText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Authenticated"/>
+    <cuhu.plantmastertraining.lh.userText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="User"/>
+    <cuhu.plantmastertraining.lh.itemText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Item"/>
+    <cuhu.plantmastertraining.lh.completionDateText
+            jcr:primaryType="sling:MessageEntry"
+            sling:message="Completion Date"/>
     <cuhu_demo
         cq:lastReplicated="{Date}2019-09-04T03:43:31.863Z"
         cq:lastReplicatedBy="sapient-tarun"
