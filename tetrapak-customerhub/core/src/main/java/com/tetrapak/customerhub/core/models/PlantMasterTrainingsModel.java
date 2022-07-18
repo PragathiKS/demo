@@ -44,6 +44,9 @@ public class PlantMasterTrainingsModel {
 
         /** The title. */
         TITLE("title"),
+        
+        /** The subTitle. */
+        SUBTITLE("subTitle"),
 
         /** The available trainings. */
         AVAILABLE_TRAININGS("availableTrainings"),
@@ -197,7 +200,11 @@ public class PlantMasterTrainingsModel {
 
     /** The training details api. */
     @ValueMapValue
-    private String trainingDetailsApi;
+    private String trainingDetailsApi;    
+    
+    /** The subtitle */
+    @ValueMapValue
+    private String subTitle;
 
     /** The apigee service. */
     @OSGiService
@@ -428,5 +435,10 @@ public class PlantMasterTrainingsModel {
      */
     public String getGroupServletUrl() {
         return resource.getPath() + GROUP_SERVLET_URL_POSTFIX;
+    }    
+    
+    public String getSubTitle() {
+        return subTitle;
     }
+
 }

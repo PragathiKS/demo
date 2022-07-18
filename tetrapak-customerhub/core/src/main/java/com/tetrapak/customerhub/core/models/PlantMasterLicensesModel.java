@@ -73,6 +73,10 @@ public class PlantMasterLicensesModel {
     @ValueMapValue
     private String heading;
     
+    /** The subtitle */
+    @ValueMapValue
+    private String subTitle;
+    
     private String i18nKeys;
     
     private String emailApiUrl;
@@ -201,6 +205,10 @@ public class PlantMasterLicensesModel {
     
     public String getHeading() {
         return heading;
+    }
+    
+    public String getSubTitle() {
+        return subTitle;
     }
     
     public boolean isPublishEnvironment() {

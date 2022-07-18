@@ -82,6 +82,7 @@ public class PlantMasterTrainingsModelTest {
 		assertEquals("Unexpected value", GROUP_SERVLET_URL, model.getGroupServletUrl());
 		assertEquals("Unexpected value",TRAINING_DETAILS_MIG_API, model.getTrainingDetailsApi());
 		assertEquals("Unexpected value","cuhu.plantmastertrainings.trainingMaterialHandouts", model.getTrainingMaterialHandouts());
+		assertEquals("Unexpected value","cuhu.plantmastertrainings.subTitle", model.getSubTitle());
 		MockSlingHttpServletRequest request = aemContext.request();
 	}
 }
