@@ -37,7 +37,7 @@ export const _trackFormComplete = function (trainingName, processedFormData) {
     formField.push(
       {
         formFieldName: key,
-        formFieldValue: value
+        formFieldValue: key === 'name' || key === 'emailAddress' ? 'NA' : value
       }
     );
   }
