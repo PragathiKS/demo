@@ -5,6 +5,7 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {sanitize} from '../../../scripts/common/common';
 
 /**
  * Render Engineering Licenses data
@@ -164,7 +165,7 @@ class PlantMasterLicensesEngineering {
 
       $requiredFormElements.each((idx, el) => {
         const updatedKey = el.name.split('-')[0];
-        user[updatedKey] = el.value;
+        user[updatedKey] = sanitize(el.value);
       });
 
       $selectedLicenses.each((idx, el) => {
@@ -175,7 +176,7 @@ class PlantMasterLicensesEngineering {
     });
 
     formObj.users = users;
-    formObj.comments = comments;
+    formObj.comments = sanitize(comments);
 
     ajaxWrapper
       .getXhrObj({
