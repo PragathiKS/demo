@@ -1,0 +1,668 @@
+{
+	"jcr:primaryType":"cq:Tag",
+	"jcr:createdBy":"workflow-process-service",
+	"jcr:title":"Tetra Pak",
+	"jcr:created":"Fri Jun 17 2022 10:29:54 GMT+0200",
+	"jcr:description":"Tetra Pak",
+	"sling:resourceType":"cq/tagging/components/tag",
+	"keylines":{
+		"jcr:primaryType":"cq:Tag",
+		"jcr:createdBy":"workflow-process-service",
+		"jcr:title":"Keylines",
+		"jcr:created":"Fri Jun 17 2022 10:29:54 GMT+0200",
+		"jcr:description":"Keylines",
+		"sling:resourceType":"cq/tagging/components/tag",
+		"tetra-rex":{
+			"jcr:primaryType":"cq:Tag",
+			"jcr:createdBy":"workflow-process-service",
+			"jcr:title":"Tetra Rex®",
+			"jcr:created":"Fri Jun 17 2022 10:30:26 GMT+0200",
+			"jcr:description":"Tetra Rex®",
+			"sling:resourceType":"cq/tagging/components/tag",
+			"mid":{
+				"1500":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1500",
+					"jcr:created":"Fri Jun 17 2022 10:30:47 GMT+0200",
+					"jcr:description":"1500",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:47 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"1750":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1750",
+					"jcr:created":"Fri Jun 17 2022 10:30:42 GMT+0200",
+					"jcr:description":"1750",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:title.de":"TwistCap™ OSO34 de",
+						"jcr:lastModifiedBy":"admin",
+						"jcr:created":"Fri Jun 17 2022 10:30:42 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"jcr:lastModified":"Mon Jun 27 2022 14:41:41 GMT+0200",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcapbarrier-30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCapBarrier 30",
+						"jcr:created":"Fri Jun 17 2022 10:30:43 GMT+0200",
+						"jcr:description":"TwistCapBarrier 30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"2000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"2000",
+					"jcr:created":"Fri Jun 17 2022 10:30:26 GMT+0200",
+					"jcr:description":"2000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:title.de":"TwistCap™ OSO34",
+						"jcr:lastModifiedBy":"admin",
+						"jcr:created":"Fri Jun 17 2022 10:30:36 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"jcr:lastModified":"Mon Jun 27 2022 14:41:23 GMT+0200",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Mid",
+				"jcr:title.de":"Mid de",
+				"jcr:lastModifiedBy":"admin",
+				"jcr:created":"Fri Jun 17 2022 10:30:26 GMT+0200",
+				"jcr:description":"Mid",
+				"jcr:lastModified":"Mon Jun 27 2022 14:40:39 GMT+0200",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"base":{
+				"237":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"237",
+					"jcr:created":"Fri Jun 17 2022 10:31:16 GMT+0200",
+					"jcr:description":"237",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:16 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"250":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"250",
+					"jcr:created":"Fri Jun 17 2022 10:30:29 GMT+0200",
+					"jcr:description":"250",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO30",
+						"jcr:created":"Fri Jun 17 2022 10:30:29 GMT+0200",
+						"jcr:description":"TwistCap™ OSO30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:14 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:31:19 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening-lt":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening LT",
+						"jcr:created":"Fri Jun 17 2022 10:31:24 GMT+0200",
+						"jcr:description":"EasyOpening LT",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"300":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"300",
+					"jcr:created":"Fri Jun 17 2022 10:30:33 GMT+0200",
+					"jcr:description":"300",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:30:33 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening-lt":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening LT",
+						"jcr:created":"Fri Jun 17 2022 10:31:11 GMT+0200",
+						"jcr:description":"EasyOpening LT",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:31:12 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"315":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"315",
+					"jcr:created":"Fri Jun 17 2022 10:31:08 GMT+0200",
+					"jcr:description":"315",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:08 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"375":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"375",
+					"jcr:created":"Fri Jun 17 2022 10:31:09 GMT+0200",
+					"jcr:description":"375",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:09 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening-lt":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening LT",
+						"jcr:created":"Fri Jun 17 2022 10:31:10 GMT+0200",
+						"jcr:description":"EasyOpening LT",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"473":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"473",
+					"jcr:created":"Fri Jun 17 2022 10:31:01 GMT+0200",
+					"jcr:description":"473",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:01 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcap-oso30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO30",
+						"jcr:created":"Fri Jun 17 2022 10:31:05 GMT+0200",
+						"jcr:description":"TwistCap™ OSO30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:31:06 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"500":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"500",
+					"jcr:created":"Fri Jun 17 2022 10:30:27 GMT+0200",
+					"jcr:description":"500",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO30",
+						"jcr:created":"Fri Jun 17 2022 10:30:27 GMT+0200",
+						"jcr:description":"TwistCap™ OSO30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:29 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:31:30 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"600":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"600",
+					"jcr:created":"Fri Jun 17 2022 10:30:59 GMT+0200",
+					"jcr:description":"600",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening-lt":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening LT",
+						"jcr:created":"Fri Jun 17 2022 10:30:59 GMT+0200",
+						"jcr:description":"EasyOpening LT",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"750":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"750",
+					"jcr:created":"Fri Jun 17 2022 10:30:30 GMT+0200",
+					"jcr:description":"750",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO30",
+						"jcr:created":"Fri Jun 17 2022 10:30:30 GMT+0200",
+						"jcr:description":"TwistCap™ OSO30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:31:37 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:38 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"946":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"946",
+					"jcr:created":"Fri Jun 17 2022 10:30:49 GMT+0200",
+					"jcr:description":"946",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO30",
+						"jcr:created":"Fri Jun 17 2022 10:30:49 GMT+0200",
+						"jcr:description":"TwistCap™ OSO30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:30:55 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"1000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1000",
+					"jcr:created":"Fri Jun 17 2022 10:30:28 GMT+0200",
+					"jcr:description":"1000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO30",
+						"jcr:created":"Fri Jun 17 2022 10:30:28 GMT+0200",
+						"jcr:description":"TwistCap™ OSO30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:31 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:49 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Base",
+				"jcr:title.de":"Base de",
+				"jcr:lastModifiedBy":"admin",
+				"jcr:created":"Fri Jun 17 2022 10:30:27 GMT+0200",
+				"jcr:description":"Base",
+				"jcr:lastModified":"Mon Jun 27 2022 14:40:53 GMT+0200",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"high":{
+				"500":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"500",
+					"jcr:created":"Fri Jun 17 2022 10:30:32 GMT+0200",
+					"jcr:description":"500",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso30":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO30",
+						"jcr:created":"Fri Jun 17 2022 10:30:57 GMT+0200",
+						"jcr:description":"TwistCap™ OSO30",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:00 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"High",
+				"jcr:created":"Fri Jun 17 2022 10:30:32 GMT+0200",
+				"jcr:description":"High",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"base-mini-plus":{
+				"750":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"750",
+					"jcr:created":"Fri Jun 17 2022 10:30:35 GMT+0200",
+					"jcr:description":"750",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:35 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"1000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1000",
+					"jcr:created":"Fri Jun 17 2022 10:30:56 GMT+0200",
+					"jcr:description":"1000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:56 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Base Mini Plus",
+				"jcr:created":"Fri Jun 17 2022 10:30:35 GMT+0200",
+				"jcr:description":"Base Mini Plus",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"max":{
+				"1893":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1893",
+					"jcr:created":"Fri Jun 17 2022 10:30:46 GMT+0200",
+					"jcr:description":"1893",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:46 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"2000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"2000",
+					"jcr:created":"Fri Jun 17 2022 10:30:37 GMT+0200",
+					"jcr:description":"2000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:37 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:30:40 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Max",
+				"jcr:created":"Fri Jun 17 2022 10:30:37 GMT+0200",
+				"jcr:description":"Max",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"arch":{
+				"1000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1000",
+					"jcr:created":"Fri Jun 17 2022 10:30:41 GMT+0200",
+					"jcr:description":"1000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:41 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Arch",
+				"jcr:created":"Fri Jun 17 2022 10:30:41 GMT+0200",
+				"jcr:description":"Arch",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"slim-st":{
+				"1500":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1500",
+					"jcr:created":"Fri Jun 17 2022 10:30:48 GMT+0200",
+					"jcr:description":"1500",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:48 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					},
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:30:53 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Slim ST",
+				"jcr:created":"Fri Jun 17 2022 10:30:48 GMT+0200",
+				"jcr:description":"Slim ST",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"base-plus":{
+				"500":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"500",
+					"jcr:created":"Fri Jun 17 2022 10:31:03 GMT+0200",
+					"jcr:description":"500",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:31:03 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"1000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1000",
+					"jcr:created":"Fri Jun 17 2022 10:30:50 GMT+0200",
+					"jcr:description":"1000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"twistcap-oso34":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"TwistCap™ OSO34",
+						"jcr:created":"Fri Jun 17 2022 10:30:50 GMT+0200",
+						"jcr:description":"TwistCap™ OSO34",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Base Plus",
+				"jcr:created":"Fri Jun 17 2022 10:30:50 GMT+0200",
+				"jcr:description":"Base Plus",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"slim":{
+				"1000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1000",
+					"jcr:created":"Fri Jun 17 2022 10:30:51 GMT+0200",
+					"jcr:description":"1000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:30:51 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"Slim",
+				"jcr:created":"Fri Jun 17 2022 10:30:51 GMT+0200",
+				"jcr:description":"Slim",
+				"sling:resourceType":"cq/tagging/components/tag"
+			},
+			"a-base-st":{
+				"1000":{
+					"jcr:primaryType":"cq:Tag",
+					"jcr:createdBy":"workflow-process-service",
+					"jcr:title":"1000",
+					"jcr:created":"Fri Jun 17 2022 10:31:40 GMT+0200",
+					"jcr:description":"1000",
+					"sling:resourceType":"cq/tagging/components/tag",
+					"easyopening":{
+						"jcr:primaryType":"cq:Tag",
+						"jcr:createdBy":"workflow-process-service",
+						"jcr:title":"EasyOpening",
+						"jcr:created":"Fri Jun 17 2022 10:31:40 GMT+0200",
+						"jcr:description":"EasyOpening",
+						"sling:resourceType":"cq/tagging/components/tag"
+					}
+				},
+				"jcr:primaryType":"cq:Tag",
+				"jcr:createdBy":"workflow-process-service",
+				"jcr:title":"A Base ST",
+				"jcr:created":"Fri Jun 17 2022 10:31:40 GMT+0200",
+				"jcr:description":"A Base ST",
+				"sling:resourceType":"cq/tagging/components/tag"
+			}
+		}
+	}
+}

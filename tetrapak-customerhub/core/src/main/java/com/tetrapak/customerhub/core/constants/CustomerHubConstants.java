@@ -655,6 +655,12 @@ public final class CustomerHubConstants {
 
     /** The Constant LANGUAGE_LEVEL. */
     public static final int LANGUAGE_PAGE_LEVEL = 4;
+    
+    /** The Constant for JSON **/
+    public static final String JSON_SERVLET_EXTENSION = "json";
+    
+    /** The Constant for keylines selector **/
+    public static final String KEYLINES_SLING_SERVLET_SELECTOR = "assets";
 
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
