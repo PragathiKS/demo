@@ -36,24 +36,28 @@
                     <div class="pw-banner-herowrapper">
                         <div class="pw-banner__sideSection ${(data.pwDisplay =='display-row') ? 'left' : 'right'} ${data.pwCardTheme}"></div>
                         <section class="pw-banner__contentwrapper" auto_locator="bannerCard">
+						<sly data-sly-test="${data.subtitle || data.title || data.text}">
                                 <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${data.pwDisplay} ${data.pwDisplay =='display-row-reversed' ? 'display-row-reversed-wrapper' : ''}">
                                     <div class="pw-banner__gradient-bg"></div>
                                     <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                                 </div>
+						</sly>
                         </section>
                     </div>
                 </sly>
                 <sly data-sly-test="${textImageBanner}">
+				    <sly data-sly-test="${data.subtitle || data.title || data.text}">
                     <sly data-sly-test="${cardTheme || cardThemeReverse}">
                         <div class="pw-banner__bgcolor ${data.pwCardTheme} ${data.subtitle ? '' : 'no-subtitle'} ${cardTheme ? 'display-row-reversed-wrapper' : ''}">
                             <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
                     </sly>
-                     <sly data-sly-test="${data.pwCardTheme == null || data.pwCardTheme =='gray'}">
+                    <sly data-sly-test="${data.pwCardTheme == null || data.pwCardTheme =='gray'}">
                         <div class="${data.subtitle ? '' : 'no-subtitle'}">
                             <sly data-sly-call="${bannerCommon @ bannerData=data, dataLinkSectionCTAText=dataLinkSectionCTAText, isFormTypeAuthored=isFormTypeAuthored, isSoftConvEnabled=isSoftConvEnabled, heroBanner=heroBanner, textImageBanner=textImageBanner, cardTheme=cardTheme, cardThemeReverse=cardThemeReverse}"/>
                         </div>
                     </sly>
+				    </sly>
                 </sly>
         </div>
             <sly data-sly-test="${(isFormTypeAuthored && data.formType == 'enableSoftconversion') || (!isFormTypeAuthored && isSoftConvEnabled)}"
