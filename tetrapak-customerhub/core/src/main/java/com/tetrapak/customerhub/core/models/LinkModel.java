@@ -38,6 +38,18 @@ public class LinkModel {
      * The asset name.
      */
     private String assetName;
+    
+    private boolean pdfType;
+    
+    public boolean isPdfType() {
+	    if((StringUtils.isNotBlank(linkUrl) && linkUrl.startsWith(CustomerHubConstants.CONTENT_PATH ) && linkUrl.endsWith(CustomerHubConstants.PDF))){
+	              pdfType=true;
+	    }
+	    else{
+	         pdfType=false; 
+	    }
+	      return pdfType;           
+    }
 
     @PostConstruct
     protected void init() {
