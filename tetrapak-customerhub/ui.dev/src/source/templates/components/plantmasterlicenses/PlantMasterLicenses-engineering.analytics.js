@@ -41,7 +41,7 @@ export const _trackFormComplete = function (formData) {
     for (const [key, value] of Object.entries(user)) {
       userFields.push({
         formFieldName: key,
-        formFieldValue: value
+        formFieldValue: key === 'licenseHolderName' ? 'NA' : value
       });
     }
 
