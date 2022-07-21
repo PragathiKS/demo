@@ -40,6 +40,9 @@ describe('PlantMasterLicensesEngineering', function () {
     this.getLicenseCheckboxDataSpy = sinon.spy(this.engineeringLicenses, 'getLicenseCheckboxData');
     this.submitRequestFormSpy = sinon.spy(this.engineeringLicenses, 'submitRequestForm');
     this.validateLicenseHolderSpy = sinon.spy(this.engineeringLicenses, 'validateLicenseHolder');
+    this.trackFormCompleteSpy = sinon.spy(this.engineeringLicenses, 'trackFormComplete');
+    this.trackFormErrorSpy = sinon.spy(this.engineeringLicenses, 'trackFormError');
+    this.trackFormStartSpy = sinon.spy(this.engineeringLicenses, 'trackFormStart');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(PlantMasterEngLicensesData));
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
@@ -70,6 +73,9 @@ describe('PlantMasterLicensesEngineering', function () {
     this.submitRequestFormSpy.restore();
     this.validateLicenseHolderSpy.restore();
     this.getLicenseCheckboxDataSpy.restore();
+    this.trackFormCompleteSpy.restore();
+    this.trackFormErrorSpy.restore();
+    this.trackFormStartSpy.restore();
   });
 
   it('should initialize', function (done) {
@@ -105,6 +111,7 @@ describe('PlantMasterLicensesEngineering', function () {
     expect(this.validateLicenseHolderSpy.called).to.be.true;
     expect(this.removeAllErrorMessagesSpy.called).to.be.true;
     expect(this.addErrorMsgSpy.called).to.be.true;
+    expect(this.trackFormErrorSpy.called).to.be.true;
     done();
   });
 
@@ -128,11 +135,13 @@ describe('PlantMasterLicensesEngineering', function () {
     this.ajaxStub.returns(ajaxResponse({"result":"Success","status":202}));
 
     $('#licenseHolderName-1').val('Test Data');
-    $('#activationDate-1').val('2022-03-17');
+    $('#activationDate-1').val('2022-03-17').trigger('input');
     $('.js-tp-aip-licenses__checkbox-group .tpatom-checkbox__input').first().prop('checked', true);
     $('.js-tp-aip-licenses-eng__btn').trigger('click');
+    expect(this.trackFormStartSpy.called).to.be.true;
     expect(this.validateLicenseHolderSpy.called).to.be.true;
     expect(this.submitRequestFormSpy.called).to.be.true;
+    expect(this.trackFormStartSpy.called).to.be.true;
     expect(this.showContentSpy.called).to.be.true;
     done();
   });

@@ -54,5 +54,7 @@ public class RichTextModelTest {
         Assert.assertNotNull(model.getPwPadding());
         Assert.assertNotNull(model.getPwTheme());
         Assert.assertNotNull(model.getTopSpacing());
+        Assert.assertNotNull(model.getAnchorTitle());
+        Assert.assertNotNull(model.getAnchorId());
     }
 }

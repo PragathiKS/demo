@@ -1,0 +1,40 @@
+<div class="tp-aip__acc-item-body">
+    <div class="tp-aip__table-wrap">
+        <table class="tp-aip__table">
+            <thead class="tp-aip__thead-primary">
+            <tr>
+                <th>{{i18n key=i18nKeys.activeLicense.name}}</th>
+                <th>{{i18n key=i18nKeys.activeLicense.licenceKey}}</th>
+                <th>{{i18n key=i18nKeys.activeLicense.platformText}}</th>
+                <th>{{i18n key=i18nKeys.activeLicense.startDate}}</th>
+                <th>{{i18n key=i18nKeys.activeLicense.endDate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each engLicenses}}
+                    <tr>
+                        <td>{{this.contactPerson}}</td>
+                        <td>{{this.licenseKey}}</td>
+                        <td>{{this.platform}}</td>
+                        <td>{{this.validFromDate}}</td>
+                        <td>{{this.validToDate}}</td>
+                        <td>
+                            {{> atoms/buttons/button/button
+                                    modifier="transparent"
+                                    data-name=this.contactPerson
+                                    data-platform=this.platform
+                                    data-license-key=this.licenseKey
+                                    data-country-name=this.countryName
+                                    data-site=this.site
+                                    data-start-date=this.validFromDate
+                                    data-end-date=this.validToDate
+                                    text=../i18nKeys.activeLicense.withdrawBtn
+                                    baseClass="tp-aip-licenses-active__btn"
+                                    jsClass="js-tp-aip-licenses-active__withdraw"}}
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

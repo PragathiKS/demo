@@ -1,4 +1,5 @@
 {"groups":[
+{"groupName":"cuhu_tppm_access","trainingId":"CT-29001"},
 {"groupName":"cuhu_tppm_product_common","trainingId":"CT-29001"},
 {"groupName":"cuhu_tppm_product_siemenstiaplatform","trainingId":"CT-29002","engLicenseId":"479535-0100TIA","siteLicenseId":"3479532-0100TIA"},
 {"groupName":"cuhu_tppm_product_rockwellcontrollogix","trainingId":"CT-29006","engLicenseId":"3479535-0100CLX","siteLicenseId":"3479532-0100CLX"},

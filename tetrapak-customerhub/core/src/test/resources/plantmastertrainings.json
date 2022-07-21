@@ -11,8 +11,8 @@
             "plantmastertrainings":{
                "jcr:primaryType":"nt:unstructured",
                "title":"cuhu.plantmastertrainings.title",
+               "subTitle":"cuhu.plantmastertrainings.subTitle",
                "availableTrainings":"cuhu.plantmastertrainings.availableTrainings",
-               "learningHistory":"cuhu.plantmastertrainings.learningHistory",
                "courseDescription":"cuhu.plantmastertrainings.courseDescription",
                "trainingMaterialHandouts":"cuhu.plantmastertrainings.trainingMaterialHandouts",
                "principleObjectives":"cuhu.plantmastertrainings.principleObjectives",
@@ -24,6 +24,7 @@
                "noOfParticipantsLabel":"cuhu.plantmastertrainings.noOfParticipants",
                "preferredLocationLabel":"cuhu.plantmastertrainings.preferredLocation",
                "preferredDateLabel":"cuhu.plantmastertrainings.preferredDate",
+               "preferredDatePlaceholder": "cuhu.plantmastertrainings.preferredDatePlaceholder",
                "commentsLabel":"cuhu.plantmastertrainings.comments",
                "consentLabel":"cuhu.plantmastertrainings.consent",
                "formTitle":"cuhu.plantmastertrainings.formTitle",
@@ -31,11 +32,26 @@
                "submitButtonLabel":"cuhu.plantmastertrainings.submitButtonLabel",
                "sling:resourceType":"customerhub/components/content/plantmastertrainings",
                "inputErrorMsg":"cuhu.plantmastertrainings.inputErrorMsg",
+               "confirmationErrorMsg": "cuhu.plantmastertrainings.confirmationErrorMsg",
+               "numberFieldErrorMsg": "cuhu.plantmasterlicense.engineering.numberFieldErrorMsg",
+               "inputFormatErrorMsg": "cuhu.plantmasterlicense.engineering.inputFormatErrorMsg",
                "successMessage":"cuhu.plantmastertrainings.successMessage",
                "subject":"cuhu.plantmastertrainings.subject",
                "salutation":"cuhu.plantmastertrainings.salutation",
                "body":"cuhu.plantmastertrainings.body",
-               "contactDetails":"cuhu.plantmastertrainings.contactDetails"
+               "contactDetails":"cuhu.plantmastertrainings.contactDetails",
+               "trainingIdLabel": "cuhu.plantmastertrainings.trainingIdLabel",
+               "trainingNameLabel": "cuhu.plantmastertrainings.trainingNameLabel",
+               "learningHistory": {
+                  "jcr:primaryType": "nt:unstructured",
+                  "authenticatedtext": "cuhu.plantmastertraining.lh.authenticatedText",
+                  "accreditedtext": "cuhu.plantmastertraining.lh.accreditedText",
+                  "diplomatext": "cuhu.plantmastertraining.lh.diplomaText",
+                  "usertext": "cuhu.plantmastertraining.lh.userText",
+                  "learninghistorytext": "cuhu.plantmastertraining.lh.learningHistoryText",
+                  "itemtext": "cuhu.plantmastertraining.lh.itemText",
+                  "completiondatetext": "cuhu.plantmastertraining.lh.completionDateText"
+               }
             }
          }
       }

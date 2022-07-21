@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class PlantMasterLicensesModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlantMasterLicensesModel.class);
     private static final String ENGINEERING_LICENSE_CHILD_RESOURCE_NAME = "engineeringLicense";
     private static final String SITE_LICENSE_CHILD_RESOURCE_NAME = "siteLicense";
+    private static final String ACTIVE_LICENSE_CHILD_RESOURCE_NAME = "activeLicense";
     public static final String EMAIL_USERNAME = "username";
     public static final String EMAIL_ADDRESS = "emailaddress";
     public static final String EMAIL_SALUTATION = "salutation";
@@ -58,6 +60,9 @@ public class PlantMasterLicensesModel {
     
     @ChildResource(name = SITE_LICENSE_CHILD_RESOURCE_NAME)
     private SiteLicenseModel siteLicenseModel;
+
+    @ChildResource(name = ACTIVE_LICENSE_CHILD_RESOURCE_NAME)
+    private ActiveLicenseModel activeLicenseModel;
     
     @ValueMapValue
     private String username;
@@ -68,6 +73,10 @@ public class PlantMasterLicensesModel {
     @ValueMapValue
     private String heading;
     
+    /** The subtitle */
+    @ValueMapValue
+    private String subTitle;
+    
     private String i18nKeys;
     
     private String emailApiUrl;
@@ -75,7 +84,9 @@ public class PlantMasterLicensesModel {
     private String engineeringLicenseApiUrl;
     
     private String siteLicenseApiUrl;
-    
+
+    private String activeLicenseApiUrl;
+
     private String userNameValue;
     
     private String emailAddressValue;
@@ -99,15 +110,17 @@ public class PlantMasterLicensesModel {
      * init method.
      */
     @PostConstruct
-    protected void init() {
+    protected void init() throws UnsupportedEncodingException {
         
         i18nKeysMap = new HashMap<>();
         i18nKeysMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18nKeysMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME, siteLicenseModel);
-        
+        i18nKeysMap.put(ACTIVE_LICENSE_CHILD_RESOURCE_NAME, activeLicenseModel);
+
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(ENGINEERING_LICENSE_CHILD_RESOURCE_NAME, engineeringLicenseModel);
         i18KeyMap.put(SITE_LICENSE_CHILD_RESOURCE_NAME, siteLicenseModel);
+        i18KeyMap.put(ACTIVE_LICENSE_CHILD_RESOURCE_NAME, activeLicenseModel);
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         i18nKeys = gson.toJson(i18KeyMap);
         LOGGER.debug("i18nKeys : {}", i18nKeys);
@@ -120,12 +133,15 @@ public class PlantMasterLicensesModel {
         
         if (slingSettingsService.getRunModes().contains(Externalizer.PUBLISH)) {
             isPublishEnvironment = Boolean.TRUE;
-            String apiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+            final String productDetailsApiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
                     CustomerHubConstants.AIP_PRODUCT_DETAILS_API);
+            final String activeLicensesApiMapping = GlobalUtil.getSelectedApiMapping(apigeeService,
+                    CustomerHubConstants.AIP_ACTIVE_LICENSES);
             this.engineeringLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(),
-                    apiMapping, aipCategoryService.getEngineeringLicensesId());
-            this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), apiMapping,
+                    productDetailsApiMapping, aipCategoryService.getEngineeringLicensesId());
+            this.siteLicenseApiUrl = GlobalUtil.getAIPEndpointURL(apigeeService.getApigeeServiceUrl(), productDetailsApiMapping,
                     aipCategoryService.getSiteLicensesId());
+            this.activeLicenseApiUrl = GlobalUtil.getAPIEndpointURL(apigeeService.getApigeeServiceUrl(),activeLicensesApiMapping);
         }
         this.setEmailAddressValue();
         this.setUserNameValue();
@@ -136,10 +152,10 @@ public class PlantMasterLicensesModel {
         this.emailAddressValue = GlobalUtil.getCustomerEmailAddress(this.request);
     }
 
-    public void setUserNameValue() {
+    public void setUserNameValue() throws UnsupportedEncodingException {
         if (Objects.nonNull(request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME))) {
             this.userNameValue = URLDecoder.decode(
-                    request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue(), StandardCharsets.UTF_8);
+                    request.getCookie(CustomerHubConstants.CUSTOMER_COOKIE_NAME).getValue(), "UTF-8");
         }
     }
     
@@ -154,7 +170,11 @@ public class PlantMasterLicensesModel {
     public SiteLicenseModel getSiteLicenseModel() {
         return siteLicenseModel;
     }
-    
+
+    public ActiveLicenseModel getActiveLicenseModel() {
+        return activeLicenseModel;
+    }
+
     public String getEmailApiUrl() {
         return emailApiUrl;
     }
@@ -166,7 +186,11 @@ public class PlantMasterLicensesModel {
     public String getSiteLicenseApiUrl() {
         return siteLicenseApiUrl;
     }
-    
+
+    public String getActiveLicenseApiUrl() {
+        return activeLicenseApiUrl;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -181,6 +205,10 @@ public class PlantMasterLicensesModel {
     
     public String getHeading() {
         return heading;
+    }
+    
+    public String getSubTitle() {
+        return subTitle;
     }
     
     public boolean isPublishEnvironment() {

@@ -27,6 +27,7 @@
   "submitButtonLabel":"Submit",
   "inputErrorMsg":"Unexpected value",
   "inputFormatErrorMsg":"Unexpected value",
+  "numberFieldErrorMsg":"Invalid number value",
   "successMessage":"Your request has been submitted",
   "subject":"Test Subject",
   "salutation":"Hi, Sir",

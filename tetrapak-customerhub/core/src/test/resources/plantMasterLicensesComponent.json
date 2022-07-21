@@ -46,6 +46,7 @@
     "siteLicensesDescriptionHeading": "Site LIcenses",
     "nameOfSite": "Name of site",
     "inputFieldError": "Input field error",
+    "numberFieldError": "Number field error",
     "basicUnitToolTipDescription": "basic unit tooltip description",
     "advancedUnitToolTipHeading": "Advanced unit tooltip heading",
     "plcType": "PLC Type",
@@ -84,5 +85,38 @@
         "applicationName": "Cheese"
       }
     }
+  },
+  "activeLicense": {
+    "jcr:primaryType": "nt:unstructured",
+     "startDate": "cuhu.plantmasterlicense.active.startDateLabel",
+    "requestorText": "cuhu.plantmasterlicense.active.email.requesterText",
+    "subject": "cuhu.plantmasterlicense.active.email.subject",
+    "cq:lastReplicationAction": "Activate",
+    "endDate": "cuhu.plantmasterlicense.active.endDateLabel",
+    "modalCancelBtn": "cuhu.plantmasterlicense.active.withdrawlModel.cancelButtonText",
+    "licenceKey": "cuhu.plantmasterlicense.active.licenseKeyLabel",
+    "cq:lastReplicatedBy": "admin",
+    "modalConfirmBtn": "cuhu.plantmasterlicense.active.withdrawlModel.buttonText",
+    "emailCommentText": "cuhu.plantmasterlicense.active.email.commentText",
+    "modalWithdrawBack": "cuhu.plantmasterlicense.active.withdrawlModel.successBackButtonText",
+    "engLicenseTitle": "cuhu.plantmasterlicense.active.engineeringLicenseTitle",
+    "cq:lastReplicated": "Wed May 18 2022 15:37:08 GMT+0530",
+    "username": "cuhu.plantmasterlicense.active.email.username",
+    "modalWithdrawSuccessText": "cuhu.plantmasterlicense.active.withdrawlModel.successText",
+    "modalConfirmTitle": "cuhu.plantmasterlicense.active.withdrawlModel.title",
+    "body": "cuhu.plantmasterlicense.active.email.bodyText",
+    "name": "cuhu.plantmasterlicense.active.nameLabel",
+    "site": "cuhu.plantmasterlicense.active.siteLabel",
+    "title": "cuhu.plantmasterlicense.active.title",
+    "platformText": "cuhu.plantmasterlicense.active.platformText",
+    "modalComments": "cuhu.plantmasterlicense.active.withdrawlModel.commentLabel",
+    "siteLicenseTitle": "cuhu.plantmasterlicense.active.siteLicenseTitle",
+    "siteDate": "cuhu.plantmasterlicense.active.siteDate",
+    "modalWithdrawSuccessTitle": "cuhu.plantmasterlicense.active.withdrawlModel.successTitle",
+    "country": "cuhu.plantmasterlicense.active.countryLabel",
+    "usernameText": "cuhu.plantmasterlicense.active.email.usernameText",
+    "withdrawBtn": "cuhu.plantmasterlicense.active.withdrawlButtonLabel",
+    "modalConfirmText": "cuhu.plantmasterlicense.active.withdrawlModel.confirmationText",
+    "platform": "cuhu.plantmasterlicense.active.platformLabel"
   }
 }

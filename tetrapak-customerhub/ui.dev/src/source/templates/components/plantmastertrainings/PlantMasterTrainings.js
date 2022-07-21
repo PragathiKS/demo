@@ -2,9 +2,11 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import moment from 'moment';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods} from '../../../scripts/utils/constants';
+import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {sanitize} from '../../../scripts/common/common';
+import {_trackAccordionClick, _trackFormError, _trackFormComplete, _trackFormStart} from './PlantMasterTrainings.analytics';
 
 function _processTrainingsData(data,pingUserGroup) {
   data = data ? data : [];
@@ -14,12 +16,14 @@ function _processTrainingsData(data,pingUserGroup) {
   data.forEach((item) => {
     if(trainingUserGroup.length > 0){
       if(trainingUserGroup.includes(item.extRef.material.number)){
-        const {learningItemDetail, name, id} = item;
+        const {learningItemDetail, name, extRef} = item;
+        const {material} = extRef;
+        const {number} = material;
         const {itemGoals, audience, duration, maximumEnrollments, comments} = learningItemDetail;
 
         processedDataArr.push({
           name,
-          id,
+          id: number,
           description: item.descriptions[0].body,
           itemGoals,
           audience,
@@ -33,17 +37,65 @@ function _processTrainingsData(data,pingUserGroup) {
   return processedDataArr;
 }
 
+function _processLearningHistoryData(data) {
+  data = data ? data : [];
+
+  const learningHistoryObj = {
+    diploma: [],
+    accredited: [],
+    authenticated: []
+  };
+
+  data.forEach((learningItem) => {
+    const { labTags } = learningItem;
+    const { completionDateTime } = learningItem;
+    learningItem['completionDateTime'] = moment(completionDateTime).format('YYYY-MM-DD');
+
+    if (labTags) {
+      labTags.forEach(tag => {
+        switch (tag) {
+          case 'Training':
+            learningHistoryObj['diploma'].push(learningItem);
+            break;
+          case 'L1 Certification':
+            learningHistoryObj['accredited'].push(learningItem);
+            break;
+          case 'L2 Certification':
+            learningHistoryObj['authenticated'].push(learningItem);
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  });
+
+  return learningHistoryObj;
+}
+
 function _addErrorMsg(el, errorMsgSelector) {
-  $(el)
+  const $el = $(el);
+  const $this = this;
+  const formErrorMessage = $el.closest('.js-aip__form-element').find(errorMsgSelector).text();
+  const formErrorField = $el.attr('id').split('-')[0];
+
+  $el
     .closest('.js-aip__form-element')
     .addClass('tp-aip__form-element--error')
     .find(errorMsgSelector)
     .addClass('error-msg--active');
+
+  $this.cache.formError.push({
+    formErrorMessage,
+    formErrorField
+  });
 }
 
 function _removeAllErrorMessages($form) {
+  const $this = this;
   $form.find('.error-msg--active').removeClass('error-msg--active');
   $form.find('.tp-aip__form-element--error').removeClass('tp-aip__form-element--error');
+  $this.cache.formError = [];
 }
 
 function _handleFormSubmit(formEl) {
@@ -61,6 +113,15 @@ function _handleFormSubmit(formEl) {
       isFormValid = false;
       $this.addErrorMsg(el, '.js-aip__error-msg-required');
     }
+
+    const $numberField = this.root.find(':input[type="number"]:visible');
+    $numberField.each((idx, ele) => {
+      const numberFieldVal = $(ele).val();
+      if (numberFieldVal && (!this.isNumeric(numberFieldVal) || (numberFieldVal < 1))) {
+        isFormValid = false;
+        this.addErrorMsg(ele, '.js-aip__error-msg-invalid-number');
+      }
+    });
 
     if ($el.hasClass('js-aip-trainings__date-input') && $.trim($el.val())) {
       const date = moment($el.val(), 'YYYY-MM-DD', true);
@@ -91,7 +152,7 @@ function _handleFormSubmit(formEl) {
     // due to multiple forms on page, input fields are suffixed with index that is removed before submitting
     for (const [key, value] of formData) {
       const updatedKey = key.split('-')[0];
-      processedFormData.set(updatedKey, value);
+      processedFormData.set(updatedKey, sanitize(value));
     }
 
     processedFormData.set('name', username);
@@ -108,15 +169,22 @@ function _handleFormSubmit(formEl) {
         data: processedFormData,
         showLoader: true
       }).done(() => {
+        const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
         $this.cache.$spinner.addClass('d-none');
         $formWrapper.addClass('d-none');
         $trainingBody.addClass('d-none');
         $this.cache.$contentWrapper.removeClass('d-none');
         $confirmationTxt.removeClass('d-none');
+        $this.trackFormComplete(trainingName, processedFormData);
       }).fail(() => {
         $this.cache.$spinner.addClass('d-none');
         $this.cache.$contentWrapper.removeClass('d-none');
       });
+  } else {
+    const $formWrapper = $form.parent();
+    const { formError } = $this.cache;
+    const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
+    $this.trackFormError(trainingName, formError);
   }
 }
 
@@ -139,7 +207,7 @@ function _getTrainingsData() {
         },
         showLoader: true
       }).done(res => {
-        $this.cache.trainingsData = _processTrainingsData(res.data,this.cache.trainingUerGroup);
+        $this.cache.trainingsData = $this.processTrainingsData(res.data,this.cache.trainingUserGroup);
         $this.renderTrainings();
         $this.cache.$contentWrapper.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
@@ -148,7 +216,6 @@ function _getTrainingsData() {
       });
   });
 }
-
 
 /**
  * Fetch ping user data 
@@ -168,13 +235,22 @@ function _getUserGroup() {
     showLoader: true
   }).done(res => {
     const userGroup = res.groups;
-    if(userGroup){
+    const learningPingGroup = 'cuhu_tppm_access';
+
+    if (userGroup) {
       userGroup.forEach(group => {
-        if(group.trainingId === '' || group.trainingId !== undefined){
-          this.cache.trainingUerGroup.push(group.trainingId);
+        if (group.trainingId === '' || group.trainingId !== undefined) {
+          this.cache.trainingUserGroup.push(group.trainingId);
+        }
+
+        // if user has access to Learning History tab, get data
+        if (group.groupName === learningPingGroup) {
+          this.getLearningHistoryData();
         }
       });
     }
+
+    this.getTrainingsData();
   });
 }
 
@@ -187,6 +263,46 @@ function _renderTrainings() {
     target: '.js-aip-trainings__accordion',
     data: { i18nKeys: $this.cache.i18nKeys, trainingsDataArr: trainingsData}
   });
+}
+
+/**
+ * Fetch the Learning History data
+ */
+function _getLearningHistoryData() {
+  const $this = this;
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: $this.cache.learningHistoryApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }).done(res => {
+        $this.cache.learningHistoryData = $this.processLearningHistoryData(res.data);
+        $this.renderLearningHistory();
+      }).fail((e) => {
+        logger.error(e);
+      });
+  });
+}
+
+function _renderLearningHistory() {
+  const $this = this;
+  const { learningHistoryData } = $this.cache;
+
+  render.fn({
+    template: 'plantmasterTrainingsLearningTab',
+    target: '.js-aip-trainings__accordion-learning',
+    data: { i18nKeys: $this.cache.i18nKeys, learningHistoryData: learningHistoryData}
+  });
+
+  $('#nav-learning-tab').removeClass('d-none');
 }
 
 class PlantMasterTrainings {
@@ -205,6 +321,7 @@ class PlantMasterTrainings {
       logger.error(e);
     }
     this.cache.trainingsApi = this.root.data('trainings-api');
+    this.cache.learningHistoryApi = this.root.data('learning-history-api');
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.username = decodeURI(this.root.data('username'));
     this.cache.userEmailAddress = this.root.data('email');
@@ -214,7 +331,8 @@ class PlantMasterTrainings {
     this.cache.$formWrapper = this.root.find('.js-aip-trainings__form-content');
     this.cache.$tabPaneAvailableTrainings = this.root.find('.js-aip-trainings__accordion');
     this.cache.usergroupurl = this.root.data('group-servlet-url');
-    this.cache.trainingUerGroup = [];
+    this.cache.trainingUserGroup = [];
+    this.cache.formError = [];
   }
 
   bindEvents() {
@@ -222,6 +340,44 @@ class PlantMasterTrainings {
       e.preventDefault();
       this.handleFormSubmit(e.target);
     });
+
+    // track Accordion click analytics
+    this.root.on('click', '.js-aip-trainings__accordion .btn-link', e => {
+      const $btn = $(e.currentTarget);
+      const text = $btn.find('span').text();
+      const $this = this;
+      const linkSection = $btn.parents('#tp-aip-trainings__accordion').length ? 'Available Automation Engineering Trainings' : 'Learning History';
+
+      if ($btn.attr('aria-expanded') === 'true') {
+        $this.trackAccordionClick(text, false, linkSection);
+      } else {
+        $this.trackAccordionClick(text, true, linkSection);
+      }
+    });
+
+    // track Form Start analytics
+    this.root.on('input change', '.tpatom-input-box__input, .tpatom-textarea-box__input, .tpatom-checkbox__input', e => {
+      const $this = this;
+      const $formWrapper = $(e.currentTarget).parents('.js-aip-trainings__form');
+      const trainingName = $formWrapper.parents('.tp-aip__acc-item').find('.btn-link').text().trim();
+
+      if (!$formWrapper.data('form-touched')) {
+        $this.trackFormStart(trainingName);
+        $formWrapper.attr('data-form-touched', true);
+      }
+    });
+  }
+
+  isNumeric(number) {
+    return REG_NUM.test(number);
+  }
+
+  processTrainingsData() {
+    return _processTrainingsData.apply(this, arguments);
+  }
+
+  processLearningHistoryData() {
+    return _processLearningHistoryData.apply(this, arguments);
   }
 
   renderTrainings() {
@@ -248,10 +404,33 @@ class PlantMasterTrainings {
     return _removeAllErrorMessages.apply(this, arguments);
   }
 
+  getLearningHistoryData() {
+    return _getLearningHistoryData.apply(this, arguments);
+  }
+
+  renderLearningHistory() {
+    return _renderLearningHistory.apply(this, arguments);
+  }
+
+  trackAccordionClick() {
+    return _trackAccordionClick.apply(this, arguments);
+  }
+
+  trackFormError() {
+    return _trackFormError.apply(this, arguments);
+  }
+
+  trackFormComplete() {
+    return _trackFormComplete.apply(this, arguments);
+  }
+
+  trackFormStart() {
+    return _trackFormStart.apply(this, arguments);
+  }
+
   init() {
     this.initCache();
     this.getUserGroup();
-    this.getTrainingsData();
     this.bindEvents();
   }
 }

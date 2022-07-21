@@ -70,10 +70,11 @@ public class TextVideoModelTest {
         assertNotNull("Link URL should not be null", linkURL);
         assertTrue("Link URL is not empty", linkURL.length() > 0);
         Assert.assertEquals("linkUrl", "https://google.com", linkURL);
-
-        Boolean isExternal = textVideoModel.isExternal();
-        assertNotNull("isExternal field should not be null", isExternal);
-        Assert.assertEquals("isExternal", true, isExternal);
+        
+        String linkType = textVideoModel.getLinkType();
+        assertNotNull("Link type should not be null", linkType);
+        assertTrue("Link type is not empty", linkType.length() > 0);
+        Assert.assertEquals("linkType", "external", linkType);
 
         String videoSource = textVideoModel.getVideoSource();
         assertNotNull("Video source should not be null", videoSource);
@@ -104,6 +105,35 @@ public class TextVideoModelTest {
         assertNotNull("Text alignment should not be null", textAlignment);
         assertTrue("Text alignment is not empty", textAlignment.length() > 0);
         Assert.assertEquals("text alignment", "right", textAlignment);
+        
+        Boolean packageDesign = textVideoModel.isPackageDesign();
+        assertNotNull("PackageDesign field should not be null", packageDesign);
+        Assert.assertEquals("PackageDesign", true, packageDesign);
+
+        String subTitle = textVideoModel.getSubTitle();
+        assertNotNull("Sub-Title is not null", subTitle);
+        assertTrue("Sub-Title is not empty", subTitle.length() > 0);
+        Assert.assertEquals("subTitle", "Design Submission", subTitle);
+        
+        String pwTheme = textVideoModel.getPwTheme();
+        assertNotNull("Theme is not null", pwTheme);
+        assertTrue("Theme is not empty", pwTheme.length() > 0);
+        Assert.assertEquals("pwTheme", "grayscale-lighter", pwTheme);
+        
+        String pwButtonTheme = textVideoModel.getPwButtonTheme();
+        assertNotNull("Button Theme is not null", pwButtonTheme);
+        assertTrue("Button Theme is not empty", pwButtonTheme.length() > 0);
+        Assert.assertEquals("pwButtonTheme", "link", pwButtonTheme);
+        
+        String anchorId = textVideoModel.getAnchorId();
+        assertNotNull("Anchor ID is not null", anchorId);
+        assertTrue("Anchor ID is not empty", anchorId.length() > 0);
+        Assert.assertEquals("Anchor ID", "features", anchorId);
+        
+        String anchorTitle = textVideoModel.getAnchorTitle();
+        assertNotNull("Anchor Title is not null", anchorTitle);
+        assertTrue("Anchor Title is not empty", anchorTitle.length() > 0);
+        Assert.assertEquals("anchorTitle", "Features", anchorTitle);
 
     }
 

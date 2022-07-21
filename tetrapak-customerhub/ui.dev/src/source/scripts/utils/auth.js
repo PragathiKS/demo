@@ -11,12 +11,12 @@ import { logger } from './logger';
  * Generates a valid APIGEE token and ensures token validity
  */
 function generateToken() {
-  const env_var = $('.tp-financials').attr('data-src_ispublishenvironment') 
+  const env_var = $('.tp-financials').attr('data-src_ispublishenvironment')
   || $('.tp-my-equipment').attr('data-src_ispublishenvironment')
   || $('.tp-equipment-details').attr('data-src_ispublishenvironment')
   || $('.tp-add-equipment').attr('data-src_ispublishenvironment')
   || $('.tp-aip-trainings').attr('data-src_ispublishenvironment')
-|| $('.tp-aip-licenses').attr('data-src_ispublishenvironment');
+  || $('.tp-aip-licenses').attr('data-src_ispublishenvironment');
   return (
     new Promise(function (resolve, reject) {
       const access_token = storageUtil.get(AUTH_TOKEN_COOKIE);

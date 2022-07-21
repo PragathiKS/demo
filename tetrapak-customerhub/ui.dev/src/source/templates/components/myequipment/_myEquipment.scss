@@ -9,6 +9,7 @@ $color-red: #ff0000;
         }
     }
     &__modal-body {
+        @include padding($padding-zero $padding-l);
         overflow-y: auto;
 
         .tpatom-checkbox {

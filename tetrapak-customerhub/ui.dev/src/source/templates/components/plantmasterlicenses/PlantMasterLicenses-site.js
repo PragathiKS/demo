@@ -1,10 +1,15 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods} from '../../../scripts/utils/constants';
+import {REG_NUM, ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
-
+import {
+  _trackFormComplete,
+  _trackFormError,
+  _trackFormStart,
+  _trackTabClick
+} from './PlantMasterLicenses-site.analytics';
 
 function _renderSiteLicensesData() {
   render.fn({
@@ -74,6 +79,7 @@ class PlantMasterLicensesSite {
     this.cache.submitApi = aipLicenseObj.data('submit-api');
     const configJson = aipLicenseObj.find('.js-aip-licenses__config').text();
     this.cache.siteLicenseUerGroup = this.siteLicenseUerGroup;
+    this.cache.formError = [];
     try {
       this.cache.i18nKeys = JSON.parse(configJson);
     } catch (e) {
@@ -82,6 +88,9 @@ class PlantMasterLicensesSite {
     }
   }
 
+  isNumeric(number) {
+    return REG_NUM.test(number);
+  }
 
   showContent = () => {
     this.cache.$contentWrapper.removeClass('d-none');
@@ -104,12 +113,22 @@ class PlantMasterLicensesSite {
     );
   }
 
-  addErrorMsg(ele) {
-    $(ele)
+  addErrorMsg(ele, errorMsgSelector) {
+    const $el = $(ele);
+    const $this = this;
+    const formErrorMessage = $el.closest('.js-tp-aip-licenses__form-element').find(errorMsgSelector).text();
+    const formErrorField = $el.attr('id').split('-')[0];
+
+    $el
       .closest('.js-tp-aip-licenses__form-element')
       .addClass('tp-aip-licenses__form-element--error')
-      .find('.js-tp-aip-licenses__error-msg-required')
+      .find(errorMsgSelector)
       .addClass('error-msg--active');
+
+    $this.cache.formError.push({
+      formErrorMessage,
+      formErrorField
+    });
   }
 
   removeAllErrorMessages() {
@@ -117,6 +136,7 @@ class PlantMasterLicensesSite {
     this.root
       .find('.tp-aip-licenses__form-element--error')
       .removeClass('tp-aip-licenses__form-element--error');
+    this.cache.formError = [];
   }
 
   submitRequestForm = (e) => {
@@ -128,7 +148,16 @@ class PlantMasterLicensesSite {
     $requiredFormElements.each((idx, ele) => {
       if (!$(ele).val()) {
         isFormValid = false;
-        this.addErrorMsg(ele);
+        this.addErrorMsg(ele, '.js-tp-aip-licenses__error-msg-required');
+      }
+    });
+
+    const $numberField = this.root.find(':input[type="number"]:visible');
+    $numberField.each((idx, ele) => {
+      const numberFieldVal = $(ele).val();
+      if (numberFieldVal && (!this.isNumeric(numberFieldVal) || (numberFieldVal < 1))) {
+        isFormValid = false;
+        this.addErrorMsg(ele, '.js-tp-aip-licenses__error-msg-invalid-number');
       }
     });
 
@@ -154,15 +183,41 @@ class PlantMasterLicensesSite {
           showLoader: true
         }).done(() => {
           this.renderSuccessMessage();
+          this.trackFormComplete(object);
         }).fail(() => {
           this.showContent();
         });
       });
+    } else {
+      const { formError } = this.cache;
+      this.trackFormError(formError);
     }
   }
 
   bindEvents() {
     this.root.on('click', '.js-tp-aip-licenses-site__btn', this.submitRequestForm);
+
+    // track Form Start analytics
+    this.root.on('input', '.tpatom-input-box__input', e => {
+      const $formWrapper = $(e.currentTarget).parents('form');
+
+      if (!$formWrapper.data('form-touched')) {
+        $formWrapper.attr('data-form-touched', true);
+        this.trackFormStart();
+      }
+    });
+
+    this.root.on('change', '.tpatom-dropdown__select-box', e => {
+      const $formWrapper = $(e.currentTarget).parents('form');
+
+      if (!$formWrapper.data('form-touched')) {
+        $formWrapper.attr('data-form-touched', true);
+        this.trackFormStart();
+      }
+    });
+
+    // track Tab click analytics
+    $('#nav-site-licenses-tab').on('click', this.trackTabClick);
   }
 
   renderSiteLicensesData() {
@@ -171,6 +226,22 @@ class PlantMasterLicensesSite {
 
   getSiteLicensesData() {
     return _getSiteLicensesData.apply(this, arguments);
+  }
+
+  trackFormComplete() {
+    return _trackFormComplete.apply(this, arguments);
+  }
+
+  trackFormError() {
+    return _trackFormError.apply(this, arguments);
+  }
+
+  trackFormStart() {
+    return _trackFormStart.apply(this, arguments);
+  }
+
+  trackTabClick() {
+    return _trackTabClick.apply(this, arguments);
   }
 
   showTooltip(){

@@ -5,6 +5,8 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {sanitize} from '../../../scripts/common/common';
+import {_trackTabClick, _trackFormError, _trackFormComplete, _trackFormStart} from './PlantMasterLicenses-engineering.analytics';
 
 /**
  * Render Engineering Licenses data
@@ -104,6 +106,7 @@ class PlantMasterLicensesEngineering {
     this.cache.engLicensesDataArr = [];
     this.cache.licenseHoldersCount = 1;
     this.cache.engLicenseUerGroup = this.engLicenseUerGroup;
+    this.cache.formError = [];
   }
 
   showContent = () => {
@@ -139,7 +142,7 @@ class PlantMasterLicensesEngineering {
     const comments = $commentsInput.val();
 
     $newHolderForms.each((idx, formEl) => {
-      const isHolderValid = this.validateLicenseHolder($(formEl));
+      const isHolderValid = this.validateLicenseHolder($(formEl), idx);
 
       if (!isHolderValid) {
         allFormsValid = false;
@@ -147,7 +150,11 @@ class PlantMasterLicensesEngineering {
     });
 
     if (!allFormsValid) {
+      const { formError } = this.cache;
       this.addErrorMsg($submitBtnWrapper,'.js-tp-aip-licenses__error-msg-required');
+      this.trackFormError(formError);
+      this.cache.formError = [];
+
       return;
     }
 
@@ -164,7 +171,7 @@ class PlantMasterLicensesEngineering {
 
       $requiredFormElements.each((idx, el) => {
         const updatedKey = el.name.split('-')[0];
-        user[updatedKey] = el.value;
+        user[updatedKey] = sanitize(el.value);
       });
 
       $selectedLicenses.each((idx, el) => {
@@ -175,7 +182,7 @@ class PlantMasterLicensesEngineering {
     });
 
     formObj.users = users;
-    formObj.comments = comments;
+    formObj.comments = sanitize(comments);
 
     ajaxWrapper
       .getXhrObj({
@@ -188,6 +195,7 @@ class PlantMasterLicensesEngineering {
         showLoader: true
       }).done(() => {
         this.renderSuccessMessage();
+        this.trackFormComplete(formObj);
       }).fail(() => {
         this.showContent();
       });
@@ -206,10 +214,24 @@ class PlantMasterLicensesEngineering {
     });
 
     this.cache.$submitBtn.on('click', this.submitRequestForm);
+
+    // track Tab click analytics
+    $('#nav-engineering-licenses-tab').on('click', this.trackTabClick);
+
+    // track Form start analytics
+    this.root.on('input', '.tpatom-textarea-box__input, .tpatom-input-box__input, .tpatom-checkbox__input', e => {
+      const $formWrapper = $(e.currentTarget).parents('.js-tp-aip-licenses-eng__form').find('form');
+
+      if (!$formWrapper.data('form-touched')) {
+        $formWrapper.attr('data-form-touched', true);
+        this.trackFormStart();
+      }
+    });
   }
 
-  validateLicenseHolder($newHolderForm) {
+  validateLicenseHolder($newHolderForm, idx) {
     let isFormValid = true;
+    const formIdx = idx;
     this.removeAllErrorMessages($newHolderForm);
 
     const $requiredFormElements = $newHolderForm.find('input[required]:visible');
@@ -218,20 +240,20 @@ class PlantMasterLicensesEngineering {
 
     if (!selectedLicenses.length) {
       isFormValid = false;
-      this.addErrorMsg($licensesCheckboxGroup,'.js-tp-aip-licenses__error-msg-required');
+      this.addErrorMsg($licensesCheckboxGroup,'.js-tp-aip-licenses__error-msg-required', formIdx);
     }
 
     $requiredFormElements.each((idx, ele) => {
       if (!$(ele).val()) {
         isFormValid = false;
-        this.addErrorMsg(ele,'.js-tp-aip-licenses__error-msg-required');
+        this.addErrorMsg(ele,'.js-tp-aip-licenses__error-msg-required', formIdx);
       }
 
       if ($(ele).hasClass('js-aip-license__date-input') && $.trim($(ele).val())) {
         const date = moment($(ele).val(), 'YYYY-MM-DD', true);
         if (!date.isValid()) {
           isFormValid = false;
-          this.addErrorMsg(ele,'.js-date-formate__error');
+          this.addErrorMsg(ele,'.js-date-formate__error', formIdx);
         }
       }
     });
@@ -256,12 +278,27 @@ class PlantMasterLicensesEngineering {
     });
   }
 
-  addErrorMsg(el, errorMsgSelector) {
-    $(el)
+  addErrorMsg(el, errorMsgSelector, formIndex) {
+    const $el = $(el);
+    const $this = this;
+    let formErrorField;
+    const formErrorMessage = $el.closest('.js-tp-aip-licenses__form-element').find(errorMsgSelector).text();
+
+    $el
       .closest('.js-tp-aip-licenses__form-element')
       .addClass('tp-aip-licenses__form-element--error')
       .find(errorMsgSelector)
       .addClass('error-msg--active');
+
+    // only track errors in first form on page
+    if (formIndex === 0) {
+      formErrorField = $el.hasClass('js-tp-aip-licenses__checkbox-group') ? 'licensesCheckboxGroup' : $el.attr('id').split('-')[0];
+
+      $this.cache.formError.push({
+        formErrorMessage,
+        formErrorField
+      });
+    }
   }
 
   removeAllErrorMessages($form) {
@@ -281,6 +318,22 @@ class PlantMasterLicensesEngineering {
 
   getLicenseCheckboxData() {
     return _getLicenseCheckboxData.apply(this, arguments);
+  }
+
+  trackTabClick() {
+    return _trackTabClick.apply(this, arguments);
+  }
+
+  trackFormError() {
+    return _trackFormError.apply(this, arguments);
+  }
+
+  trackFormComplete() {
+    return _trackFormComplete.apply(this, arguments);
+  }
+
+  trackFormStart() {
+    return _trackFormStart.apply(this, arguments);
   }
 
   init() {

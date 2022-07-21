@@ -229,6 +229,10 @@
 		<dependency>
 			<groupId>com.openpojo</groupId>
 			<artifactId>openpojo</artifactId>
-		</dependency>	
+		</dependency>
+        <dependency>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>bndlib</artifactId>
+        </dependency>
     </dependencies>
 </project>
