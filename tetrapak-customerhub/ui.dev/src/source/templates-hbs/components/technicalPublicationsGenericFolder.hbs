@@ -1,0 +1,23 @@
+{{log this}}
+<div class="tp-tech-pub__table-wrap">
+    <table class="tp-tech-pub__table">
+        <thead class="tp-tech-pub__thead-primary">
+        <tr>
+            <th></th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each siteLicenses}}
+            <tr>
+                <td>{{this.licenseKey}}</td>
+                <td>{{this.platform}}</td>
+                <td>{{this.countryName}}</td>
+                <td>{{this.site}}</td>
+                <td>{{this.validFromDate}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
+

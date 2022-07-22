@@ -1,0 +1,18 @@
+.tp-tech-pub {
+    &__breadcrumbs {
+        @include padding($padding-md);
+        @include margin-bottom($margin-md);
+        background-color: $color-wild-sand;
+    }
+
+    &__table {
+        th,
+        td {
+            @include padding($padding-md);
+        }
+
+        th {
+            font-weight: 500;
+        }
+    }
+}
