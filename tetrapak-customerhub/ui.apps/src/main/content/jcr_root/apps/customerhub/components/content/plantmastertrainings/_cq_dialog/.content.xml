@@ -30,7 +30,7 @@
 										required="true"/>
 									<subtitle
 										jcr:primaryType="nt:unstructured"
-										sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 										fieldLabel="Component subtitle (i18N key)"
 										name="./subTitle"
 										required="true"/>
