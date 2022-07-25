@@ -11,11 +11,14 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 
@@ -70,15 +73,26 @@ public class KeylinesModel {
     @ValueMapValue
     private String packageType;
 
+    private String locale;
+
+    @Self
+    @Via("resourceResolver")
+    PageManager pageManager;
+
     @PostConstruct
     protected void init() {
 	apiUrl = String.format("%s.%s.%s", resource.getPath(), CustomerHubConstants.KEYLINES_SLING_SERVLET_SELECTOR,
 		CustomerHubConstants.JSON_SERVLET_EXTENSION);
 	LOGGER.debug("API URL {}", apiUrl);
 	LOGGER.debug("Package Type {}:", packageType);
+
 	Gson gson = new Gson();
 	i18nKeys = gson.toJson(modal, ModalKeylines.class);
 	LOGGER.debug("i18nKeys {}:", i18nKeys);
+
+	Page currentPage = pageManager.getContainingPage(resource);
+	locale = currentPage.getLanguage(true).toString();
+	LOGGER.debug("Locale {}:", locale);
     }
 
     public String getI18nKeys() {
@@ -115,6 +129,10 @@ public class KeylinesModel {
 
     public String getPackageType() {
 	return packageType;
+    }
+
+    public String getLocale() {
+	return locale;
     }
 
 }
