@@ -1678,5 +1678,31 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.packDesign.keylines.errorMessage"
-        sling:message="Right now there is an issue downloading the file. Please try again in a short while. Sorry for the inconvenience."/>     
+        sling:message="Right now there is an issue downloading the file. Please try again in a short while. Sorry for the inconvenience."/>
+        sling:message="Download Keyline"/>
+    <cuhu.technicalpublications.documentNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.documentNumber"
+        sling:message="Document Number"/>
+    <cuhu.technicalpublications.documentType
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.documentType"
+        sling:message="Document Type"/>
+    <cuhu.technicalpublications.serialNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.serialNumber"
+        sling:message="Serial Number"/>
+    <cuhu.technicalpublications.rebuildingKitNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.rebuildingKitNumber"
+        sling:message="Rebuilding Kit Number"/>
+    <cuhu.technicalpublications.rebuildingKitName
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.rebuildingKitName"
+        sling:message="Rebuilding Kit Name"/>
 </jcr:root>

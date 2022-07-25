@@ -6,10 +6,12 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.settings.SlingSettingsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
@@ -46,6 +48,12 @@ public class TechnicalPublicationsModel {
     /** The Technical Publications API. */
     private String technicalPublicationsApi;
 
+    /** The i18n Keys */
+    private String i18nKeys;
+
+    @Self
+    private Resource resource;
+
     @PostConstruct
     protected void init() {
 
@@ -74,6 +82,11 @@ public class TechnicalPublicationsModel {
 		+ GlobalUtil.getSelectedApiMapping(service, CustomerHubConstants.TECHNICAL_PUBLICATIONS_API);
 	LOGGER.debug("technicalPublicationsApi: {}", technicalPublicationsApi);
 
+	Gson gson = new Gson();
+	TechnicalPublicationsKeysModel i18nKeysModel = resource.adaptTo(TechnicalPublicationsKeysModel.class);
+	i18nKeys = gson.toJson(i18nKeysModel, TechnicalPublicationsKeysModel.class);
+	LOGGER.debug("i18nKeys {}:", i18nKeys);
+
     }
 
     public boolean isPublishEnvironment() {
@@ -98,6 +111,10 @@ public class TechnicalPublicationsModel {
 
     public String getTechnicalPublicationsApi() {
 	return technicalPublicationsApi;
+    }
+
+    public String getI18nKeys() {
+	return i18nKeys;
     }
 
 }
