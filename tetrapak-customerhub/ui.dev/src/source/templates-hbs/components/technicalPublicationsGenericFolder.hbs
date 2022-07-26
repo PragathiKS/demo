@@ -3,18 +3,55 @@
     <table class="tp-tech-pub__table">
         <thead class="tp-tech-pub__thead-primary">
         <tr>
-            <th></th>
-            <th>Country</th>
+            <th>
+                {{#if isCountryStep}}
+                    Country
+                {{/if}}
+
+                {{#if isCustomerStep}}
+                    Customer
+                {{/if}}
+
+                {{#if isLineStep}}
+                    Line
+                {{/if}}
+            </th>
         </tr>
         </thead>
         <tbody>
-        {{#each siteLicenses}}
+            {{#each folderData}}
             <tr>
-                <td>{{this.licenseKey}}</td>
-                <td>{{this.platform}}</td>
-                <td>{{this.countryName}}</td>
-                <td>{{this.site}}</td>
-                <td>{{this.validFromDate}}</td>
+                <td>
+                    {{#if ../isCountryStep}}
+                        <button type="button"
+                                class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
+                                data-current-step="{{../currentStep}}"
+                                data-next-folder="customer"
+                                data-country-id="{{this.countryCode}}">
+                            {{this.countryName}}
+                        </button>
+                    {{/if}}
+
+                    {{#if ../isCustomerStep}}
+                        <button type="button"
+                                class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
+                                data-current-step="{{../currentStep}}"
+                                data-next-folder="line"
+                                data-customer-number="{{this.customerNumber}}">
+                            {{this.customer}}
+                        </button>
+                    {{/if}}
+
+                    {{#if ../isLineStep}}
+                        <button type="button"
+                                class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
+                                data-current-step="{{../currentStep}}"
+                                data-next-folder="site"
+                                data-line-code="{{this.lineCode}}">
+                            {{this.lineDescription}}
+                        </button>
+                    {{/if}}
+                </td>
             </tr>
         {{/each}}
         </tbody>

@@ -6,7 +6,7 @@ import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
 /**
- * Fetch the Learning History data
+ * Fetch the Country data
  */
 function _getCountriesData() {
   const $this = this;
@@ -34,17 +34,100 @@ function _getCountriesData() {
 
 function _renderCountries() {
   const $this = this;
-  const { apiDataObj, $folderListingWrapper, $contentWrapper, $spinner } = $this.cache;
+  const { apiDataObj, $folderListingWrapper } = $this.cache;
   const { countries } = apiDataObj;
 
   render.fn({
     template: 'technicalPublicationsGenericFolder',
     target: $folderListingWrapper,
-    data: { i18nKeys: $this.cache.i18nKeys, folderData: countries}
+    data: {
+      i18nKeys: $this.cache.i18nKeys,
+      currentStep: 'country',
+      isCountryStep: true,
+      folderData: countries
+    }
   }, () => {
+    $this.showSpinner(false);
+  });
+}
+
+function _getFolderData(stepKey) {
+  const $this = this;
+  const { customerApi, lineApi } = $this.cache;
+  const { folderNavData } = $this.cache;
+  const { country, customer } = folderNavData;
+  let apiUrl;
+
+  switch (stepKey) {
+    case 'customer':
+      apiUrl = `${customerApi}?countrycodes=${country}&count=1500`;
+      break;
+    case 'line':
+      apiUrl = `${lineApi}?countrycodes=${country}&customerNumber=${customer}`;
+      break;
+    default:
+      break;
+  }
+
+  $this.showSpinner(true);
+
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: apiUrl,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      }).done(res => {
+        $this.renderFolderData(stepKey, res.data);
+      }).fail((e) => {
+        logger.error(e);
+      });
+  });
+}
+
+function _renderFolderData(stepKey, folderData) {
+  const $this = this;
+  const { $folderListingWrapper } = $this.cache;
+
+  render.fn({
+    template: 'technicalPublicationsGenericFolder',
+    target: $folderListingWrapper,
+    data: {
+      i18nKeys: $this.cache.i18nKeys,
+      currentStep: stepKey,
+      folderData,
+      isCustomerStep: stepKey === 'customer',
+      isCountryStep: stepKey === 'country',
+      isLineStep: stepKey === 'line'
+    }
+  }, () => {
+    $this.showSpinner(false);
+  });
+}
+
+function _showSpinner(state) {
+  const $this = this;
+  const { $contentWrapper, $spinner } = $this.cache;
+
+  if (state) {
+    $contentWrapper.addClass('d-none');
+    $spinner.removeClass('d-none');
+  } else {
     $contentWrapper.removeClass('d-none');
     $spinner.addClass('d-none');
-  });
+  }
+}
+
+function _setFolderNavData(key, value) {
+  const $this = this;
+  $this.cache.folderNavData[key] = value;
 }
 
 class TechnicalPublications {
@@ -70,15 +153,43 @@ class TechnicalPublications {
     this.cache.$contentWrapper = this.root.find('.js-tech-pub__wrapper');
     this.cache.$folderListingWrapper = this.root.find('.js-tech-pub__folder-listing');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
+    // save state of API data responses
     this.cache.apiDataObj = {
       countries: {},
       customers: {},
       lines: {}
     };
+    // save state of current folder structure levels
+    this.cache.folderNavData = {
+      country: null,
+      customer: null,
+      line: null
+    };
   }
 
   bindEvents() {
-    logger.log('bind events');
+    this.root.on('click', '.js-tech-pub__folder-btn',  (e) => {
+      const $this = this;
+      const $btn = $(e.currentTarget);
+      const nextFolder = $btn.data('next-folder');
+      const countryId = $btn.data('country-id');
+      const customerNumber = $btn.data('customer-number');
+      const lineCode = $btn.data('line-code');
+
+      if (countryId) {
+        $this.setFolderNavData('country', countryId);
+      }
+
+      if (customerNumber) {
+        $this.setFolderNavData('customer', customerNumber);
+      }
+
+      if (lineCode) {
+        $this.setFolderNavData('line', lineCode);
+      }
+
+      $this.getFolderData(nextFolder);
+    });
   }
 
   getCountriesData() {
@@ -87,6 +198,22 @@ class TechnicalPublications {
 
   renderCountries() {
     return _renderCountries.apply(this, arguments);
+  }
+
+  getFolderData() {
+    return _getFolderData.apply(this, arguments);
+  }
+
+  setFolderNavData() {
+    return _setFolderNavData.apply(this, arguments);
+  }
+
+  renderFolderData() {
+    return _renderFolderData.apply(this, arguments);
+  }
+
+  showSpinner() {
+    return _showSpinner.apply(this, arguments);
   }
 
   init() {

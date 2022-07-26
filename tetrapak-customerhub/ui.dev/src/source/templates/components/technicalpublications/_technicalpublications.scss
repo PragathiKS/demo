@@ -1,7 +1,7 @@
 .tp-tech-pub {
     &__breadcrumbs {
         @include padding($padding-md);
-        @include margin-bottom($margin-md);
+        @include margin($margin-md $margin-zero);
         background-color: $color-wild-sand;
     }
 
@@ -13,6 +13,10 @@
 
         th {
             font-weight: 500;
+        }
+
+        td {
+            border-bottom: 1px solid $color-mercury;
         }
     }
 }
