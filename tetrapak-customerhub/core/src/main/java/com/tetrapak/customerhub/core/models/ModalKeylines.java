@@ -16,6 +16,7 @@ public class ModalKeylines {
     private static final String DEFAULT_VOLUMES = "cuhu.packDesign.keylines.selectVolumes";
     private static final String DEFAULT_OPENINGS = "cuhu.packDesign.keylines.selectOpenings";
     private static final String DEFAULT_DOWNLOAD = "cuhu.packDesign.keylines.downloadKeyline";
+    private static final String DEFAULT_DOWNLOAD_ERROR = "cuhu.packDesign.keylines.errorMessage";
 
     @ValueMapValue
     @Expose(serialize = true)
@@ -41,6 +42,11 @@ public class ModalKeylines {
     @Default(values = DEFAULT_DOWNLOAD)
     @Expose(serialize = true)
     private String downloadKeyline;
+    
+    @ValueMapValue
+    @Default(values = DEFAULT_DOWNLOAD_ERROR)
+    @Expose(serialize = true)
+    private String downloadKeylineError;
 
     public String getModalTitle() {
 	return (modalTitle != null ? modalTitle : DEFAULT_TITLE);
@@ -60,6 +66,10 @@ public class ModalKeylines {
 
     public String getDownloadKeyline() {
 	return (downloadKeyline != null ? downloadKeyline : DEFAULT_DOWNLOAD);
+    }
+    
+    public String getDownloadKeylineError() {
+	return (downloadKeylineError != null ? downloadKeylineError : DEFAULT_DOWNLOAD_ERROR);
     }
 
 }

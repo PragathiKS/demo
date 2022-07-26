@@ -43,7 +43,8 @@
 						"modalDescription": "cuhu.packDesign.keylines.modalDescription",
 						"selectVolumes": "cuhu.packDesign.keylines.selectVolumes",
 						"selectOpenings": "cuhu.packDesign.keylines.selectOpenings",
-						"downloadKeyline": "cuhu.packDesign.keylines.downloadKeyline"
+						"downloadKeyline": "cuhu.packDesign.keylines.downloadKeyline",
+						"downloadKeylineError": "cuhu.packDesign.keylines.errorMessage"
 					}
 				}
 			}
