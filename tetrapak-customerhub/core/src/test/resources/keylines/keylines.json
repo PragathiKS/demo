@@ -38,6 +38,7 @@
 						}
 					},
 					"modal":{
+						"jcr:primaryType": "nt:unstructured",
 						"modalTitle": "cuhu.packDesign.keylines.modalTitle",
 						"modalDescription": "cuhu.packDesign.keylines.modalDescription",
 						"selectVolumes": "cuhu.packDesign.keylines.selectVolumes",
