@@ -12,6 +12,18 @@ public class TechnicalPublicationsKeysModel {
 
     @Expose
     @ValueMapValue
+    private String allFiles;
+
+    @Expose
+    @ValueMapValue
+    private String country;
+
+    @Expose
+    @ValueMapValue
+    private String customer;
+
+    @Expose
+    @ValueMapValue
     private String documentNumber;
 
     @Expose
@@ -20,7 +32,23 @@ public class TechnicalPublicationsKeysModel {
 
     @Expose
     @ValueMapValue
-    private String serialNumber;
+    private String issueDate;
+
+    @Expose
+    @ValueMapValue
+    private String line;
+
+    @Expose
+    @ValueMapValue
+    private String lineEquipment;
+
+    @Expose
+    @ValueMapValue
+    private String name;
+
+    @Expose
+    @ValueMapValue
+    private String rebuildingKitName;
 
     @Expose
     @ValueMapValue
@@ -28,7 +56,19 @@ public class TechnicalPublicationsKeysModel {
 
     @Expose
     @ValueMapValue
-    private String rebuildingKitName;
+    private String serialNumber;
+
+    public String getAllFiles() {
+	return allFiles;
+    }
+
+    public String getCountry() {
+	return country;
+    }
+
+    public String getCustomer() {
+	return customer;
+    }
 
     public String getDocumentNumber() {
 	return documentNumber;
@@ -38,16 +78,32 @@ public class TechnicalPublicationsKeysModel {
 	return documentType;
     }
 
-    public String getSerialNumber() {
-	return serialNumber;
+    public String getIssueDate() {
+	return issueDate;
+    }
+
+    public String getLine() {
+	return line;
+    }
+
+    public String getLineEquipment() {
+	return lineEquipment;
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public String getRebuildingKitName() {
+	return rebuildingKitName;
     }
 
     public String getRebuildingKitNumber() {
 	return rebuildingKitNumber;
     }
 
-    public String getRebuildingKitName() {
-	return rebuildingKitName;
+    public String getSerialNumber() {
+	return serialNumber;
     }
 
 }
