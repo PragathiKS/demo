@@ -1,0 +1,8 @@
+{{log this}}
+<ul class="tp-tech-pub__bc-list">
+    {{#each bcItems}}
+        <li class="tp-tech-pub__bc-item {{#if isCurrentStep}}active{{/if}}">
+            <button type="button">{{this.text}}</button>
+        </li>
+    {{/each}}
+</ul>

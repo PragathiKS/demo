@@ -5,6 +5,19 @@
         background-color: $color-wild-sand;
     }
 
+    &__bc-list {
+        display: flex;
+    }
+
+    &__bc-item {
+        color: $color-boulder;
+        font-weight: 500;
+
+        &.active {
+            color: $color-tundora;
+        }
+    }
+
     &__table {
         th,
         td {

@@ -1,4 +1,3 @@
-{{log this}}
 <div class="tp-tech-pub__table-wrap">
     <table class="tp-tech-pub__table">
         <thead class="tp-tech-pub__thead-primary">
@@ -27,7 +26,8 @@
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
                                 data-current-step="{{../currentStep}}"
                                 data-next-folder="customer"
-                                data-country-id="{{this.countryCode}}">
+                                data-country-id="{{this.countryCode}}"
+                                data-country-name="{{this.countryName}}">
                             {{this.countryName}}
                         </button>
                     {{/if}}
@@ -37,7 +37,8 @@
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
                                 data-current-step="{{../currentStep}}"
                                 data-next-folder="line"
-                                data-customer-number="{{this.customerNumber}}">
+                                data-customer-number="{{this.customerNumber}}"
+                                data-customer="{{this.customer}}">
                             {{this.customer}}
                         </button>
                     {{/if}}
@@ -47,7 +48,8 @@
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
                                 data-current-step="{{../currentStep}}"
                                 data-next-folder="site"
-                                data-line-code="{{this.lineCode}}">
+                                data-line-code="{{this.lineCode}}"
+                                data-line-description="{{this.lineDescription}}">
                             {{this.lineDescription}}
                         </button>
                     {{/if}}
