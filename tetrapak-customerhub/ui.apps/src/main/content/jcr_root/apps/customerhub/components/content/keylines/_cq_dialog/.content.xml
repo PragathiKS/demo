@@ -134,7 +134,12 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Download Keyline Text (i18N key)"
-                                name="./modal/downloadKeyline"/>            
+                                name="./modal/downloadKeyline"/>
+                            <downloadKeylineError
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Download Keyline Error Message (i18N key)"
+                                name="./modal/downloadKeylineError"/>                
                         </items>
                     </column>
                 </items>
