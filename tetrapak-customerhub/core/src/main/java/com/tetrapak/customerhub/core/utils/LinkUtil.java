@@ -70,6 +70,7 @@ public final class LinkUtil {
                 && (link.startsWith(CustomerHubConstants.HTTP) || link.startsWith(CustomerHubConstants.WWW)));
     }
     
+    
     /**
      * Check link type.
      *
@@ -93,7 +94,8 @@ public final class LinkUtil {
             linkType = CustomerHubConstants.INTERNAL_LINK;
         } else if (Boolean.TRUE.equals(isExternalLink(link))) {
             linkType = CustomerHubConstants.EXTERNAL_LINK;
-        }
+        } 
+        
         return linkType;
     }
     
