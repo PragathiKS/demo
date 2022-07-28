@@ -64,6 +64,10 @@ public class Volume implements Comparable<Volume> {
 
     @Override
     public int compareTo(Volume volume) {
-	return Integer.parseInt(this.key) - Integer.parseInt(volume.key);
+	return Double.compare(getDoubleValue(this.value), getDoubleValue(volume.value));
+    }
+
+    private Double getDoubleValue(String string) {
+	return Double.parseDouble(string.replace(",", "."));
     }
 }
