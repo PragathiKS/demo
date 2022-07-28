@@ -139,7 +139,7 @@ pipeline {
                 echo "Build ${appname}"
                 dir("${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
-		sh "/bin/sh -x ../nvmbuild.sh '${build_id_number}'"
+		sh "/bin/sh -x tetra-laval/nvmbuild.sh '${build_id_number}'"
                 //sh "npm cache clean --force"                    
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {                       
