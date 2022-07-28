@@ -3,12 +3,16 @@
         <thead class="tp-tech-pub__thead-primary">
         <tr>
             <th>
-                {{#if isCountryStep}}
+                {{#if isCountriesStep}}
                     Country
                 {{/if}}
 
-                {{#if isCustomerStep}}
+                {{#if isCountryStep}}
                     Customer
+                {{/if}}
+
+                {{#if isCustomerStep}}
+                    Line
                 {{/if}}
 
                 {{#if isLineStep}}
@@ -21,29 +25,29 @@
             {{#each folderData}}
             <tr>
                 <td>
-                    {{#if ../isCountryStep}}
+                    {{#if ../isCountriesStep}}
                         <button type="button"
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
                                 data-current-step="{{../currentStep}}"
-                                data-next-folder="customer"
+                                data-next-folder="country"
                                 data-country-id="{{this.countryCode}}"
                                 data-country-name="{{this.countryName}}">
                             {{this.countryName}}
                         </button>
                     {{/if}}
 
-                    {{#if ../isCustomerStep}}
+                    {{#if ../isCountryStep}}
                         <button type="button"
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
                                 data-current-step="{{../currentStep}}"
-                                data-next-folder="line"
+                                data-next-folder="customer"
                                 data-customer-number="{{this.customerNumber}}"
                                 data-customer="{{this.customer}}">
                             {{this.customer}}
                         </button>
                     {{/if}}
 
-                    {{#if ../isLineStep}}
+                    {{#if ../isCustomerStep}}
                         <button type="button"
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
                                 data-current-step="{{../currentStep}}"
@@ -52,6 +56,10 @@
                                 data-line-description="{{this.lineDescription}}">
                             {{this.lineDescription}}
                         </button>
+                    {{/if}}
+
+                    {{#if ../isLineStep}}
+                        Documents
                     {{/if}}
                 </td>
             </tr>

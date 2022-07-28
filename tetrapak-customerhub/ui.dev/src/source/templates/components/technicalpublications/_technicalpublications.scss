@@ -10,6 +10,7 @@
     }
 
     &__bc-item {
+        @include margin-right($margin-sm);
         color: $color-boulder;
         font-weight: 500;
 

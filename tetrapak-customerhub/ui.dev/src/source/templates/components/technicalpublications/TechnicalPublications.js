@@ -13,11 +13,14 @@ function _getFolderData(stepKey) {
   let apiUrl;
 
   switch (stepKey) {
-    case 'country':
+    case 'countries':
       apiUrl = countriesApi;
       break;
-    case 'customer':
+    case 'country':
       apiUrl = `${customerApi}?countrycodes=${country.value}&count=1500`;
+      break;
+    case 'customer':
+      apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}`;
       break;
     case 'line':
       apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}`;
@@ -63,6 +66,7 @@ function _renderFolderData(stepKey, folderData) {
       folderData,
       isCustomerStep: stepKey === 'customer',
       isCountryStep: stepKey === 'country',
+      isCountriesStep: stepKey === 'countries',
       isLineStep: stepKey === 'line'
     }
   }, () => {
@@ -77,6 +81,11 @@ function _renderBreadcrumbs() {
 
   Object.entries(folderNavData).every(([key]) => {
     const stepObj = folderNavData[key];
+
+    $.extend(true, stepObj, {
+      step: key
+    });
+
     bcItems.push(stepObj);
 
     if (stepObj.isCurrentStep) {
@@ -93,8 +102,6 @@ function _renderBreadcrumbs() {
       i18nKeys,
       bcItems
     }
-  }, () => {
-    logger.log('done breadcrumbs');
   });
 }
 
@@ -165,7 +172,7 @@ class TechnicalPublications {
     this.cache.folderNavData = {
       countries: {
         text: 'All files',
-        value: 'all',
+        value: 'countries',
         isCurrentStep: true
       },
       country: {
@@ -193,25 +200,48 @@ class TechnicalPublications {
       const currentStep = $btn.data('current-step');
       const nextFolder = $btn.data('next-folder');
 
-      if (currentStep === 'country') {
+      if (currentStep === 'countries') {
         const countryId = $btn.data('country-id');
         const countryName = $btn.data('country-name');
-        $this.setFolderNavData(currentStep, countryId, countryName);
+        $this.setFolderNavData(nextFolder, countryId, countryName);
+      }
+
+      if (currentStep === 'country') {
+        const customerNumber = $btn.data('customer-number');
+        const customer = $btn.data('customer');
+        $this.setFolderNavData(nextFolder, customerNumber, customer);
       }
 
       if (currentStep === 'customer') {
-        const customerNumber = $btn.data('customer-number');
-        const customer = $btn.data('customer');
-        $this.setFolderNavData(currentStep, customerNumber, customer);
+        const lineCode = $btn.data('line-code');
+        const lineDescription = $btn.data('line-description');
+        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
       }
 
       if (currentStep === 'line') {
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
-        $this.setFolderNavData(currentStep, lineCode, lineDescription);
+        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
       }
 
       $this.getFolderData(nextFolder);
+    });
+
+    this.root.on('click', '.js-tech-pub__bc-btn',  (e) => {
+      const $this = this;
+      const $btn = $(e.currentTarget);
+      const targetStep = $btn.data('step');
+      const { folderNavData } = $this.cache;
+
+      // set isCurrentPage after clicking on breadcrumb
+      Object.entries(folderNavData).forEach(([key]) => {
+        const stepObj = folderNavData[key];
+        if (stepObj.step === targetStep) {
+          stepObj.isCurrentStep = true;
+        }
+      });
+
+      $this.getFolderData(targetStep);
     });
   }
 
@@ -242,7 +272,7 @@ class TechnicalPublications {
   init() {
     this.initCache();
     this.bindEvents();
-    this.getFolderData('country');
+    this.getFolderData('countries');
   }
 }
 
