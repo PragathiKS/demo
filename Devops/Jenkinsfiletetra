@@ -138,8 +138,8 @@ pipeline {
     def buildandsonar() {
                 echo "Build ${appname}"
                 dir("${appname}") {
-                sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
-                sh "npm cache clean --force"                    
+                //sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
+                //sh "npm cache clean --force"                    
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {                       
                // sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
