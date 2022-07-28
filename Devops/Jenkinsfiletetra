@@ -77,7 +77,7 @@ pipeline {
                     }
                     else {
 					    dir('tetrapak-commons') {
-					       // sh "npm install --prefix ui.dev/src"
+					       sh "npm install --prefix ui.dev/src"
 						}
 					}
                 }
@@ -90,7 +90,7 @@ pipeline {
                 
                     else {
 					    dir('tetrapak-publicweb') {
-					        //sh "npm install --prefix ui.dev/src"
+					        sh "npm install --prefix ui.dev/src"
 						}
 					}
                 }
@@ -138,9 +138,9 @@ pipeline {
     def buildandsonar() {
                 echo "Build ${appname}"
                 dir("${appname}") {
-                sh "pwd;ls -ltr"
+                //sh "pwd;ls -ltr"
 		sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
-		sh "/bin/sh -x ./nvmbuild.sh '${build_id_number}'"
+		//sh "/bin/sh -x ./nvmbuild.sh '${build_id_number}'"
                 //sh "npm cache clean --force"                    
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {                       
