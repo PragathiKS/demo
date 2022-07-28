@@ -63,6 +63,11 @@ pipeline {
             }
 
             steps {
+	             script {
+                    
+                    echo "${build_id_number}"
+                    sh "cd ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
+                }
 			
                 script {
                     if (params.Build_Commons) {
@@ -222,3 +227,4 @@ pipeline {
 
 
     
+
