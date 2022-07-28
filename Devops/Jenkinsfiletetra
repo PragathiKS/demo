@@ -67,7 +67,7 @@ pipeline {
                     
                     echo "${build_id_number}"
                    sh "pwd;ls -ltr"
-		   sh "cd ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
+		   sh "cd tetra-laval/ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
                 }
 			
                 script {
