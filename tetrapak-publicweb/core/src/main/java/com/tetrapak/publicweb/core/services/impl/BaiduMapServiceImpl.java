@@ -7,8 +7,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.metatype.annotations.Designate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Impl class for BaiduMapService.
@@ -19,9 +17,6 @@ public class BaiduMapServiceImpl implements BaiduMapService{
 
     /** The config. */
     private BaiduMapServiceConfig config;
-
-    /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(BaiduMapServiceImpl.class);
 
     /**
      * Activate.

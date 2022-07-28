@@ -16,7 +16,7 @@ describe('PlantMasterLicensesSite', function () {
         const pr = $.Deferred();
         pr.resolve(response, 'success', jqRef);
         return pr.promise();
-    };
+    }
 
     before(function () {
         $(document.body).empty().html(PlantMasterSiteLicensesTemplate());
@@ -38,8 +38,10 @@ describe('PlantMasterLicensesSite', function () {
             }
           });
         this.submitRequestFormSpy = sinon.spy(this.siteLicenses, 'submitRequestForm');
+        this.trackFormCompleteSpy = sinon.spy(this.siteLicenses, 'trackFormComplete');
+        this.trackFormErrorSpy = sinon.spy(this.siteLicenses, 'trackFormError');
+        this.trackFormStartSpy = sinon.spy(this.siteLicenses, 'trackFormStart');
         this.siteLicenses.init();
-
     });
 
     after(function () {
@@ -51,6 +53,9 @@ describe('PlantMasterLicensesSite', function () {
       this.renderSiteLicensesDataSpy.restore();
       this.ajaxStub.restore();
       this.tokenStub.restore();
+      this.trackFormCompleteSpy.restore();
+      this.trackFormErrorSpy.restore();
+      this.trackFormStartSpy.restore();
     });
 
     it('should initialize', function (done) {
@@ -71,6 +76,7 @@ describe('PlantMasterLicensesSite', function () {
     it('should render form validation errors', function (done) {
         $('.js-tp-aip-licenses-site__btn').trigger('click');
         expect(this.addErrorMsgSpy.called).to.be.true;
+        expect(this.trackFormErrorSpy.called).to.be.true;
         done();
     });
 
@@ -82,6 +88,14 @@ describe('PlantMasterLicensesSite', function () {
         $('#advanced-unit').val('Test Data');
         $('.js-tp-aip-licenses-site__btn').trigger('click');
         expect(this.submitRequestFormSpy.called).to.be.true;
+        expect(this.trackFormCompleteSpy.called).to.be.true;
         done();
       });
+
+    it('should track form start', function (done) {
+      $(document.body).empty().html(PlantMasterSiteLicensesTemplate());
+      $('#nameOfSite').val('Site').trigger('input');
+      expect(this.trackFormStartSpy.called).to.be.true;
+      done();
+    });
 })

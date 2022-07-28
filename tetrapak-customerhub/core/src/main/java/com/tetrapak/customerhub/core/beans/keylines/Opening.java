@@ -4,7 +4,7 @@ package com.tetrapak.customerhub.core.beans.keylines;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Opening {
+public class Opening implements Comparable<Opening> {
 
     @SerializedName("key")
     @Expose
@@ -60,6 +60,11 @@ public class Opening {
 	} else if (!value.equals(other.value))
 	    return false;
 	return true;
+    }
+
+    @Override
+    public int compareTo(Opening opening) {
+	return this.key.compareTo(opening.key);
     }
 
 }

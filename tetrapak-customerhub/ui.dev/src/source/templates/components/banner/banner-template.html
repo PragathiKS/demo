@@ -61,10 +61,13 @@
         <div class="pw-banner__content__description" auto_locator ="bannerDescription">${bannerData.text @ context='html'}</div>
         <a data-sly-test="${bannerData.link.linkText}" href="${bannerData.link.linkUrl}"
             class="tpatom-link tpatom-link--${bannerData.pwButtonTheme == 'secondary' ? 'primary':'transparent'} js-banner-analytics ${bannerData.text ? '' : 'no-desc'}"
-            title="${btnTooltip}" data-asset-name="${bannerData.assetName}"
+            title="${btnTooltip}"
+            data-asset-name="${bannerData.assetName}"
             target="${bannerData.link.linkType == 'internal' ? '_self' : '_blank'}"
-            data-link-section="Hero Image_${dataLinkSectionCTAText}" data-link-type="internal"
-            data-link-banner-title="${bannerData.title}" data-link-name="${bannerData.link.linkText}"
+            data-link-section="Hero Image_${dataLinkSectionCTAText}"
+            data-link-type="${bannerData.link.linkType}"
+            data-link-banner-title="${bannerData.title}"
+            data-link-name="${bannerData.link.linkText}"
             data-anchor-type="${dataLinkSectionCTAText}">
             <span class="tpatom-link__text sly-text">${bannerData.link.linkText @ context='html'}</span>
             <span class="nowrap-text">&#8288;<i class="icon ${bannerData.link.linkType == 'external' ? 'icon-External_Link' : (bannerData.link.linkType == 'download' ||  bannerData.link.linkType == 'externalDownload' ? 'icon-Download' : 'icon-Chevron_Right')}"></i></span>

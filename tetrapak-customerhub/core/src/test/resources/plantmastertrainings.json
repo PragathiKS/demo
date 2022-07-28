@@ -11,6 +11,7 @@
             "plantmastertrainings":{
                "jcr:primaryType":"nt:unstructured",
                "title":"cuhu.plantmastertrainings.title",
+               "subTitle":"cuhu.plantmastertrainings.subTitle",
                "availableTrainings":"cuhu.plantmastertrainings.availableTrainings",
                "courseDescription":"cuhu.plantmastertrainings.courseDescription",
                "trainingMaterialHandouts":"cuhu.plantmastertrainings.trainingMaterialHandouts",
