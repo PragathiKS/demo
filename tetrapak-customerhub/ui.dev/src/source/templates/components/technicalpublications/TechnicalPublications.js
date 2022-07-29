@@ -5,11 +5,12 @@ import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 
-function _getFolderData(stepKey) {
+function _getFolderData(stepKey, options) {
   const $this = this;
   const { countriesApi, customerApi, lineApi } = $this.cache;
-  const { folderNavData } = $this.cache;
+  const { folderNavData, apiDataObj } = $this.cache;
   const { country, customer } = folderNavData;
+  const { isBreadcrumbNav } = options;
   let apiUrl;
 
   switch (stepKey) {
@@ -31,6 +32,15 @@ function _getFolderData(stepKey) {
 
   $this.showSpinner(true);
 
+  // if navigating back with Breadcrumbs, use saved data instead of a new API call
+  if (isBreadcrumbNav) {
+    const apiData = apiDataObj[stepKey];
+    $this.renderFolderData(stepKey, apiData);
+    $this.renderBreadcrumbs(stepKey);
+
+    return false;
+  }
+
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
@@ -47,6 +57,7 @@ function _getFolderData(stepKey) {
       }).done(res => {
         $this.renderFolderData(stepKey, res.data);
         $this.renderBreadcrumbs(stepKey);
+        $this.setApiData(stepKey, res.data);
       }).fail((e) => {
         logger.error(e);
       });
@@ -118,6 +129,7 @@ function _showSpinner(state) {
   }
 }
 
+// Saves folder nav data history, for rendering breadcrumbs
 function _setFolderNavData(stepKey, value, text) {
   const $this = this;
   const { folderNavData } = $this.cache;
@@ -133,6 +145,7 @@ function _setFolderNavData(stepKey, value, text) {
   folderNavData[stepKey].isCurrentStep = true;
 }
 
+// Save API data to reuse when going back with breadcrumbs
 function _setApiData(key, value) {
   const $this = this;
   $this.cache.apiDataObj[key] = value;
@@ -165,8 +178,9 @@ class TechnicalPublications {
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
       countries: {},
-      customers: {},
-      lines: {}
+      country: {},
+      customer: {},
+      line: {}
     };
     // save state of current folder structure levels
     this.cache.folderNavData = {
@@ -224,7 +238,7 @@ class TechnicalPublications {
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);
       }
 
-      $this.getFolderData(nextFolder);
+      $this.getFolderData(nextFolder, {isBreadcrumbNav: false});
     });
 
     this.root.on('click', '.js-tech-pub__bc-btn',  (e) => {
@@ -241,7 +255,7 @@ class TechnicalPublications {
         }
       });
 
-      $this.getFolderData(targetStep);
+      $this.getFolderData(targetStep, {isBreadcrumbNav: true});
     });
   }
 
@@ -272,7 +286,7 @@ class TechnicalPublications {
   init() {
     this.initCache();
     this.bindEvents();
-    this.getFolderData('countries');
+    this.getFolderData('countries', {isBreadcrumbNav: false});
   }
 }
 
