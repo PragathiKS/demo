@@ -59,8 +59,12 @@ PassEnv DISP_ID
         </Directory>
         <Directory "${PUBLISH_DOCROOT}">
                # AllowOverride AuthConfig
-                AllowOverride None
-                Require all granted
+                AllowOverride ${ONLINEHELP_BasicAuth}
+                AuthType Basic
+		AuthName "Restricted Content"
+		AuthUserFile /etc/httpd/.htpasswd
+		Require valid-user
+                #Require all granted
         </Directory>
         <IfModule disp_apache2.c>
                 ## Enabled to allow rewrites to take affect and not be ignored by the dispatcher module
