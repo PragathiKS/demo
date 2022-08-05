@@ -1,0 +1,56 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+    <div class="modal-content tp-my-equipment__modal-content tp-modal-content">
+        <div class="modal-header tpmol-modal-header tp-keylines__modal-header">
+            <div>
+                <h3 class="tp-keylines__modal-title">{{i18n key=i18nKeys.modalTitle}}</h3>
+
+                <p class="tp-keylines__modal-subtitle">
+                    {{i18n key=i18nKeys.modalDescription}}
+                </p>
+            </div>
+            <button type="button" auto_locator="closebtnOverlay"
+                    class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+
+        <div class='modal-body tp-modal-body tp-keylines__modal-body'>
+            <div class="row">
+                <div class="col-lg-11">
+                    {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.selectVolumes
+                            options=this.volumes
+                            name="volumes"
+                            eleClasses="js-tp-keylines__dropdown js-tp-keylines__volumes"
+                            required="true"
+                    }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-11">
+                    {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.selectOpenings
+                            options=this.openings
+                            name="openings"
+                            eleClasses="js-tp-keylines__dropdown js-tp-keylines__openings"
+                            required="true"
+                    }}
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer tpmol-modal-footer tp-keylines__modal-footer">
+            {{> atoms/buttons/button/button text=i18nKeys.downloadKeyline
+                    data-shape-name=this.shapeName
+                    modifier="primary"
+                    disabled=true
+                    iconClass="icon-Download"
+                    baseClass="tp-keylines__modal-download"
+                    jsClass="js-tp-keylines__modal-download"}}
+        </div>
+        <div class="tpatom-loader js-loader js-tp-aip-licenses-active__modal-spinner d-none">
+            {{> atoms/loader/tpLoader}}
+        </div>
+    </div>
+</div>

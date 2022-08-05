@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Keylines Component Configurations"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+        <items jcr:primaryType="nt:unstructured">
+            <keylines
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Keylines"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <title
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Title"
+                                name="./title"/>
+                            <dowloadText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Download Text (i18N key)"
+                                name="./dowloadText"/> 
+                            <packageType
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                fieldLabel="Package Type"
+                                name="./packageType">
+                                <granite:data
+	                                jcr:primaryType="nt:unstructured"
+	                                package-type="fetch-value"/>
+                            </packageType>            
+                            <packageShapes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                fieldDescription="List of Package Shapes">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <shapes
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="&#x9;&#xa;Configure Package Shapes"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="&#x9;&#xa;Configure Package Shapes">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./shapes">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <packageShape
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                            rootPath="/content/cq:tags/tetrapak/keylines"
+                                                            fieldLabel="Package Shape"
+                                                            name="./shape"
+                                                            required="true">
+                                                            <granite:data
+							                                    jcr:primaryType="nt:unstructured"
+							                                    validation="package-shape"/>
+							                            </packageShape>        
+                                                        <fileReference
+							                                jcr:primaryType="nt:unstructured"
+							                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+							                                allowUpload="{Boolean}false"
+							                                autoStart="{Boolean}false"
+							                                class="cq-droptarget"
+							                                fieldLabel="Image path"
+							                                fileNameParameter="./fileName"
+							                                fileReferenceParameter="./fileReference"
+							                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+							                                multiple="{Boolean}false"
+							                                name="./file"
+							                                title="Upload Image Asset"
+							                                uploadUrl="${suffix.path}"
+							                                useHTML5="{Boolean}true"/>
+							                            <alt
+							                                jcr:primaryType="nt:unstructured"
+							                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+							                                fieldLabel="Image alt text"
+							                                required="{Boolean}true"
+							                                name="./alt"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                        <granite:data
+		                                    jcr:primaryType="nt:unstructured"
+		                                    validation="package-type"/>
+                                    </shapes>
+                                </items>
+                            </packageShapes>
+                        </items>
+                    </column>
+                </items>
+            </keylines>
+            <modal
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Modal"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <modalTitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Modal Title  (i18N key)"
+                                name="./modal/modalTitle"/>
+                            <modalDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Modal Description  (i18N key)"
+                                name="./modal/modalDescription"/>
+                            <selectVolumesLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Select Volumes (i18N key)"
+                                name="./modal/selectVolumes"/> 
+                            <selectOpeningsLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Select Openings (i18N key)"
+                                name="./modal/selectOpenings"/>
+                            <downloadKeyline
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Download Keyline Text (i18N key)"
+                                name="./modal/downloadKeyline"/>            
+                        </items>
+                    </column>
+                </items>
+            </modal>  
+            <anchor
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                    path="customerhub/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
+            <design
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Design"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <pwThemes
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/include"
+                                    path="customerhub/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
+                        </items>
+                    </column>
+                </items>
+            </design>
+        </items>
+    </content>
+</jcr:root>

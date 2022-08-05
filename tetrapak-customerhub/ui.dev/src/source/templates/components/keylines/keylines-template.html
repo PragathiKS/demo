@@ -1,0 +1,57 @@
+<sly data-sly-template.keylines_template.html="${@data, flag}">
+<div data-module="Keylines" class="tp-keylines" data-api-url="${data.apiUrl}" data-packageType="${data.packageType}">
+	<section class="tp-teaser pw-theme--${data.pwTheme}"
+		id="${data.anchorId}" title="${data.anchorTitle}">
+		<div data-sly-test="${data.title}" class="tp-teaser__heading">
+			<sly
+				data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+				data-sly-call="${heading.heading_h3_template @ headingText=data.title}" />
+		</div>
+		<sly data-sly-test.download="${data.dowloadText || 'cuhu.packDesign.keylines.download'  @ i18n}" />
+		
+		<code class="d-none js-keylines__config">${data.i18nKeys}</code>
+		
+		<sly data-sly-test.shapeSize="${data.shapes.size}" />
+		<div data-parent-link-title="${data.title}"
+			class="tp-teaser__details row no-gutters"
+			data-sly-list.child="${data.shapes}">
+			<sly
+				data-sly-test.teaserType="${shapeSize > 2 ? 'teaser2' : 'teaser1'}" />
+			<div
+				class="col-md-12 ${shapeSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((shapeSize==2 && childList.index==1) || (shapeSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'teaserpad' } teaserMargin">
+				<span> <sly data-sly-test="${!wcmmode.edit}"> <sly
+						data-sly-use.childImage="${'com.tetrapak.customerhub.core.models.DynamicImageModel' @ imagePath=child.fileReference , altText=child.alt}" />
+					<sly data-sly-test="${child.fileReference}"
+						data-sly-use.dynamicMediaImage="/apps/customerhub/components/content/dynamicimage/dynamicimage.html"
+						data-sly-call="${dynamicMediaImage.dynamicimage_template @image=childImage, className='tp-teaser__image image'}" />
+					</sly> <sly data-sly-test="${wcmmode.edit}"> <img
+						data-sly-test="${child.fileReference}" alt="${child.alt}"
+						src="${child.fileReference}" class="image img-responsive" /> </sly>
+				</span>
+				<h4 data-sly-test="${child.title}"
+					class="title ${child.fileReference ? 'noTopPad' : ''}">${child.title
+					@ context='html'}</h4>
+
+				<div class="link" data-sly-test="${download}">
+					<button type="button"
+						class="tpatom-link tp-keylines__download js-tp-keylines__download"
+						data-shape="${child.shape}"
+						data-shape-name="${child.name}"
+						data-shape-title="${child.title}"
+						title="${download}" data-link-section="Teaser_Text Hyperlink"
+						data-link-name="${download}"
+						data-parent-link-title="${data.title}:${child.shape}"
+						data-anchor-type="Text Hyperlink">
+						<span class="tpatom-link__text sly-text">
+							${download}
+							<span class="nowrap-text">&#8288;<i class="icon icon-Chevron_Right"></i></span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="keylines_modal" class="modal js-tp-keylines__modal tp-modal fade" tabindex="-1" aria-hidden="true" role="dialog"></div>
+	</section>
+</div>
+</sly>

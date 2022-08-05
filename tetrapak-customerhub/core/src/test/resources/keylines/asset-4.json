@@ -1,0 +1,181 @@
+{
+  "jcr:primaryType": "dam:Asset",
+  "jcr:mixinTypes": [
+    "mix:referenceable",
+    "mix:versionable"
+  ],
+  "jcr:createdBy": "mediabox-service",
+  "jcr:versionHistory": "8ccc0f29-89e4-4d43-837b-b7f9d2b804b9",
+  "jcr:predecessors": [
+    "9a510ec4-2643-4330-9296-e5532a49d054"
+  ],
+  "jcr:created": "Fri Jun 17 2022 10:30:27 GMT+0200",
+  "jcr:baseVersion": "9a510ec4-2643-4330-9296-e5532a49d054",
+  "jcr:isCheckedOut": true,
+  "jcr:uuid": "0d9f09ba-9841-4716-8df9-80aab4a96f99",
+  "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:mixinTypes": [
+      "cq:ReplicationStatus"
+    ],
+    "cq:lastReplicationAction": "Activate",
+    "cq:lastReplicatedBy": "mediabox-service",
+    "jcr:lastModifiedBy": "mediabox-service",
+    "status": "Finished",
+    "cq:lastReplicated": "Fri Jun 17 2022 10:33:47 GMT+0200",
+    "dam:assetState": "processed",
+    "cq:name": "Keyline 8124 TR 500 Base Hole 29 6th panel.pdf",
+    "jcr:lastModified": "Fri Jun 17 2022 10:38:45 GMT+0200",
+    "cq:parentPath": "/content/dam/tetrapak/media-box/global/en/keylines/tetra-rex/base/500/twistcap-oso30/documents",
+    "renditions": {
+      "jcr:primaryType": "nt:folder",
+      "jcr:createdBy": "mediabox-service",
+      "jcr:created": "Fri Jun 17 2022 10:30:27 GMT+0200"
+    },
+    "related": {
+      "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:mixinTypes": [
+        "cq:Taggable"
+      ],
+      "tp:packagingFoodCategories": [],
+      "dam:Trapped": "False",
+      "jcr:title": "TR_500Base_H29_6th",
+      "egGr:hshrink": "1.000000",
+      "dam:Physicalheightininches": "19.685",
+      "xmpTPg:PlateNames": [
+        "Cyan",
+        "Magenta",
+        "Yellow",
+        "Black"
+      ],
+      "dam:Physicalwidthininches": "19.685",
+      "dam:numPages": 3,
+      "xmpTPg:HasVisibleTransparency": "True",
+      "tp:packagingFoodSubCategories": [],
+      "tp:itemModificationDate": "Wed Jun 15 2022 06:04:51 GMT+0200",
+      "egGr:margright": "0",
+      "tp:parts": [],
+      "tp:assetModificationDate": "Mon May 30 2022 03:45:17 GMT+0200",
+      "tp:consumablesPackaging": [],
+      "tp:assetEditor": "Martin Heiligenschmidt",
+      "tp:packageType": [
+        "tetrapak:packaging/package-type/tetra-rex"
+      ],
+      "tp:assetOwner": "Martin Heiligenschmidt",
+      "stVer:version": 1,
+      "tp:automationProducts": [],
+      "xmpTPg:PlateNames_xmpArrayType": "rdf:Seq",
+      "tp:trainingServicesProcessing": [],
+      "tp:approvalStatus": "pending",
+      "jcr:lastModifiedBy": "mediabox-service",
+      "xmp:CreatorTool": "Adobe Illustrator 24.0 (Windows)",
+      "tp:assetStatus": "",
+      "tp:technologyareaIceCream": [],
+      "tp:maintenanceServicePackaging": [],
+      "dam:scene7CompanyID": "c|25988",
+      "dam:scene7PublishedBy": "mediabox-service",
+      "tp:openingsandClosures": [
+        "tetrapak:packaging/openings-and-closures/twistcap-oso30"
+      ],
+      "dam:extracted": "Fri Jun 17 2022 10:32:06 GMT+0200",
+      "egGr:nrpages": 1,
+      "dc:format": "application/pdf",
+      "egGr:startlogpage": 1,
+      "tp:mtp": true,
+      "dc:description": "TR_500Base_H29_6th\nTechnical drawing to design a package",
+      "dam:Producer": "Adobe PDF library 15.00",
+      "egGr:hsize": "295",
+      "egGr:units": "mm",
+      "egGr:vsize": "196.6",
+      "tp:technologyAreaCheese": [],
+      "ns4:CreatorSubTool": "Adobe Illustrator",
+      "dam:scene7ID": "a|724221399",
+      "xmpMM:DocumentID": "xmp.did:82d66a02-ec0e-f242-b550-04821ff03040",
+      "dam:scene7CloudConfigPath": "/conf/global/settings/cloudconfigs/dmscene7",
+      "egGr:screenreg": "False",
+      "tp:expertServices": [],
+      "egGr:margleft": "0",
+      "tp:assetID": "",
+      "dam:scene7FileStatus": "PublishComplete",
+      "tp:maintenanceServiceProcessing": [],
+      "egGr:trapped": "False",
+      "xmpMM:OriginalDocumentID": "xmp.did:0d61f581-bfda-574e-93fc-0ca7f63bb108",
+      "tp:deletedAtSource": false,
+      "xmpTPg:NPages": 1,
+      "tp:downstreamEquipment": [],
+      "tp:keylines": [
+        "tetrapak:keylines/tetra-rex/base/500/twistcap-oso30"
+      ],
+      "tp:materialType": [
+        "tetrapak:material-type/keylines"
+      ],
+      "dc:modified": "Fri Jun 17 2022 10:35:05 GMT+0200",
+      "dam:scene7File": "tetrapakdev/Keyline 8124 TR 500 Base Hole 29 6th panelpdf",
+      "dam:scene7Name": "Keyline 8124 TR 500 Base Hole 29 6th panelpdf",
+      "dam:scene7Type": "Pdf",
+      "tp:packageVolume": [
+        "tetrapak:packaging/package-volume/500"
+      ],
+      "tp:securityClassification": "public",
+      "stVer:modifier": "rsvidojevicn",
+      "egGr:readerspread": "False",
+      "tp:plantComponentsProcessing": [],
+      "tp:packagingMaterialEffects": [],
+      "tp:packageShape": [
+        "tetrapak:packaging/package-shape/base"
+      ],
+      "xmp:MetadataDate": "Tue Apr 19 2022 14:21:49 GMT+0200",
+      "xmpMM:RenditionClass": "proof:pdf",
+      "cq:tags": [
+        "tetrapak:packaging/package-shape/base",
+        "tetrapak:material-type/keylines",
+        "tetrapak:keylines/tetra-rex/base/500/twistcap-oso30",
+        "tetrapak:packaging/openings-and-closures/twistcap-oso30",
+        "tetrapak:packaging/package-type/tetra-rex",
+        "tetrapak:packaging/package-volume/500"
+      ],
+      "jcr:lastModified": "Fri Jun 17 2022 10:35:05 GMT+0200",
+      "tp:automationServices": [],
+      "pdf:Producer": "Adobe PDF library 15.00",
+      "dam:scene7UploadTimeStamp": "Fri Jun 17 2022 10:33:45 GMT+0200",
+      "xmpTPg:HasVisibleOverprint": "False",
+      "dam:scene7PublishTimeStamp": "Fri Jun 17 2022 10:33:51 GMT+0200",
+      "tp:upgrades": [],
+      "dam:scene7JobStartDate": 1655454636453,
+      "tp:printingMethods": [],
+      "xmpMM:InstanceID": "uuid:220717eb-074c-4e4c-b414-ee16b00b9fcd",
+      "xmp:ModifyDate": "Tue Apr 19 2022 14:21:49 GMT+0200",
+      "tp:assetName": "Keyline 8124 TR 500 Base Hole 29 6th panel.pdf",
+      "tp:processingCategories": [],
+      "tp:publicWeb": true,
+      "xmp:CreateDate": "Tue Apr 19 2022 14:21:49 GMT+0200",
+      "pdf:Trapped": false,
+      "dam:scene7Domain": "http://s7g10.scene7.com/",
+      "tp:copyright": "",
+      "dam:scene7Folder": "tetrapakdev/tetrapak/media-box/global/en/keylines/tetra-rex/base/500/twistcap-oso30/documents/",
+      "tp:technologyAreaGeneral": [],
+      "tp:trainingServicesPackaging": [],
+      "dam:sha1": "11ce95fa77299a94e118b75bcfb14699dad6dbaf",
+      "dam:size": 298737,
+      "tp:cantoAssetID": "1mnv2tl2il2tn56ru38kosit76",
+      "dam:scene7APIServer": "https://s7sps3apissl.scene7.com",
+      "tp:straws": [],
+      "egGr:vshrink": "1.000000",
+      "tp:fillingMachines": [],
+      "dc:title": "TR_500Base_H29_6th",
+      "egGr:margbot": "0",
+      "egGr:margtop": "0",
+      "tp:subtitle": "",
+      "tp:gatedContent": false,
+      "tp:processingSubCategories": [],
+      "stVer:modifyDate": "Mon Dec 16 2019 12:39:50 GMT+0100",
+      "tp:plantCare": [],
+      "tp:installationServicesPackaging": [],
+      "tp:openingsSpecifics": [],
+      "dam:scene7LastModified": 1655454825311
+    }
+  }
+}
