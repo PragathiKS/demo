@@ -20,6 +20,7 @@
                     {{> atoms/dropdown/dropdown
                             defaultValue=i18nKeys.selectVolumes
                             options=this.volumes
+                            shapeName=this.shapeName
                             name="volumes"
                             eleClasses="js-tp-keylines__dropdown js-tp-keylines__volumes"
                             required="true"
@@ -28,15 +29,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-11">
-                    {{> atoms/dropdown/dropdown
-                            defaultValue=i18nKeys.selectOpenings
-                            options=this.openings
-                            name="openings"
-                            eleClasses="js-tp-keylines__dropdown js-tp-keylines__openings"
-                            required="true"
-                    }}
-                </div>
+                <div class="col-lg-11 js-keyLinesOpenings"></div>
             </div>
         </div>
 
@@ -48,6 +41,10 @@
                     iconClass="icon-Download"
                     baseClass="tp-keylines__modal-download"
                     jsClass="js-tp-keylines__modal-download"}}
+
+            <div class="error-msg tp-keylines__error-msg js-tp-keylines__error-msg d-none">
+                {{i18n key=i18nKeys.downloadKeylineError}}
+            </div>
         </div>
         <div class="tpatom-loader js-loader js-tp-aip-licenses-active__modal-spinner d-none">
             {{> atoms/loader/tpLoader}}
