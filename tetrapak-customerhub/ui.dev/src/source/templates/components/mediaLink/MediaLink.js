@@ -21,7 +21,8 @@ class MediaLink {
     let linkParentTitle = '';
     let trackingObj = {};
     let eventObj = {};
-    const linkType = $this.find('i.icon').is('.icon-External_Link, .icon-PDF') ? 'external':'internal';
+    // const linkType = $this.find('i.icon').is('.icon-External_Link, .icon-PDF, .icon-Download') ? 'external':'internal';
+    const linkType = $this.data('link-type');
     const linkName = $this.data('link-name');
     const dwnDocName = $this.data('asset-name');
     const dwnType = 'ungated';
