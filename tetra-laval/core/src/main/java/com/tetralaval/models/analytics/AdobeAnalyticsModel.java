@@ -222,7 +222,7 @@ public class AdobeAnalyticsModel {
         siteLanguage = StringUtils.EMPTY;
         String pageName = null;
         if (isErrorPage()) {
-            pageName = String.join(TLConstants.COLON, new String[]{errorCode, ERROR_VALUE});
+            pageName = String.join(TLConstants.COLON, errorCode, ERROR_VALUE);
         } else {
             pageName = generateSiteSections().stream().collect(Collectors.joining(TLConstants.COLON));
         }
@@ -234,7 +234,7 @@ public class AdobeAnalyticsModel {
                 siteLanguage = languagePage.getName();
             }
         }
-        return String.join(TLConstants.COLON, new String[]{"tl", siteLanguage, pageName});
+        return String.join(TLConstants.COLON, "tl", siteLanguage, pageName);
     }
 
     /**
