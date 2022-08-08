@@ -8,7 +8,7 @@
 # variable is now ignored.  The MPM is a loadable module, and the
 # choice of MPM can be changed by editing the configuration file
 # /etc/httpd/conf.modules.d/00-mpm.conf.
-# 
+#
 
 #
 # To pass additional options (for instance, -D definitions) to the
@@ -33,7 +33,7 @@ LANG=C
 #  Do not use PassEnv command at top of file only in .conf or .vhost files
 #  Just use ${variable_name} wherever the variable is needed
 # Example:
-# /etc/httpd/conf/publish-renders.any 
+# /etc/httpd/conf/publish-renders.any
 # /0
 #   {
 #   /hostname "${PUBLISH_IP}"
@@ -44,7 +44,7 @@ LANG=C
 # /etc/httpd/conf.d/enabled_vhosts/aem_author.vhost
 # PassEnv DISP_ID
 # <VirtualHost *:80>
-#	ServerName	"author-exampleco-dev.adobecqms.net"
+#       ServerName      "author-exampleco-dev.adobecqms.net"
 #   <IfModule mod_headers.c>
 #        Header add X-Dispatcher ${DISP_ID}
 #    </IfModule>
@@ -81,7 +81,9 @@ ONLINEHELP_URL='editor-guide-qa.tetrapak.com'
 ONLINEHELP_DOCROOT='/mnt/var/www/html/onlinehelp'
 ONLINEHELP_BasicAuth='AuthConfig'
 #ONLINEHELP_BasicAuth='None'
-#
+ONLINEHELP_Require='valid-user'
+#ONLINEHELP_Require='all granted'
+
 ## Tetralaval ##
 TETRALAVAL_URL='www-qa.tetralaval.com'
 TETRALAVAL_DOCROOT='/mnt/var/www/html/tetralaval'
