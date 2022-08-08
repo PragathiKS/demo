@@ -56,6 +56,15 @@ pipeline {
 
   		}
 
+	    script {
+   		echo "${build_id_number}"
+
+  		sh "pwd;ls -ltr"
+
+		sh "cd tetra-laval/ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
+
+ 		 }
+
             steps {
                 script {
                     if (params.Build_Commons) {
