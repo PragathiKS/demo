@@ -60,10 +60,10 @@ PassEnv DISP_ID
                 #AllowOverride AuthConfig
                 AllowOverride ${ONLINEHELP_BasicAuth}
                 AuthType Basic
-		AuthName "Restricted Content"
-		AuthUserFile /etc/httpd/.htpasswd
-		Require valid-user
-		#Require all granted
+                AuthName "Restricted Content"
+                AuthUserFile /etc/httpd/.htpasswd
+                Require ${ONLINEHELP_Require}
+                #Require all granted
         </Directory>
         <IfModule disp_apache2.c>
                 ## Enabled to allow rewrites to take affect and not be ignored by the dispatcher module
@@ -122,4 +122,3 @@ PassEnv DISP_ID
                         </LocationMatch>
                 </IfModule>
 </VirtualHost>
-
