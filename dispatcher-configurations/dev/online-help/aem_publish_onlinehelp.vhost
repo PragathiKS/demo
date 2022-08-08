@@ -7,10 +7,10 @@ PassEnv DISP_ID
         ServerName      ${ONLINEHELP_URL}
         ## Put names of which domains are used for your published site/content here
         #ServerAlias     ${ONLINEHELP_URL} ${ONLINEHELP_URL}
-                #ServerAlias     ${ONLINEHELP_URL} 
+                #ServerAlias     ${ONLINEHELP_URL}
                 ServerAlias      ${ONLINEHELP_URL}
         ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
-        DocumentRoot ${ONLINEHELP_DOCROOT}  
+        DocumentRoot ${ONLINEHELP_DOCROOT}
         DispatcherLogLevel 3
         ## Add header breadcrumbs for help in troubleshooting
         <IfModule mod_headers.c>
@@ -58,12 +58,12 @@ PassEnv DISP_ID
 
         </Directory>
         <Directory "${PUBLISH_DOCROOT}">
-               # AllowOverride AuthConfig
                 AllowOverride ${ONLINEHELP_BasicAuth}
+                #AllowOverride ${ONLINEHELP_BasicAuth}
                 AuthType Basic
-		AuthName "Restricted Content"
-		AuthUserFile /etc/httpd/.htpasswd
-		Require valid-user
+                AuthName "Restricted Content"
+                AuthUserFile /etc/httpd/.htpasswd
+                Require ${ONLINEHELP_Require}
                 #Require all granted
         </Directory>
         <IfModule disp_apache2.c>
@@ -123,5 +123,3 @@ PassEnv DISP_ID
                         </LocationMatch>
                 </IfModule>
 </VirtualHost>
-
-
