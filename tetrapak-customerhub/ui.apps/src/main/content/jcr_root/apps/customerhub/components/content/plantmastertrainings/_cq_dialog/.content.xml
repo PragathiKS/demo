@@ -28,6 +28,12 @@
 										fieldLabel="Component title (i18N key)"
 										name="./title"
 										required="true"/>
+									<subtitle
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldLabel="Component subtitle (i18N key)"
+										name="./subTitle"
+										required="true"/>
 									<availabletrainings
 										jcr:primaryType="nt:unstructured"
 										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
