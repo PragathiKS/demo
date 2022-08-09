@@ -47,25 +47,18 @@ pipeline {
                     label 'cfe-deploy'
                 }
             }
-	    script {
-  		echo "${build_id_number}"
 
-  		sh "pwd;ls -ltr"
-
-		sh "cd tetra-laval/ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
-
-  		}
-
-	    script {
-   		echo "${build_id_number}"
-
-  		sh "pwd;ls -ltr"
-
-		sh "cd tetra-laval/ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
-
- 		 }
 
             steps {
+
+			script {
+  				echo "${build_id_number}"
+
+				  sh "pwd;ls -ltr"
+
+					sh "cd tetra-laval/ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
+
+                              }	
                 script {
                     if (params.Build_Commons) {
                         appname = "tetrapak-commons"
