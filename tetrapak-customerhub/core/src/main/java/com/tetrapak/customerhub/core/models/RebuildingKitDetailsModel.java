@@ -19,7 +19,7 @@ import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
- * Model class for Equipment Details component.
+ * Model class for Rebuilding Kit Details component.
  */
 /**
  * @author INNIMBALKARS
