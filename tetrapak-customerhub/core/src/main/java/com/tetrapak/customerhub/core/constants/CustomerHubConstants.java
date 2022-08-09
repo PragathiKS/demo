@@ -757,6 +757,57 @@ public final class CustomerHubConstants {
     
     /** The Constant SHOW_TOOLTIP. */
     public static final String SHOW_TOOLTIP= "showToolTip";
+    
+    /** The Constant RK & EQUIPMENT_INFORMATION. */
+    public static final String RK_AND_EQUIPMENT_INFORMATION = "rkAndEquipmentInformation";
+    
+    /** The Constant Country Location */
+    public static final String COUNTRY_LOCATION = "countryLocation";
+    
+    /** The Constant Equipment Material */
+    public static final String EQUIPMENT_MATERIAL = "equipmentMaterial";
+    
+    /** The Constant Status Equpment Type */
+    public static final String STATU_EQUIPMENT_TYPE = "statusEquipmentType";
+    
+    /** The Constant Implementation Status Date */
+    public static final String IMPLEMENTATION_STATUS_DATE = "implementationStatusDate";
+    
+    /** The Constant Equipment Structure */
+    public static final String EQUIPMENT_STRUCTURE = "equipmentStructure";
+    
+    /** The Constant Report Implementation Status */
+    public static final String REPOST_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+    
+    /** The Constant RK Note */
+    public static final String RK_NOTE = "rkNote";
+    
+    /** The Constant RK Note Value */
+    public static final String RK_NOTE_VALUE = "rkNoteValue";
+    
+    /** The Constant RK Files */
+    public static final String RK_FILES = "rkFiles";
+    
+    /** The Constant RK CTI */
+    public static final String RK_CTI = "rkCTI";
+    
+    /** The Constant More Language */
+    public static final String MORE_LANGUAGE = "moreLanguage";
+    
+    /** The Constant RK Information */
+    public static final String RK_INFORMATION = "rkInformation";
+    
+    /** The Constant Ref Release Date */
+    public static final String REF_RELEASE_DATE = "refReleaseDate";
+    
+    /** The Constant RK Planning Information */
+    public static final String RK_PLANNING_INFORMATION = "rkPlanningInformation";
+    
+    /** The Constant Service Order */
+    public static final String SERVICE_ORDER = "serviceOrder";
+    
+    /** The Constant COUNTRY_LIST_API. */
+    public static final String RK_DETAILS_API = "rebuildingkits-rebuildingkitdetails";
 
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
