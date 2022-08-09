@@ -27,7 +27,7 @@ public class KeylinesModelTest {
 
     private static final String TEST_API_URL = ".assets.json";
 
-    private static final String I18N_KEYS = "{\"modalTitle\":\"cuhu.packDesign.keylines.modalTitle\",\"modalDescription\":\"cuhu.packDesign.keylines.modalDescription\",\"selectVolumes\":\"cuhu.packDesign.keylines.selectVolumes\",\"selectOpenings\":\"cuhu.packDesign.keylines.selectOpenings\",\"downloadKeyline\":\"cuhu.packDesign.keylines.downloadKeyline\"}";
+    private static final String I18N_KEYS = "{\"modalTitle\":\"cuhu.packDesign.keylines.modalTitle\",\"modalDescription\":\"cuhu.packDesign.keylines.modalDescription\",\"selectVolumes\":\"cuhu.packDesign.keylines.selectVolumes\",\"selectOpenings\":\"cuhu.packDesign.keylines.selectOpenings\",\"downloadKeyline\":\"cuhu.packDesign.keylines.downloadKeyline\",\"downloadKeylineError\":\"cuhu.packDesign.keylines.errorMessage\"}";
 
     @Rule
     public final AemContext aemContext = CuhuCoreAemContext.getAemContext(TEST_CONTENT, TEST_CONTENT_ROOT);

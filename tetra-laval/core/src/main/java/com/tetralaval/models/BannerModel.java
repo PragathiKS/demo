@@ -84,9 +84,6 @@ public class BannerModel {
     @ValueMapValue
     private String width;
 
-    /** The anchor linkType. */
-    private String linkType;
-
     /**
      * Gets the headingTag.
      *

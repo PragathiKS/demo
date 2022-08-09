@@ -2,7 +2,7 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -177,8 +177,8 @@ public class KeylinesServiceImpl implements KeylinesService {
 
     private void setOpeningsAndVolumes(Shape shape, Tag tag, Locale locale) {
 	LOGGER.debug("Inside setOpeningsAndVolumes Method");
-	Set<Volume> volumes = new HashSet<>();
-	Set<Opening> openings = new HashSet<>();
+	Set<Volume> volumes = new TreeSet<>();
+	Set<Opening> openings = new TreeSet<>();
 	Iterator<Tag> childTags = tag.listChildren();
 	while (childTags.hasNext()) {
 	    Volume volume = new Volume();
@@ -199,7 +199,7 @@ public class KeylinesServiceImpl implements KeylinesService {
 
     private Set<Opening> getOpenings(Tag tag, Locale locale) {
 	LOGGER.debug("Inside getOpenings Method");
-	Set<Opening> openings = new HashSet<>();
+	Set<Opening> openings = new TreeSet<>();
 	Iterator<Tag> childTags = tag.listChildren();
 	while (childTags.hasNext()) {
 	    Opening opening = new Opening();
