@@ -127,11 +127,7 @@ class Subscriptionform {
     });
 
     pageURL = pageURL.split('?');
-    if(pageURL.length>1) {
-      pageURL = pageURL[0];
-    }
-
-    dataObj['pageurl'] = pageURL;
+    dataObj['pageurl'] = pageURL[0];
 
     // Send Visitor Params
     const visitorId = storageUtil.getCookie('visitor_id857883');
