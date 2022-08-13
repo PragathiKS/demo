@@ -1,3 +1,4 @@
+/* eslint-disable */
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
@@ -134,6 +135,7 @@ function _setFolderNavData(stepKey, value, text) {
   const $this = this;
   const { folderNavData } = $this.cache;
 
+  console.log('Hiren Parmar Folder Nav Data', folderNavData);
   // reset current step flag for all other items
   Object.entries(folderNavData).forEach(([key]) => {
     const stepObj = folderNavData[key];
@@ -227,12 +229,14 @@ class TechnicalPublications {
       }
 
       if (currentStep === 'customer') {
+        console.log('Hiren Parmar - Customer clicked');
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);
       }
 
       if (currentStep === 'line') {
+        console.log('Hiren Parmar - Line clicked');
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);

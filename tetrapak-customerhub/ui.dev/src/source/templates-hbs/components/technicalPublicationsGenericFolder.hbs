@@ -2,23 +2,25 @@
     <table class="tp-tech-pub__table">
         <thead class="tp-tech-pub__thead-primary">
         <tr>
-            <th>
-                {{#if isCountriesStep}}
-                    Country
-                {{/if}}
+            {{#if isLineStep}}
+                <th>
+                    Line Step = true
+                </th>
+            {{else}}
+                <th>
+                    {{#if isCountriesStep}}
+                        Country
+                    {{/if}}
 
-                {{#if isCountryStep}}
-                    Customer
-                {{/if}}
+                    {{#if isCountryStep}}
+                        Customer
+                    {{/if}}
 
-                {{#if isCustomerStep}}
-                    Line
-                {{/if}}
-
-                {{#if isLineStep}}
-                    Line
-                {{/if}}
-            </th>
+                    {{#if isCustomerStep}}
+                        Line
+                    {{/if}}
+                </th>
+            {{/if}}
         </tr>
         </thead>
         <tbody>
