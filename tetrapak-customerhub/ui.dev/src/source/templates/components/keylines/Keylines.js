@@ -28,118 +28,14 @@ class Keylines {
     this.cache.apiUrl = this.root.data('apiUrl');
     this.cache.packageType = this.root.data('packagetype');
     this.cache.keylinesData = null;
-    this.cache.newData = {
-      shapes: [
-        {
-          name: 'leaf',
-          volumes: [
-            {
-              key: '125',
-              value: '125ml',
-              openings: [
-                {
-                  key: 'pulltab',
-                  value: 'PullTab'
-                },
-                {
-                  key: 'square_strawhole8mm_200',
-                  value: 'Strawhole 8 MM'
-                }
-              ]
-            },
-            {
-              key: '200',
-              value: '200ml',
-              openings: [
-                {
-                  key: 'pulltab',
-                  value: 'PullTab'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          name: 'square',
-          volumes: [
-            {
-              key: '125',
-              value: '125ml',
-              openings: [
-                {
-                  key: 'pulltab',
-                  value: 'PullTab'
-                },
-                {
-                  key: 'keyline_1158',
-                  value: 'Strawhole 6 MM'
-                }
-              ]
-            },
-            {
-              key: '200',
-              value: '200ml',
-              openings: [
-                {
-                  key: 'square_strawhole6mm_200',
-                  value: 'Strawhole 6 MM'
-                },
-                {
-                  key: 'strawhole8mm',
-                  value: 'Strawhole 8 MM'
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      assets: [
-        {
-          keyname: 'square_strawhole6mm_125',
-          assetname: 'keyline_1158.pdf',
-          assetpath:
-            '/content/dam/tetrapak/media-box/keylines/tetra-prisma-aseptic/square/strawhole6mm/125/keyline_1158.pdf'
-        },
-        {
-          keyname: 'square_strawhole6mm_200',
-          assetname: 'keyline_1384.pdf',
-          assetpath:
-            '/content/dam/tetrapak/media-box/keylines/tetra-prisma-aseptic/square/strawhole6mm/125/keyline_1384.pdf'
-        },
-        {
-          keyname: 'square_strawhole8mm_125',
-          assetname: 'keyline_1949.pdf',
-          assetpath:
-            '/content/dam/tetrapak/media-box/keylines/tetra-prisma-aseptic/square/strawhole8mm/125/keyline_1949.pdf'
-        },
-        {
-          keyname: 'square_strawhole8mm_200',
-          assetname: 'keyline_1893.pdf',
-          assetpath:
-            '/content/dam/tetrapak/media-box/keylines/tetra-prisma-aseptic/square/strawhole8mm/200/keyline_1893.pdf'
-        },
-        {
-          keyname: 'pulltab',
-          assetname: 'keyline_2092.pdf',
-          assetpath:
-            '/content/dam/tetrapak/media-box/keylines/tetra-prisma-aseptic/edge/strawhole8mm/200/keyline_2092.pdf'
-        }
-      ]
-    };
   }
 
   renderModal(shapeName, shapeTitle, volume) {
     const $this = this;
-    const { $keyLinesModal, keylinesData, i18nKeys } = this.cache; // newData needs to use if break anything
+    const { $keyLinesModal, keylinesData, i18nKeys } = this.cache;
     const { shapes, assets } = keylinesData;
     const targetShapeObj = shapes.find((item) => item.name === shapeName);
     let volumeBasedOpenings, openings;
-    /*
-    const openings = targetShapeObj.openings.map((item) => ({
-      key: item.key,
-      desc: item.value,
-    }));
-    */
     const volumes = targetShapeObj.volumes.map((item) => ({
       key: item.key,
       desc: item.value,
@@ -175,7 +71,6 @@ class Keylines {
         target: '.js-tp-keylines__modal',
         data: {
           assets,
-          // openings,
           volumes,
           shapeName,
           i18nKeys: updatedi18nKeys
@@ -192,7 +87,7 @@ class Keylines {
   }
 
   getShapeAssets(allShapeTags, shapeName, shapeTitle) {
-    const { apiUrl, packageType, newData } = this.cache;
+    const { apiUrl, packageType } = this.cache;
     let requestUrl = `${apiUrl}?type=${packageType}`;
 
     allShapeTags.forEach((shape) => {
@@ -208,7 +103,6 @@ class Keylines {
         contentType: 'application/json'
       })
       .done((res) => {
-        res = newData;
         this.cache.keylinesData = res;
         this.renderModal(shapeName, shapeTitle);
       })

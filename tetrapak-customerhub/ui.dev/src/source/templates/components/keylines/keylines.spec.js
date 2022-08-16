@@ -1,4 +1,3 @@
-/*
 import $ from 'jquery';
 import 'bootstrap';
 import Keylines from './Keylines';
@@ -63,13 +62,11 @@ describe('Keylines', function () {
     done();
   });
 
-  it('should enable download button after selecting dropdowns', function (done) {
+  it('should render openings when change volumes', function (done) {
     $('.js-tp-keylines__volumes').val('1000');
-    $('.js-tp-keylines__volumes').trigger('change');
-    $('.js-tp-keylines__openings').val('no-opening');
-    $('.js-tp-keylines__openings').trigger('change');
-    expect(this.setDownloadBtnSpy.called).to.be.true;
+    $('.square').trigger('change');
+    expect(this.renderSpy.called).to.be.true;
+    expect(this.renderModalSpy.called).to.be.true;
     done();
   });
 })
-*/
