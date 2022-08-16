@@ -1,4 +1,5 @@
 <sly data-sly-template.banner_template="${@data, flag}">
+    <sly data-sly-test="${data.bannerType}">
     <sly data-sly-test.dataLinkSectionCTAText="${data.pwButtonTheme == 'link' ? 'Text Hyperlink' : 'CTA'}" />
     <sly data-sly-test.isFormTypeAuthored="${data.formType != ''}"/>
     <sly data-sly-test.isSoftConvEnabled="${data.enableSoftcoversion != ''}"/>
@@ -6,7 +7,6 @@
     <sly data-sly-test.textImageBanner="${data.bannerType == 'textImage' || data.bannerType == 'textImage-wide'}" />            
     <sly data-sly-test.cardTheme="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row-reversed') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row-reversed')}" />
     <sly data-sly-test.cardThemeReverse="${(data.pwCardTheme =='sky-blue' && data.pwDisplay =='display-row') || (data.pwCardTheme =='black' && data.pwDisplay =='display-row')}" />
-
     <div class="tp-container-${data.bannerType}" id="${data.anchorId}" title="${data.anchorTitle}" data-module="Banner" auto_locator="${data.bannerType}">
         <div class="pw-banner ${heroBanner ? 'js-pw-banner' : ''} pw-theme--${data.pwTheme}"
             data-link-banner-title="${data.title}" data-anchor-type="${dataLinkSectionCTAText}"
@@ -67,6 +67,7 @@
          data-sly-use.subscriptionform="/apps/publicweb/components/content/subscriptionform/subscriptionform-template.html"
          data-sly-call="${subscriptionform.subscriptionform_template @ data=data.subscriptionData, componentName=resource.name, downloadPath=data.linkPath, assetName=data.assetName, parentComponent='Banner'}" />
     </div>
+    </sly>
 </sly>
 
 
