@@ -5,11 +5,9 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletOutputStream;
@@ -110,8 +108,7 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 				LOGGER.debug("Equipment list CSV File Column heading : {}", columnHeading);
 			}
 			csvFileContent.append(CustomerHubConstants.NEWLINE);
-			List<Equipments> sortedEquipments = sortEquipmentRecordsinCSV(equipments);
-			for (Equipments equipment : sortedEquipments) {
+			for (Equipments equipment : equipments) {
 				csvFileContent.append(convertToCSVRow(equipment));
 			}
 			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_16LE));
@@ -150,35 +147,6 @@ public class EquipmentListExcelServiceImpl implements EquipmentListExcelService 
 			value = GlobalUtil.getI18nValueForThisLanguage(request, I18N_PREFIX, value, language);
 		}
 		return value;
-	}
-
-	/**
-	 * This method sorts the CSV rows.
-	 *
-	 * @param List<Equipments> Unsorted Equipment list
-	 * @return List<Equipments> Sorted Equipment list
-	 */
-	private List<Equipments> sortEquipmentRecordsinCSV(List<Equipments> unsortedEquipments) {
-
-		Function<Equipments, String> getCustomerName = t -> {
-			String name = t.getCustomerName();
-			return (name != null && (name.isEmpty()
-					|| name.equals(CustomerHubConstants.QUOTE_ESCAPED + CustomerHubConstants.QUOTE_ESCAPED))) ? null
-							: name;
-		};
-
-		Comparator<Equipments> compareByLocation = Comparator.comparing(Equipments::getLocation);
-
-		Comparator<Equipments> compareByFunctionalLocation = Comparator.comparing(Equipments::getFunctionalLocation);
-
-		Comparator<Equipments> compareByPosition = Comparator.comparing(Equipments::getPosition);
-
-		Comparator<Equipments> cumulativeComparison = Comparator
-				.comparing(getCustomerName, Comparator.nullsLast(Comparator.naturalOrder()))
-				.thenComparing(compareByLocation).thenComparing(compareByFunctionalLocation)
-				.thenComparing(compareByPosition);
-
-		return unsortedEquipments.stream().sorted(cumulativeComparison).collect(Collectors.toList());
 	}
 
 	/**

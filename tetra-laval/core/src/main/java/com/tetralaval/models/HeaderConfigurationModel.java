@@ -154,7 +154,7 @@ public class HeaderConfigurationModel {
             if (currentResource != null && currentResource.adaptTo(Node.class) != null) {
                 Page currentPage = currentResource.adaptTo(Page.class);
                 Iterator<Page> pageIterator = currentPage.listChildren();
-                navigationList = createNavigationList(pageIterator, navigationList);
+                createNavigationList(pageIterator, navigationList);
             }
         }
         return navigationList;

@@ -1673,5 +1673,10 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.packDesign.keylines.downloadKeyline"
-        sling:message="Download Keyline"/>                     
+        sling:message="Download Keyline"/>
+    <cuhu.packDesign.keylines.errorMessage
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.packDesign.keylines.errorMessage"
+        sling:message="Right now there is an issue downloading the file. Please try again in a short while. Sorry for the inconvenience."/>     
 </jcr:root>

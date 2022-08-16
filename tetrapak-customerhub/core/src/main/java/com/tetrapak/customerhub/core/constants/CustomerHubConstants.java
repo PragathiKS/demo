@@ -648,7 +648,8 @@ public final class CustomerHubConstants {
     public static final String VALUE = "Value";
 
     /** The Constant VALUE. */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+    public static final String CONTENT_ROOT_PATH
+            = "/content/tetrapak/customerhub/global";
 
     /** The Constant HOME_PAGE_REL_PATH. */
     public static final String HOME_PAGE_REL_PATH = "dashboard";
@@ -664,6 +665,150 @@ public final class CustomerHubConstants {
 
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+    
+    /** The Constant for REBUILDING_KITS **/
+    public static final String REBUILDING_KITS = "rebuildingKits";
+    
+    /** The Constant for RK_NUMBER **/
+    public static final String RK_NUMBER = "rkNumber";
+    
+    /** The Constant for RK_DESC **/
+    public static final String RK_DESC = "rkDesc";
+    
+    /** The Constant for IMPL_STATUS **/
+    public static final String IMPL_STATUS = "implStatus";
+    
+    /** The Constant for IMPL_DATE **/
+    public static final String IMPL_DATE = "implDate";
+    
+    /** The Constant for IMPL_STATUS_DATE **/
+    public static final String IMPL_STATUS_DATE = "implStatusDate";
+    
+    /** The Constant for RK_TYPE **/
+    public static final String RK_TYPE = "rkType";
+    
+    /** The Constant for RK_STATUS **/
+    public static final String RK_STATUS = "rkStatus";
+    
+    /** The Constant for RK_HANDLING **/
+    public static final String RK_HANDLING = "rkHandling";
+    
+    /** The Constant for IMPL_DEADLINE **/
+    public static final String IMPL_DEADLINE = "implDeadline";
+    
+    /** The Constant for PLANNED_DATE **/
+    public static final String PLANNED_DATE = "plannedDate";
+    
+    /** The Constant for RELEASE_DATE **/
+    public static final String RELEASE_DATE = "releaseDate";
+    
+    /** The Constant for GENERAL_RKNUMBER **/
+    public static final String GENERAL_RKNUMBER = "generalRkNumber";
+    
+    /** The Constant for EXPORT_TO_CSV **/
+    public static final String EXPORT_TO_CSV = "exportToCsv";
+    
+    /** The Constant for MACHINE_SYSTEM_TOOL_TIP **/
+    public static final String MACHINE_SYSTEM_TOOL_TIP = "machineSystemToolTip";
+    
+    /** The Constant for RK_NUMBER_TOOL_TIP **/
+    public static final String RK_NUMBER_TOOL_TIP = "rkNumberToolTip";
+
+    /** The Constant for RK_DESC_TOOL_TIP **/
+    public static final String RK_DESC_TOOL_TIP = "rkDescToolTip";
+    
+    /** The Constant for IMPL_STATUS_TOOL_TIP **/
+    public static final String IMPL_STATUS_TOOL_TIP = "implStatusToolTip";
+    
+    /** The Constant for IMPL_DATE_TOOL_TIP **/
+    public static final String IMPL_DATE_TOOL_TIP = "implDateToolTip";
+    
+    /** The Constant for IMPL_STATUS_DATE_TOOL_TIP **/
+    public static final String IMPL_STATUS_DATE_TOOL_TIP = "implStatusDateToolTip";
+    
+    /** The Constant for RK_TYPE_TOOL_TIP **/
+    public static final String RK_TYPE_TOOL_TIP = "rkTypeToolTip";
+    
+    /** The Constant for RK_STATUS_TOOL_TIP **/
+    public static final String RK_STATUS_TOOL_TIP = "rkStatusToolTip";
+    
+    /** The Constant for RK_HANDLING_TOOL_TIP **/
+    public static final String RK_HANDLING_TOOL_TIP = "rkHandlingToolTip";
+    
+    /** The Constant for IMPL_DEADLINE_TOOL_TIP **/
+    public static final String IMPL_DEADLINE_TOOL_TIP = "implDeadlineToolTip";
+    
+    /** The Constant for PLANNED_DATE_TOOL_TIP **/
+    public static final String PLANNED_DATE_TOOL_TIP = "plannedDateToolTip";
+    
+    /** The Constant for RELEASE_DATE_TOOL_TIP **/
+    public static final String RELEASE_DATE_TOOL_TIP = "releaseDateToolTip";
+    
+    /** The Constant for GENERAL_RKNUMBER_TOOL_TIP **/
+    public static final String GENERAL_RKNUMBER_TOOL_TIP = "generalRkNumberToolTip";
+    
+    /** The Constant REBUILDINGKITS_LIST_API. */
+    public static final String REBUILDINGKITS_LIST_API = "rebuildingkits-rebuildingkitslist";
+    
+    /** The Constant REBUILDINGKITS_COUNTRYLIST_API. */
+    public static final String REBUILDINGKITS_COUNTRYLIST_API = "rebuildingkits-countrylist";
+    
+    /** The Constant PUBLISH. */
+    public static final String PUBLISH = "publish";
+    
+    /** The Constant SHOW_TOOLTIP. */
+    public static final String SHOW_TOOLTIP= "showToolTip";
+    
+    /** The Constant RK & EQUIPMENT_INFORMATION. */
+    public static final String RK_AND_EQUIPMENT_INFORMATION = "rkAndEquipmentInformation";
+    
+    /** The Constant Country Location */
+    public static final String COUNTRY_LOCATION = "countryLocation";
+    
+    /** The Constant Equipment Material */
+    public static final String EQUIPMENT_MATERIAL = "equipmentMaterial";
+    
+    /** The Constant Status Equpment Type */
+    public static final String STATU_EQUIPMENT_TYPE = "statusEquipmentType";
+    
+    /** The Constant Implementation Status Date */
+    public static final String IMPLEMENTATION_STATUS_DATE = "implementationStatusDate";
+    
+    /** The Constant Equipment Structure */
+    public static final String EQUIPMENT_STRUCTURE = "equipmentStructure";
+    
+    /** The Constant Report Implementation Status */
+    public static final String REPOST_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+    
+    /** The Constant RK Note */
+    public static final String RK_NOTE = "rkNote";
+    
+    /** The Constant RK Note Value */
+    public static final String RK_NOTE_VALUE = "rkNoteValue";
+    
+    /** The Constant RK Files */
+    public static final String RK_FILES = "rkFiles";
+    
+    /** The Constant RK CTI */
+    public static final String RK_CTI = "rkCTI";
+    
+    /** The Constant More Language */
+    public static final String MORE_LANGUAGE = "moreLanguage";
+    
+    /** The Constant RK Information */
+    public static final String RK_INFORMATION = "rkInformation";
+    
+    /** The Constant Ref Release Date */
+    public static final String REF_RELEASE_DATE = "refReleaseDate";
+    
+    /** The Constant RK Planning Information */
+    public static final String RK_PLANNING_INFORMATION = "rkPlanningInformation";
+    
+    /** The Constant Service Order */
+    public static final String SERVICE_ORDER = "serviceOrder";
+    
+    /** The Constant COUNTRY_LIST_API. */
+    public static final String RK_DETAILS_API = "rebuildingkits-rebuildingkitdetails";
 
     /**
      * Instantiates a new customer hub constants.

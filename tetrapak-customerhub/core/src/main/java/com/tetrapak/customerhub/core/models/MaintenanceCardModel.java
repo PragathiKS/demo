@@ -49,7 +49,7 @@ public class MaintenanceCardModel extends BaseMaintenanceModel {
      */
     @PostConstruct
     protected void init() {
-        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
+    	Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put("maintenanceHeading", getMaintenanceHeading());
         i18KeyMap.put("contactsHeading", getContactsHeading());
         i18KeyMap.put("statusLabel", getStatusLabel());

@@ -30,6 +30,8 @@
 
     &__modal-footer {
         @include padding-top($padding-zero);
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     &__modal-body {
@@ -43,5 +45,12 @@
         @include font-size($font-m-l);
         @include line-height(32px, $font-m-l);
         font-weight: 400;
+    }
+
+    &__error-msg {
+        @include margin-top($margin-md);
+        @include font-size($font-sm);
+        color: $color-red;
+        font-weight: 500;
     }
 }

@@ -84,6 +84,7 @@ class Keylines {
     const shapeName = $downloadBtn.data('shape-name');
     const opening = $keyLinesModal.find('.js-tp-keylines__openings').val();
     const volume = $keyLinesModal.find('.js-tp-keylines__volumes').val();
+    const $errorMsg = $keyLinesModal.find('.js-tp-keylines__error-msg');
     let isValid = true;
 
     if (opening === '' || volume === '') {
@@ -99,9 +100,11 @@ class Keylines {
         const { assetpath } = assetObj;
         $downloadBtn.attr('onclick', `window.open('${assetpath}', '_blank')`);
         $downloadBtn.removeAttr('disabled');
+        $errorMsg.addClass('d-none');
       } else {
         $downloadBtn.removeAttr('onclick');
         $downloadBtn.attr('disabled', 'disabled');
+        $errorMsg.removeClass('d-none');
       }
     }
   }

@@ -2,16 +2,15 @@
 ## Collect the dispatchers number
 PassEnv DISP_ID
 
-# Defining Virtual host for ${ONLINEHELP_URL}
+# Defining Virtual host for tetrapak-stage65.adobecqms.net
 <VirtualHost *:80>
         ServerName      ${ONLINEHELP_URL}
         ## Put names of which domains are used for your published site/content here
-        #ServerAlias     ${ONLINEHELP_URL} ${ONLINEHELP_URL}
-                #ServerAlias     ${ONLINEHELP_URL} 
-                ServerAlias      ${ONLINEHELP_URL}
-        ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
-        DocumentRoot ${ONLINEHELP_DOCROOT}  
-        DispatcherLogLevel 3
+        #ServerAlias     ${PUBLISH_DEFAULT_HOSTNAME} tetrapak-stage65.adobecqms.net
+                #ServerAlias     tetrapak-stage65.adobecqms.net www.tetrapak.com tetrapak.com
+                ServerAlias     ${ONLINEHELP_URL}
+     ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
+        DocumentRoot    ${PUBLISH_DOCROOT}/onlinehelp
         ## Add header breadcrumbs for help in troubleshooting
         <IfModule mod_headers.c>
                 Header add X-Dispatcher ${DISP_ID}
@@ -58,9 +57,13 @@ PassEnv DISP_ID
 
         </Directory>
         <Directory "${PUBLISH_DOCROOT}">
-               # AllowOverride AuthConfig
-                AllowOverride None
-                Require all granted
+                #AllowOverride AuthConfig
+                AllowOverride ${ONLINEHELP_BasicAuth}
+                AuthType Basic
+                AuthName "Restricted Content"
+                AuthUserFile /etc/httpd/.htpasswd
+                Require ${ONLINEHELP_Require}
+                #Require all granted
         </Directory>
         <IfModule disp_apache2.c>
                 ## Enabled to allow rewrites to take affect and not be ignored by the dispatcher module
@@ -119,5 +122,3 @@ PassEnv DISP_ID
                         </LocationMatch>
                 </IfModule>
 </VirtualHost>
-
-

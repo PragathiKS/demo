@@ -4,7 +4,7 @@ package com.tetrapak.customerhub.core.beans.keylines;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Volume {
+public class Volume implements Comparable<Volume> {
 
     @SerializedName("key")
     @Expose
@@ -62,4 +62,12 @@ public class Volume {
 	return true;
     }
 
+    @Override
+    public int compareTo(Volume volume) {
+	return Double.compare(getDoubleValue(this.value), getDoubleValue(volume.value));
+    }
+
+    private Double getDoubleValue(String string) {
+	return Double.parseDouble(string.replace(",", "."));
+    }
 }

@@ -105,8 +105,11 @@ class Header {
     e.preventDefault();
 
     const $target = $(e.target);
-    const $navItem = $target.closest('.tp_pw-header__nav-item').find('> a');
-    const $parentHeader = $target.parent().find('> .tp_pw-header__mega-menu-header');
+    const isMobileMenu = $target.closest('.tp_pw-header__mobile-nav').length > 0;
+    const $navItem = isMobileMenu ? $target.closest('.tp_pw-header__mobile-nav-menu-mega').find('> label span') :
+      $target.closest('.tp_pw-header__nav-item').find('> a');
+    const $parentHeader = isMobileMenu ? $target.closest('.tp_pw-header__mobile-nav-menu-item')
+      .find('.tp_pw-header__mega-menu-header') : $target.parent().find('> .tp_pw-header__mega-menu-header');
     const linkType = $target.attr('target') === '_blank' ? 'external' : 'internal';
     const linkName = $target.text();
 
@@ -144,9 +147,9 @@ class Header {
     this.cache.$searchBtn = this.root.find(`.js-tp_pw-header__nav-options-search`);
     this.cache.$searchBar = this.root.find('.js-pw-header-search-bar');
     this.cache.$searchBarCloseIcon = this.root.find('.search-bar-close');
-    this.cache.$contactBtn = this.root.find(`.js-tp_pw-header__nav-options-envelope`);
-    this.cache.$firstLevelNavigation = this.root.find('.tp_pw-header__nav-item');
-    this.cache.$secondLevelNavigation = this.root.find('.tp_pw-header__mega-menu-link');
+    this.cache.$contactBtn = this.root.find('.js-tp_pw-header__nav-options-envelope');
+    this.cache.$firstLevelNavigation = this.root.find('.js-tp_pw-header__nav-first-lvl');
+    this.cache.$secondLevelNavigation = this.root.find('.js-tp_pw-header__nav-sub-lvl');
     this.cache.$megaMenu = this.root.find('.tp_pw-header__mega-menu');
     this.cache.$overlay = this.root.find('.pw-overlay');
 

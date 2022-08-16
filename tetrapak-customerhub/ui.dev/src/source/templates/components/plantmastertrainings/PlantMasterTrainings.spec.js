@@ -40,6 +40,11 @@ describe('PlantMasterTrainings', function () {
     this.addErrorMsgSpy = sinon.spy(this.plantMasterTrainings, 'addErrorMsg');
     this.handleFormSubmitSpy = sinon.spy(this.plantMasterTrainings, 'handleFormSubmit');
 
+    this.trackAccordionClickSpy = sinon.spy(this.plantMasterTrainings, 'trackAccordionClick');
+    this.trackFormErrorSpy = sinon.spy(this.plantMasterTrainings, 'trackFormError');
+    this.trackFormCompleteSpy = sinon.spy(this.plantMasterTrainings, 'trackFormComplete');
+    this.trackFormStartSpy = sinon.spy(this.plantMasterTrainings, 'trackFormStart');
+
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(plantMasterUserGroup));
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
@@ -65,12 +70,15 @@ describe('PlantMasterTrainings', function () {
     this.processTrainingsDataSpy.restore();
     this.processLearningHistoryDataSpy.restore();
     this.renderSpy.restore();
-
     this.ajaxStub.restore();
     this.tokenStub.restore();
     this.removeAllErrorMessagesSpy.restore();
     this.addErrorMsgSpy.restore();
     this.handleFormSubmitSpy.restore();
+    this.trackAccordionClickSpy.restore();
+    this.trackFormErrorSpy.restore();
+    this.trackFormCompleteSpy.restore();
+    this.trackFormStartSpy.restore();
   });
 
   it('should initialize', function (done) {
@@ -83,7 +91,6 @@ describe('PlantMasterTrainings', function () {
     expect(this.getUserGroupSpy.called).to.be.true;
     done();
   });
-
   it('should call and render trainings data', function (done) {
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -109,6 +116,7 @@ describe('PlantMasterTrainings', function () {
     $('.js-aip-trainings__form').trigger('submit');
     expect(this.removeAllErrorMessagesSpy.called).to.be.true;
     expect(this.addErrorMsgSpy.called).to.be.true;
+    expect(this.trackFormErrorSpy.called).to.be.true;
     done();
   });
 
@@ -127,6 +135,21 @@ describe('PlantMasterTrainings', function () {
     $('.js-aip-trainings__form').trigger('submit');
     expect(this.handleFormSubmitSpy.called).to.be.true;
     expect(this.removeAllErrorMessagesSpy.called).to.be.true;
+    expect(this.trackFormCompleteSpy.called).to.be.true;
+    done();
+  });
+
+  it('should track accordion click', function (done) {
+    $(document.body).empty().html(PlantMasterTrainingsTemplate());
+    $('.js-aip-trainings__accordion .btn-link').trigger('click');
+    expect(this.trackAccordionClickSpy.called).to.be.true;
+    done();
+  });
+
+  it('should track form start', function (done) {
+    $(document.body).empty().html(PlantMasterTrainingsTemplate());
+    $('#preferredLocation-0').val('Test').trigger('change');
+    expect(this.trackFormStartSpy.called).to.be.true;
     done();
   });
 });
