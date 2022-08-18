@@ -8,12 +8,12 @@ import {render} from '../../../scripts/utils/render';
 
 function _getFolderData(stepKey, options) {
   const $this = this;
-  const { countriesApi, customerApi, lineApi } = $this.cache;
+  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi } = $this.cache;
   const { folderNavData, apiDataObj } = $this.cache;
-  const { country, customer } = folderNavData;
+  const { country, customer, line, lineDetails } = folderNavData;
   const { isBreadcrumbNav } = options;
   let apiUrl;
-
+  // https://api-mig.tetrapak.com/installedbase/equipments?countrycode=AU&results=extended
   switch (stepKey) {
     case 'countries':
       apiUrl = countriesApi;
@@ -25,7 +25,12 @@ function _getFolderData(stepKey, options) {
       apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}`;
       break;
     case 'line':
-      apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}`;
+      apiUrl = `${equipmentApi}?skip=0&countrycodes=${country.value}&customerNumber=${customer.value}&linecodes=${line.value}&results=extended`;
+      break;
+    case 'lineDetails':
+      const serialNumber = lineDetails.value.split('/');
+      console.log('Hiren Parmar >>>', serialNumber, serialNumber);
+      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
       break;
     default:
       break;
@@ -56,6 +61,7 @@ function _getFolderData(stepKey, options) {
         },
         showLoader: true
       }).done(res => {
+        console.log('Hiren Parmar >>>', res);
         $this.renderFolderData(stepKey, res.data);
         $this.renderBreadcrumbs(stepKey);
         $this.setApiData(stepKey, res.data);
@@ -79,7 +85,8 @@ function _renderFolderData(stepKey, folderData) {
       isCustomerStep: stepKey === 'customer',
       isCountryStep: stepKey === 'country',
       isCountriesStep: stepKey === 'countries',
-      isLineStep: stepKey === 'line'
+      isLineStep: stepKey === 'line',
+      isLineDetailsStep: stepKey === 'lineDetails'
     }
   }, () => {
     $this.showSpinner(false);
@@ -182,7 +189,8 @@ class TechnicalPublications {
       countries: {},
       country: {},
       customer: {},
-      line: {}
+      line: {},
+      lineDetails: {}
     };
     // save state of current folder structure levels
     this.cache.folderNavData = {
@@ -202,6 +210,11 @@ class TechnicalPublications {
         isCurrentStep: false
       },
       line: {
+        text: null,
+        value: null,
+        isCurrentStep: false
+      },
+      lineDetails: {
         text: null,
         value: null,
         isCurrentStep: false
@@ -237,6 +250,12 @@ class TechnicalPublications {
 
       if (currentStep === 'line') {
         console.log('Hiren Parmar - Line clicked');
+        const lineCode = $btn.data('line-code');
+        const lineDescription = $btn.data('line-description');
+        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
+      }
+
+      if (currentStep === 'line') {
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);
