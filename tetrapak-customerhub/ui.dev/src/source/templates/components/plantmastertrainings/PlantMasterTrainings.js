@@ -218,7 +218,7 @@ function _getTrainingsData() {
 }
 
 /**
- * Fetch ping user data 
+ * Fetch ping user data
  */
 
 function _getUserGroup() {

@@ -48,7 +48,17 @@ pipeline {
                 }
             }
 
+
             steps {
+
+			script {
+  				echo "${build_id_number}"
+
+				  sh "pwd;ls -ltr"
+
+					sh "cd tetra-laval/ui.frontend/ && sh -x ../nvmbuild.sh '${build_id_number}'"
+
+                              }	
                 script {
                     if (params.Build_Commons) {
                         appname = "tetrapak-commons"
@@ -175,16 +185,16 @@ pipeline {
     def authordeploy() {
 
                 echo "Uninstalling Old Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
                 sleep 60
                 echo "Deleting Old Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
                 sleep 60
                 echo "Uploading New Package on author"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 60
                 echo "Installing New Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
                 sleep 60
 
     }
@@ -192,16 +202,16 @@ pipeline {
     def publishdeploy() {
 
                 echo "Uninstalling Old Package on publish"
-                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
                 sleep 60
                 echo "Deleting Old Package on publish"
-                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
                 sleep 60
                 echo "Uploading New Package on publish"
                 sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
                 sleep 60
                 echo "Installing New Package on publish"
-                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}'"
+                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
                 sleep 60
 
     }
