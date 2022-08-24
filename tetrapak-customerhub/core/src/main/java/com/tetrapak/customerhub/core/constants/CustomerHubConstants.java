@@ -664,6 +664,9 @@ public final class CustomerHubConstants {
 
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+    
+    /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
+    public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
 
     /**
      * Instantiates a new customer hub constants.
