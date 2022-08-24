@@ -820,6 +820,9 @@ public final class CustomerHubConstants {
 
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
+    
+    /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
+    public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
 
     /**
      * Instantiates a new customer hub constants.
