@@ -2,6 +2,7 @@
     {{#each bcItems}}
         <li class="tp-tech-pub__bc-item {{#if isCurrentStep}}active{{/if}}">
             <button class="js-tech-pub__bc-btn" type="button" data-step="{{this.step}}" data-value="{{this.value}}">{{this.text}}</button>
+            <span class="tp-tech-pub__icon"><i class="icon icon-Chevron_Right"></i></span>
         </li>
     {{/each}}
 </ul>

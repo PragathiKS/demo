@@ -1,21 +1,62 @@
 .tp-tech-pub {
+    &__header {
+        &-wrapper {
+            @include margin-bottom($margin-l);
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    &__doc-lang {
+        display: none;
+        color: $color-congress-blue;
+        .doc-icon {
+            @include margin-bottom($margin-md);
+            display: inline-block;
+            .icon {
+                @include margin-right($margin-md);
+            }
+        }
+    }
+    &__search {
+        &-count {
+            @include padding($padding-md $padding-zero);
+            @include margin($margin-l $margin-zero);
+            @include font-size($font-md);
+            @include line-height($font-xl, $font-md);
+            display: none;
+            color: $color-congress-blue;
+            border-top: 1px solid $color-congress-blue;
+            border-bottom: 1px solid $color-congress-blue;
+        }
+    }
     &__breadcrumbs {
         @include padding($padding-md);
-        @include margin($margin-md $margin-zero);
         background-color: $color-wild-sand;
     }
 
     &__bc-list {
-        display: flex;
+        display: block;
     }
 
     &__bc-item {
-        @include margin-right($margin-sm);
-        color: $color-boulder;
+        display: inline;
         font-weight: 500;
 
+        .js-tech-pub {
+            &__bc-btn {
+                @include margin-bottom($margin-xs);
+                color: $color-boulder;
+            }
+        }
         &.active {
-            color: $color-tundora;
+            .js-tech-pub {
+                &__bc-btn {
+                    color: $color-tundora;
+                }
+            }
+            .tp-tech-pub__icon {
+                display: none;
+            }
         }
     }
 
@@ -32,5 +73,16 @@
         td {
             border-bottom: 1px solid $color-mercury;
         }
+        &-icon {
+            color: $color-congress-blue;
+            font-size: $font-baseline;
+            width: 50px;
+        }
+    }
+
+    &__icon {
+        @include margin($margin-zero $margin-sm);
+        display: inline-block;
+        width: 8px;
     }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import {ajaxWrapper} from '../../../scripts/utils/ajax';
@@ -8,12 +7,12 @@ import {render} from '../../../scripts/utils/render';
 
 function _getFolderData(stepKey, options) {
   const $this = this;
-  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi } = $this.cache;
+  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi, searchResults, docLang } = $this.cache;
   const { folderNavData, apiDataObj } = $this.cache;
-  const { country, customer, line, lineDetails } = folderNavData;
+  const { country, customer, line, lineFolders, folderDetails } = folderNavData;
   const { isBreadcrumbNav } = options;
   let apiUrl;
-  // https://api-mig.tetrapak.com/installedbase/equipments?countrycode=AU&results=extended
+  let serialNumber;
   switch (stepKey) {
     case 'countries':
       apiUrl = countriesApi;
@@ -27,9 +26,12 @@ function _getFolderData(stepKey, options) {
     case 'line':
       apiUrl = `${equipmentApi}?skip=0&countrycodes=${country.value}&customerNumber=${customer.value}&linecodes=${line.value}&results=extended`;
       break;
-    case 'lineDetails':
-      const serialNumber = lineDetails.value.split('/');
-      console.log('Hiren Parmar >>>', serialNumber, serialNumber);
+    case 'lineFolders':
+      serialNumber = lineFolders.value.split('/');
+      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
+      break;
+    case 'folderDetails':
+      serialNumber = folderDetails.value.split(',')[1].split('/');
       apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
       break;
     default:
@@ -61,17 +63,55 @@ function _getFolderData(stepKey, options) {
         },
         showLoader: true
       }).done(res => {
-        console.log('Hiren Parmar >>>', res);
-        $this.renderFolderData(stepKey, res.data);
+        docLang.hide();
+        searchResults.hide();
+        
+        let finalData = res.data;
+        let srNo = '';
+        if(stepKey === 'line') {
+          finalData = res.data.filter(data => data.serialNumber !== '');
+        }
+        if(stepKey === 'lineFolders') {
+          const docData = [];
+          const docObj = {};
+
+          // Filter Data by Document Type
+          res.data.forEach(function(data) {
+            docObj[data.typeCode] = `${data.typeCode} - ${data.type}`;
+          });
+          Object.keys(docObj).forEach(function(obj) {
+            const docObject = {
+              'docTitle': docObj[obj],
+              'docType': obj,
+              'serialNo': lineFolders.value
+            };
+            docData.push(docObject);
+          });
+
+          finalData = docData.filter(function(data){
+            if(data.docType === 'OM' || data.docType === 'MM') {
+              return data;
+            }
+          });
+        }
+        if (stepKey === 'folderDetails') {
+          const documentType = folderDetails.value.split(',')[0];
+          srNo = folderDetails.value.split(',')[1];
+          finalData = res.data.filter(data => data.typeCode === documentType);
+          docLang.show();
+          searchResults.show();
+          searchResults.text(`${finalData.length} search results`);
+        }
+        $this.renderFolderData(stepKey, finalData, srNo);
         $this.renderBreadcrumbs(stepKey);
-        $this.setApiData(stepKey, res.data);
+        $this.setApiData(stepKey, finalData);
       }).fail((e) => {
         logger.error(e);
       });
   });
 }
 
-function _renderFolderData(stepKey, folderData) {
+function _renderFolderData(stepKey, folderData, serialNo) {
   const $this = this;
   const { $folderListingWrapper } = $this.cache;
 
@@ -81,12 +121,14 @@ function _renderFolderData(stepKey, folderData) {
     data: {
       i18nKeys: $this.cache.i18nKeys,
       currentStep: stepKey,
+      serialNumber: serialNo,
       folderData,
       isCustomerStep: stepKey === 'customer',
       isCountryStep: stepKey === 'country',
       isCountriesStep: stepKey === 'countries',
       isLineStep: stepKey === 'line',
-      isLineDetailsStep: stepKey === 'lineDetails'
+      isLineFoldersStep: stepKey === 'lineFolders',
+      isFolderDetailsStep: stepKey === 'folderDetails'
     }
   }, () => {
     $this.showSpinner(false);
@@ -142,7 +184,6 @@ function _setFolderNavData(stepKey, value, text) {
   const $this = this;
   const { folderNavData } = $this.cache;
 
-  console.log('Hiren Parmar Folder Nav Data', folderNavData);
   // reset current step flag for all other items
   Object.entries(folderNavData).forEach(([key]) => {
     const stepObj = folderNavData[key];
@@ -184,13 +225,18 @@ class TechnicalPublications {
     this.cache.$breadcrumbsWrapper = this.root.find('.js-tech-pub__breadcrumbs');
     this.cache.$folderListingWrapper = this.root.find('.js-tech-pub__folder-listing');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
+    this.cache.searchResults = this.root.find('.js-tech-pub__search-count');
+    this.cache.docLang = this.root.find('.js-tech-pub__doc-lang');
+    
+    
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
       countries: {},
       country: {},
       customer: {},
       line: {},
-      lineDetails: {}
+      lineFolders: {},
+      folderDetails: {}
     };
     // save state of current folder structure levels
     this.cache.folderNavData = {
@@ -214,7 +260,12 @@ class TechnicalPublications {
         value: null,
         isCurrentStep: false
       },
-      lineDetails: {
+      lineFolders: {
+        text: null,
+        value: null,
+        isCurrentStep: false
+      },
+      folderDetails: {
         text: null,
         value: null,
         isCurrentStep: false
@@ -242,14 +293,6 @@ class TechnicalPublications {
       }
 
       if (currentStep === 'customer') {
-        console.log('Hiren Parmar - Customer clicked');
-        const lineCode = $btn.data('line-code');
-        const lineDescription = $btn.data('line-description');
-        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
-      }
-
-      if (currentStep === 'line') {
-        console.log('Hiren Parmar - Line clicked');
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);
@@ -259,6 +302,18 @@ class TechnicalPublications {
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);
+      }
+
+      if (currentStep === 'lineFolders') {
+        const lineCode = $btn.data('folder-code');
+        const lineDescription = $btn.data('folder-description');
+        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
+      }
+
+      if (currentStep === 'folderDetails') {
+        const serialCode = $btn.data('serial-code');
+        const folderDescription = $btn.data('folder-description');
+        $this.setFolderNavData(nextFolder, serialCode, folderDescription);
       }
 
       $this.getFolderData(nextFolder, {isBreadcrumbNav: false});

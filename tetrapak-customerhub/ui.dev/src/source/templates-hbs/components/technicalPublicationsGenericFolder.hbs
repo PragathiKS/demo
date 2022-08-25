@@ -6,26 +6,40 @@
                 <th>Country</th>
             {{/if}}
             {{#if isCountryStep}}
+                <th class="tp-tech-pub__table-icon"></th>
                 <th>Customer</th>
-            {{/if}}
+            {{/if}} 
             {{#if isCustomerStep}}
+                <th class="tp-tech-pub__table-icon"></th>
                 <th>Line</th>
             {{/if}}
             {{#if isLineStep}}
-                <th></th>
+                <th class="tp-tech-pub__table-icon"></th>
                 <th>Line / Equipment</th>
                 <th>Material Number</th>
                 <th>Serial Number</th>
             {{/if}}
             {{#if isLineDetailsStep}}
-                <th></th>
+                <th class="tp-tech-pub__table-icon"></th>
                 <th>Document Number</th>
                 <th>Document Type</th>
                 <th>Serial Number</th>
             {{/if}}
+            {{#if isLineFoldersStep}}
+                <th class="tp-tech-pub__table-icon"></th>
+                <th>Document Type</th>
+            {{/if}}
+            {{#if isFolderDetailsStep}}
+                <th class="tp-tech-pub__table-icon"></th>
+                <th>Document Number</th>
+                <th>Document Type</th>
+                <th>Serial Number</th>
+            {{/if}}
+           
         </tr>
         </thead>
         <tbody>
+
             {{#each folderData}}
             <tr>
                 {{#if ../isCountriesStep}}
@@ -42,6 +56,11 @@
                 {{/if}}
 
                 {{#if ../isCountryStep}}
+                    <td class="tp-tech-pub__table-icon">
+                        <span>
+                            <i class="icon icon-Folder"></i>
+                        </span>
+                    </td>
                     <td>
                         <button type="button"
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
@@ -56,6 +75,11 @@
 
                 {{#if ../isCustomerStep}}
                     {{#if this.lineCode}}
+                        <td class="tp-tech-pub__table-icon">
+                            <span>
+                                <i class="icon icon-Folder"></i>
+                            </span>
+                        </td>
                         <td>
                             <button type="button"
                                     class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
@@ -69,12 +93,16 @@
                     {{/if}}
                 {{/if}}
                 {{#if ../isLineStep}}
-                    <td>Icon</td>
+                    <td class="tp-tech-pub__table-icon">
+                        <span>
+                            <i class="icon icon-Folder"></i>
+                        </span>
+                    </td>
                     <td>
                         <button type="button"
                             class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
                             data-current-step="{{../currentStep}}"
-                            data-next-folder="lineDetails"
+                            data-next-folder="lineFolders"
                             data-line-code="{{this.serialNumber}}"
                             data-line-description="{{this.lineName}}">
                             {{this.lineName}}
@@ -83,15 +111,37 @@
                     <td>{{#if this.material}}{{this.material}}{{else}}-{{/if}}</td>
                     <td>{{#if this.serialNumber}}{{this.serialNumber}}{{else}}-{{/if}}</td>
                 {{/if}}
-                {{#if ../isLineDetailsStep}}
-                    <td>Icon</td>
-                    <td>Document Number</td>
-                    <td>Document Type: OM / MM</td>
-                    <td>Serial Number</td>
+                {{#if ../isLineFoldersStep}}
+                    <td class="tp-tech-pub__table-icon">
+                        <span>
+                            <i class="icon icon-Folder"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <button type="button"
+                            class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
+                            data-current-step="{{../currentStep}}"
+                            data-next-folder="folderDetails"
+                            data-folder-code="{{this.docType}},{{this.serialNo}}"
+                            data-folder-description="{{this.docTitle}}">
+                            {{this.docTitle}}
+                        </button>
+                    </td>
+                {{/if}}
+                {{#if ../isFolderDetailsStep}}
+                    <td class="tp-tech-pub__table-icon">
+                        <span>
+                            <i class="icon icon-Document"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{{this.location}}" class="tpatom-link tpatom-link--transparent" target="_blank">{{this.docNo}}</a>
+                    </td>
+                    <td>{{this.typeCode}}</td>
+                    <td>{{../serialNumber}}</td>
                 {{/if}}
             </tr>
         {{/each}}
         </tbody>
     </table>
 </div>
-
