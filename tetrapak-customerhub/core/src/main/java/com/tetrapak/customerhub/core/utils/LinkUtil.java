@@ -14,8 +14,11 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
  */
 public final class LinkUtil {
     
+    /** The Constant DOWNLOADABLE_DOCS. */
+    private static final String DOWNLOADABLE_DOCS = "(css|js|xls|xlsx|doc|docx|pdf|json|ppt|pptx|xml|txt)$";
+
     /** The Constant DOWNLOADABLE_ASSETS. */
-    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml|icc|acb)$";
+    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|jpeg|mp4|ico|woff|ttf|svg|eps|tif|icc|acb)$";
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
@@ -79,11 +82,13 @@ public final class LinkUtil {
         String linkType = StringUtils.EMPTY;
         if (StringUtils.isBlank(link)) {
             linkType = "#";
-        } else if (link.startsWith(CustomerHubConstants.CONTENT_DAM_PATH)
-                && FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)) {
+	} else if (link.startsWith(CustomerHubConstants.CONTENT_DAM_PATH)
+		&& (FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)
+			|| FilenameUtils.getExtension(link).matches(DOWNLOADABLE_DOCS))) {
             linkType = CustomerHubConstants.DOWNLOAD_LINK;
         } else if (Boolean.TRUE.equals(isExternalLink(link))
-                && FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)) {
+		&& (FilenameUtils.getExtension(link).matches(DOWNLOADABLE_ASSETS)
+			|| FilenameUtils.getExtension(link).matches(DOWNLOADABLE_DOCS))) {
             linkType = CustomerHubConstants.EXTERNAL_DOWNLOAD_LINK;
         } else if (Boolean.TRUE.equals(isInternalLink(link))) {
             linkType = CustomerHubConstants.INTERNAL_LINK;

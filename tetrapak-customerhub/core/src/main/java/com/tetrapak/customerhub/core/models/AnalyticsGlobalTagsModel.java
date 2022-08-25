@@ -35,6 +35,8 @@ public class AnalyticsGlobalTagsModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AnalyticsGlobalTagsModel.class.getName());
     private static final int SUB_PAGE_THRESHOLD = 6;
+    private static final String SITE_NAME = "customerhub";
+    private static final String LOGGED_IN_STATUS = "logged-in";
 
     /**
      * Get Site Name.
@@ -42,7 +44,7 @@ public class AnalyticsGlobalTagsModel {
      * @return String customerhub
      */
     public String getSiteName() {
-        return "customerhub";
+        return SITE_NAME;
     }
 
     /**
@@ -69,7 +71,7 @@ public class AnalyticsGlobalTagsModel {
      * @return logged-in status
      */
     public String getLogInStatus() {
-        return "logged-in";
+        return LOGGED_IN_STATUS;
     }
 
     /**
