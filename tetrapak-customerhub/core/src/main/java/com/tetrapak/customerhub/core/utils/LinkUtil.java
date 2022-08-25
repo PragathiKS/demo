@@ -18,7 +18,7 @@ public final class LinkUtil {
     private static final String DOWNLOADABLE_DOCS = "(css|js|xls|xlsx|doc|docx|pdf|json|ppt|pptx|xml|txt)$";
 
     /** The Constant DOWNLOADABLE_ASSETS. */
-    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|jpeg|mp4|ico|woff|ttf|svg|eps|tif)$";
+    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|jpeg|mp4|ico|woff|ttf|svg|eps|tif|icc|acb)$";
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
