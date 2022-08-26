@@ -56,7 +56,15 @@ public class TechnicalPublicationsKeysModel {
 
     @Expose
     @ValueMapValue
+    private String searchResults;
+
+    @Expose
+    @ValueMapValue
     private String serialNumber;
+
+    @Expose
+    @ValueMapValue
+    private String technicalPublications;
 
     public String getAllFiles() {
 	return allFiles;
@@ -102,8 +110,16 @@ public class TechnicalPublicationsKeysModel {
 	return rebuildingKitNumber;
     }
 
+    public String getSearchResults() {
+	return searchResults;
+    }
+
     public String getSerialNumber() {
 	return serialNumber;
+    }
+
+    public String getTechnicalPublications() {
+	return technicalPublications;
     }
 
 }

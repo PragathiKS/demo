@@ -1,0 +1,31 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"sling:resourceType": "customerhub/components/structure/page",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"technicalpublication": {
+					"jcr:primaryType": "nt:unstructured",
+					"sling:resourceType": "customerhub/components/content/technicalpublications",
+					"documentType": "cuhu.technicalpublications.documentType",
+					"rebuildingKitName": "cuhu.technicalpublications.rebuildingKitName",
+					"lineEquipment": "cuhu.technicalpublications.lineEquipment",
+					"line": "cuhu.technicalpublications.line",
+					"name": "cuhu.technicalpublications.name",
+					"serialNumber": "cuhu.technicalpublications.serialNumber",
+					"issueDate": "cuhu.technicalpublications.issueDate",
+					"customer": "cuhu.technicalpublications.customer",
+					"country": "cuhu.technicalpublications.country",
+					"documentNumber": "cuhu.technicalpublications.documentNumber",
+					"rebuildingKitNumber": "cuhu.technicalpublications.rebuildingKitNumber",
+					"allFiles": "cuhu.technicalpublications.allFiles"
+				}
+			}
+		}
+	}
+}
