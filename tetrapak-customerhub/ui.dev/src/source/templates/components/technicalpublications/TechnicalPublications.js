@@ -7,7 +7,7 @@ import {render} from '../../../scripts/utils/render';
 
 function _getFolderData(stepKey, options) {
   const $this = this;
-  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi, searchResults, docLang } = $this.cache;
+  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi, searchResults, docLang, i18nKeys } = $this.cache;
   const { folderNavData, apiDataObj } = $this.cache;
   const { country, customer, line, lineFolders, folderDetails } = folderNavData;
   const { isBreadcrumbNav } = options;
@@ -100,7 +100,7 @@ function _getFolderData(stepKey, options) {
           finalData = res.data.filter(data => data.typeCode === documentType);
           docLang.show();
           searchResults.show();
-          searchResults.text(`${finalData.length} search results`);
+          searchResults.text(`${finalData.length} ${i18nKeys.searchResults}`);
         }
         $this.renderFolderData(stepKey, finalData, srNo);
         $this.renderBreadcrumbs(stepKey);
@@ -228,7 +228,6 @@ class TechnicalPublications {
     this.cache.searchResults = this.root.find('.js-tech-pub__search-count');
     this.cache.docLang = this.root.find('.js-tech-pub__doc-lang');
     
-    
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
       countries: {},
@@ -241,7 +240,7 @@ class TechnicalPublications {
     // save state of current folder structure levels
     this.cache.folderNavData = {
       countries: {
-        text: 'All files',
+        text: this.cache.i18nKeys.allFiles,
         value: 'countries',
         isCurrentStep: true
       },

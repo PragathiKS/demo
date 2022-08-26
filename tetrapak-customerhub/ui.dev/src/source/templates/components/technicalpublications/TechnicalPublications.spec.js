@@ -40,8 +40,8 @@ describe("TechnicalPublications", function () {
       data: {
         access_token: "fLW1l1EA38xjklTrTa5MAN7GFmo2",
         expires_in: "43199",
-        token_type: "BearerToken",
-      },
+        token_type: "BearerToken"
+      }
     });
     this.techPub.init();
   });
