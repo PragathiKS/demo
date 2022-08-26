@@ -41,6 +41,10 @@ public class TechnicalPublicationsKeysModel {
     @Expose
     @ValueMapValue
     private String lineEquipment;
+    
+    @Expose
+    @ValueMapValue
+    private String materialNumber;
 
     @Expose
     @ValueMapValue
@@ -96,6 +100,10 @@ public class TechnicalPublicationsKeysModel {
 
     public String getLineEquipment() {
 	return lineEquipment;
+    }
+    
+    public String getMaterialNumber() {
+        return materialNumber;
     }
 
     public String getName() {

@@ -18,12 +18,15 @@
 					"line": "cuhu.technicalpublications.line",
 					"name": "cuhu.technicalpublications.name",
 					"serialNumber": "cuhu.technicalpublications.serialNumber",
+					"searchResults": "cuhu.technicalpublications.searchResults",
 					"issueDate": "cuhu.technicalpublications.issueDate",
 					"customer": "cuhu.technicalpublications.customer",
 					"country": "cuhu.technicalpublications.country",
 					"documentNumber": "cuhu.technicalpublications.documentNumber",
 					"rebuildingKitNumber": "cuhu.technicalpublications.rebuildingKitNumber",
-					"allFiles": "cuhu.technicalpublications.allFiles"
+					"allFiles": "cuhu.technicalpublications.allFiles",
+					"technicalPublications": "cuhu.technicalpublications.title",
+					"materialNumber": "cuhu.technicalpublications.materialNumber"
 				}
 			}
 		}

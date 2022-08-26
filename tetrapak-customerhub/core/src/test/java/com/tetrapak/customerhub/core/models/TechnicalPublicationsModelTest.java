@@ -93,5 +93,6 @@ public class TechnicalPublicationsModelTest {
 	assertEquals("cuhu.technicalpublications.rebuildingKitNumber", i18nModel.getRebuildingKitNumber());
 	assertEquals("cuhu.technicalpublications.searchResults", i18nModel.getSearchResults());
 	assertEquals("cuhu.technicalpublications.serialNumber", i18nModel.getSerialNumber());
+	assertEquals("cuhu.technicalpublications.materialNumber", i18nModel.getMaterialNumber());
     }
 }
