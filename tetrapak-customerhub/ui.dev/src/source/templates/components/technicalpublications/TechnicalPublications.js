@@ -323,7 +323,10 @@ class TechnicalPublications {
       const $this = this;
       const $btn = $(e.currentTarget);
       const targetStep = $btn.data('step');
-      const { folderNavData } = $this.cache;
+      const { folderNavData, docLang, searchResults } = $this.cache;
+
+      docLang.hide();
+      searchResults.hide();
 
       // set isCurrentPage after clicking on breadcrumb
       Object.entries(folderNavData).forEach(([key]) => {
