@@ -69,6 +69,11 @@
                             <artifactId>tetrapak-publicweb.core</artifactId>
                             <target>/apps/publicweb/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>io.jsonwebtoken</groupId>
+                            <artifactId>jjwt-api</artifactId>
+                            <target>/apps/publicweb/install</target>
+                        </embedded>
                     </embeddeds>
                 </configuration>
             </plugin>
