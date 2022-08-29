@@ -781,12 +781,6 @@
 				<version>0.8.3</version>
 				<scope>test</scope>
 			</dependency>
-			<dependency>
-			<artifactId>jjwt-api</artifactId>
-				<version>0.11.5</version>
-				<groupId>io.jsonwebtoken</groupId>
-				<scope>provided</scope>
-			</dependency>
 		</dependencies>
     </dependencyManagement>
 </project>
