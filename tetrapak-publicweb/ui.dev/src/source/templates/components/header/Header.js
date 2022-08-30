@@ -235,7 +235,7 @@ class Header {
     const $target = $(e.target);
     let url = $target.attr('href');
     if (!isDesktop()) {
-      url = $target.parent().attr('href');
+      url = $target.parent().attr('href') || $target.attr('href');
     }
     const $this = $target.closest('.js-tp-pw-header-item');
     if (url) {
