@@ -3,6 +3,7 @@ import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { checkActiveOverlay, isDesktop } from '../../../scripts/common/common';
 
+
 class Header {
   constructor({ el }) {
     this.root = $(el);
@@ -88,7 +89,7 @@ class Header {
 
   searchIconClick = () => {
     $('.js-search-bar-input').val('');
-    if(!isDesktop()){
+    if(isDesktop()){
       // to hide navigation if opened
       $('.js-tp-pw-mobile-navigation').css('display','none');
       this.cache.$hamburgerToggle.children(this.toggleButtonId).addClass('icon-Burger_pw');
@@ -232,7 +233,10 @@ class Header {
   handleMainNavClick =(e) => {
     e.preventDefault();
     const $target = $(e.target);
-    const url = $target.attr('href');
+    let url = $target.attr('href');
+    if (!isDesktop()) {
+      url = $target.parent().attr('href') || $target.attr('href');
+    }
     const $this = $target.closest('.js-tp-pw-header-item');
     if (url) {
       if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
