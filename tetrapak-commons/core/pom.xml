@@ -41,6 +41,9 @@
                         <!-- Import any version of javax.inject, to allow 
                             running on multiple versions of AEM -->
                         <Import-Package>javax.inject;version=0.0.0,*</Import-Package>
+                        <Embed-Dependency>
+                            fusionauth-jwt
+                        </Embed-Dependency>
                         <Sling-Model-Packages>
                             com.tetrapak.commons.core
                         </Sling-Model-Packages>
@@ -135,6 +138,10 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.2</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.fusionauth</groupId>
+            <artifactId>fusionauth-jwt</artifactId>
         </dependency>
     </dependencies>
 </project>
