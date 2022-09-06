@@ -28,7 +28,7 @@ import java.util.UUID;
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=One Trust Cookie Jwt Token Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.resourceTypes=" + "publicweb/components/structure/pages/page" })
+                "sling.servlet.paths=" + "/bin/commons/oneTrustToken" })
 public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
 
     /** The Constant serialVersionUID. */
