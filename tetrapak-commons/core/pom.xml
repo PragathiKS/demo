@@ -143,5 +143,9 @@
             <groupId>io.fusionauth</groupId>
             <artifactId>fusionauth-jwt</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
