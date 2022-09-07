@@ -70,67 +70,46 @@ export const _groupByBusinessType = (filterOptionsArr) => {
 export const _getKeyMap = (key, i18nKeys) => {
   const headerObj = {};
   switch (key) {
-    case 'countryCode': {
-      headerObj['keyLabel'] = i18nKeys['country'];
+    case 'line': {
+      headerObj['keyLabel'] = i18nKeys['line'];
       headerObj['showTooltip'] =
         i18nKeys['countryToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['countryToolTip'];
       break;
     }
-    case 'site': {
-      headerObj['keyLabel'] = i18nKeys['site'];
+    case 'description': {
+      headerObj['keyLabel'] = i18nKeys['description'];
       headerObj['showTooltip'] =
         i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['siteToolTip'];
       break;
     }
-    case 'lineCode': {
-      headerObj['keyLabel'] = i18nKeys['line'];
+    case 'serialNumber': {
+      headerObj['keyLabel'] = i18nKeys['serialNumber'];
       headerObj['showTooltip'] =
         i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['lineToolTip'];
       break;
     }
-    case 'equipmentName': {
-      headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
+    case 'rkNumber': {
+      headerObj['keyLabel'] = i18nKeys['rkNumber'];
       headerObj['showTooltip'] =
-        i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
+        i18nKeys['rkNumber'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
       break;
     }
-    case 'siteDesc': {
-      headerObj['keyLabel'] = i18nKeys['siteDescription'];
+    case 'rkDescription': {
+      headerObj['keyLabel'] = i18nKeys['rkDescription'];
       headerObj['showTooltip'] =
         i18nKeys['siteDescToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['siteDescToolTip'];
       break;
     }
-    case 'location': {
-      headerObj['keyLabel'] = i18nKeys['location'];
+    case 'implStatus': {
+      headerObj['keyLabel'] = i18nKeys['implStatus'];
       headerObj['showTooltip'] =
         i18nKeys['locationToolTip'].trim().length > 0 ? true : false;
       headerObj['tooltipText'] = i18nKeys['locationToolTip'];
-      break;
-    }
-    case 'serialNumber': {
-      headerObj['keyLabel'] = i18nKeys['serialNumber'];
-      headerObj['showTooltip'] =
-        i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
-      break;
-    }
-    case 'equipmentStatusDesc': {
-      headerObj['keyLabel'] = i18nKeys['equipmentStatus'];
-      headerObj['showTooltip'] =
-        i18nKeys['equipStatToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipStatToolTip'];
-      break;
-    }
-    case 'functionalLocation': {
-      headerObj['keyLabel'] = i18nKeys['functionalLocation'];
-      headerObj['showTooltip'] =
-        i18nKeys['functionalLocationToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['functionalLocationToolTip'];
       break;
     }
     default: {

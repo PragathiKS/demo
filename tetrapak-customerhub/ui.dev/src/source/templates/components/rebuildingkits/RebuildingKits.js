@@ -141,8 +141,7 @@ class RebuildingKits {
           console.log('Hiren Parmar - CountryData >>>', res);
           this.cache.countryData = _getFormattedCountryData(res.data);
           this.cache.authData = authData;
-          const { countryCode } =
-            this.cache.countryData && this.cache.countryData[0];
+          const { countryCode } = this.cache.countryData && this.cache.countryData[0];
           const { itemsPerPage } = this.cache;
 
           // this.getAllAvailableFilterVals(['country'], true);

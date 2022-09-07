@@ -22,26 +22,6 @@
                 <h2 class="tp-rk__heading js-rk__heading">
                     ${"cuhu.rebuildingkits.rebuildingkits" @i18n}
                 </h2>
-                <div class="tp-rk__header-action-wrapper">
-                    <div class="tp-rk__header-mobile">
-                        <button class="tp-next-btn js-mobile-header-actions">
-                            <i class="icon icon-Three_Dot"></i>
-                        </button>
-                    </div>
-                    <div class="tp-rk__header-actions">
-                        <div class="tp-rk__header-actionicons">
-                            <div class="tp-rk__action-button second js-rk__customise-table-action">
-                                <i class="icon icon-Hide action-icon"></i>
-                                <span
-                                    class="tpatom-btn__text tp-rk__header-action-text">${"cuhu.rebuildingkits.customizeTable"
-                                    @i18n}</span>
-                            </div>
-                            <input type="hidden" id="downloadExcelServletUrl" name="downloadExcelServletUrl" value="${data.downloadExcelServletUrl}" />
-                            <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
-                                data-sly-call="${btnRef.buttonlink_template @text='cuhu.rebuildingkits.exportToCsv',modifier='primary',baseClass='tp-button-link',iconClass='icon-Excel action-icon',className='tp-rk__action-button',jsClass='js-rk__export-excel-action'}" />
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="tp-rk__filter-wrapper">
                 <div class="tp-rk__filter-chips">
@@ -49,21 +29,6 @@
                         class="tp-rk__country-button-filter tp-rk__filter-button active"
                         auto_locator="countryFilter">
                         ${"cuhu.rebuildingkits.country" @i18n}: 1
-                    </button>
-                </div>
-                <div>
-                    <button data-show-label="${'cuhu.rebuildingkits.showAllFilters' @i18n}"
-                        data-hide-label="${'cuhu.rebuildingkits.hideFilters' @i18n}"
-                        class="tpatom-btn tp-rk__show-hide-button js-tp-rk__show-hide-all-button"
-                        auto_locator="hideFilter">
-                        <i class="icon icon-Filter"></i>
-                        <span class="tpatom-btn__text sly-text">${"cuhu.rebuildingkits.showAllFilters" @i18n}</span>
-                    </button>
-                    <button class="tpatom-btn tp-rk__remove-button js-tp-rk__remove-all-button"
-                        auto_locator="removeFilter" hidden>
-                        <i class="icon icon-My_Euipment_Bin_X"></i>
-                        <span class="tpatom-btn__text sly-text">${"cuhu.rebuildingkits.removeAllFiltersReset"
-                            @i18n}</span>
                     </button>
                 </div>
             </div>
