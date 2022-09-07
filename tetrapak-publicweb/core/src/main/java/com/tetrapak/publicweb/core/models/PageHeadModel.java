@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -28,12 +29,16 @@ public class PageHeadModel {
     /** The Baidu Map Key. */
     private String baiduMapkey;
 
+    /** The One Trust Servlet call api. */
+    private String cookieTokenServletUrl;
+
     /**
      * Inits the model.
      */
     @PostConstruct
     public void initModel() {
         final String path = request.getResource().getPath();
+        cookieTokenServletUrl = path.concat(".pardotsubscription.json");
         if(baiduMapService.getBaiduMapKey() != null && path.contains("/cn")) {
             baiduMapkey = baiduMapService.getBaiduMapKey();
         }
@@ -46,5 +51,9 @@ public class PageHeadModel {
      */
     public String getBaiduMapkey() {
         return baiduMapkey;
+    }
+
+    public String getCookieTokenServletUrl() {
+        return cookieTokenServletUrl;
     }
 }
