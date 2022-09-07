@@ -51,7 +51,7 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
         LOGGER.debug("Executing doGet method.");
         PrintWriter writer = response.getWriter();
         JsonObject jsonResponse = new JsonObject();
-        Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get("D:\\TestPrivateKey.pem"))));
+        Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get("/mnt/crx/publish/TetraPakCookieMgmtPrivateKey.pem"))));
         final String uniqueUserId = String.valueOf(UUID.randomUUID());
         JWT jwt = new JWT().setUniqueId(String.valueOf(uniqueUserId));
         final String encodedJWT = JWT.getEncoder().encode(jwt, signer);
