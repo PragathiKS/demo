@@ -28,7 +28,8 @@ import java.util.UUID;
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=One Trust Cookie Jwt Token Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.paths=" + "/bin/commons/oneTrustToken" })
+                "sling.servlet.selectors=" + "onetrustcookietoken", "sling.servlet.extensions=" + "json",
+                "sling.servlet.resourceTypes=" + "publicweb/components/structure/pages/page" })
 public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
 
     /** The Constant serialVersionUID. */
@@ -50,7 +51,7 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
         LOGGER.debug("Executing doGet method.");
         PrintWriter writer = response.getWriter();
         JsonObject jsonResponse = new JsonObject();
-        Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get("/mnt/crx/publish/TetraPakCookieMgmtPrivateKey.pem"))));
+        Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get("D:\\TestPrivateKey.pem"))));
         final String uniqueUserId = String.valueOf(UUID.randomUUID());
         JWT jwt = new JWT().setUniqueId(String.valueOf(uniqueUserId));
         final String encodedJWT = JWT.getEncoder().encode(jwt, signer);
