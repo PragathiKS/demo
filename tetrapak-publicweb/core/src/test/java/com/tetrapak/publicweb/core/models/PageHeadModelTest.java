@@ -40,7 +40,6 @@ public class PageHeadModelTest {
     public void setUp() throws Exception {
         Class<PageHeadModel> modelClass = PageHeadModel.class;
         baiduMapService = new BaiduMapServiceImpl();
-
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
         MockSlingHttpServletRequest request = context.request();
