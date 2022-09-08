@@ -128,7 +128,7 @@ class Keylines {
 
     if (isValid) {
       const downloadKey = `${opening}_${volume}_${shapeName}`;
-      const assetObj = assets.find((asset) => asset.keyname !== downloadKey);
+      const assetObj = assets.find((asset) => asset.keyname === downloadKey);
 
       if (assetObj) {
         const { assetpath } = assetObj;
