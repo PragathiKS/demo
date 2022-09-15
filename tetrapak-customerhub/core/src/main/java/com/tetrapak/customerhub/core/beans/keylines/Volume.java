@@ -1,6 +1,8 @@
 
 package com.tetrapak.customerhub.core.beans.keylines;
 
+import java.util.Set;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,6 +14,9 @@ public class Volume implements Comparable<Volume> {
     @SerializedName("value")
     @Expose
     private String value;
+    @SerializedName("openings")
+    @Expose
+    private Set<Opening> openings = null;
 
     public String getKey() {
 	return key;
@@ -29,11 +34,20 @@ public class Volume implements Comparable<Volume> {
 	this.value = value;
     }
 
+    public Set<Opening> getOpenings() {
+	return openings;
+    }
+
+    public void setOpenings(Set<Opening> openings) {
+	this.openings = openings;
+    }
+
     @Override
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((key == null) ? 0 : key.hashCode());
+	result = prime * result + ((openings == null) ? 0 : openings.hashCode());
 	result = prime * result + ((value == null) ? 0 : value.hashCode());
 	return result;
     }
@@ -52,6 +66,12 @@ public class Volume implements Comparable<Volume> {
 		return false;
 	    }
 	} else if (!key.equals(other.key))
+	    return false;
+	if (openings == null) {
+	    if (other.openings != null) {
+		return false;
+	    }
+	} else if (!openings.equals(other.openings))
 	    return false;
 	if (value == null) {
 	    if (other.value != null) {

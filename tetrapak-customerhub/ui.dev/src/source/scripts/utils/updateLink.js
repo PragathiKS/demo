@@ -46,3 +46,4 @@ export const isDownloable = function(url) {
   }
   return flag;
 };
+

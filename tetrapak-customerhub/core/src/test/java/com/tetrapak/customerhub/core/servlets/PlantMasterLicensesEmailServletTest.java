@@ -86,7 +86,6 @@ public class PlantMasterLicensesEmailServletTest {
         context.registerService(PlantMasterLicensesEmailConfiguration.class, plantMasterLicensesEmailConfiguration);
         Map<String, Object> props = new HashMap<>();
         context.registerInjectActivateService(plantMasterLicensesServiceImpl, props);
-        when(plantMasterLicensesServiceImpl.getI18nValue(any(), any(), any())).thenReturn(StringUtils.EMPTY);
         context.registerService(APIGEEService.class, apigeeService);
         when(apigeeService.getApiMappings()).thenReturn(
                 new String[] { "aip-product-details:productinformation/categories/{id}/products" });

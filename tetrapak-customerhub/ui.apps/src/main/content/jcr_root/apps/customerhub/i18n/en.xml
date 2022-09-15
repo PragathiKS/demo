@@ -1678,5 +1678,67 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.packDesign.keylines.errorMessage"
-        sling:message="Right now there is an issue downloading the file. Please try again in a short while. Sorry for the inconvenience."/>     
+        sling:message="Right now there is an issue downloading the file. Please try again in a short while. Sorry for the inconvenience."/>
+        sling:message="Download Keyline"/>
+    <cuhu.technicalpublications.documentNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.documentNumber"
+        sling:message="Document Number"/>
+    <cuhu.technicalpublications.documentType
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.documentType"
+        sling:message="Document Type"/>
+    <cuhu.technicalpublications.serialNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.serialNumber"
+        sling:message="Serial Number"/>
+    <cuhu.technicalpublications.rebuildingKitNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.rebuildingKitNumber"
+        sling:message="Rebuilding Kit Number"/>
+    <cuhu.technicalpublications.rebuildingKitName
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.rebuildingKitName"
+        sling:message="Rebuilding Kit Name"/>
+        sling:message="Rebuilding Kit Name"/>
+     <cuhu.technicalpublications.allFiles
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.allFiles"
+        sling:message="All Files"/>
+     <cuhu.technicalpublications.country
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.country"
+        sling:message="County"/>
+     <cuhu.technicalpublications.customer
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.customer"
+        sling:message="Customer"/>
+     <cuhu.technicalpublications.issueDate
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.issueDate"
+        sling:message="Issue Date"/>
+     <cuhu.technicalpublications.line
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.line"
+        sling:message="Line"/>
+     <cuhu.technicalpublications.lineEquipment
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.lineEquipment"
+        sling:message="Line/Equipment"/>
+     <cuhu.technicalpublications.name
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.name"
+        sling:message="Name"/>
 </jcr:root>

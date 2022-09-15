@@ -188,6 +188,12 @@
         "name": "plantmasterlicenses",
         "enforce": true,
         "chunks": "all"
+      },
+      "technicalpublications": {
+        "testMultiple": true,
+        "name": "technicalpublications",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -204,9 +210,9 @@
         "source/templates/components/tabslist/",
         "source/templates/components/textvideo/",
         "source/templates/components/inactivitydialog/",
-        "source/templates/components/breadcrumb/",
         "source/templates/components/teaser/",
         "source/templates/components/mediaLink/",
+        "source/templates/components/breadcrumb/",
         "source/templates/components/banner/"
       ],
       "dashboard": [
@@ -246,6 +252,9 @@
       ],
       "plantmasterlicenses": [
         "source/templates/components/plantmasterlicenses/"
+      ],
+      "technicalpublications": [
+        "source/templates/components/technicalpublications/"
       ]
     },
     "handlebars": {

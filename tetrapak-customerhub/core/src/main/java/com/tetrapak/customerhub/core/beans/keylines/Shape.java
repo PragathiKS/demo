@@ -11,9 +11,7 @@ public class Shape {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("openings")
-    @Expose
-    private Set<Opening> openings = null;
+    
     @SerializedName("volumes")
     @Expose
     private Set<Volume> volumes = null;
@@ -24,14 +22,6 @@ public class Shape {
 
     public void setName(String name) {
 	this.name = name;
-    }
-
-    public Set<Opening> getOpenings() {
-	return openings;
-    }
-
-    public void setOpenings(Set<Opening> openings) {
-	this.openings = openings;
     }
 
     public Set<Volume> getVolumes() {

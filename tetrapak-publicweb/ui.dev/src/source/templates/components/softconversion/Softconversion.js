@@ -404,11 +404,7 @@ class Softconversion {
     });
 
     pageURL = pageURL.split('?');
-    if(pageURL.length>1) {
-      pageURL = pageURL[0];
-    }
-
-    return pageURL;
+    return pageURL[0];
   }
 
   bindEvents() {

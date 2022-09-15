@@ -48,7 +48,8 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/ja/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/pt/**/jcr:content",
                 ResourceChangeListener.CHANGES + "=" + "CHANGED",
-                ResourceChangeListener.PROPERTY_NAMES_HINT + "=cq:ctTranslated"
+                ResourceChangeListener.PROPERTY_NAMES_HINT + "=cq:ctTranslated",
+                ResourceChangeListener.PROPERTY_NAMES_HINT + "=cq:lastModified"
 
         })
 public class LionBridgeTranslationListner implements ResourceChangeListener {
@@ -58,6 +59,12 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
 
     /** The Constant CQ_CT_TRANSLATED. */
     private static final String CQ_CT_TRANSLATED = "cq:ctTranslated";
+
+    /** The Constant GL_SERVICE. */
+    private static final String GL_SERVICE = "gl-service";
+
+    /** The Constant LB_TRANSLATED_PAGES. */
+    public static final String LB_TRANSLATED_PAGES = "lbtranslatedpages";
 
     /** The resolverFactory. */
     @Reference
@@ -74,9 +81,6 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
     /** The live rel manager. */
     @Reference
     private LiveRelationshipManager liveRelManager;
-
-    /** The Constant LB_TRANSLATED_PAGES. */
-    public static final String LB_TRANSLATED_PAGES = "lbtranslatedpages";
 
     /**
      * On change.
@@ -121,12 +125,22 @@ public class LionBridgeTranslationListner implements ResourceChangeListener {
             final Resource jcrResource = resolver.getResource(changePath);
             LOGGER.info("jcr resource path : {}", jcrResource.getPath());
             final ValueMap valueMap = jcrResource.getValueMap();
-            if (valueMap.containsKey(CQ_CT_TRANSLATED) && valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
+            if ((valueMap.containsKey(CQ_CT_TRANSLATED) || GL_SERVICE.equalsIgnoreCase(Objects.requireNonNull(change.getUserId()) ))
+                    && valueMap.containsKey(PWConstants.CQ_LAST_MODIFIED)) {
                 LOGGER.info("LionBridgeTranslationListener inside if");
                 Calendar lastModified = valueMap.get(PWConstants.CQ_LAST_MODIFIED, Calendar.class);
                 Calendar ctTranslated = valueMap.get(CQ_CT_TRANSLATED, Calendar.class);
-                LOGGER.info("time comparision :: {}", ctTranslated.before(lastModified));
-                if (!ctTranslated.before(lastModified)) {
+                Boolean translationReceived = Boolean.FALSE;
+                if(null != ctTranslated && !ctTranslated.before(lastModified)){
+                    LOGGER.info("time comparision :: {}", ctTranslated.before(lastModified));
+                    translationReceived = Boolean.TRUE;
+                }
+                if (GL_SERVICE.equalsIgnoreCase(Objects.requireNonNull(change.getUserId()))){
+                    LOGGER.info("Translation received by TransPerfect :: ");
+                    translationReceived = Boolean.TRUE;
+                }
+
+                if (translationReceived) {
                     String language = PageUtil.getLanguageCodeFromResource(resolver.getResource(contentPath));
                     LOGGER.info("language:: {}", language);
                     createOrUpdateLBTraslatedNode(resolver, contentPath);
