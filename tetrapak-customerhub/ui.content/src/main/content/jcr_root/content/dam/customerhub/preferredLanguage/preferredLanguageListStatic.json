@@ -1,0 +1,112 @@
+{
+  "preferredLanguages": [
+    {
+      "langDesc": "English",
+      "langCode":  "en"
+    },
+    {
+      "langDesc": "Swedish",
+      "langCode":  "sv"
+    },
+    {
+      "langDesc": "German",
+      "langCode": "de"
+	},
+    {
+      "landDesc": "French",
+      "langCode": "fr"
+	},
+    {
+      "landDesc": "Italian",
+      "langCode": "it"
+	},
+    {
+      "landDesc": "Danish",
+      "langCode": "da"
+	},
+    {
+      "landDesc": "Greek",
+      "langCode": "el"
+	},
+    {
+      "landDesc": "Finnish",
+      "langCode": "fi"
+	},
+    {
+      "landDesc": "Latvian",
+      "langCode": "lv"
+	},
+    {
+      "landDesc": "Estonian",
+      "langCode": "et"
+	},
+    {
+      "landDesc": "Czech",
+      "langCode": "cs"
+	},
+    {
+      "landDesc": "Serbian",
+      "langCode": "sr"
+	},
+    {
+      "landDesc": "Turkish",
+      "langCode": "tr"
+	},
+    {
+      "landDesc": "Arabic",
+      "langCode": "ar"
+	},
+    {
+      "landDesc": "Japanese",
+      "langCode": "ja"
+	},
+    {
+      "landDesc": "Dutch",
+      "langCode": "nl"
+	},
+    {
+      "landDesc": "Thai",
+      "langCode": "th"
+	},
+    {
+      "landDesc": "Icelandic",
+      "langCode": "is"
+	},
+    {
+      "landDesc": "Korean",
+      "langCode": "ko"
+	},
+    {
+      "landDesc": "Croatian",
+      "langCode": "hr"
+	},
+    {
+      "landDesc": "Slovenian",
+      "langCode": "sl"
+	},
+    {
+      "landDesc": "Slovak",
+      "langCode": "sk"
+	},
+    {
+      "landDesc": "Romanian",
+      "langCode": "ro"
+	},
+    {
+      "landDesc": "Bulgarian",
+      "langCode": "bg"
+	},
+    {
+      "landDesc": "Indonesian",
+      "langCode": "id"
+	},
+    {
+      "landDesc": "Hungarian",
+      "langCode": "hu"
+	},
+    {
+      "landDesc": "Vietnamese",
+      "langCode": "vi"
+	}
+  ]
+}

@@ -823,6 +823,9 @@ public final class CustomerHubConstants {
     
     /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
     public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
+    
+    /** The constant DATA_ROOT_PATH. */
+    public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
 
     /**
      * Instantiates a new customer hub constants.
