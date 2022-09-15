@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * Returns an obj containing all table rows to be rendered with HBS
  */
@@ -70,46 +69,46 @@ export const _groupByBusinessType = (filterOptionsArr) => {
 export const _getKeyMap = (key, i18nKeys) => {
   const headerObj = {};
   switch (key) {
-    case 'line': {
-      headerObj['keyLabel'] = i18nKeys['line'];
+    case 'lineCode': {
+      headerObj['keyLabel'] = i18nKeys['functionalLocation'];
       headerObj['showTooltip'] =
-        i18nKeys['countryToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['countryToolTip'];
+        i18nKeys['functionalLocationToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['functionalLocationToolTip'];
       break;
     }
-    case 'description': {
-      headerObj['keyLabel'] = i18nKeys['description'];
+    case 'equipmentDesc': {
+      headerObj['keyLabel'] = i18nKeys['equipmentDescription'];
       headerObj['showTooltip'] =
-        i18nKeys['siteToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['siteToolTip'];
+        i18nKeys['equipDescToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
       break;
     }
     case 'serialNumber': {
       headerObj['keyLabel'] = i18nKeys['serialNumber'];
       headerObj['showTooltip'] =
-        i18nKeys['lineToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['lineToolTip'];
+        i18nKeys['serialNumToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['serialNumToolTip'];
       break;
     }
     case 'rkNumber': {
       headerObj['keyLabel'] = i18nKeys['rkNumber'];
       headerObj['showTooltip'] =
-        i18nKeys['rkNumber'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['equipDescToolTip'];
+        i18nKeys['rkNumberToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['rkNumberToolTip'];
       break;
     }
-    case 'rkDescription': {
-      headerObj['keyLabel'] = i18nKeys['rkDescription'];
+    case 'rkDesc': {
+      headerObj['keyLabel'] = i18nKeys['rkDesc'];
       headerObj['showTooltip'] =
-        i18nKeys['siteDescToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['siteDescToolTip'];
+        i18nKeys['rkDescToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['rkDescToolTip'];
       break;
     }
     case 'implStatus': {
       headerObj['keyLabel'] = i18nKeys['implStatus'];
       headerObj['showTooltip'] =
-        i18nKeys['locationToolTip'].trim().length > 0 ? true : false;
-      headerObj['tooltipText'] = i18nKeys['locationToolTip'];
+        i18nKeys['implStatusToolTip'].trim().length > 0 ? true : false;
+      headerObj['tooltipText'] = i18nKeys['implStatusToolTip'];
       break;
     }
     default: {
@@ -124,18 +123,10 @@ export const _getKeyMap = (key, i18nKeys) => {
  */
 export const _mapHeadings = (
   keys,
-  i18nKeys,
-  activeSortData,
-  sortableKeysArr
+  i18nKeys
 ) => {
-  const sortByKey = activeSortData && activeSortData.sortedByKey;
-  const sortOrder = activeSortData && activeSortData.sortOrder;
   return keys.map((key) => ({
     key,
-    myEquipment: true,
-    isSortable: sortableKeysArr.includes(key),
-    isActiveSort: key === sortByKey,
-    sortOrder: sortOrder,
     i18nKey: _getKeyMap(key, i18nKeys).keyLabel,
     showTooltip: _getKeyMap(key, i18nKeys).showTooltip,
     tooltipText: _getKeyMap(key, i18nKeys).tooltipText
