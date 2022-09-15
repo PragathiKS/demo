@@ -33,37 +33,6 @@ export const _buildTableRows = (data, keys) => {
 };
 
 /**
- * Groups equipmentTypes according to bussinesType: Packaging or Processing
- */
-export const _groupByBusinessType = (filterOptionsArr) => {
-  const businessTypeArr = [];
-  const groupedFilterOptions = [];
-  // get all unique business types
-  filterOptionsArr.forEach((item) => {
-    if (businessTypeArr.indexOf(item['businessType']) === -1) {
-      businessTypeArr.push(item['businessType']);
-    }
-  });
-
-  // create an object for each business type with it's corresponding items
-  businessTypeArr.forEach((businessType) => {
-    const optionsForBusinessType = filterOptionsArr.filter(
-      (filterOption) => filterOption.businessType === businessType
-    );
-
-    groupedFilterOptions.push({
-      businessTypeLabel: businessType,
-      options: optionsForBusinessType,
-      isChecked: !optionsForBusinessType.some(
-        (filterOption) => filterOption.isChecked === false
-      )
-    });
-  });
-
-  return groupedFilterOptions;
-};
-
-/**
  * Return obj. contaning table header labels and tooltip text
  */
 export const _getKeyMap = (key, i18nKeys) => {
