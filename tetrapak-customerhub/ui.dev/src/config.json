@@ -194,6 +194,12 @@
         "name": "technicalpublications",
         "enforce": true,
         "chunks": "all"
+      },
+      "rebuildingkits": {
+        "testMultiple": true,
+        "name": "rebuildingkits",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -255,6 +261,9 @@
       ],
       "technicalpublications": [
         "source/templates/components/technicalpublications/"
+      ],
+      "rebuildingkits": [
+        "source/templates/components/rebuildingkits/"
       ]
     },
     "handlebars": {
