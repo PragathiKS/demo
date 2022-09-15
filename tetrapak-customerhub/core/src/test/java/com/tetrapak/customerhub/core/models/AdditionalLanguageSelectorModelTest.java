@@ -2,6 +2,7 @@ package com.tetrapak.customerhub.core.models;
 
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.MockUserPreferenceServiceImpl;
+import com.tetrapak.customerhub.core.services.PreferredLanguagesService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.services.impl.AzureTableStorageServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.PreferredLanguagesServiceImpl;
@@ -28,7 +29,7 @@ public class AdditionalLanguageSelectorModelTest {
     
     @Spy
     @InjectMocks
-    private PreferredLanguagesServiceImpl preferredLanguagesServiceImpl = new PreferredLanguagesServiceImpl();
+    private PreferredLanguagesService preferredLanguagesServiceImpl = new PreferredLanguagesServiceImpl();
     
     private static final String CONTENT_ROOT = "/content/dam/tetrapak/customerhub/contentfragment/preferred-languages";
     private static final String RESOURCE_JSON = "preferredLangContentFragment.json";
@@ -52,7 +53,7 @@ public class AdditionalLanguageSelectorModelTest {
         Map<String, Object> preferredLanguagesConfig = new HashMap<>();
         preferredLanguagesConfig.put("path", CONTENT_ROOT);
         aemContext.registerInjectActivateService(preferredLanguagesServiceImpl, preferredLanguagesConfig);
-    	aemContext.registerService(PreferredLanguagesServiceImpl.class, preferredLanguagesServiceImpl);
+    	aemContext.registerService(PreferredLanguagesService.class, preferredLanguagesServiceImpl);
         
         aemContext.currentResource(CONTENT_ROOT);
         additionalLanguageSelectorModel = aemContext.request().adaptTo(AdditionalLanguageSelectorModel.class);
