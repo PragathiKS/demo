@@ -1,9 +1,11 @@
 package com.tetrapak.customerhub.core.models;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.PreferredLanguagesService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -18,7 +20,7 @@ import javax.annotation.PostConstruct;
  *
  * @author Aalekh Mathur
  */
-@Model(adaptables = {SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {SlingHttpServletRequest.class, Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AdditionalLanguageSelectorModel {
 
     @SlingObject
@@ -33,11 +35,18 @@ public class AdditionalLanguageSelectorModel {
     private String selectedLanguage;
     
     private Map<String, String> listOfLanguages = new HashMap<>();
-
+    
+    private String saveAdditionalPrefLangServletUrl;
+    
+    /** The resource. */
+    @SlingObject
+    private Resource resource;
+	
     @PostConstruct
     protected void init() {
         selectedLanguage = GlobalUtil.getAdditionalSelectedLanguage(request, userPreferenceService);
         listOfLanguages = preferredLanguagesService.getPreferredLanguages(request.getResourceResolver());
+        saveAdditionalPrefLangServletUrl = resource.getPath() + CustomerHubConstants.SAVE_ADDITIONAL_LANG;
     }
     
     public String getSelectedLanguage() {
@@ -47,4 +56,8 @@ public class AdditionalLanguageSelectorModel {
     public Map<String, String> getListOfLanguages() {
         return listOfLanguages;
     }
+
+	public String getSaveAdditionalPrefLangServletUrl() {
+		return saveAdditionalPrefLangServletUrl;
+	}
 }
