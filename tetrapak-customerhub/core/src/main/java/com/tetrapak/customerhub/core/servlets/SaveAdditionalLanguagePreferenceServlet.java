@@ -27,7 +27,8 @@ import java.io.IOException;
         property = {
                 Constants.SERVICE_DESCRIPTION + "=Save Additional Language Preference Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-                "sling.servlet.paths=" + "/bin/customerhub/saveAdditionalLanguagePreference"
+                "sling.servlet.resourceTypes=" + CustomerHubConstants.REBUILDING_KITS_DETAILS_RESOURCE_TYPE,
+                "sling.servlet.selectors=" + "save", "sling.servlet.extensions=" + "language"
         })
 public class SaveAdditionalLanguagePreferenceServlet extends SlingAllMethodsServlet {
 
@@ -50,28 +51,20 @@ public class SaveAdditionalLanguagePreferenceServlet extends SlingAllMethodsServ
         }
 
         String userId = session.getUserID();
-        String langCode = request.getParameter("lang-code");
-        langCode = getValidLangCode(langCode);
-        if (null != langCode) {
+        String langCode = request.getParameter(CustomerHubConstants.LANG_CODE);
+        if (langCode.matches(CustomerHubConstants.LANG_CODE_REGULAR_EXP)) {
             boolean langPrefStatus = userPreferenceService.setPreferences(userId, CustomerHubConstants.ADDITIONAL_LANGUAGE_PREFERENCES, langCode);
             if (langPrefStatus) {
-                LOGGER.info("Saving the language preference as {} for the user : {}", langCode, userId);
+                LOGGER.info("Saving the language preference as {}", langCode);
                 writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_SUCCESS, "language preference is saved as " + langCode);
             } else {
-                LOGGER.info("Saving the language preference failed for the user : {}", userId);
+                LOGGER.info("Saving the language preference failed");
                 writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE, "failed to save language " + langCode);
             }
         } else {
-            LOGGER.info("Saving the language preference failed for the user : {}", userId);
+            LOGGER.info("Saving the language preference failed");
             writeJsonResponse(response, CustomerHubConstants.RESPONSE_STATUS_FAILURE, "invalid input");
         }
-    }
-
-    private String getValidLangCode(String langCode) {
-        if (langCode.matches("^[a-z]{2}([_])?([A-Za-z]{2})?$")) {
-            return langCode;
-        }
-        return null;
     }
 
     /**

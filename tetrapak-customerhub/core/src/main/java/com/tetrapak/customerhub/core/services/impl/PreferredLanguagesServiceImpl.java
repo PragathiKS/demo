@@ -54,7 +54,7 @@ public class PreferredLanguagesServiceImpl implements PreferredLanguagesService 
 				Resource dataResource = resourceResolver.getResource(dataPath);
 				if (Objects.nonNull(dataResource)) {
 		            final ValueMap vMap = dataResource.getValueMap();
-		            listOfLanguages.put(vMap.get("langcode").toString(), vMap.get("langdesc").toString());
+		            listOfLanguages.put(vMap.get(CustomerHubConstants.LANG_CODE).toString(), vMap.get(CustomerHubConstants.LANG_DESC).toString());
 				}
 		    }
 	    }

@@ -8,6 +8,5 @@
         dam:noThumbnail="{Boolean}true"
         jcr:primaryType="nt:unstructured"
         jcr:title="contentfragment">
-        <folderThumbnail/>
     </jcr:content>
 </jcr:root>

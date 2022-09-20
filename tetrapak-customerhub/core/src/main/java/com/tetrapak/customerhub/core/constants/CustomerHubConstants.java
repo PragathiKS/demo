@@ -1,5 +1,9 @@
 package com.tetrapak.customerhub.core.constants;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * The CustomerHubConstants class.
  */
@@ -665,6 +669,31 @@ public final class CustomerHubConstants {
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
     
+    /** The constant DATA_ROOT_PATH. */
+    public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
+    
+    /** The constant LANG_CODE. */
+    public static final String LANG_CODE = "langcode";
+    
+    /** The constant LANG_DESC. */
+    public static final String LANG_DESC = "langdesc";
+    
+    /** The constant LANG_DESC. */
+    public static final String LANG_CODE_REGULAR_EXP = "^[a-z]{2}([_])?([A-Za-z]{2})?$";
+    
+    /** The constant PARAMETERS. */
+    public static final List<String> PARAMETERS = Collections.unmodifiableList(Arrays.asList("defaultEndpointsProtocol", "accountKey", "accountName", "tableName"));
+    
+    /** The constant PARAMETER_VALUES. */
+    public static final List<String> PARAMETER_VALUES = Collections.unmodifiableList(Arrays.asList("https", "Fa6WBGXsJZ+9Hyt5ggAKQD4WJQ4j77foq4a8S2S+wr663sVxPO5AFrhOPEgbxsPt+WBYDyfH654CIlfncy0klg==",
+    		"ta01cfedsta01", "preferences"));
+    
+    /** The constant SAVE_ADDITIONAL_LANG. */
+    public static final String SAVE_ADDITIONAL_LANG = ".save.language";
+    
+    /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
+    public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
+
     /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
     

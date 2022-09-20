@@ -1,5 +1,6 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.GenericServiceType;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
@@ -39,13 +40,11 @@ public class SaveAdditionalLanguagePreferenceServletTest {
     @Before
     public void setup() {
         Map<String, Object> _config = new HashMap<>();
-        _config.put("defaultEndpointsProtocol", "https");
-        _config.put("accountKey", "Fa6WBGXsJZ+9Hyt5ggAKQD4WJQ4j77foq4a8S2S+wr663sVxPO5AFrhOPEgbxsPt+WBYDyfH654CIlfncy0klg==");
-        _config.put("accountName", "ta01cfedsta01");
-        _config.put("tableName", "preferences");
+        _config.put(CustomerHubConstants.PARAMETERS.get(0), CustomerHubConstants.PARAMETER_VALUES.get(0));
+        _config.put(CustomerHubConstants.PARAMETERS.get(1), CustomerHubConstants.PARAMETER_VALUES.get(1));
+        _config.put(CustomerHubConstants.PARAMETERS.get(2), CustomerHubConstants.PARAMETER_VALUES.get(2));
+        _config.put(CustomerHubConstants.PARAMETERS.get(3), CustomerHubConstants.PARAMETER_VALUES.get(3));
         aemContext.registerInjectActivateService(azureTableStorageService, _config);
-
-        aemContext.load().json("/" + "user.json", "/home");
         aemContext.currentResource(SERVLET_RESOURCE_PATH);
         aemContext.request().setServletPath(SERVLET_RESOURCE_PATH);
         aemContext.request().setMethod(HttpConstants.METHOD_GET);
@@ -57,7 +56,7 @@ public class SaveAdditionalLanguagePreferenceServletTest {
         MockSlingHttpServletResponse response = aemContext.response();
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("lang-code", "en");
+        parameters.put(CustomerHubConstants.LANG_CODE, CustomerHubConstants.DEFAULT_LOCALE);
         request.setParameterMap(parameters);
 
         SaveAdditionalLanguagePreferenceServlet saveAdditionalLanguagePreferenceServlet = aemContext
