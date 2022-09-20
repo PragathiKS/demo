@@ -88,7 +88,8 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
         if (Files.exists(Paths.get(this.oneTrustPrivateKeyPath))) {
             Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get(this.oneTrustPrivateKeyPath))));
             String uniqueUserId;
-            if (StringUtils.isEmpty(Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString())) {
+            if (StringUtils.isEmpty(Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString()) ||
+                    Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString().length() < 36) {
                 uniqueUserId = String.valueOf(UUID.randomUUID());
             } else {
                 uniqueUserId = Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString();
