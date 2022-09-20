@@ -96,9 +96,7 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
             JWT jwt = new JWT().setUniqueId(String.valueOf(uniqueUserId));
             final String encodedJWT = JWT.getEncoder().encode(jwt, signer);
             LOGGER.debug("encodedJWT {} ", encodedJWT);
-            if (StringUtils.isEmpty(Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString())) {
-                jsonResponse.addProperty("uid", uniqueUserId);
-            }
+            jsonResponse.addProperty("uid", uniqueUserId);
             jsonResponse.addProperty("jwt", encodedJWT);
         } else {
             LOGGER.debug("Configured One Trust Private key Path {}  does not exists", this.oneTrustPrivateKeyPath);
