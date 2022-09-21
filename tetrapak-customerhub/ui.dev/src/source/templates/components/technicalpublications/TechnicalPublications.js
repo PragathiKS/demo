@@ -7,7 +7,7 @@ import {render} from '../../../scripts/utils/render';
 
 function _getFolderData(stepKey, options) {
   const $this = this;
-  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi, searchResults, docLang, i18nKeys } = $this.cache;
+  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi, searchResults, i18nKeys } = $this.cache;
   const { folderNavData, apiDataObj } = $this.cache;
   const { country, customer, line, lineFolders, folderDetails } = folderNavData;
   const { isBreadcrumbNav } = options;
@@ -63,7 +63,6 @@ function _getFolderData(stepKey, options) {
         },
         showLoader: true
       }).done(res => {
-        docLang.hide();
         searchResults.hide();
         
         let finalData = res.data;
@@ -98,7 +97,6 @@ function _getFolderData(stepKey, options) {
           const documentType = folderDetails.value.split(',')[0];
           srNo = folderDetails.value.split(',')[1];
           finalData = res.data.filter(data => data.typeCode === documentType);
-          docLang.show();
           searchResults.show();
           searchResults.text(`${finalData.length} ${i18nKeys.searchResults}`);
         }
@@ -226,7 +224,6 @@ class TechnicalPublications {
     this.cache.$folderListingWrapper = this.root.find('.js-tech-pub__folder-listing');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.searchResults = this.root.find('.js-tech-pub__search-count');
-    this.cache.docLang = this.root.find('.js-tech-pub__doc-lang');
     
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
@@ -322,11 +319,10 @@ class TechnicalPublications {
       const $this = this;
       const $btn = $(e.currentTarget);
       const targetStep = $btn.data('step');
-      const { folderNavData, docLang, searchResults } = $this.cache;
+      const { folderNavData, searchResults } = $this.cache;
 
-      docLang.hide();
       searchResults.hide();
-
+      
       // set isCurrentPage after clicking on breadcrumb
       Object.entries(folderNavData).forEach(([key]) => {
         const stepObj = folderNavData[key];
