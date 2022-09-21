@@ -28,7 +28,8 @@ import java.io.IOException;
                 Constants.SERVICE_DESCRIPTION + "=Save Additional Language Preference Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_POST,
                 "sling.servlet.resourceTypes=" + CustomerHubConstants.REBUILDING_KITS_DETAILS_RESOURCE_TYPE,
-                "sling.servlet.selectors=" + "save", "sling.servlet.extensions=" + "language"
+                "sling.servlet.selectors=" + CustomerHubConstants.LANGUGAGE_PREFERENCES, "sling.servlet.extensions=" 
+                + CustomerHubConstants.JSON_SERVLET_EXTENSION
         })
 public class SaveAdditionalLanguagePreferenceServlet extends SlingAllMethodsServlet {
 
