@@ -83,7 +83,7 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         LOGGER.debug("Executing doGet method.");
         PrintWriter writer = response.getWriter();
-        response.setContentType("application/json");
+        response.setContentType(CommonsConstants.APPLICATION_JSON);
         JsonObject jsonResponse = new JsonObject();
         if (Files.exists(Paths.get(this.oneTrustPrivateKeyPath))) {
             Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get(this.oneTrustPrivateKeyPath))));
