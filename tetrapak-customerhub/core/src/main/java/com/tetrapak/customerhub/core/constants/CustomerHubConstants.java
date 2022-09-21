@@ -698,9 +698,6 @@ public final class CustomerHubConstants {
     public static final List<String> PARAMETER_VALUES = Collections.unmodifiableList(Arrays.asList("https", "Fa6WBGXsJZ+9Hyt5ggAKQD4WJQ4j77foq4a8S2S+wr663sVxPO5AFrhOPEgbxsPt+WBYDyfH654CIlfncy0klg==",
     		"ta01cfedsta01", "preferences"));
     
-    /** The constant SAVE_ADDITIONAL_LANG. */
-    public static final String SAVE_ADDITIONAL_LANG = ".save.language";
-    
     /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
     public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
 

@@ -46,7 +46,8 @@ public class AdditionalLanguageSelectorModel {
     protected void init() {
         selectedLanguage = GlobalUtil.getAdditionalSelectedLanguage(request, userPreferenceService);
         listOfLanguages = preferredLanguagesService.getPreferredLanguages(request.getResourceResolver());
-        saveAdditionalPrefLangServletUrl = resource.getPath() + CustomerHubConstants.SAVE_ADDITIONAL_LANG;
+        saveAdditionalPrefLangServletUrl = resource.getPath() + CustomerHubConstants.DOT + CustomerHubConstants.LANGUGAGE_PREFERENCES
+        		+ CustomerHubConstants.DOT + CustomerHubConstants.JSON_SERVLET_EXTENSION;
     }
     
     public String getSelectedLanguage() {
