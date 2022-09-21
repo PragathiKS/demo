@@ -1,0 +1,19 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Mon Aug 08 2022 13:18:18 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "cq:LiveRelationship",
+      "cq:LiveSync",
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "Tetra Pak processing and packaging solutions for food and beverages",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "linkPath": "/content/tetrapak/publicweb/global/en/home",
+    "linkText": "Tetra Pak Home",
+    "sling:resourceType": "publicweb/components/structure/pages/landingpage"
+  }
+}

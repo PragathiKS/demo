@@ -8,6 +8,9 @@ public class CommonsConstants {
     /** The Constant USER_ID. */
     public static final String USER_ID = "UserID";
 
+    /** The Constant APPLICATION_JSON. */
+    public static final String APPLICATION_JSON = "application/json";
+
     /**
      * Instantiates a new Commons constants.
      */
