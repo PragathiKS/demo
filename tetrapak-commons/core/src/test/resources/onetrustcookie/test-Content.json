@@ -14,6 +14,6 @@
     "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
     "linkPath": "/content/tetrapak/publicweb/global/en/home",
     "linkText": "Tetra Pak Home",
-    "sling:resourceType": "publicweb/components/structure/pages/landingpage"
+    "sling:resourceType": "publicweb/components/structure/pages/page"
   }
 }
