@@ -2,7 +2,6 @@ package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
 
-import com.tetrapak.publicweb.core.constants.PWConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
