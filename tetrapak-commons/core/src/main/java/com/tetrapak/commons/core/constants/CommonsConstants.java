@@ -3,7 +3,7 @@ package com.tetrapak.commons.core.constants;
 /**
  * The Class v.
  */
-public class CommonsConstants {
+public final class CommonsConstants {
 
     /** The Constant USER_ID. */
     public static final String USER_ID = "UserID";
