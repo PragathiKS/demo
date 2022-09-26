@@ -70,63 +70,74 @@
                               clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
     <sly data-sly-test.appResourcesPath=${page.appResourcesPath} data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
-<script type="text/javascript">
-  $(document).ready(function(){
-		var cookieValue,
-        isCookieExist,
-        oneTrustValue,
-        uidValue,
-        jwtToken;
 
-    function getCookie(name) {
-    	var value = "; " + document.cookie;
-    	var parts = value.split("; " + name + "=");
-    	if (parts.length == 2) return parts.pop().split(";").shift();
-    	else return null;
-	  }
-    function  getCookieValue() {
-    	var myCookie = getCookie("TPCOOKIEUSER");
-		  cookieValue= myCookie 
-    	if (myCookie == null) {
-        return false
-   		 }
-   		 else {
-          return true
-   	 }
-	}
+<sly data-sly-test ="${digitalDataModel.isPublisher}">
+  <script type="text/javascript">
+    $(document).ready(function(){
 
-    isCookieExist = getCookieValue()
+      var cookieValue,
+          isCookieExist,
+          oneTrustValue,
+          uidValue,
+          jwtToken;
 
-     function setCookie(cname, cvalue, exdays) {
-  		  const d = new Date();
-  		  d.setTime(d.getTime() + (exdays*24*60*60*1000));
-  		  let expires = "expires="+ d.toUTCString();
-  		  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	    }
+      function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+        else return null;
+      }
+      function  getCookieValue() {
+        var myCookie = getCookie("TPCOOKIEUSER");
+        cookieValue= myCookie 
+        if (myCookie == null) {
+          return false
+        }
+        else {
+            return true
+      }
+    }
 
-     	 oneTrustValue= '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
-	    if( (isCookieExist === false) ||(sessionStorage.getItem("jwttokenset") === null)){
-        	$.ajax({
-        		url: oneTrustValue,
-            data :{UserID:cookieValue},
-            success: function(result){
-                uidValue = result.uid;
-               	jwtToken = result.jwt;
-                sessionStorage.setItem("uidValueset", uidValue);
-                sessionStorage.setItem("jwttokenset", jwtToken);
-                setCookie("TPCOOKIEUSER", uidValue,365)
-  			  }});
-		  }
-      var OneTrust = {
-          dataSubjectParams: {
-              id: sessionStorage.getItem("uidValueset"),
-              isAnonymous: false,
-              token : sessionStorage.getItem("jwttokenset")
-          }
-      };
-});
-</script>
+      isCookieExist = getCookieValue()
 
+      function setCookie(cname, cvalue, exdays) {
+          const d = new Date();
+          d.setTime(d.getTime() + (exdays*24*60*60*1000));
+          let expires = "expires="+ d.toUTCString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+
+        oneTrustValue= '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
+        if( (isCookieExist === false) ||(sessionStorage.getItem("jwttokenset") === null)){
+            $.ajax({
+              url: oneTrustValue,
+              data :{UserID:cookieValue},
+              success: function(result){
+                  uidValue = result.uid;
+                  jwtToken = result.jwt;
+                  sessionStorage.setItem("uidValueset", uidValue);
+                  sessionStorage.setItem("jwttokenset", jwtToken);
+                  setCookie("TPCOOKIEUSER", uidValue,365);
+
+        var head = document.getElementsByTagName('head')[0];
+				var sc = document.createElement('script');
+				var string ="var OneTrustValue ={dataSubjectParams:{id :'"+uidValue+"',isAnonymous: false,jwt: '"+jwtToken+"'}}";
+        sc.appendChild(document.createTextNode(string));
+        head.appendChild(sc);
+          }});
+        }
+        else {
+				var x = sessionStorage.getItem("uidValueset");
+        var head = document.getElementsByTagName('head')[0];
+				var sc = document.createElement('script');
+				var string ="var OneTrustValue = {dataSubjectParams: {id :'"+x+"',isAnonymous: false,jwt: '"+x+"'}}";
+        sc.appendChild(document.createTextNode(string));
+        head.appendChild(sc);
+        }
+    });
+  </script>
+ </sly>
 
       <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
       <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${digitalDataModel.dataDomainScript}" ></script>
