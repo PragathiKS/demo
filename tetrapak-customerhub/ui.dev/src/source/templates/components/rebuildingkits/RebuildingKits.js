@@ -67,9 +67,9 @@ class RebuildingKits {
 
   initCache() {
     this.cache.rkApi = this.root.find('.js-rk-api');
+    this.cache.skipIndex = 0;
     this.cache.activePage = 1;
     this.cache.itemsPerPage = 25;
-    this.cache.skipIndex = 0;
     this.cache.countryData = [];
     this.cache.configJson = this.root.find('.js-rk__config').text();
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
@@ -223,7 +223,7 @@ class RebuildingKits {
     const {itemsPerPage, countryData} = this.cache;
     const rkApi = this.cache.rkApi.data('rklist-api');
     const activeCountry = countryData.filter(e => e.isChecked);
-    const countryCode = activeCountry[0].countryCode;
+    const countryCode = activeCountry.length ? activeCountry[0].countryCode: '';
     let apiUrlRequest = '';
     const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
 
