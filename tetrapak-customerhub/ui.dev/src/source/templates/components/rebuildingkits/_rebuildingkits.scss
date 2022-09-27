@@ -139,13 +139,6 @@ $color-red: #ff0000;
                 display: none;
             }
         }
-        tr {
-            &:last-child {
-                td {
-                    border-bottom: 0;
-                }
-            }
-        }
         .dashed-border {
             text-decoration: underline;
             text-decoration-style: dashed;

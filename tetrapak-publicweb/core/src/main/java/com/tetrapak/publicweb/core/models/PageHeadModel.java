@@ -29,12 +29,16 @@ public class PageHeadModel {
     /** The Baidu Map Key. */
     private String baiduMapkey;
 
+    /** The One Trust Servlet call api. */
+    private String cookieTokenServletUrl;
+
     /**
      * Inits the model.
      */
     @PostConstruct
     public void initModel() {
         final String path = request.getResource().getPath();
+        cookieTokenServletUrl = path.concat(".onetrustcookietoken.json");
         if(baiduMapService.getBaiduMapKey() != null && path.contains("/cn")) {
             baiduMapkey = baiduMapService.getBaiduMapKey();
         }
@@ -47,5 +51,13 @@ public class PageHeadModel {
      */
     public String getBaiduMapkey() {
         return baiduMapkey;
+    }
+
+    /**
+     * Get the One Trust Cookie Token Servlet url
+     * @return cookieTokenServleturl
+     */
+    public String getCookieTokenServletUrl() {
+        return cookieTokenServletUrl;
     }
 }
