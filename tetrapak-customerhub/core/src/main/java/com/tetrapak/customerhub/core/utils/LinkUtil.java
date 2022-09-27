@@ -15,7 +15,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 public final class LinkUtil {
     
     /** The Constant DOWNLOADABLE_ASSETS. */
-    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml)$";
+    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml|icc|acb)$";
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";

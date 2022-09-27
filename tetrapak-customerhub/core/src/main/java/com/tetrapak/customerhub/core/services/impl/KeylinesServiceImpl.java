@@ -189,10 +189,9 @@ public class KeylinesServiceImpl implements KeylinesService {
 	    LOGGER.debug("Volume Title {}", childTag.getTitle(locale));
 	    volumes.add(volume);
 	    /* As openings is outside, creating a list and adding it to shapes */
-	    openings.addAll(getOpenings(childTag, locale));
+	    volume.setOpenings(getOpenings(childTag, locale));
 
 	}
-	shape.setOpenings(openings);
 	shape.setVolumes(volumes);
 	LOGGER.debug("End setOpeningsAndVolumes Method");
     }
