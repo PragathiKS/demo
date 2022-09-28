@@ -125,7 +125,7 @@
      setCookie("TPCOOKIEUSER", uidValue,365);
 	  var head = document.getElementsByTagName('head')[0];
 	  var sc = document.createElement('script');
-	  var string ="var OneTrustValue ={dataSubjectParams:{id :'"+uidValue+"',isAnonymous: false,jwt: '"+jwtToken+"'}}";
+	  var string ="var OneTrust ={dataSubjectParams:{id :'"+uidValue+"',isAnonymous: false,jwt: '"+jwtToken+"'}}";
     sc.appendChild(document.createTextNode(string));
         head.appendChild(sc);
 
@@ -138,7 +138,7 @@ else {
       var jwt = sessionStorage.getItem("jwttokenset");
       var head = document.getElementsByTagName('head')[0];
 	  	var sc = document.createElement('script');
-		  var string ="var OneTrustValue = {dataSubjectParams: {id :'"+userid+"',isAnonymous: false,jwt: '"+jwt+"'}}";
+		  var string ="var OneTrust = {dataSubjectParams: {id :'"+userid+"',isAnonymous: false,jwt: '"+jwt+"'}}";
       sc.appendChild(document.createTextNode(string));
       head.appendChild(sc);
  }
