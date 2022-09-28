@@ -88,8 +88,8 @@ $color-red: #ff0000;
     &__search-count {
         @include padding($padding-md $padding-zero);
         @include margin($margin-md $margin-zero);
-        @include font-size($font-md);
-        @include line-height($font-xl, $font-md);
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
         color: $color-congress-blue;
         border-top: 1px solid $color-congress-blue;
         border-bottom: 1px solid $color-congress-blue;
