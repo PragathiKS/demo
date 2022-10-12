@@ -19,7 +19,7 @@ function generateToken() {
     || $('.tp-aip-licenses').attr('data-src_ispublishenvironment')
     || $('.tp-tech-pub').attr('data-src_ispublishenvironment')
     || $('.tp-rk').attr('data-src_ispublishenvironment')
-    || $('.tp-rebuilding-details').attr('data-src_ispublishenvironment');
+    || $('.tp-rk-detail').attr('data-src_ispublishenvironment');
   return (
     new Promise(function (resolve, reject) {
       const access_token = storageUtil.get(AUTH_TOKEN_COOKIE);

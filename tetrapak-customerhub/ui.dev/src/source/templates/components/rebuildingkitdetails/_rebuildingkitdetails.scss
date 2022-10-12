@@ -204,7 +204,6 @@
         @include margin-bottom(20px);
         color: $color-congress-blue;
 
-
         @media #{$mobile} {
             @include margin-bottom($margin-md);
         }
@@ -274,5 +273,24 @@
             }
         }
     }
+}
+.tp {
+    &-rk-preferred-language {
+        &__modal-header {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            color: $color-black;
+        }
+        &__modal-body {
+            max-height: 350px;
+            overflow-y: scroll;
 
+            li {
+                @include margin-top($margin-l);
+                &:first-child {
+                    margin-top: $margin-zero;
+                }
+            }
+        }
+    }
 }
