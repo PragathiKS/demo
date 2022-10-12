@@ -702,8 +702,30 @@ public final class CustomerHubConstants {
     public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
 
     /** The Constant for REBUILDING_KITS **/
+    /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
-    
+
+    /** The Constant for REBUILDING_KITS_STATUS **/
+    public static final String REBUILDING_KITS_STATUS = "rebuildingKitStatus";
+
+    /** The Constant for RK_RELEASE_DATE_FIRST **/
+    public static final String RK_RELEASE_DATE_FIRST = "releaseDateFirst";
+
+    /** The Constant for RK_MECHANICAL_SKILLS **/
+    public static final String RK_MECHANICAL_SKILLS = "mechanicalSkills";
+
+    /** The Constant for RK_AUTOMATIONS_KILLS **/
+    public static final String RK_AUTOMATIONS_KILLS = "automationSkills";
+
+    /** The Constant for RK_ELECTRICAL_SKILLS **/
+    public static final String RK_ELECTRICAL_SKILLS = "electricalSkills";
+
+    /** The Constant for RK_MACHINE_SYSTEM **/
+    public static final String RK_MACHINE_SYSTEM = "machineSystem";
+
+    /** The Constant for RK_MACHINE_SYSTEM_DESC **/
+    public static final String RK_MACHINE_SYSTEM_DESC = "machineSystemDesc";
+
     /** The Constant for RK_NUMBER **/
     public static final String RK_NUMBER = "rkNumber";
     
