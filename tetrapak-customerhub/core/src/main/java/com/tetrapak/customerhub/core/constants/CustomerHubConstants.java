@@ -398,10 +398,10 @@ public final class CustomerHubConstants {
 
     /** The Constant LINES_LIST_API. */
     public static final String EQUIPMENT_LINESLIST_API = "myequipment-lineslist";
-    
+
     /** The Constant CUSTOMER_LIST_API. */
     public static final String EQUIPMENT_CUSTOMERLIST_API = "myequipment-customerlist";
-    
+
     /** The Constant TECHNICAL_PUBLICATIONS_API. */
     public static final String TECHNICAL_PUBLICATIONS_API = "technicalpublications";
 
@@ -677,23 +677,23 @@ public final class CustomerHubConstants {
     
     /** The constant DATA_ROOT_PATH. */
     public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
-    
+
     /** The constant LANG_CODE. */
     public static final String LANG_CODE = "langcode";
-    
+
     /** The constant LANG_DESC. */
     public static final String LANG_DESC = "langdesc";
-    
+
     /** The constant LANG_DESC. */
     public static final String LANG_CODE_REGULAR_EXP = "^[a-z]{2}([_])?([A-Za-z]{2})?$";
-    
+
     /** The constant PARAMETERS. */
     public static final List<String> PARAMETERS = Collections.unmodifiableList(Arrays.asList("defaultEndpointsProtocol", "accountKey", "accountName", "tableName"));
-    
+
     /** The constant PARAMETER_VALUES. */
     public static final List<String> PARAMETER_VALUES = Collections.unmodifiableList(Arrays.asList("https", "Fa6WBGXsJZ+9Hyt5ggAKQD4WJQ4j77foq4a8S2S+wr663sVxPO5AFrhOPEgbxsPt+WBYDyfH654CIlfncy0klg==",
     		"ta01cfedsta01", "preferences"));
-    
+
     /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
     public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
 
