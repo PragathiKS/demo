@@ -6,23 +6,51 @@
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="row tp-rebuilding-details__row">
                         <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n key=i18nKeys.countryLocation}}</div>
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildData.countryName}}</div>
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">Column 3</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.countryName}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.location}}</div>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="row tp-rebuilding-details__row">
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">Column 2</div>
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">Column 3</div>
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">Column </div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n key=i18nKeys.functionalLocation}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.lineCode}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.lineName}}</div>
                     </div>
                 </div>           
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="row tp-rebuilding-details__row">
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">Column 3</div>
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">Column 4</div>
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">Column 5</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n key=i18nKeys.equipmentMaterial}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentMaterial}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentMaterialDesc}}</div>
                     </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n key=i18nKeys.equipmentStructure}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentStatus}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentStatusDesc}}</div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n key=i18nKeys.implementationStatusDate}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.implStatus}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.implStatusDate}}</div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n key=i18nKeys.equipmentStructure}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentStructure}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.implStatusDate}}</div>
+                    </div>
+                </div>
+                <div class="tp-rebuilding-details__action-wrap">
+                    {{> atoms/buttons/button/button iconClass="icon-Edit" modifier="transparent" text=i18nKeys.updateEquipmentInformation baseClass="tp-equipment-details__btn tp-equipment-details__update" jsClass="js-equipment-details__update"}}
+                </div>
+                <div class="tp-rebuilding-details__note">
+                    <span>{{i18n key=i18nKeys.rkNote}}:</span>
+                    {{i18n key=i18nKeys.rkNoteValue}}
                 </div>
             </div>
         </div>

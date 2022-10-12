@@ -13,27 +13,27 @@ import {logger} from '../../../scripts/utils/logger';
 
 function _renderRebuildingKitDetailsBottom() {
   const $this = this;
-  const { rebuildingData } = $this.cache;
+  const { $rebuildingData } = $this.cache;
   const { i18nKeys } = $this.cache;
 
 
   render.fn({
     template: 'rebuildingkitDetailsBottom',
     target: this.cache.$contenbottom,
-    data: { i18nKeys: i18nKeys, rebuildingData: rebuildingData}
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData}
   });
 }
 
 function _renderRebuildingKitDetails() {
   const $this = this;
-  const { rebuildingData } = $this.cache;
+  const { $rebuildingData } = $this.cache;
   const { i18nKeys } = $this.cache;
 
 
   render.fn({
     template: 'rebuildingkitDetails',
     target: $this.cache.$content,
-    data: { i18nKeys: i18nKeys, rebuildingData: rebuildingData}
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData}
   });
 }
 
@@ -42,7 +42,7 @@ function _getRebuildingKitDetails() {
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url:'https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=559573-010&equipmentnumber=9000000779',
+        url:'https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=1284002-0781&equipmentnumber=9060000022',
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -53,7 +53,7 @@ function _getRebuildingKitDetails() {
         },
         showLoader: true
       }).done(res => {
-        $this.cache.rebuildingFirstData = res.data;
+        $this.cache.$rebuildingData = res.data[0];
         $this.renderRebuildingKitDetails();
         $this.renderRebuildingKitDetailsBottom();
       }).fail((e) => {

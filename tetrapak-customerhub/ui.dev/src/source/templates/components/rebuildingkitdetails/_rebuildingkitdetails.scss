@@ -1,6 +1,6 @@
 .tp_container {
     .row {
-        &.tp-rebuilding-details {
+        &.tp-rebuilding-details__details-line {
             @include margin-right($margin-zero);
             @include margin-left($margin-zero);
         }
@@ -126,6 +126,9 @@
             display: none;
         }
     }
+    &__contentbottom {
+        @include margin-top($margin-l);
+    }
 
     &__details-row {
         @include margin-bottom($margin-xl);
@@ -141,7 +144,7 @@
     }
 
     &__details-line {
-        @include padding($padding-md);
+        @include padding($padding-md $padding-zero);
         display: flex;
         border-bottom: 1px solid $color-mercury;
 
