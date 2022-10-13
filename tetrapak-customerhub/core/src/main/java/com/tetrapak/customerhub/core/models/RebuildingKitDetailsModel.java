@@ -169,6 +169,11 @@ public class RebuildingKitDetailsModel {
 	 * The rebuildingKitDetailsApi
 	 */
     private String rebuildingKitDetailsApi;
+    
+	/**
+	 * The technicalBulletinApi
+	 */
+    private String technicalBulletinApi;
 
 	/**
      * The sling settings service.
@@ -396,6 +401,15 @@ public class RebuildingKitDetailsModel {
 	}
 	
     /**
+     * Gets the Technical Bulletin API.
+     *
+     * @return the technicalBulletinApi
+     */  
+
+	public String getTechnicalBulletinApi() {
+		return technicalBulletinApi;
+	}
+    /**
      * Checks if is publish environment.
      *
      * @return true, if is publish environment
@@ -404,7 +418,8 @@ public class RebuildingKitDetailsModel {
         return isPublishEnvironment;
     }
 
-    /**
+
+	/**
      * init method.
      */
     @PostConstruct protected void init() {
@@ -440,5 +455,8 @@ public class RebuildingKitDetailsModel {
 
         rebuildingKitDetailsApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.RK_DETAILS_API);
+        
+        technicalBulletinApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, CustomerHubConstants.TECHNICAL_BULLETIN_API);
     }
 }
