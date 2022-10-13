@@ -398,6 +398,12 @@ public final class CustomerHubConstants {
 
     /** The Constant LINES_LIST_API. */
     public static final String EQUIPMENT_LINESLIST_API = "myequipment-lineslist";
+    
+    /** The Constant CUSTOMER_LIST_API. */
+    public static final String EQUIPMENT_CUSTOMERLIST_API = "myequipment-customerlist";
+    
+    /** The Constant TECHNICAL_PUBLICATIONS_API. */
+    public static final String TECHNICAL_PUBLICATIONS_API = "technicalpublications";
 
     /** The Constant CUSTOMER_LIST_API. */
     public static final String EQUIPMENT_CUSTOMERLIST_API = "myequipment-customerlist";
@@ -889,8 +895,11 @@ public final class CustomerHubConstants {
     /** The Constant Service Order */
     public static final String SERVICE_ORDER = "serviceOrder";
     
-    /** The Constant COUNTRY_LIST_API. */
+    /** The Constant Rebuilding Kit Details API. */
     public static final String RK_DETAILS_API = "rebuildingkits-rebuildingkitdetails";
+    
+    /** The Technical Bulleting API. */
+    public static final String TECHNICAL_BULLETIN_API = "technicalbulletins";
 
     /**
      * Instantiates a new customer hub constants.
