@@ -398,6 +398,12 @@ public final class CustomerHubConstants {
 
     /** The Constant LINES_LIST_API. */
     public static final String EQUIPMENT_LINESLIST_API = "myequipment-lineslist";
+    
+    /** The Constant CUSTOMER_LIST_API. */
+    public static final String EQUIPMENT_CUSTOMERLIST_API = "myequipment-customerlist";
+    
+    /** The Constant TECHNICAL_PUBLICATIONS_API. */
+    public static final String TECHNICAL_PUBLICATIONS_API = "technicalpublications";
 
     /** The Constant CUSTOMER_LIST_API. */
     public static final String EQUIPMENT_CUSTOMERLIST_API = "myequipment-customerlist";
