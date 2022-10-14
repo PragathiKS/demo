@@ -83,10 +83,22 @@ function _getCtiDocuments() {
 
 function _getRebuildingKitDetails() {
   const $this = this;
+  const urlParams = new URLSearchParams(window.location.search);
+  let rkNumber, equipmentNumber;
+  for (const [key, value] of urlParams) {
+    if(key === 'rkNumber') {
+      rkNumber = value;
+    }
+    if(key === 'equipment') {
+      equipmentNumber = value;
+    }
+  }
+  
+
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: 'https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=1284002-0781&equipmentnumber=9060000022',
+        url: `https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -104,6 +116,8 @@ function _getRebuildingKitDetails() {
         showLoader: true
       })
       .done((res) => {
+        $this.cache.$contentWrapper.removeClass('d-none');
+        $this.cache.$spinner.addClass('d-none');
         $this.cache.$rebuildingData = res.data[0];
         $this.renderRebuildingKitDetails();
         $this.renderRebuildingKitDetailsBottom();
@@ -123,6 +137,7 @@ class Rebuildingkitdetails {
     this.cache.configJson = this.root
       .find('.js-rebuilding-details__config')
       .text();
+    this.cache.$contentWrapper = this.root.find('.tp-rk-detail__content-wrapper');
     this.cache.rebuildingdetailsApi = this.root.data('rebuilding-details-api');
     this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
@@ -138,6 +153,7 @@ class Rebuildingkitdetails {
     this.cache.$closeBtn = this.root.parent().find('.js-close-btn');
     this.cache.$applyLanguage = this.root.parent().find('.js-apply-language');
     this.cache.apiURL = this.root.data('preferred-language-api');
+    this.cache.$spinner = this.root.find('.tp-spinner');
     // Create Local Array Object for Language List
     const $this = this;
     this.cache.langlist = {};
@@ -221,6 +237,13 @@ class Rebuildingkitdetails {
     });
     $closeBtn.on('click', function () {
       $modal.modal('hide');
+    });
+
+    this.root.on('click', '.js-rk__table-summary__row',  (e) => {
+      const equipmentNumber = $(e.currentTarget).data('equipment-number');
+      const rkNumber = $(e.currentTarget).data('rk-number');
+      const equipmentDetailsUrl = `/content/tetrapak/customerhub/global/en/package-design/testpage_for_whitebg.html?rkNumber=${rkNumber}&equipment=${equipmentNumber}`;
+      window.open(equipmentDetailsUrl, '_blank');
     });
   }
 
