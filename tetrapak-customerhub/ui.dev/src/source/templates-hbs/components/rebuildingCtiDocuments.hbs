@@ -1,0 +1,26 @@
+<div class="tp-rebuilding-details__details-row">
+      <div class="tp-rebuilding-details__info-card js-rebuilding-details__info-card">
+            <h3 auto_locator="sectionTitle">Title</h3>
+            <h4 class="tp-rebuilding-details__details-row-title" auto_locator="subsectionTitle">{{i18n key=i18nKeys.equipmentDetails}}</h4>
+            {{#each ctiData}}
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <i class="icon-Document tp-add-equipment__drag-and-drop-file-icon tp-add-equipment__drag-and-drop-file-icon--file"></i>
+                    <p class="tp-add-equipment__drag-and-drop-file-name ">
+                            <a href="{{documentLink}}" target="_blank">{{langCode}}</a></p>
+                </div>
+            </div>
+            {{/each}}
+    </div>
+</div>
+<div class="js-langcode">More Languages</div>
+   <div class="modal-body tp-modal-body tp-rk-cti-language__modal-body js-rk-cti">
+              <ul>
+            {{#each ctiOther}}
+               <li>
+                    {{langCode}}
+                  </li>
+               {{/each}}
+              </ul>
+            </div>
+        
