@@ -34,6 +34,53 @@ function _renderRebuildingKitDetails() {
   });
 }
 
+function _renderCtiDocuments(langAvailable, otherLang) {
+  const $this = this;
+  render.fn({
+    template: 'rebuildingCtiDocuments',
+    target: $this.cache.$contentdocs,
+    data : {ctiData: langAvailable, ctiOther:otherLang}
+  });
+  $('.js-langcode').on('click',function(e){
+    e.preventDefault();
+    $('.js-rk-cti').modal('show');
+  });
+}
+
+function _getCtiDocuments() {
+  const $this = this;
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper
+      .getXhrObj({
+        url: 'https://api-dev.tetrapak.com//technicalbulletins/TP_2018_31_04/cti',
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader(
+            'Authorization',
+            `Bearer ${authData.access_token}`
+          );
+          jqXHR.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded'
+          );
+        },
+        showLoader: true
+      })
+      .done((res) => {
+        $this.cache.$ctiData = res.data[0];
+        const langAvailable = $this.cache.$ctiData.ctiDocuments.filter(item => item.langCode === $this.cache.$currentLanguage || item.langCode === 'en'); 
+        const otherLang =  $this.cache.$ctiData.ctiDocuments.filter(item => item.langCode !== $this.cache.$currentLanguage || item.langCode !== 'en'); 
+        $this.renderCtiDocuments(langAvailable,otherLang);
+      })
+      .fail((e) => {
+        logger.error(e);
+      });
+  });
+}
+
 function _getRebuildingKitDetails() {
   const $this = this;
   auth.getToken(({ data: authData }) => {
@@ -81,6 +128,7 @@ class Rebuildingkitdetails {
     this.cache.$contenbottom = this.root.find(
       '.js-rebuilding-details__contentbottom'
     );
+    this.cache.$contentdocs = $('.tp-rebuilding-details__ctidocs');
     this.cache.languagesList = $('input[name="preferredlanguage"]');
     this.cache.$currentLanguage = $(
       'input[name="preferredlanguage"]:checked'
@@ -145,8 +193,14 @@ class Rebuildingkitdetails {
   getRebuildingKitDetails() {
     return _getRebuildingKitDetails.apply(this, arguments);
   }
+  getCtiDocuments() {
+    return _getCtiDocuments.apply(this, arguments);
+  }
   renderRebuildingKitDetails() {
     return _renderRebuildingKitDetails.apply(this, arguments);
+  }
+  renderCtiDocuments() {
+    return _renderCtiDocuments.apply(this, arguments);
   }
   renderRebuildingKitDetailsBottom() {
     return _renderRebuildingKitDetailsBottom.apply(this, arguments);
@@ -175,6 +229,7 @@ class Rebuildingkitdetails {
     this.initCache();
     this.bindEvents();
     this.getRebuildingKitDetails();
+    this.getCtiDocuments();
   }
 }
 
