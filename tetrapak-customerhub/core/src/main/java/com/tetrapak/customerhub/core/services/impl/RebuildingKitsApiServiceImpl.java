@@ -6,7 +6,6 @@ import com.tetrapak.customerhub.core.beans.rebuildingkits.RKResults;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-import com.tetrapak.customerhub.core.services.EquipmentListApiService;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import com.tetrapak.customerhub.core.services.config.RebuildingKitsApiServiceConfig;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
@@ -49,7 +48,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 		int processors = Runtime.getRuntime().availableProcessors();
 		executor = Executors.newFixedThreadPool(processors - 1);
 		String numberOfProcessors = String.valueOf(processors);
-		LOGGER.error("Number of CPU processors : {}", numberOfProcessors);
+		LOGGER.info("Number of CPU processors : {}", numberOfProcessors);
 	}
 
 	@Deactivate
@@ -63,7 +62,6 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	 */
 	@Override
 	public int getNoOfRecordsCount() {
-
 		return config.noOfRecords();
 	}
 
@@ -73,20 +71,20 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 		List<RebuildingKits> allResults = new ArrayList<>();
 		List<Integer> skipElements = new ArrayList<>();
 
-		Map<String, String> getEquipmentInitial = getAllEquipmentAPI(0, token, countryCode);
+		Map<String, String> getrbkInitial = getAllRebuildingKitsAPI(0, token, countryCode);
 
 		// Make a call to first set of results to get the total number of results
-		parseAPIResponse(getEquipmentInitial).ifPresent(s -> {
-			RKResults equipmentsFirstSet = parseAPIResponse(getEquipmentInitial).get();
-			int totalEquipmentCount = equipmentsFirstSet.getMeta().getTotal();
-			LOGGER.debug("Total equipment count is {}", String.valueOf(totalEquipmentCount));
+		parseAPIResponse(getrbkInitial).ifPresent(s -> {
+			RKResults rbkFirstSet = parseAPIResponse(getrbkInitial).get();
+			int totalRbkListCount = rbkFirstSet.getMeta().getTotal();
+			LOGGER.debug("Total rebuildingkits list count is {}", String.valueOf(totalRbkListCount));
 			LOGGER.debug("Number of records to fetch in single set is {}", getNoOfRecordsCount());
 
-			allResults.addAll(equipmentsFirstSet.getData());
+			allResults.addAll(rbkFirstSet.getData());
 
 			// Divide the total number of results to facilitate concurrent calling of API
 			// corresponding to each set
-			int numberOfCalls = totalEquipmentCount / getNoOfRecordsCount();
+			int numberOfCalls = totalRbkListCount / getNoOfRecordsCount();
 			LOGGER.debug("Number of API calls : {}", numberOfCalls);
 			IntStream.rangeClosed(1, numberOfCalls).forEach(index -> skipElements.add(getNoOfRecordsCount() * index));
 		});
@@ -94,13 +92,13 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 		// Concurrently make call to API for fetching results in smaller sets
 		List<CompletableFuture<List<RebuildingKits>>> apiCallFutures = skipElements.stream()
 				.map(skipElement -> CompletableFuture
-						.supplyAsync(() -> getAllEquipmentAPI(skipElement, token, countryCode),executor)
+						.supplyAsync(() -> getAllRebuildingKitsAPI(skipElement, token, countryCode),executor)
 						.exceptionally(exception -> {
 							LOGGER.error("Error while executing API for index starting from {}", skipElement,
 									exception);
 							return new HashMap<>();
 						}))
-				.map(apiResponseFuture -> apiResponseFuture.thenApply(this::extractEquipmentList))
+				.map(apiResponseFuture -> apiResponseFuture.thenApply(this::extractRebuildingKitsList))
 				.collect(Collectors.<CompletableFuture<List<RebuildingKits>>>toList());
 
 		CompletableFuture.allOf(apiCallFutures.toArray(new CompletableFuture[apiCallFutures.size()]));
@@ -119,21 +117,20 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	}
 
 	/**
-	 * This method extracts the list of equipments from parsed API response
+	 * This method extracts the list of rebuilding kits list from parsed API response
 	 * 
 	 * @param apiResponse
-	 * @return resultsList list of equipments
+	 * @return resultsList list of rebuilding kits
 	 */
-	public List<RebuildingKits> extractEquipmentList(Map<String, String> apiResponse) {
+	public List<RebuildingKits> extractRebuildingKitsList(Map<String, String> apiResponse) {
 		return parseAPIResponse(apiResponse).map(RKResults::getData).orElse(new ArrayList<>());
 	}
 
 	/**
-	 * This method parses the Equipment API response
+	 * This method parses the Rebuilding Kits API response
 	 * 
 	 * @param apiResponse
-	 * @return resultsList list of equipments
-	 */
+	 * @return resultsList list of rebuilding kits */
 	public Optional<RKResults> parseAPIResponse(Map<String, String> apiResponse) {
 		Optional<RKResults> results = Optional.empty();
 		GsonBuilder builder = new GsonBuilder();
@@ -151,7 +148,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	}
 
 	/**
-	 * This method constructs the URL for the API to fetch all equipments.
+	 * This method constructs the URL for the API to fetch all rebuilding kits List.
 	 * Subsequently it executes an HTTP call to the said API.
 	 * 
 	 * @param skip
@@ -159,18 +156,16 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	 * @param countryCode
 	 * @return Map map containing JSON response of API and HTTP call status.
 	 */
-	public Map<String, String> getAllEquipmentAPI(Integer skip, String token, String countryCode) {
+	public Map<String, String> getAllRebuildingKitsAPI(Integer skip, String token, String countryCode) {
 		LOGGER.debug("Current Thread name : {}", Thread.currentThread().getName());
 		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-				+ GlobalUtil.getSelectedApiMapping(apigeeService, "myequipment-equipmentlist")
+				+ GlobalUtil.getSelectedApiMapping(apigeeService, "rebuildingkits-rebuildingkitslist")
 				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS_CHAR
 				+ countryCode + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.SKIP + CustomerHubConstants.EQUALS_CHAR + skip + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS_CHAR + getNoOfRecordsCount() + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.EQUIPMENT_API_SORT + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.CUSTOMER
-				+ CustomerHubConstants.COMMA + CustomerHubConstants.LOCATION + CustomerHubConstants.COMMA + CustomerHubConstants.FUNCTIONAL_LOCATION
-				+ CustomerHubConstants.COMMA + CustomerHubConstants.POSITION;
+				+ CustomerHubConstants.EQUIPMENT_API_SORT + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.LOCATION + CustomerHubConstants.COMMA + CustomerHubConstants.POSITION;
 		return HttpUtil.executeHttp(token, url);
 	}
 }

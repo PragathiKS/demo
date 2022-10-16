@@ -2,8 +2,6 @@ package com.tetrapak.customerhub.core.beans.rebuildingkits;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.tetrapak.customerhub.core.beans.equipmentlist.Meta;
-
 import java.util.List;
 
 public class RKResults {

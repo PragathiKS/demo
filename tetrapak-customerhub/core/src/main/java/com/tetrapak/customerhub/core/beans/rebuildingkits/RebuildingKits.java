@@ -29,21 +29,17 @@ public class RebuildingKits {
     @Expose
     private String lineName;
 
-    @SerializedName("equipmentStatus")
+    @SerializedName("position")
     @Expose
-    private String equipmentStatus;
-
-    @SerializedName("equipmentStatusDesc")
-    @Expose
-    private String equipmentStatusDescription;
+    private String position;
 
     @SerializedName("equipmentType")
     @Expose
     private String equipmentType;
 
-    @SerializedName("equipmentTypeDesc")
+    @SerializedName("equipmentDesc")
     @Expose
-    private String equipmentTypeDesc;
+    private String equipmentDesc;
 
     @SerializedName("serialNumber")
     @Expose
@@ -53,13 +49,17 @@ public class RebuildingKits {
     @Expose
     private String permanentVolumeConversion;
 
-    @SerializedName("position")
+    @SerializedName("equipmentStatus")
     @Expose
-    private String position;
+    private String equipmentStatus;
 
-    @SerializedName("machineSystem")
+    @SerializedName("equipmentTypeDesc")
     @Expose
-    private String machineSystem;
+    private String equipmentTypeDesc;
+
+    @SerializedName("equipmentStatusDesc")
+    @Expose
+    private String equipmentStatusDescription;
 
     @SerializedName("rkNumber")
     @Expose
@@ -72,7 +72,6 @@ public class RebuildingKits {
     @SerializedName("implDate")
     @Expose
     private String implDate;
-
 
     @SerializedName("implStatus")
     @Expose
@@ -106,10 +105,13 @@ public class RebuildingKits {
     @Expose
     private String electricalSkills;
 
+    @SerializedName("machineSystem")
+    @Expose
+    private String machineSystem;
+
     @SerializedName("machineSystemDesc")
     @Expose
     private String machineSystemDesc;
-
 
     public String getCountryCode() {
         return countryCode;
@@ -317,5 +319,13 @@ public class RebuildingKits {
 
     public void setMachineSystemDesc(String machineSystemDesc) {
         this.machineSystemDesc = machineSystemDesc;
+    }
+
+    public String getEquipmentDesc() {
+        return equipmentDesc;
+    }
+
+    public void setEquipmentDesc(String equipmentDesc) {
+        this.equipmentDesc = equipmentDesc;
     }
 }

@@ -27,7 +27,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	private SlingHttpServletRequest request;
 	private String language;
 	private static final String CSV_FILE_NAME = "List of Rebuilding Kits.csv";
-	private static final String I18N_PREFIX = "cuhu.myequipment.rk.csvheader.";
+	private static final String I18N_PREFIX = "cuhu.myequipment.csvheader.";
 	private static final String POSITION_DEFAULT_VALUE = "0000";
 	private static final String POSITION_FORMATTER = "%04d";
 	private static final String DATE_PATTERN = "uuuu MM dd";
@@ -37,21 +37,19 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	// This determines the sequence of the columns
 	static {
 		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_CODE_EQUIPMENTS_API);
+		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
+		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.LOCATION);
+		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.POSITION);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_DESC_CSVHEADER);
-		csvHeaderMapping.add(CustomerHubConstants.MACHINE_SYSTEM);
 		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.PERMANENT_VOLUME_CONV);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
-		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
-		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.RK_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.RK_DESC);
 		csvHeaderMapping.add(CustomerHubConstants.IMPL_DATE);
@@ -63,22 +61,24 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		csvHeaderMapping.add(CustomerHubConstants.RK_MECHANICAL_SKILLS);
 		csvHeaderMapping.add(CustomerHubConstants.RK_AUTOMATIONS_KILLS);
 		csvHeaderMapping.add(CustomerHubConstants.RK_ELECTRICAL_SKILLS);
-		csvHeaderMapping.add(CustomerHubConstants.RK_MACHINE_SYSTEM_DESC);
+		csvHeaderMapping.add(CustomerHubConstants.MACHINE_SYSTEM);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER);
 	}
 	private static final Logger LOGGER = LoggerFactory.getLogger(RebuildingKitsExcelServiceImpl.class);
 
 	/**
 	 * This method returns the list of rebuildingKits in CSV format
 	 *
-	 * @param equipments
-	 * @param response
+	 * @param rbk RebuildingKits list
+	 * @param request slingHttpServlet Request
+	 * @param response SlingHttpServlet Response
 	 * @return list of equipment in CSV format
 	 * @throws IOException
 	 */
-	public boolean generateCSV(List<RebuildingKits> rbk, SlingHttpServletRequest request,
+	public boolean generateCSV(List<RebuildingKits> rebuildingKits, SlingHttpServletRequest request,
 							   SlingHttpServletResponse response) throws IOException {
 
-		if (Objects.nonNull(rbk)) {
+		if (Objects.nonNull(rebuildingKits)) {
 			this.language = GlobalUtil.getLanguage(request);
 			this.request = request;
 			response.setContentType(CustomerHubConstants.TEXT_CSV);
@@ -96,8 +96,8 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 				LOGGER.debug("Equipment list CSV File Column heading : {}", columnHeading);
 			}
 			csvFileContent.append(CustomerHubConstants.NEWLINE);
-			for (RebuildingKits equipment : rbk) {
-				csvFileContent.append(convertToCSVRow(equipment));
+			for (RebuildingKits rbk : rebuildingKits) {
+				csvFileContent.append(convertToCSVRow(rbk));
 			}
 			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_16LE));
 			csvFileOutputStream.flush();
@@ -138,30 +138,44 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	}
 
 	/**
-	 * This method converts an Equipment object to comma separated String
+	 * This method converts an RebuildingKits object to comma separated String
 	 * representation. The order of adding properties to list determines the order
 	 * of columns in CSV file.
 	 *
-	 * @param RebuildingKits rbk
-	 * @return String
+	 * @param rbk RebuildingKits
+	 * @return
 	 */
 	private String convertToCSVRow(RebuildingKits rbk) {
-		List<String> equipmentPropertiesList = new ArrayList<>();
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getCountryCode()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getCustomerName()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getLocation()));
-		equipmentPropertiesList.add(tidyCSVOutput(formatPosition(rbk.getPosition())));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getEquipmentType()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getSerialNumber()));
-		equipmentPropertiesList
+		List<String> rbkPropertiesList = new ArrayList<>();
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getCountryCode()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getCountryName()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getCustomerNumber()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getCustomerName()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getLocation()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineName()));
+		rbkPropertiesList.add(tidyCSVOutput(formatPosition(rbk.getPosition())));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentType()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getSerialNumber()));
+		rbkPropertiesList
 				.add(tidyCSVOutput(formatPermanentVolumeConversion(rbk.getPermanentVolumeConversion())));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatus()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getEquipmentTypeDesc()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getMachineSystem()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatusDescription()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getCountryName()));
-		equipmentPropertiesList.add(tidyCSVOutput(rbk.getCustomerNumber()));
-		return equipmentPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.TAB))
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatus()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentTypeDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatusDescription()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkNumber()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatus()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatusDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRebuildingKitStatus()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getReleaseDateFirst()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getReleaseDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getMechanicalSkills()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getAutomationSkills()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getElectricalSkills()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getMachineSystem()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getMachineSystemDesc()));
+		return rbkPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.TAB))
 				.concat(CustomerHubConstants.NEWLINE);
 	}
 
