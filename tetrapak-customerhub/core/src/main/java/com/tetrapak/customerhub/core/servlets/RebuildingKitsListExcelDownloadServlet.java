@@ -2,7 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.models.MyEquipmentModel;
+import com.tetrapak.customerhub.core.models.RebuildingKitDetailsModel;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import com.tetrapak.customerhub.core.services.impl.RebuildingKitsExcelServiceImpl;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
@@ -52,15 +52,15 @@ public class RebuildingKitsListExcelDownloadServlet extends SlingAllMethodsServl
 			final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY : getAuthTokenValue(request);
 			LOGGER.debug("Got authToken from cookie : {}", token);
 
-			StopWatch equipmentAPIClock = new StopWatch();
-			equipmentAPIClock.start();
+			StopWatch rbkAPIClock = new StopWatch();
+			rbkAPIClock.start();
 			List<RebuildingKits> results = rebuildingKitsApiService.getRebuildingkitsList(token, countryCode);
-			equipmentAPIClock.stop();
-			LOGGER.debug("Total time taken for calling equipment list api is {} " ,equipmentAPIClock.getTime());
+			rbkAPIClock.stop();
+			LOGGER.debug("Total time taken for calling equipment list api is {} " ,rbkAPIClock.getTime());
 
-			MyEquipmentModel myEquipmentModel = request.getResource().adaptTo(MyEquipmentModel.class);
+			RebuildingKitDetailsModel rebuildingKitDetailsModel = request.getResource().adaptTo(RebuildingKitDetailsModel.class);
 
-			if (null == myEquipmentModel) {
+			if (null == rebuildingKitDetailsModel) {
 				LOGGER.error("My Equipment Model is null!");
 			} else {
 				StopWatch csvGenerationClock = new StopWatch();
