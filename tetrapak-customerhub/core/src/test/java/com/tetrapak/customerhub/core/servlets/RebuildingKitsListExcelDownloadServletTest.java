@@ -5,7 +5,6 @@ import com.tetrapak.customerhub.core.mock.MockRebuildingKitsApiServiceImpl;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import com.tetrapak.customerhub.core.services.impl.APIGEEServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.RebuildingKitsExcelServiceImpl;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -25,7 +24,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RebuildingKitsListExcelDownloadServletTest {
@@ -40,11 +38,6 @@ public class RebuildingKitsListExcelDownloadServletTest {
 
 	@InjectMocks
 	RebuildingKitsListExcelDownloadServlet rebuildingKitsListExcelDownloadServlet;
-
-	private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
-
-	//@Mock
-	//private APIGEEService apigeeService;
 
 	private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
 
@@ -72,6 +65,7 @@ public class RebuildingKitsListExcelDownloadServletTest {
 	public void doGetForExcel() throws IOException {
 		Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
 		aemContext.request().addCookie(cookie);
+<<<<<<< HEAD
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setExtension("excel");
 		MockSlingHttpServletRequest request = aemContext.request();
@@ -103,6 +97,8 @@ public class RebuildingKitsListExcelDownloadServletTest {
 
 	@Test
 	public void doGetForExcelWithNullAuthToken() throws IOException {
+=======
+>>>>>>> 3df465c5a (SMAR-23273 rebuilding kits test cases and coverage)
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setExtension("excel");
 		MockSlingHttpServletRequest request = aemContext.request();
@@ -118,6 +114,40 @@ public class RebuildingKitsListExcelDownloadServletTest {
 	}
 
 	@Test
+<<<<<<< HEAD
+=======
+	public void doGetForExcelWithNullModel() throws IOException {
+		Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
+		aemContext.request().addCookie(cookie);
+		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+		requestPathInfo.setExtension("excel");
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("countrycodes", "DE");
+		request.setParameterMap(parameters);
+		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
+		assertEquals("status should be ok", 500, response.getStatus());
+	}
+
+	@Test
+	public void doGetForExcelWithNullAuthToken() throws IOException {
+		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+		requestPathInfo.setExtension("excel");
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("countrycodes", "DE");
+		request.setParameterMap(parameters);
+		Mockito.when(rebuildingKitsApiService.getRebuildingkitsList(Mockito.any(), Mockito.any()))
+				.thenReturn(rebuildingKitsApiServiceTest.getRebuildingkitsList("","DE"));
+		Mockito.when(excelService.generateCSV(Mockito.any(),Mockito.any(),Mockito.any())).thenReturn(true);
+		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
+		assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
+	}
+
+	@Test
+>>>>>>> 3df465c5a (SMAR-23273 rebuilding kits test cases and coverage)
 	public void doGetForExcelWithException() throws Exception {
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setExtension("excel");
