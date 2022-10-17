@@ -5,6 +5,7 @@ import com.tetrapak.customerhub.core.mock.MockRebuildingKitsApiServiceImpl;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import com.tetrapak.customerhub.core.services.impl.APIGEEServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.RebuildingKitsExcelServiceImpl;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RebuildingKitsListExcelDownloadServletTest {
@@ -38,6 +40,11 @@ public class RebuildingKitsListExcelDownloadServletTest {
 
 	@InjectMocks
 	RebuildingKitsListExcelDownloadServlet rebuildingKitsListExcelDownloadServlet;
+
+	private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
+
+	//@Mock
+	//private APIGEEService apigeeService;
 
 	private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
 
