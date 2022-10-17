@@ -2,7 +2,7 @@ package com.tetrapak.customerhub.core.servlets;
 
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
-import com.tetrapak.customerhub.core.models.RebuildingKitDetailsModel;
+import com.tetrapak.customerhub.core.models.RebuildingKitsModel;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import com.tetrapak.customerhub.core.services.impl.RebuildingKitsExcelServiceImpl;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
@@ -58,10 +58,10 @@ public class RebuildingKitsListExcelDownloadServlet extends SlingAllMethodsServl
 			rbkAPIClock.stop();
 			LOGGER.debug("Total time taken for calling equipment list api is {} " ,rbkAPIClock.getTime());
 
-			RebuildingKitDetailsModel rebuildingKitDetailsModel = request.getResource().adaptTo(RebuildingKitDetailsModel.class);
+			RebuildingKitsModel rbkmodel = request.getResource().adaptTo(RebuildingKitsModel.class);
 
-			if (null == rebuildingKitDetailsModel) {
-				LOGGER.error("My Equipment Model is null!");
+			if (null == rbkmodel) {
+				LOGGER.error("Rebuilding Kits List is null!");
 			} else {
 				StopWatch csvGenerationClock = new StopWatch();
 				csvGenerationClock.start();
