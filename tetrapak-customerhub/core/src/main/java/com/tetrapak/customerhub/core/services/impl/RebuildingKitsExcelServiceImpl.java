@@ -69,7 +69,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	/**
 	 * This method returns the list of rebuildingKits in CSV format
 	 *
-	 * @param rbk RebuildingKits list
+	 * @param rebuildingKits RebuildingKits list
 	 * @param request slingHttpServlet Request
 	 * @param response SlingHttpServlet Response
 	 * @return list of equipment in CSV format
@@ -93,7 +93,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 					.append(CustomerHubConstants.CSV_BYTE_ORDER_MARK);
 			for (String columnHeading : headerRow) {
 				csvFileContent.append(columnHeading).append(CustomerHubConstants.TAB);
-				LOGGER.debug("Equipment list CSV File Column heading : {}", columnHeading);
+				LOGGER.debug("Rebuilding Kits List CSV File Column heading : {}", columnHeading);
 			}
 			csvFileContent.append(CustomerHubConstants.NEWLINE);
 			for (RebuildingKits rbk : rebuildingKits) {
