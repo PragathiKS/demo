@@ -72,11 +72,11 @@ public class RebuildingKitsListExcelDownloadServlet extends SlingAllMethodsServl
 			}
 
 			if (!flag) {
-				LOGGER.error("Equipment results file download failed!");
+				LOGGER.error("Rebuilding kits List results file download failed!");
 				HttpUtil.sendErrorMessage(response);
 			}
 		} catch (Exception e) {
-			LOGGER.error("Equipment results file download failed", e);
+			LOGGER.error("Rebuilding kits List results file download failed", e);
 			HttpUtil.sendErrorMessage(response);
 		}
 	}

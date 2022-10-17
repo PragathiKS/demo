@@ -1,17 +1,13 @@
 package com.tetrapak.customerhub.core.servlets;
 
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.mock.MockRebuildingKitsApiServiceImpl;
-import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import com.tetrapak.customerhub.core.services.impl.APIGEEServiceImpl;
 import com.tetrapak.customerhub.core.services.impl.RebuildingKitsExcelServiceImpl;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.servlets.HttpConstants;
-import org.apache.sling.i18n.ResourceBundleProvider;
 import org.apache.sling.testing.mock.sling.servlet.MockRequestPathInfo;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletResponse;
@@ -21,35 +17,27 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import javax.servlet.http.Cookie;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RebuildingKitsListExcelDownloadServletTest {
 
-	@Mock
-	private Page mockPage;
+	MockRebuildingKitsApiServiceImpl rebuildingKitsApiServiceTest = new MockRebuildingKitsApiServiceImpl();
 
 	@Mock
-	RebuildingKitsExcelServiceImpl rebuildingKitsExcelService = new RebuildingKitsExcelServiceImpl();
+	private RebuildingKitsApiService rebuildingKitsApiService;
 
 	@Mock
-	MockRebuildingKitsApiServiceImpl rebuildingKitsApiService = new MockRebuildingKitsApiServiceImpl();
+	private RebuildingKitsExcelServiceImpl excelService;
 
 	@InjectMocks
 	RebuildingKitsListExcelDownloadServlet rebuildingKitsListExcelDownloadServlet;
-
-	@Mock
-	private ResourceBundleProvider mockResourceBundleProvider;
-
-	//@Mock
-	//private APIGEEService apigeeService;
 
 	private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
 
@@ -71,27 +59,68 @@ public class RebuildingKitsListExcelDownloadServletTest {
 		aemContext.currentResource(COMPONENT_PATH);
 		aemContext.request().setServletPath(COMPONENT_PATH);
 		aemContext.request().setMethod(HttpConstants.METHOD_GET);
-		//Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
-		//aemContext.request().addCookie(cookie);
-		//aemContext.registerService(APIGEEService.class, apigeeService);
-		//when(apigeeService.getApigeeServiceUrl()).thenReturn(
-		//		"https://api-dev.tetrapak.com");
-		//when(apigeeService.getApiMappings()).thenReturn(
-		//		new String[] { "rebuildingkits-rebuildingkitslist:installedbase/rebuildingkits" });
-		//when(GlobalUtil.getSelectedApiMapping(apigeeService,"rebuildingkits-rebuildingkitslist")).thenReturn("installedbase/rebuildingkits");
 	}
 
 	@Test
 	public void doGetForExcel() throws IOException {
+		Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
+		aemContext.request().addCookie(cookie);
 		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
 		requestPathInfo.setExtension("excel");
 		MockSlingHttpServletRequest request = aemContext.request();
 		MockSlingHttpServletResponse response = aemContext.response();
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put(CustomerHubConstants.TOKEN, CustomerHubConstants.TEST_TOKEN);
+		parameters.put("countrycodes", "DE");
+		request.setParameterMap(parameters);
+		Mockito.when(rebuildingKitsApiService.getRebuildingkitsList(Mockito.any(), Mockito.any()))
+				.thenReturn(rebuildingKitsApiServiceTest.getRebuildingkitsList("","DE"));
+		Mockito.when(excelService.generateCSV(Mockito.any(),Mockito.any(),Mockito.any())).thenReturn(true);
+		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
+		assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
+	}
+
+	@Test
+	public void doGetForExcelWithNullModel() throws IOException {
+		Cookie cookie = new Cookie("authToken", "cLBKhQAPhQCZ2bzGW5j2yXYBb6de");
+		aemContext.request().addCookie(cookie);
+		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+		requestPathInfo.setExtension("excel");
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("countrycodes", "DE");
 		request.setParameterMap(parameters);
 		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
+		assertEquals("status should be ok", 500, response.getStatus());
+	}
+
+	@Test
+	public void doGetForExcelWithNullAuthToken() throws IOException {
+		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+		requestPathInfo.setExtension("excel");
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("countrycodes", "DE");
+		request.setParameterMap(parameters);
+		Mockito.when(rebuildingKitsApiService.getRebuildingkitsList(Mockito.any(), Mockito.any()))
+				.thenReturn(rebuildingKitsApiServiceTest.getRebuildingkitsList("","DE"));
+		Mockito.when(excelService.generateCSV(Mockito.any(),Mockito.any(),Mockito.any())).thenReturn(true);
+		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
 		assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
+	}
+
+	@Test
+	public void doGetForExcelWithException() throws Exception {
+		MockRequestPathInfo requestPathInfo = (MockRequestPathInfo) aemContext.request().getRequestPathInfo();
+		requestPathInfo.setExtension("excel");
+		MockSlingHttpServletRequest request = aemContext.request();
+		MockSlingHttpServletResponse response = aemContext.response();
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("countrycodes", "DE");
+		request.setParameterMap(parameters);
+		Mockito.when(rebuildingKitsApiService.getRebuildingkitsList(Mockito.any(), Mockito.any())).thenThrow(Exception.class);
+		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
+		assertEquals("status should be ok", 500, response.getStatus());
 	}
 }
