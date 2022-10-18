@@ -1,6 +1,9 @@
 package com.tetralaval.utils;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.settings.SlingSettingsService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -48,5 +51,20 @@ public final class GlobalUtil {
             return false;
         }
         return slingSettingsService.getRunModes().contains("publish");
+    }
+    
+    /**
+     * This method is used to get the string value from string Array in format of
+     * {"key":"value","key1":"value1"}
+     * @param stringArray
+     * @param key
+     * @return String value
+     */
+    public static String getKeyValueFromStringArray(final String stringArray, final String key){
+        try {
+            return new JSONObject(stringArray).get(key).toString();
+        }catch (final JSONException exception) {
+        }
+        return StringUtils.EMPTY;
     }
 }
