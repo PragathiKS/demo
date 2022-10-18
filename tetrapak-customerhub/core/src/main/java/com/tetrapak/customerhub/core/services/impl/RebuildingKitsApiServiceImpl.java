@@ -122,7 +122,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	 * @param apiResponse
 	 * @return resultsList list of rebuilding kits
 	 */
-	public List<RebuildingKits> extractRebuildingKitsList(Map<String, String> apiResponse) {
+	private List<RebuildingKits> extractRebuildingKitsList(Map<String, String> apiResponse) {
 		return parseAPIResponse(apiResponse).map(RKResults::getData).orElse(new ArrayList<>());
 	}
 
@@ -131,7 +131,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	 * 
 	 * @param apiResponse
 	 * @return resultsList list of rebuilding kits */
-	public Optional<RKResults> parseAPIResponse(Map<String, String> apiResponse) {
+	private Optional<RKResults> parseAPIResponse(Map<String, String> apiResponse) {
 		Optional<RKResults> results = Optional.empty();
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.setPrettyPrinting().disableHtmlEscaping().create();
@@ -156,7 +156,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	 * @param countryCode
 	 * @return Map map containing JSON response of API and HTTP call status.
 	 */
-	public Map<String, String> getAllRebuildingKitsAPI(Integer skip, String token, String countryCode) {
+	private Map<String, String> getAllRebuildingKitsAPI(Integer skip, String token, String countryCode) {
 		LOGGER.debug("Current Thread name : {}", Thread.currentThread().getName());
 		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
 				+ GlobalUtil.getSelectedApiMapping(apigeeService, "rebuildingkits-rebuildingkitslist")

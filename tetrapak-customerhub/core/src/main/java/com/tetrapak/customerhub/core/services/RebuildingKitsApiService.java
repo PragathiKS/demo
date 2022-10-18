@@ -1,8 +1,6 @@
 package com.tetrapak.customerhub.core.services;
 
-import com.tetrapak.customerhub.core.beans.equipmentlist.Equipments;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
-
 import java.util.List;
 
 public interface RebuildingKitsApiService {
