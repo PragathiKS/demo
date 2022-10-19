@@ -3,7 +3,8 @@
         data-languages-list="${lang.listOfLanguages}"
         data-preferred-language-api="${lang.saveAdditionalPrefLangServletUrl}"
         data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
-        data-rebuilding-details-api="${data.rebuildingKitDetailsApi}" data-module="Rebuildingkitdetails">
+        data-rebuilding-details-api="${data.rebuildingKitDetailsApi}" data-cti-api="${data.technicalBulletinApi}"
+        data-module="Rebuildingkitdetails">
         <code class="d-none js-rebuilding-details__config">${data.i18nKeys}</code>
         <!-- Temp Table -->
         <div class="tp-card tp-rk">
@@ -12,8 +13,8 @@
                     <div class="tp-rk__table custom-scrollbar-horizontal on">
                         <table class="tpmol-table tp-rk__table-summary__table js-rk__table-summary__table">
                             <tbody class="tpmol-table__body tp-rk__table-summary__body">
-                                <tr class="tpmol-table__row tp-rk__table-summary__row js-rk__table-summary__row" data-rk-number="1284002-0781"
-                                    data-equipment-number="9060000022">
+                                <tr class="tpmol-table__row tp-rk__table-summary__row js-rk__table-summary__row"
+                                    data-rk-number="1284002-0781" data-equipment-number="9060000022">
                                     <td data-key="lineCode"
                                         class="tpmol-table__cell tp-rk__table-summary__cell js-rk__table-summary__cell js-rk__table-summary__cell--0">
                                         DEC-IMMERGUT SCH-LIN B
@@ -39,8 +40,8 @@
                                         Pending
                                     </td>
                                 </tr>
-                                <tr class="tpmol-table__row tp-rk__table-summary__row js-rk__table-summary__row" data-rk-number="1284002-0821"
-                                    data-equipment-number="9060000022">
+                                <tr class="tpmol-table__row tp-rk__table-summary__row js-rk__table-summary__row"
+                                    data-rk-number="1284002-0821" data-equipment-number="9060000022">
                                     <td data-key="lineCode"
                                         class="tpmol-table__cell tp-rk__table-summary__cell js-rk__table-summary__cell js-rk__table-summary__cell--0">
                                         DEC-IMMERGUT SCH-LIN B
@@ -72,14 +73,15 @@
                 </div>
             </div>
         </div>
-        <!-- END -->
+
         <sly data-sly-test.selectedLanguage="${lang.selectedLanguage ? lang.selectedLanguage : 'en'}" />
         <div class="tp-rk-detail__content-wrapper d-none">
-            <div class="tp-rebuilding-details__content js-rebuilding-details__content d-none"></div>
-            <a href="#" class="js-rk-preferred-language">${lang.listOfLanguages[selectedLanguage]}</a>
+ 
+            
+              <div class="tp-rebuilding-details__content js-rebuilding-details__content d-none"></div>
             <div id="rk-preferred-language-modal" class="modal js-language-modal tp-modal fade" tabindex="-1"
                 aria-hidden="true" role="dialog">
-                <div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
+                <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
                     <div class="modal-content tp-modal-content">
                         <div class="modal-header tpmol-modal-header">
                             <div class="js-language-header tp-language-header tp-rk-preferred-language__modal-header"
@@ -109,6 +111,20 @@
                     </div>
                 </div>
             </div>
+            <div class="tp-rebuilding-details__details-row">
+                <div class="tp-rebuilding-details__info-card js-rebuilding-details__info-card">
+                <div class="col-lg-11 col-md-11 col-sm-11">
+                    <h3 auto_locator="sectionTitle">Title</h3>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                    <i class="icon icon-PDF"></i>
+                  <a href="#" class="js-rk-preferred-language">${lang.listOfLanguages[selectedLanguage]}</a>
+                </div>
+                  
+                  <div class="tp-rebuilding-details__ctidocs d-none"></div>
+                </div>
+                </div>
+            
             <div class="tp-rebuilding-details__contentbottom js-rebuilding-details__contentbottom d-none"></div>
         </div>
         <div class="tp-spinner">
@@ -116,6 +132,4 @@
                 data-sly-call="${loading.loader_template}" />
         </div>
     </div>
-    <!--/* Component HTML code goes here */-->
-
 </sly>
