@@ -53,6 +53,12 @@
             @include padding-bottom($padding-md);
         }
     }
+    &__lang-link {
+        text-align: right;
+        .icon {
+            color: $color-congress-blue;
+        }
+    }
     &__row {
         @include padding($padding-zero $padding-sm);
     }
