@@ -43,7 +43,11 @@ function _renderCtiDocuments(langAvailable, otherLang) {
   });
   $('.js-langcode').on('click',function(e){
     e.preventDefault();
-    $('.js-rk-cti').modal('show');
+    $('.js-rk-cti-modal').modal('show');
+  });
+  $('.js-close-btn').on('click',function(e){
+    e.preventDefault();
+    $('.js-rk-cti-modal').modal('hide');
   });
 }
 
@@ -71,8 +75,22 @@ function _getCtiDocuments() {
       })
       .done((res) => {
         $this.cache.$ctiData = res.data[0];
-        const langAvailable = $this.cache.$ctiData.ctiDocuments.filter(item => item.langCode === $this.cache.$currentLanguage || item.langCode === 'en'); 
-        const otherLang =  $this.cache.$ctiData.ctiDocuments.filter(item => item.langCode !== $this.cache.$currentLanguage || item.langCode !== 'en'); 
+        const langAvailable = $this.cache.$ctiData.ctiDocuments.filter((item) => {
+          if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
+            item['langDesc'] = $this.cache.langlist[item.langCode];
+            return item;
+          }
+        }); 
+        const otherLang =  $this.cache.$ctiData.ctiDocuments.filter((item) => {
+          if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
+            return false;
+          }
+          else {
+            item['langDesc'] = $this.cache.langlist[item.langCode];
+            return item;
+          }
+  
+        }); 
         $this.renderCtiDocuments(langAvailable,otherLang);
       })
       .fail((e) => {
@@ -83,7 +101,7 @@ function _getCtiDocuments() {
 
 function _getRebuildingKitDetails() {
   const $this = this;
-  const urlParams = new URLSearchParams(window.location.search);
+  /*const urlParams = new URLSearchParams(window.location.search);
   let rkNumber, equipmentNumber;
   for (const [key, value] of urlParams) {
     if(key === 'rkNumber') {
@@ -92,13 +110,13 @@ function _getRebuildingKitDetails() {
     if(key === 'equipment') {
       equipmentNumber = value;
     }
-  }
+  }*/
   
 
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: `https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
+        url: 'https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=1284002-0781&equipmentnumber=9060000022',
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -160,7 +178,7 @@ class Rebuildingkitdetails {
     $.each(this.cache.languagesList, function (index, element) {
       const lcode = $(element).data('langcode');
       const ldesc = $(element).data('langdesc');
-      $this.cache.langlist[lcode] = ldesc;
+      $this.cache.langlist[`${lcode}`] = ldesc;
     });
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
@@ -239,12 +257,12 @@ class Rebuildingkitdetails {
       $modal.modal('hide');
     });
 
-    this.root.on('click', '.js-rk__table-summary__row',  (e) => {
+    /*this.root.on('click', '.js-rk__table-summary__row',  (e) => {
       const equipmentNumber = $(e.currentTarget).data('equipment-number');
       const rkNumber = $(e.currentTarget).data('rk-number');
       const equipmentDetailsUrl = `/content/tetrapak/customerhub/global/en/package-design/testpage_for_whitebg.html?rkNumber=${rkNumber}&equipment=${equipmentNumber}`;
       window.open(equipmentDetailsUrl, '_blank');
-    });
+    });*/
   }
 
   init() {

@@ -7,6 +7,9 @@
     }
 }
 .tp-rebuilding-details {
+    h2 {
+        @include margin-bottom($margin-md);
+    }
     &__title {
         @include line-height($font-xxl, $font-l);
         @include margin-bottom($margin-l);
@@ -22,7 +25,10 @@
             @include margin-bottom($margin-md);
         }
     }
-
+    &__ctidocs {
+        @include padding-top($padding-md);
+        border-top: solid 1px $color-mercury;
+    }
     &__info-card-col {
         @include margin-bottom($margin-xxl);
 
@@ -45,8 +51,6 @@
 
         h3 {
             @include padding-bottom($padding-md);
-            @include margin-bottom($margin-sm);
-            border-bottom: 1px solid $color-mercury;
         }
     }
     &__row {
@@ -271,6 +275,40 @@
             &:first-child {
                 @include margin-left($margin-zero);
             }
+        }
+    }
+
+    &__cti {
+        &-list {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            @include padding($padding-zero $padding-md);
+            li {
+                @include padding-bottom($padding-md);
+            }
+            &.section {
+                @include padding($padding-zero);
+            }
+            &.bottom {
+                @include margin($margin-zero $margin-md);
+                @include padding($padding-zero);
+                border-top: solid 1px $color-mercury;
+                li {
+                    &:first-child {
+                        @include padding-top($padding-md);
+                    }
+                }
+            }
+            .icon {
+                @include font-size($font-sm);
+                @include line-height($font-normal, $font-sm);
+                @include padding-right($padding-sm);
+                color: $color-red;
+            }
+        }
+
+        &-file {
+            display: inline-block;
         }
     }
 }
