@@ -7,8 +7,14 @@
     }
 }
 .tp-rebuilding-details {
-    h2 {
-        @include margin-bottom($margin-md);
+    &__content {
+        h1 {
+            @include margin-bottom($margin-md);
+            font-weight: 400;
+            span {
+                font-weight: 700;
+            }
+        }
     }
     &__title {
         @include line-height($font-xxl, $font-l);
@@ -51,6 +57,12 @@
 
         h3 {
             @include padding-bottom($padding-md);
+        }
+        &.top {
+            h3 {
+                @include margin-bottom($margin-md);
+                border-bottom: solid 1px $color-mercury;
+            }
         }
     }
     &__lang-link {
@@ -118,7 +130,8 @@
 
     &__info-cell-one {
         @include line-height($font-l, $font-baseline);
-        @include padding-top($padding-md);
+        @include padding($padding-md $padding-sm $padding-zero $padding-sm);
+
         font-weight: 500;
         flex-shrink: 0;
 
@@ -131,7 +144,10 @@
         @include line-height($font-l, $font-baseline);
         @include padding-top($padding-md);
         font-weight: 700;
-
+        @media #{$mobile} {
+            @include padding-left($padding-sm);
+            @include padding-right($padding-sm);
+        }
         .error-msg {
             display: none;
         }
@@ -161,6 +177,9 @@
         @media #{$mobile} {
             display: block;
         }
+        &.row {
+            @include margin($margin-zero);
+        }
     }
 
     &__details-cell {
@@ -184,7 +203,7 @@
     &__note {
         @include font-size(10px);
         @include line-height($font-normal, 10px);
-        @include margin-top($margin-md);
+        @include margin($margin-md $margin-zero $margin-zero $margin-md);
         font-weight: 500;
 
         span {

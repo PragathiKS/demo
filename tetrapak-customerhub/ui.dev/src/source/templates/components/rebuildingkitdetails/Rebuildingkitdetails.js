@@ -53,10 +53,11 @@ function _renderCtiDocuments(langAvailable, otherLang) {
 
 function _getCtiDocuments() {
   const $this = this;
+  const rkRelease = $this.cache.$rebuildingData.releaseDate;
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: 'https://api-dev.tetrapak.com//technicalbulletins/TP_2018_31_04/cti',
+        url: `https://api-dev.tetrapak.com//technicalbulletins/${rkRelease}/cti`,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -138,6 +139,7 @@ function _getRebuildingKitDetails() {
         $this.cache.$spinner.addClass('d-none');
         $this.cache.$rebuildingData = res.data[0];
         $this.renderRebuildingKitDetails();
+        this.getCtiDocuments();
         $this.renderRebuildingKitDetailsBottom();
       })
       .fail((e) => {
@@ -270,7 +272,6 @@ class Rebuildingkitdetails {
     this.initCache();
     this.bindEvents();
     this.getRebuildingKitDetails();
-    this.getCtiDocuments();
   }
 }
 

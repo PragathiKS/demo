@@ -1,60 +1,59 @@
-
 <h4 class="tp-rebuilding-details__details-row-title" auto_locator="subsectionTitle">{{i18n
-      key=i18nKeys.equipmentDetails}}</h4>
-   {{#if ctiData}}
-    <ul class="tp-rebuilding-details__cti-list section">
+    key=i18nKeys.equipmentDetails}}</h4>
+{{#if ctiData}}
+<ul class="tp-rebuilding-details__cti-list section">
     {{#each ctiData}}
     <li>
         <i class="icon icon-PDF"></i>
         <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
-          {{langDesc}}</a>
+            {{langDesc}}</a>
     </li>
     {{/each}}
-    </ul>
-    {{/if}}
-  <a href="#" class="js-langcode">More Languages</a>
-  <div id="rk-cti-language-modal" class="modal js-rk-cti-modal tp-modal fade" tabindex="-1" aria-hidden="true"
+</ul>
+{{/if}}
+<a href="#" class="js-langcode">More Languages</a>
+<div id="rk-cti-language-modal" class="modal js-rk-cti-modal tp-modal fade" tabindex="-1" aria-hidden="true"
     role="dialog">
     <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
-      <div class="modal-content tp-modal-content">
-        <div class="modal-header tpmol-modal-header">
-          <div class="js-language-header tp-language-header tp-rk-preferred-language__modal-header"
-            auto_locator="headlineOverlay">Customer Technical Information</div>
-          <button type="button" auto_locator="closebtnOverlay"
-            class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
-            <span class="sr-only">Close</span>
-          </button>
-        </div>
-        <div class="modal-body tp-modal-body tp-rk-cti-language__modal-body js-rk-cti">
-        <ul class="tp-rebuilding-details__cti-list">
-       
-        {{#each ctiData}}
-           <li>
-              <i class="icon icon-PDF"></i>
-              <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
-                {{langDesc}}
-            </a>
-            </li>
-        {{/each}}
-        
-        </ul>
+        <div class="modal-content tp-modal-content">
+            <div class="modal-header tpmol-modal-header">
+                <div class="js-language-header tp-language-header tp-rk-preferred-language__modal-header"
+                    auto_locator="headlineOverlay">Customer Technical Information</div>
+                <button type="button" auto_locator="closebtnOverlay"
+                    class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body tp-modal-body tp-rk-cti-language__modal-body js-rk-cti">
+                <ul class="tp-rebuilding-details__cti-list">
 
-          <ul class="tp-rebuilding-details__cti-list bottom">
-            {{#each ctiOther}}
-            <li>
-              <i class="icon icon-PDF"></i>
-               <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
-                {{langDesc}}</a>
-            </li>
-            {{/each}}
-          </ul>
+                    {{#each ctiData}}
+                    <li>
+                        <i class="icon icon-PDF"></i>
+                        <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
+                            {{langDesc}}
+                        </a>
+                    </li>
+                    {{/each}}
+
+                </ul>
+
+                <ul class="tp-rebuilding-details__cti-list bottom">
+                    {{#each ctiOther}}
+                    <li>
+                        <i class="icon icon-PDF"></i>
+                        <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
+                            {{langDesc}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
         </div>
-        </div>
-       <!-- <div class="modal-footer tpmol-modal-footer tp-rk-preferred-language__modal-footer">
+        <!-- <div class="modal-footer tpmol-modal-footer tp-rk-preferred-language__modal-footer">
           <button type="button" class="tpatom-link tpatom-link--primary js-request-translation tp-request-translation"
             title="Apply Language">
             <span class="tpatom-link__text sly-text">Request Translation</span>
           </button>
         </div>-->
-      </div>
     </div>
+</div>
