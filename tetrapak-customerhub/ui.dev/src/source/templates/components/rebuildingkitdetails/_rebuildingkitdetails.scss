@@ -34,6 +34,10 @@
     &__ctidocs {
         @include padding-top($padding-md);
         border-top: solid 1px $color-mercury;
+        p {
+            @include padding($padding-sm $padding-zero);
+            color: $color-alert;
+        }
     }
     &__info-card-col {
         @include margin-bottom($margin-xxl);

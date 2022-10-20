@@ -36,11 +36,22 @@ function _renderRebuildingKitDetails() {
 
 function _renderCtiDocuments(langAvailable, otherLang) {
   const $this = this;
-  render.fn({
-    template: 'rebuildingCtiDocuments',
-    target: $this.cache.$contentdocs,
-    data : {ctiData: langAvailable, ctiOther:otherLang}
-  });
+ 
+  if (!langAvailable) {
+    const errorMessage ='No data in api';
+    render.fn({
+      template: 'rebuildingCtiDocuments',
+      target: $this.cache.$contentdocs,
+      data : { noError:errorMessage}
+    });
+  }
+  else {
+    render.fn({
+      template: 'rebuildingCtiDocuments',
+      target: $this.cache.$contentdocs,
+      data : {ctiData: langAvailable, ctiOther:otherLang}
+    });
+  }
   $('.js-langcode').on('click',function(e){
     e.preventDefault();
     $('.js-rk-cti-modal').modal('show');
@@ -54,50 +65,55 @@ function _renderCtiDocuments(langAvailable, otherLang) {
 function _getCtiDocuments() {
   const $this = this;
   const rkRelease = $this.cache.$rebuildingData.releaseDate;
-  auth.getToken(({ data: authData }) => {
-    ajaxWrapper
-      .getXhrObj({
-        url: `https://api-dev.tetrapak.com//technicalbulletins/${rkRelease}/cti`,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader(
-            'Authorization',
-            `Bearer ${authData.access_token}`
-          );
-          jqXHR.setRequestHeader(
-            'Content-Type',
-            'application/x-www-form-urlencoded'
-          );
-        },
-        showLoader: true
-      })
-      .done((res) => {
-        $this.cache.$ctiData = res.data[0];
-        const langAvailable = $this.cache.$ctiData.ctiDocuments.filter((item) => {
-          if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
-            item['langDesc'] = $this.cache.langlist[item.langCode];
-            return item;
-          }
-        }); 
-        const otherLang =  $this.cache.$ctiData.ctiDocuments.filter((item) => {
-          if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
-            return false;
-          }
-          else {
-            item['langDesc'] = $this.cache.langlist[item.langCode];
-            return item;
-          }
-  
-        }); 
-        $this.renderCtiDocuments(langAvailable,otherLang);
-      })
-      .fail((e) => {
-        logger.error(e);
-      });
-  });
+  if(rkRelease !== '') {
+    auth.getToken(({ data: authData }) => {
+      ajaxWrapper
+        .getXhrObj({
+          url: `https://api-dev.tetrapak.com//technicalbulletins/${rkRelease}/cti`,
+          method: ajaxMethods.GET,
+          cache: true,
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend(jqXHR) {
+            jqXHR.setRequestHeader(
+              'Authorization',
+              `Bearer ${authData.access_token}`
+            );
+            jqXHR.setRequestHeader(
+              'Content-Type',
+              'application/x-www-form-urlencoded'
+            );
+          },
+          showLoader: true
+        })
+        .done((res) => {
+          $this.cache.$ctiData = res.data[0];
+          const langAvailable = $this.cache.$ctiData.ctiDocuments.filter((item) => {
+            if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
+              item['langDesc'] = $this.cache.langlist[item.langCode];
+              return item;
+            }
+          });
+          const otherLang =  $this.cache.$ctiData.ctiDocuments.filter((item) => {
+            if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
+              return false;
+            }
+            else {
+              item['langDesc'] = $this.cache.langlist[item.langCode];
+              return item;
+            }
+    
+          });
+          $this.renderCtiDocuments(langAvailable,otherLang);
+        })
+        .fail((e) => {
+          logger.error(e);
+        });
+    });
+  }
+  else {
+    $this.renderCtiDocuments();
+  }
 }
 
 function _getRebuildingKitDetails() {

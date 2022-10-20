@@ -9,9 +9,14 @@
             {{langDesc}}</a>
     </li>
     {{/each}}
+
 </ul>
+
 {{/if}}
-<a href="#" class="js-langcode">More Languages</a>
+{{#if noError}}
+<p>{{noError}}</p>
+{{/if}}
+<a href="#" class="js-langcode">{{i18n key=i18nKeys.moreLanguage}}</a>
 <div id="rk-cti-language-modal" class="modal js-rk-cti-modal tp-modal fade" tabindex="-1" aria-hidden="true"
     role="dialog">
     <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
