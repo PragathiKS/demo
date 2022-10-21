@@ -10,12 +10,11 @@
     <description>tetrapak Supplier portal</description>
 
     <modules>
-        <module>complete</module>
         <module>core</module>
+        <module>ui.dev</module>
         <module>ui.apps</module>
         <module>ui.content</module>
-<!--        <module>ui.dev</module>-->
-
+        <module>complete</module>
     </modules>
     <distributionManagement>
         <repository>

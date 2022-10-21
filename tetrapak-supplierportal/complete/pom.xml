@@ -91,12 +91,12 @@
             <artifactId>tetrapak-supplierportal.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>tetrapak-supplierportal</groupId>-->
-<!--            <artifactId>tetrapak-supplierportal.ui.dev</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <type>content-package</type>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>tetrapak-supplierportal</groupId>
+            <artifactId>tetrapak-supplierportal.ui.dev</artifactId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
         <dependency>
             <groupId>com.adobe.aem</groupId>
             <artifactId>uber-jar</artifactId>
