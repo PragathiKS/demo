@@ -1,0 +1,28 @@
+.tpatom-textarea-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__text {
+        @include line-height(24px, $font-baseline);
+        display: block;
+        margin-bottom: 0;
+
+        @media #{$desktop} {
+            @include margin-top($margin-md);
+        }
+    }
+
+    &__input {
+        @include border-xs($color-boulder);
+        @include border-radius($border-radius);
+        @include padding($padding-sm);
+        @include line-height(22px, $font-baseline);
+        @include min-height(155px);
+        width: 100%;
+
+        @media #{$desktop} {
+            @include min-height(85px);
+        }
+    }
+}

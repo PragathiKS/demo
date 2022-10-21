@@ -1,0 +1,12 @@
+<sly
+    data-sly-template.inputfield_template="${@ inputType, minValue, maxValue, inputClass, id, placeholder, labelText, error, errorJSClass, invalidError, invalidErrorJSClass, required, autoLocatorInput, autoLocatorLabel, labelClass, tooltiptitle, tooltipText}">
+    <sly data-sly-test.placeholderVal="${placeholder ? placeholder : ''}"></sly>
+    <div data-sly-test="${inputType}" class="form-group">
+        <sly data-sly-use.label="/apps/commons/components/atoms/label/label-template.html"
+            data-sly-call="${label.label_template @label=labelText, id=id, autoLocatorLabel=autoLocatorLabel, labelClass=labelClass, tooltiptitle=tooltiptitle, tooltipText=tooltipText}">
+        </sly>
+        <sly data-sly-use.inputbox="/apps/commons/components/atoms/inputbox/inputbox-template.html"
+            data-sly-call="${inputbox.inputbox_template @inputType=inputType, inputClass=inputClass, id=id, minValue=minValue, maxValue=maxValue, placeholder=placeholder, required=required, autoLocatorInput=autoLocatorInput, error=error, errorJSClass=errorJSClass, invalidError=invalidError, invalidErrorJSClass=invalidErrorJSClass}">
+        </sly>
+    </div>
+</sly>

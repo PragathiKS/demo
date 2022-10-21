@@ -1,0 +1,10 @@
+<sly data-sly-template.genericvideo_template="${@ data,className}">
+    <sly data-sly-test="${data.videoSource == 'dam'}">
+        <sly data-sly-use.damvideo="/apps/commons/components/atoms/damvideo/damvideo-template.html"
+                  data-sly-call="${damvideo.damvideo_template @videoUrl=data.damVideoPath,className=className,thumbnailPath=data.thumbnailPath}" />
+    </sly>
+    <sly data-sly-test="${data.videoSource == 'youtube'}">
+      <sly data-sly-use.youtubevideo="/apps/commons/components/atoms/youtubevideo/youtubevideo-template.html"
+                data-sly-call="${youtubevideo.youtubevideo_template @videoUrl=data.youtubeEmbedURL,className=className}" />
+    </sly>
+</sly>

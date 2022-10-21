@@ -1,0 +1,63 @@
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+
+// Avenir fonts
+$font-light: "avenirlight",
+Verdana,
+sans-serif;
+$font-light-italic: "avenirlight_italic",
+Verdana,
+sans-serif;
+$font-black: "avenirblack",
+Verdana,
+sans-serif;
+$font-black-italic: "avenirblack_italic",
+Verdana,
+sans-serif;
+$font-bold: "avenirbold",
+Verdana,
+sans-serif;
+$font-bold-italic: "avenirbold_italic",
+Verdana,
+sans-serif;
+
+.hero {
+    @include font-size($font-xxxl);
+    @include line-height(60px, $font-baseline);
+    font-weight: normal;
+}
+
+h1,
+[role="heading"][aria-level="1"] {
+    @include font-size($font-xxl);
+    font-weight: lighter;
+}
+
+h2,
+[role="heading"][aria-level="2"] {
+    @include font-size($font-xl);
+    font-weight: lighter;
+}
+
+h3,
+[role="heading"][aria-level="3"] {
+    @include font-size($font-l);
+    font-weight: lighter;
+}
+
+h4,
+[role="heading"][aria-level="4"] {
+    @include font-size($font-md);
+    font-weight: lighter;
+}
+
+.font-style-sm {
+    @include font-size($font-sm);
+    font-weight: normal;
+}
+
+.font-style-xs {
+    @include font-size($font-xs);
+    font-weight: normal;
+}

@@ -1,0 +1,11 @@
+.tpatom-error {
+    @include font-size($font-md);
+
+    &__icon {
+        @include margin-right($margin-xs);
+    }
+
+    .icon-error {
+        color: $color-alert
+    }
+}

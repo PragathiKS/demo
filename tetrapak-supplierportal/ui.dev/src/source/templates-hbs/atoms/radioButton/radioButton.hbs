@@ -1,0 +1,14 @@
+<div class="tpatom-radio-button">
+    <input class="tpatom-radio-button__input{{#if eleClasses}} {{eleClasses}}{{/if}}"
+           type="radio"
+           name="{{name}}"
+           id="{{id}}"
+           value="{{i18n key=value}}"
+        {{#if checked}}checked{{/if}}
+        {{#if required}}required{{/if}}
+    />
+    {{#if labelText}}
+        <label class="tpatom-radio-button__label {{#if labelClasses}} {{labelClasses}}{{/if}}" for="{{id}}">{{i18n key=labelText}}</label>
+    {{/if}}
+    <div class="form-check-radio"></div>
+</div>

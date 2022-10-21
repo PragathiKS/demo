@@ -1,0 +1,6 @@
+<div class="tpatom-toast js-toast d-none{{#if baseClass}} {{baseClass}}{{/if}}{{#if jsClass}} {{jsClass}}{{/if}}{{#if type}} tpatom-toast--{{type}}{{else}} tpatom-toast--error{{/if}}">
+    <span class="tpatom-toast__msg{{#if baseClass}} {{baseClass}}__error-msg{{/if}}">{{i18n key=errorMsg}}</span>
+    {{#if closeBtnLabel}}
+        {{> atoms/buttons/button/button baseClass="tpatom-toast__dismiss" jsClass="js-toast__dismiss" text=closeBtnLabel hideText=true iconClass="icon-Close"}}
+    {{/if}}
+</div>

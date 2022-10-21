@@ -1,0 +1,12 @@
+.tpmol-modal-header {
+    @include padding($padding-md);
+    border: 0;
+    @media #{$desktop} {
+        @include padding($padding-l);
+    }
+    &__title {
+        @include font-size($font-l);
+        @include line-height(32px, $font-l);
+        word-wrap: break-word;
+    }
+}
