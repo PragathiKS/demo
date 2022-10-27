@@ -49,3 +49,15 @@
           privileges:
           repGlob:
 
+        - path: /content/experience-fragments/tetra-laval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/cq:tags/tetra-laval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+

@@ -77,7 +77,7 @@
     - fragment-superuser:
 
         - name:
-          memberOf: fragment-restrict-for-everyone,fragment-basic-allow,fragment-siteadmin,fragment-dam,fragment-template,fragment-inbox,fragment-tools,fragment-xf
+          memberOf: fragment-restrict-for-everyone,fragment-basic-allow,fragment-siteadmin,fragment-dam,fragment-tagging,fragment-template,fragment-inbox,fragment-tools,fragment-xf
           path: f
 
     - fragment-templateauthor:
