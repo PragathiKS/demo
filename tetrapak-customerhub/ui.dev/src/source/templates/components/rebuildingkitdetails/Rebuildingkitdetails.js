@@ -64,7 +64,8 @@ function _renderCtiDocuments(langAvailable, otherLang) {
 
 function _getCtiDocuments() {
   const $this = this;
-  const rkRelease = $this.cache.$rebuildingData.releaseDate;
+  //const rkRelease = $this.cache.$rebuildingData.releaseDate;
+  const rkRelease = 'TP_2018_31_04';
   if(rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
