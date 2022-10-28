@@ -89,23 +89,24 @@ function _getCtiDocuments() {
         })
         .done((res) => {
           $this.cache.$ctiData = res.data[0];
-          const langAvailable = $this.cache.$ctiData.ctiDocuments.filter((item) => {
-            if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
-              item['langDesc'] = $this.cache.langlist[item.langCode];
-              return item;
-            }
-          });
-          const otherLang =  $this.cache.$ctiData.ctiDocuments.filter((item) => {
-            if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
-              return false;
-            }
-            else {
-              item['langDesc'] = $this.cache.langlist[item.langCode];
-              return item;
-            }
-    
-          });
-          $this.renderCtiDocuments(langAvailable,otherLang);
+          if($this.cache.$ctiData && $this.cache.$ctiData.ctiDocuments) {
+            const langAvailable = $this.cache.$ctiData.ctiDocuments.filter((item) => {
+              if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
+                item['langDesc'] = $this.cache.langlist[item.langCode];
+                return item;
+              }
+            });
+            const otherLang =  $this.cache.$ctiData.ctiDocuments.filter((item) => {
+              if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
+                return false;
+              }
+              else {
+                item['langDesc'] = $this.cache.langlist[item.langCode];
+                return item;
+              }
+            });
+            $this.renderCtiDocuments(langAvailable,otherLang);
+          }
         })
         .fail((e) => {
           logger.error(e);

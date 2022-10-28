@@ -34,15 +34,14 @@ describe('Rebuildingkitdetails', function () {
     this.initSpy = sinon.spy(this.rebuildingkitDetails, 'init');
     this.bindEventsSpy = sinon.spy(this.rebuildingkitDetails, 'bindEvents');
     this.getRebuildingKitDetailsSpy = sinon.spy(this.rebuildingkitDetails, 'getRebuildingKitDetails');
+    this.renderRebuildingKitDetailsSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetails');
     this.getCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'getCtiDocuments');
     this.renderCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'renderCtiDocuments');
-   // this.renderCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'renderCtiDocuments');
-   // this.renderRebuildingKitDetailsSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetails');
+    this.renderRebuildingKitDetailsBottomSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetailsBottom');
+    this.changePreferredLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'changePreferredLanguage');
+    
    // this.getCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'getCtiDocuments')
    /* this.renderRebuildingKitDetailsSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetails');
-
-    this.renderCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'renderCtiDocuments');
-    this.renderRebuildingKitDetailsBottomSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetailsBottom');
     */
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
@@ -61,29 +60,16 @@ describe('Rebuildingkitdetails', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.bindEventsSpy.restore();
-   
-   this.getRebuildingKitDetailsSpy.restore();
-   this.getCtiDocumentsSpy.restore();
-   this.renderCtiDocumentsSpy.restore();
-   // this.renderCtiDocumentsSpy.restore();
-   // this.renderRebuildingKitDetailsSpy.restore();
-    /*this.renderCtiDocumentsSpy.restore();
-    this.renderRebuildingKitDetailsBottomSpy.restore();
-    */
+    this.getRebuildingKitDetailsSpy.restore();
+    this.renderRebuildingKitDetailsSpy.restore();
+    this.changePreferredLanguageSpy.restore();
+    this.getCtiDocumentsSpy.restore();
+    this.renderCtiDocumentsSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
     this.tokenStub.restore();
   });
-
-  /*beforeEach(function() {
-    //this.renderSpy.resetHistory();
-   // this.getRebuildingKitDetailsSpy.resetHistory();
-    /*this.getCtiDocumentsSpy.resetHistory();
-    this.renderRebuildingKitDetailsSpy.resetHistory();
-    this.renderCtiDocumentsSpy.resetHistory();
-    this.renderRebuildingKitDetailsBottomSpy.resetHistory();
-  });*/
 
   it('should initialize', function (done) {
     expect(this.initSpy.called).to.be.true;
@@ -91,20 +77,56 @@ describe('Rebuildingkitdetails', function () {
     done();
   });
 
- it('should call and render rebuilding data', function (done) {
-    expect(this.getRebuildingKitDetails.called).to.be.true;
+  it('should call and render rebuilding data', function (done) {
+    expect(this.getRebuildingKitDetailsSpy.called).to.be.true;
+    expect(this.renderRebuildingKitDetailsSpy.called).to.be.true;
+    expect(render.fn.called).to.be.true;
+    expect(this.getCtiDocumentsSpy.called).to.be.true;
+    expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();
   });
   
- it('should call and render cti data', function (done) {
+  it('should change preffered language', function (done) {
+    $('.js-apply-language').trigger('click');
+    expect(this.changePreferredLanguageSpy.called).to.be.true;
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
+    done();
+  });
+
+  it('should open preffered language modal', function (done) {
+    $('.js-rk-preferred-language').trigger('click');
+    expect($('.js-language-modal').hasClass('show')).to.be.true;
+    done();
+  });
+
+  it('should close preffered language modal on close icon click', function (done) {
+    setDom(this);
+    $('.js-close-btn').trigger('click');
+    expect($('.js-language-modal').hasClass('show')).to.be.false;
+    done();
+  });
+
+  it('should open more languages modal', function (done) {
+    $('.js-langcode').trigger('click');
+    expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
+    done();
+  });
+
+  it('should close more languages modal on close icon click', function (done) {
+    setDom(this);
+    $('.js-close-btn').trigger('click');
+    expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
+    done();
+  });
+
+  /*
+  it('should call and render CTI data', function (done) {
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(rebuildingkitCtiData));
-    expect(this.getCtiDocuments.called).to.be.true;
-    expect(this.renderCtiDocuments.called).to.be.true;
+    expect(this.renderCtiDocumentsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
-    done();
   });
+  */
 });
-
