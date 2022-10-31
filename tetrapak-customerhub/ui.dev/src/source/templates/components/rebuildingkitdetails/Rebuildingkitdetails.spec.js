@@ -45,7 +45,8 @@ describe('Rebuildingkitdetails', function () {
     */
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(rebuildingkitDetailsData));
+    const apiResponse = {data :[{...rebuildingkitDetailsData.data[0],...rebuildingkitCtiData.data[0]}]};
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(apiResponse));
     this.openStub = sinon.stub(window, 'open');
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
       data: {
@@ -82,15 +83,22 @@ describe('Rebuildingkitdetails', function () {
     expect(this.renderRebuildingKitDetailsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     expect(this.getCtiDocumentsSpy.called).to.be.true;
+    expect(render.fn.called).to.be.true;
+   // expect(this.renderCtiDocuments.called).to.be.true;
+    //expect(this.renderCtiDocuments.called).to.be.true;
+    expect(render.fn.called).to.be.true;
     expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();
   });
   
   it('should change preffered language', function (done) {
-    $('.js-apply-language').trigger('click');
+    $('.js-apply-language').trigger('click',function(e){
+      e.preventDefault();
+    });
     expect(this.changePreferredLanguageSpy.called).to.be.true;
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
+    expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
     done();
   });
 
@@ -102,31 +110,38 @@ describe('Rebuildingkitdetails', function () {
 
   it('should close preffered language modal on close icon click', function (done) {
     setDom(this);
-    $('.js-close-btn').trigger('click');
+    $('.js-close-btn').trigger('click',function(e){
+      e.preventDefault();
+    });
     expect($('.js-language-modal').hasClass('show')).to.be.false;
     done();
   });
 
   it('should open more languages modal', function (done) {
-    $('.js-langcode').trigger('click');
+    $('.js-langcode').trigger('click',function(e){
+      e.preventDefault();
+    });
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
     done();
   });
 
   it('should close more languages modal on close icon click', function (done) {
     setDom(this);
-    $('.js-close-btn').trigger('click');
+    $('.js-close-btn').trigger('click',function(e){
+      e.preventDefault();
+    });
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
     done();
   });
 
-  /*
-  it('should call and render CTI data', function (done) {
+  
+  /*it('should call and render CTI data', function (done) {
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(rebuildingkitCtiData));
     expect(this.renderCtiDocumentsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
-  });
-  */
+    done();
+  });*/
+  
 });
