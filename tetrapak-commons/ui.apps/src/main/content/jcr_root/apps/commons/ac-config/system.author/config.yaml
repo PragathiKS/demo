@@ -6,85 +6,85 @@
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-restrict-for-everyone:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-siteadmin:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-dam:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-tagging:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-xf:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-template:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-inbox:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-useradmin:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-tools:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-workflows:
 
         - name:
           memberOf:
-          path: f
+          path: /home/groups/f
 
     - fragment-editor:
 
         - name:
           memberOf: fragment-restrict-for-everyone,fragment-basic-allow,fragment-siteadmin,fragment-dam,fragment-inbox
-          path: f
+          path: /home/groups/f
 
     - fragment-superuser:
 
         - name:
           memberOf: fragment-restrict-for-everyone,fragment-basic-allow,fragment-siteadmin,fragment-dam,fragment-tagging,fragment-template,fragment-inbox,fragment-tools,fragment-xf
-          path: f
+          path: /home/groups/f
 
     - fragment-templateauthor:
 
         - name:
           memberOf: fragment-restrict-for-everyone,fragment-basic-allow,fragment-template
-          path: f
+          path: /home/groups/f
 
 
 - ace_config:
