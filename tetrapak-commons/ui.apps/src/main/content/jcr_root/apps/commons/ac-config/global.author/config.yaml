@@ -1,0 +1,73 @@
+- group_config:
+
+    - tl-pw-content-authors:
+
+        - name: Tetra Laval Public Web Authors
+          memberOf: fragment-editor
+          path: /home/groups/tetrapak
+
+- ace_config:
+
+
+    - tl-pw-content-authors:
+
+        - path: /content/tetralaval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/tetrapak
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/tetrapak/publicweb
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetra-laval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/dam/tetrapak
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/dam/tetrapak/publicweb
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/experience-fragments/tetra-laval
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+        - path: /content/cq:tags/tetra-laval
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
