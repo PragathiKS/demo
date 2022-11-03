@@ -96,6 +96,9 @@ public final class CustomerHubConstants {
     /** The Constant ORDER_NUMBER. */
     public static final String ORDER_NUMBER = "orderNumber";
 
+    /** The Constant ORDER. */
+    public static final String ORDER = "order";
+
     /** Constant DAM_ASSETS_PROPERTY. */
     public static final String DAM_ASSETS_PROPERTY = "dam:Asset";
 
@@ -194,6 +197,9 @@ public final class CustomerHubConstants {
 
     /** The Constant EQUIPMENT_TYPE. */
     public static final String EQUIPMENT_TYPE = "equipmentType";
+
+    /** The Constant EQUIPMENT_NUMBER. */
+    public static final String EQUIPMENT_NUMBER = "equipmentNumber";
 
     /** The Constant MACHINE_SYSTEM. */
     public static final String MACHINE_SYSTEM = "machineSystem";
@@ -733,6 +739,9 @@ public final class CustomerHubConstants {
     
     /** The Constant for IMPL_DATE **/
     public static final String IMPL_DATE = "implDate";
+
+    /** The Constant for IMPL_DEADLINE **/
+    public static final String IMPL_DEADLINE = "implDeadline";
     
     /** The Constant for IMPL_STATUS_DATE **/
     public static final String IMPL_STATUS_DATE = "implStatusDate";
@@ -745,11 +754,11 @@ public final class CustomerHubConstants {
     
     /** The Constant for RK_HANDLING **/
     public static final String RK_HANDLING = "rkHandling";
+
+    /** The Constant for RK_TYPE_DESC **/
+    public static final String RK_TYPE_DESC = "rkTypeDesc";
     
-    /** The Constant for IMPL_DEADLINE **/
-    public static final String IMPL_DEADLINE = "implDeadline";
-    
-    /** The Constant for PLANNED_DATE **/
+     /** The Constant for PLANNED_DATE **/
     public static final String PLANNED_DATE = "plannedDate";
     
     /** The Constant for RELEASE_DATE **/
@@ -757,6 +766,9 @@ public final class CustomerHubConstants {
     
     /** The Constant for GENERAL_RKNUMBER **/
     public static final String GENERAL_RKNUMBER = "generalRkNumber";
+
+    /** The Constant for TECHNICAL_BULLETIN **/
+    public static final String TECHNICAL_BULLETIN = "technicalBulletin";
     
     /** The Constant for EXPORT_TO_CSV **/
     public static final String EXPORT_TO_CSV = "exportToCsv";
@@ -823,6 +835,9 @@ public final class CustomerHubConstants {
     
     /** The Constant Equipment Material */
     public static final String EQUIPMENT_MATERIAL = "equipmentMaterial";
+
+    /** The Constant Equipment Material Description*/
+    public static final String EQUIPMENT_MATERIAL_DESC = "equipmentMaterialDesc";
     
     /** The Constant Status Equpment Type */
     public static final String STATU_EQUIPMENT_TYPE = "statusEquipmentType";

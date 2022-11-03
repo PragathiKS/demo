@@ -37,32 +37,57 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	// This determines the sequence of the columns
 	static {
 		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_CODE_EQUIPMENTS_API);
-		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
-		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.LOCATION);
 		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.POSITION);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_DESC_CSVHEADER);
-		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER);
-		csvHeaderMapping.add(CustomerHubConstants.PERMANENT_VOLUME_CONV);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_DESCRIPTION);
 		csvHeaderMapping.add(CustomerHubConstants.RK_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.RK_DESC);
-		csvHeaderMapping.add(CustomerHubConstants.IMPL_DATE);
+		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_DESC_CSVHEADER);
 		csvHeaderMapping.add(CustomerHubConstants.IMPL_STATUS);
+		csvHeaderMapping.add(CustomerHubConstants.PERMANENT_VOLUME_CONV);
 		csvHeaderMapping.add(CustomerHubConstants.IMPL_STATUS_DATE);
+		csvHeaderMapping.add(CustomerHubConstants.IMPL_DATE);
+		csvHeaderMapping.add(CustomerHubConstants.IMPL_DEADLINE);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STRUCTURE);
+		csvHeaderMapping.add(CustomerHubConstants.SERVICE_ORDER);
+		csvHeaderMapping.add(CustomerHubConstants.ORDER);
 		csvHeaderMapping.add(CustomerHubConstants.REBUILDING_KITS_STATUS);
-		csvHeaderMapping.add(CustomerHubConstants.RK_RELEASE_DATE_FIRST);
+		csvHeaderMapping.add(CustomerHubConstants.TECHNICAL_BULLETIN);
 		csvHeaderMapping.add(CustomerHubConstants.RELEASE_DATE);
+		csvHeaderMapping.add(CustomerHubConstants.RK_RELEASE_DATE_FIRST);
+		csvHeaderMapping.add(CustomerHubConstants.RK_TYPE_DESC);
+		csvHeaderMapping.add(CustomerHubConstants.PLANNED_DATE);
 		csvHeaderMapping.add(CustomerHubConstants.RK_MECHANICAL_SKILLS);
 		csvHeaderMapping.add(CustomerHubConstants.RK_AUTOMATIONS_KILLS);
-		csvHeaderMapping.add(CustomerHubConstants.RK_ELECTRICAL_SKILLS);
+		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.MACHINE_SYSTEM);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_MACHINESYSTEMDESC_CSVHEADER);
+		csvHeaderMapping.add(CustomerHubConstants.RK_HANDLING);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_MATERIAL);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_MATERIAL_DESC);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_NUMBER);
+		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
+
+
+
+
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE_DESCRIPTION);
+		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_DESCRIPTION);
+
+
+
+
+
+
+
+
+		csvHeaderMapping.add(CustomerHubConstants.RK_ELECTRICAL_SKILLS);
+
+
 	}
 	private static final Logger LOGGER = LoggerFactory.getLogger(RebuildingKitsExcelServiceImpl.class);
 
