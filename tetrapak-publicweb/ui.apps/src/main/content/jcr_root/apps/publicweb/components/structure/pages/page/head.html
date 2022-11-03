@@ -75,8 +75,8 @@
       isCookieExist = getCookieValue()
 
       function setCookie(cname, cvalue, exdays) {
-          const d = new Date();
-          const domain = ".tetrapak.com";
+          var d = new Date();
+          var domain = ".tetrapak.com";
           d.setTime(d.getTime() + (exdays*24*60*60*1000));
           let expires = "expires="+ d.toUTCString();
           document.cookie = document.cookie = cname +"=" + cvalue + ";expires=" + expires
