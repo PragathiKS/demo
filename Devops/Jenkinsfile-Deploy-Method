@@ -11,11 +11,13 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
         booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
 	booleanParam defaultValue: true, description: 'Please check in case you want to build Tetralaval Module', name: 'DeployTetraLaval'
+	booleanParam defaultValue: true, description: 'Please check in case you want to build Supplierportal Module', name: 'DeploySupplierportal'
 
         string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
         string(name: 'Snapshot_MyTetrapak', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
         string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
         string(name: 'Snapshot_TetraLaval', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+     string(name: 'Snapshot_Supplierportal', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
     }
 
     options {
@@ -182,6 +184,22 @@ pipeline {
                     }
                 )
         }
+	
+	 if (params.DeploySupplierportal) {
+                packageName = "tetrapak-supplierportal.all"
+                repoName = "tetrapak-supplierportal"
+                fileName = "1.0.0-DEV${Snapshot_Supplierportal}-SNAPSHOT"
+                devartifactdownload()
+                parallel (
+                    "Author Supplierportal" : {
+                authordeploy()
+                    },
+                    "Publisher Supplierportal" : {
+                publishdeploy()
+                    }
+                )
+        }
+
         }
     
     def stagedeployment65() {
