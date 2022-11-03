@@ -1,8 +1,0 @@
-<sly data-sly-template.label_template="${@ label, id, autoLocatorLabel, labelClass, tooltiptitle, tooltipText}">
-    <label class="${labelClass}" for="${id}" auto_locator="${autoLocatorLabel}">${label @ i18n}</label>
-    <sly data-sly-test="${tooltipText}">
-        <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="<span class='tooltip-header'>${tooltiptitle @ i18n}</span><span>${tooltipText @ i18n}</span>">
-        <i class="icon icon-Info"></i>
-    </button>
-    </sly>
-</sly>
