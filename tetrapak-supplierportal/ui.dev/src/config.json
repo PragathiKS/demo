@@ -121,12 +121,6 @@
         "minSize": 0,
         "chunks": "all"
       },
-      "anlyticscode": {
-        "testMultiple": true,
-        "name": "common",
-        "minSize": 0,
-        "chunks": "all"
-      },
       "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
         "name": "default.en",
@@ -139,8 +133,7 @@
         "source/scripts/common/",
         "source/scripts/utils/",
         "source/templates/components/helloearth/"
-      ],
-      "anlyticscode": []
+      ]
     },
     "handlebars": {
       "helpersFolder": "source/scripts/helpers",
@@ -158,7 +151,6 @@
   "chunkrename": {
     "vendor": "apps/settings/wcm/designs/supplierportal/clientlibs/vendor.publish/js/vendor.js",
     "common": "apps/settings/wcm/designs/supplierportal/clientlibs/common.publish/js/common.js",
-    "anlyticscode": "apps/settings/wcm/designs/supplierportal/clientlibs/common.publish/js/anlyticscode.js",
     "default.en": "apps/settings/wcm/designs/supplierportal/clientlibs/default.en.publish/js/default.js"
   },
   "clientlibs": {
@@ -175,24 +167,6 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/supplierportal/clientlibs/vendor.publish"
-      ]
-    },
-    "anlyticscode": {
-      "categories": [
-        "tp.supplierportal.anlyticscode"
-      ],
-      "basePath": "apps/settings/wcm/designs/supplierportal/clientlibs/anlyticscode.publish",
-      "jsProcessor": [
-        "min:gcc",
-        "obfuscate=true",
-        "languageIn=ECMASCRIPT5",
-        "languageOut=ECMASCRIPT5"
-      ],
-      "paths": [
-        "apps/settings/wcm/designs/supplierportal/clientlibs/anlyticscode.publish"
-      ],
-      "dependencies": [
-        "granite.jquery"
       ]
     },
     "global": {
