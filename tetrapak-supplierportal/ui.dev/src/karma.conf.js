@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
 
@@ -86,9 +87,20 @@ module.exports = function (config) {
       node: {
         fs: 'empty'
       },
+      plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        })
+      ],
       resolve: {
+        mainFields: ['main', 'module'],
         alias: {
-          handlebars: 'handlebars/runtime'
+          jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery'),
+          bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
+          handlebars: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/handlebars/runtime'),
+          'core-js': path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/core-js')
         }
       }
     },
