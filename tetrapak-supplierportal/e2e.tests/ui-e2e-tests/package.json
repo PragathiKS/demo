@@ -1,0 +1,28 @@
+{
+  "name": "tetrapak-supplierportal-frontend-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "allure:generate": "npx allure generate ./allure-results --clean",
+    "allure:open": "npx allure open ./allure-report",
+    "allure:serve": "npx allure serve",
+    "pretest": "npm run lint",
+    "test": "npx playwright test",
+    "posttest": "npm run allure:generate",
+    "lint": "eslint . --ext .ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.25.0",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "allure-commandline": "^2.18.1",
+    "date-fns": "^2.29.1",
+    "eslint": "^8.22.0",
+    "experimental-allure-playwright": "^0.0.3",
+    "typescript": "^4.7.4"
+  }
+}

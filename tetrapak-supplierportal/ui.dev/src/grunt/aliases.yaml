@@ -1,0 +1,56 @@
+aemsync:
+  description: "sync app folder to aem"
+  tasks:
+    - 'aemdeploy'
+
+aem:
+  description: "build app with ux-lib for production"
+  tasks:
+    - 'shell:linting'
+    - 'shell:karmaTests'
+    - 'shell:webpackProd'
+    - 'shell:clientlibify'
+    - 'aemcomponentcopy:uxlibProd'
+
+aemWatch:
+  description: "build app with ux-lib for development with watch mode"
+  task:
+    - 'shell:lintingDev'
+    - 'shell:karmaTests'
+    - 'shell:webpackDev'
+    - 'shell:clientlibify'
+    - 'copy:jsonData'
+    - 'assemble'
+    - 'aemcomponentcopy:uxlib'
+    - 'aemdeploy'
+    - 'watch'
+
+aemStart:
+  description: "build app with ux-lib for development without watch mode"
+  tasks:
+    - 'shell:lintingDev'
+    - 'shell:karmaTests'
+    - 'shell:webpackDev'
+    - 'shell:clientlibify'
+    - 'copy:jsonData'
+    - 'assemble'
+    - 'aemcomponentcopy:uxlib'
+    - 'aemdeploy'
+
+icons:
+  tasks:
+    - 'webfont:common_icons'
+
+pwIcons:
+  tasks:
+    - 'webfont:pw_icons'
+
+
+default:
+  description: "build app with ux-lib for development without watch mode"
+  tasks:
+    - 'shell:lintingDev'
+    - 'shell:karmaTests'
+    - 'shell:webpackDev'
+    - 'shell:clientlibify'
+    - 'aemcomponentcopy:uxlibProd'
