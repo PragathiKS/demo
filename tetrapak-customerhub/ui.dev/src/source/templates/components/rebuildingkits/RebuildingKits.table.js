@@ -80,6 +80,13 @@ export const _getKeyMap = (key, i18nKeys) => {
       headerObj['tooltipText'] = i18nKeys['implStatusToolTip'];
       break;
     }
+    case 'equipmentNumber': {
+      headerObj['keyLabel'] = 'equipmentNumber';
+      // headerObj['showTooltip'] =
+      //  i18nKeys['equipmentNumberToolTip'].trim().length > 0 ? true : false;
+      // headerObj['tooltipText'] = i18nKeys['equipmentNumberToolTip'];
+      break;
+    }
     default: {
       break;
     }
