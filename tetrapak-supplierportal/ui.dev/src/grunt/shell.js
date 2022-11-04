@@ -8,11 +8,17 @@ module.exports = {
   karmaTests: {
     command: 'npm run test'
   },
+  karmaTestsProd: {
+    command: 'npm run testProd'
+  },
   webpackProd: {
     command: 'npm run prod'
   },
   webpackDev: {
     command: 'npm run dev'
+  },
+  removeChunkHash: {
+    command: 'npm run removeHash'
   },
   clientlibify: {
     command: 'npm run createClientlib'
