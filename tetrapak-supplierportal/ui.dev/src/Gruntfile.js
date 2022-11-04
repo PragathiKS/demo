@@ -19,8 +19,13 @@ module.exports = function (grunt) {
     },
     jitGrunt: {
       staticMappings: {
+        injector: 'grunt-asset-injector',
+        buildcontrol: 'grunt-build-control',
         aemcomponentcopy: 'grunt-tasks/aem-component-copy.js',
-        aemdeploy: 'grunt-tasks/aemsync-grunt.js'
+        aemdeploy: 'grunt-tasks/aemsync-grunt.js',
+        handlebars: 'grunt-handlebars.js',
+        sasslint: 'grunt-sass-lint',
+        csslint: 'grunt-contrib-csslint'
       }
     }
   });

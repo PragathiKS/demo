@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/supplierportal/components" mode="update"/>
-    <filter root="/apps/sling/servlet/errorhandler" mode="update"/>
+    <filter root="/apps/publicweb/components" mode="replace"/>
 	<filter root="/apps/settings/wcm/designs/supplierportal/clientlibs" mode="replace"/>
 </workspaceFilter>

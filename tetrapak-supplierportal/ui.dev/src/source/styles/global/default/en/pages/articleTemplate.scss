@@ -1,0 +1,17 @@
+.pw-article-page {
+    @include border-radius($border-radius);
+    @include padding($padding-xl 0);
+    background-color: $color-white;
+
+    @media #{$tablet-large} {
+        @include padding-top($padding-xxxl);
+    }
+
+    &__fixed-title {
+        @include margin-bottom($margin-l);
+
+        .pw-title {
+            margin-bottom: 0;
+        }
+    }
+}
