@@ -42,8 +42,11 @@ function _renderCtiDocuments(langAvailable, otherLang) {
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
-      data : { noError:errorMessage}
+      data : { 
+        noError:errorMessage
+      }
     });
+    $('.js-langcode').addClass('d-none');
   }
   else {
     render.fn({
@@ -51,21 +54,21 @@ function _renderCtiDocuments(langAvailable, otherLang) {
       target: $this.cache.$contentdocs,
       data : {ctiData: langAvailable, ctiOther:otherLang}
     });
+    $('.js-langcode').on('click',function(e){
+      e.preventDefault();
+      $('.js-rk-cti-modal').modal('show');
+    });
+    $('.js-close-btn').on('click',function(e){
+      e.preventDefault();
+      $('.js-rk-cti-modal').modal('hide');
+    });
   }
-  $('.js-langcode').on('click',function(e){
-    e.preventDefault();
-    $('.js-rk-cti-modal').modal('show');
-  });
-  $('.js-close-btn').on('click',function(e){
-    e.preventDefault();
-    $('.js-rk-cti-modal').modal('hide');
-  });
 }
 
 function _getCtiDocuments() {
   const $this = this;
-  //const rkRelease = $this.cache.$rebuildingData.releaseDate;
-  const rkRelease = 'TP_2018_31_04';
+  const rkRelease = $this.cache.$rebuildingData.releaseDate;
+  // const rkRelease = 'TP_2018_31_04';
   if(rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
@@ -120,7 +123,7 @@ function _getCtiDocuments() {
 
 function _getRebuildingKitDetails() {
   const $this = this;
-  /*const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(window.location.search);
   let rkNumber, equipmentNumber;
   for (const [key, value] of urlParams) {
     if(key === 'rkNumber') {
@@ -129,13 +132,13 @@ function _getRebuildingKitDetails() {
     if(key === 'equipment') {
       equipmentNumber = value;
     }
-  }*/
+  }
   
 
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: 'https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=1284002-0781&equipmentnumber=9060000022',
+        url: `https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
@@ -276,13 +279,6 @@ class Rebuildingkitdetails {
     $closeBtn.on('click', function () {
       $modal.modal('hide');
     });
-
-    /*this.root.on('click', '.js-rk__table-summary__row',  (e) => {
-      const equipmentNumber = $(e.currentTarget).data('equipment-number');
-      const rkNumber = $(e.currentTarget).data('rk-number');
-      const equipmentDetailsUrl = `/content/tetrapak/customerhub/global/en/package-design/testpage_for_whitebg.html?rkNumber=${rkNumber}&equipment=${equipmentNumber}`;
-      window.open(equipmentDetailsUrl, '_blank');
-    });*/
   }
 
   init() {
