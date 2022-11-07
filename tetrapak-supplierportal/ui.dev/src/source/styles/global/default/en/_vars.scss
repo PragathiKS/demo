@@ -13,11 +13,11 @@ $font-l: 24px;
 $font-m-l: $font-l;
 $font-xl: 32px;
 $font-m-xl: 28px;
-$font-d-xl: 40px;
 $font-xxl: 42px;
 $font-m-xxl: $font-xl;
 $font-xxxl: 60px;
 $font-m-xxxl: 36px;
+$font-l-xxl: 56px;
 // Body width
 $body-max-width: 1440px;
 // Variables for z-index
@@ -31,20 +31,22 @@ $zindex-hide: -1;
 //z-index header to be greater than others except modal
 $zindex-header: 100;
 $zindex-nav: $zindex-header+1;
+$z-index-section-menu: 90;
+$z-index-search-bar: 99;
 $zindex-top: 9999;
+$zindex-pw-logo: 999;
 // Patternlab variables
 $spacing-big: 24px;
 $spacing-small: 16px;
 $spacing-baseline: 14px;
 $spacing-big-half: 12px;
 $spacing-small-half: 8px;
+$font-monsterrat: 'Montserrat';
 /* Border Radius */
 
 $border-radius: 4px;
-$border-radius-sm: 8px;
 $color-text: $color-tundora;
 $color-heading: $color-congress-blue;
-
 /*
  * Text Link Colors
  * 1) These are for linked text, such as a link found within an article,
@@ -55,6 +57,9 @@ $color-text-link: $color-congress-blue;
 $color-text-link-hover: $color-tundora;
 $color-text-link-visited: $color-congress-blue;
 $color-text-link-active: $color-congress-blue;
+$color-sky-blue:#00BDF2;
+$color-white-new:#FFFFFF;
+$color-light-green: #6ea617;
 /*
  * Border Colors
  * 1) Border colors are used as decoration or dividers, such as as a seperator
@@ -92,14 +97,21 @@ $margin-zero:0px;
 $margin-xss: 2px;
 $margin-xs: 4px;
 $margin-sm: 8px;
+$margin-ten: 10px;
 $margin-md: 16px;
+$margin-eighteen: 18px;
+$margin-twenty: 20px;
 $margin-l: 24px;
+$margin-twenty-eight: 28px;
 $margin-xl: 32px;
 $margin-xxl: 40px;
 $margin-xxxl: 48px;
 // opacity varriables
 $opacity-mid:0.5;
 $opacity-disabled: 0.4;
+$opacity-null: 0;
+$opacity-visible: 1;
+$opacity-banner: 0.7;
 //icon boxing
 $min-accessible-dimension:46px;
 // letter spacing
@@ -110,4 +122,14 @@ $word-spacing-sm: 1px;
 // text transforms
 $uppercase : uppercase ;
 
-$font-monsterrat: 'Montserrat';
+// box - shadow
+$shadow: rgba(0, 0, 0, 0.1);
+
+// mobile sticky header hight
+$header-height-mobile: 62;
+
+// mobile sticky section hight
+$section-menu-height-mobile: 56;
+
+// sticky-view-height
+$sticky-view-height: $header-height-mobile + $section-menu-height-mobile
