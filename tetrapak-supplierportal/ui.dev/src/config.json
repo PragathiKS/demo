@@ -26,7 +26,7 @@
       "componentPath": "<%= config.app %>/jcr_root/apps/supplierportal/components/content"
     },
     "uxContentDescriptor": "supplierportal-ux",
-    "componentGroup": "tetrapak-supplierportal",
+    "componentGroup": "supplierportal",
     "componentGroupName": "Supplier Portal"
   },
   "assemble": {
@@ -90,12 +90,12 @@
   },
   "webfont": {
     "src": "<%= config.source %>/assets/icons/*.svg",
-    "target": "<%= config.source %>/clientlib-format/apps/settings/wcm/designs/publicweb/clientlibs/vendor.publish/iconfonts",
+    "target": "<%= config.source %>/assets/fonts",
     "scss": {
-      "target": "<%= config.source %>/assets/styles/common"
+      "target": "<%= config.source %>/styles/global/icon-fonts"
     },
-    "fontFile": "supplierportal-icons",
-    "relativePath": "../iconfonts"
+    "fontFile": "tp-icons",
+    "relativePath": "../../../assets/fonts"
   },
   "webpack": {
     "filePath": "apps/settings/wcm/designs/supplierportal/clientlibs/[name].publish/js/[name].js",
@@ -118,7 +118,7 @@
       "common": {
         "testMultiple": true,
         "name": "common",
-        "minSize": 0,
+        "enforce": true,
         "chunks": "all"
       },
       "default_en": {
@@ -142,7 +142,7 @@
       "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates-hbs"
     },
     "fonts": {
-      "fontPath": "apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts"
+      "fontPath": "apps/settings/wcm/designs/supplierportal/clientlibs/global.publish/fonts"
     },
     "clean": "app",
     "cssPath": "apps/settings/wcm/designs/supplierportal/clientlibs/[name].publish/css/[name].css",
@@ -167,6 +167,9 @@
       ],
       "paths": [
         "apps/settings/wcm/designs/supplierportal/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
       ]
     },
     "global": {
@@ -224,11 +227,9 @@
     },
     "static": {
       "files": [
-        "<%= config.source %>/templates-hbs/**/*.hbs",
         "<%= config.source %>/scripts/**/*.js",
         "<%= config.source %>/templates/**/*.js",
         "<%= config.source %>/styles/*.scss",
-        "<%= config.source %>/templates/atoms/**/*.scss",
         "<%= config.source %>/templates/components/**/*.scss"
       ],
       "tasks": [
