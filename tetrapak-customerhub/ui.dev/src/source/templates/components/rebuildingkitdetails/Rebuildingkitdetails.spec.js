@@ -39,10 +39,6 @@ describe('Rebuildingkitdetails', function () {
     this.renderCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'renderCtiDocuments');
     this.renderRebuildingKitDetailsBottomSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetailsBottom');
     this.changePreferredLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'changePreferredLanguage');
-    
-   // this.getCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'getCtiDocuments')
-   /* this.renderRebuildingKitDetailsSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetails');
-    */
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     const apiResponse = {data :[{...rebuildingkitDetailsData.data[0],...rebuildingkitCtiData.data[0]}]};
@@ -84,8 +80,6 @@ describe('Rebuildingkitdetails', function () {
     expect(render.fn.called).to.be.true;
     expect(this.getCtiDocumentsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
-   // expect(this.renderCtiDocuments.called).to.be.true;
-    //expect(this.renderCtiDocuments.called).to.be.true;
     expect(render.fn.called).to.be.true;
     expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
@@ -133,15 +127,4 @@ describe('Rebuildingkitdetails', function () {
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
     done();
   });
-
-  
-  /*it('should call and render CTI data', function (done) {
-    this.ajaxStub.restore();
-    this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(rebuildingkitCtiData));
-    expect(this.renderCtiDocumentsSpy.called).to.be.true;
-    expect(render.fn.called).to.be.true;
-    done();
-  });*/
-  
 });
