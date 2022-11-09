@@ -7,16 +7,19 @@
 import $ from 'jquery';
 import LazyLoad from 'vanilla-lazyload';
 
-function _processImageAttributes(container) {
+function _processImageAttributes(container,isMediaChanged) {
   $('.js-dynamic-media').each(function () {
     const $this = $(this);
-    let desktopSrc = $this.attr('data-src_desktop');
+    const desktopSrc = $this.attr('data-src_desktop');
     let desktopL = $this.attr('data-src_desktopL');
     let desktopXL = $this.attr('data-src_desktopXL');
-    let tabletLandSrc = $this.attr('data-src_tabletl');
-    let tabletPortSrc = $this.attr('data-src_tabletp');
     let mobileLandSrc = $this.attr('data-src_mobilel');
     let mobilePortSrc = $this.attr('data-src_mobilep');
+
+    // To re-process image on media query change
+    if (isMediaChanged) {
+      $this.removeAttr('data-was-processed');
+    }
 
     if (typeof desktopSrc !== 'undefined') {
       if (typeof desktopL === 'undefined') {
@@ -25,14 +28,8 @@ function _processImageAttributes(container) {
       if (typeof desktopXL === 'undefined') {
         desktopXL = desktopSrc;
       }
-      if (typeof tabletLandSrc === 'undefined') {
-        tabletLandSrc = desktopSrc;
-      }
-      if (typeof tabletPortSrc === 'undefined') {
-        tabletPortSrc = tabletLandSrc;
-      }
       if (typeof mobileLandSrc === 'undefined') {
-        mobileLandSrc = tabletPortSrc;
+        mobileLandSrc = desktopSrc;
       }
       if (typeof mobilePortSrc === 'undefined') {
         mobilePortSrc = mobileLandSrc;
@@ -42,15 +39,9 @@ function _processImageAttributes(container) {
     if (window.matchMedia('(max-width: 414px)').matches || window.matchMedia('(max-width: 414px) and (-webkit-min-device-pixel-ratio: 2), (max-width: 414px) and (min-resolution: 192dpi), (max-width: 414px) and (min-resolution: 2dppx)').matches) {
       // mobile portrait
       $this.attr('data-src', mobilePortSrc);
-    } else if (window.matchMedia('(min-width: 415px) and (max-width: 767px)').matches || window.matchMedia('(min-width: 415px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 415px) and (max-width: 767px) and (min-resolution: 192dpi), (min-width: 415px) and (max-width: 767px) and (min-resolution: 2dppx)').matches) {
+    } else if (window.matchMedia('(min-width: 415px) and (max-width: 1023px)').matches || window.matchMedia('(min-width: 415px) and (max-width: 1023px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 415px) and (max-width: 1023px) and (min-resolution: 192dpi), (min-width: 415px) and (max-width: 1023px) and (min-resolution: 2dppx)').matches) {
       // mobile landscape
       $this.attr('data-src', mobileLandSrc);
-    } else if (window.matchMedia('(min-width: 768px) and (max-width: 991px)').matches || window.matchMedia('(min-width: 768px) and (max-width: 991px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 768px) and (max-width: 991px) and (min-resolution: 192dpi), (min-width: 768px) and (max-width: 991px) and (min-resolution: 2dppx)').matches) {
-      // tablet portrait
-      $this.attr('data-src', tabletPortSrc);
-    } else if (window.matchMedia('(min-width: 992px) and (max-width: 1023px)').matches || window.matchMedia('(min-width: 992px) and (max-width: 1023px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 992px) and (max-width: 1023px) and (min-resolution: 192dpi), (min-width: 992px) and (max-width: 1023px) and (min-resolution: 2dppx)').matches) {
-      // tablet landscape
-      $this.attr('data-src', tabletLandSrc);
     } else if (window.matchMedia('(min-width: 1024px) and (max-width: 1439px)').matches || window.matchMedia('(min-width: 1024px) and (max-width: 1439px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1024px) and (max-width: 1439px) and (min-resolution: 192dpi), (min-width: 1024px) and (max-width: 1439px) and (min-resolution: 2dppx)').matches) {
       // desktop
       $this.attr('data-src', desktopSrc);
@@ -61,22 +52,33 @@ function _processImageAttributes(container) {
       //desktop xtra large
       $this.attr('data-src', desktopXL);
     }
+
+    if($this.hasClass('load-mega-menu-dynamic-media')){
+      if(window.matchMedia('(min-width: 1200px) and (max-width: 1439px)').matches || window.matchMedia('(min-width: 1200px) and (max-width: 1439px) and (-webkit-min-device-pixel-ratio: 2), (min-width: 1200px) and (max-width: 1439px) and (min-resolution: 192dpi), (min-width: 1200px) and (max-width: 1439px) and (min-resolution: 2dppx)').matches) {
+        // desktop Large
+        $this.attr('data-src', desktopL);
+      }
+    }
+
+
   });
   if (typeof container === 'string') {
     return new LazyLoad({
       container: document.querySelector(container),
-      elements_selector: '.js-dynamic-media[data-src]'
+      elements_selector: '.js-dynamic-media[data-src]',
+      skip_invisible: false
     });
   }
   return new LazyLoad({
-    elements_selector: '.js-dynamic-media[data-src]'
+    elements_selector: '.js-dynamic-media[data-src]',
+    skip_invisible: false
   });
 }
 
 export default {
   bindEvents() {
-    $(window).on('resize orientationchange', () => {
-      this.processImageAttributes();
+    $(window).on('load resize orientationchange', () => {
+      this.processImageAttributes(null,true);
     });
   },
   processImageAttributes() {
@@ -85,5 +87,11 @@ export default {
   init() {
     this.bindEvents();
     this.processImageAttributes();
+  }
+};
+
+export const dynMedia = {
+  processImages() {
+    return _processImageAttributes.apply(this, arguments);
   }
 };

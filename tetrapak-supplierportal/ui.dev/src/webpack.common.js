@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const config = require("./config").webpack;
 const clientlibs = require("./config").chunkrename;
 const path = require("path");
@@ -86,7 +87,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'file-loader',
         options: {
-          name: `${config.fonts.fontPath}/[name].[ext]`
+          name: `${config.fonts.fontPath}/[name].[ext]`,
+          emitFile: false
         }
       },
       {
@@ -101,8 +103,14 @@ module.exports = {
         exclude: /node_modules/,
         loader: "handlebars-loader",
         options: {
-          helperDirs: [path.join(__dirname, config.handlebars.helpersFolder)],
-          partialDirs: [path.join(__dirname, config.handlebars.currentRelativeFolder)],
+          helperDirs: [
+            path.join(__dirname, config.handlebars.helpersFolder),
+            path.resolve(config.handlebars.commonHelpersFolder)
+          ],
+          partialDirs: [
+            path.join(__dirname, config.handlebars.currentRelativeFolder),
+            path.resolve(config.handlebars.commonRelativeFolder)
+          ],
           precompileOptions: {
             knownHelpersOnly: false
           }
@@ -119,11 +127,17 @@ module.exports = {
       chunkFilename: config.cssChunkPath
     }),
     new ChunkRename(clientlibs),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new StatsWriterPlugin({
       stats: {
         all: true,
         assets: true
       }
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     })
   ],
   node: {
@@ -132,7 +146,10 @@ module.exports = {
   resolve: {
     mainFields: ['main', 'module'],
     alias: {
-      handlebars: 'handlebars/runtime',
+      jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery'),
+      bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
+      handlebars: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/handlebars/runtime'),
+      'core-js': path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/core-js'),
       tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
     }
   }

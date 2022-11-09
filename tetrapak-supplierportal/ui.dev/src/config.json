@@ -97,15 +97,6 @@
     "fontFile": "tp-icons",
     "relativePath": "../../../assets/fonts"
   },
-  "pw_webfont": {
-    "src": "<%= config.source %>/assets/pwIcons/*.svg",
-    "target": "<%= config.source %>/assets/fonts",
-    "scss": {
-      "target": "<%= config.source %>/styles/global/pw-icon-fonts"
-    },
-    "fontFile": "pw-icons",
-    "relativePath": "../../../assets/fonts"
-  },
   "webpack": {
     "filePath": "apps/settings/wcm/designs/supplierportal/clientlibs/[name].publish/js/[name].js",
     "chunkFilePath": "apps/settings/wcm/designs/supplierportal/clientlibs/[name].publish/js/[name].[chunkhash].js",
@@ -146,7 +137,9 @@
     },
     "handlebars": {
       "helpersFolder": "source/scripts/helpers",
-      "currentRelativeFolder": "source/templates-hbs"
+      "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/scripts/helpers",
+      "currentRelativeFolder": "source/templates-hbs",
+      "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates-hbs"
     },
     "fonts": {
       "fontPath": "apps/settings/wcm/designs/supplierportal/clientlibs/global.publish/fonts"
