@@ -73,7 +73,7 @@ function _getCtiDocuments() {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
-          url: `https://api-dev.tetrapak.com//technicalbulletins/${rkRelease}/cti`,
+          url: `https://api-dev.tetrapak.com/technicalbulletins/${rkRelease}/cti`,
           method: ajaxMethods.GET,
           cache: true,
           dataType: 'json',
