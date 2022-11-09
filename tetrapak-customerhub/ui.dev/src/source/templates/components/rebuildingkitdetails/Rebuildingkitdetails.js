@@ -47,8 +47,7 @@ function _renderCtiDocuments(langAvailable, otherLang) {
       }
     });
     $('.js-langcode').addClass('d-none');
-  }
-  else {
+  } else {
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
@@ -67,7 +66,7 @@ function _renderCtiDocuments(langAvailable, otherLang) {
 
 function _getCtiDocuments() {
   const $this = this;
-  const rkRelease = $this.cache.$rebuildingData.releaseDate;
+  const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
   // const rkRelease = 'TP_2018_31_04';
   if(rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
@@ -113,6 +112,7 @@ function _getCtiDocuments() {
         })
         .fail((e) => {
           logger.error(e);
+          $this.renderCtiDocuments(false);
         });
     });
   }
