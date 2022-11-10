@@ -24,9 +24,9 @@ module.exports = function (grunt) {
 
     if (this.filesSrc.length) {
       pusher.processQueue();
-      grunt.log.ok("Files processed: " + this.filesSrc.length);
     } else {
-      pusher.onPushEnd('Files do not exists yet!');
+      pusher.onPushEnd('Files do not exist yet!');
     }
+    grunt.log.ok("Files processed: " + this.filesSrc.length);
   });
 }

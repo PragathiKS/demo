@@ -7,7 +7,8 @@
         <!--API List -->
         <div class="d-none js-rk-api"
             data-country-api="${data.countryApi}"
-            data-rklist-api="${data.rebuildingKitsListApi}">
+            data-rklist-api="${data.rebuildingKitsListApi}"
+            data-rkdetail-page="${data.mappedRebuildingKitsDetailsUrl}">
         </div>
 
         <!--Loading -->
@@ -45,8 +46,3 @@
         </div>
     </div>
 </sly>
-<!-- 
-<sly data-sly-use.model="com.tetrapak.customerhub.core.models.AdditionalLanguageSelectorModel">
-    <sly data-sly-test.selectedLanguage="${model.selectedLanguage ? model.selectedLanguage : 'en'}" />
-    ${selectedLanguage}--${model.listOfLanguages[selectedLanguage]}
-</sly> -->

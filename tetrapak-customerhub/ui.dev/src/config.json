@@ -200,6 +200,12 @@
         "name": "rebuildingkits",
         "enforce": true,
         "chunks": "all"
+      },
+      "rebuildingkitdetails": {
+        "testMultiple": true,
+        "name": "rebuildingkitdetails",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -264,6 +270,9 @@
       ],
       "rebuildingkits": [
         "source/templates/components/rebuildingkits/"
+      ],
+      "rebuildingkitdetails": [
+        "source/templates/components/rebuildingkitdetails/"
       ]
     },
     "handlebars": {

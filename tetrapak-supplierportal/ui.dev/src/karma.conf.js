@@ -1,5 +1,9 @@
+const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
+const argv = require('yargs').argv;
+
+const mode = argv.mode || 'development';
 
 module.exports = function (config) {
   config.set({
@@ -16,7 +20,9 @@ module.exports = function (config) {
         ]
       }
     },
-    browserNoActivityTimeout: 60000,
+    browserNoActivityTimeout: 210000,
+    browserDisconnectTolerance: 3,
+    browserDisconnectTimeout: 210000,
     singleRun: true, //just run once by default
     port: 9876,
     colors: true,
@@ -41,7 +47,19 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       reports: ['html'],
       dir: 'coverage/',
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      // enforce percentage thresholds
+      // anything under these percentages will cause karma to fail with an exit code of 1 if not running in watch mode
+      thresholds: {
+        emitWarning: (mode === 'development'), // set to `true` to not fail the test command when thresholds are not met
+        // thresholds for all files
+        global: {
+          statements: 80,
+          lines: 80,
+          branches: 50,
+          functions: 80
+        }
+      }
     },
     webpack: {
       devtool: 'inline-source-map',
@@ -68,13 +86,15 @@ module.exports = function (config) {
             loader: 'handlebars-loader',
             options: {
               helperDirs: [
-                path.join(__dirname, webpackConfig.handlebars.helpersFolder)
+                path.join(__dirname, webpackConfig.handlebars.helpersFolder),
+                path.resolve(webpackConfig.handlebars.commonHelpersFolder)
               ],
               partialDirs: [
                 path.join(
                   __dirname,
                   webpackConfig.handlebars.currentRelativeFolder
-                )
+                ),
+                path.resolve(webpackConfig.handlebars.commonRelativeFolder)
               ],
               precompileOptions: {
                 knownHelpersOnly: false
@@ -86,9 +106,20 @@ module.exports = function (config) {
       node: {
         fs: 'empty'
       },
+      plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        })
+      ],
       resolve: {
+        mainFields: ['main', 'module'],
         alias: {
-          handlebars: 'handlebars/runtime'
+          jquery: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/jquery'),
+          bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
+          handlebars: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/handlebars/runtime'),
+          'core-js': path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/core-js')
         }
       }
     },

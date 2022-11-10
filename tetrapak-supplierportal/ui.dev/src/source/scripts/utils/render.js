@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import deparam from 'deparam.js';
 import { throwError, parseJson, isValidSelector } from '../common/common';
-import { ajaxWrapper } from '../utils/ajax';
+import { ajaxWrapper } from './ajax';
 import { templates } from './templates';
 import { logger } from './logger';
 import { PARSE_ERROR, INVALID_OBJECT, INVALID_URL, TEMPLATE_MISSING } from './constants';
@@ -62,15 +62,16 @@ function _setRequestDataAndHeaders(dataObject, currentId, req) {
   if (!('length' in dataObject)) {
     dataObject.length = 0;
   }
-  currentId.forEach(id => {
-    dataObject[id] = req.data;
-    dataObject.requestHeader[id] = {
+
+  for (var i = 0; i < currentId.length; i++) {
+    dataObject[currentId[i]] = req.data;
+    dataObject.requestHeader[currentId[i]] = {
       url: req.url,
       requestData: req.requestData,
       pathObject: req.pathObject
     };
     dataObject.length += 1;
-  });
+  }
   return dataObject;
 }
 
@@ -170,18 +171,18 @@ function _renderData(config) {
     if (!renderTarget.length) {
       renderTarget = $('<div>');
       if ($rootTemplate.length) {
-        $rootTemplate.removeClass('hidden').append(renderTarget);
+        $rootTemplate.removeClass('d-none').append(renderTarget);
       } else if (codeBlock.length) {
         codeBlock.after(renderTarget);
       } else {
         $body.append(renderTarget);
       }
     }
-    // If render target needs to be hidden, then add 'hidden' class to the target
+    // If render target needs to be hidden, then add 'd-none' class to the target
     if (config.hidden) {
-      renderTarget.addClass('hidden');
+      renderTarget.addClass('d-none');
     } else {
-      renderTarget.removeClass('hidden');
+      renderTarget.removeClass('d-none');
     }
     // Render template in target element
     try {
@@ -282,18 +283,20 @@ function _getStatus(data, textStatus, jqXHR) {
  * @param {string} textStatus
  */
 function _setXHRData(jqXHRObj, data, textStatus) {
-  if (this.url) {
-    jqXHRObj.url = this.url.split('?')[0];
-    jqXHRObj.requestData = deparam(this.url.split('?')[1], false);
-  }
-  jqXHRObj.id = this.dataId;
-  if (Array.isArray(this.dataId)) {
-    jqXHRObj.dataIdStr = this.dataId.join(',');
-  } else {
-    jqXHRObj.dataIdStr = this.dataId;
-  }
-  if (this.pathObject) {
-    jqXHRObj.pathObject = this.pathObject;
+  if (this) {
+    if (this.url) {
+      jqXHRObj.url = this.url.split('?')[0];
+      jqXHRObj.requestData = deparam(this.url.split('?')[1], false);
+    }
+    jqXHRObj.id = this.dataId;
+    if (Array.isArray(this.dataId)) {
+      jqXHRObj.dataIdStr = this.dataId.join(',');
+    } else {
+      jqXHRObj.dataIdStr = this.dataId;
+    }
+    if (this.pathObject) {
+      jqXHRObj.pathObject = this.pathObject;
+    }
   }
   jqXHRObj.done = true;
   if (textStatus === 'success') {
@@ -365,6 +368,7 @@ function _renderAjax(config) {
         .always(function (data, textStatus) {
           // Resolve pending requests
           const jqXHRObj = _getStatus.apply(xhrCache, arguments);
+          config.xhr = jqXHRObj.jqXHR;
           if (jqXHRObj) {
             if (_setXHRData.apply(this, [jqXHRObj, data, textStatus])) {
               $body.trigger('renderajax.success', [data, config]);

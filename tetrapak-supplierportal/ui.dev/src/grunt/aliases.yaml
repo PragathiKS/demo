@@ -4,17 +4,17 @@ aemsync:
     - 'aemdeploy'
 
 aem:
-  description: "build app with ux-lib for production"
+  description: "build app with ux-lib, followed by auto deploy"
   tasks:
     - 'shell:linting'
-    - 'shell:karmaTests'
+    - 'shell:karmaTestsProd'
     - 'shell:webpackProd'
     - 'shell:clientlibify'
     - 'aemcomponentcopy:uxlibProd'
 
 aemWatch:
-  description: "build app with ux-lib for development with watch mode"
-  task:
+  description: "build app with ux-lib, followed by auto deploy, followed by watch"
+  tasks:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
     - 'shell:webpackDev'
@@ -26,7 +26,7 @@ aemWatch:
     - 'watch'
 
 aemStart:
-  description: "build app with ux-lib for development without watch mode"
+  description: "run default task which build the whole application"
   tasks:
     - 'shell:lintingDev'
     - 'shell:karmaTests'
@@ -37,20 +37,11 @@ aemStart:
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
 
-icons:
-  tasks:
-    - 'webfont:common_icons'
-
-pwIcons:
-  tasks:
-    - 'webfont:pw_icons'
-
-
 default:
-  description: "build app with ux-lib for development without watch mode"
+  description: "run default task which build the whole application"
   tasks:
     - 'shell:lintingDev'
-    - 'shell:karmaTests'
+    - 'shell:karmaTestsProd'
     - 'shell:webpackDev'
     - 'shell:clientlibify'
     - 'aemcomponentcopy:uxlibProd'

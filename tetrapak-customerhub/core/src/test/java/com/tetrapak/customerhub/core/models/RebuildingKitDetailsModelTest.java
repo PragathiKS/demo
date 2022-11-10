@@ -51,7 +51,7 @@ public class RebuildingKitDetailsModelTest {
 		MockitoAnnotations.initMocks(this);
         aemContext.registerService(APIGEEService.class, apigeeService);
         when(apigeeService.getApigeeServiceUrl()).thenReturn(new String("https://api-dev.tetrapak.com"));
-        when(apigeeService.getApiMappings()).thenReturn(new String[]{"rebuildingkits-rebuildingkitdetails:installedbase/rebuildingkits?rknumbers={rknumbers}&equipmentnumber={equipmentnumber}"});
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"rebuildingkits-rebuildingkitdetails:installedbase/rebuildingkits","technicalbulletins:technicalbulletins"});
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		model = resource.adaptTo(RebuildingKitDetailsModel.class);
 	}
@@ -97,6 +97,7 @@ public class RebuildingKitDetailsModelTest {
 	 */
 	@Test
 	public void testApi() {
-		assertTrue(model.getRebuildingKitDetailsApi().contains("installedbase/rebuildingkits?rknumbers={rknumbers}&equipmentnumber={equipmentnumber}"));
+		assertTrue(model.getRebuildingKitDetailsApi().contains("installedbase/rebuildingkits"));
+		assertTrue(model.getTechnicalBulletinApi().contains("technicalbulletins"));
 	}
 }
