@@ -15,7 +15,10 @@
         <module>ui.apps</module>
         <module>ui.content</module>
         <module>complete</module>
+        <module>e2e.tests/api-tests</module>
+        <module>e2e.tests/ui-e2e-tests</module>
     </modules>
+
     <distributionManagement>
         <repository>
             <id>central</id>

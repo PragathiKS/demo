@@ -1,4 +1,4 @@
-package com.tetrapak.supplierportal.e2e.tests;
+package com.tetrapak.supplierportal.e2e.tests.api;
 
 import com.intuit.karate.Results;
 import com.intuit.karate.Runner;
