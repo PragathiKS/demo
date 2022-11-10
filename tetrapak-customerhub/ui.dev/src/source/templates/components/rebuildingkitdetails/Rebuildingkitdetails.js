@@ -66,8 +66,8 @@ function _renderCtiDocuments(langAvailable, otherLang) {
 
 function _getCtiDocuments() {
   const $this = this;
-  // const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
-  const rkRelease = 'TT3_2020_01_01';
+  const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
+  // const rkRelease = 'TT3_2020_01_01';
   if(rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
