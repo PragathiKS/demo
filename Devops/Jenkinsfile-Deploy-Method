@@ -186,10 +186,10 @@ pipeline {
         }
 	
 	 if (params.DeploySupplierportal) {
-                packageName = "tetrapak-supplierportal.all"
+                packageName = "tetrapak-supplierportal.complete"
                 repoName = "tetrapak-supplierportal"
                 fileName = "1.0.0-DEV${Snapshot_Supplierportal}-SNAPSHOT"
-                devartifactdownload()
+                devartiiactdownload()
                 parallel (
                     "Author Supplierportal" : {
                 authordeploy()
