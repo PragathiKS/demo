@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
 		  jcr:primaryType="sling:OsgiConfig"
-		  cookieDomainScriptConfig="[&quot;publicweb&quot;={&quot;siteAbbreviation&quot;:&quot;pw&quot;\,&quot;domainScript&quot;:&quot;73fa8564-2ecd-41fa-bceb-218df49c0f2d-test&quot;},&quot;online-help&quot;={&quot;siteAbbreviation&quot;:&quot;oh&quot;\,&quot;domainScript&quot;:&quot;0bd1b125-0354-4bc1-bff5-1a996d6e3810-test&quot;}]"/>
+		  cookieDomainScriptConfig="[&quot;publicweb&quot;={&quot;siteAbbreviation&quot;:&quot;pw&quot;\,&quot;domainScript&quot;:&quot;73fa8564-2ecd-41fa-bceb-218df49c0f2d-test&quot;},&quot;online-help&quot;={&quot;siteAbbreviation&quot;:&quot;oh&quot;\,&quot;domainScript&quot;:&quot;c3ef6970-81f9-4e8d-94ac-5ed5a2f5b4fb-test&quot;}]"/>
