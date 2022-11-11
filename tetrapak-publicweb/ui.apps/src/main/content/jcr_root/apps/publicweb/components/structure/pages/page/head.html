@@ -123,7 +123,7 @@ else {
     </sly>
 
     <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
-        <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${digitalDataModel.dataDomainScript}" ></script>
+        <script src="https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript}/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${digitalDataModel.dataDomainScript}" ></script>
         <script type="text/javascript">
         function OptanonWrapper() { }
       </script>
