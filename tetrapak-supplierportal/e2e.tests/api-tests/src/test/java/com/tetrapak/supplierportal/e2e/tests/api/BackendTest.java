@@ -20,7 +20,7 @@ class BackendTest {
 
     @Test
     void testParallel() {
-        String path = "classpath:net/publicisgroupe";
+        String path = "classpath:com/tetrapak";
 
         Results res = Runner.path(path)
                 .outputCucumberJson(true)
