@@ -138,7 +138,7 @@ function _getRebuildingKitDetails() {
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: `https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
+        url: `${$this.cache.rebuildingdetailsApi}?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',
