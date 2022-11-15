@@ -1,4 +1,4 @@
-package com.tetrapak.supplierportal.e2e.tests;
+package com.tetrapak.supplierportal.e2e.tests.api;
 
 import com.intuit.karate.Results;
 import com.intuit.karate.Runner;
@@ -20,7 +20,7 @@ class BackendTest {
 
     @Test
     void testParallel() {
-        String path = "classpath:net/publicisgroupe";
+        String path = "classpath:com/tetrapak";
 
         Results res = Runner.path(path)
                 .outputCucumberJson(true)
