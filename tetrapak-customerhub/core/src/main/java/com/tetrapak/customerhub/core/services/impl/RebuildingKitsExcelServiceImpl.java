@@ -39,7 +39,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_CODE_EQUIPMENTS_API);
 		csvHeaderMapping.add(CustomerHubConstants.CUSTOMER_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.LOCATION);
-		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
+		csvHeaderMapping.add(CustomerHubConstants.LINE_CODE);
 		csvHeaderMapping.add(CustomerHubConstants.POSITION);
 		csvHeaderMapping.add(CustomerHubConstants.RK_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.RK_DESC);
@@ -71,23 +71,12 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
-
-
-
-
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE_DESCRIPTION);
-		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_STATUS_DESCRIPTION);
-
-
-
-
-
-
-
-
+		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
+		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
+		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
+		csvHeaderMapping.add(CustomerHubConstants.RK_TIME);
+		csvHeaderMapping.add(CustomerHubConstants.KPI_EXCEL);
 		csvHeaderMapping.add(CustomerHubConstants.RK_ELECTRICAL_SKILLS);
-
-
 	}
 	private static final Logger LOGGER = LoggerFactory.getLogger(RebuildingKitsExcelServiceImpl.class);
 
@@ -173,33 +162,46 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	private String convertToCSVRow(RebuildingKits rbk) {
 		List<String> rbkPropertiesList = new ArrayList<>();
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getCountryCode()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getCountryName()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getCustomerNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getCustomerName()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getLocation()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineName()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineCode()));
 		rbkPropertiesList.add(tidyCSVOutput(formatPosition(rbk.getPosition())));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentType()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentDesc()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getSerialNumber()));
-		rbkPropertiesList
-				.add(tidyCSVOutput(formatPermanentVolumeConversion(rbk.getPermanentVolumeConversion())));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatus()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentTypeDesc()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatusDescription()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkDesc()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getSerialNumber()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatus()));
+		rbkPropertiesList
+				.add(tidyCSVOutput(formatPermanentVolumeConversion(rbk.getPermanentVolumeConversion())));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatusDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDeadline()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatus()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStructure()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getServiceOrder()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getOrder()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getRebuildingKitStatus()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getReleaseDateFirst()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getTechnicalBulletin()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getReleaseDate()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getReleaseDateFirst()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkTypeDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getPlannedDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getMechanicalSkills()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getAutomationSkills()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getElectricalSkills()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getCustomerNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getMachineSystem()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getMachineSystemDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkHandling()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentMaterial()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentMaterialDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentType()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentNumber()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getCountryName()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineName()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getElectricalSkills()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkTime()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getKpiExcl()));
 		return rbkPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.TAB))
 				.concat(CustomerHubConstants.NEWLINE);
 	}
