@@ -15,6 +15,7 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Build_Publicweb'
         booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak'
 	booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
+	booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Pa11y_Execution'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'ZAP_Run'
@@ -98,6 +99,12 @@ pipeline {
                     if (params.Build_Tetralaval) {
                         appname = "tetra-laval"
                         buildandsonarlaval()
+                    }
+                }
+		 script {
+                    if (params.Build_Supplierportal) {
+                        appname = "supplierportal"
+                        buildandsonar()
                     }
                 }
 
@@ -284,6 +291,21 @@ pipeline {
                     }
                 )                           
         }
+	if (params.Build_Supplierportal) {
+                packageName = "tetrapak-supplierportal.complete"
+                repoName = "tetrapak-supplierportal"
+                fileName = "1.0.0-DEV${build_id_number}-SNAPSHOT"
+                devartifactdownload()
+                parallel (
+                    "Author Supplierportal" : {
+                authordeploy()
+                    },
+                    "Publisher Supplierportal" : {
+                publishdeploy()
+                    }
+                )
+        }
+
         if (params.Build_Publicweb) {
                 packageName = "tetrapak-publicweb.complete"
                 repoName = "tetrapak-publicweb"                

@@ -19,7 +19,8 @@ function _processKeys(keys, ob) {
       serialNumber,
       rkNumber,
       rkDesc,
-      implStatus;
+      implStatus,
+      equipmentNumber;
     for (const i in ob) {
       if (i === 'lineCode') {
         functionalLocation = i;
@@ -33,7 +34,10 @@ function _processKeys(keys, ob) {
         rkDesc = i;
       } else if (i === 'implStatus') {
         implStatus = i;
+      } else if (i === 'equipmentNumber') {
+        equipmentNumber = i;
       }
+
     }
     return [
       functionalLocation,
@@ -41,7 +45,8 @@ function _processKeys(keys, ob) {
       serialNumber,
       rkNumber,
       rkDesc,
-      implStatus
+      implStatus,
+      equipmentNumber
     ];
   }
 }
@@ -278,6 +283,7 @@ class RebuildingKits {
   }
 
   bindEvents = () => {
+    const $this = this;
     // Pagination
     this.root.on('click', '.js-page-number',  (e) => {
       const $btn = $(e.currentTarget);
@@ -291,6 +297,15 @@ class RebuildingKits {
         this.renderNewPage({'resetSkip': false});
         _paginationAnalytics($btn);
       }
+    });
+
+    // Redirect to RK Detail Page
+    this.root.on('click', '.tp-rk__table-summary__row',  (e) => {
+      const clickLink = $(e.currentTarget);
+      const equipmentNumber = clickLink.find('.tpmol-table__key-equipmentNumber').text();
+      const rkNumber = clickLink.find('.tpmol-table__key-rkNumber').text();
+      const equipmentDetailsUrl = $this.cache.rkApi.data('rkdetail-page');
+      window.open(`${equipmentDetailsUrl}?rkNumber=${rkNumber}&equipment=${equipmentNumber}`, '_blank');
     });
   };
 

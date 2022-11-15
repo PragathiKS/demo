@@ -95,7 +95,7 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
             } else {
                 uniqueUserId = Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString();
             }
-            JWT jwt = new JWT().setUniqueId(String.valueOf(uniqueUserId));
+            JWT jwt = new JWT().setSubject(String.valueOf(uniqueUserId));
             final String encodedJWT = JWT.getEncoder().encode(jwt, signer);
             LOGGER.debug("encodedJWT {} ", encodedJWT);
             jsonResponse.addProperty("uid", uniqueUserId);
