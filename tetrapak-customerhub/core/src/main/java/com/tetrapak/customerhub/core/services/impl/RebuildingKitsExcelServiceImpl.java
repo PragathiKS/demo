@@ -176,7 +176,6 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatusDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDeadline()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatus()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStructure()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getServiceOrder()));
