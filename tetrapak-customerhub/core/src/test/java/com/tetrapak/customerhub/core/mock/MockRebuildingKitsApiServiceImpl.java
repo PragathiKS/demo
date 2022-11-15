@@ -31,8 +31,6 @@ public class MockRebuildingKitsApiServiceImpl implements RebuildingKitsApiServic
 		paramRequest.setSerialNumber("5454544");
 		paramRequest.setPermanentVolumeConversion("");
 		paramRequest.setEquipmentStatus("INPR");
-		paramRequest.setEquipmentTypeDesc("Equipment Type Description");
-		paramRequest.setEquipmentStatusDescription("Equipment Status Description");
 		paramRequest.setRkNumber("455545");
 		paramRequest.setRkDesc("Rk Description");
 		paramRequest.setImplDate("");

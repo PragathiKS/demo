@@ -297,6 +297,9 @@ public final class CustomerHubConstants {
     /** The Constant LINE_NAME. */
     public static final String LINE_NAME = "lineName";
 
+    /** The Constant LINE_CODE. */
+    public static final String LINE_CODE = "lineCode";
+
     /** The Constant EQUIPMENT_TYPE_DESCRIPTION. */
     public static final String EQUIPMENT_TYPE_DESCRIPTION = "equipmentTypeDesc";
 
@@ -721,6 +724,12 @@ public final class CustomerHubConstants {
 
     /** The Constant for RK_ELECTRICAL_SKILLS **/
     public static final String RK_ELECTRICAL_SKILLS = "electricalSkills";
+
+    /** The Constant for RK_TIME **/
+    public static final String RK_TIME = "rkTime";
+
+    /** The Constant for KPI_EXCEL **/
+    public static final String KPI_EXCEL = "kpiExcl";
 
     /** The Constant for RK_MACHINE_SYSTEM **/
     public static final String RK_MACHINE_SYSTEM = "machineSystem";
