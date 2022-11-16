@@ -74,7 +74,6 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.RK_TIME);
 		csvHeaderMapping.add(CustomerHubConstants.KPI_EXCEL);
-		csvHeaderMapping.add(CustomerHubConstants.RK_ELECTRICAL_SKILLS);
 	}
 	private static final Logger LOGGER = LoggerFactory.getLogger(RebuildingKitsExcelServiceImpl.class);
 

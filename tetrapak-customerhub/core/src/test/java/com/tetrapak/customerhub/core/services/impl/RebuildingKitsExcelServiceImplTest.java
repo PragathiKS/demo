@@ -90,7 +90,6 @@ public class RebuildingKitsExcelServiceImplTest {
 		paramRequest.setLineName("Testing Line Name");
 		paramRequest.setRkTime("");
 		paramRequest.setKpiExcl("");
-		paramRequest.setElectricalSkills("");
 		List<RebuildingKits> rbkList = new ArrayList<>();
 		rbkList.add(paramRequest);
 		return rbkList;
