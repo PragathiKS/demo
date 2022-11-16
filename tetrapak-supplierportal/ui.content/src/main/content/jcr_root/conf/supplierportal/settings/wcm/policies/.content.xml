@@ -7,6 +7,14 @@
         <foundation jcr:primaryType="nt:unstructured">
             <components jcr:primaryType="nt:unstructured">
                 <responsivegrid jcr:primaryType="nt:unstructured">
+                    <content-default
+                            jcr:description="Policy for editable layout containers"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="tetrapak content components"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:tetrapak-supplierportal-structure]"
+                            policyResourceType="wcm/foundation/components/responsivegrid">
+                    </content-default>
                 </responsivegrid>
             </components>
         </foundation>
