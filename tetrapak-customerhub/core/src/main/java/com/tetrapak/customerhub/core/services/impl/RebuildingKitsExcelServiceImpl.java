@@ -71,8 +71,6 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_TYPE);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
-		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
-		csvHeaderMapping.add(CustomerHubConstants.COUNTRY_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.LINE_NAME);
 		csvHeaderMapping.add(CustomerHubConstants.RK_TIME);
 		csvHeaderMapping.add(CustomerHubConstants.KPI_EXCEL);
