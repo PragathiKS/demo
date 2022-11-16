@@ -55,6 +55,7 @@ public class MockRebuildingKitsApiServiceImpl implements RebuildingKitsApiServic
 		paramRequest.setEquipmentNumber("");
 		paramRequest.setCountryName("Germany");
 		paramRequest.setLineName("Testing Line Name");
+		paramRequest.setElectricalSkills("");
 		paramRequest.setRkTime("");
 		paramRequest.setKpiExcl("");
 		List<RebuildingKits> rbk = new ArrayList<>();

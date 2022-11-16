@@ -88,6 +88,7 @@ public class RebuildingKitsExcelServiceImplTest {
 		paramRequest.setEquipmentNumber("");
 		paramRequest.setCountryName("Germany");
 		paramRequest.setLineName("Testing Line Name");
+		paramRequest.setElectricalSkills("");
 		paramRequest.setRkTime("");
 		paramRequest.setKpiExcl("");
 		List<RebuildingKits> rbkList = new ArrayList<>();
