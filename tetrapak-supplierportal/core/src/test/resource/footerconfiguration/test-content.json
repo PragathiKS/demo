@@ -1,0 +1,42 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Thu Nov 17 2022 14:37:29 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:createdBy": "admin",
+"jcr:title": "sp-test",
+"cq:template": "/conf/supplierportal/settings/wcm/templates/content-page",
+"jcr:created": "Thu Nov 17 2022 14:37:29 GMT+0530",
+"cq:lastModified": "Thu Nov 17 2022 16:44:44 GMT+0530",
+"sling:resourceType": "supplierportal/components/structure/page",
+"cq:lastModifiedBy": "admin",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"footerconfiguration": {
+"jcr:primaryType": "nt:unstructured",
+"tetraPakLink": "http://tetrapak.com/",
+"jcr:createdBy": "admin",
+"jcr:lastModifiedBy": "admin",
+"tetraPakLabel": "TetraPak",
+"jcr:created": "Thu Nov 17 2022 14:39:45 GMT+0530",
+"jcr:lastModified": "Thu Nov 17 2022 16:44:44 GMT+0530",
+"sling:resourceType": "supplierportal/components/structure/footerconfiguration",
+"footerText": "Copyright",
+"footerLinks": {
+"jcr:primaryType": "nt:unstructured",
+"item0": {
+"jcr:primaryType": "nt:unstructured",
+"linkLabel": "Link text 2",
+"linkPath": "/content/tetrapak/publicweb"
+}
+}
+}
+}
+}
+}
+}
