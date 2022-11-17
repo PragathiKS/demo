@@ -1,0 +1,88 @@
+.tp-tech-pub {
+    &__header {
+        &-wrapper {
+            @include margin-bottom($margin-l);
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    &__doc-lang {
+        display: none;
+        color: $color-congress-blue;
+        .doc-icon {
+            @include margin-bottom($margin-md);
+            display: inline-block;
+            .icon {
+                @include margin-right($margin-md);
+            }
+        }
+    }
+    &__search {
+        &-count {
+            @include padding($padding-md $padding-zero);
+            @include margin($margin-l $margin-zero);
+            @include font-size($font-md);
+            @include line-height($font-xl, $font-md);
+            display: none;
+            color: $color-congress-blue;
+            border-top: 1px solid $color-congress-blue;
+            border-bottom: 1px solid $color-congress-blue;
+        }
+    }
+    &__breadcrumbs {
+        @include padding($padding-md);
+        background-color: $color-wild-sand;
+    }
+
+    &__bc-list {
+        display: block;
+    }
+
+    &__bc-item {
+        display: inline;
+        font-weight: 500;
+
+        .js-tech-pub {
+            &__bc-btn {
+                @include margin-bottom($margin-xs);
+                color: $color-boulder;
+            }
+        }
+        &.active {
+            .js-tech-pub {
+                &__bc-btn {
+                    color: $color-tundora;
+                }
+            }
+            .tp-tech-pub__icon {
+                display: none;
+            }
+        }
+    }
+
+    &__table {
+        th,
+        td {
+            @include padding($padding-md);
+        }
+
+        th {
+            font-weight: 500;
+        }
+
+        td {
+            border-bottom: 1px solid $color-mercury;
+        }
+        &-icon {
+            color: $color-congress-blue;
+            font-size: $font-baseline;
+            width: 50px;
+        }
+    }
+
+    &__icon {
+        @include margin($margin-zero $margin-sm);
+        display: inline-block;
+        width: 8px;
+    }
+}

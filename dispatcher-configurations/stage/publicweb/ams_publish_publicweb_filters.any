@@ -61,7 +61,7 @@
 /0042 { /type "allow" /method "GET" /url "*/*sitemap.xml" }
 /0043 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/searchresults*" }
 /0044 { /type "allow" /method "GET" /url "*/libs/cq/i18n/dict.*.json" }
-
+/0045 { /type "allow" /method "GET" /url "/*/root/responsivegrid/*.model.json" }
 
 ## Allow POST Requests 61 - 80
 

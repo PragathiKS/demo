@@ -122,9 +122,6 @@ public final class CreateLiveCopyServiceUtil {
             case "pt":
                 liveCopyBasePaths = config.getPortugeseLiveCopyBasePaths();
                 break;
-            case "ru":
-                liveCopyBasePaths = config.getRussianLiveCopyBasePaths();
-                break;
             case "sv_se":
                 liveCopyBasePaths = config.getSwedishLiveCopyBasePaths();
                 break;
