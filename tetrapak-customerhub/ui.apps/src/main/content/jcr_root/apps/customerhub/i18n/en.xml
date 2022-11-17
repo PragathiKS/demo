@@ -1741,4 +1741,113 @@
         jcr:primaryType="nt:folder"
         sling:key="cuhu.technicalpublications.name"
         sling:message="Name"/>
+    ----------------------------------------------
+    <cuhu.myequipment.csvheader.rkNumber
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkNumber"
+            sling:message="RK number"/>
+    <cuhu.myequipment.csvheader.rkDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkDesc"
+            sling:message="RK description"/>
+    <cuhu.myequipment.csvheader.implDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implDate"
+            sling:message="Impl date"/>
+    <cuhu.myequipment.csvheader.rkNumber
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkNumber"
+            sling:message="RK number"/>
+    <cuhu.myequipment.csvheader.implStatus
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implStatus"
+            sling:message="Impl status"/>
+    <cuhu.myequipment.csvheader.implStatusDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implStatusDate"
+            sling:message="Impl status date"/>
+    <cuhu.myequipment.csvheader.rebuildingKitStatus
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rebuildingKitStatus"
+            sling:message="Rebuilding kits Status"/>
+    <cuhu.myequipment.csvheader.releaseDateFirst
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.releaseDateFirst"
+            sling:message="Release date first"/>
+    <cuhu.myequipment.csvheader.releaseDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.releaseDate"
+            sling:message="Release date"/>
+    <cuhu.myequipment.csvheader.mechanicalSkills
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.mechanicalSkills"
+            sling:message="Mechanical Skills"/>
+    <cuhu.myequipment.csvheader.automationSkills
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.automationSkills"
+            sling:message="Automation Skills"/>
+    <cuhu.myequipment.csvheader.electricalSkills
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.electricalSkills"
+            sling:message="Electrical Skills"/>
+    <cuhu.myequipment.csvheader.machineSystemDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.machineSystemDesc"
+            sling:message="Machine System Description"/>
+    <cuhu.myequipment.csvheader.lineCode
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.lineCode"
+            sling:message="Line"/>
+    <cuhu.myequipment.csvheader.implDeadline
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implDeadline"
+            sling:message="Impl Deadline"/>
+    <cuhu.myequipment.csvheader.equipmentStructure
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.equipmentStructure"
+            sling:message="Equipment Structure"/>
+    <cuhu.myequipment.csvheader.serviceOrder
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.serviceOrder"
+            sling:message="Service Order"/>
+    <cuhu.myequipment.csvheader.order
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.order"
+            sling:message="Order"/>
+    <cuhu.myequipment.csvheader.technicalBulletin
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.technicalBulletin"
+            sling:message="Ref for CTI"/>
+    <cuhu.myequipment.csvheader.rkTypeDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkTypeDesc"
+            sling:message="RK Type"/>
+    <cuhu.myequipment.csvheader.plannedDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.plannedDate"
+            sling:message="Planned Date"/>
+    <cuhu.myequipment.csvheader.rkHandling
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkHandling"
+            sling:message="RK Handling"/>
+    <cuhu.myequipment.csvheader.equipmentMaterial
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.equipmentMaterial"
+            sling:message="Equipment Material"/>
+    <cuhu.myequipment.csvheader.equipmentMaterialDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.equipmentMaterialDesc"
+            sling:message="Equipment Material Description"/>
+    <cuhu.myequipment.csvheader.equipmentNumber
+        jcr:mixinTypes="[sling:Message]"
+        sling:key="cuhu.myequipment.csvheader.equipmentNumber"
+        sling:message="Equipment"/>
+    <cuhu.myequipment.csvheader.rkTime
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkTime"
+            sling:message="Time, Hours"/>
+    <cuhu.myequipment.csvheader.kpiExcl
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.kpiExcl"
+            sling:message="KPI Excl"/>
 </jcr:root>

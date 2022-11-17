@@ -165,7 +165,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.SKIP + CustomerHubConstants.EQUALS_CHAR + skip + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS_CHAR + getNoOfRecordsCount() + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.EQUIPMENT_API_SORT + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.LOCATION + CustomerHubConstants.COMMA + CustomerHubConstants.POSITION;
+				+ CustomerHubConstants.EQUIPMENT_API_SORT + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.LINE_CODE + CustomerHubConstants.COMMA + CustomerHubConstants.POSITION;
 		return HttpUtil.executeHttp(token, url);
 	}
 }
