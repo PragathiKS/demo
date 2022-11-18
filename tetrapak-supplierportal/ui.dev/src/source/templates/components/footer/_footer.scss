@@ -36,7 +36,7 @@
         &__item {
             @include margin-bottom($margin-md);
             @media #{$desktop} {
-                @include margin-right($margin-l);
+                @include margin-right($margin-xxl);
                 @include margin-bottom($margin-l);
                 display: block;
             }
