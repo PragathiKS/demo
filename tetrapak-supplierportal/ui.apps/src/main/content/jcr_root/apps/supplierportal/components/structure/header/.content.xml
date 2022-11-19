@@ -3,5 +3,5 @@
           xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="cq:Component"
           jcr:title="Header"
-          sling:resourceSuperType="core/wcm/components/form/text/v2/text"
+          sling:resourceSuperType="customerhub/components/structure/header"
           componentGroup="tetrapak-supplierportal-structure"/>

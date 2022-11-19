@@ -10,10 +10,17 @@
                     <content-default
                             jcr:description="Policy for editable layout containers"
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="tetrapak content components"
+                            jcr:title="Supplier portal content components"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:tetrapak-supplierportal-structure]"
+                            components="[group:tetrapak-supplierportal-configuration-components]"
                             policyResourceType="wcm/foundation/components/responsivegrid">
+                        <cq:authoring jcr:primaryType="nt:unstructured">
+                            <assetToComponentMapping jcr:primaryType="nt:unstructured"/>
+                        </cq:authoring>
+                        <jcr:content
+                                jcr:mixinTypes="[cq:ReplicationStatus]"
+                                jcr:primaryType="nt:unstructured"
+                                mergeList="{Boolean}true"/>
                     </content-default>
                 </responsivegrid>
             </components>
