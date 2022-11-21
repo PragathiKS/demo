@@ -22,7 +22,7 @@ public abstract class AbstractPlaywrightE2EConfig {
         playwright = Playwright.create();
         BrowserType browserType = playwright.chromium();
         browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false));
-        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1024, 3000));
+        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1366, 768));
     }
 
     @BeforeEach void setup() {

@@ -28,8 +28,8 @@ public class AccessFormPage {
         loginForm = page.locator("#pardot-form");
         emailInput = page.locator("#pardot-form p.form-field.email input");
         firstName = page.locator("#pardot-form p.form-field.first_name input");
-        lastName = page.locator("#pardot-form p.form-field.first_name input");
-        country = page.locator("#pardot-formp.form-field.country select");
+        lastName = page.locator("#pardot-form p.form-field.last_name input");
+        country = page.locator("#pardot-form p.form-field.country .select");
         company = page.locator("#pardot-form p.form-field.company input");
         companyAddress = page.locator("#pardot-form p.form-field.address_one input");
         //fixme should be replaced to supplierId
@@ -41,10 +41,18 @@ public class AccessFormPage {
         submitButton = page.locator("#pardot-form input[type=\"submit\"]");
     }
 
+    public void formIsSubmitted() {
+        assertThat(loginForm.locator("p")).containsText("We have received your request and will get back to you.");
+    }
+
     public void goToAndCloseCookieDialog() {
         page.navigate("https://go.tetrapak.com/en-en/service-ebusiness-access-request");
         cookieDialog.closeCookieConsentDialog();
         assertThat(page.locator("#headline")).containsText("Services e-Business");
+    }
+
+    public void isErrorCountValid(int expectedNumberOfErrors) {
+        assertThat(loginForm.locator("p.error.no-label")).hasCount(expectedNumberOfErrors);
     }
 
     public Page getPage() {
