@@ -1,0 +1,52 @@
+.tp-pw-footer {
+    @include margin-top($margin-l);
+    min-height: 100px;
+    background-color: transparent;
+    @media #{$desktop} {
+        @include margin-top($margin-l);
+    }
+
+    &__container {
+        @include padding($padding-md);
+
+        @media #{$desktop} {
+            @include padding($padding-l);
+        }
+    }
+
+    &__link {
+        color: $color-congress-blue;
+        font-weight: 500;
+
+        &:hover,
+        &:active {
+            color: $color-congress-blue;
+            text-decoration: none;
+        }
+    }
+
+    &__navigation-list {
+        @media #{$desktop} {
+            @include margin-top($spacing-big);
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 0;
+        }
+
+        &__item {
+            @include margin-bottom($margin-md);
+            @media #{$desktop} {
+                @include margin-right($margin-xxl);
+                @include margin-bottom($margin-l);
+                display: block;
+            }
+
+        }
+    }
+
+    &__copyright {
+        color: $color-boulder;
+        font-size: $font-sm;
+        font-weight: 500;
+    }
+}
