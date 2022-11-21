@@ -132,7 +132,8 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/helloearth/"
+        "source/templates/components/helloearth/",
+        "source/templates/components/header/"
       ]
     },
     "handlebars": {
