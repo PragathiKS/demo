@@ -1,13 +1,11 @@
 .tpatom-heading,
 .tpatom-subheading {
     @include padding(0);
-    font-family: $font-light;
 }
 
 .tpatom-heading {
     @include font-size(24px);
     @include line-height(32px, 24px);
-    font-family: $font-light;
 
     @media #{$desktop} {
         @include font-size($font-xl);

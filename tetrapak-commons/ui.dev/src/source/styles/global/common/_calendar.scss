@@ -23,7 +23,7 @@ $date-size: 40px;
         @include font-size($font-baseline);
         @include line-height(24px, $font-baseline);
         display: inline-block;
-        font-family: $font-bold;
+        font-weight: 700;
         color: $color-text;
         border: 0;
         background: transparent;
@@ -101,7 +101,7 @@ $date-size: 40px;
     &__day {
         @include font-size($font-sm);
         @include line-height(20px, $font-sm);
-        font-family: $font-bold;
+        font-weight: 700;
         color: $color-text;
         text-align: center;
     }
@@ -145,7 +145,6 @@ $date-size: 40px;
         }
 
         &.is-disabled {
-            font-family: $font-light;
             background-color: $color-wild-sand;
             color: $color-boulder;
         }
