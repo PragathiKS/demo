@@ -45,6 +45,10 @@ class RequestAccessFormTest extends AbstractPlaywrightE2EConfig {
                 accessFormPage.getPhone(),
                 "+972555555555");
 
+        accessFormPage.getUpdatesCheckbox().click();
+
+        //todo check data in fields
+
         accessFormPage.getSubmitButton().click();
         accessFormPage.formIsSubmitted();
     }
