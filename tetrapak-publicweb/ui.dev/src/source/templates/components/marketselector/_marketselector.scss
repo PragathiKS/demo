@@ -1,9 +1,7 @@
 .pw-lang-selector {
     color: $color-tundora;
-    font-family: $font-monsterrat;
 
     a {
-        font-family: $font-monsterrat;
         &:hover {
             span:nth-child(2) {
                 border-left: 1px solid $color-sky-blue;
