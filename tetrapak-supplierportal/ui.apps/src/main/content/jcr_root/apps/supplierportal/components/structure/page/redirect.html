@@ -1,0 +1,13 @@
+<template data-sly-template.redirect="${ @ redirectTarget}">
+    <p class="cmp-page__redirect">${'This page redirects to' @ i18n}
+        <a href="${redirectTarget.getURL}">${redirectTarget.page.title || redirectTarget.getURL}</a>
+    </p>
+
+	<sly data-sly-test=${wcmmode.edit}>
+	    <br>
+    	<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+     	data-sly-repeat.child="${templatedContainer.structureResources}"
+     	data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+     </sly>
+     
+</template>
