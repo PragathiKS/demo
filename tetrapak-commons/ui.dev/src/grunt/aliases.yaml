@@ -10,6 +10,7 @@ aem:
     - 'shell:karmaTests'
     - 'shell:webpackProd'
     - 'shell:clientlibify'
+    - 'copy:fonts'
     - 'aemcomponentcopy:uxlibProd'
 
 aemWatch:
