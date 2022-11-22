@@ -1,35 +1,38 @@
 package com.tetrapak.supplierportal.core.models;
 
 import com.tetrapak.supplierportal.core.beans.HeaderBean;
-import com.tetrapak.supplierportal.core.mock.SupplierPortalCoreAemContext;
-import io.wcm.testing.mock.aem.junit.AemContext;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import junit.framework.Assert;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.ResourceResolverType;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 
 @Ignore
+@ExtendWith({ MockitoExtension.class, AemContextExtension.class})
 public class HeaderModelTest {
 
-    private HeaderModel headerModel = null;
-    private static final String CONTENT_ROOT = "/content/tetrapak/supplierportal/global/en/dashboard/jcr:content";
-    private static final String RESOURCE_JSON = "header.json";
+    private final AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
 
-    @Rule
-    public final AemContext aemContext = SupplierPortalCoreAemContext.getAemContext(RESOURCE_JSON, "/content/tetrapak/supplierportal");
-
-    @Before
-    public void setup() {
-        aemContext.currentResource(CONTENT_ROOT);
-        headerModel = aemContext.request().adaptTo(HeaderModel.class);
+    @BeforeEach
+    public void setup(){
+        context.load().json("/com/tetrapak/supplierportal/core/models/header/header.json", "/content/supplierportal/en");
     }
 
     @Test
     public void testMessage() {
+        Resource resource = context.resourceResolver().getResource("/content/supplierportal/en/jcr:content/headerconfiguration");
+        Assert.assertNotNull(resource);
+        context.currentResource(resource);
+
+        HeaderModel headerModel = resource.adaptTo(HeaderModel.class);
         Assert.assertEquals("desktop logo link", "/content/tetrapak/supplierportal/global/en/dashboard.html", headerModel.getDLogoLink());
         Assert.assertEquals("mobile logo link", "/content/tetrapak/supplierportal/global/en/dashboard.html", headerModel.getMLogoLink());
         Assert.assertTrue("list size should not be 0", headerModel.getHeaderNavLinks().size() > 0);

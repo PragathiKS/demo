@@ -20,13 +20,12 @@ import java.util.List;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderModel {
 
-    private static final String LOGO_TEXT_I18N_KEY = "supo.logotext.text";
+    private static final String LOGO_TEXT_I18N_KEY = "sp.logotext.text";
     private static final String USER_INFO_I18N = "Charlie Svensson";
 
     @SlingObject private SlingHttpServletRequest request;
 
-    @Inject
-    private Page currentPage;
+    @Inject private Page currentPage;
 
     private String logoUrl;
 
@@ -37,7 +36,6 @@ public class HeaderModel {
     private List<HeaderBean> headerNavLinks = new ArrayList<>();
 
     @PostConstruct protected void init() {
-
         Resource headerConfigurationResource = request.getResourceResolver()
                 .getResource(currentPage.getPath() + "/jcr:content/root/responsivegrid/headerconfiguration");
         if (null != headerConfigurationResource) {
