@@ -3,11 +3,11 @@ package com.tetrapak.supplierportal.core.models;
 import com.tetrapak.supplierportal.core.beans.HeaderBean;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import junit.framework.Assert;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 
-@Ignore
 @ExtendWith({ MockitoExtension.class, AemContextExtension.class})
 public class HeaderModelTest {
 
@@ -27,6 +26,7 @@ public class HeaderModelTest {
     }
 
     @Test
+    @Disabled
     public void testMessage() {
         Resource resource = context.resourceResolver().getResource("/content/supplierportal/en/jcr:content/headerconfiguration");
         Assert.assertNotNull(resource);
