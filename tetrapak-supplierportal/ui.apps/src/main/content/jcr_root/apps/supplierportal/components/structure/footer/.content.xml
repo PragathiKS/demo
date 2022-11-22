@@ -4,4 +4,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Footer"
     sling:resourceSuperType="foundation/components/parbase"
-    componentGroup=".hidden"/>
+    componentGroup="tetrapak-supplierportal-structure"/>

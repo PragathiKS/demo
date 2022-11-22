@@ -2,8 +2,6 @@
 <p data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
 <sly
 	data-sly-use.footerConfig="com.tetrapak.supplierportal.core.models.FooterConfigurationModel">
-    Tetra Pak Label: ${footerConfig.tetraPakLabel}</br>
-Tetra Pak Link :${footerConfig.tetraPakLink}</br>
 <sly data-sly-list.footLinks="${footerConfig.footerLinks}">
 Footer Link Label:${footLinks.linkLabel}</br>
 Footer Link Path: ${footLinks.linkPath}</br>

@@ -24,39 +24,13 @@ public class FooterConfigurationModel {
 	@Self
 	private Resource resource;
 
-	/** The TetraPak path. */
-	@ValueMapValue
-	private String tetraPakLabel;
-
-	/** The TetraPak link. */
-	@ValueMapValue
-	private String tetraPakLink;
-
 	/** The Footer text. */
 	@ValueMapValue
-	private String footerText;
+	private String copyrightText;
 
 	/** The footer links. */
 	@Inject
 	private List<FooterLinkModel> footerLinks;
-
-	/**
-	 * Gets the TetraPak Label.
-	 *
-	 * @return the tetraPakLabel
-	 */
-	public String getTetraPakLabel() {
-		return tetraPakLabel;
-	}
-
-	/**
-	 * Gets the TetraPak Link.
-	 *
-	 * @return the tetraPakLink
-	 */
-	public String getTetraPakLink() {
-		return tetraPakLink;
-	}
 
 	/**
 	 * Gets the Footer Text.
@@ -64,7 +38,7 @@ public class FooterConfigurationModel {
 	 * @return the footerText
 	 */
 	public String getFooterText() {
-		return footerText;
+		return copyrightText;
 	}
 
 	/**

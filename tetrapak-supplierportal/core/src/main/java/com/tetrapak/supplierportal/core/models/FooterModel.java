@@ -27,12 +27,6 @@ public class FooterModel {
 	@SlingObject
 	private SlingHttpServletRequest request;
 
-	/** The tetra pak label. */
-	private String tetraPakLabel;
-
-	/** The tetra pak link. */
-	private String tetraPakLink;
-
 	/** The footer links. */
 	private List<FooterLinkModel> footerLinksSanitized = new ArrayList<>();
 
@@ -46,15 +40,20 @@ public class FooterModel {
 	protected void init() {
 		final List<FooterLinkModel> footerLinks;
 		LOGGER.debug("inside init method");
-		final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
+		String pathInfo = request.getPathInfo();
+		String rootPath;
+		if(pathInfo.contains(".html")) {
+			rootPath = pathInfo.substring(0,pathInfo.length()-5);
+		}else {
+			rootPath = pathInfo;
+		}
+		
 		final String path = rootPath + "/jcr:content/root/responsivegrid/footerconfiguration";
 		final Resource footerConfigurationResource = request.getResourceResolver().getResource(path);
 		if (Objects.nonNull(footerConfigurationResource)) {
 			final FooterConfigurationModel configurationModel = footerConfigurationResource
 					.adaptTo(FooterConfigurationModel.class);
 			if (Objects.nonNull(configurationModel)) {
-				tetraPakLabel = configurationModel.getTetraPakLabel();
-				tetraPakLink = LinkUtils.sanitizeLink(configurationModel.getTetraPakLink(), request);
 				footerText = configurationModel.getFooterText();
 				footerLinks = configurationModel.getFooterLinks();
 				for (FooterLinkModel footerLink : footerLinks) {
@@ -65,24 +64,6 @@ public class FooterModel {
 
 			}
 		}
-	}
-
-	/**
-	 * Gets the TetraPak Title.
-	 *
-	 * @return the tetraPakLabel
-	 */
-	public String getTetraPakLabel() {
-		return tetraPakLabel;
-	}
-
-	/**
-	 * Gets the TetraPak link.
-	 *
-	 * @return the tetraPakLink
-	 */
-	public String getTetraPakLink() {
-		return tetraPakLink;
 	}
 
 	/**

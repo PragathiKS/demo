@@ -16,17 +16,6 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <tetraPakLabel
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Tetra - Pak Link"
-                                name="./tetraPakLabel"/>
-                            <tetraPakLink
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldDescription="Where the Tetra-pak should direct"
-                                fieldLabel="Tetra - Pak link"
-                                name="./tetraPakLink"/>
                             <footerLinks
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
