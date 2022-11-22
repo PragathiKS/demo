@@ -7,6 +7,10 @@ const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const ChunkRename = require("webpack-chunk-rename-plugin");
 const { StatsWriterPlugin } = require("webpack-stats-plugin");
 
+const resolve = {
+  extensions: ['.js', '.ts']
+};
+
 // Resolve entry points
 const entryPoints = (function () {
   let entryPoints = {};
@@ -30,7 +34,7 @@ const cacheGroups = (function () {
         if (module.resource) {
           return !!componentGroups[cacheGroup].filter(path => {
             const moduleResource = module.resource.replace(/[\\]/g, '/');
-            return moduleResource.includes(path);
+            return (moduleResource.includes(path) && !(/\.spec\.js$/).test(moduleResource));
           }).length;
         }
         return false;
@@ -95,7 +99,15 @@ module.exports = {
         test: /(\.js|\.jsx)$/,
         exclude: /node_modules/,
         use: [
-          "babel-loader"
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: 'glob-import-loader',
+            options: {
+                resolve: resolve
+            }
+          }
         ]
       },
       {
@@ -133,11 +145,6 @@ module.exports = {
         all: true,
         assets: true
       }
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
     })
   ],
   node: {
@@ -150,7 +157,8 @@ module.exports = {
       bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
       handlebars: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/handlebars/runtime'),
       'core-js': path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/core-js'),
-      tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
+      tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source'),
+      tpCustomerhub: path.resolve('../../../tetrapak-customerhub/ui.dev/src/source')
     }
   }
-};
+}
