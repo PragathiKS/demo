@@ -96,7 +96,7 @@
           permission: allow
           actions: read
           privileges:
-          repGlob:
+          repGlob: ""
 
         - path: /etc
           permission: allow
@@ -117,12 +117,12 @@
           permission: allow
           actions: read
           privileges:
-          repGlob:
+          repGlob: ""
 
-        - path: /content
-          permission: deny
-          actions:
-          privileges: jcr:read,jcr:readAccessControl
+        - path: /libs
+          permission: allow
+          actions: read
+          privileges:
           repGlob:
 
         - path: /content
@@ -135,7 +135,7 @@
           permission: allow
           actions:
           privileges: jcr:read,jcr:readAccessControl
-          repGlob: /jcr:*
+          repGlob: /jcr:content
 
         - path: /content/dam
           permission: deny
@@ -862,3 +862,6 @@
           actions: read
           privileges:
           repGlob:
+
+- obsolete_authorizables:
+    - tl-pw-content-authors
