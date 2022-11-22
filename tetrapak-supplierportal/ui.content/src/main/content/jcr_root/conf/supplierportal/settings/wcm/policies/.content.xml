@@ -10,9 +10,9 @@
                     <content-default
                             jcr:description="Policy for editable layout containers"
                             jcr:primaryType="nt:unstructured"
-                            jcr:title="tetrapak content components"
+                            jcr:title="Supplier portal content components"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:tetrapak-content-components]"
+                            components="[group:tetrapak-supplierportal-configuration-components]"
                             policyResourceType="wcm/foundation/components/responsivegrid">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured"/>
@@ -22,22 +22,6 @@
                                 jcr:primaryType="nt:unstructured"
                                 mergeList="{Boolean}true"/>
                     </content-default>
-                    <global-default
-                            jcr:description="Policy for global components"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="tetrapak global components"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            components="group:tetrapak-global-components">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </global-default>
-                    <config-default
-                            jcr:description="Policy for config components"
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="tetrapak configuration components"
-                            sling:resourceType="wcm/core/components/policy/policy"
-                            components="group:tetrapak-configuration-components">
-                        <jcr:content jcr:primaryType="nt:unstructured"/>
-                    </config-default>
                 </responsivegrid>
             </components>
         </foundation>

@@ -1,0 +1,32 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "headerconfiguration": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:createdBy": "admin",
+      "mLogoLink": "/content/tetrapak/supplierporta/ca/en",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:created": "Sat Nov 19 2022 14:11:40 GMT+0100",
+      "logoUrl": "/content/dam/tetrapak/supplierporta/contentfragment/countries/albania",
+      "jcr:lastModified": "Tue Nov 22 2022 10:25:29 GMT+0100",
+      "sling:resourceType": "supplierportal/components/structure/headerconfiguration",
+      "dLogoLink": "/content/tetrapak/supplierporta/ca/en",
+      "headerNavLinks": {
+        "jcr:primaryType": "nt:unstructured",
+        "item0": {
+          "jcr:primaryType": "nt:unstructured",
+          "targetNew": "true",
+          "href": "/content/tetrapak/supplierporta/ca/en",
+          "name": "en"
+        },
+        "item1": {
+          "jcr:primaryType": "nt:unstructured",
+          "targetNew": "false",
+          "href": "/content/tetrapak/supplierporta/ca/en",
+          "name": "ca"
+        }
+      }
+    }
+  }
+}

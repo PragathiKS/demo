@@ -1,5 +1,73 @@
-@import '~tpCustomerhub/templates/components/header/header';
-
 .tp-header {
-    left: 0;
+    @include height(88px);
+    @include padding($padding-xl $padding-md);
+    @include margin-bottom($margin-l);
+    @include font-size(14px);
+    display: flex;
+    color: $color-congress-blue;
+    align-items: center;
+    background-color: $color-white;
+    font-family: $font-monsterrat;
+    $shadow: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px 0 $shadow;
+    font-weight: 700;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: $zindex-header;
+
+    @media #{$desktop} {
+        @include padding($padding-l);
+    }
+
+    &__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        @media #{$desktop} {
+            @include padding($padding-l);
+            flex: 1;
+            justify-content: flex-start;
+        }
+    }
+
+    &__link {
+        height: auto;
+        & img {
+            height: auto;
+            min-width: 156px;
+            width: 156px;
+        }
+    }
+
+    &__nav-right {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__user {
+        display: none;
+
+        @media #{$desktop} {
+            @include padding-right($padding-md);
+            display: flex;
+        }
+        &:hover {
+            color: $color-sky-blue;
+            &::before {
+                color: $color-sky-blue;
+            }
+        }
+        &::before {
+            @include font-size($font-normal);
+            @include margin-top($margin-xss);
+            @include padding-right($padding-sm);
+            color: $color-congress-blue;
+        }
+    }
 }
