@@ -1,0 +1,45 @@
+{
+	"jcr:primaryType": "cq:Page",
+	"jcr:createdBy": "admin",
+	"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+	"jcr:content": {
+		"jcr:primaryType": "cq:PageContent",
+		"jcr:createdBy": "admin",
+		"jcr:title": "English",
+		"cq:lastReplicationAction": "Activate",
+		"cq:template": "/conf/supplierportal/settings/wcm/templates/content-page",
+		"cq:lastReplicatedBy": "roomahaj",
+		"jcr:created": "Wed Feb 12 2020 15:17:39 GMT+0530",
+		"cq:lastReplicated": "Wed Dec 04 2019 14:34:58 GMT+0000",
+		"cq:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
+		"sling:resourceType": "supplierportal/components/structure/pages/page",
+		"cq:lastModifiedBy": "admin",
+		"root": {
+			"jcr:primaryType": "nt:unstructured",
+			"sling:resourceType": "wcm/foundation/components/responsivegrid",
+			"responsivegrid": {
+				"jcr:primaryType": "nt:unstructured",
+				"sling:resourceType": "wcm/foundation/components/responsivegrid",
+				"headerconfiguration": {
+					"jcr:primaryType": "nt:unstructured",
+					"jcr:createdBy": "admin",
+					"loginLabel": "Login Label",
+					"loginLink": "http://www.google.com",
+					"jcr:lastModifiedBy": "admin",
+					"jcr:created": "Tue Mar 24 2020 12:35:55 GMT+0530",
+					"contactLink": "/content/tetrapak/supplierportal/global/en",
+					"contactText": "Contact Us Label",
+					"logoLinkTarget": "_blank",
+					"logoAlt": "Logo ",
+					"jcr:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
+					"sling:resourceType": "supplierportal/components/structure/headerconfiguration",
+					"contactLinkTarget": "_blank",
+					"logoLink": "/content/tetrapak/supplierportal/global/en",
+					"logoImagePath": "/content/dam/tetrapak/supplierportal/global/header/header.png",
+					"solutionPage": "/content/tetrapak/supplierportal/global/en/solutions",
+					"searchPage": "/content/tetrapak/supplierportal/lang-masters/en/search"
+				}
+			}
+		}
+	}
+}

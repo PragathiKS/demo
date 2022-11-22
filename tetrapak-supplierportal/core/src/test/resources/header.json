@@ -1,0 +1,49 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Sat Nov 19 2022 14:11:31 GMT+0100",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:createdBy": "admin",
+    "jcr:title": "ll",
+    "cq:template": "/conf/supplierportal/settings/wcm/templates/content-page",
+    "jcr:created": "Sat Nov 19 2022 14:11:31 GMT+0100",
+    "cq:lastModified": "Mon Nov 21 2022 23:35:16 GMT+0100",
+    "sling:resourceType": "supplierportal/components/structure/page",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "headerconfiguration": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "mLogoLink": "/content/tetrapak/publicweb/ca/en",
+          "jcr:lastModifiedBy": "admin",
+          "jcr:created": "Sat Nov 19 2022 14:11:40 GMT+0100",
+          "logoUrl": "/content/dam/tetrapak/publicweb/contentfragment/countries/albania",
+          "jcr:lastModified": "Mon Nov 21 2022 23:35:16 GMT+0100",
+          "sling:resourceType": "supplierportal/components/structure/headerconfiguration",
+          "dLogoLink": "/content/tetrapak/publicweb/ca/en",
+          "headerNavLinks": {
+            "jcr:primaryType": "nt:unstructured",
+            "item0": {
+              "jcr:primaryType": "nt:unstructured",
+              "targetNew": "true",
+              "href": "/content/tetrapak/publicweb/ca/en",
+              "name": "DDD"
+            },
+            "item1": {
+              "jcr:primaryType": "nt:unstructured",
+              "targetNew": "false",
+              "href": "/content/tetrapak/publicweb/ca/en",
+              "name": "AAAA"
+            }
+          }
+        }
+      }
+    }
+  }
+}
