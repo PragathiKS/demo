@@ -57,7 +57,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                 fieldLabel="Copyright Text"
                                 maxlength="{Long}300"
-                                name="./footerText"/>
+                                name="./copyrightText"/>
                         </items>
                     </general>
                 </items>
