@@ -1,9 +1,8 @@
-package com.tetrapak.supplierportal.core.constants;
+package com.tetrapak.supplierportal.constants;
 
-/**
- * The SupplierPortalConstants class.
- */
 public final class SupplierPortalConstants {
+
+    public static final String CONTENT_ROOT = "/content/tetrapak/supplierportal";
 
     /**
      * The Constant HTML_EXTENSION.
@@ -49,9 +48,8 @@ public final class SupplierPortalConstants {
      * The Constant EXTERNAL_LINK.
      */
     public static final String EXTERNAL_LINK = "external";
-
     /**
-     * Instantiates a new supplier portal constants.
+     * Instantiates a new customer hub constants.
      */
     private SupplierPortalConstants() {
         throw new IllegalStateException("Utility class");
