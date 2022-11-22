@@ -195,7 +195,6 @@ $progress-units: (
         .dropdown-item {
             @include padding(0 16px);
             border: 0;
-            font-family: $font-monsterrat;
             line-height: convert-to-rem(40px);
             height: convert-to-rem(40px);
             font-weight: 400;

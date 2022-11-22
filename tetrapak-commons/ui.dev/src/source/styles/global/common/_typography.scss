@@ -2,25 +2,7 @@
     #TYPOGRAPHY
 \*------------------------------------*/
 
-// Avenir fonts
-$font-light: "avenirlight",
-Verdana,
-sans-serif;
-$font-light-italic: "avenirlight_italic",
-Verdana,
-sans-serif;
-$font-black: "avenirblack",
-Verdana,
-sans-serif;
-$font-black-italic: "avenirblack_italic",
-Verdana,
-sans-serif;
-$font-bold: "avenirbold",
-Verdana,
-sans-serif;
-$font-bold-italic: "avenirbold_italic",
-Verdana,
-sans-serif;
+$font-monsterrat: "Montserrat";
 
 .hero {
     @include font-size($font-xxxl);

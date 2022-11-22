@@ -67,7 +67,7 @@ function _renderCtiDocuments(langAvailable, otherLang) {
 function _getCtiDocuments() {
   const $this = this;
   const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
-  // const rkRelease = 'TP_2018_31_04';
+  // const rkRelease = 'TT3_2020_01_01';
   if(rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
@@ -138,7 +138,7 @@ function _getRebuildingKitDetails() {
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
-        url: `https://api-dev.tetrapak.com/installedbase/rebuildingkits?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
+        url: `${$this.cache.rebuildingdetailsApi}?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
         method: ajaxMethods.GET,
         cache: true,
         dataType: 'json',

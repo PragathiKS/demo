@@ -9,14 +9,6 @@ public class RebuildingKits {
     @Expose
     private String countryCode;
 
-    @SerializedName("countryName")
-    @Expose
-    private String countryName;
-
-    @SerializedName("customerNumber")
-    @Expose
-    private String customerNumber;
-
     @SerializedName("customerName")
     @Expose
     private String customerName;
@@ -25,41 +17,13 @@ public class RebuildingKits {
     @Expose
     private String location;
 
-    @SerializedName("lineName")
+    @SerializedName("lineCode")
     @Expose
-    private String lineName;
+    private String lineCode;
 
     @SerializedName("position")
     @Expose
     private String position;
-
-    @SerializedName("equipmentType")
-    @Expose
-    private String equipmentType;
-
-    @SerializedName("equipmentDesc")
-    @Expose
-    private String equipmentDesc;
-
-    @SerializedName("serialNumber")
-    @Expose
-    private String serialNumber;
-
-    @SerializedName("permanentVolumeConversion")
-    @Expose
-    private String permanentVolumeConversion;
-
-    @SerializedName("equipmentStatus")
-    @Expose
-    private String equipmentStatus;
-
-    @SerializedName("equipmentTypeDesc")
-    @Expose
-    private String equipmentTypeDesc;
-
-    @SerializedName("equipmentStatusDesc")
-    @Expose
-    private String equipmentStatusDescription;
 
     @SerializedName("rkNumber")
     @Expose
@@ -69,29 +33,77 @@ public class RebuildingKits {
     @Expose
     private String rkDesc;
 
-    @SerializedName("implDate")
+    @SerializedName("serialNumber")
     @Expose
-    private String implDate;
+    private String serialNumber;
+
+    @SerializedName("equipmentDesc")
+    @Expose
+    private String equipmentDesc;
 
     @SerializedName("implStatus")
     @Expose
     private String implStatus;
 
+    @SerializedName("permanentVolumeConversion")
+    @Expose
+    private String permanentVolumeConversion;
+
     @SerializedName("implStatusDate")
     @Expose
     private String implStatusDate;
+
+
+    @SerializedName("implDate")
+    @Expose
+    private String implDate;
+
+
+    @SerializedName("implDeadline")
+    @Expose
+    private String implDeadline;
+
+
+    @SerializedName("equipmentStatus")
+    @Expose
+    private String equipmentStatus;
+
+
+    @SerializedName("equipmentStructure")
+    @Expose
+    private String equipmentStructure;
+
+    @SerializedName("serviceOrder")
+    @Expose
+    private String serviceOrder;
+
+    @SerializedName("order")
+    @Expose
+    private String order;
 
     @SerializedName("rebuildingKitStatus")
     @Expose
     private String rebuildingKitStatus;
 
-    @SerializedName("releaseDateFirst")
+    @SerializedName("technicalBulletin")
     @Expose
-    private String releaseDateFirst;
+    private String technicalBulletin;
 
     @SerializedName("releaseDate")
     @Expose
     private String releaseDate;
+
+    @SerializedName("releaseDateFirst")
+    @Expose
+    private String releaseDateFirst;
+
+    @SerializedName("rkTypeDesc")
+    @Expose
+    private String rkTypeDesc;
+
+    @SerializedName("plannedDate")
+    @Expose
+    private String plannedDate;
 
     @SerializedName("mechanicalSkills")
     @Expose
@@ -101,17 +113,60 @@ public class RebuildingKits {
     @Expose
     private String automationSkills;
 
-    @SerializedName("electricalSkills")
+    @SerializedName("customerNumber")
     @Expose
-    private String electricalSkills;
+    private String customerNumber;
 
     @SerializedName("machineSystem")
     @Expose
     private String machineSystem;
 
+
     @SerializedName("machineSystemDesc")
     @Expose
     private String machineSystemDesc;
+
+    @SerializedName("rkHandling")
+    @Expose
+    private String rkHandling;
+
+
+    @SerializedName("equipmentMaterial")
+    @Expose
+    private String equipmentMaterial;
+
+    @SerializedName("equipmentMaterialDesc")
+    @Expose
+    private String equipmentMaterialDesc;
+
+    @SerializedName("equipmentType")
+    @Expose
+    private String equipmentType;
+
+    @SerializedName("equipmentNumber")
+    @Expose
+    private String equipmentNumber;
+
+    @SerializedName("countryName")
+    @Expose
+    private String countryName;
+
+
+    @SerializedName("lineName")
+    @Expose
+    private String lineName;
+
+    @SerializedName("electricalSkills")
+    @Expose
+    private String electricalSkills;
+
+    @SerializedName("rkTime")
+    @Expose
+    private String rkTime;
+
+    @SerializedName("kpiExcl")
+    @Expose
+    private String kpiExcl;
 
     public String getCountryCode() {
         return countryCode;
@@ -169,13 +224,6 @@ public class RebuildingKits {
         this.equipmentStatus = equipmentStatus;
     }
 
-    public String getEquipmentStatusDescription() {
-        return equipmentStatusDescription;
-    }
-
-    public void setEquipmentStatusDescription(String equipmentStatusDescription) {
-        this.equipmentStatusDescription = equipmentStatusDescription;
-    }
 
     public String getEquipmentType() {
         return equipmentType;
@@ -183,14 +231,6 @@ public class RebuildingKits {
 
     public void setEquipmentType(String equipmentType) {
         this.equipmentType = equipmentType;
-    }
-
-    public String getEquipmentTypeDesc() {
-        return equipmentTypeDesc;
-    }
-
-    public void setEquipmentTypeDesc(String equipmentTypeDesc) {
-        this.equipmentTypeDesc = equipmentTypeDesc;
     }
 
     public String getSerialNumber() {
@@ -327,5 +367,117 @@ public class RebuildingKits {
 
     public void setEquipmentDesc(String equipmentDesc) {
         this.equipmentDesc = equipmentDesc;
+    }
+
+    public String getLineCode() {
+        return lineCode;
+    }
+
+    public void setLineCode(String lineCode) {
+        this.lineCode = lineCode;
+    }
+
+    public String getImplDeadline() {
+        return implDeadline;
+    }
+
+    public void setImplDeadline(String implDeadline) {
+        this.implDeadline = implDeadline;
+    }
+
+    public String getEquipmentStructure() {
+        return equipmentStructure;
+    }
+
+    public void setEquipmentStructure(String equipmentStructure) {
+        this.equipmentStructure = equipmentStructure;
+    }
+
+    public String getServiceOrder() {
+        return serviceOrder;
+    }
+
+    public void setServiceOrder(String serviceOrder) {
+        this.serviceOrder = serviceOrder;
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public String getTechnicalBulletin() {
+        return technicalBulletin;
+    }
+
+    public void setTechnicalBulletin(String technicalBulletin) {
+        this.technicalBulletin = technicalBulletin;
+    }
+
+    public String getRkTypeDesc() {
+        return rkTypeDesc;
+    }
+
+    public void setRkTypeDesc(String rkTypeDesc) {
+        this.rkTypeDesc = rkTypeDesc;
+    }
+
+    public String getPlannedDate() {
+        return plannedDate;
+    }
+
+    public void setPlannedDate(String plannedDate) {
+        this.plannedDate = plannedDate;
+    }
+
+    public String getRkHandling() {
+        return rkHandling;
+    }
+
+    public void setRkHandling(String rkHandling) {
+        this.rkHandling = rkHandling;
+    }
+
+    public String getEquipmentMaterial() {
+        return equipmentMaterial;
+    }
+
+    public void setEquipmentMaterial(String equipmentMaterial) {
+        this.equipmentMaterial = equipmentMaterial;
+    }
+
+    public String getEquipmentMaterialDesc() {
+        return equipmentMaterialDesc;
+    }
+
+    public void setEquipmentMaterialDesc(String equipmentMaterialDesc) {
+        this.equipmentMaterialDesc = equipmentMaterialDesc;
+    }
+
+    public String getEquipmentNumber() {
+        return equipmentNumber;
+    }
+
+    public void setEquipmentNumber(String equipmentNumber) {
+        this.equipmentNumber = equipmentNumber;
+    }
+
+    public String getRkTime() {
+        return rkTime;
+    }
+
+    public void setRkTime(String rkTime) {
+        this.rkTime = rkTime;
+    }
+
+    public String getKpiExcl() {
+        return kpiExcl;
+    }
+
+    public void setKpiExcl(String kpiExcl) {
+        this.kpiExcl = kpiExcl;
     }
 }

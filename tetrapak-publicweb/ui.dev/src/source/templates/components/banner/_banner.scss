@@ -249,7 +249,6 @@
         }
         .tpatom-link {
             @include margin-top($margin-md);
-            font-family: $font-monsterrat;
             &.no-desc {
                 @include margin-top($margin-zero);
             }

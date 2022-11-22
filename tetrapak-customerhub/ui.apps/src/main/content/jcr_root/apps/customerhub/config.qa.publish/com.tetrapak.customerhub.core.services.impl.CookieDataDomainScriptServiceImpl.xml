@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="sling:OsgiConfig"
+		  cookieDomainScriptConfig="[&quot;customerhub&quot;={&quot;siteAbbreviation&quot;:&quot;mtp&quot;\,&quot;domainScript&quot;:&quot;5552e00a-9d31-4afb-b5b3-1ce9ec4c6472-test&quot;}]"/>
