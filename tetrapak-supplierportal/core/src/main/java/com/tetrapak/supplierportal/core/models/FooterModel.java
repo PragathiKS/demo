@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import com.tetrapak.supplierportal.constants.SupplierPortalConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -22,6 +23,8 @@ public class FooterModel {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(FooterModel.class);
+
+	private static final String CONFIGURATION_PATH = "/jcr:content/root/responsivegrid/footerconfiguration";
 
 	/** The request. */
 	@SlingObject
@@ -40,15 +43,8 @@ public class FooterModel {
 	protected void init() {
 		final List<FooterLinkModel> footerLinks;
 		LOGGER.debug("inside init method");
-		String pathInfo = request.getPathInfo();
-		String rootPath;
-		if(pathInfo.contains(".html")) {
-			rootPath = pathInfo.substring(0,pathInfo.length()-5);
-		}else {
-			rootPath = pathInfo;
-		}
-		
-		final String path = rootPath + "/jcr:content/root/responsivegrid/footerconfiguration";
+
+		final String path = SupplierPortalConstants.CONTENT_ROOT + CONFIGURATION_PATH;
 		final Resource footerConfigurationResource = request.getResourceResolver().getResource(path);
 		if (Objects.nonNull(footerConfigurationResource)) {
 			final FooterConfigurationModel configurationModel = footerConfigurationResource
