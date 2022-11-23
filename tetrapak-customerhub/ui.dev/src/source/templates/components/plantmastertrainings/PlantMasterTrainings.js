@@ -15,15 +15,14 @@ function _processTrainingsData(data,pingUserGroup) {
 
   data.forEach((item) => {
     if(trainingUserGroup.length > 0){
-      if(trainingUserGroup.includes(item.extRef.material.number)){
-        const {learningItemDetail, name, extRef} = item;
-        const {material} = extRef;
-        const {number} = material;
+      if(trainingUserGroup.includes(item.learningItemDetail.itemId)){
+        const {learningItemDetail, name} = item;
+        const {itemId} = learningItemDetail;
         const {itemGoals, audience, duration, maximumEnrollments, comments} = learningItemDetail;
 
         processedDataArr.push({
           name,
-          id: number,
+          id: itemId,
           description: item.descriptions[0].body,
           itemGoals,
           audience,
@@ -218,7 +217,7 @@ function _getTrainingsData() {
 }
 
 /**
- * Fetch ping user data
+ * Fetch ping user data 
  */
 
 function _getUserGroup() {
