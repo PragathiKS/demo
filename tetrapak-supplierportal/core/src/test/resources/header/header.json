@@ -10,11 +10,11 @@
         "jcr:primaryType": "nt:unstructured",
         "sling:resourceType": "wcm/foundation/components/responsivegrid",
         "headerconfiguration": {
-          "logoUrl": "/content/dam/tetrapak/supplierporta/Logo.png",
+          "logoUrl": "/content/dam/tetrapak/supplierportal/Logo.png",
           "jcr:lastModified": "Tue Nov 22 2022 10:25:29 GMT+0100",
           "sling:resourceType": "supplierportal/components/structure/headerconfiguration",
-          "dLogoLink": "/content/tetrapak/supplierporta/ca/en",
-          "mLogoLink": "/content/tetrapak/supplierporta/ca/de"
+          "dLogoLink": "/content/tetrapak/supplierportal/ca/en",
+          "mLogoLink": "/content/tetrapak/supplierportal/ca/de"
         }
       }
     }
