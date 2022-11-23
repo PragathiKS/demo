@@ -26,6 +26,7 @@
     }
 
     &__navigation-list {
+        justify-content: center;
         @media #{$desktop} {
             @include margin-top($spacing-big);
             display: flex;
