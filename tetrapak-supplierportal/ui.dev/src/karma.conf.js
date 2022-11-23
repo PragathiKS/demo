@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const webpackConfig = require('./config').webpack;
 const argv = require('yargs').argv;
@@ -11,7 +10,6 @@ module.exports = function (config) {
     customLaunchers: {
       ChromeHeadlessCustom: {
         base: 'Chrome',
-        //debug: true,
         flags: [
           '--headless',
           '--window-size=1920,1080',
@@ -106,13 +104,6 @@ module.exports = function (config) {
       node: {
         fs: 'empty'
       },
-      plugins: [
-        new webpack.ProvidePlugin({
-          $: 'jquery',
-          jQuery: 'jquery',
-          'window.jQuery': 'jquery'
-        })
-      ],
       resolve: {
         mainFields: ['main', 'module'],
         alias: {

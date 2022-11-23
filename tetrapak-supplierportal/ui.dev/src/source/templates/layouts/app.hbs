@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/commons/components/content/{{fsdId}}/{{fsdId}}-template.html" />
+<sly data-sly-use.{{fsdId}}Model="ux-model.js" data-sly-use.lib="/apps/supplierportal/components/content/{{fsdId}}/{{fsdId}}-template.html" />
 <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}">
     <head>
         <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" />
@@ -10,16 +10,21 @@
         <meta name="template" content="demoTemplate">
         <meta name="pageType" content="GenericPageType">
         <title>{{fsdId}} Component</title>
-        <sly data-sly-call="${clientLib.css @ categories='tp.common.default.en'}" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+        <sly data-sly-call="${clientLib.css @ categories='tp.supplierportal.vendor'}" />
+        <sly data-sly-call="${clientLib.css @ categories='tp.supplierportal.default.en'}" />
     </head>
 </sly>
 
 <body>
-    {{> body}}
+    <input type="hidden" id="isDummyLayout" value="true" />
+    <div class="tp-container">
+        {{> body}}
+    </div>
 
     <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}"
-        data-sly-call="${clientLib.js @ categories='tp.common.vendor'}" />
+        data-sly-call="${clientLib.js @ categories='tp.supplierportal.vendor'}" />
     <sly data-sly-test="${ {{fsdId}}Model.requestURI == {{fsdId}}Model.nodePathWithSelector} || {{fsdId}}Model.requestURI == {{fsdId}}Model.pagePathWithSelector}"
-        data-sly-call="${clientLib.js @ categories='tp.common.global'}" />
+        data-sly-call="${clientLib.js @ categories='tp.supplierportal.global'}" />
 </body>
 </html>

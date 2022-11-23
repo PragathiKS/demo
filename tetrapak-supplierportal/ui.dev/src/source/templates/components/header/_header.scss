@@ -1,0 +1,15 @@
+@import '~tpCustomerhub/templates/components/header/header';
+
+.tp-header {
+    left: 0;
+    &__user {
+        display: flex;
+    
+        .userName {
+            display: none;
+            @media #{$desktop} {
+                display: inline;
+            }
+        }
+    }
+}

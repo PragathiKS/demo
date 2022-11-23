@@ -1,21 +1,14 @@
-var config = require('../config').watch;
+var config = require('../config.json').webfont;
 module.exports = {
-  options: {
-    interval: 250
-  },
-  assemble: {
-    files: config.assemble.files,
-    tasks: config.assemble.tasks,
+  icons: {
+    src: config.src,
+    dest: config.target,
+    destScss: config.scss.target,
     options: {
-      spawn: false
+      font: config.fontFile,
+      syntax: "bootstrap",
+      stylesheets: ["scss"],
+      relativeFontPath: config.relativePath
     }
-  },
-  static: {
-    files: config.static.files,
-    tasks: config.static.tasks
-  },
-  aemcomponentcopy: {
-    files: config.aem.files,
-    tasks: config.aem.tasks
   }
 };
