@@ -30,7 +30,6 @@ body {
 
 a {
     @include line-height($font-l, $font-baseline);
-    font-family: $font-monsterrat;
     font-weight: 400;
     font-size: $font-baseline;
 }
@@ -49,15 +48,12 @@ img {
 }
 h1,
 h2 {
-    font-family: $font-monsterrat;
     font-weight: 700;
 }
 h3 {
-    font-family: $font-monsterrat;
     font-weight: 400;
 }
 h4 {
-    font-family: $font-monsterrat;
     font-weight: 500;
 }
 
@@ -196,7 +192,6 @@ h4 {
     letter-spacing: 0;
 }
 .tpatom-heading {
-    font-family: $font-monsterrat;
     &--regular {
         font-weight: 400;
         @media #{$desktop} {
