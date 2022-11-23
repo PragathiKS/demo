@@ -57,7 +57,4 @@ public class HeaderModel {
         return USER_INFO_I18N;
     }
 
-    public boolean getRightNavDisplay() {
-        return true;
-    }
 }
