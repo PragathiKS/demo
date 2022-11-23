@@ -86,6 +86,17 @@
         ],
         "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/commons/jsonData"
       }
+    ],
+    "fonts": [
+      {
+        "expand": true,
+        "flatten": true,
+        "cwd": "<%= config.source %>/assets/fonts/",
+        "src": [
+          "**/*.{otf,eot,ttf,woff,woff2,svg}"
+        ],
+        "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts"
+      }
     ]
   },
   "webfont": {
@@ -227,6 +238,7 @@
       "tasks": [
         "assemble",
         "copy:jsonData",
+        "copy:fonts",
         "aemdeploy:components",
         "aemdeploy:models",
         "aemdeploy:jsonData"
@@ -245,6 +257,7 @@
         "shell:removeChunkHash",
         "shell:clientlibify",
         "copy:jsonData",
+        "copy:fonts",
         "assemble",
         "aemcomponentcopy:uxlib",
         "aemdeploy"

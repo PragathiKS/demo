@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/apps/supplierportal/clientlibs" mode="update"/>
     <filter root="/apps/supplierportal/components" mode="update"/>
+    <filter root="/apps/supplierportal/clientlibs" mode="update"/>
     <filter root="/apps/supplierportal/i18n">
         <exclude pattern="/apps/supplierportal/i18n(/.*)?"/>
     </filter>

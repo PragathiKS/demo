@@ -77,7 +77,7 @@
     - fragment-superuser:
 
         - name:
-          memberOf: fragment-restrict-for-everyone,fragment-basic-allow,fragment-siteadmin,fragment-dam,fragment-tagging,fragment-template,fragment-inbox,fragment-tools,fragment-xf
+          memberOf: fragment-restrict-for-everyone,fragment-basic-allow,fragment-siteadmin,fragment-dam,fragment-tagging,fragment-template,fragment-inbox,fragment-xf
           path: /home/groups/f
 
     - fragment-templateauthor:
@@ -96,7 +96,7 @@
           permission: allow
           actions: read
           privileges:
-          repGlob:
+          repGlob: ""
 
         - path: /etc
           permission: allow
@@ -117,12 +117,12 @@
           permission: allow
           actions: read
           privileges:
-          repGlob:
+          repGlob: ""
 
-        - path: /content
-          permission: deny
-          actions:
-          privileges: jcr:read,jcr:readAccessControl
+        - path: /libs
+          permission: allow
+          actions: read
+          privileges:
           repGlob:
 
         - path: /content
@@ -135,13 +135,7 @@
           permission: allow
           actions:
           privileges: jcr:read,jcr:readAccessControl
-          repGlob: /jcr:*
-
-        - path: /content/dam
-          permission: deny
-          actions:
-          privileges: jcr:read,jcr:readAccessControl
-          repGlob:
+          repGlob: /jcr:content
 
         - path: /content/dam
           permission: allow
@@ -153,7 +147,7 @@
           permission: allow
           actions:
           privileges: jcr:read,jcr:readAccessControl
-          repGlob: /jcr:*
+          repGlob: /jcr:content
 
         - path: /content/cq:tags
           permission: deny
@@ -862,3 +856,6 @@
           actions: read
           privileges:
           repGlob:
+
+- obsolete_authorizables:
+    - tl-pw-content-authors
