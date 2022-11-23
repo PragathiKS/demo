@@ -45,8 +45,8 @@ public class HeaderModelTest {
     }
 
     @Test public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Header", "/content/dam/tetrapak/supplierporta/Logo.png", model.getLogoUrl());
-        assertEquals("Header", "/content/tetrapak/supplierporta/ca/de.html", model.getMLogoLink());
-        assertEquals("Header", "/content/tetrapak/supplierporta/ca/en.html", model.getDLogoLink());
+        assertEquals("Header", "/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
+        assertEquals("Header", "/content/tetrapak/supplierportal/ca/de.html", model.getMLogoLink());
+        assertEquals("Header", "/content/tetrapak/supplierportal/ca/en.html", model.getDLogoLink());
     }
 }
