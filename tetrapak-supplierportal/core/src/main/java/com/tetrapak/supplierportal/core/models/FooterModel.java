@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
-import com.tetrapak.supplierportal.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
-import com.tetrapak.supplierportal.utils.LinkUtil;
+import com.tetrapak.supplierportal.core.utils.LinkUtil;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterModel {

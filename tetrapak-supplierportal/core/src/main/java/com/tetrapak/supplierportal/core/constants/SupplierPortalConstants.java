@@ -1,4 +1,4 @@
-package com.tetrapak.supplierportal.constants;
+package com.tetrapak.supplierportal.core.constants;
 
 public final class SupplierPortalConstants {
 
