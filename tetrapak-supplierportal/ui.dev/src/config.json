@@ -121,9 +121,9 @@
         "enforce": true,
         "chunks": "all"
       },
-      "global": {
+      "default_en": {
         "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
-        "name": "global",
+        "name": "default.en",
         "enforce": true,
         "chunks": "all"
       }
@@ -133,8 +133,7 @@
         "source/scripts/common/",
         "source/scripts/utils/",
         "source/templates/components/helloearth/",
-        "source/templates/components/header/",
-        "source/templates/components/footer/"
+        "source/templates/components/header/"
       ]
     },
     "handlebars": {
@@ -153,7 +152,7 @@
   "chunkrename": {
     "vendor": "apps/settings/wcm/designs/supplierportal/clientlibs/vendor.publish/js/vendor.js",
     "common": "apps/settings/wcm/designs/supplierportal/clientlibs/common.publish/js/common.js",
-    "global": "apps/settings/wcm/designs/supplierportal/clientlibs/global.publish/js/default.js"
+    "default.en": "apps/settings/wcm/designs/supplierportal/clientlibs/default.en.publish/js/default.js"
   },
   "clientlibs": {
     "vendor": {
@@ -186,9 +185,24 @@
         "languageOut=ECMASCRIPT5"
       ],
       "paths": [
-        "apps/settings/wcm/designs/supplierportal/clientlibs/global.publish/css",
-        "apps/settings/wcm/designs/supplierportal/clientlibs/global.publish/js",
+        "apps/settings/wcm/designs/supplierportal/clientlibs/global.publish",
+        "apps/settings/wcm/designs/supplierportal/clientlibs/default.en.publish/js",
         "apps/settings/wcm/designs/supplierportal/clientlibs/common.publish"
+      ]
+    },
+    "default_en": {
+      "categories": [
+        "tp.supplierportal.default.en"
+      ],
+      "basePath": "apps/settings/wcm/designs/supplierportal/clientlibs/default.en.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/supplierportal/clientlibs/default.en.publish/css"
       ]
     }
   },
