@@ -3,9 +3,9 @@
     jcr:primaryType="cq:Template">
     <jcr:content
         cq:templateType="/conf/supplierportal/settings/wcm/template-types/empty-page"
-        jcr:description="This template is used to create supplier portal content pages under language page"
+        jcr:description="This template is used to create supplier portal global page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Content Page"
-        shortTitle="content"
+        jcr:title="Landing Page"
+        shortTitle="landing"
         status="enabled"/>
 </jcr:root>
