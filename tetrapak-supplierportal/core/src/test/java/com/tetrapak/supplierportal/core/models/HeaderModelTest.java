@@ -34,6 +34,7 @@ public class HeaderModelTest {
 	@Before
 	public void setUp() throws Exception {
 		//TODO
+		
 		/*
 		 * 
 		 * MockSlingHttpServletRequest request = context.request();
