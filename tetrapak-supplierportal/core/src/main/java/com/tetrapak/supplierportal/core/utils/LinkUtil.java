@@ -1,6 +1,6 @@
-package com.tetrapak.supplierportal.utils;
+package com.tetrapak.supplierportal.core.utils;
 
-import com.tetrapak.supplierportal.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
