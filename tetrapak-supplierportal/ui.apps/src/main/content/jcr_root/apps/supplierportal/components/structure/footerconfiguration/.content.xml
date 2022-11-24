@@ -3,4 +3,4 @@
     jcr:description="Footer Configuration Component"
     jcr:primaryType="cq:Component"
     jcr:title="Footer Configuration"
-    componentGroup="tetrapak-supplierportal-configuration-components"/>
+    componentGroup="tetrapak-supplierportal-configuration"/>
