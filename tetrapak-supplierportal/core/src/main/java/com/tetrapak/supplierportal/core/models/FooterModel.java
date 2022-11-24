@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
-import com.tetrapak.supplierportal.core.utils.LinkUtils;
+import com.tetrapak.supplierportal.utils.LinkUtil;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterModel {
@@ -53,7 +53,7 @@ public class FooterModel {
 				footerText = configurationModel.getFooterText();
 				footerLinks = configurationModel.getFooterLinks();
 				for (FooterLinkModel footerLink : footerLinks) {
-					String sanitizedPath = LinkUtils.sanitizeLink(footerLink.getLinkPath(), request);
+					String sanitizedPath = LinkUtil.sanitizeLink(footerLink.getLinkPath(), request);
 					footerLink.setLinkPath(sanitizedPath);
 					footerLinksSanitized.add(footerLink);
 				}
