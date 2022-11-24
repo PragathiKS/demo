@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
-          xmlns:rep="internal" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
-          jcr:mixinTypes="[granite:AuthenticationRequired,rep:AccessControllable,rep:CugMixin]"
-          jcr:primaryType="cq:Page">
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[granite:AuthenticationRequired,rep:AccessControllable,rep:CugMixin]"
+    jcr:primaryType="cq:Page">
     <jcr:content
-            cq:conf="/conf/supplierportal"
-            cq:allowedTemplates="/conf/supplierportal/settings/wcm/templates/.*"
-            cq:template="/conf/supplierportal/settings/wcm/templates/content-page"
-            jcr:primaryType="cq:PageContent"
-            jcr:title="Supplier Portal"
-            sling:resourceType="supplierportal/components/structure/page"
-            showTitle="false"/>
-    <rep:cugPolicy/>
+        cq:allowedTemplates="/conf/supplierportal/settings/wcm/templates/.*"
+        cq:conf="/conf/supplierportal"
+        cq:template="/conf/supplierportal/settings/wcm/templates/content-page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Supplier Portal"
+        sling:resourceType="supplierportal/components/structure/page"
+        showTitle="false"/>
+    <en/>
 </jcr:root>

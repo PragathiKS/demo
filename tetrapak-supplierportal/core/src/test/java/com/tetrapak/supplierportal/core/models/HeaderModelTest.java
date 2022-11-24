@@ -13,7 +13,7 @@ public class HeaderModelTest {
 
     private static final String RESOURCE_CONTENT = "/header/header.json";
 
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
 
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
 
