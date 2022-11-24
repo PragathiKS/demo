@@ -20,7 +20,7 @@ public class FooterModelTest {
     private static final String RESOURCE_CONTENT = "/footer/test-content.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";

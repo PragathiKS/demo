@@ -2,7 +2,7 @@ package com.tetrapak.supplierportal.constants;
 
 public final class SupplierPortalConstants {
 
-    public static final String CONTENT_ROOT = "/content/tetrapak/supplierportal";
+    public static final String CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
 
     /**
      * The Constant HTML_EXTENSION.
