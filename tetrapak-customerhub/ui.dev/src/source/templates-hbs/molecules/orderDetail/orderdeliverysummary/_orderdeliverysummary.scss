@@ -24,7 +24,7 @@
         }
 
         &-label {
-            font-family: "Montserrat";
+            font-family: $font-monsterrat;
             font-weight: 700;
         }
 
@@ -40,7 +40,7 @@
         @include padding-bottom($padding-md);
 
         &-label {
-            font-family: "Montserrat";
+            font-family: $font-monsterrat;
             font-weight: 700;
         }
     }
