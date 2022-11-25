@@ -1,7 +1,7 @@
 package com.tetrapak.supplierportal.core.models;
 
-import com.tetrapak.supplierportal.constants.SupplierPortalConstants;
-import com.tetrapak.supplierportal.utils.LinkUtil;
+import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.utils.LinkUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
