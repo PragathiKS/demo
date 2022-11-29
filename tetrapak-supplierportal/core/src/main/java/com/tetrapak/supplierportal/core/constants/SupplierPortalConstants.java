@@ -20,6 +20,11 @@ public final class SupplierPortalConstants {
     public static final String HTTP = "http";
 
     /**
+     * The Constant HTTPS.
+     */
+    public static final String HTTPS = "https";
+
+    /**
      * The Constant WWW.
      */
     public static final String WWW = "www";
