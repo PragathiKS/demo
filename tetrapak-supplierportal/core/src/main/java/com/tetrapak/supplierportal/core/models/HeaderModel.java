@@ -51,7 +51,7 @@ public class HeaderModel {
         return mLogoLink;
     }
 
-    public boolean ismLogoLinkInternal() {
+    public boolean mLogoLinkInternal() {
         return mLogoLinkInternal;
     }
 
@@ -59,7 +59,7 @@ public class HeaderModel {
         return dLogoLink;
     }
 
-    public boolean isdLogoLinkInternal() {
+    public boolean dLogoLinkInternal() {
         return dLogoLinkInternal;
     }
 

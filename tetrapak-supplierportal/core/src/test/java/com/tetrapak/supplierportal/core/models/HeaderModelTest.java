@@ -46,7 +46,9 @@ public class HeaderModelTest {
     @Test public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("Header", "/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
         assertEquals("Header", "/content/tetrapak/supplierportal/ca/de.html", model.getMLogoLink());
+        assertEquals("Header", true, model.mLogoLinkInternal());
         assertEquals("Header", "/content/tetrapak/supplierportal/ca/en.html", model.getDLogoLink());
+        assertEquals("Header", true, model.dLogoLinkInternal());
         assertEquals("Header", "sp.logotext.text", model.getLogoTextI18n());
         assertEquals("Header", "Charlie Svensson", model.getGetUserInfoI18n());
 
