@@ -30,7 +30,15 @@
                                 linkPath="https://www.tetrapak.com/"/>
                         <item1
                                 jcr:primaryType="nt:unstructured"
+                                linkLabel="Cookie Policy"
+                                linkPath="/content/tetrapak/supplierportal/en/legal-information/cookies"/>
+                        <item2
+                                jcr:primaryType="nt:unstructured"
                                 linkLabel="Terms &amp; Conditions"
+                                linkPath="#"/>
+                        <item3
+                                jcr:primaryType="nt:unstructured"
+                                linkLabel="Change language"
                                 linkPath="#"/>
                     </footerLinks>
                 </footerconfiguration>

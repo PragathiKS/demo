@@ -10,7 +10,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
 
@@ -24,22 +23,9 @@ public class FooterConfigurationModel {
 	@Self
 	private Resource resource;
 
-	/** The Footer text. */
-	@ValueMapValue
-	private String copyrightText;
-
 	/** The footer links. */
 	@Inject
 	private List<FooterLinkModel> footerLinks;
-
-	/**
-	 * Gets the Footer Text.
-	 *
-	 * @return the footerText
-	 */
-	public String getFooterText() {
-		return copyrightText;
-	}
 
 	/**
 	 * Gets the footer link.

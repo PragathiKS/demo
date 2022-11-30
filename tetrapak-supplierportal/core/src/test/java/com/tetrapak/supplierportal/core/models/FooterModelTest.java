@@ -63,7 +63,6 @@ public class FooterModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Copyright", model.getFooterText());
         assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
         assertEquals("link", model.getFooterLinks().get(0).getLinkPath());
         
