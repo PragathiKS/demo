@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
-import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -15,6 +14,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
 import com.tetrapak.supplierportal.core.utils.LinkUtil;
 
@@ -33,9 +33,6 @@ public class FooterModel {
 	/** The footer links. */
 	private List<FooterLinkModel> footerLinksSanitized = new ArrayList<>();
 
-	/** The footer copyright text */
-	private String footerText;
-
 	/**
 	 * Inits the.
 	 */
@@ -50,7 +47,6 @@ public class FooterModel {
 			final FooterConfigurationModel configurationModel = footerConfigurationResource
 					.adaptTo(FooterConfigurationModel.class);
 			if (Objects.nonNull(configurationModel)) {
-				footerText = configurationModel.getFooterText();
 				footerLinks = configurationModel.getFooterLinks();
 				for (FooterLinkModel footerLink : footerLinks) {
 					String sanitizedPath = LinkUtil.sanitizeLink(footerLink.getLinkPath(), request);
@@ -60,15 +56,6 @@ public class FooterModel {
 
 			}
 		}
-	}
-
-	/**
-	 * Gets the Footer Text.
-	 *
-	 * @return the Footer Text
-	 */
-	public String getFooterText() {
-		return footerText;
 	}
 
 	public List<FooterLinkModel> getFooterLinks() {
