@@ -52,12 +52,7 @@
                                     </items>
                                 </field>
                             </footerLinks>
-                            <copyrightText
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                fieldLabel="Copyright Text"
-                                maxlength="{Long}300"
-                                name="./copyrightText"/>
+                            
                         </items>
                     </general>
                 </items>

@@ -55,7 +55,6 @@ public class FooterConfigurationModelTest {
      */
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Copyright", model.getFooterText());
         assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
         assertEquals("/content/tetrapak/publicweb", model.getFooterLinks().get(0).getLinkPath());
         
