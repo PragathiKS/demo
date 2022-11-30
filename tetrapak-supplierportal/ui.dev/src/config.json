@@ -133,7 +133,10 @@
         "source/scripts/common/",
         "source/scripts/utils/",
         "source/templates/components/helloearth/",
-        "source/templates/components/header/"
+        "source/templates/components/header/",
+        "source/templates/components/footer/",
+        "source/templates/components/teaser/"
+
       ]
     },
     "handlebars": {

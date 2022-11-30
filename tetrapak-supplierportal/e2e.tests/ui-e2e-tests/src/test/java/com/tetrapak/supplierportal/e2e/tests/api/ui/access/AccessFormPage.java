@@ -37,7 +37,7 @@ public class AccessFormPage {
 
         userProfileAccount = page.locator("#pardot-form p.form-field.Customized_Service_e_busines_user_profile select");
         phone = page.locator("#pardot-form p.form-field.phone input");
-        updatesCheckbox = page.locator("#pardot-form p.form-field.Opt_in_Marketing_Communications.pd-checkbox input");
+        updatesCheckbox = page.locator("#pardot-form p.form-field.Opt_in_Marketing_Communications.pd-checkbox");
         submitButton = page.locator("#pardot-form input[type=\"submit\"]");
     }
 

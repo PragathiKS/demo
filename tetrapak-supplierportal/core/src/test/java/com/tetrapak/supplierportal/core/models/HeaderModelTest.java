@@ -13,7 +13,7 @@ public class HeaderModelTest {
 
     private static final String RESOURCE_CONTENT = "/header/header.json";
 
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
 
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
 
@@ -32,7 +32,6 @@ public class HeaderModelTest {
     Class<HeaderModel> modelClass = HeaderModel.class;
 
     @Before public void setUp() throws Exception {
-
         MockSlingHttpServletRequest request = context.request();
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForPackage("com.tetrapak.supplierportal.core.models");
@@ -45,8 +44,11 @@ public class HeaderModelTest {
     }
 
     @Test public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Header", "/content/dam/tetrapak/supplierporta/Logo.png", model.getLogoUrl());
-        assertEquals("Header", "/content/tetrapak/supplierporta/ca/de.html", model.getMLogoLink());
-        assertEquals("Header", "/content/tetrapak/supplierporta/ca/en.html", model.getDLogoLink());
+        assertEquals("Header", "/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
+        assertEquals("Header", "/content/tetrapak/supplierportal/ca/en.html", model.getLogoLink());
+        assertEquals("Header", true, model.logoLinkInternal());
+        assertEquals("Header", "sp.logotext.text", model.getLogoTextI18n());
+        assertEquals("Header", "Charlie Svensson", model.getGetUserInfoI18n());
+
     }
 }

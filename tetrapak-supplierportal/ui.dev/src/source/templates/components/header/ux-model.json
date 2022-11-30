@@ -2,6 +2,6 @@
   "logoUrl": "https://mypages-qa.tetrapak.com/content/dam/tetrapak/customerhub/english/error/images/TetraPakLogo.png",
   "logoTextI18n": "cuhu.logotext.text",
   "getUserInfoI18n": "Charlie Svensson",
-  "mLogoLink": "https://www.google.com/",
-  "dLogoLink": "https://www.publicissapient.com/"
+  "logoLink": "https://www.google.com/",
+  "logoLinkInternal": false
 }

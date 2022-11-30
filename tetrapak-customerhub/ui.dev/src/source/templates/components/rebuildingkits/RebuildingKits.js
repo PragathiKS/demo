@@ -300,7 +300,7 @@ class RebuildingKits {
     });
 
     // Redirect to RK Detail Page
-    this.root.on('click', '.tp-rk__table-summary__row',  (e) => {
+    this.root.on('click', '.tp-rk__table-summary__row:not(".tp-rk__table-summary__rowheading")',  (e) => {
       const clickLink = $(e.currentTarget);
       const equipmentNumber = clickLink.find('.tpmol-table__key-equipmentNumber').text();
       const rkNumber = clickLink.find('.tpmol-table__key-rkNumber').text();

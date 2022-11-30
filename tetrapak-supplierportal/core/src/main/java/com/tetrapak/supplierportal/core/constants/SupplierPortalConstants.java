@@ -1,8 +1,8 @@
-package com.tetrapak.supplierportal.constants;
+package com.tetrapak.supplierportal.core.constants;
 
 public final class SupplierPortalConstants {
 
-    public static final String CONTENT_ROOT = "/content/tetrapak/supplierportal";
+    public static final String CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
 
     /**
      * The Constant HTML_EXTENSION.
@@ -18,6 +18,11 @@ public final class SupplierPortalConstants {
      * The Constant HTTP.
      */
     public static final String HTTP = "http";
+
+    /**
+     * The Constant HTTPS.
+     */
+    public static final String HTTPS = "https";
 
     /**
      * The Constant WWW.

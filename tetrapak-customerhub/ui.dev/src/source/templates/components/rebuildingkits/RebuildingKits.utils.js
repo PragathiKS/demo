@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 export const _getFormattedCountryData = (array) => {
   array.forEach((item, index) => {
     array[index] = {
