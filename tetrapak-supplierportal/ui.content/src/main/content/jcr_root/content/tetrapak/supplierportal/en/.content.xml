@@ -21,8 +21,7 @@
                         mLogoLink="https://supplier-dev.tetrapak.com/dashboard.html"/>
                 <footerconfiguration
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="supplierportal/components/structure/footerconfiguration"
-                        copyrightText="Copyright">
+                        sling:resourceType="supplierportal/components/structure/footerconfiguration">
                     <footerLinks jcr:primaryType="nt:unstructured">
                         <item0
                                 jcr:primaryType="nt:unstructured"
