@@ -10,6 +10,7 @@ aem:
     - 'shell:karmaTests'
     - 'shell:webpackProd'
     - 'shell:clientlibify'
+    - 'copy:fonts'
     - 'aemcomponentcopy:uxlibProd'
 
 aemWatch:
@@ -20,6 +21,7 @@ aemWatch:
     - 'shell:webpackDev'
     - 'shell:clientlibify'
     - 'copy:jsonData'
+    - 'copy:fonts'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
@@ -33,6 +35,7 @@ aemStart:
     - 'shell:webpackDev'
     - 'shell:clientlibify'
     - 'copy:jsonData'
+    - 'copy:fonts'
     - 'assemble'
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
@@ -53,4 +56,5 @@ default:
     - 'shell:karmaTests'
     - 'shell:webpackDev'
     - 'shell:clientlibify'
+    - 'copy:fonts'
     - 'aemcomponentcopy:uxlibProd'
