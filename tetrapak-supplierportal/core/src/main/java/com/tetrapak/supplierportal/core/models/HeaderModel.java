@@ -20,13 +20,9 @@ public class HeaderModel {
 
     private String logoUrl;
 
-    private String mLogoLink;
+    private String logoLink;
 
-    private String dLogoLink;
-
-    private boolean mLogoLinkInternal;
-
-    private boolean dLogoLinkInternal;
+    private boolean logoLinkInternal;
 
     @PostConstruct protected void init() {
         Resource resource = request.getResourceResolver()
@@ -35,10 +31,8 @@ public class HeaderModel {
             HeaderConfigurationModel model = resource.adaptTo(HeaderConfigurationModel.class);
             if (model != null) {
                 logoUrl = model.getLogoUrl();
-                mLogoLink = LinkUtil.getValidLink(request.getResource(), model.getmLogoLink());
-                mLogoLinkInternal = !LinkUtil.isExternalLink(model.getmLogoLink());
-                dLogoLink = LinkUtil.getValidLink(request.getResource(), model.getdLogoLink());
-                dLogoLinkInternal = !LinkUtil.isExternalLink(model.getdLogoLink());
+                logoLink = LinkUtil.getValidLink(request.getResource(), model.getLogoLink());
+                logoLinkInternal = !LinkUtil.isExternalLink(model.getLogoLink());
             }
         }
     }
@@ -47,20 +41,12 @@ public class HeaderModel {
         return logoUrl;
     }
 
-    public String getMLogoLink() {
-        return mLogoLink;
+    public String getLogoLink() {
+        return logoLink;
     }
 
-    public boolean mLogoLinkInternal() {
-        return mLogoLinkInternal;
-    }
-
-    public String getDLogoLink() {
-        return dLogoLink;
-    }
-
-    public boolean dLogoLinkInternal() {
-        return dLogoLinkInternal;
+    public boolean logoLinkInternal() {
+        return logoLinkInternal;
     }
 
     public String getLogoTextI18n() {

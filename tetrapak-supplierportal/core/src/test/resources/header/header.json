@@ -13,8 +13,7 @@
           "logoUrl": "/content/dam/tetrapak/supplierportal/Logo.png",
           "jcr:lastModified": "Tue Nov 22 2022 10:25:29 GMT+0100",
           "sling:resourceType": "supplierportal/components/structure/headerconfiguration",
-          "dLogoLink": "/content/tetrapak/supplierportal/ca/en",
-          "mLogoLink": "/content/tetrapak/supplierportal/ca/de"
+          "logoLink": "/content/tetrapak/supplierportal/ca/en"
         }
       }
     }

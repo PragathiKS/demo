@@ -25,20 +25,13 @@
                                     fieldLabel="Logo URL"
                                     rootPath="/content/dam/supplierportal"
                                     name="./logoUrl"/>
-                            <mLogoLink
+                            <logoLink
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                    fieldDescription="Select Mobile logo Link"
-                                    fieldLabel="Mobile logo Link"
+                                    fieldDescription="Select logo Link"
+                                    fieldLabel="Logo Link"
                                     rootPath="/content/tetrapak/supplierportal"
-                                    name="./mLogoLink"/>
-                            <dLogoLink
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                    fieldDescription="Select Desktop logo Link"
-                                    fieldLabel="Desktop logo Link"
-                                    rootPath="/content/tetrapak/supplierportal"
-                                    name="./dLogoLink"/>
+                                    name="./logoLink"/>
                         </items>
                     </section>
                 </items>

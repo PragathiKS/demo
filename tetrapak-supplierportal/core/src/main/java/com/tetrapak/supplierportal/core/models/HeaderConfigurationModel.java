@@ -10,20 +10,14 @@ public class HeaderConfigurationModel {
 
     @ValueMapValue private String logoUrl;
 
-    @ValueMapValue private String mLogoLink;
-
-    @ValueMapValue private String dLogoLink;
+    @ValueMapValue private String logoLink;
 
     public String getLogoUrl() {
         return logoUrl;
     }
 
-    public String getmLogoLink() {
-        return mLogoLink;
-    }
-
-    public String getdLogoLink() {
-        return dLogoLink;
+    public String getLogoLink() {
+        return logoLink;
     }
 }
 
