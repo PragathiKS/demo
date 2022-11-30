@@ -68,7 +68,8 @@ public final class LinkUtil {
      */
     public static Boolean isExternalLink(final String link) {
         return (!StringUtils.isEmpty(link) && !link.startsWith(SupplierPortalConstants.CONTENT_PATH) && (
-                link.startsWith(SupplierPortalConstants.HTTP) || link.startsWith(SupplierPortalConstants.WWW)));
+                link.startsWith(SupplierPortalConstants.HTTP) || link.startsWith(SupplierPortalConstants.HTTPS)
+                        || link.startsWith(SupplierPortalConstants.WWW)));
     }
 
     /**

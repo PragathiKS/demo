@@ -33,8 +33,7 @@ public class HeaderConfigurationModelTest {
     }
 
     @Test public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("/content/tetrapak/supplierportal/ca/en", model.getdLogoLink());
+        assertEquals("/content/tetrapak/supplierportal/ca/en", model.getLogoLink());
         assertEquals("/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
-        assertEquals("/content/tetrapak/supplierportal/ca/de", model.getmLogoLink());
     }
 }

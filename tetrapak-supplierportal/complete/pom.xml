@@ -93,6 +93,12 @@
         </dependency>
         <dependency>
             <groupId>tetrapak-supplierportal</groupId>
+            <artifactId>tetrapak-supplierportal.ui.content</artifactId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+        <dependency>
+            <groupId>tetrapak-supplierportal</groupId>
             <artifactId>tetrapak-supplierportal.ui.dev</artifactId>
             <version>${project.version}</version>
             <type>content-package</type>

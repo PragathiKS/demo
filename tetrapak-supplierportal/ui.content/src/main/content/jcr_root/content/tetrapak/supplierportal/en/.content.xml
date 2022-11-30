@@ -16,13 +16,11 @@
                 <headerconfiguration
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="supplierportal/components/structure/headerconfiguration"
-                        dLogoLink="https://supplier-dev.tetrapak.com/dashboard.html"
-                        logoUrl="/content/dam/supplierportal/images/TetraPakLogo.png"
-                        mLogoLink="https://supplier-dev.tetrapak.com/dashboard.html"/>
+                        logoLink="https://supplier-dev.tetrapak.com/dashboard.html"
+                        logoUrl="/content/dam/supplierportal/images/TetraPakLogo.png"/>
                 <footerconfiguration
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="supplierportal/components/structure/footerconfiguration"
-                        copyrightText="Copyright">
+                        sling:resourceType="supplierportal/components/structure/footerconfiguration">
                     <footerLinks jcr:primaryType="nt:unstructured">
                         <item0
                                 jcr:primaryType="nt:unstructured"

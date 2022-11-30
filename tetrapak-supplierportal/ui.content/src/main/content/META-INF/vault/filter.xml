@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspaceFilter version="1.0">
-    <filter root="/conf/supplierportal" mode="merge"/>
-    <filter root="/content/tetrapak/supplierportal" mode="merge"/>
-    <filter root="/content/dam/tetrapak/supplierportal" mode="merge"/>
+    <filter root="/conf/supplierportal" mode="update"/>
 </workspaceFilter>
