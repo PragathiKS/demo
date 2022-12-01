@@ -12,7 +12,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Supplier portal content components"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:tetrapak-supplierportal-configuration]"
+                            components="[group:tetrapak-supplierportal-configuration,group:sp-content-components]"
                             policyResourceType="wcm/foundation/components/responsivegrid">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured"/>
