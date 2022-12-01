@@ -12,7 +12,7 @@
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Supplier portal content components"
                             sling:resourceType="wcm/core/components/policy/policy"
-                            components="[group:tetrapak-supplierportal-configuration,group:sp-content-components]"
+                            components="[group:sp-content-components]"
                             policyResourceType="wcm/foundation/components/responsivegrid">
                         <cq:authoring jcr:primaryType="nt:unstructured">
                             <assetToComponentMapping jcr:primaryType="nt:unstructured"/>
@@ -22,6 +22,21 @@
                                 jcr:primaryType="nt:unstructured"
                                 mergeList="{Boolean}true"/>
                     </content-default>
+                    <language-default
+                            jcr:description="Policy for editable layout containers"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Supplier portal configuration content components"
+                            sling:resourceType="wcm/core/components/policy/policy"
+                            components="[group:tetrapak-supplierportal-configuration]"
+                            policyResourceType="wcm/foundation/components/responsivegrid">
+                        <cq:authoring jcr:primaryType="nt:unstructured">
+                            <assetToComponentMapping jcr:primaryType="nt:unstructured"/>
+                        </cq:authoring>
+                        <jcr:content
+                                jcr:mixinTypes="[cq:ReplicationStatus]"
+                                jcr:primaryType="nt:unstructured"
+                                mergeList="{Boolean}true"/>
+                    </language-default>
                 </responsivegrid>
             </components>
         </foundation>
