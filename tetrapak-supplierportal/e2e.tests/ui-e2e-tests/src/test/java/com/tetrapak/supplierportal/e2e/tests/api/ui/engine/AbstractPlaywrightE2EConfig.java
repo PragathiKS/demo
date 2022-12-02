@@ -25,7 +25,10 @@ public abstract class AbstractPlaywrightE2EConfig {
     }
 
     @BeforeEach void setup() {
-        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1366, 768));
+        context = browser.newContext(new Browser.NewContextOptions()
+                .setViewportSize(1366, 768)
+                .setIsMobile(false)
+        );
         page = context.newPage();
     }
 
