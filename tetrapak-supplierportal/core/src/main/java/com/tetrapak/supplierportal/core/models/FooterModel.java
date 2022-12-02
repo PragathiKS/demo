@@ -31,7 +31,7 @@ public class FooterModel {
 	private SlingHttpServletRequest request;
 
 	/** The footer links. */
-	private List<FooterLinkModel> footerLinksSanitized = new ArrayList<>();
+	private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
 
 	/**
 	 * Inits the.
@@ -49,9 +49,9 @@ public class FooterModel {
 			if (Objects.nonNull(configurationModel)) {
 				footerLinks = configurationModel.getFooterLinks();
 				for (FooterLinkModel footerLink : footerLinks) {
-					String sanitizedPath = LinkUtil.sanitizeLink(footerLink.getLinkPath(), request);
-					footerLink.setLinkPath(sanitizedPath);
-					footerLinksSanitized.add(footerLink);
+					String validLink = LinkUtil.getValidLink(request.getResource(), footerLink.getLinkPath());
+					footerLink.setLinkPath(validLink);
+					footerValidLinks.add(footerLink);
 				}
 
 			}
@@ -59,6 +59,6 @@ public class FooterModel {
 	}
 
 	public List<FooterLinkModel> getFooterLinks() {
-		return new ArrayList<>(footerLinksSanitized);
+		return new ArrayList<>(footerValidLinks);
 	}
 }
