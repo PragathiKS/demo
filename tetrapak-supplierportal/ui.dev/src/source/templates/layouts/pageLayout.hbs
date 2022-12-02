@@ -44,15 +44,9 @@
     }" />
        {{!-- Header component --}}
         <sly data-sly-use.headerModel="/apps/supplierportal/components/content/header/ux-model.js"
-             data-sly-use.languageModel="/apps/supplierportal/components/content/languageselector/ux-model.js"
-             data-sly-use.cookie="/apps/supplierportal/components/content/header/cookie.js"
              data-sly-use.headerLibs="/apps/supplierportal/components/content/header/header-template.html"
              data-sly-call="${headerLibs.header_template @data=headerModel,langData=languageModel, cookie=cookie}" />
 
-              {{!-- Navigation component --}}
-             <sly data-sly-use.leftnavigationModel="/apps/supplierportal/components/content/leftnavigation/ux-model.js"
-                     data-sly-use.leftnavigationLib="/apps/supplierportal/components/content/leftnavigation/leftnavigation-template.html"
-                     data-sly-call="${leftnavigationLib.leftnavigation_template @data=leftnavigationModel}" />
 
        <div class="tp-container">
         <div class="row">
