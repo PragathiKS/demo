@@ -246,8 +246,6 @@ def buildandsonarsupplier() {
                 dir("tetrapak-${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
                 sh "npm cache clean --force"
-		sh "nvm install 10.16.0"
-		sh "nvm use 10.16.0"
 		sh "npm rebuild node-sass --force"    
 		    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
