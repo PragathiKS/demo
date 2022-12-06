@@ -29,35 +29,28 @@ public class LoginFormPage {
         pingMessages = page.locator(".ping-messages");
     }
 
-    public void goToAndCheckBasicFields() {
+    private void goToAndCheckCommon(Locator cfeContainer) {
         page.navigate("https://sso.tetrapak.com/idp/startSSO.ping?PartnerSpId=MyTetraPak");
         //fixme change to valid URLs and header text according to requirements
         assertThat(pingHeader).containsText("Login to My Tetra Pak");
         assertThat(username).isVisible();
         assertThat(password).isVisible();
-        assertThat(rememberMe).isVisible();
         assertThat(signInButton).isVisible();
-        assertThat(cfeContainerRight).containsText("Change Password");
-        assertThat(cfeContainerRight).containsText("Forgot your password? Account locked out");
-        assertThat(cfeContainerRight).containsText("Contact Tetra Pak");
-        assertThat(cfeContainerRight).containsText("TetraPak.com");
-        assertThat(cfeContainerRight).containsText("Sign up for e-Business Service Products");
-        assertThat(cfeContainerRight).containsText("By logging in you agree to the Site Privacy Policy and Disclaimers");
+        assertThat(cfeContainer).containsText("Change Password");
+        assertThat(cfeContainer).containsText("Forgot your password? Account locked out");
+        assertThat(cfeContainer).containsText("Contact Tetra Pak");
+        assertThat(cfeContainer).containsText("TetraPak.com");
+        assertThat(cfeContainer).containsText("Sign up for e-Business Service Products");
+        assertThat(cfeContainer).containsText("By logging in you agree to the Site Privacy Policy and Disclaimers");
+    }
+
+    public void goToAndCheckBasicFields() {
+        goToAndCheckCommon(cfeContainerRight);
+        assertThat(rememberMe).isVisible();
     }
 
     public void goToAndCheckBasicMobileFields() {
-        page.navigate("https://sso.tetrapak.com/idp/startSSO.ping?PartnerSpId=MyTetraPak");
-        //fixme change to valid URLs and header text according to requirements
-        assertThat(pingHeader).containsText("Login to My Tetra Pak");
-        assertThat(username).isVisible();
-        assertThat(password).isVisible();
-        assertThat(signInButton).isVisible();
-        assertThat(cfeContainerBottom).containsText("Change Password");
-        assertThat(cfeContainerBottom).containsText("Forgot your password? Account locked out");
-        assertThat(cfeContainerBottom).containsText("Contact Tetra Pak");
-        assertThat(cfeContainerBottom).containsText("TetraPak.com");
-        assertThat(cfeContainerBottom).containsText("Sign up for e-Business Service Products");
-        assertThat(cfeContainerBottom).containsText("By logging in you agree to the Site Privacy Policy and Disclaimers");
+        goToAndCheckCommon(cfeContainerBottom);
     }
 
     public void verifyPingErrorDisplayedWithText(String errorTextContains) {
