@@ -1,18 +1,19 @@
 package com.tetrapak.supplierportal.e2e.tests.api.ui.login;
 
+import com.tetrapak.supplierportal.e2e.tests.api.ui.engine.AbstractMobilePlaywrightE2EConfig;
 import com.tetrapak.supplierportal.e2e.tests.api.ui.engine.AbstractPlaywrightE2EConfig;
 import org.junit.jupiter.api.Test;
 
-public class LoginFormTests extends AbstractPlaywrightE2EConfig {
+public class LoginFormMobileTests extends AbstractMobilePlaywrightE2EConfig {
     //todo add login case
     @Test
     void basicLoginFormTest() {
-        new LoginFormPage(page).goToAndCheckBasicFields();
+        new LoginFormPage(page).goToAndCheckBasicMobileFields();
     }
 
     @Test
     void invalidCredentialsTypedInTest() {
-        new LoginFormPage(page).goToAndCheckBasicFields();
+        new LoginFormPage(page).goToAndCheckBasicMobileFields();
         LoginFormPage loginFormPage = new LoginFormPage(page);
         loginFormPage.getUsername().type("invalid user");
         loginFormPage.getPassword().type("invalid password");

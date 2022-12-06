@@ -13,6 +13,7 @@ public class LoginFormPage {
     private final Locator rememberMe;
     private final Locator signInButton;
     private final Locator cfeContainerRight;
+    private final Locator cfeContainerBottom;
 
     private final Locator pingMessages;
 
@@ -24,11 +25,13 @@ public class LoginFormPage {
         rememberMe = page.locator(".remember-username");
         signInButton = page.locator("#signInButton");
         cfeContainerRight = page.locator(".cfe-content-container-right");
+        cfeContainerBottom = page.locator(".cfe-content-container-bottom");
         pingMessages = page.locator(".ping-messages");
     }
 
     public void goToAndCheckBasicFields() {
         page.navigate("https://sso.tetrapak.com/idp/startSSO.ping?PartnerSpId=MyTetraPak");
+        //fixme change to valid URLs and header text according to requirements
         assertThat(pingHeader).containsText("Login to My Tetra Pak");
         assertThat(username).isVisible();
         assertThat(password).isVisible();
@@ -40,6 +43,21 @@ public class LoginFormPage {
         assertThat(cfeContainerRight).containsText("TetraPak.com");
         assertThat(cfeContainerRight).containsText("Sign up for e-Business Service Products");
         assertThat(cfeContainerRight).containsText("By logging in you agree to the Site Privacy Policy and Disclaimers");
+    }
+
+    public void goToAndCheckBasicMobileFields() {
+        page.navigate("https://sso.tetrapak.com/idp/startSSO.ping?PartnerSpId=MyTetraPak");
+        //fixme change to valid URLs and header text according to requirements
+        assertThat(pingHeader).containsText("Login to My Tetra Pak");
+        assertThat(username).isVisible();
+        assertThat(password).isVisible();
+        assertThat(signInButton).isVisible();
+        assertThat(cfeContainerBottom).containsText("Change Password");
+        assertThat(cfeContainerBottom).containsText("Forgot your password? Account locked out");
+        assertThat(cfeContainerBottom).containsText("Contact Tetra Pak");
+        assertThat(cfeContainerBottom).containsText("TetraPak.com");
+        assertThat(cfeContainerBottom).containsText("Sign up for e-Business Service Products");
+        assertThat(cfeContainerBottom).containsText("By logging in you agree to the Site Privacy Policy and Disclaimers");
     }
 
     public void verifyPingErrorDisplayedWithText(String errorTextContains) {
