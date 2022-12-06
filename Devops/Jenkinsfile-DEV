@@ -65,6 +65,14 @@ pipeline {
             }
 
             steps {
+
+	    		script {
+                    
+                    echo "${build_id_number}"
+                   sh "pwd;ls -ltr"
+		   sh "sh -x tetrapak-supplierportal/nvmbuild.sh '${build_id_number}'"
+                }
+
                 script {
                     if (params.Build_Commons) {
                         appname = "commons"
