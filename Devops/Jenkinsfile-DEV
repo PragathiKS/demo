@@ -66,12 +66,6 @@ pipeline {
 
             steps {
 
-	    		script {
-                    
-                    echo "${build_id_number}"
-                   sh "pwd;ls -ltr"
-		   sh "sh -x tetrapak-supplierportal/nvmbuild.sh '${build_id_number}'"
-                }
 
                 script {
                     if (params.Build_Commons) {
@@ -255,7 +249,6 @@ def buildandsonarsupplier() {
                 dir("tetrapak-${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
                 sh "npm cache clean --force"
-		sh "npm rebuild node-sass --force"    
 		    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
                 sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
