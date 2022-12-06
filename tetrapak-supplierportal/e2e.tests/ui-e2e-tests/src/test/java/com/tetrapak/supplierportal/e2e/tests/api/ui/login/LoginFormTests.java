@@ -9,4 +9,14 @@ public class LoginFormTests extends AbstractPlaywrightE2EConfig {
     void basicLoginFormTest() {
         new LoginFormPage(page).goToAndCheckBasicFields();
     }
+
+    @Test
+    void invalidCredentialsTypedInTest() {
+        new LoginFormPage(page).goToAndCheckBasicFields();
+        LoginFormPage loginFormPage = new LoginFormPage(page);
+        loginFormPage.getUsername().type("invalid user");
+        loginFormPage.getPassword().type("invalid password");
+        loginFormPage.getSignInButton().click();
+        loginFormPage.verifyPingErrorDisplayedWithText("didn't recognize the username or password");
+    }
 }

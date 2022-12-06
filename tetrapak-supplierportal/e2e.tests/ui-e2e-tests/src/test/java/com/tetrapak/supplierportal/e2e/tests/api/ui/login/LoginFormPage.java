@@ -14,6 +14,8 @@ public class LoginFormPage {
     private final Locator signInButton;
     private final Locator cfeContainerRight;
 
+    private final Locator pingMessages;
+
     public LoginFormPage(Page page) {
         this.page = page;
         pingHeader = page.locator("div.ping-header");
@@ -22,6 +24,7 @@ public class LoginFormPage {
         rememberMe = page.locator(".remember-username");
         signInButton = page.locator("#signInButton");
         cfeContainerRight = page.locator(".cfe-content-container-right");
+        pingMessages = page.locator(".ping-messages");
     }
 
     public void goToAndCheckBasicFields() {
@@ -39,7 +42,35 @@ public class LoginFormPage {
         assertThat(cfeContainerRight).containsText("By logging in you agree to the Site Privacy Policy and Disclaimers");
     }
 
+    public void verifyPingErrorDisplayedWithText(String errorTextContains) {
+        assertThat(pingMessages.locator(".ping-error")).containsText(errorTextContains);
+    }
+
     public Page getPage() {
         return page;
+    }
+
+    public Locator getPingHeader() {
+        return pingHeader;
+    }
+
+    public Locator getUsername() {
+        return username;
+    }
+
+    public Locator getPassword() {
+        return password;
+    }
+
+    public Locator getRememberMe() {
+        return rememberMe;
+    }
+
+    public Locator getSignInButton() {
+        return signInButton;
+    }
+
+    public Locator getCfeContainerRight() {
+        return cfeContainerRight;
     }
 }
