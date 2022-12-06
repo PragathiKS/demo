@@ -64,7 +64,6 @@ import java.util.Set;
                 }
                 setCustomerNameCookie(response, attrMap);
                 setAccesTokenCookie(response, attrMap);
-                //                setLangCodeCookie(request, response, base64DecodedResponse);
                 if (processedURL.contains("empty")) {
                     response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
                 }
