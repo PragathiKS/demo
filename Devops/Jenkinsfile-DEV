@@ -81,6 +81,7 @@ pipeline {
                     else {
 					    dir('tetrapak-commons') {
 					        sh "npm install --prefix ui.dev/src"
+						sh "npm rebuild node-sass"
 						}
 					}
                 }
