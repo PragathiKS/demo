@@ -125,6 +125,12 @@
           privileges:
           repGlob:
 
+        - path: /apps
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
         - path: /content
           permission: allow
           actions:
