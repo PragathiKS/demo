@@ -41,7 +41,7 @@ public class FinancialInvoiceDownloadFileServlet extends SlingAllMethodsServlet 
     private static final long serialVersionUID = 2323660841296799482L;
 
     @Reference
-    private FinancialResultsApiService financialsResultsApiService;
+    private transient FinancialResultsApiService financialsResultsApiService;
 
     /** The XSSAPI  */
     @Reference

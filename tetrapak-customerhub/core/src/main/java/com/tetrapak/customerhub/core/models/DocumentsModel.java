@@ -49,7 +49,7 @@ public class DocumentsModel {
      */
     @PostConstruct
     protected void init() {
-        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
+    	Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put("siteFilterLabel", getSiteFilterLabel());
         i18KeyMap.put("lineFilterLabel", getLineFilterLabel());
         i18KeyMap.put("documentHeading", getDocumentHeading());

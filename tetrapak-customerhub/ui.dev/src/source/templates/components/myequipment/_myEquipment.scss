@@ -152,12 +152,10 @@ $color-red: #ff0000;
         }
     }
 
-    &__table-summary__row {
-        &:not(.tp-my-equipment__table-summary__rowheading) {
-            &:hover {
-                background-color: $color-wild-sand;
-                cursor: pointer;
-            }
+    &__table-summary__row:not(.tp-my-equipment__table-summary__rowheading) {
+        &:hover {
+            background-color: $color-wild-sand;
+            cursor: pointer;
         }
     }
 
@@ -219,8 +217,7 @@ $color-red: #ff0000;
         }
     }
 
-    &__filter-count,
-    &__filter-count-err {
+    &__filter-count, &__filter-count-err {
         @include margin-top($margin-sm);
         @include font-size($font-sm);
         @include line-height(20px, $font-sm);

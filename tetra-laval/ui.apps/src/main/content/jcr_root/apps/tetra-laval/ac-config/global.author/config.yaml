@@ -1,0 +1,69 @@
+- group_config:
+
+    - tetra-laval-content-authors:
+
+        - name: Tetra Laval Content Authors
+          isMemberOf: fragment-editor
+          path: /home/groups/tetra-laval
+
+    - tetra-laval-super-users:
+
+        - name: Tetra Laval Super Users
+          isMemberOf: tetra-laval-content-authors,fragment-superuser
+          path: /home/groups/tetra-laval
+
+
+- ace_config:
+
+    - tetra-laval-content-authors:
+
+        - path: /content/tetralaval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetra-laval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/experience-fragments/tetra-laval
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+        - path: /content/cq:tags/tetra-laval
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+        - path: /conf/tetra-laval/settings/wcm
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - tetra-laval-super-users:
+
+        - path: /conf/tetra-laval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/experience-fragments/tetra-laval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/cq:tags/tetra-laval
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+

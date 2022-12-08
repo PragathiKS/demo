@@ -4,3 +4,4 @@
     emailTemplatePath="/etc/notification/email/customerhub/cotssupport/cotssupportemail.html"
     isCotsSupportEmailEnabled="{Boolean}true"
     recipientAddresses="[]"/>
+

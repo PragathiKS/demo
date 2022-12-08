@@ -8,9 +8,11 @@ import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.customerhub.core.beans.ImageBean;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.CookieDataDomainScriptService;
 import com.tetrapak.customerhub.core.services.DynamicMediaService;
 import com.tetrapak.customerhub.core.services.SiteImproveScriptService;
 import com.tetrapak.customerhub.core.services.UserPreferenceService;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -23,6 +25,8 @@ import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
@@ -43,6 +47,15 @@ import java.util.Set;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -51,7 +64,9 @@ import java.util.stream.Collectors;
  */
 public class GlobalUtil {
 
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
@@ -384,6 +399,21 @@ public class GlobalUtil {
         Session session = request.getResourceResolver().adaptTo(Session.class);
         if (null != session && null != userPreferenceService) {
             return userPreferenceService.getSavedPreferences(session.getUserID(), CustomerHubConstants.LANGUGAGE_PREFERENCES);
+        }
+        return null;
+    }
+    
+    /**
+     * Method to get additional selected language.
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
+     * @return string language code
+     */
+    public static String getAdditionalSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        if (null != session && null != userPreferenceService) {
+            return userPreferenceService.getSavedPreferences(session.getUserID(), CustomerHubConstants.ADDITIONAL_LANGUAGE_PREFERENCES);
         }
         return null;
     }
@@ -736,5 +766,42 @@ public class GlobalUtil {
 	resourceResolver = resourceFactory.getServiceResourceResolver(paramMap);
 	LOGGER.debug("End getResourceResolverFromSubService method");
 	return resourceResolver;
+    }
+    
+    /**
+     * This method will fetch the OneTrust cookie script
+     */
+    public static String getDataDomainScript() {
+    	CookieDataDomainScriptService cookieDataDomainScriptService = getService(CookieDataDomainScriptService.class);
+    	String dataDomainScript = StringUtils.EMPTY;
+    	if(cookieDataDomainScriptService != null) {
+	        String[] cookieParamArray = cookieDataDomainScriptService.getCookieDomainScriptConfig();
+	        for(String param :cookieParamArray){
+	        	if(param.contains(CustomerHubConstants.CUSTOMERHUB)){
+	                   final String domainAbbreviationJsonString = param.split("=")[1];
+	                   dataDomainScript = GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, CustomerHubConstants.DOMAINSCRIPT);
+	                   break;
+	            }
+	        }
+    	}
+    	return dataDomainScript;
+    }
+    
+    /**
+     * This method is used to get the string value from string Array in format of {"key":"value","key1":"value1"}.
+     *
+     * @param stringArray
+     *            the string array
+     * @param key
+     *            the key
+     * @return String value
+     */
+    private static String getKeyValueFromStringArray(final String stringArray, final String key) {
+        try {
+            return new JSONObject(stringArray).get(key).toString();
+        } catch (final JSONException exception) {
+            LOGGER.error("JSONException while converting array string to json object: ", exception);
+        }
+        return StringUtils.EMPTY;
     }
 }
