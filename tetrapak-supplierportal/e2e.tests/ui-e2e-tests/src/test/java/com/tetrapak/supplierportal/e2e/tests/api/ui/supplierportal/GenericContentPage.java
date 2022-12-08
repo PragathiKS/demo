@@ -14,12 +14,14 @@ public class GenericContentPage {
     protected final Page page;
     protected final Locator header;
     protected final Locator logo;
+    protected final Locator mobileLogo;
     protected final Locator menuButton;
     protected final Locator footer;
 
     public GenericContentPage(Page page) {
         this.page = page;
         header = page.locator("header.tp-header");
+        mobileLogo = page.locator(".tp-header__logo.d-md-none img");
         logo = page.locator(".tp-header__logo.d-md-flex img");
         footer = page.locator("footer.tp-pw-footer");
         menuButton = page.locator("span.tp-header__burger-menu");
@@ -34,7 +36,6 @@ public class GenericContentPage {
 
     protected void verifyPageContent() {
         assertThat(header).isVisible();
-        assertThat(logo).isVisible();
         assertThat(footer).isVisible();
         assertThat(menuButton).isHidden();
     }
@@ -53,6 +54,10 @@ public class GenericContentPage {
 
     public Locator getFooter() {
         return footer;
+    }
+
+    public Locator getMobileLogo() {
+        return mobileLogo;
     }
 
     public Page getPage() {
