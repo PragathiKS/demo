@@ -41,6 +41,12 @@
           privileges:
           repGlob:
 
+        - path: /conf/tetra-laval/settings/wcm
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
     - tetra-laval-super-users:
 
         - path: /conf/tetra-laval
