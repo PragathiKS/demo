@@ -138,7 +138,8 @@
         "source/templates/components/teaser/",
         "source/templates/components/mediaLink/",
         "source/templates/components/textImage/",
-        "source/templates/components/richtext/"
+        "source/templates/components/richtext/",
+        "source/templates/components/mediaLink/"
       ]
     },
     "handlebars": {

@@ -20,7 +20,7 @@ public abstract class AbstractPlaywrightE2EConfig {
     //add mobile and desktop tests
     @BeforeAll static void setUpClass() {
         playwright = Playwright.create();
-        BrowserType browserType = playwright.chromium();
+        BrowserType browserType = playwright.webkit();
         browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 

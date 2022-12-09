@@ -18,14 +18,19 @@
             </div>
           </sly>
           <sly data-sly-test="${data.videoSource == 'youtube'}">
+            <sly data-sly-test.author="${wcmmode.edit || wcmmode.design || wcmmode.preview}"/>
             <div class="pw-text-video__video js-video-props" data-video-type="${data.videoSource}" data-link-parent-title="${data.youtubeEmbedURL}"
-              data-video-type="${data.videoSource}" data-video-name="${data.youtubeEmbedURL}">
-
-
-              <iframe class='js-yt-player'  title="${data.videoName}" class="optanon-category-4" data-src="${data.youtubeEmbedURL}" frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-              </iframe>
-
+                 data-video-type="${data.videoSource}" data-video-name="${data.youtubeEmbedURL}">
+              <sly data-sly-test="${author}">
+                <iframe class='js-yt-player'  title="${data.videoName}" src="${data.youtubeEmbedURL}" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+              </sly>
+              <sly data-sly-test="${!author}">
+                <iframe class='js-yt-player'  title="${data.videoName}" class="optanon-category-4" data-src="${data.youtubeEmbedURL}" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+              </sly>
 
             </div>
           </sly>
