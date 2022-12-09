@@ -1,0 +1,25 @@
+{
+  "footerLinks": [
+    {
+      "linkLabel": "Tetrapak.com",
+      "linkPath": "https://tetrapak.com",
+      "linkTarget":"_self"
+    },
+    {
+      "linkLabel": "About",
+      "linkPath": "#",
+      "linkTarget": "_self"
+    },
+    {
+      "linkLabel": "Terms & Conditions",
+      "linkPath": "#",
+      "linkTarget": "_self"
+    },
+    {
+      "linkLabel": "Change Language",
+      "linkPath": "#",
+      "linkTarget":"_self"
+    }
+  ],
+  "footerText": "Copyright © 2021 TetraPak International S.A All Rights Reserved."
+}
