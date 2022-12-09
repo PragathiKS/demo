@@ -15,7 +15,7 @@ class RequestAccessFormTest extends AbstractPlaywrightE2EConfig {
         accessFormPage.getPage().locator("em:has-text(\"privacy policy\")").locator("a").click();
 
         assertThat(page.locator("div.breadcrumb span.tp_pw-breadcrumb__link.last"))
-                .containsText("privacy policy ");
+                .containsText("privacy policy");
     }
 
     @Test
