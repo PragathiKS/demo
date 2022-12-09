@@ -39,7 +39,7 @@ function _renderCtiDocuments(langAvailable, otherLang) {
   const { i18nKeys } = $this.cache;
  
   if (!langAvailable) {
-    const errorMessage ='No data in api';
+    const errorMessage ='No CTI is available';
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,

@@ -6,15 +6,13 @@
     <li>
         <i class="icon icon-PDF"></i>
         <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
-            CTI - {{langDesc}}</a>
+            {{langDesc}} - {{ctiNo}}</a>
     </li>
     {{/each}}
-
 </ul>
-
 {{/if}}
 {{#if noError}}
-<p>{{noError}}</p>
+<p><i class="icon icon-PDF"></i> {{noError}}</p>
 {{/if}}
 <a href="#" class="js-langcode">{{i18n key=i18nKeys.moreLanguage}}</a>
 <div id="rk-cti-language-modal" class="modal js-rk-cti-modal tp-modal fade" tabindex="-1" aria-hidden="true"
