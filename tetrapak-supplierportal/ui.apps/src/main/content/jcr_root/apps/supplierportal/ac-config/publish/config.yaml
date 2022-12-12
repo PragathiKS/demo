@@ -4,7 +4,7 @@
 
     - sp_aem_default:
 
-        - name: My Tetra Pak default group
+        - name: Supplier portal default group
           memberOf: everyone
           path: /home/groups/spgroups
 
