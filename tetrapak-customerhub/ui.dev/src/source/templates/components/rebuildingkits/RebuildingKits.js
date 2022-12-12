@@ -179,7 +179,7 @@ class RebuildingKits {
 
           ajaxWrapper
             .getXhrObj({
-              url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}`,
+              url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}&sort=lineCode asc,rkGeneralNumber asc,position asc`,
               method: 'GET',
               contentType: 'application/json',
               dataType: 'json',
@@ -241,8 +241,7 @@ class RebuildingKits {
       this.cache.skipIndex = 0;
     }
     
-    apiUrlRequest = `${rkApi}?skip=${skipIndex}&count=${itemsPerPage}&countrycodes=${countryCode}`;
-
+    apiUrlRequest = `${rkApi}?skip=${skipIndex}&count=${itemsPerPage}&countrycodes=${countryCode}&sort=lineCode asc,rkGeneralNumber asc,position asc`;
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
