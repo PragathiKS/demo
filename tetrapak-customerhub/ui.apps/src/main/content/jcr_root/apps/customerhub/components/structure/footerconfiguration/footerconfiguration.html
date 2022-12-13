@@ -1,0 +1,11 @@
+<br /><h2>Footer Configurations</h2>
+<sly
+        data-sly-use.footerConfig="com.tetrapak.customerhub.core.models.FooterConfigurationModel">
+    <dl data-sly-list.footLinks="${footerConfig.footerLinks}">
+        <dd>
+            <b> Footer Link Text : </b> ${footLinks.linkText}<br/>
+            <b> Footer Link Path: </b> ${footLinks.linkPath}<br/>
+        </dd>
+    </dl>
+    <b> Language Switch Label : </b> ${footerConfig.languageSwitchLabel}<br/>
+</sly>

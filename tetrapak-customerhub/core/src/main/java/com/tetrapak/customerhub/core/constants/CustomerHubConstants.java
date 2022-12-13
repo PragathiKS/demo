@@ -914,6 +914,9 @@ public final class CustomerHubConstants {
     /** The Technical Bulleting API. */
     public static final String TECHNICAL_BULLETIN_API = "technicalbulletins";
 
+    /** Anchor Link Target New Tab*/
+    public static final String LINK_TARGET_NEWTAB = "_blank";
+
     /**
      * Instantiates a new customer hub constants.
      */
