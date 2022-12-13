@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Footer Configuration"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                    maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <section
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Footer Configurations"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <footernavigationlinks
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Footer Links"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                    composite="{Boolean}true"
+                                    fieldLabel="Footer Navigation Links configuration"
+                                    validation="multifield-max-5">
+                                <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        name="./footerNavigationLinks">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <linktext
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter Name for the Link"
+                                                        fieldLabel="Link Text"
+                                                        name="./linkText"/>
+                                                <linkpath
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Select Page Path"
+                                                        fieldLabel="Link Path"
+                                                        name="./linkPath"
+                                                        rootPath="/content/tetrapak"/>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </footernavigationlinks>
+                            <languageswitch
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Enter the label for language switch link (Change Language)"
+                                    fieldLabel="Language Switch Label"
+                                    name="./languageSwitchLabel"/>
+                        </items>
+                    </section>
+                </items>
+            </column>
+        </items>
+    </content>
+</jcr:root>
