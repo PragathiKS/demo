@@ -14,6 +14,17 @@ public final class SupplierPortalConstants {
      */
     public static final String CONTENT_PATH = "/content/";
 
+    /** The Constant LANGUAGE_LEVEL. */
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
+
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
+
+    /**
+     * The Constant CONTENT_PATH .
+     */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/supplierportal/en/dashboard";
+
     /**
      * The Constant HTTP.
      */
