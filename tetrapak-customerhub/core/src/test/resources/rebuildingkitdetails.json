@@ -62,7 +62,11 @@
           "implDeadline": "cuhu.rebuildingkits.implDeadline",
           "jcr:created": "Tue Jul 26 2022 17:00:13 GMT+0200",
           "serviceOrder": "cuhu.rebuildingkits.serviceOrder",
-          "sling:resourceType": "customerhub/components/content/rebuildingkitdetails"
+          "sling:resourceType": "customerhub/components/content/rebuildingkitdetails",
+		  "rkSubType": "cuhu.rebuildingkits.rkSubType",
+		  "rkValidation": "cuhu.rebuildingkits.rkValidation",
+		  "rkNoCtiText": "cuhu.rebuildingkits.rkNoCtiText",
+		  "rkReqCtiText": "cuhu.rebuildingkits.rkReqCtiText"
         }
       }
     }
