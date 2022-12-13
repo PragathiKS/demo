@@ -22,7 +22,6 @@ import com.tetrapak.publicweb.core.beans.DropdownOption;
 import com.tetrapak.publicweb.core.services.CountryDetailService;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
@@ -40,10 +39,6 @@ public class BusinessInquiryModel extends FormModel {
     /** Business Enquiry Form Pardot URL. */
     @ValueMapValue
     private String befPardotURL;
-
-    /** Business Enquiry China Pardot URL. */
-    @ValueMapValue
-    private String befChinaPardotURL;
 
     /** The pardot service. */
     @OSGiService
@@ -231,13 +226,5 @@ public class BusinessInquiryModel extends FormModel {
         return befPardotURL;
     }
 
-    /**
-     * Gets the bef china pardot URL.
-     *
-     * @return the bef china pardot URL
-     */
-    public String getBefChinaPardotURL() {
-        return LinkUtils.getUrlWithoutProtocol(befChinaPardotURL);
-    }
-
 }
+
