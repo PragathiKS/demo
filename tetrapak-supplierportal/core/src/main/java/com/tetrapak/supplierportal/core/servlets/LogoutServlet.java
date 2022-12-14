@@ -1,5 +1,7 @@
 package com.tetrapak.supplierportal.core.servlets;
 
+import com.day.cq.commons.Externalizer;
+import com.tetrapak.supplierportal.core.authentication.SupplierPortalSAMLResponsePostProcessor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -25,26 +27,29 @@ import java.util.Set;
     private static final long serialVersionUID = 5277815225105722120L;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoutServlet.class);
+    private static final String LOGIN_TOKEN = "login-token";
+    private static final String AUTH_TOKEN = "authToken";
+    private static final String REDIRECT_URL = "redirectURL";
 
     @Reference private SlingSettingsService slingSettingsService;
 
     @Override protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.debug("LogoutServlet was called");
-        Cookie loginTokenCookie = request.getCookie("login-token");
-        if (null != loginTokenCookie && !(isRunModeAvailable("author"))) {
+        Cookie loginTokenCookie = request.getCookie(LOGIN_TOKEN);
+        if (null != loginTokenCookie && !(isRunModeAvailable(Externalizer.AUTHOR))) {
             loginTokenCookie.setMaxAge(0);
             loginTokenCookie.setPath("/");
             response.addCookie(loginTokenCookie);
             LOGGER.debug("cookie login-token was deleted");
         }
-        Cookie accTokenCookie = request.getCookie("acctoken");
+        Cookie accTokenCookie = request.getCookie(SupplierPortalSAMLResponsePostProcessor.TOKEN_NAME);
         if (null != accTokenCookie) {
             accTokenCookie.setMaxAge(0);
             accTokenCookie.setPath("/");
             response.addCookie(accTokenCookie);
             LOGGER.debug("cookie acctoken was deleted");
         }
-        Cookie authTokenCookie = request.getCookie("authToken");
+        Cookie authTokenCookie = request.getCookie(AUTH_TOKEN);
         if (null != authTokenCookie) {
             authTokenCookie.setValue(null);
             authTokenCookie.setMaxAge(0);
@@ -53,7 +58,7 @@ import java.util.Set;
             response.addCookie(authTokenCookie);
             LOGGER.debug("cookie authToken was deleted");
         }
-        Cookie samlRequestPathCookie = request.getCookie("saml_request_path");
+        Cookie samlRequestPathCookie = request.getCookie(SupplierPortalSAMLResponsePostProcessor.SAML_REQUEST_PATH);
         if (null != samlRequestPathCookie) {
             samlRequestPathCookie.setMaxAge(0);
             samlRequestPathCookie.setPath("/");
@@ -61,15 +66,15 @@ import java.util.Set;
             LOGGER.debug("cookie samlRequestPathCookie was deleted");
         }
 
-        Cookie aemCustomerNameCookie = request.getCookie("AEMCustomerName");
+        Cookie aemCustomerNameCookie = request.getCookie(SupplierPortalSAMLResponsePostProcessor.COOKIE_NAME);
         if (null != aemCustomerNameCookie) {
             aemCustomerNameCookie.setMaxAge(0);
             aemCustomerNameCookie.setPath("/");
-            aemCustomerNameCookie.setDomain(".supplier.tetrapak.com");
+            aemCustomerNameCookie.setDomain("." + SupplierPortalSAMLResponsePostProcessor.DOMAIN_NAME);
             response.addCookie(aemCustomerNameCookie);
-            LOGGER.debug("cookie AEMCustomerName was deleted");
+            LOGGER.debug("cookie " + SupplierPortalSAMLResponsePostProcessor.COOKIE_NAME + " was deleted");
         }
-        String redirectURL = request.getParameter("redirectURL");
+        String redirectURL = request.getParameter(REDIRECT_URL);
         try {
             if (StringUtils.isNotEmpty(redirectURL)) {
                 response.sendRedirect(redirectURL);

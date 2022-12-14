@@ -1,5 +1,7 @@
 package com.tetrapak.supplierportal.core.authentication;
 
+import com.day.cq.commons.Externalizer;
+import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
@@ -30,12 +32,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-@Component(immediate = true, service = AuthenticationInfoPostProcessor.class) public class SAMLResponsePostProcessor
-        implements AuthenticationInfoPostProcessor {
+@Component(immediate = true, service = AuthenticationInfoPostProcessor.class)
+public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationInfoPostProcessor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SAMLResponsePostProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SupplierPortalSAMLResponsePostProcessor.class);
     private static final int MAX_FIRSTLEVEL_CHILD_COUNT = 10;
     private static final String LOCATION_HEADER = "Location";
+    private static final String SAML_LOGIN = "saml_login";
+    private static final String TOKEN_VALUE = "accesstoken";
+    private static final String SAML_RESPONSE = "SAMLResponse";
+    private static final String EMPTY = "empty";
+    private static final String FIRST_NAME = "firstname";
+    private static final String LAST_NAME = "lastname";
+    private static final String SAML_ATTRIBUTE_VALUE = "saml:AttributeValue";
+    private static final String SAML_ATTRIBUTE = "saml:Attribute";
+    private static final String SAML_ATTRIBUTE_STATEMENT = "saml:AttributeStatement";
+    private static final String SAML_ASSERTION = "saml:Assertion";
+    private static final String LOGOUT = "logout";
+
+    public static final String TOKEN_NAME = "acctoken";
+    public static final String COOKIE_NAME = "SP-AEMCustomerName";
+    public static final String DOMAIN_NAME = "supplier.tetrapak.com";
+    public static final String SAML_REQUEST_PATH = "saml_request_path";
 
     @Reference private SlingSettingsService slingSettingsService;
 
@@ -50,10 +68,11 @@ import java.util.Set;
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
             Set<String> runModes = slingSettingsService.getRunModes();
-            String base64DecodedResponse = null;
-            if (runModes.contains("publish") && StringUtils.isNotEmpty(pathInfo) && pathInfo.contains("saml_login")) {
+            String base64DecodedResponse;
+            if (runModes.contains(Externalizer.PUBLISH) && StringUtils.isNotEmpty(pathInfo) && pathInfo.contains(
+                    SAML_LOGIN)) {
                 LOGGER.info("SAMLResponse Post Processor processing ...");
-                String responseSAMLMessage = httpRequest.getParameter("SAMLResponse");
+                String responseSAMLMessage = httpRequest.getParameter(SAML_RESPONSE);
                 if (StringUtils.isNotEmpty(responseSAMLMessage)) {
                     LOGGER.debug("responseSAMLMessage: {}", responseSAMLMessage);
                     base64DecodedResponse = decodeStr(responseSAMLMessage);
@@ -64,8 +83,8 @@ import java.util.Set;
                 }
                 setCustomerNameCookie(response, attrMap);
                 setAccesTokenCookie(response, attrMap);
-                if (processedURL.contains("empty")) {
-                    response.setHeader(LOCATION_HEADER, "https://" + request.getServerName() + processedURL);
+                if (processedURL.contains(EMPTY)) {
+                    response.setHeader(LOCATION_HEADER, SupplierPortalConstants.HTTPS + "://" + request.getServerName() + processedURL);
                 }
             }
         } catch (ParserConfigurationException parserConfiExep) {
@@ -78,8 +97,8 @@ import java.util.Set;
     }
 
     private static void setAccesTokenCookie(HttpServletResponse response, Map<String, String> attrMap) {
-        if (StringUtils.isNotBlank(attrMap.get("accesstoken"))) {
-            Cookie accToken = new Cookie("acctoken", attrMap.get("accesstoken"));
+        if (StringUtils.isNotBlank(attrMap.get(TOKEN_VALUE))) {
+            Cookie accToken = new Cookie(TOKEN_NAME, attrMap.get(TOKEN_VALUE));
             accToken.setPath("/");
             final int SECONDS = 900;
             accToken.setMaxAge(SECONDS);
@@ -89,19 +108,17 @@ import java.util.Set;
 
     private static void setCustomerNameCookie(HttpServletResponse response, Map<String, String> attrMap)
             throws UnsupportedEncodingException {
-        String firstName = StringUtils.isNoneBlank(attrMap.get("firstname")) ?
-                attrMap.get("firstname") :
+        String firstName = StringUtils.isNoneBlank(attrMap.get(FIRST_NAME)) ?
+                attrMap.get(FIRST_NAME) :
                 StringUtils.EMPTY;
-        String lastName = StringUtils.isNoneBlank(attrMap.get("lastname")) ?
-                attrMap.get("lastname") :
-                StringUtils.EMPTY;
+        String lastName = StringUtils.isNoneBlank(attrMap.get(LAST_NAME)) ? attrMap.get(LAST_NAME) : StringUtils.EMPTY;
         String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
 
         if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
-            Cookie samlCookie = new Cookie("AEMCustomerName", customerName);
+            Cookie samlCookie = new Cookie(COOKIE_NAME, customerName);
             samlCookie.setHttpOnly(true);
             samlCookie.setPath("/");
-            samlCookie.setDomain("supplier.tetrapak.com");
+            samlCookie.setDomain(DOMAIN_NAME);
             response.addCookie(samlCookie);
         }
     }
@@ -118,7 +135,7 @@ import java.util.Set;
                 processedUrl.append("?").append(queryString);
             }
 
-            Cookie samlRequestPath = new Cookie("saml_request_path", processedUrl.toString());
+            Cookie samlRequestPath = new Cookie(SAML_REQUEST_PATH, processedUrl.toString());
             samlRequestPath.setHttpOnly(true);
             samlRequestPath.setPath("/");
             response.addCookie(samlRequestPath);
@@ -127,8 +144,8 @@ import java.util.Set;
     }
 
     private static boolean isValidURL(String url) {
-        return url.contains("/content/tetrapak/supplierportal") && !url.contains("logout") && !url.contains("empty")
-                && url.endsWith(".html");
+        return url.contains(SupplierPortalConstants.SUPPLIER_PATH) && !url.contains(LOGOUT) && !url.contains(EMPTY)
+                && url.endsWith(SupplierPortalConstants.HTML_EXTENSION);
     }
 
     /**
@@ -160,7 +177,7 @@ import java.util.Set;
         StringReader strReader = new StringReader(base64DecodedResponse);
         InputSource inputSource = new InputSource(strReader);
         Document document = docBuilder.parse(inputSource);
-        NodeList samlAssertion = document.getElementsByTagName("saml:Assertion");
+        NodeList samlAssertion = document.getElementsByTagName(SAML_ASSERTION);
         return populateSAMLAttrMap(samlAttributeMap, samlAssertion);
     }
 
@@ -180,7 +197,7 @@ import java.util.Set;
         if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
             for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
                 Node subChildNode = childNodes.item(childCount);
-                if ("saml:AttributeStatement".equalsIgnoreCase(subChildNode.getNodeName())) {
+                if (SAML_ATTRIBUTE_STATEMENT.equalsIgnoreCase(subChildNode.getNodeName())) {
                     getNodes(samlAttributeMap, subChildNode);
                 }
             }
@@ -195,7 +212,7 @@ import java.util.Set;
         if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
             for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
                 Node childNode = attributeStatementChildNodes.item(childCount);
-                if ("saml:Attribute".equalsIgnoreCase(childNode.getNodeName())) {
+                if (SAML_ATTRIBUTE.equalsIgnoreCase(childNode.getNodeName())) {
                     String attributeValue = childNode.getAttributes().item(0).getNodeValue();
                     NodeList attrValNodeList = childNode.getChildNodes();
                     int maxNodeCount = Math.min(attrValNodeList.getLength(), MAX_FIRSTLEVEL_CHILD_COUNT);
@@ -215,7 +232,7 @@ import java.util.Set;
     private static void putAttributes(Map<String, String> samlAttributeMap, String attributeValue,
             NodeList attributeValueNodeList, int attributeValueCount) {
         Node currentNode = attributeValueNodeList.item(attributeValueCount);
-        if ("saml:AttributeValue".equalsIgnoreCase(currentNode.getNodeName())) {
+        if (SAML_ATTRIBUTE_VALUE.equalsIgnoreCase(currentNode.getNodeName())) {
             samlAttributeMap.put(attributeValue, currentNode.getTextContent());
             LOGGER.debug("SAML Assertions {} : {}", attributeValue, currentNode.getTextContent());
         }
