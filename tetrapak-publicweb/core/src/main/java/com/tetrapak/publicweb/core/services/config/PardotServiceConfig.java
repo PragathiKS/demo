@@ -64,48 +64,5 @@ public @interface PardotServiceConfig {
             description = "Pardot Token Generation API URL",
             type = AttributeType.STRING)
     String pardotTokenGenerationUrl();
-    
-    /**
-     * Custom form service url.
-     *
-     * @return the string
-     */
-    @AttributeDefinition(
-            name = "Custom Token Generation URL",
-            description = "Custom Token Generation URL",
-            type = AttributeType.STRING)
-    String customTokenGenerationUrl();
-    
-    /**
-     * Custom form service url.
-     *
-     * @return the string
-     */
-    @AttributeDefinition(
-            name = "Custom Form Service URL",
-            description = "Custom Form Service URL",
-            type = AttributeType.STRING)
-    String customFormServiceUrl();
 
-    /**
-     * Custom form service client ID.
-     *
-     * @return the string
-     */
-    @AttributeDefinition(
-            name = "Custom Form Service Client ID",
-            description = "Custom Form Service Client ID",
-            type = AttributeType.STRING)
-    String customFormServiceClientID();
-
-    /**
-     * Custom form service client secret.
-     *
-     * @return the string
-     */
-    @AttributeDefinition(
-            name = "Custom Form Service Client Secret",
-            description = "Custom Form Service Client Secret",
-            type = AttributeType.STRING)
-    String customFormServiceClientSecret();
 }
