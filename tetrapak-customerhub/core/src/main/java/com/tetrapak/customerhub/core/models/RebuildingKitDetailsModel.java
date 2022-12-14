@@ -142,11 +142,22 @@ public class RebuildingKitDetailsModel {
     private String rkStatus;
 
     /**
+     * The RK SubType
+     */
+    @Inject
+    private String rkSubType;
+
+    /**
 	 * The RK Handling
 	 */
     @Inject
     private String rkHandling;
 
+    /**
+     * The RK Validation
+     */
+    @Inject
+    private String rkValidation;
     /**
 	 * The RK Planning Information
 	 */
@@ -164,6 +175,18 @@ public class RebuildingKitDetailsModel {
 	 */
     @Inject
     private String serviceOrder;
+
+    /**
+     * The RK No CTI Text
+     */
+    @Inject
+    private String rkNoCtiText;
+
+    /**
+     * The RK Required CTI Text
+     */
+    @Inject
+    private String rkReqCtiText;
     
 	/**
 	 * The rebuildingKitDetailsApi
@@ -356,6 +379,24 @@ public class RebuildingKitDetailsModel {
 	}
 
     /**
+     * Gets the rkSubType.
+     *
+     * @return the rkSubType
+     */
+    public String getRkSubType() {
+        return rkSubType;
+    }
+
+    /**
+     * Gets the rkValidation.
+     *
+     * @return the rkValidation
+     */
+    public String getRkValidation() {
+        return rkValidation;
+    }
+
+    /**
      * Gets the rkHandling.
      *
      * @return the rkHandling
@@ -389,8 +430,26 @@ public class RebuildingKitDetailsModel {
      */
 	public String getServiceOrder() {
 		return serviceOrder;
-	}  
-	
+	}
+
+    /**
+     * Gets the rkNoCtiText.
+     *
+     * @return the rkNoCtiText
+     */
+    public String getRkNoCtiText() {
+        return rkNoCtiText;
+    }
+
+    /**
+     * Gets the rkReqCtiText.
+     *
+     * @return the rkReqCtiText
+     */
+    public String getRkReqCtiText() {
+        return rkReqCtiText;
+    }
+
     /**
      * Gets the Rebuilding Kit Details API.
      *
@@ -441,10 +500,14 @@ public class RebuildingKitDetailsModel {
         i18KeyMap.put(CustomerHubConstants.REF_RELEASE_DATE, getRefReleaseDate());
         i18KeyMap.put(CustomerHubConstants.RK_TYPE, getRkType());
         i18KeyMap.put(CustomerHubConstants.RK_STATUS, getRkStatus());
+        i18KeyMap.put(CustomerHubConstants.RK_SUBTYPE, getRkSubType());
         i18KeyMap.put(CustomerHubConstants.RK_HANDLING, getRkHandling());
+        i18KeyMap.put(CustomerHubConstants.RK_VALIDATION, getRkValidation());
         i18KeyMap.put(CustomerHubConstants.RK_PLANNING_INFORMATION, getRkPlanningInformation());
         i18KeyMap.put(CustomerHubConstants.IMPL_DEADLINE, getImplDeadline());
         i18KeyMap.put(CustomerHubConstants.SERVICE_ORDER, getServiceOrder());
+        i18KeyMap.put(CustomerHubConstants.RK_NO_CTI_TEXT, getRkNoCtiText());
+        i18KeyMap.put(CustomerHubConstants.RK_REQ_CTI_TEXT, getRkReqCtiText());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
