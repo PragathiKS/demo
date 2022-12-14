@@ -79,10 +79,6 @@ public final class LinkUtil {
 			return request.getResourceResolver().map(link);
 		} else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
 				&& !link.endsWith(".htm")) {
-			/*
-			 * if (GlobalUtil.isPublish()) { return request.getResourceResolver().map(link);
-			 * }
-			 */
 			return link + ".html";
 		}
 		return link;
