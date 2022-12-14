@@ -72,4 +72,28 @@ public final class LinkUtil {
                         || link.startsWith(SupplierPortalConstants.WWW)));
     }
 
+    public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
+		if (StringUtils.isBlank(link)) {
+			return "#";
+		} else if (Boolean.TRUE.equals(isPreviewURL(request))) {
+			return request.getResourceResolver().map(link);
+		} else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
+				&& !link.endsWith(".htm")) {
+			/*
+			 * if (GlobalUtil.isPublish()) { return request.getResourceResolver().map(link);
+			 * }
+			 */
+			return link + ".html";
+		}
+		return link;
+	}
+
+    public static Boolean isPreviewURL(SlingHttpServletRequest request) {
+		String previewHeader = request.getHeader("preview");
+		Boolean isPreviewURL = false;
+		if ("true".equalsIgnoreCase(previewHeader)) {
+			isPreviewURL = true;
+		}
+		return isPreviewURL;
+	}
 }

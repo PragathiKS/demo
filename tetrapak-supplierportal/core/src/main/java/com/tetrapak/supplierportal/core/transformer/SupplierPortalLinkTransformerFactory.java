@@ -3,7 +3,7 @@ package com.tetrapak.supplierportal.core.transformer;
 import com.day.cq.rewriter.pipeline.AttributesImpl;
 import com.day.cq.wcm.api.WCMMode;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
-import com.tetrapak.supplierportal.core.utils.LinkUtils;
+import com.tetrapak.supplierportal.core.utils.LinkUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.rewriter.ProcessingComponentConfiguration;
@@ -21,15 +21,11 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 
 /**
- * A factory for creating CustomerHubLinkTransformer objects.
+ * A factory for creating SupplierPortalLinkTransformer objects.
  */
-@Component(
-        immediate = true,
-        service = TransformerFactory.class,
-        property = { "pipeline.type=mtplinkrewriter" })
+@Component(immediate = true, service = TransformerFactory.class, property = { "pipeline.type=mtplinkrewriter" })
 public class SupplierPortalLinkTransformerFactory implements TransformerFactory {
-    
-    
+
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(SupplierPortalLinkTransformerFactory.class);
 
@@ -40,34 +36,34 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
      */
     @Override
     public Transformer createTransformer() {
-        LOGGER.debug("CustomerHubLink Transformer called");
-        return new CustomerHubLinkRewriterTransformer();
+        LOGGER.debug("SupplierPortalLink Transformer called");
+        return new SupplierPortalLinkRewriterTransformer();
     }
 
     /**
-     * The Class CustomerHubLinkRewriterTransformer.
+     * The Class SupplierPortalLinkRewriterTransformer.
      */
-    private class CustomerHubLinkRewriterTransformer implements Transformer {
+    private class SupplierPortalLinkRewriterTransformer implements Transformer {
 
         /** The content handler. */
         private ContentHandler contentHandler;
 
         /** The request. */
         private SlingHttpServletRequest request;
-        
+
         protected boolean isSkip;
 
         /**
          * Characters.
          *
          * @param ch
-         *            the ch
+         *               the ch
          * @param start
-         *            the start
+         *               the start
          * @param length
-         *            the length
+         *               the length
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
@@ -86,7 +82,7 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * End document.
          *
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void endDocument() throws SAXException {
@@ -97,13 +93,13 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * End element.
          *
          * @param uri
-         *            the uri
+         *                  the uri
          * @param localName
-         *            the local name
+         *                  the local name
          * @param qName
-         *            the q name
+         *                  the q name
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
@@ -114,9 +110,9 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * End prefix mapping.
          *
          * @param prefix
-         *            the prefix
+         *               the prefix
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void endPrefixMapping(String prefix) throws SAXException {
@@ -127,13 +123,13 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Ignorable whitespace.
          *
          * @param ch
-         *            the ch
+         *               the ch
          * @param start
-         *            the start
+         *               the start
          * @param length
-         *            the length
+         *               the length
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void ignorableWhitespace(char[] ch, int start, int length) throws SAXException {
@@ -144,17 +140,17 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Inits the.
          *
          * @param context
-         *            the context
+         *                the context
          * @param config
-         *            the config
+         *                the config
          * @throws IOException
-         *             Signals that an I/O exception has occurred.
+         *                     Signals that an I/O exception has occurred.
          */
         @Override
         public void init(ProcessingContext context, ProcessingComponentConfiguration config) throws IOException {
             request = context.getRequest();
             final WCMMode wcmMode = WCMMode.fromRequest(context.getRequest());
-            LOGGER.debug("CustomerHubLink Transformer WCMMode: {}",wcmMode);
+            LOGGER.debug("SupplierPortalLink Transformer WCMMode: {}", wcmMode);
             isSkip = wcmMode != WCMMode.DISABLED;
         }
 
@@ -162,11 +158,11 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Processing instruction.
          *
          * @param target
-         *            the target
+         *               the target
          * @param data
-         *            the data
+         *               the data
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void processingInstruction(String target, String data) throws SAXException {
@@ -177,7 +173,7 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Sets the content handler.
          *
          * @param handler
-         *            the new content handler
+         *                the new content handler
          */
         @Override
         public void setContentHandler(ContentHandler handler) {
@@ -188,7 +184,7 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Sets the document locator.
          *
          * @param locator
-         *            the new document locator
+         *                the new document locator
          */
         @Override
         public void setDocumentLocator(Locator locator) {
@@ -199,9 +195,9 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Skipped entity.
          *
          * @param name
-         *            the name
+         *             the name
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void skippedEntity(String name) throws SAXException {
@@ -212,7 +208,7 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Start document.
          *
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void startDocument() throws SAXException {
@@ -223,29 +219,29 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Start element.
          *
          * @param uri
-         *            the uri
+         *                  the uri
          * @param localName
-         *            the local name
+         *                  the local name
          * @param qName
-         *            the q name
+         *                  the q name
          * @param atts
-         *            the atts
+         *                  the atts
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         @SuppressWarnings("deprecation")
         public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
             final AttributesImpl attributes = new AttributesImpl(atts);
             final String href = attributes.getValue("href");
-            LOGGER.debug("CustomerHubLink Transformer href: {}",href);
+            LOGGER.debug("SupplierPortalLink Transformer href: {}", href);
             if (!isSkip && StringUtils.isNotBlank(href) && Boolean.TRUE.equals(isValidURL(href))
                     && "a".equals(localName)) {
-                LOGGER.info("CustomerHubLink Transformer processing valid : {}",href);
+                LOGGER.info("SupplierPortalLink Transformer processing valid : {}", href);
                 for (int i = 0; i < attributes.getLength(); i++) {
                     if ("href".equalsIgnoreCase(attributes.getQName(i))) {
                         attributes.setValue(i,
-                                LinkUtils.sanitizeLink(attributes.getValue(i).replaceAll(".html", ""), request));
+                                LinkUtil.sanitizeLink(attributes.getValue(i).replaceAll(".html", ""), request));
                         break;
                     }
                 }
@@ -273,11 +269,11 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          * Start prefix mapping.
          *
          * @param prefix
-         *            the prefix
+         *               the prefix
          * @param uri
-         *            the uri
+         *               the uri
          * @throws SAXException
-         *             the SAX exception
+         *                      the SAX exception
          */
         @Override
         public void startPrefixMapping(String prefix, String uri) throws SAXException {
