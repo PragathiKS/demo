@@ -30,15 +30,6 @@
         }
     }
 
-    &__media-wrapper {
-        @include margin-bottom($margin-md);
-
-        @media #{$desktop} {
-            @include margin-bottom($margin-l);
-
-        }
-    }
-
     &__event {
         @include line-height($font-l, $font-baseline);
         display: block;
@@ -132,30 +123,6 @@
         background-color: $color-wild-sand;
     }
 
-    &__event-detail-title {
-        @include font-size($font-l);
-        @include line-height($font-xl, $font-l);
-        @include margin-bottom($margin-md);
-
-        @media #{$desktop} {
-            @include margin-bottom($margin-md);
-
-        }
-    }
-
-    &__event-detail-description p {
-        @include font-size($font-baseline);
-        @include line-height($font-m-xl, $font-normal);
-    }
-
-    &__event-detail-description-link {
-        @include margin-top($margin-md);
-
-        @media #{$desktop} {
-            @include margin-top($margin-md);
-        }
-    }
-
     &-detail-wrapper {
         background: $color-wild-sand;
         padding: 1rem;
@@ -163,15 +130,6 @@
             .tp-accordion__event-detail-description {
                 li {
                     display: table-row;
-                }
-                .tp-pw-richText-wrapper a {
-                    @include padding($padding-zero);
-                    align-items: center;
-                    font-weight: 400;
-                }
-                .fullBleed {
-                    @include padding-left(0);
-                    @include padding-right(0);
                 }
                 h1 {
                     @include font-size($font-l);
