@@ -2,12 +2,20 @@
     "heading": "FAQ Questions",
     "questionlist": [
         {
-            "quesNo": "Question 1",
-            "quesDetail": "<p>Question 1 detail</p>\r\n<h2>testing header</h2>"
+            "quesNo": "Look at your customers’ questions",
+            "quesDetail": "<p>Image tools used to insert an image to the Rich Text Editor and click on the image to easily customize the image using quick toolbar. The quick toolbar has the following items Replace – can replace the image with some other image. Align – Align the image with left, right and justify. Image captions</p> "
         },
        {
-            "quesNo": "Question 2",
-            "quesDetail": "<p>Question 2 Detail</p>\r\n"
+            "quesNo": "Look at Google and Quora",
+            "quesDetail": "<p>Rich Text Editor allows inserting images from online sources </p>\r\n<p><b>Get started Quick Toolbar to click on the image</b></p>"
+        },
+        {
+            "quesNo": "Write questions from the point of view of your customer",
+            "quesDetail": "<p>Rich Text Editor allows inserting images from online sources </p>\r\n<p><b>Get started Quick Toolbar to click on the image</b></p>"
+        },
+        {
+            "quesNo": "Show some personality in your answers",
+            "quesDetail": "<p>Rich Text Editor allows inserting images from online sources </p>\r\n<p><b>Get started Quick Toolbar to click on the image</b></p>"
         }
     ]
 }
