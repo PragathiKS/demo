@@ -19,4 +19,8 @@ describe('Accordion', function () {
     expect(this.accordion.init.called).to.be.true;
     done();
   });
+  it('should open accordion on click', function (done) {
+    $('.tp-accordion__event').eq(0).trigger('click');
+    done();
+  });
 });
