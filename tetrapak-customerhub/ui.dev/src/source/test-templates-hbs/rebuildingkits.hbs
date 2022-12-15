@@ -37,6 +37,27 @@
             <h2 class="tp-rk__heading js-rk__heading">
                 Rebuilding kits
             </h2>
+            <!-- Actions -->
+            <div class="tp-rk__header-action-wrapper">
+                <div class="tp-rk__header-mobile">
+                    <button class="tp-next-btn js-mobile-header-actions">
+                    <i class="icon icon-Three_Dot">
+                    </i>
+                    </button>
+                </div>
+                <div class="tp-rk__header-actions">
+                    <div class="tp-rk__header-actionicons">
+                    <div class="tp-rk__action-button second js-rk__customise-table-action">
+                        <i class="icon icon-Hide action-icon"></i>
+                        <span class="tpatom-btn__text tp-rk__header-action-text">Customise Table</span>
+                    </div>
+                    <input type="hidden" id="downloadExcelServletUrl" name="downloadExcelServletUrl" value="${data.downloadExcelServletUrl}" />
+                    <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
+                            data-sly-call="${btnRef.buttonlink_template @text='cuhu.rebuildingkits.exportToCsv',modifier='primary',baseClass='tp-button-link',iconClass='icon-Excel action-icon',className='tp-rk__action-button',jsClass='js-rk__export-csv-action'}" />
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
         <div class="tp-rk__filter-wrapper">
             <div class="tp-rk__filter-chips">
