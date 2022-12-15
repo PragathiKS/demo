@@ -1,0 +1,182 @@
+.tp-accordion {
+    display: flex;
+    flex-direction: column;
+
+    .tp-container & {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+        @media #{$desktop} {
+            @include padding($padding-md);
+        }
+    }
+
+    &__events {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        @media #{$desktop} {
+            @include padding-right($padding-l);
+            padding-left: 0;
+        }
+    }
+
+
+    &__heading {
+        @include font-size($font-l);
+        @include line-height($padding-xxl, $font-m-xl);
+        
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            @include line-height($padding-xxl, $font-xl);
+            font-weight: 700;
+        }
+    }
+
+    &__media-wrapper {
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-l);
+
+        }
+    }
+
+    &__event {
+        @include line-height($font-l, $font-baseline);
+        display: block;
+        color: $color-tundora;
+        background-color: transparent;
+        border-top: 1px solid $color-mercury;
+        border-bottom: 1px solid $color-mercury;
+        margin-top: -1px;
+        position: relative;
+        width: 100%;
+        text-align: left;
+        transition: ease-in-out 0.3s;
+
+        .tp-accordion__event-title {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        div {
+            @include padding($padding-md $margin-xl $padding-md $padding-md);
+
+            @media #{$desktop} {
+                @include padding($padding-md);
+            }
+        }
+
+        &:first-of-type {
+            @include margin-top($margin-md);
+        }
+
+        &:last-of-type.collapsed {
+            @media #{$mobile} {
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+
+        .icon-Chevron_Down {
+            @include right($margin-md);
+            @include width($spacing-big-half);
+            @include height($spacing-big-half);
+            @include font-size($font-sm);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            transition: transform $anim-speed-quick $anim-ease;
+
+            @media #{$desktop} {
+                @include right($margin-md);
+            }
+
+            &::before {
+                vertical-align: top;
+            }
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+        }
+
+        &.active {
+            z-index: $zindex-p;
+
+            @media #{$desktop} {
+                border-color: $color-white;
+            }
+
+            div {
+                @media #{$desktop} {
+                    background: $color-wild-sand;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        &.m-active {
+            @media #{$mobile} {
+                z-index: $zindex-p;
+                border-color: $color-wild-sand;
+            }
+        }
+
+        &.collapsed {
+            @media #{$mobile} {
+                border-color: $color-mercury;
+            }
+        }
+
+        &:not(.collapsed) {
+            @media #{$mobile} {
+                color: $color-tundora;
+                background: $color-wild-sand;
+            }
+
+            .icon-Chevron_Down {
+                color: $color-tundora;
+
+                @media #{$mobile} {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
+    &-detail-wrapper {
+        background: $color-wild-sand;
+        padding: 1rem;
+    }
+    &__event-detail-wrapper {
+        @include padding($padding-md);
+        background-color: $color-wild-sand;
+    }
+
+    &__event-detail-title {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        @include margin-bottom($margin-md);
+
+        @media #{$desktop} {
+            @include margin-bottom($margin-md);
+
+        }
+    }
+
+    &__event-detail-description p {
+        @include font-size($font-baseline);
+        @include line-height($font-m-xl, $font-normal);
+    }
+
+    &__event-detail-description-link {
+        @include margin-top($margin-md);
+
+        @media #{$desktop} {
+            @include margin-top($margin-md);
+        }
+    }
+}

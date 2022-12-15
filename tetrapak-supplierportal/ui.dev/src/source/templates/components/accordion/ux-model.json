@@ -1,1 +1,13 @@
-{}
+{
+    "heading": "FAQ Questions",
+    "questionlist": [
+        {
+            "quesNo": "Question 1",
+            "quesDetail": "<p>Question 1 detail</p>\r\n"
+        },
+       {
+            "quesNo": "Question 2",
+            "quesDetail": "<p>Question 2 Detail</p>\r\n"
+        }
+    ]
+}
