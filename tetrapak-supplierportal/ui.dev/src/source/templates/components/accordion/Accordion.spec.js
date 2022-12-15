@@ -15,7 +15,7 @@ describe('Accordion', function () {
     $(document.body).empty();
     this.initSpy.restore();
   });
-  it('should initialize', function (done) {
+  it('should initialize accordion', function (done) {
     expect(this.accordion.init.called).to.be.true;
     done();
   });

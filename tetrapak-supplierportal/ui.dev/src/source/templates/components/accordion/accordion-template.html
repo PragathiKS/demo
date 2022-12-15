@@ -1,15 +1,19 @@
 <sly data-sly-template.accordion_template="${@data, flag}">
-        <div class="tp-card tp-accordion clearfix row col-lg-9" data-module="Accordion">
+        <div class="tp-card tp-accordion clearfix row col-lg-9" data-module="Accordion" id="accordion">
           <h2 class="tp-accordion__heading js-accordion__heading"> ${data.heading}</h2>
           <div class="tp-accordion__events accordion">
             <sly data-sly-list.tab="${data.questionlist}">
               <sly data-sly-test="${tab.quesNo}">
-                <button type="button" class="tp-accordion__event js-accordion__event${tabList.index == 0 ? ' active m-active' : ' collapsed'}" data-toggle="collapse" data-target="#tab_${tabList.index}" data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}">
+                <button type="button" class="tp-accordion__event js-accordion__event collapsed" 
+                data-toggle="collapse" data-target="#collapse_${tabList.index}" data-index="${tabList.index}" 
+                aria-expanded="${tabList.index == 0 ? 'true' : 'false'}" aria-controls="collapse_${tabList.index}">
                     <div class="tp-accordion__event-title">${tab.quesNo @i18n,locale=data.locale}</div>
                     <i class="icon icon-Chevron_Down"></i>
                 </button>
-                <div class="tp-accordion-detail-wrapper collapse${tabList.index == 0 ? ' show' : ''}" id="tab_${tabList.index}">
-                    <div class="tp-accordion-detail js-video-props" data-link-parent-title="${tab.quesNo @i18n,locale=data.locale}">
+
+                <div data-parent="#accordion" id="collapse_${tabList.index}" 
+                class="tp-accordion-detail-wrapper collapse">
+                    <div class="tp-accordion-detail" data-link-parent-title="${tab.quesNo @i18n,locale=data.locale}">
                         <div class="tp-accordion__event-detail-description">${tab.quesDetail @ context='html'}</div>
                     </div>
                 </div>
