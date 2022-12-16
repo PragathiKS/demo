@@ -1,0 +1,70 @@
+# Global users and groups
+
+- group_config:
+
+    - sp_aem_default:
+
+        - name: Supplier portal default group
+          memberOf: everyone
+          path: /home/groups/spgroups
+
+- ace_config:
+
+    - sp_aem_default:
+
+        - path: /content/dam
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/supplierportal/global/en/dashboard
+          permission: allow
+          privileges: jcr:read
+
+        - path: /content/tetrapak/supplierportal/global/en/logout
+          permission: allow
+          privileges: jcr:read
+
+        - path: /content/tetrapak/supplierportal/global/en/error
+          permission: allow
+          privileges: jcr:read
+
+        - path: /apps
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /bin/supplierportal
+          permission: allow
+          actions: read
+          privileges:
+
+        - path: /content/tetrapak/supplierportal/global
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/supplierportal/global
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/supplierportal/global
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/tetrapak/supplierportal/global/en
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/supplierportal/global/en
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/supplierportal/global/en
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*

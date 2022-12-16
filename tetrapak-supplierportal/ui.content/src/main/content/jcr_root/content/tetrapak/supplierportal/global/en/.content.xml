@@ -30,7 +30,7 @@
                         <item1
                                 jcr:primaryType="nt:unstructured"
                                 linkLabel="Cookie Policy"
-                                linkPath="/content/tetrapak/supplierportal/en/legal-information/cookies"/>
+                                linkPath="/content/tetrapak/supplierportal/global/en/legal-information/cookies"/>
                         <item2
                                 jcr:primaryType="nt:unstructured"
                                 linkLabel="Terms &amp; Conditions"
