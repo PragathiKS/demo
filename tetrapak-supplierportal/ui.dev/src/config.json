@@ -137,7 +137,8 @@
         "source/templates/components/footer/",
         "source/templates/components/teaser/",
         "source/templates/components/textImage/",
-        "source/templates/components/mediaLink/"
+        "source/templates/components/mediaLink/",
+        "source/templates/components/accordion/"
       ]
     },
     "handlebars": {
