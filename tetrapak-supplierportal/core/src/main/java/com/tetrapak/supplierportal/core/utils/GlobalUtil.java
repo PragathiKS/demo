@@ -5,6 +5,8 @@ import org.apache.sling.settings.SlingSettingsService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
+import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -43,6 +45,6 @@ public class GlobalUtil {
         if (slingSettingsService == null) {
             return false;
         }
-        return slingSettingsService.getRunModes().contains("publish");
+        return slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH);
     }
 }

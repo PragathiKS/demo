@@ -233,15 +233,15 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
         @SuppressWarnings("deprecation")
         public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
             final AttributesImpl attributes = new AttributesImpl(atts);
-            final String href = attributes.getValue("href");
+            final String href = attributes.getValue(SupplierPortalConstants.HREF);
             LOGGER.debug("SupplierPortalLink Transformer href: {}", href);
             if (!isSkip && StringUtils.isNotBlank(href) && Boolean.TRUE.equals(isValidURL(href))
                     && "a".equals(localName)) {
                 LOGGER.info("SupplierPortalLink Transformer processing valid : {}", href);
                 for (int i = 0; i < attributes.getLength(); i++) {
-                    if ("href".equalsIgnoreCase(attributes.getQName(i))) {
+                    if (SupplierPortalConstants.HREF.equalsIgnoreCase(attributes.getQName(i))) {
                         attributes.setValue(i,
-                                LinkUtil.sanitizeLink(attributes.getValue(i).replaceAll(".html", ""), request));
+                                LinkUtil.sanitizeLink(attributes.getValue(i).replaceAll(SupplierPortalConstants.HTML_EXTENSION, ""), request));
                         break;
                     }
                 }
