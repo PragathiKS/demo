@@ -96,7 +96,9 @@
           "exportToCsvLabel": "cuhu.rebuildingkits.exportToCsv",
           "lastLabel": "cuhu.rebuildingkits.last",
           "applyFilter": "cuhu.rebuildingkits.applyFilter",
-          "order": "cuhu.rebuildingkits.order"
+          "order": "cuhu.rebuildingkits.order",
+		  "orderToolTip": "cuhu.rebuildingkits.orderToolTip",
+		  "hideAndShowCta": "cuhu.rebuildingkits.hideAndShowCta"
         }
       }
     }
