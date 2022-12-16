@@ -5,6 +5,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class FooterConfigurationModel {
     @Inject
     private List<FooterLinkModel> footerNavigationLinks;
 
-    @Inject
+    @ValueMapValue
     private String languageSwitchLabel;
 
     public List<FooterLinkModel> getFooterLinks() {

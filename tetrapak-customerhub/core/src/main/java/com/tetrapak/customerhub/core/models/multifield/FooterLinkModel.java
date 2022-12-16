@@ -18,6 +18,7 @@ public class FooterLinkModel {
     @ValueMapValue
     private String linkPath;
 
+    @ValueMapValue
     private String linkTarget;
 
     public String getLinkText() {
@@ -38,6 +39,10 @@ public class FooterLinkModel {
 
     public void setLinkTarget(String linkTarget) {
         this.linkTarget = linkTarget;
+    }
+
+    public void setLinkText(String linkText) {
+        this.linkText = linkText;
     }
 }
 
