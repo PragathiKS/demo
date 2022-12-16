@@ -7,7 +7,7 @@
     order="{Long}3"
     paths="[/content/tetrapak/supplierportal]"
     serializerType="htmlwriter"
-    transformerTypes="[mtplinkrewriter]">
+    transformerTypes="[supplierportallinkrewriter]">
     <generate-htmlparser
         jcr:primaryType="nt:unstructured"
         includeTags="[A,/A]"/>

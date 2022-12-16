@@ -23,7 +23,7 @@ import java.io.IOException;
 /**
  * A factory for creating SupplierPortalLinkTransformer objects.
  */
-@Component(immediate = true, service = TransformerFactory.class, property = { "pipeline.type=mtplinkrewriter" })
+@Component(immediate = true, service = TransformerFactory.class, property = { "pipeline.type=supplierportallinkrewriter" })
 public class SupplierPortalLinkTransformerFactory implements TransformerFactory {
 
     /** The Constant LOGGER. */

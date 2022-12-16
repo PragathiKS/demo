@@ -1,7 +1,6 @@
 package com.tetrapak.supplierportal.core.utils;
 
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -13,16 +12,6 @@ import org.apache.sling.api.resource.ResourceResolver;
  * @author Ruhee sharma
  */
 public final class LinkUtil {
-
-    /**
-     * The Constant DOWNLOADABLE_ASSETS.
-     */
-    private static final String DOWNLOADABLE_ASSETS = "(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|eps|png|tif|ppt|pptx|xml|icc|acb)$";
-
-    /**
-     * The Constant FORWARD_SLASH.
-     */
-    private static final String FORWARD_SLASH = "/";
 
     private LinkUtil() {
         throw new IllegalStateException("Utility class");
@@ -67,29 +56,32 @@ public final class LinkUtil {
      * @return the boolean
      */
     public static Boolean isExternalLink(final String link) {
-        return (!StringUtils.isEmpty(link) && !link.startsWith(SupplierPortalConstants.CONTENT_PATH) && (
-                link.startsWith(SupplierPortalConstants.HTTP) || link.startsWith(SupplierPortalConstants.HTTPS)
+        return (!StringUtils.isEmpty(link) && !link.startsWith(SupplierPortalConstants.CONTENT_PATH)
+                && (link.startsWith(SupplierPortalConstants.HTTP) || link.startsWith(SupplierPortalConstants.HTTPS)
                         || link.startsWith(SupplierPortalConstants.WWW)));
     }
 
     public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {
-		if (StringUtils.isBlank(link)) {
-			return "#";
-		} else if (Boolean.TRUE.equals(isPreviewURL(request))) {
-			return request.getResourceResolver().map(link);
-		} else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
-				&& !link.endsWith(".htm")) {
-			return link + ".html";
-		}
-		return link;
-	}
+        if (StringUtils.isBlank(link)) {
+            return "#";
+        } else if (Boolean.TRUE.equals(isPreviewURL(request))) {
+            return request.getResourceResolver().map(link);
+        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
+                && !link.endsWith(".htm")) {
+            if (GlobalUtil.isPublish()) {
+                return request.getResourceResolver().map(link);
+            }
+            return link + ".html";
+        }
+        return link;
+    }
 
     public static Boolean isPreviewURL(SlingHttpServletRequest request) {
-		String previewHeader = request.getHeader("preview");
-		Boolean isPreviewURL = false;
-		if ("true".equalsIgnoreCase(previewHeader)) {
-			isPreviewURL = true;
-		}
-		return isPreviewURL;
-	}
+        String previewHeader = request.getHeader("preview");
+        Boolean isPreviewURL = false;
+        if ("true".equalsIgnoreCase(previewHeader)) {
+            isPreviewURL = true;
+        }
+        return isPreviewURL;
+    }
 }
