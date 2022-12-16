@@ -96,12 +96,14 @@ export const _getKeyMap = (key, i18nKeys) => {
   const headerObj = {};
 
   const mapKeysToHeaderObj = (i18nKey, i18nToolTipKey) => {
+    const toolTipText = i18nKeys[i18nToolTipKey];
     headerObj['keyLabel'] = i18nKeys[i18nKey];
-    if (i18nToolTipKey && i18nToolTipKey.trim().length > 0) {
+    if (i18nToolTipKey && toolTipText && toolTipText.trim().length > 0) {
       headerObj['showTooltip'] = true;
-      headerObj['tooltipText'] = i18nKeys[i18nToolTipKey];
+      headerObj['tooltipText'] = toolTipText;
     } else {
       headerObj['showTooltip'] = false;
+      headerObj['tooltipText'] = '';
     }
   };
 
