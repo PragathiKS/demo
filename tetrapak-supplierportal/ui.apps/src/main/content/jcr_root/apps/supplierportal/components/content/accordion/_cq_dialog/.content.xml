@@ -21,14 +21,14 @@
                         name="./heading"/>
                     <questionlist
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="questionlist"
+                        jcr:title="questionList"
                         sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                         composite="{Boolean}true"
                         fieldLabel="List of Questions">
                         <field
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
-                            name="./questionlist">
+                            name="./questionList">
                             <items jcr:primaryType="nt:unstructured">
                                 <column
                                     jcr:primaryType="nt:unstructured"

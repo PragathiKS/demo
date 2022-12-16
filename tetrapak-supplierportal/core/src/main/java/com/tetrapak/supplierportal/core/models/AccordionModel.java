@@ -25,7 +25,7 @@ public class AccordionModel {
 	private String heading;
 
 	@Inject
-	private List<FAQModel> questionlist;
+	private List<FAQModel> questionList;
 
 	public String getHeading() {
 		return heading;
@@ -33,8 +33,8 @@ public class AccordionModel {
 
 	public List<FAQModel> getQuestionList() {
 		final List<FAQModel> lists = new ArrayList<>();
-		if (Objects.nonNull(questionlist)) {
-			lists.addAll(questionlist);
+		if (Objects.nonNull(questionList)) {
+			lists.addAll(questionList);
 		}
 		return lists;
 

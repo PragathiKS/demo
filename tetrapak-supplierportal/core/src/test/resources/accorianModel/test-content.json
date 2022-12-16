@@ -28,7 +28,7 @@
 "textIsRich": [
 "true"
 ],
-"questionlist": {
+"questionList": {
 "jcr:primaryType": "nt:unstructured",
 "item0": {
 "jcr:primaryType": "nt:unstructured",
