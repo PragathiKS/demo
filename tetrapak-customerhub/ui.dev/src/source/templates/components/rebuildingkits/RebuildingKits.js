@@ -3,66 +3,51 @@ import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { _paginationAnalytics } from './RebuildingKits.analytics';
+import { _paginationAnalytics, _customizeTableBtnAnalytics } from './RebuildingKits.analytics';
 import { render } from '../../../scripts/utils/render';
 import { getI18n } from '../../../scripts/common/common';
 import { _paginate } from './RebuildingKits.paginate';
 import { _getFormattedCountryData } from './RebuildingKits.utils';
 import { _buildTableRows, _mapHeadings } from './RebuildingKits.table';
-
-function _processKeys(keys, ob) {
-  if (keys.length) {
-    return keys;
-  } else {
-    let functionalLocation,
-      equipmentDesc,
-      serialNumber,
-      rkNumber,
-      rkDesc,
-      implStatus,
-      equipmentNumber;
-    for (const i in ob) {
-      if (i === 'lineCode') {
-        functionalLocation = i;
-      } else if (i === 'equipmentDesc') {
-        equipmentDesc = i;
-      } else if (i === 'serialNumber') {
-        serialNumber = i;
-      } else if (i === 'rkNumber') {
-        rkNumber = i;
-      } else if (i === 'rkDesc') {
-        rkDesc = i;
-      } else if (i === 'implStatus') {
-        implStatus = i;
-      } else if (i === 'equipmentNumber') {
-        equipmentNumber = i;
-      }
-
-    }
-    return [
-      functionalLocation,
-      equipmentDesc,
-      serialNumber,
-      rkNumber,
-      rkDesc,
-      implStatus,
-      equipmentNumber
-    ];
-  }
-}
-
-function _processTableData(data) {
-  let keys = [];
-  if (Array.isArray(data.summary)) {
-    data.summary = data.summary.map((summary) => {
-      keys = _processKeys(keys, summary);
-      this.cache.tableHeaders = keys;
-      return _buildTableRows.call(this, summary, keys);
-    });
-    data.summaryHeadings = _mapHeadings(keys, data.i18nKeys);
-  }
-  return data;
-}
+import {
+  RK_COUNTRY_CODE,
+  RK_LINE_CODE,
+  RK_EQ_DESC,
+  RK_MACHINE_SYSTEM,
+  RK_SERIAL_NUMBER,
+  RK_EQ_STATUS,
+  RK_NUMBER,
+  RK_DESC,
+  RK_IMPL_STATUS,
+  RK_IMPL_DATE,
+  RK_IMPL_STATUS_DATE,
+  RK_GENERAL_NUMBER,
+  RK_TYPE_CODE,
+  RK_RELEASE_DATE,
+  RK_IMPL_DEADLINE,
+  RK_STATUS,
+  RK_HANDLING,
+  RK_ORDER,
+  RK_I18N_COUNTRY_CODE,
+  RK_I18N_LINE_CODE,
+  RK_I18N_EQ_DESC,
+  RK_I18N_MACHINE_SYSTEM,
+  RK_I18N_SERIAL_NUMBER,
+  RK_I18N_EQ_STATUS,
+  RK_I18N_NUMBER,
+  RK_I18N_DESC,
+  RK_I18N_IMPL_STATUS,
+  RK_I18N_IMPL_DATE,
+  RK_I18N_IMPL_STATUS_DATE,
+  RK_I18N_GENERAL_NUMBER,
+  RK_I18N_TYPE_CODE,
+  RK_I18N_RELEASE_DATE,
+  RK_I18N_IMPL_DEADLINE,
+  RK_I18N_STATUS,
+  RK_I18N_HANDLING,
+  RK_I18N_ORDER,
+  RK_PROPERTY_KEYS
+} from './constants';
 
 class RebuildingKits {
   constructor({ el }) {
@@ -80,11 +65,25 @@ class RebuildingKits {
     this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     this.cache.tableData = [];
     this.cache.customisableTableHeaders = [];
-    this.cache.tableHeaders = [];
+    this.cache.tableHeaders = RK_PROPERTY_KEYS;
     this.cache.$spinner = this.root.find('.tp-spinner');
     this.cache.$content = this.root.find('.tp-rk-content');
     this.cache.$searchResults = this.root.find('.tp-rk__search-count');
     this.cache.$pagination = this.root.find('.js-tbl-pagination');
+
+    this.cache.$modal = this.root.parent().find('.js-filter-modal');
+    this.cache.filterModalData = {};
+    this.cache.$rkCustomizeTableAction = this.root.find('.js-rk__customise-table-action');
+    this.cache.activeFilterForm = 'country';
+    this.cache.combinedFiltersObj = {};
+  }
+
+  processTableData = (data) => {
+    if (Array.isArray(data.summary)) {
+      data.summary = data.summary.map((summary) => _buildTableRows.call(this, summary, this.cache.tableHeaders));
+      data.summaryHeadings = _mapHeadings(this.cache.tableHeaders, data.i18nKeys);
+    }
+    return data;
   }
 
   mapTableColumn = () => {
@@ -138,7 +137,7 @@ class RebuildingKits {
           hidden: false
         },
         () => {
-          // this.hideShowColums();
+          this.hideShowColums();
           $(function () {
             $('[data-toggle="tooltip"]').tooltip();
           });
@@ -146,6 +145,19 @@ class RebuildingKits {
       );
     }
   };
+
+  hideShowColums = () => {
+    const { customisableTableHeaders } = this.cache;
+    for(const i in customisableTableHeaders){
+      if(!customisableTableHeaders[i].isChecked){
+        $(`.js-rk__table-summary__cellheading--${customisableTableHeaders[i].index}`).addClass('hide');
+        $(`.js-rk__table-summary__cell--${customisableTableHeaders[i].index}`).addClass('hide');
+      } else {
+        $(`.js-rk__table-summary__cellheading--${customisableTableHeaders[i].index}`).removeClass('hide');
+        $(`.js-rk__table-summary__cell--${customisableTableHeaders[i].index}`).removeClass('hide');
+      }
+    }
+  }
 
   renderDefaultCountry = () => {
     this.cache.$spinner.removeClass('d-none');
@@ -179,7 +191,7 @@ class RebuildingKits {
 
           ajaxWrapper
             .getXhrObj({
-              url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}`,
+              url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}&sort=lineCode asc,rkGeneralNumber asc,position asc`,
               method: 'GET',
               contentType: 'application/json',
               dataType: 'json',
@@ -207,7 +219,7 @@ class RebuildingKits {
                 ...this.cache.countryData[0],
                 isChecked: true
               });
-              const tableData = _processTableData.call(this, {
+              const tableData = this.processTableData({
                 summary: this.cache.tableData,
                 i18nKeys: this.cache.i18nKeys,
                 meta: this.cache.meta
@@ -236,13 +248,12 @@ class RebuildingKits {
     this.cache.$spinner.removeClass('d-none');
 
     if (resetSkip) {
-      // reset indexes when a filter is set/removed
+      // Reset indexes when a filter is set/removed
       this.cache.activePage = 1;
       this.cache.skipIndex = 0;
     }
-    
-    apiUrlRequest = `${rkApi}?skip=${skipIndex}&count=${itemsPerPage}&countrycodes=${countryCode}`;
 
+    apiUrlRequest = `${rkApi}?skip=${skipIndex}&count=${itemsPerPage}&countrycodes=${countryCode}&sort=lineCode asc,rkGeneralNumber asc,position asc`;
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
@@ -267,7 +278,7 @@ class RebuildingKits {
             ...this.cache.countryData[0],
             isChecked: true
           });
-          const tableData = _processTableData.call(this, {
+          const tableData = this.processTableData({
             summary:this.cache.tableData,
             i18nKeys:this.cache.i18nKeys,
             meta:this.cache.meta
@@ -282,15 +293,139 @@ class RebuildingKits {
     });
   }
 
+  renderFilterForm = (data, formDetail, $filterBtn) => {
+    const { i18nKeys } = this.cache;
+    const selectedItemsNo = 0;
+
+    render.fn({
+      template: 'filterForm',
+      data: {
+        header: formDetail.header,
+        formData: data,
+        maxItemsNo: formDetail.maxFiltersSelection ? formDetail.maxFiltersSelection : null,
+        selectedItemsNo: selectedItemsNo ? selectedItemsNo : 0,
+        isEquipmentType: formDetail.header === i18nKeys['equipmentType'],
+        ...i18nKeys,
+        singleButton: formDetail.singleButton === true ? true : false,
+        customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
+        isRadio: formDetail.isRadio === true ? true : false,
+        radioGroupName: formDetail.radioGroupName,
+        isTextInput: formDetail.isTextInput,
+        autoLocatorModal: `${formDetail.activeForm}Overlay`,
+        autoLocatorInput: `${formDetail.activeForm}InputBox`,
+        autoLocatorCheckbox: `${formDetail.activeForm}FilterCheckboxOverlay`,
+        autoLocatorCheckboxText: `${formDetail.activeForm}FilterItemOverlay`
+      },
+      target: '.tp-rk__filter-form',
+      hidden: false
+    });
+    this.cache.activeFilterForm = formDetail.activeForm;
+    this.cache.$activeFilterBtn = $filterBtn;
+  }
+
+  applyFilter = (options) => {
+    const { activeFilterForm, $activeFilterBtn } = this.cache;
+    const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
+    const filterCount = 0;
+    let filterData = [];
+    let analyticsAction = {};
+
+    switch (activeFilterForm) {
+      case 'customise-table':{
+        filterData = this.cache.customisableTableHeaders;
+        $filtersCheckbox.each(function(index) {
+          if ($(this).is(':checked')) {
+            filterData[index].isChecked = true;
+          } else {
+            filterData[index].isChecked = false;
+          }
+        });
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    if ($activeFilterBtn) {
+      if (filterCount) {
+        $activeFilterBtn.addClass('active');
+      } else {
+        $activeFilterBtn.removeClass('active');
+      }
+    }
+
+    analyticsAction = {
+      action: options && options.removeFilter ? 'removedFilter' : 'addedFilter',
+      targetFilter: $activeFilterBtn,
+      items: this.cache.combinedFiltersObj[activeFilterForm]
+    };
+
+    switch (activeFilterForm) {
+      case 'customise-table': {
+        const tableData = this.processTableData({ summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta });
+        this.renderPaginationTableData(tableData);
+        this.cache.$modal.modal('hide');
+        break;
+      }
+      default: {
+        this.renderNewPage({'resetSkip': true, analyticsAction});
+        this.cache.$modal.modal('hide');
+        break;
+      }
+    }
+  }
+
   bindEvents = () => {
     const $this = this;
+    const {$modal,i18nKeys,$rkCustomizeTableAction } = this.cache;
+
+    this.cache.customisableTableHeaders = [
+      {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:true,index:0,isDisabled:false},
+      {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:1,isDisabled:false},
+      {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:2,isDisabled:false},
+      {key:RK_MACHINE_SYSTEM,option:RK_MACHINE_SYSTEM,optionDisplayText:this.cache.i18nKeys[RK_I18N_MACHINE_SYSTEM],isChecked:true,index:3,isDisabled:false},
+      {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:4,isDisabled:true},
+      {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:false,index:5,isDisabled:false},
+      {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:6,isDisabled:true},
+      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:true,index:7,isDisabled:false},
+      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:8,isDisabled:false},
+      {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:9,isDisabled:false},
+      {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:10,isDisabled:false},
+      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:11,isDisabled:false},
+      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:12,isDisabled:false},
+      {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:13,isDisabled:false},
+      {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:14,isDisabled:false},
+      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:15,isDisabled:false},
+      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:16,isDisabled:false},
+      {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:17,isDisabled:false}
+    ];
+
+    // Show/Hide Columns
+    $rkCustomizeTableAction.on('click', () => {
+      this.renderFilterForm(this.cache.customisableTableHeaders, { activeForm:'customise-table',header:i18nKeys['customizeTable'],singleButton:true });
+      $('.tp-rk__header-actions').removeClass('show');
+      $modal.modal();
+      _customizeTableBtnAnalytics($rkCustomizeTableAction);
+    });
+
+    // Apply filters
+    this.root.on('click', '.js-apply-filter-button',  () => {
+      this.applyFilter();
+    });
+
+    // Close modal
+    this.root.on('click', '.js-close-btn',  () => {
+      $modal.modal('hide');
+    });
+
     // Pagination
     this.root.on('click', '.js-page-number',  (e) => {
       const $btn = $(e.currentTarget);
       const $pagination = $btn.parents('.js-tbl-pagination');
 
       if (!$btn.hasClass('active')) {
-        // stop pointer events until new page is rendered, in order to not send multiple AJAX calls
+        // Stop pointer events until new page is rendered, in order to not send multiple AJAX calls
         $pagination.addClass('pagination-lock');
         this.cache.activePage = $btn.data('page-number');
         this.cache.skipIndex = $btn.data('skip');

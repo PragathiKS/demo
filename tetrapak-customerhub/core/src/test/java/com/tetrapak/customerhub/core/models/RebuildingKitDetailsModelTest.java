@@ -90,6 +90,10 @@ public class RebuildingKitDetailsModelTest {
 		assertEquals("cuhu.rebuildingkits.rkPlanningInformation",model.getRkPlanningInformation());
 		assertEquals("cuhu.rebuildingkits.implDeadline",model.getImplDeadline());
 		assertEquals("cuhu.rebuildingkits.serviceOrder",model.getServiceOrder());
+		assertEquals("cuhu.rebuildingkits.rkSubType",model.getRkSubType());
+		assertEquals("cuhu.rebuildingkits.rkValidation",model.getRkValidation());
+		assertEquals("cuhu.rebuildingkits.rkNoCtiText",model.getRkNoCtiText());
+		assertEquals("cuhu.rebuildingkits.rkReqCtiText",model.getRkReqCtiText());
 	}
 	
 	/**

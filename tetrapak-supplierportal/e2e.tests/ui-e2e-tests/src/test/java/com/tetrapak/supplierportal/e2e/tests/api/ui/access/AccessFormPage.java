@@ -15,8 +15,7 @@ public class AccessFormPage {
     private final Locator country;
     private final Locator company;
     private final Locator companyAddress;
-    private final Locator customerId;
-    private final Locator userProfileAccount;
+    private final Locator vendorNumber;
     private final Locator phone;
     private final Locator updatesCheckbox;
     private final Locator submitButton;
@@ -32,23 +31,21 @@ public class AccessFormPage {
         country = page.locator("#pardot-form p.form-field.country .select");
         company = page.locator("#pardot-form p.form-field.company input");
         companyAddress = page.locator("#pardot-form p.form-field.address_one input");
-        //fixme should be replaced to supplierId
-        customerId = page.locator("#pardot-form p.form-field.Customized_Service_e_busines_Customer_ID input");
+        vendorNumber = page.locator("#pardot-form p.form-field.Supplier_Portal_Vendor_Number input");
 
-        userProfileAccount = page.locator("#pardot-form p.form-field.Customized_Service_e_busines_user_profile select");
         phone = page.locator("#pardot-form p.form-field.phone input");
         updatesCheckbox = page.locator("#pardot-form p.form-field.Opt_in_Marketing_Communications.pd-checkbox");
         submitButton = page.locator("#pardot-form input[type=\"submit\"]");
     }
 
     public void formIsSubmitted() {
-        assertThat(loginForm.locator("p")).containsText("We have received your request and will get back to you.");
+        assertThat(loginForm).containsText("Thank for applying to our Supplier Portal");
     }
 
     public void goToAndCloseCookieDialog() {
-        page.navigate("https://go.tetrapak.com/en-en/service-ebusiness-access-request");
+        page.navigate("https://go.tetrapak.com/supplier-portal/request-access");
         cookieDialog.closeCookieConsentDialog();
-        assertThat(page.locator("#headline")).containsText("Services e-Business");
+        assertThat(page.locator("#headline")).containsText("Supplier Portal");
     }
 
     public void isErrorCountValid(int expectedNumberOfErrors) {
@@ -87,12 +84,8 @@ public class AccessFormPage {
         return companyAddress;
     }
 
-    public Locator getCustomerId() {
-        return customerId;
-    }
-
-    public Locator getUserProfileAccount() {
-        return userProfileAccount;
+    public Locator getVendorNumber() {
+        return vendorNumber;
     }
 
     public Locator getPhone() {

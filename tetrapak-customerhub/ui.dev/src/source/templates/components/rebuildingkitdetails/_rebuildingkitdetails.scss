@@ -74,6 +74,9 @@
         .icon {
             color: $color-congress-blue;
         }
+        @media #{$mobile} {
+            margin-bottom: $margin-md;
+        }
     }
     &__row {
         @include padding($padding-zero $padding-sm);
@@ -314,6 +317,8 @@
             @include padding($padding-zero $padding-md);
             li {
                 @include padding-bottom($padding-md);
+                display: flex;
+                align-items: flex-start;
             }
             &.section {
                 @include padding($padding-zero);
@@ -337,6 +342,7 @@
         }
 
         &-file {
+            @include line-height($font-l, $font-baseline);
             display: inline-block;
             color: $color-tundora;
         }

@@ -714,7 +714,7 @@
             <dependency>
                 <groupId>com.adobe.acs</groupId>
                 <artifactId>acs-aem-commons-bundle</artifactId>
-                <version>4.8.6</version>
+                <version>5.4.0</version>
             </dependency>
 
             <!-- Testing -->
