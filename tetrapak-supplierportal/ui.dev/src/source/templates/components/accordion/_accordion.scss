@@ -49,7 +49,7 @@
 
         .tp-accordion__event-title {
             font-size: 14px;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         div {
@@ -96,6 +96,9 @@
         }
 
         &.collapsed {
+            .tp-accordion__event-title {
+                font-weight: 400;
+            }
             .icon-Chevron_Down {
                 transform: rotate(0);
             }
@@ -155,8 +158,8 @@
                     font-weight: 500;
                 }
                 p {
-                    @include font-size($font-normal);
-                    @include line-height($font-m-xl, $font-normal);
+                    @include font-size($font-baseline);
+                    @include line-height($font-m-xl, $font-l);
                     @include margin-bottom($margin-md);
                     font-weight: 400;
                 }
