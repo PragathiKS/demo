@@ -14,7 +14,7 @@ public class AccordionModelTest {
 	public AemContext context = new AemContext();
 
 	/** The Constant RESOURCE_CONTENT. */
-	private static final String RESOURCE_CONTENT = "/accordianModel/Test-content.json ";
+	private static final String RESOURCE_CONTENT = "/accordianModel/test-content.json ";
 
 	/** The Constant TEST_CONTENT_ROOT. */
 	private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en/dashboard";
