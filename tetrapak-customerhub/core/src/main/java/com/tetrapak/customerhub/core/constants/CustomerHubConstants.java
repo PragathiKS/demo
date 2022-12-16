@@ -769,6 +769,18 @@ public final class CustomerHubConstants {
     
     /** The Constant for RK_STATUS **/
     public static final String RK_STATUS = "rkStatus";
+
+    /** The Constant for RK_SUBTYPE **/
+    public static final String RK_SUBTYPE = "rkSubType";
+
+    /** The Constant for RK_VALIDATION **/
+    public static final String RK_VALIDATION = "rkValidation";
+
+    /** The Constant for RK_NOCTITEXT **/
+    public static final String RK_NO_CTI_TEXT = "rkNoCtiText";
+
+    /** The Constant for RK_VALIDATION **/
+    public static final String RK_REQ_CTI_TEXT = "rkReqCtiText";
     
     /** The Constant for RK_HANDLING **/
     public static final String RK_HANDLING = "rkHandling";
