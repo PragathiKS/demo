@@ -39,12 +39,12 @@ function _renderCtiDocuments(langAvailable, otherLang) {
   const { i18nKeys } = $this.cache;
  
   if (!langAvailable) {
-    const errorMessage ='No CTI is available';
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
-      data : { 
-        noError:errorMessage
+      data : {
+        noData:true,
+        i18nKeys:i18nKeys
       }
     });
     $('.js-langcode').addClass('d-none');
