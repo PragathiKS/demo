@@ -28,7 +28,6 @@ public class FooterModel {
     @OSGiService
     private UserPreferenceService userPreferenceService;
 
-    /** The footer links. */
     private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
 
     @PostConstruct
