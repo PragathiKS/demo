@@ -3,11 +3,11 @@
     jcr:mixinTypes="[rep:AccessControllable]"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:allowedTemplates="/conf/supplierportal/settings/wcm/templates/global-page"
+        cq:allowedTemplates="/conf/supplierportal/settings/wcm/templates/language-page"
         cq:conf="/conf/supplierportal"
-        cq:template="/conf/supplierportal/settings/wcm/templates/landing-page"
+        cq:template="/conf/supplierportal/settings/wcm/templates/global-page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Supplier Portal"
+        jcr:title="Global"
         sling:resourceType="supplierportal/components/structure/page"
         showTitle="false"/>
     <en/>
