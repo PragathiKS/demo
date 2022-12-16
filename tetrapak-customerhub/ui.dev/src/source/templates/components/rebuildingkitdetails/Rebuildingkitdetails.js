@@ -39,7 +39,7 @@ function _renderCtiDocuments(langAvailable, otherLang) {
   const { i18nKeys } = $this.cache;
  
   if (!langAvailable) {
-    const errorMessage ='No data in api';
+    const errorMessage ='No CTI is available';
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
@@ -96,7 +96,7 @@ function _getCtiDocuments() {
           if($this.cache.$ctiData && $this.cache.$ctiData.ctiDocuments) {
             const langAvailable = $this.cache.$ctiData.ctiDocuments.filter((item) => {
               if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
-                item['langDesc'] = $this.cache.langlist[item.langCode];
+                item['langDesc'] = $this.cache.langlist[item.langCode] ? $this.cache.langlist[item.langCode]: '';
                 return item;
               }
             });
@@ -105,7 +105,7 @@ function _getCtiDocuments() {
                 return false;
               }
               else {
-                item['langDesc'] = $this.cache.langlist[item.langCode];
+                item['langDesc'] = $this.cache.langlist[item.langCode] ? $this.cache.langlist[item.langCode]: '';
                 return item;
               }
             });
@@ -215,6 +215,7 @@ class Rebuildingkitdetails {
     }
   }
   changePreferredLanguage(btn) {
+    const $this = this;
     const { apiURL, langlist, $preferredLangLink, $modal } = this.cache;
     const updatedLang = $('input[name="preferredlanguage"]:checked').val();
     const newURL = `${apiURL}?langcode=${updatedLang}`;
@@ -243,6 +244,7 @@ class Rebuildingkitdetails {
             this.cache.$currentLanguage = updatedLang;
             $preferredLangLink.text(langlist[updatedLang]);
             $modal.modal('hide');
+            $this.getCtiDocuments();
           }
           $(btn).removeAttr('disabled');
         })

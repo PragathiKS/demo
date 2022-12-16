@@ -11,7 +11,7 @@ public class GenericMobileContentPage extends GenericContentPage {
 
     protected void verifyPageContent() {
         assertThat(header).isVisible();
-        assertThat(logo).isVisible();
+        assertThat(mobileLogo).isVisible();
         assertThat(footer).isVisible();
         assertThat(menuButton).isVisible();
     }

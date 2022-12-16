@@ -1,20 +1,16 @@
-<h4 class="tp-rebuilding-details__details-row-title" auto_locator="subsectionTitle">{{i18n
-    key=i18nKeys.rkCTI}}</h4>
 {{#if ctiData}}
 <ul class="tp-rebuilding-details__cti-list section">
     {{#each ctiData}}
     <li>
         <i class="icon icon-PDF"></i>
         <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
-            CTI - {{langDesc}}</a>
+            {{langDesc}} - {{ctiNo}}</a>
     </li>
     {{/each}}
-
 </ul>
-
 {{/if}}
 {{#if noError}}
-<p>{{noError}}</p>
+<p><i class="icon icon-PDF"></i> {{noError}}</p>
 {{/if}}
 <a href="#" class="js-langcode">{{i18n key=i18nKeys.moreLanguage}}</a>
 <div id="rk-cti-language-modal" class="modal js-rk-cti-modal tp-modal fade" tabindex="-1" aria-hidden="true"
@@ -36,7 +32,8 @@
                     <li>
                         <i class="icon icon-PDF"></i>
                         <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
-                            {{langDesc}}
+                            {{#if_noteq langDesc ""}}{{langDesc}}{{/if_noteq}}
+                            {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}}
                         </a>
                     </li>
                     {{/each}}
@@ -48,7 +45,9 @@
                     <li>
                         <i class="icon icon-PDF"></i>
                         <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
-                            {{langDesc}}</a>
+                            {{#if_noteq langDesc ""}}{{langDesc}}{{/if_noteq}}
+                            {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}}
+                        </a>
                     </li>
                     {{/each}}
                 </ul>

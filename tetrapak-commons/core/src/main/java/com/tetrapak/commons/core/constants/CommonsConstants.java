@@ -11,6 +11,12 @@ public final class CommonsConstants {
     /** The Constant APPLICATION_JSON. */
     public static final String APPLICATION_JSON = "application/json";
 
+    /** Constant AEM_CONTENT_PATH */
+    public static final String AEM_CONTENT_PATH = "/content/";
+
+    /** The Constant HTML. */
+    public static final String HTML = ".html";
+
     /**
      * Instantiates a new Commons constants.
      */

@@ -4,7 +4,7 @@ import rebuildingKitsTmpl from "../../../test-templates-hbs/rebuildingkits.hbs";
 import { ajaxWrapper } from "../../../scripts/utils/ajax";
 import auth from "../../../scripts/utils/auth";
 import countries from "./data/countries.json";
-import rebuildingKitsList from "./data/rebuildingKitsList.json";
+import list from "./data/rebuildingKitsList.json";
 
 describe("RebuildingKits", function () {
   const jqRef = {
@@ -29,6 +29,10 @@ describe("RebuildingKits", function () {
     this.renderDefaultCountrySpy = sinon.spy(this.rk, "renderDefaultCountry");
     this.renderNewPageSpy = sinon.spy(this.rk, "renderNewPage");
     this.renderPaginationTableDataSpy = sinon.spy(this.rk, "renderPaginationTableData");
+    this.applyFilterSpy = sinon.spy(this.rk, "applyFilter");
+    this.renderFilterFormSpy = sinon.spy(this.rk, "renderFilterForm");
+    this.hideShowColumsSpy = sinon.spy(this.rk, "hideShowColums");
+
 
     this.ajaxStub = sinon.stub(ajaxWrapper, "getXhrObj");
     this.ajaxStub
@@ -53,6 +57,9 @@ describe("RebuildingKits", function () {
     this.renderDefaultCountrySpy.restore();
     this.renderNewPageSpy.restore();
     this.renderPaginationTableDataSpy.restore();
+    this.applyFilterSpy.restore();
+    this.renderFilterFormSpy.restore();
+    this.hideShowColumsSpy.restore();
   });
   it("should initialize", function (done) {
     expect(this.rk.init.called).to.be.true;
@@ -66,6 +73,11 @@ describe("RebuildingKits", function () {
   it("should get next/prev page data", function (done) {
     $(".js-page-number").trigger("click");
     expect(this.rk.renderNewPage.called).to.be.true;
+    done();
+  });
+  it("should open filter form on button click", function (done) {
+    $(".js-rk__customise-table-action").trigger("click");
+    expect(this.rk.renderFilterForm.called).to.be.true;
     done();
   });
 });

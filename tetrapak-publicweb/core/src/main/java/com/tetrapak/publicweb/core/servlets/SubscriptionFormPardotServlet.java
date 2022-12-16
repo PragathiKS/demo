@@ -13,10 +13,8 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PardotService;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
  * The Class SubscriptionFormPardotServlet.
@@ -50,28 +48,11 @@ public class SubscriptionFormPardotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {                       
-            if (GlobalUtil.isChinaDataFlow(request)) {
-                submitCustomFormData(request);
-            } else {
-                pardotService.submitPardotPostRespose(request.getParameterMap());
-            }             
+            pardotService.submitPardotPostRespose(request.getParameterMap());
             // send response
             sendResponse(resp);
         } catch (final IOException ioException) {
             LOGGER.error("ioException :{}", ioException.getMessage(), ioException);
-        }
-    }
-
-    /**
-     * Submit custom form data.
-     *
-     * @param request the request
-     */
-    private void submitCustomFormData(final SlingHttpServletRequest request) {
-        try {
-            pardotService.submitcustomFormServicePostResponse(request.getParameterMap());
-        } catch (Exception e) {
-            LOGGER.error("Error occurred while submission of form data {}", e.getMessage());
         }
     }
 
