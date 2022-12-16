@@ -38,7 +38,7 @@
                           <i class="icon icon-Hide action-icon"></i>
                           <span class="tpatom-btn__text tp-rk__header-action-text">${"cuhu.rebuildingkits.customizeTable" @i18n}</span>
                         </div>
-                        <input type="hidden" id="downloadExcelServletUrl" name="downloadExcelServletUrl" value="${data.downloadExcelServletUrl}" />
+                        <input type="hidden" id="downloadCsvServletUrl" name="downloadCsvServletUrl" value="${data.downloadCsvServletUrl}" />
                         <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
                              data-sly-call="${btnRef.buttonlink_template @text='cuhu.rebuildingkits.exportToCsv',modifier='primary',baseClass='tp-button-link',iconClass='icon-Excel action-icon',className='tp-rk__action-button',jsClass='js-rk__export-csv-action'}" />
                         </div>

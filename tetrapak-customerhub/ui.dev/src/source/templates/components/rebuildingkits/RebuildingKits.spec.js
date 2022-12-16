@@ -31,7 +31,7 @@ describe("RebuildingKits", function () {
     this.renderPaginationTableDataSpy = sinon.spy(this.rk, "renderPaginationTableData");
     this.applyFilterSpy = sinon.spy(this.rk, "applyFilter");
     this.renderFilterFormSpy = sinon.spy(this.rk, "renderFilterForm");
-    this.hideShowColumsSpy = sinon.spy(this.rk, "hideShowColums");
+    this.downloadCsv = sinon.spy(this.rk, "downloadCsv");
 
 
     this.ajaxStub = sinon.stub(ajaxWrapper, "getXhrObj");
@@ -59,7 +59,7 @@ describe("RebuildingKits", function () {
     this.renderPaginationTableDataSpy.restore();
     this.applyFilterSpy.restore();
     this.renderFilterFormSpy.restore();
-    this.hideShowColumsSpy.restore();
+    this.downloadCsv.restore();
   });
   it("should initialize", function (done) {
     expect(this.rk.init.called).to.be.true;
@@ -78,6 +78,11 @@ describe("RebuildingKits", function () {
   it("should open filter form on button click", function (done) {
     $(".js-rk__customise-table-action").trigger("click");
     expect(this.rk.renderFilterForm.called).to.be.true;
+    done();
+  });
+  it("should download csv on button click", function (done) {
+    $(".js-rk__export-csv-action").trigger("click");
+    expect(this.rk.downloadCsv.called).to.be.true;
     done();
   });
 });
