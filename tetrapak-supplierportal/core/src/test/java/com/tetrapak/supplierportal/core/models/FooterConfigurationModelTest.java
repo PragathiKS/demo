@@ -17,7 +17,7 @@ public class FooterConfigurationModelTest {
     private static final String RESOURCE_CONTENT = "/footerconfiguration/test-content.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/global";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/footerconfiguration";

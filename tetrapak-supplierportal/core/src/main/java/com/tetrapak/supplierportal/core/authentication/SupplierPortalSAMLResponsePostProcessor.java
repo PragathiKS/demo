@@ -49,11 +49,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static final String SAML_ATTRIBUTE_STATEMENT = "saml:AttributeStatement";
     private static final String SAML_ASSERTION = "saml:Assertion";
     private static final String LOGOUT = "logout";
-
-    public static final String TOKEN_NAME = "acctoken";
-    public static final String COOKIE_NAME = "SP-AEMCustomerName";
-    public static final String DOMAIN_NAME = "supplier.tetrapak.com";
-    public static final String SAML_REQUEST_PATH = "saml_request_path";
+    private static final String TOKEN_NAME = "acctoken";
 
     @Reference private SlingSettingsService slingSettingsService;
 
@@ -115,10 +111,10 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
 
         if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
-            Cookie samlCookie = new Cookie(COOKIE_NAME, customerName);
+            Cookie samlCookie = new Cookie(SupplierPortalConstants.COOKIE_NAME, customerName);
             samlCookie.setHttpOnly(true);
             samlCookie.setPath("/");
-            samlCookie.setDomain(DOMAIN_NAME);
+            samlCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
             response.addCookie(samlCookie);
         }
     }
@@ -135,7 +131,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
                 processedUrl.append("?").append(queryString);
             }
 
-            Cookie samlRequestPath = new Cookie(SAML_REQUEST_PATH, processedUrl.toString());
+            Cookie samlRequestPath = new Cookie(SupplierPortalConstants.SAML_REQUEST_PATH, processedUrl.toString());
             samlRequestPath.setHttpOnly(true);
             samlRequestPath.setPath("/");
             response.addCookie(samlRequestPath);

@@ -17,15 +17,15 @@
           actions: read
           privileges:
 
-        - path: /content/tetrapak/supplierportal/en/dashboard
+        - path: /content/tetrapak/supplierportal/global/en/dashboard
           permission: allow
           privileges: jcr:read
 
-        - path: /content/tetrapak/supplierportal/en/logout
+        - path: /content/tetrapak/supplierportal/global/en/logout
           permission: allow
           privileges: jcr:read
 
-        - path: /content/tetrapak/supplierportal/en/error
+        - path: /content/tetrapak/supplierportal/global/en/error
           permission: allow
           privileges: jcr:read
 
@@ -39,32 +39,32 @@
           actions: read
           privileges:
 
-        - path: /content/tetrapak/supplierportal
+        - path: /content/tetrapak/supplierportal/global
           permission: deny
           privileges: jcr:read,jcr:readAccessControl
           repGlob:
 
-        - path: /content/tetrapak/supplierportal
+        - path: /content/tetrapak/supplierportal/global
           permission: allow
           privileges: jcr:read,jcr:readAccessControl
           repGlob: ""
 
-        - path: /content/tetrapak/supplierportal
+        - path: /content/tetrapak/supplierportal/global
           permission: allow
           privileges: jcr:read,jcr:readAccessControl
           repGlob: /jcr:*
 
-        - path: /content/tetrapak/supplierportal/en
+        - path: /content/tetrapak/supplierportal/global/en
           permission: deny
           privileges: jcr:read,jcr:readAccessControl
           repGlob:
 
-        - path: /content/tetrapak/supplierportal/en
+        - path: /content/tetrapak/supplierportal/global/en
           permission: allow
           privileges: jcr:read,jcr:readAccessControl
           repGlob: ""
 
-        - path: /content/tetrapak/supplierportal/en
+        - path: /content/tetrapak/supplierportal/global/en
           permission: allow
           privileges: jcr:read,jcr:readAccessControl
           repGlob: /jcr:*
