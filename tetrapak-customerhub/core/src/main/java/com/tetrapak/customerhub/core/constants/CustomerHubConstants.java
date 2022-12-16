@@ -841,6 +841,9 @@ public final class CustomerHubConstants {
     
     /** The Constant for GENERAL_RKNUMBER_TOOL_TIP **/
     public static final String GENERAL_RKNUMBER_TOOL_TIP = "generalRkNumberToolTip";
+
+    /** The Constant for ORDER_TOOL_TIP **/
+    public static final String ORDER_TOOL_TIP = "orderToolTip";
     
     /** The Constant REBUILDINGKITS_LIST_API. */
     public static final String REBUILDINGKITS_LIST_API = "rebuildingkits-rebuildingkitslist";

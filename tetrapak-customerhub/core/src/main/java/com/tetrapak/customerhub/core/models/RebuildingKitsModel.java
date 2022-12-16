@@ -104,6 +104,10 @@ public class RebuildingKitsModel {
 	/** The General RK number label. */
 	@ValueMapValue
 	private String generalRkNumberLabel;
+
+	/** The Order label. */
+	@ValueMapValue
+	private String order;
 	
 	/** The Permanent Volume Conversion label. */
 	@ValueMapValue
@@ -152,7 +156,11 @@ public class RebuildingKitsModel {
 	/** The remove all filters. */
 	@ValueMapValue
 	private String removeAllFiltersLabel;
-	
+
+	/** The hide And Show Cta.*/
+	@ValueMapValue
+	private String hideAndShowCta;
+
 	/** The country tool tip. */
 	@ValueMapValue
 	private String countryToolTip;
@@ -224,6 +232,10 @@ public class RebuildingKitsModel {
 	/** The General RK number tool tip. */
 	@ValueMapValue
 	private String generalRkNumberToolTip;
+
+	/** The Order tool tip. */
+	@ValueMapValue
+	private String orderToolTip;
 	
 	/** The path to rebuilding kits details. */
 	@ValueMapValue
@@ -454,6 +466,15 @@ public class RebuildingKitsModel {
 	}
 
 	/**
+	 * Gets the order label.
+	 *
+	 * @return the orderLabel
+	 */
+	public String getOrder() {
+		return order;
+	}
+
+	/**
 	 * Gets the permanent volumen conversion label.
 	 *
 	 * @return the permanentVolumeConversionLabel
@@ -562,6 +583,15 @@ public class RebuildingKitsModel {
 	}
 
 	/**
+	 * Gets the hide or show filter label.
+	 *
+	 * @return the hideAndShowCta
+	 */
+	public String getHideAndShowCta() {
+		return hideAndShowCta;
+	}
+
+	/**
 	 * Gets the country tool tip.
 	 *
 	 * @return the country tool tip
@@ -622,6 +652,15 @@ public class RebuildingKitsModel {
 	 */
 	public String getRkNumberToolTip() {
 		return evaluateToolTip(rkNumberToolTip);
+	}
+
+	/**
+	 * Gets the order tool tip.
+	 *
+	 * @return the order tool tip
+	 */
+	public String getOrderToolTip() {
+		return orderToolTip;
 	}
 
 	/**
@@ -858,6 +897,7 @@ public class RebuildingKitsModel {
         i18KeyMap.put(CustomerHubConstants.PLANNED_DATE, getPlannedDateLabel());
         i18KeyMap.put(CustomerHubConstants.RELEASE_DATE, getReleaseDateLabel());
         i18KeyMap.put(CustomerHubConstants.GENERAL_RKNUMBER, getGeneralRkNumberLabel());
+        i18KeyMap.put(CustomerHubConstants.ORDER, getOrder());
         i18KeyMap.put(CustomerHubConstants.PERMANENT_VOLUME_CONV, getPermanentVolumeConversionLabel());
         i18KeyMap.put(CustomerHubConstants.CUSTOMIZE_TABLE, getCustomizeTableLabel());
         i18KeyMap.put(CustomerHubConstants.EXPORT_TO_CSV, getExportToCsvLabel());
@@ -874,6 +914,7 @@ public class RebuildingKitsModel {
 		i18KeyMap.put(CustomerHubConstants.MAX_FILTERS_LIMIT_AFTER, getMaxLimitErrorAfter());
 		i18KeyMap.put(CustomerHubConstants.FILTERS_OF, getFiltersOf());
 		i18KeyMap.put(CustomerHubConstants.FILTERS_SELECTED, getFiltersSelected());
+		i18KeyMap.put(CustomerHubConstants.HIDE_AND_SHOW_CTA, getHideAndShowCta());
 		i18KeyMap.put(CustomerHubConstants.API_ERROR_CODES, GlobalUtil.getApiErrorCodes(resource));
 		i18KeyMap.put(CustomerHubConstants.COUNTRY_TOOL_TIP, getCountryToolTip());
 		i18KeyMap.put(CustomerHubConstants.FUNCTIONAL_LOCATION_TOOL_TIP, getFunctionalLocationToolTip());
@@ -893,6 +934,7 @@ public class RebuildingKitsModel {
         i18KeyMap.put(CustomerHubConstants.PLANNED_DATE_TOOL_TIP, getPlannedDateToolTip());
         i18KeyMap.put(CustomerHubConstants.RELEASE_DATE_TOOL_TIP, getReleaseDateToolTip());
         i18KeyMap.put(CustomerHubConstants.GENERAL_RKNUMBER_TOOL_TIP, getGeneralRkNumberToolTip());
+		i18KeyMap.put(CustomerHubConstants.ORDER_TOOL_TIP, getOrderToolTip());
 
         if (slingSettingsService.getRunModes().contains(CustomerHubConstants.PUBLISH)) {
             isPublishEnvironment = Boolean.TRUE;
