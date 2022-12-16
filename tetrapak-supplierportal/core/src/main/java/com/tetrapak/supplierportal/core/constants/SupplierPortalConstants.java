@@ -12,9 +12,50 @@ public final class SupplierPortalConstants {
     public static final String HTML_EXTENSION = ".html";
 
     /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String HTM_EXTENSION = ".htm";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String PREVIEW = "preview";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String HASH = "#";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String TRUE = "true";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String PUBLISH = "publish";
+
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String HREF = "href";
+
+    /**
      * The Constant CONTENT_PATH .
      */
     public static final String CONTENT_PATH = "/content/";
+
+    /** The Constant LANGUAGE_LEVEL. */
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
+
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
+
+    /**
+     * The Constant CONTENT_PATH .
+     */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/supplierportal";
 
     /**
      * The Constant HTTP.
