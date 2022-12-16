@@ -25,7 +25,7 @@ public final class SupplierPortalConstants {
     /**
      * The Constant CONTENT_PATH .
      */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/supplierportal/en/dashboard";
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/supplierportal";
 
     /**
      * The Constant HTTP.
