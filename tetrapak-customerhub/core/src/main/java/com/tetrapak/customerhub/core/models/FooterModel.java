@@ -30,6 +30,8 @@ public class FooterModel {
 
     private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
 
+    private String languageSwitchLabel;
+
     @PostConstruct
     protected void init() {
         final List<FooterLinkModel> footerLinks;
@@ -52,7 +54,7 @@ public class FooterModel {
                         footerLink.setLinkPath(validLink);
                         footerValidLinks.add(footerLink);
                     }
-
+                languageSwitchLabel = configurationModel.getLanguageSwitchLabel();
                 }
             }
         }
@@ -62,5 +64,9 @@ public class FooterModel {
 
     public List<FooterLinkModel> getFooterLinks() {
         return new ArrayList<>(footerValidLinks);
+    }
+
+    public String getLanguageSwitchLabel() {
+        return languageSwitchLabel;
     }
 }
