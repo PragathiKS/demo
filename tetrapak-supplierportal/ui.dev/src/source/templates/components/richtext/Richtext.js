@@ -1,5 +1,5 @@
-import RichTextParent  from 'tpCustomerhub/templates/components/RichText/RichText';
+import RichTextParent  from 'tpCustomerhub/templates/components/richtext/RichText';
 
-class Richtext extends RichTextParent {}
+class RichText extends RichTextParent {}
 
-export default Richtext;
+export default RichText;
