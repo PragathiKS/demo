@@ -42,6 +42,6 @@ public class FooterModelTest {
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("Link text 2", footerModel.getFooterLinks().get(0).getLinkText());
         assertEquals("/content/tetrapak/publicweb.html", footerModel.getFooterLinks().get(0).getLinkPath());
-
+        assertEquals("Change Language", footerModel.getLanguageSwitchLabel());
     }
 }
