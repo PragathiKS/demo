@@ -1,29 +1,17 @@
 import $ from 'jquery';
-
+import { $body } from '../../../scripts/utils/commonSelectors';
 class Footer {
   constructor({ el }) {
     this.root = $(el);
   }
   cache = {};
-  initCache() {
-    /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
-  }
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    this.root.find('.js-footer__change-lang').on('click', (e) => {
+      e.preventDefault();
+      $body.find('.js-lang-modal').trigger('showlanuagepreferencepopup');
+    });
   }
   init() {
-    /* Mandatory method */
-    this.initCache();
     this.bindEvents();
   }
 }
