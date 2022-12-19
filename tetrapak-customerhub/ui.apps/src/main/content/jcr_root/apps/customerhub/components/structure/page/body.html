@@ -29,5 +29,7 @@
     <sly data-sly-use.globalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil">
         <input type="hidden" id="siteImproveScript" name="siteImproveScript" value="${globalUtil.siteImproveScript}" />
     </sly>
+    <sly data-sly-resource="${'footer' @ resourceType='customerhub/components/structure/footer'}"/>
 </div>
 <sly data-sly-resource="${'inactivitydialog' @ resourceType='customerhub/components/content/inactivitydialog'}"/>
+
