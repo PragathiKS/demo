@@ -1,35 +1,17 @@
 .tp-footer {
-    @include margin-top($margin-l);
-    min-height: 100px;
-    background-color: $color-congress-blue;
+    @include margin($margin-l $margin-zero);
     @media #{$desktop} {
-        @include margin-top($margin-l);
+        @include margin($margin-l $margin-zero);
     }
-
-    &__container {
-        @include padding(48px $padding-sm);
-
-        @media #{$desktop} {
-            @include padding(80px $padding-xxxl);
-        }
-        .tp-pw-footer-data-logo {
-            img {
-                width: 156px;
-                height: auto;
-            }
-        }
+    &__content {
+        @include margin-top($margin-zero);
     }
-
     &__link {
-        color: $color-white;
-
         &:hover,
         &:active {
-            color: $color-mercury;
             text-decoration: none;
         }
     }
-
     &__navigation-list {
         @include margin-top($margin-xxxl);
 
@@ -42,17 +24,21 @@
 
         &__item {
             @include margin-bottom($margin-md);
+            @include margin(0);
+
             @media #{$desktop} {
-                @include margin-right($margin-l);
+                @include margin-left($margin-l);
                 @include margin-bottom($margin-l);
                 display: block;
-            }
 
+                &:first-child {
+                    @include margin-left($margin-zero);
+                }
+            }
         }
     }
 
     .tp_changeLangBtn {
-        @include margin-top(24px);
         @media #{$desktop} {
             text-align: center;
         }
