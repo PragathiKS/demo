@@ -42,7 +42,7 @@ public class LeftNavigationModel {
             navHeading = (String) map.get(NAV_HEADING_I18N_PROPERTY);
             closeBtnText = (String) map.get(CLOSE_BTN_TEXT_PROPERTY);
 
-            Page globalPage = pageManager.getContainingPage(globalConfigResource);
+            Page globalPage = pageManager.getContainingPage(resource);
             if (null != globalPage) {
                 Iterator<Page> itr = globalPage.listChildren();
                 while (itr.hasNext()) {
@@ -67,6 +67,6 @@ public class LeftNavigationModel {
     }
 
     public String getLocale() {
-        return StringUtils.isEmpty(selectedLanguage) ? SupplierPortalConstants.DEFAULT_LOCALE : selectedLanguage;
+        return StringUtils.isEmpty(selectedLanguage) ? CustomerHubConstants.DEFAULT_LOCALE : selectedLanguage;
     }
 }
