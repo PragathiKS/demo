@@ -42,8 +42,8 @@ public class RebuildingKitsListExcelDownloadServletTest {
 	private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
 
 	private static final String CONTENT_ROOT = "/content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits";
-	private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits/jcr:content/root/responsivegrid/rebuildingkitdetails";
-	private static final String RESOURCE_JSON = "rebuildingkitdetails.json";
+	private static final String COMPONENT_PATH = "/content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits/jcr:content/root/responsivegrid/rebuildingkits";
+	private static final String RESOURCE_JSON = "rebuildingkits.json";
 
 	@Rule
 	public final AemContext aemContext = CuhuCoreAemContext.getAemContextWithJcrMock(RESOURCE_JSON, CONTENT_ROOT);
