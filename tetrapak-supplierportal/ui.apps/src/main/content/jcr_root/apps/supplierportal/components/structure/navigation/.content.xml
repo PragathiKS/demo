@@ -3,4 +3,4 @@
     jcr:description="Navigation Component"
     jcr:primaryType="cq:Component"
     jcr:title="Navigation"
-    componentGroup="tetrapak-supplierportal-structure"/>
+    componentGroup="tetrapak-supplierportal-configuration"/>
