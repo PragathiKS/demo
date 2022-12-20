@@ -4,7 +4,10 @@ import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
+import com.tetrapak.supplierportal.core.utils.NavigationUtil;
 import com.tetrapak.supplierportal.core.utils.PageUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -20,38 +23,28 @@ import java.util.List;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LeftNavigationModel {
 
-    private static final String CONFIGURATION_PATH = "/jcr:content/root/responsivegrid/leftnavigation";
-
     @SlingObject private SlingHttpServletRequest request;
 
-    //    @OSGiService private UserPreferenceService userPreferenceService;
+    private String navHeading;
 
-    //    private String navHeading;
-    //
-    //    private String closeBtnText;
+    private String closeBtnText;
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
 
-        private static final String IS_EXTERNAL_LINK_PROPERTY = "isExternal";
-        private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
+    private static final String IS_EXTERNAL_LINK_PROPERTY = "isExternal";
+    private static final String HIDE_IN_NAV_PROPERTY = "hideInNav";
 
     private String selectedLanguage;
 
     @PostConstruct protected void init() {
-        //        selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
-        //        Resource globalConfigResource = GlobalUtil.getGlobalConfigurationResource(request);
+        Resource globalConfigResource = GlobalUtil.getGlobalConfigurationResource(request);
+        PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
+        if (null != globalConfigResource && null != pageManager) {
+            ValueMap map = globalConfigResource.getValueMap();
+            navHeading = (String) map.get("navHeadingI18n");
+            closeBtnText = (String) map.get("closeBtnText");
 
-        Resource resource = request.getResourceResolver()
-                .getResource(SupplierPortalConstants.CONTENT_ROOT + CONFIGURATION_PATH);
-
-        if (resource != null) {
-            //            ValueMap map = globalConfigResource.getValueMap();
-            //            navHeading = (String) map.get("navHeadingI18n");
-            //            closeBtnText = (String) map.get("closeBtnText");
-
-            PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
-
-            Page globalPage = pageManager.getContainingPage(resource);
+            Page globalPage = pageManager.getContainingPage(globalConfigResource);
             if (null != globalPage) {
                 Iterator<Page> itr = globalPage.listChildren();
                 while (itr.hasNext()) {
@@ -118,38 +111,15 @@ public class LeftNavigationModel {
         LeftNavigationBean bean = new LeftNavigationBean();
         bean.setIconClass((String) valueMap.get("iconClass"));
         bean.setExternalLink(isExternalLink(valueMap));
-        bean.setIconLabel(getPageTitle(childPage));
+        bean.setIconLabel(NavigationUtil.getPageTitle(childPage));
         bean.setHref(getResolvedPagePath(childPage));
         bean.setActive(PageUtil.isCurrentPage(childPage, request.getResource()) || isChildPageActive(childPage,
                 request.getResource()));
-//        bean.setPageName((String) valueMap.get("tabName"));
-//        if (valueMap.containsKey("removeNoOpenerNoReferrer")) {
-//            bean.setRemoveNoOpenerNoReferrer(true);
-//        }
+        bean.setPageName((String) valueMap.get("tabName"));
+        if (valueMap.containsKey("removeNoOpenerNoReferrer")) {
+            bean.setRemoveNoOpenerNoReferrer(true);
+        }
         return bean;
-    }
-
-    public static String getPageTitle(final Page page) {
-        final ValueMap valueMap = page.getContentResource().getValueMap();
-        String title = getPageNameI18key(valueMap);
-        if(org.apache.commons.lang3.StringUtils.isEmpty(title)) {
-            title = page.getTitle();
-        }
-        return title;
-    }
-
-    /**
-     * Fetch navigation title i18n key of a page. If not present sends page Title as fallback
-     *
-     * @param valueMap
-     *            the valueMap of a page
-     * @return the navigation kay or title
-     */
-    private static String getPageNameI18key(ValueMap valueMap) {
-        if (valueMap.containsKey("iconLabel")) {
-            return (String) valueMap.get("iconLabel");
-        }
-        return "";
     }
 
     private String getResolvedPagePath(Page childPage) {
@@ -168,15 +138,15 @@ public class LeftNavigationModel {
         return new ArrayList<>(this.leftNavItems);
     }
 
-//    public String getNavHeading() {
-//        return navHeading;
-//    }
-//
-//    public String getCloseBtnText() {
-//        return closeBtnText;
-//    }
+    public String getNavHeading() {
+        return navHeading;
+    }
 
-//    public String getLocale() {
-//        return StringUtils.isEmpty(selectedLanguage) ? CustomerHubConstants.DEFAULT_LOCALE : selectedLanguage;
-//    }
+    public String getCloseBtnText() {
+        return closeBtnText;
+    }
+
+    public String getLocale() {
+        return StringUtils.isEmpty(selectedLanguage) ? SupplierPortalConstants.DEFAULT_LOCALE : selectedLanguage;
+    }
 }
