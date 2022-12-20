@@ -1,50 +1,49 @@
 package com.tetrapak.supplierportal.core.models;
 
-import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.models.annotations.DefaultInjectionStrategy;
-import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
+import java.util.ArrayList;
 import java.util.List;
 
-@Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LeftNavigationBean {
-
     private String href;
-
-    @ValueMapValue
-    private String iconLabel;
-
-    @ValueMapValue
     private String iconClass;
-
-    @ValueMapValue
+    private String iconLabel;
     private boolean isExternalLink;
-
     private boolean isActive;
-
     private boolean isExpanded;
-
     private List<LeftNavigationBean> subMenuList;
+    private String pageName;
+    private boolean removeNoOpenerNoReferrer;
 
-    public String getIconLabel() {
-        return iconLabel;
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
     }
 
     public String getIconClass() {
         return iconClass;
     }
 
+    public void setIconClass(String iconClass) {
+        this.iconClass = iconClass;
+    }
+
+    public String getIconLabel() {
+        return iconLabel;
+    }
+
+    public void setIconLabel(String iconLabel) {
+        this.iconLabel = iconLabel;
+    }
+
     public boolean isExternalLink() {
         return isExternalLink;
     }
 
-    public void setSubMenuList(List<LeftNavigationBean> subMenuList) {
-        this.subMenuList = subMenuList;
-    }
-
-    public List<LeftNavigationBean> getSubMenuList() {
-        return subMenuList;
+    public void setExternalLink(boolean externalLink) {
+        isExternalLink = externalLink;
     }
 
     public boolean isActive() {
@@ -55,6 +54,14 @@ public class LeftNavigationBean {
         isActive = active;
     }
 
+    public List<LeftNavigationBean> getSubMenuList() {
+        return subMenuList;
+    }
+
+    public void setSubMenuList(List<LeftNavigationBean> subMenuList) {
+        this.subMenuList = new ArrayList<>(subMenuList);
+    }
+
     public boolean isExpanded() {
         return isExpanded;
     }
@@ -63,23 +70,19 @@ public class LeftNavigationBean {
         isExpanded = expanded;
     }
 
-    public void setIconLabel(String iconLabel) {
-        this.iconLabel = iconLabel;
+    public String getPageName() {
+        return pageName;
     }
 
-    public void setIconClass(String iconClass) {
-        this.iconClass = iconClass;
+    public void setPageName(String pageName) {
+        this.pageName = pageName;
     }
 
-    public void setExternalLink(boolean externalLink) {
-        isExternalLink = externalLink;
+    public boolean isRemoveNoOpenerNoReferrer() {
+        return removeNoOpenerNoReferrer;
     }
 
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
+    public void setRemoveNoOpenerNoReferrer(boolean removeNoOpenerNoReferrer) {
+        this.removeNoOpenerNoReferrer = removeNoOpenerNoReferrer;
     }
 }
