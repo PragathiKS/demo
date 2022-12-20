@@ -17,23 +17,27 @@ public class RedirectLocationHeaderAdjusterTest {
     @Rule
     public AemContext context = new AemContext();
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     private String targetLocationWithHtml = "/content/tetrapak/publicweb/global/en/solutions/automation/connected-package.html";
     private String targetLocationWithOutHtml = "/content/tetrapak/publicweb/global/en/solutions/automation/connected-package";
 
     MockSlingHttpServletRequest request = context.request();
 
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+
+
     @Test
     public void testAdjustWithHtml() {
+        context.request().setPathInfo(targetLocationWithHtml);
         assertEquals("Redirection Location Header Test", "/content/tetrapak/publicweb/global/en/solutions/automation/connected-package", redirectLocationHeaderAdjuster.adjust(request,targetLocationWithHtml));
     }
 
     @Test
     public void testAdjustWithOutHtml() {
+        context.request().setPathInfo(targetLocationWithOutHtml);
         assertEquals("Redirection Location Header Test", "/content/tetrapak/publicweb/global/en/solutions/automation/connected-package", redirectLocationHeaderAdjuster.adjust(request,targetLocationWithOutHtml));
     }
 
