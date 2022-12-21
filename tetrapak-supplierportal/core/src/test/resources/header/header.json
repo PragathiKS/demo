@@ -1,0 +1,21 @@
+{
+  "jcr:primaryType": "cq:Page",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:createdBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "wcm/foundation/components/responsivegrid",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "headerconfiguration": {
+          "logoUrl": "/content/dam/tetrapak/supplierportal/Logo.png",
+          "jcr:lastModified": "Tue Nov 22 2022 10:25:29 GMT+0100",
+          "sling:resourceType": "supplierportal/components/structure/headerconfiguration",
+          "logoLink": "/content/tetrapak/supplierportal/ca/en"
+        }
+      }
+    }
+  }
+}

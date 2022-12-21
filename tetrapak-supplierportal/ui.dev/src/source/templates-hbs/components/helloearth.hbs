@@ -1,0 +1,12 @@
+---
+{
+  "layout"	   : "app.hbs",
+  "title"      : "Hello World",
+  "fsdId"      : "HelloWorld",
+  "categories" : "components",
+  "description": "Hello World",
+  "components" : "HelloWorld",
+  "hiddenUX"   : true
+}
+---
+<sly data-sly-call="${lib.HelloWorld_template @data=HelloWorldModel}" />
