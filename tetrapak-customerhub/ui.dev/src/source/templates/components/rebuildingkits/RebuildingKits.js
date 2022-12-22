@@ -6,6 +6,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _paginationAnalytics, _customizeTableBtnAnalytics } from './RebuildingKits.analytics';
 import { render } from '../../../scripts/utils/render';
+import { logger } from '../../../scripts/utils/logger';
 import { getI18n } from '../../../scripts/common/common';
 import { _paginate } from './RebuildingKits.paginate';
 import { _getFormattedCountryData } from './RebuildingKits.utils';
@@ -382,10 +383,24 @@ class RebuildingKits {
       const url = this.cache.downloadservletUrl;
       file.get({
         extension: 'csv',
-        url,
+        url: `${url}?countrycodes=${this.getActiveCountryCode()}`,
         method: ajaxMethods.GET
       });
     });
+  }
+
+  getActiveCountryCode = () => {
+    try {
+      const { countryData } = this.cache;
+      const activeCountry = countryData.filter(e => e.isChecked);
+      if (activeCountry[0]) {
+        return activeCountry[0].countryCode;
+      } else {
+        throw Error('Couldn\'t get active country');
+      }
+    } catch (err) {
+      logger.error(err.message);
+    }
   }
 
   bindEvents = () => {
