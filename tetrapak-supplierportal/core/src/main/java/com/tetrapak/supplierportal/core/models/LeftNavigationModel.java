@@ -35,16 +35,16 @@ public class LeftNavigationModel {
     private String selectedLanguage;
 
     @PostConstruct protected void init() {
-        Resource globalConfigResource = GlobalUtil.getNavigationConfigurationResource(request);
+        Resource navigationConfigResource = GlobalUtil.getNavigationConfigurationResource(request);
         PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
-        if (null != globalConfigResource && null != pageManager) {
-            ValueMap map = globalConfigResource.getValueMap();
+        if (null != navigationConfigResource && null != pageManager) {
+            ValueMap map = navigationConfigResource.getValueMap();
             navHeading = (String) map.get(NAV_HEADING_I18N_PROPERTY);
             closeBtnText = (String) map.get(CLOSE_BTN_TEXT_PROPERTY);
 
-            Page globalPage = pageManager.getContainingPage(resource);
-            if (null != globalPage) {
-                Iterator<Page> itr = globalPage.listChildren();
+            Page navigationPage = pageManager.getContainingPage(navigationConfigResource);
+            if (null != navigationPage) {
+                Iterator<Page> itr = navigationPage.listChildren();
                 while (itr.hasNext()) {
                     Page childPage = itr.next();
                     NavigationUtil.populateLeftNavItems(request.getResourceResolver(), request.getResource(),
@@ -67,6 +67,6 @@ public class LeftNavigationModel {
     }
 
     public String getLocale() {
-        return StringUtils.isEmpty(selectedLanguage) ? CustomerHubConstants.DEFAULT_LOCALE : selectedLanguage;
+        return StringUtils.isEmpty(selectedLanguage) ? SupplierPortalConstants.DEFAULT_LOCALE : selectedLanguage;
     }
 }
