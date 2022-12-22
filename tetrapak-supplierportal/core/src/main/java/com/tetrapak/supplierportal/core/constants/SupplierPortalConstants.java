@@ -108,7 +108,7 @@ public final class SupplierPortalConstants {
 
     public static final String TOKEN_NAME = "acctoken";
 
-    public static final String GLOBAL_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/globalconfiguration";
+    public static final String NAVIGATION_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/navigationconfiguration";
 
 
     /**
