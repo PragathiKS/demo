@@ -14,21 +14,9 @@ import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
 import java.util.Iterator;
 
-/**
- * This is a global util class to access globally common utility methods.
- *
- * @author Akarsh
- */
 public class GlobalUtil {
 
-    /**
-     * Method to get service.
-     *
-     * @param <T>   the generic type
-     * @param clazz class type
-     * @return T
-     */
-    @SuppressWarnings("unchecked") public static <T> T getService(final Class<T> clazz) {
+    public static <T> T getService(final Class<T> clazz) {
         if (FrameworkUtil.getBundle(clazz) == null) {
             return null;
         }
@@ -40,11 +28,6 @@ public class GlobalUtil {
         return (T) bundleContext.getService(serviceReference);
     }
 
-    /**
-     * Checks if it is publish.
-     *
-     * @return true, if is publish
-     */
     public static boolean isPublish() {
         final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
         if (slingSettingsService == null) {
@@ -53,25 +36,25 @@ public class GlobalUtil {
         return slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH);
     }
 
-    public static Resource getGlobalConfigurationResource(SlingHttpServletRequest request) {
+    public static Resource getNavigationConfigurationResource(SlingHttpServletRequest request) {
         Resource childResource = request.getResourceResolver().getResource(
-                GlobalUtil.getCustomerhubConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
+                getSupplierPortalConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
         if (null != childResource) {
-            return getGlobalConfigNode(childResource);
+            return getNavigationConfigNode(childResource);
         }
         return null;
     }
 
-    public static String getCustomerhubConfigPagePath(Resource contentPageResource) {
-        String customerhubConfigPagePath = StringUtils.EMPTY;
-        Page configPage = getCustomerhubConfigPage(contentPageResource);
+    public static String getSupplierPortalConfigPagePath(Resource contentPageResource) {
+        String supplierportalConfigPagePath = StringUtils.EMPTY;
+        Page configPage = getSupplierPortalConfigPage(contentPageResource);
         if (null != configPage) {
-            customerhubConfigPagePath = configPage.getPath();
+            supplierportalConfigPagePath = configPage.getPath();
         }
-        return customerhubConfigPagePath;
+        return supplierportalConfigPagePath;
     }
 
-    public static Page getCustomerhubConfigPage(Resource contentPageResource) {
+    public static Page getSupplierPortalConfigPage(Resource contentPageResource) {
         final int DEPTH = 4;
         return getPageFromResource(contentPageResource, DEPTH);
     }
@@ -86,15 +69,15 @@ public class GlobalUtil {
         return contentPage;
     }
 
-    private static Resource getGlobalConfigNode(Resource childResource) {
-        Resource res = childResource.getChild("globalconfiguration");
+    private static Resource getNavigationConfigNode(Resource childResource) {
+        Resource res = childResource.getChild("navigationconfiguration");
         if (null != res) {
             return res;
         } else {
             Iterator<Resource> itr = childResource.listChildren();
             while (itr.hasNext()) {
                 Resource nextResource = itr.next();
-                if (nextResource.isResourceType(SupplierPortalConstants.GLOBAL_CONFIGURATION_RESOURCE_TYPE)) {
+                if (nextResource.isResourceType(SupplierPortalConstants.NAVIGATION_CONFIGURATION_RESOURCE_TYPE)) {
                     return nextResource;
                 }
             }
