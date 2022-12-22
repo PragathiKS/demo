@@ -62,6 +62,94 @@
         function OptanonWrapper() { }
       </script>
     </sly>
+  <!--<sly data-sly-test="${digitalDataModel.isPublisher}">
+    <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+      <sly data-sly-call="${clientlib.js @ categories='tp.onetrustcookie'}" />
+    </sly>
+  </sly>-->
+  <sly data-sly-test="${digitalDataModel.isPublisher}">
+    <script>
+      var OneTrust = {
+        dataSubjectParams: {
+          id: '',
+          isAnonymous: false,
+          token: ''
+        }
+      }
+    </script>
+    <script type="text/javascript">
+      (function () {
+        var cookieValue, isCookieExist, pwoneTrustValue, uidValue, jwtToken;
+        function getCookie(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length == 2) return parts.pop().split(";").shift();
+          else return null;
+        }
+        function getCookieValue() {
+          var myCookie = getCookie("TPCOOKIEUSER");
+          cookieValue = myCookie;
+          if (myCookie == null) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+
+        isCookieExist = getCookieValue();
+
+        function setCookie(cname, cvalue, exdays) {
+          var d = new Date();
+          var domain = ".tetrapak.com";
+          d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+          let expires = "expires=" + d.toUTCString();
+          document.cookie = document.cookie =
+            cname +
+            "=" +
+            cvalue +
+            ";expires=" +
+            expires +
+            ";domain=" +
+            domain +
+            ";path=/";
+        }
+
+        // Url for the request
+        pwoneTrustValue = window.pwoneTrustValue + "?UserID=" + cookieValue;
+        if (isCookieExist === false || localStorage.getItem("jwttokenset") === null) {
+          fetch(pwoneTrustValue)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              uidValue = data.uid;
+              jwtToken = data.jwt;
+              localStorage.setItem("uidValueset", uidValue);
+              localStorage.setItem("jwttokenset", jwtToken);
+              setCookie("TPCOOKIEUSER", uidValue, 365);
+              OneTrust.dataSubjectParams.id = uidValue;
+          		OneTrust.dataSubjectParams.token = jwtToken;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        } else {
+          var userid = localStorage.getItem("uidValueset");
+          var jwt = localStorage.getItem("jwttokenset");
+          OneTrust.dataSubjectParams.id = userid;
+          OneTrust.dataSubjectParams.token = jwt;
+        }
+      })();
+    </script>
+  </sly>
+  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
+    <script src="https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript}/otSDKStub.js"
+      data-document-language="true" type="text/javascript" charset="UTF-8"
+      data-domain-script="${digitalDataModel.dataDomainScript}"></script>
+    <script type="text/javascript">
+      function OptanonWrapper() { }
+    </script>
+  </sly>
 
     <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
         <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
@@ -77,6 +165,17 @@
     <sly data-sly-test="${pageHeadModel.baiduMapkey}">
         <script src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}"></script>
     </sly>
+  <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+  </sly>
+  <!--/* script for DEV and QA */-->
+  <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+  </sly>
+  <sly data-sly-test="${pageHeadModel.baiduMapkey}">
+    <script src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}" type="text/plain"
+      class="optanon-category-4"></script>
+  </sly>
 
     <sly data-sly-include="customheaderlibs.html"></sly>
      <sly data-sly-call="${headlibRenderer.headlibs @
