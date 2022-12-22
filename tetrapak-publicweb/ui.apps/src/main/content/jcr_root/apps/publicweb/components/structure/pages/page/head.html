@@ -66,6 +66,11 @@
       <sly data-sly-call="${clientlib.js @ categories='tp.onetrustcookie'}" />
     </sly>
   </sly>-->
+    <script type="text/javascript">
+      var pwoneTrustValue = '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
+    </script>
+  </sly>
+
   <sly data-sly-test="${digitalDataModel.isPublisher}">
     <script>
       var OneTrust = {
