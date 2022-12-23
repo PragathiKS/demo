@@ -1,1 +1,8 @@
 @import '~tpCustomerhub/templates/components/languageselector/languageSelector';
+
+.tp-lang-selector__lang-container {
+    flex-direction: column;
+    @media #{$desktop} {
+        max-height: 10rem;
+    }
+}
