@@ -12,6 +12,10 @@
                 </div>
             </div>
         </div>
+
+        <sly data-sly-use.languageselector="/apps/supplierportal/components/content/languageselector/languageselector-template.html"
+        data-sly-use.langData="/apps/supplierportal/components/content/languageselector/ux-model.js"
+         data-sly-call="${languageselector.languageselector_template @data=langData}" />
     </footer>
 </sly>
   
