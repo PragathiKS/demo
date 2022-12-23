@@ -63,6 +63,14 @@ public final class NavigationUtil {
         return "";
     }
 
+    /**
+     * Populate list with menu items
+     *
+     * @param resolver     Resource resolver
+     * @param resource     current resource
+     * @param leftNavItems List of menu items
+     * @param childPage    child page
+     */
     public static void populateLeftNavItems(ResourceResolver resolver, Resource resource,
             List<LeftNavigationBean> leftNavItems, Page childPage) {
         if (null != childPage && null != childPage.getContentResource()) {
@@ -77,6 +85,14 @@ public final class NavigationUtil {
         }
     }
 
+    /**
+     * Set menu items
+     *
+     * @param resolver           Resource resolver
+     * @param resource           current resource
+     * @param childPage          child page
+     * @param leftNavigationBean menu item
+     */
     private static void setChildPages(ResourceResolver resolver, Resource resource, Page childPage,
             LeftNavigationBean leftNavigationBean) {
         Iterator<Page> itr = childPage.listChildren(new PageFilter());
@@ -98,6 +114,13 @@ public final class NavigationUtil {
         }
     }
 
+    /**
+     * Check if page active
+     *
+     * @param subPage  page
+     * @param resource current resource
+     * @return if child page is active
+     */
     private static boolean isChildPageActive(Page subPage, Resource resource) {
         boolean flag = false;
 
@@ -114,6 +137,15 @@ public final class NavigationUtil {
         return flag;
     }
 
+    /**
+     * Create menu item
+     *
+     * @param resolver  resource resolver
+     * @param resource  current resource
+     * @param childPage child resource
+     * @param valueMap  properties we use to create menu item
+     * @return menu item
+     */
     private static LeftNavigationBean getLeftNavigationBean(ResourceResolver resolver, Resource resource,
             Page childPage, ValueMap valueMap) {
         LeftNavigationBean bean = new LeftNavigationBean();
@@ -129,14 +161,33 @@ public final class NavigationUtil {
         return bean;
     }
 
+    /**
+     * Create correct page page
+     *
+     * @param resolver  resource resolver
+     * @param childPage child resource
+     * @return menu path
+     */
     private static String getResolvedPagePath(ResourceResolver resolver, Page childPage) {
         return resolver.map(childPage.getPath() + SupplierPortalConstants.HTML_EXTENSION);
     }
 
+    /**
+     * Check if page is hidden
+     *
+     * @param valueMap properties of page
+     * @return page hidden or not
+     */
     private static boolean isNotHiddenInNavigation(ValueMap valueMap) {
         return !valueMap.containsKey(HIDE_IN_NAV_PROPERTY);
     }
 
+    /**
+     * Check if link is external
+     *
+     * @param valueMap properties of page
+     * @return page external or not
+     */
     private static boolean isExternalLink(ValueMap valueMap) {
         return valueMap.containsKey(IS_EXTERNAL_LINK_PROPERTY);
     }

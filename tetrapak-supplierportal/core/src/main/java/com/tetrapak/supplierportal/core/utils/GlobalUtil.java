@@ -14,8 +14,23 @@ import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
 import java.util.Iterator;
 
+/**
+ * This is a global util class to access globally common utility methods.
+ *
+ * @author Nitin Kumar
+ */
 public class GlobalUtil {
 
+    private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
+    private static final String NAVIGATION = "navigationconfiguration";
+
+    /**
+     * Method to get service.
+     *
+     * @param <T>   the generic type
+     * @param clazz class type
+     * @return T
+     */
     public static <T> T getService(final Class<T> clazz) {
         if (FrameworkUtil.getBundle(clazz) == null) {
             return null;
@@ -28,6 +43,11 @@ public class GlobalUtil {
         return (T) bundleContext.getService(serviceReference);
     }
 
+    /**
+     * Checks if it is publish.
+     *
+     * @return true, if is publish
+     */
     public static boolean isPublish() {
         final SlingSettingsService slingSettingsService = getService(SlingSettingsService.class);
         if (slingSettingsService == null) {
@@ -36,15 +56,27 @@ public class GlobalUtil {
         return slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH);
     }
 
+    /**
+     * Method to get navigation config resource for a request.
+     *
+     * @param request sling request
+     * @return navigation config resource
+     */
     public static Resource getNavigationConfigurationResource(SlingHttpServletRequest request) {
-        Resource childResource = request.getResourceResolver().getResource(
-                getSupplierPortalConfigPagePath(request.getResource()) + "/jcr:content/root/responsivegrid");
+        Resource childResource = request.getResourceResolver()
+                .getResource(getSupplierPortalConfigPagePath(request.getResource()) + NAVIGATION_PATH);
         if (null != childResource) {
             return getNavigationConfigNode(childResource);
         }
         return null;
     }
 
+    /**
+     * This method provides the supplier portal navigation config page path.
+     *
+     * @param contentPageResource content page resource
+     * @return String navigation config page path
+     */
     public static String getSupplierPortalConfigPagePath(Resource contentPageResource) {
         String supplierportalConfigPagePath = StringUtils.EMPTY;
         Page configPage = getSupplierPortalConfigPage(contentPageResource);
@@ -54,11 +86,24 @@ public class GlobalUtil {
         return supplierportalConfigPagePath;
     }
 
+    /**
+     * This method provides the supplier portal navigation config page.
+     *
+     * @param contentPageResource content page resource
+     * @return Page navigation config
+     */
     public static Page getSupplierPortalConfigPage(Resource contentPageResource) {
         final int DEPTH = 4;
         return getPageFromResource(contentPageResource, DEPTH);
     }
 
+    /**
+     * The method provides the page provided the following parameters.
+     *
+     * @param contentPageResource content resource
+     * @param depth               calculated from 'content' node
+     * @return Page content page
+     */
     public static Page getPageFromResource(Resource contentPageResource, int depth) {
         PageManager pageManager = contentPageResource.getResourceResolver().adaptTo(PageManager.class);
         Page contentPage = null;
@@ -69,8 +114,14 @@ public class GlobalUtil {
         return contentPage;
     }
 
+    /**
+     * Gets the navigation config node.
+     *
+     * @param childResource the child resource
+     * @return the navigation config node
+     */
     private static Resource getNavigationConfigNode(Resource childResource) {
-        Resource res = childResource.getChild("navigationconfiguration");
+        Resource res = childResource.getChild(NAVIGATION);
         if (null != res) {
             return res;
         } else {
