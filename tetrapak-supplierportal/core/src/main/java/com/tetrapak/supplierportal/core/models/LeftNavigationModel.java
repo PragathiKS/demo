@@ -1,7 +1,6 @@
 package com.tetrapak.supplierportal.core.models;
 
 import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageFilter;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;

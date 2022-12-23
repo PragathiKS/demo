@@ -11,6 +11,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+
 import java.util.Iterator;
 
 /**
