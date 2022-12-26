@@ -324,4 +324,66 @@ public class PardotServiceImpl implements PardotService {
         return jsonResponse;
     }
     
+    /**
+     * Gets the bearer token.
+     *
+     * @return the bearer token
+     */
+    @Override
+    public BearerToken getBearerTokenForCustomFormService() {
+        BearerToken bearerToken = new BearerToken();
+        String jsonResponse = null;
+        final String authString = config.customFormServiceClientID() + ":" + config.customFormServiceClientSecret();
+        final String encodedAuthString = Base64.getEncoder()
+                .encodeToString(authString.getBytes(StandardCharsets.UTF_8));
+        final String apiURL = config.customTokenGenerationUrl();
+        jsonResponse = getPardotApiPostRespose(PWConstants.BASIC, apiURL, encodedAuthString);
+        if (StringUtils.isNotBlank(jsonResponse)) {
+            try {                
+                bearerToken = new ObjectMapper().readValue(jsonResponse, BearerToken.class);
+            } catch (final IOException e) {
+                LOGGER.error("Unable to convert json to pojo for the bearer token response {}", e.getMessage());
+            }
+        }
+        return bearerToken;
+    }
+
+    /**
+     * Submit custom form service post response.
+     *
+     * @param parameters
+     *            the parameters
+     */
+    @Override
+    public void submitcustomFormServicePostResponse(final Map<String, String[]> parameters)
+            throws Exception {
+        LOGGER.info("Inside submitcustomFormServicePostResponse");
+
+        final String apiURL = config.customFormServiceUrl();
+        final HttpPost postRequest = new HttpPost(apiURL);
+        postRequest.addHeader(PWConstants.CONTENT_TYPE, PWConstants.APPLICATION_ENCODING);
+        postRequest.addHeader(PWConstants.AUTHORIZATION,
+                PWConstants.BEARER + PWConstants.SPACE + getBearerTokenForCustomFormService().getAccessToken());
+
+        final ArrayList<NameValuePair> postParameters = new ArrayList<>();
+        for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
+        }
+
+        final HttpClient httpClient = HttpClientBuilder.create().build();
+        postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
+        final HttpResponse httpResponse = httpClient.execute(postRequest);
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+        LOGGER.info("submitcustomFormServicePostResponse :: Status code {}", statusCode);     
+            switch (statusCode) {
+            case CREATED:
+                LOGGER.info("Custom form service data submitted successfully to APIGEE {}", statusCode);
+                break;
+            case SUCESSS:
+                LOGGER.info("Custom form service data submitted successfully to APIGEE {}", statusCode);
+                break;
+            default:
+                throw new HttpException("Error occurred while submitting custom form service data to APIGEE");
+            }      
+    }
 }
