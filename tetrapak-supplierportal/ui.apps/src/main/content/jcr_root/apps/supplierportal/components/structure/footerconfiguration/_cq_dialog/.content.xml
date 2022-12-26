@@ -52,7 +52,14 @@
                                     </items>
                                 </field>
                             </footerLinks>
-                            
+                            <languageCheckbox
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldLabel="Open Language Popup ?"
+                                name="./linkLangPopup"
+                                text="Open Language Popup ?"
+                                uncheckedValue="{Boolean}false"
+                                value="{Boolean}true"/>
                         </items>
                     </general>
                 </items>
