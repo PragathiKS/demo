@@ -13,7 +13,7 @@
                     size="L"
                     sling:resourceType="granite/ui/components/coral/foundation/tabs">
                 <items jcr:primaryType="nt:unstructured"
-                       sling:hideChildren="[languageList,errorCodes]">
+                       sling:hideChildren="[errorCodes]">
                     <global
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Global Configurations"
