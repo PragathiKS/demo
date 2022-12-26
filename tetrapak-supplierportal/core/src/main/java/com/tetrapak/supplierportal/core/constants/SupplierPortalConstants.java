@@ -111,7 +111,11 @@ public final class SupplierPortalConstants {
     /** The Constant LANGUGAGE_PREFERENCES. */
     public static final String LANGUGAGE_PREFERENCES = "languagePreference";
 
+    /** The Constant RESPONSE_STATUS_FAILURE. */
+    public static final String RESPONSE_STATUS_FAILURE = "failure";
 
+    /** The Constant RESPONSE_STATUS_SUCCESS. */
+    public static final String RESPONSE_STATUS_SUCCESS = "success";
 
     /**
      * Instantiates a new customer hub constants.
