@@ -1,4 +1,4 @@
-import LeftNavigation from '../leftnavigation/Leftnavigation';
+import LeftNavigation from '../leftnavigation/LeftNavigation';
 import Header from './Header';
 import $ from 'jquery';
 import headerTemplate from '../../../test-templates-hbs/header.hbs';
