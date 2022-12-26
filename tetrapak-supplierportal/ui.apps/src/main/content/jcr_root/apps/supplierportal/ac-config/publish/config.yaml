@@ -39,17 +39,17 @@
           actions: read
           privileges:
 
-        - path: /content/tetrapak/supplierportal/global
+        - path: /content/tetrapak/supplierportal
           permission: deny
           privileges: jcr:read,jcr:readAccessControl
           repGlob:
 
-        - path: /content/tetrapak/supplierportal/global
+        - path: /content/tetrapak/supplierportal
           permission: allow
           privileges: jcr:read,jcr:readAccessControl
           repGlob: ""
 
-        - path: /content/tetrapak/supplierportal/global
+        - path: /content/tetrapak/supplierportal
           permission: allow
           privileges: jcr:read,jcr:readAccessControl
           repGlob: /jcr:*

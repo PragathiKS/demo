@@ -1,11 +1,14 @@
 package com.tetrapak.supplierportal.core.models;
 
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.services.UserPreferenceService;
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import com.tetrapak.supplierportal.core.utils.LinkUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +21,7 @@ public class HeaderModel {
 
     @SlingObject private SlingHttpServletRequest request;
 
+    @OSGiService private UserPreferenceService userPreferenceService;
     private String logoUrl;
 
     private String logoLink;
@@ -25,14 +29,17 @@ public class HeaderModel {
     private boolean logoLinkInternal;
 
     @PostConstruct protected void init() {
-        Resource resource = request.getResourceResolver()
-                .getResource(SupplierPortalConstants.CONTENT_ROOT + CONFIGURATION_PATH);
-        if (null != resource) {
-            HeaderConfigurationModel model = resource.adaptTo(HeaderConfigurationModel.class);
-            if (model != null) {
-                logoUrl = model.getLogoUrl();
-                logoLink = LinkUtil.getValidLink(request.getResource(), model.getLogoLink());
-                logoLinkInternal = !LinkUtil.isExternalLink(model.getLogoLink());
+        String language = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+        if (null != language) {
+            Resource resource = request.getResourceResolver()
+                    .getResource(SupplierPortalConstants.SUPPLIER_PATH + language + CONFIGURATION_PATH);
+            if (null != resource) {
+                HeaderConfigurationModel model = resource.adaptTo(HeaderConfigurationModel.class);
+                if (model != null) {
+                    logoUrl = model.getLogoUrl();
+                    logoLink = LinkUtil.getValidLink(request.getResource(), model.getLogoLink());
+                    logoLinkInternal = !LinkUtil.isExternalLink(model.getLogoLink());
+                }
             }
         }
     }

@@ -5,9 +5,7 @@ public final class SupplierPortalConstants {
     /** The Constant DEFAULT_LOCALE. */
     public static final String DEFAULT_LOCALE = "en";
 
-    public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global";
-
-    public static final String CONTENT_ROOT = SUPPLIER_PATH + "/en";
+    public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global/";
 
     /**
      * The Constant HTML_EXTENSION.
@@ -109,6 +107,10 @@ public final class SupplierPortalConstants {
     public static final String TOKEN_NAME = "acctoken";
 
     public static final String NAVIGATION_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/navigationconfiguration";
+
+    /** The Constant LANGUGAGE_PREFERENCES. */
+    public static final String LANGUGAGE_PREFERENCES = "languagePreference";
+
 
 
     /**
