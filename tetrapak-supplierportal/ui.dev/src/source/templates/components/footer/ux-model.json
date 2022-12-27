@@ -7,12 +7,12 @@
     },
     {
       "linkLabel": "About",
-      "linkPath": "#",
+      "linkPath": "#about",
       "linkTarget": "_self"
     },
     {
       "linkLabel": "Terms & Conditions",
-      "linkPath": "#",
+      "linkPath": "#term",
       "linkTarget": "_self"
     },
     {
@@ -21,5 +21,5 @@
       "linkTarget":"_self"
     }
   ],
-  "footerText": "Copyright © 2021 TetraPak International S.A All Rights Reserved."
+  "linkLangPopup": true
 }
