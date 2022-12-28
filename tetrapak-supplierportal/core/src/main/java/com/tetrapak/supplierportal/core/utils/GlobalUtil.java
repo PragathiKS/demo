@@ -12,8 +12,6 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
-import javax.jcr.Session;
-import javax.servlet.http.Cookie;
 import java.util.Iterator;
 
 /**

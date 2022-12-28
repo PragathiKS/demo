@@ -25,17 +25,14 @@ public class HeaderModel {
     private boolean logoLinkInternal;
 
     @PostConstruct protected void init() {
-        String language = "en";//TODO update when language selector task is ready
-        if (null != language) {
-            Resource resource = request.getResourceResolver()
-                    .getResource(SupplierPortalConstants.SUPPLIER_PATH + language + CONFIGURATION_PATH);
-            if (null != resource) {
-                HeaderConfigurationModel model = resource.adaptTo(HeaderConfigurationModel.class);
-                if (model != null) {
-                    logoUrl = model.getLogoUrl();
-                    logoLink = LinkUtil.getValidLink(request.getResource(), model.getLogoLink());
-                    logoLinkInternal = !LinkUtil.isExternalLink(model.getLogoLink());
-                }
+        Resource resource = request.getResourceResolver()
+                .getResource(SupplierPortalConstants.CONTENT_ROOT + CONFIGURATION_PATH);
+        if (null != resource) {
+            HeaderConfigurationModel model = resource.adaptTo(HeaderConfigurationModel.class);
+            if (model != null) {
+                logoUrl = model.getLogoUrl();
+                logoLink = LinkUtil.getValidLink(request.getResource(), model.getLogoLink());
+                logoLinkInternal = !LinkUtil.isExternalLink(model.getLogoLink());
             }
         }
     }

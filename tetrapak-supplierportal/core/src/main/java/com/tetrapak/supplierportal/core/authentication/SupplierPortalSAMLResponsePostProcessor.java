@@ -64,7 +64,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
             Set<String> runModes = slingSettingsService.getRunModes();
-            String base64DecodedResponse = null;
+            String base64DecodedResponse;
             if (runModes.contains(Externalizer.PUBLISH) && StringUtils.isNotEmpty(pathInfo) && pathInfo.contains(
                     SAML_LOGIN)) {
                 LOGGER.info("SAMLResponse Post Processor processing ...");
