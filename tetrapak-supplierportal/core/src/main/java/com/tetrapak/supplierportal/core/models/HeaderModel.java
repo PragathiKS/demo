@@ -1,14 +1,11 @@
 package com.tetrapak.supplierportal.core.models;
 
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
-import com.tetrapak.supplierportal.core.services.UserPreferenceService;
-import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import com.tetrapak.supplierportal.core.utils.LinkUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +18,6 @@ public class HeaderModel {
 
     @SlingObject private SlingHttpServletRequest request;
 
-    @OSGiService private UserPreferenceService userPreferenceService;
     private String logoUrl;
 
     private String logoLink;
@@ -29,7 +25,7 @@ public class HeaderModel {
     private boolean logoLinkInternal;
 
     @PostConstruct protected void init() {
-        String language = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+        String language = "en";//TODO update when language selector task is ready
         if (null != language) {
             Resource resource = request.getResourceResolver()
                     .getResource(SupplierPortalConstants.SUPPLIER_PATH + language + CONFIGURATION_PATH);

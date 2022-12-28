@@ -108,10 +108,6 @@ public final class SupplierPortalConstants {
 
     public static final String NAVIGATION_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/navigationconfiguration";
 
-    /** The Constant LANGUGAGE_PREFERENCES. */
-    public static final String LANGUGAGE_PREFERENCES = "languagePreference";
-
-
 
     /**
      * Instantiates a new customer hub constants.

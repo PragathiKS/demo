@@ -2,7 +2,6 @@ package com.tetrapak.supplierportal.core.authentication;
 
 import com.day.cq.commons.Externalizer;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
-import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
@@ -54,8 +53,6 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
 
     @Reference private SlingSettingsService slingSettingsService;
 
-    @Reference private UserPreferenceService userPreferenceService;
-
     public void postProcess(AuthenticationInfo info, HttpServletRequest request, HttpServletResponse response) {
         HttpServletRequest httpRequest;
         Map<String, String> attrMap = new HashMap<>();
@@ -82,7 +79,6 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
                 }
                 setCustomerNameCookie(response, attrMap);
                 setAccesTokenCookie(response, attrMap);
-                setLangCodeCookie(request, response, base64DecodedResponse);
                 if (processedURL.contains(EMPTY)) {
                     response.setHeader(LOCATION_HEADER, SupplierPortalConstants.HTTPS + "://" + request.getServerName() + processedURL);
                 }
@@ -146,78 +142,6 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static boolean isValidURL(String url) {
         return url.contains(SupplierPortalConstants.SUPPLIER_PATH) && !url.contains(LOGOUT) && !url.contains(EMPTY)
                 && url.endsWith(SupplierPortalConstants.HTML_EXTENSION);
-    }
-
-    private void setLangCodeCookie(HttpServletRequest request, HttpServletResponse response,
-            String base64DecodedResponse) throws ParserConfigurationException, SAXException, IOException {
-        String userID = getUserIDFromSamlResponse(base64DecodedResponse);
-        LOGGER.debug("user ID: {}", userID);
-        final String langCode = userPreferenceService.getSavedPreferences(userID,
-                SupplierPortalConstants.LANGUGAGE_PREFERENCES);
-        if (null != userID && StringUtils.isNotEmpty(langCode)) {
-            LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
-            setLanguageCookie(request, response, langCode);
-        }
-    }
-
-    private String getUserIDFromSamlResponse(String base64DecodedResponse)
-            throws ParserConfigurationException, SAXException, IOException {
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        try {
-            documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        } catch (ParserConfigurationException e) {
-            LOGGER.error("ParserConfigurationException", e);
-        }
-        documentBuilderFactory.setXIncludeAware(false);
-        documentBuilderFactory.setExpandEntityReferences(false);
-        documentBuilderFactory.setNamespaceAware(true);
-        DocumentBuilder docBuilder = documentBuilderFactory.newDocumentBuilder();
-        StringReader strReader = new StringReader(base64DecodedResponse);
-        InputSource inputSource = new InputSource(strReader);
-        Document document = docBuilder.parse(inputSource);
-        NodeList samlAssertion = document.getElementsByTagName("saml:Assertion");
-        return populateUserAttrMap(samlAssertion);
-    }
-
-    private String populateUserAttrMap(NodeList samlAssertion) {
-        Node samlAssertionNode = samlAssertion.item(0);
-        NodeList childNodes = samlAssertionNode.getChildNodes();
-
-        int maxChildNodeCount = childNodes.getLength();
-        if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
-            for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
-                Node subChildNode = childNodes.item(childCount);
-                if ("saml:Subject".equalsIgnoreCase(subChildNode.getNodeName())) {
-                    return getUserID(subChildNode);
-                }
-            }
-        }
-        LOGGER.debug("user ID is null from SAML response");
-        return null;
-    }
-
-    private void setLanguageCookie(HttpServletRequest request, HttpServletResponse response, String langCode) {
-        Cookie cookie = new Cookie("lang-code", langCode);
-        cookie.setPath("/");
-        cookie.setDomain(request.getServerName());
-        response.addCookie(cookie);
-    }
-
-    private String getUserID(Node subChildNode) {
-        NodeList attributeStatementChildNodes = subChildNode.getChildNodes();
-
-        int maxChildNodeCount = attributeStatementChildNodes.getLength();
-        if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
-            for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
-                Node childNode = attributeStatementChildNodes.item(childCount);
-                if ("saml:NameID".equalsIgnoreCase(childNode.getNodeName())) {
-                    return childNode.getTextContent();
-                }
-            }
-        }
-        return null;
     }
 
     /**

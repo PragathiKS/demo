@@ -3,7 +3,6 @@ package com.tetrapak.supplierportal.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
-import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import com.tetrapak.supplierportal.core.utils.NavigationUtil;
 import org.apache.commons.lang.StringUtils;
@@ -25,8 +24,6 @@ public class LeftNavigationModel {
 
     @SlingObject private SlingHttpServletRequest request;
 
-    @OSGiService private UserPreferenceService userPreferenceService;
-
     private String navHeading;
 
     private String closeBtnText;
@@ -39,8 +36,6 @@ public class LeftNavigationModel {
     private String selectedLanguage;
 
     @PostConstruct protected void init() {
-        selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
-
         Resource navigationConfigResource = GlobalUtil.getNavigationConfigurationResource(request);
         PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
         if (null != navigationConfigResource && null != pageManager) {
