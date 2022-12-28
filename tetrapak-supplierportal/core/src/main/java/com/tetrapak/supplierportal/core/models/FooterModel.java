@@ -10,6 +10,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,27 +22,23 @@ import com.tetrapak.supplierportal.core.utils.LinkUtil;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterModel {
 
-    /**
-     * The Constant LOGGER.
-     */
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(FooterModel.class);
 
     private static final String CONFIGURATION_PATH = "/jcr:content/root/responsivegrid/footerconfiguration";
 
-    /**
-     * The request.
-     */
-    @SlingObject private SlingHttpServletRequest request;
+    /** The request. */
+    @SlingObject
+    private SlingHttpServletRequest request;
 
-    /**
-     * The footer links.
-     */
+    /** The footer links. */
     private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
 
     /**
      * Inits the.
      */
-    @PostConstruct protected void init() {
+    @PostConstruct
+    protected void init() {
         final List<FooterLinkModel> footerLinks;
         LOGGER.debug("inside init method");
 
