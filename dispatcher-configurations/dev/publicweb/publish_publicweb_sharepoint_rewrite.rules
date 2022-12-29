@@ -355,11 +355,17 @@ RewriteRule     (.*)/processing/extrusion/best-practice-medium-capacity-extrusio
 RewriteRule     (.*)/processing/extrusion/best-practice-medium-capacity-extrusion-line/top-new-ice-cream-trends$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/best-practice-medium-capacity-extrusion-line/top-new-ice-cream-trends     [R=301,L]
 RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-tunnel-m3$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-extrusion-tunnel-m3     [R=301,L]
 RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-tunnel-a3$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-extrusion-tunnel-a3     [R=301,L]
-RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-unit-lt$  https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-extrusion-unit-lt       [R=301,L]
+##### SMAR-30143 #####
+#RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-unit-lt$  https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-extrusion-unit-lt       [R=301,L]
+RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-unit-lt$  https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion       [R=301,L]
+#####
 RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-wheel$    https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-extrusion-wheel [R=301,L]
 RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-wheel/impulse-ice-creams-with-large-inclusions$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-extrusion-wheel/impulse-ice-creams-with-large-inclusions        [R=301,L]
 RewriteRule     (.*)/processing/extrusion/tetra-pak-extrusion-wheel/patented-new-design-for-large-ice-cream-inclusions$ https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-extrusion-wheel/patented-new-design-for-large-ice-cream-inclusions      [R=301,L]
-RewriteRule     (.*)/processing/extrusion/tetra-pak-sandwich-unit-lt$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-sandwich-unit-lt        [R=301,L]
+##### SMAR-30143 #####
+#RewriteRule     (.*)/processing/extrusion/tetra-pak-sandwich-unit-lt$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-sandwich-unit-lt        [R=301,L]
+RewriteRule     (.*)/processing/extrusion/tetra-pak-sandwich-unit-lt$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion        [R=301,L]
+#####
 RewriteRule     (.*)/processing/extrusion/tetra-pak-chocolate-enrober$  https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/extrusion/tetra-pak-chocolate-enrober       [R=301,L]
 RewriteRule     (.*)/processing/filling$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/filling        [R=301,L]
 RewriteRule     (.*)/processing/filling/tetra-pak-filling-unit-lt$      https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/filling/tetra-pak-filling-unit-lt   [R=301,L]
@@ -4541,4 +4547,33 @@ RewriteRule     ^/ru/solutions/processing/main-technology-area/moulding/moulders
 RewriteRule     ^/sv-se/solutions/processing/main-technology-area/moulding/moulders$  https://${PUBLICWEB_URL}/sv-se/solutions/processing/main-technology-area/moulding   [R=301,L]
 RewriteRule     ^/tr-tr/solutions/processing/main-technology-area/moulding/moulders$  https://${PUBLICWEB_URL}/tr-tr/solutions/processing/main-technology-area/moulding   [R=301,L]
 RewriteRule     ^/zh-cn/solutions/processing/main-technology-area/moulding/moulders$  https://${PUBLICWEB_URL}/zh-cn/solutions/processing/main-technology-area/moulding   [R=301,L]
+###
+
+#####SMAR-30143#####
+RewriteRule     ^/de/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/de/solutions/processing/main-technology-area/extrusion  [R=301,L]
+RewriteRule     ^/en-(au|ca|cz|fi|gb|gr|hr|hu|id|ie|in|ir|kr|lv|my|nl|no|ph|pk|pl|ro|rs|sa|sg|sk|th|tw|us|vn|za)/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/en-$1/solutions/processing/main-technology-area/extrusion   [R=301,L]
+RewriteRule     ^/es-(ar|cl|co|ec|es|mx|pa|pe|py|ve)/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/es-$1/solutions/processing/main-technology-area/extrusion  [R=301,L]
+RewriteRule     ^/es/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/es/solutions/processing/main-technology-area/extrusion  [R=301,L]
+RewriteRule     ^/fr-(be|ca|ch|fr)/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/fr-$1/solutions/processing/main-technology-area/extrusion   [R=301,L]
+RewriteRule     ^/it-it/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/it-it/solutions/processing/main-technology-area/extrusion   [R=301,L]
+RewriteRule     ^/ja-jp/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/ja-jp/solutions/processing/main-technology-area/extrusion   [R=301,L]
+RewriteRule     ^/maghreb/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/maghreb/solutions/processing/main-technology-area/extrusion     [R=301,L]
+RewriteRule     ^/pt-(br|pt)/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/pt-$1/solutions/processing/main-technology-area/extrusion   [R=301,L]
+RewriteRule     ^/ru/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/ru/solutions/processing/main-technology-area/extrusion  [R=301,L]
+RewriteRule     ^/sv-se/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/sv-se/solutions/processing/main-technology-area/extrusion   [R=301,L]
+RewriteRule     ^/tr-tr/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/tr-tr/solutions/processing/main-technology-area/extrusion   [R=301,L]
+RewriteRule     ^/zh-cn/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
+        https://${PUBLICWEB_URL}/zh-cn/solutions/processing/main-technology-area/extrusion   [R=301,L]
 ###
