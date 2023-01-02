@@ -33,7 +33,7 @@ public class FooterModel {
 	/** The footer links. */
 	private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
 	
-	private String linkLangPopup;
+	private String changeLanguage;
 
 	/**
 	 * Inits the.
@@ -49,7 +49,7 @@ public class FooterModel {
 			final FooterConfigurationModel configurationModel = footerConfigurationResource
 					.adaptTo(FooterConfigurationModel.class);
 			if (Objects.nonNull(configurationModel)) {
-				linkLangPopup = configurationModel.getLinkLangPopup();
+				changeLanguage = configurationModel.getChangeLanguage();
 				footerLinks = configurationModel.getFooterLinks();
 				for (FooterLinkModel footerLink : footerLinks) {
 					String validLink = LinkUtil.getValidLink(request.getResource(), footerLink.getLinkPath());
@@ -65,7 +65,7 @@ public class FooterModel {
 		return new ArrayList<>(footerValidLinks);
 	}
 	
-	public String getLinkLangPopup() {
-        return linkLangPopup;
+	public String getChangeLanguage() {
+        return changeLanguage;
     }
 }
