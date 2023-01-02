@@ -2,15 +2,20 @@ package com.tetrapak.supplierportal.core.utils;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.supplierportal.core.services.CookieDataDomainScriptService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.settings.SlingSettingsService;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 
@@ -20,6 +25,10 @@ import java.util.Iterator;
  * @author Nitin Kumar
  */
 public class GlobalUtil {
+
+    /** The Constant LOGGER. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
+
 
     private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
     private static final String NAVIGATION = "navigationconfiguration";
@@ -134,5 +143,41 @@ public class GlobalUtil {
             }
         }
         return null;
+    }
+
+    /**
+     * This method will fetch the OneTrust cookie script
+     */
+    public static String getDataDomainScript() {
+        CookieDataDomainScriptService cookieDataDomainScriptService = getService(CookieDataDomainScriptService.class);
+        String dataDomainScript = org.apache.commons.lang.StringUtils.EMPTY;
+        if (cookieDataDomainScriptService != null) {
+            String[] cookieParamArray = cookieDataDomainScriptService.getCookieDomainScriptConfig();
+            for (String param : cookieParamArray) {
+                if (param.contains(SupplierPortalConstants.SUPPLIER_PORTAL)) {
+                    final String domainAbbreviationJsonString = param.split("=")[1];
+                    dataDomainScript = GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString,
+                            SupplierPortalConstants.DOMAINSCRIPT);
+                    break;
+                }
+            }
+        }
+        return dataDomainScript;
+    }
+
+    /**
+     * This method is used to get the string value from string Array in format of {"key":"value","key1":"value1"}.
+     *
+     * @param stringArray the string array
+     * @param key         the key
+     * @return String value
+     */
+    private static String getKeyValueFromStringArray(final String stringArray, final String key) {
+        try {
+            return new JSONObject(stringArray).get(key).toString();
+        } catch (final JSONException exception) {
+            LOGGER.error("JSONException while converting array string to json object: ", exception);
+        }
+        return org.apache.commons.lang.StringUtils.EMPTY;
     }
 }
