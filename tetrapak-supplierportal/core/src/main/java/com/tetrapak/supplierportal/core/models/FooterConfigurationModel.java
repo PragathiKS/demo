@@ -28,7 +28,7 @@ public class FooterConfigurationModel {
 	private List<FooterLinkModel> footerLinks;
 	
 	@Inject
-	private String linkLangPopup;
+	private String changeLanguage;
 
 	/**
 	 * Gets the footer link.
@@ -44,8 +44,8 @@ public class FooterConfigurationModel {
 
 	}
 	
-	 public String getLinkLangPopup() {
-	        return linkLangPopup;
+	 public String getChangeLanguage() {
+	        return changeLanguage;
 	    }
 
 }

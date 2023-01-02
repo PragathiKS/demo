@@ -57,7 +57,7 @@ public class FooterConfigurationModelTest {
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
         assertEquals("/content/tetrapak/publicweb", model.getFooterLinks().get(0).getLinkPath());
-        assertEquals("true", model.getLinkLangPopup());
+        assertEquals("true", model.getChangeLanguage());
         
     }
 }
