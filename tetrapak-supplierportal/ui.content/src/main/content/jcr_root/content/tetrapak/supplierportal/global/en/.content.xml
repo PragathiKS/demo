@@ -18,7 +18,7 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="supplierportal/components/structure/headerconfiguration"
                         logoLink="https://supplier-dev.tetrapak.com/dashboard.html"
-                        logoUrl="/content/dam/supplierportal/images/TetraPakLogo.png"/>
+                        logoUrl="/content/dam/tetrapak/supplierportal/images/TetraPakLogo.png"/>
                 <footerconfiguration
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="supplierportal/components/structure/footerconfiguration">

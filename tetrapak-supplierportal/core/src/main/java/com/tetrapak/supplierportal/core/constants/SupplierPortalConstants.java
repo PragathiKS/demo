@@ -2,6 +2,9 @@ package com.tetrapak.supplierportal.core.constants;
 
 public final class SupplierPortalConstants {
 
+    /** The Constant DEFAULT_LOCALE. */
+    public static final String DEFAULT_LOCALE = "en";
+
     public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global";
 
     public static final String CONTENT_ROOT = SUPPLIER_PATH + "/en";
@@ -104,6 +107,8 @@ public final class SupplierPortalConstants {
     public static final String DOMAIN_NAME = "supplier.tetrapak.com";
 
     public static final String TOKEN_NAME = "acctoken";
+
+    public static final String NAVIGATION_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/navigationconfiguration";
 
 
     /**

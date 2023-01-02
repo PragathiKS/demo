@@ -16,6 +16,7 @@ export const RK_IMPL_DEADLINE = 'implDeadline';
 export const RK_STATUS = 'rebuildingKitStatus';
 export const RK_HANDLING = 'rkHandling';
 export const RK_ORDER = 'order';
+export const RK_EQUIPMENT_NUMBER = 'equipmentNumber';
 
 export const RK_PROPERTY_KEYS = [
   RK_COUNTRY_CODE,
@@ -35,7 +36,8 @@ export const RK_PROPERTY_KEYS = [
   RK_IMPL_DEADLINE,
   RK_STATUS,
   RK_HANDLING,
-  RK_ORDER
+  RK_ORDER,
+  RK_EQUIPMENT_NUMBER
 ];
 
 export const RK_I18N_COUNTRY_CODE = 'country';

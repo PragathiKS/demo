@@ -54,7 +54,11 @@ public class SoftconversionPardotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {           
-            pardotService.submitPardotPostRespose(request.getParameterMap());
+            if (GlobalUtil.isChinaDataFlow(request)) {
+                submitCustomFormData(request);
+            } else {
+                pardotService.submitPardotPostRespose(request.getParameterMap());
+            }           
             // send response
             sendResponse(resp);
 
@@ -63,6 +67,19 @@ public class SoftconversionPardotServlet extends SlingAllMethodsServlet {
         }
     }
     
+    /**
+     * Submit custom form data.
+     *
+     * @param request the request
+     */
+    private void submitCustomFormData(final SlingHttpServletRequest request) {
+        try {
+            pardotService.submitcustomFormServicePostResponse(request.getParameterMap());
+        } catch (Exception e) {
+            LOGGER.error("Error occurred while submission of form data {}", e.getMessage());
+        }
+    }
+
     /**
      * Sends HTTPServlet response
      *

@@ -1,10 +1,12 @@
 import $ from 'jquery';
 import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
+import file from '../../../scripts/utils/file';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _paginationAnalytics, _customizeTableBtnAnalytics } from './RebuildingKits.analytics';
 import { render } from '../../../scripts/utils/render';
+import { logger } from '../../../scripts/utils/logger';
 import { getI18n } from '../../../scripts/common/common';
 import { _paginate } from './RebuildingKits.paginate';
 import { _getFormattedCountryData } from './RebuildingKits.utils';
@@ -70,12 +72,12 @@ class RebuildingKits {
     this.cache.$content = this.root.find('.tp-rk-content');
     this.cache.$searchResults = this.root.find('.tp-rk__search-count');
     this.cache.$pagination = this.root.find('.js-tbl-pagination');
-
     this.cache.$modal = this.root.parent().find('.js-filter-modal');
     this.cache.filterModalData = {};
     this.cache.$rkCustomizeTableAction = this.root.find('.js-rk__customise-table-action');
     this.cache.activeFilterForm = 'country';
     this.cache.combinedFiltersObj = {};
+    this.cache.downloadservletUrl = this.root.find('#downloadCsvServletUrl').val();
   }
 
   processTableData = (data) => {
@@ -376,6 +378,31 @@ class RebuildingKits {
     }
   }
 
+  downloadCsv = () => {
+    auth.getToken(() => {
+      const url = this.cache.downloadservletUrl;
+      file.get({
+        extension: 'csv',
+        url: `${url}?countrycodes=${this.getActiveCountryCode()}`,
+        method: ajaxMethods.GET
+      });
+    });
+  }
+
+  getActiveCountryCode = () => {
+    try {
+      const { countryData } = this.cache;
+      const activeCountry = countryData.filter(e => e.isChecked);
+      if (activeCountry[0]) {
+        return activeCountry[0].countryCode;
+      } else {
+        throw Error('Couldn\'t get active country');
+      }
+    } catch (err) {
+      logger.error(err.message);
+    }
+  }
+
   bindEvents = () => {
     const $this = this;
     const {$modal,i18nKeys,$rkCustomizeTableAction } = this.cache;
@@ -441,6 +468,11 @@ class RebuildingKits {
       const rkNumber = clickLink.find('.tpmol-table__key-rkNumber').text();
       const equipmentDetailsUrl = $this.cache.rkApi.data('rkdetail-page');
       window.open(`${equipmentDetailsUrl}?rkNumber=${rkNumber}&equipment=${equipmentNumber}`, '_blank');
+    });
+
+    // Download CSV
+    this.root.on('click', '.js-rk__export-csv-action',  () => {
+      this.downloadCsv();
     });
   };
 

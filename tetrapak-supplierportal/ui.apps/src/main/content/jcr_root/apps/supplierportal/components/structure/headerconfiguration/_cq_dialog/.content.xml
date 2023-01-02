@@ -23,7 +23,7 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                     fieldDescription="Select logo URL"
                                     fieldLabel="Logo URL"
-                                    rootPath="/content/dam/supplierportal"
+                                    rootPath="/content/dam/tetrapak/supplierportal"
                                     name="./logoUrl"/>
                             <logoLink
                                     jcr:primaryType="nt:unstructured"
