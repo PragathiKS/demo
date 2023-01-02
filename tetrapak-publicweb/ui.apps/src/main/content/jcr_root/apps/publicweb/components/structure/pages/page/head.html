@@ -59,7 +59,7 @@
   </sly>
   
   <sly data-sly-test="${digitalDataModel.isPublisher}">
-    <script>
+    <!-- <script>
       var OneTrust = {
         dataSubjectParams: {
           id: '',
@@ -67,8 +67,15 @@
           token: ''
         }
       }
-    </script>
+    </script> -->
     <script type="text/javascript">
+      var OneTrust = {
+        dataSubjectParams: {
+          id: '',
+          isAnonymous: false,
+          token: ''
+        }
+      }
       (function () {
         var cookieValue, isCookieExist, pwoneTrustValue, uidValue, jwtToken;
         function getCookie(name) {
@@ -131,6 +138,8 @@
           OneTrust.dataSubjectParams.token = jwt;
         }
       })();
+
+      //# sourceURL=cookieDebug.js
     </script>
   </sly>
   <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
