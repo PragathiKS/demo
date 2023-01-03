@@ -14,12 +14,7 @@
       "linkLabel": "Terms & Conditions",
       "linkPath": "#term",
       "linkTarget": "_self"
-    },
-    {
-      "linkLabel": "Change Language",
-      "linkPath": "#",
-      "linkTarget":"_self"
     }
   ],
-  "linkLangPopup": true
+  "changeLanguage": "Change Language"
 }
