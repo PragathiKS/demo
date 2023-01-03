@@ -1,8 +1,26 @@
 @import '~tpCustomerhub/templates/components/languageselector/languageSelector';
 
-.tp-lang-selector__lang-container {
-    flex-direction: column;
-    @media #{$desktop} {
-        max-height: 10rem;
+.tp-lang-selector{
+    .tp-lang-selector__lang-container {
+        flex-direction: column;
+        @media #{$desktop} {
+            max-height: 10rem;
+        }
+    }
+    
+    &__heading {
+        font-size: 1.71429rem;
+        line-height: 1.33333;
+        font-weight: 400;
+        word-wrap: break-word;
+    }
+
+    .tpmol-modal-header {
+        padding: 1.2rem;
+        border: 0;
+        align-items: center;
+        @media #{$desktop} {
+            padding: 1.5rem;
+        }
     }
 }
