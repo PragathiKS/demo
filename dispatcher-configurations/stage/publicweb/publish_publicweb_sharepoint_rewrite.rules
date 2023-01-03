@@ -7720,3 +7720,7 @@ RewriteRule     ^/en-us/tetra-top-water$  https://www-stage.tetrapak.com/en-us/s
 RewriteRule     ^/es-ve/tetra-top-water$  https://www-stage.tetrapak.com/es-ve/solutions/packaging/packages/tetra-top/tetra-top-water   [R=301,L]
 RewriteRule     ^/en-vn/tetra-top-water$  https://www-stage.tetrapak.com/en-vn/solutions/packaging/packages/tetra-top/tetra-top-water   [R=301,L]
 
+#####SMAR-30251#####
+RewriteRule     (.*)/solutions/processing/main-technology-area/moulding/moulders$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/moulding  [R=301,L]
+###
