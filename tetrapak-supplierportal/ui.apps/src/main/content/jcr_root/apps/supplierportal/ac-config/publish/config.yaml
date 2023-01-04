@@ -40,29 +40,9 @@
           privileges:
 
         - path: /content/tetrapak/supplierportal
-          permission: deny
-          privileges: jcr:read,jcr:readAccessControl
-          repGlob:
-
-        - path: /content/tetrapak/supplierportal
-          permission: allow
-          privileges: jcr:read,jcr:readAccessControl
-          repGlob: ""
-
-        - path: /content/tetrapak/supplierportal
           permission: allow
           privileges: jcr:read,jcr:readAccessControl
           repGlob: /jcr:*
-
-        - path: /content/tetrapak/supplierportal/global/en
-          permission: deny
-          privileges: jcr:read,jcr:readAccessControl
-          repGlob:
-
-        - path: /content/tetrapak/supplierportal/global/en
-          permission: allow
-          privileges: jcr:read,jcr:readAccessControl
-          repGlob: ""
 
         - path: /content/tetrapak/supplierportal/global/en
           permission: allow

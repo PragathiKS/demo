@@ -11,5 +11,5 @@
         jcr:title="Supplier Portal"
         sling:resourceType="supplierportal/components/structure/page"
         showTitle="false"/>
-    <en/>
+    
 </jcr:root>

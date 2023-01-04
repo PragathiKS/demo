@@ -4522,3 +4522,9 @@ RewriteRule     ^/en-gb/una-buena-eleccion$  https://www-dev.tetrapak.com/en-gb/
 RewriteRule     ^/en-us/una-buena-eleccion$  https://www-dev.tetrapak.com/en-us/campaigns/una-buena-eleccion   [R=301,L]
 RewriteRule     ^/es-ve/una-buena-eleccion$  https://www-dev.tetrapak.com/es-ve/campaigns/una-buena-eleccion   [R=301,L]
 RewriteRule     ^/en-vn/una-buena-eleccion$  https://www-dev.tetrapak.com/en-vn/campaigns/una-buena-eleccion   [R=301,L]
+
+
+#####SMAR-30251#####
+RewriteRule     (.*)/solutions/processing/main-technology-area/moulding/moulders$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/moulding  [R=301,L]
+###

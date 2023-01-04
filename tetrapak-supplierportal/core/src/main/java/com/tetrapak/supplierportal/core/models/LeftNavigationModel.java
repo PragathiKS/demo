@@ -3,7 +3,6 @@ package com.tetrapak.supplierportal.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
-import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import com.tetrapak.supplierportal.core.utils.NavigationUtil;
 import org.apache.commons.lang.StringUtils;
@@ -12,7 +11,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
@@ -24,8 +22,6 @@ import java.util.List;
 public class LeftNavigationModel {
 
     @SlingObject private SlingHttpServletRequest request;
-
-    @OSGiService private UserPreferenceService userPreferenceService;
 
     private String navHeading;
 
@@ -39,8 +35,6 @@ public class LeftNavigationModel {
     private String selectedLanguage;
 
     @PostConstruct protected void init() {
-        selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
-
         Resource navigationConfigResource = GlobalUtil.getNavigationConfigurationResource(request);
         PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
         if (null != navigationConfigResource && null != pageManager) {
