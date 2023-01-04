@@ -53,7 +53,7 @@
     <meta name="twitter:image" content="${dynamicMetaImage.desktopUrl}" />
   </sly>
   <sly data-sly-test="${digitalDataModel.isPublisher}">
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
       var pwoneTrustValue = '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
     </script>
   </sly>
@@ -68,7 +68,7 @@
         }
       }
     </script> -->
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
       var OneTrust = {
         dataSubjectParams: {
           id: '',
@@ -145,26 +145,26 @@
   <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
     <script src="https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript}/otSDKStub.js"
       data-document-language="true" type="text/javascript" charset="UTF-8"
-      data-domain-script="${digitalDataModel.dataDomainScript}"></script>
-    <script type="text/javascript">
+      data-domain-script="${digitalDataModel.dataDomainScript}" defer></script>
+    <script type="text/javascript" defer>
       function OptanonWrapper() { }
     </script>
   </sly>
 
   <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async defer></script>
   </sly>
 
   <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async defer></script>
   </sly>
   <!--/* script for DEV and QA */-->
   <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async defer></script>
   </sly>
   <sly data-sly-test="${pageHeadModel.baiduMapkey}">
     <script src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}" type="text/plain"
-      class="optanon-category-4"></script>
+      class="optanon-category-4" defer></script>
   </sly>
 
   <sly data-sly-include="customheaderlibs.html"></sly>
