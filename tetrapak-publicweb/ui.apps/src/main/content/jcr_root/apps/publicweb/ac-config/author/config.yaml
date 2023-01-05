@@ -109,7 +109,7 @@
 
         - path: /content/tetrapak/publicweb/se
           permission: allow
-          actions: read,modify,create,delete,replicate
+          actions: read,modify,create,replicate
           privileges:
           repGlob:
 
