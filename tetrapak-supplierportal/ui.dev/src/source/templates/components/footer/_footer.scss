@@ -1,6 +1,6 @@
 .tp-pw-footer {
     @include margin-top($margin-l);
-    min-height: 100px;
+    min-height: 72px;
     background-color: transparent;
     @media #{$desktop} {
         @include margin-top($margin-l);
@@ -38,7 +38,7 @@
             @include margin-bottom($margin-md);
             @media #{$desktop} {
                 @include margin-right($margin-xxl);
-                @include margin-bottom($margin-l);
+                margin-bottom: 0;
                 display: block;
             }
 

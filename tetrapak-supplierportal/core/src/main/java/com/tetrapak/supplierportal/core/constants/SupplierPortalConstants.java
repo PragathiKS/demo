@@ -2,7 +2,12 @@ package com.tetrapak.supplierportal.core.constants;
 
 public final class SupplierPortalConstants {
 
-    public static final String CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
+    /** The Constant DEFAULT_LOCALE. */
+    public static final String DEFAULT_LOCALE = "en";
+
+    public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global";
+
+    public static final String CONTENT_ROOT = SUPPLIER_PATH + "/en";
 
     /**
      * The Constant HTML_EXTENSION.
@@ -10,9 +15,50 @@ public final class SupplierPortalConstants {
     public static final String HTML_EXTENSION = ".html";
 
     /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String HTM_EXTENSION = ".htm";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String PREVIEW = "preview";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String HASH = "#";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String TRUE = "true";
+    
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String PUBLISH = "publish";
+
+    /**
+     * The Constant HTML_EXTENSION.
+     */
+    public static final String HREF = "href";
+
+    /**
      * The Constant CONTENT_PATH .
      */
     public static final String CONTENT_PATH = "/content/";
+
+    /** The Constant LANGUAGE_LEVEL. */
+    public static final int LANGUAGE_PAGE_LEVEL = 4;
+
+    /** The Constant PARAM_LINK. */
+    public static final String PARAM_LINK = "linkPath";
+
+    /**
+     * The Constant CONTENT_PATH .
+     */
+    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/supplierportal";
 
     /**
      * The Constant HTTP.
@@ -53,6 +99,22 @@ public final class SupplierPortalConstants {
      * The Constant EXTERNAL_LINK.
      */
     public static final String EXTERNAL_LINK = "external";
+
+    public static final String SAML_REQUEST_PATH = "saml_request_path";
+
+    public static final String COOKIE_NAME = "SP-AEMCustomerName";
+
+    public static final String DOMAIN_NAME = "supplier.tetrapak.com";
+
+    public static final String TOKEN_NAME = "acctoken";
+
+    public static final String NAVIGATION_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/navigationconfiguration";
+
+    /** The Constant SUPPLIER_PORTAL. */
+    public static final String SUPPLIER_PORTAL = "supplierportal";
+
+    /** The Constant DOMAINSCRIPT. */
+    public static final String DOMAINSCRIPT = "domainScript";
     /**
      * Instantiates a new customer hub constants.
      */

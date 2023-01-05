@@ -1,0 +1,43 @@
+{
+"jcr:primaryType": "cq:Page",
+"jcr:createdBy": "admin",
+"jcr:created": "Mon Nov 28 2022 10:45:26 GMT+0530",
+"jcr:content": {
+"jcr:primaryType": "cq:PageContent",
+"jcr:createdBy": "admin",
+"jcr:title": "Start Page",
+"cq:template": "/conf/supplierportal/settings/wcm/templates/content-page",
+"jcr:created": "Mon Nov 28 2022 10:45:26 GMT+0530",
+"cq:lastModified": "Wed Dec 14 2022 10:15:13 GMT+0530",
+"sling:resourceType": "supplierportal/components/structure/page",
+"cq:lastModifiedBy": "admin",
+"root": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"responsivegrid": {
+"jcr:primaryType": "nt:unstructured",
+"sling:resourceType": "wcm/foundation/components/responsivegrid",
+"accordion": {
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "admin",
+"jcr:lastModifiedBy": "admin",
+"jcr:created": "Tue Dec 13 2022 12:58:11 GMT+0530",
+"heading": "FAQ Questions",
+"jcr:lastModified": "Wed Dec 14 2022 10:15:13 GMT+0530",
+"sling:resourceType": "supplierportal/components/content/accordion",
+"textIsRich": [
+"true"
+],
+"questionList": {
+"jcr:primaryType": "nt:unstructured",
+"item0": {
+"jcr:primaryType": "nt:unstructured",
+"quesNo": "Question 1",
+"quesDetail": "<p>ad</p>"
+}
+}
+}
+}
+}
+}
+}

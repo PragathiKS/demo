@@ -38,3 +38,19 @@ export const _paginationAnalytics = ($targetBtn) => {
 
   trackAnalytics(linkClickObj, 'linkClick', 'paginationClick', undefined, false, eventObj);
 };
+
+export const _customizeTableBtnAnalytics = ($targetBtn) => {
+  const eventObj = {
+    event: 'Customize Table',
+    eventType: 'Show/Hide Columns'
+  };
+
+  const linkClickObj = {
+    linkName: $targetBtn.find('.tp-rk__header-action-text').text().replace(' +', ''),
+    linkType: 'internal',
+    linkSection: 'hyperlink click',
+    linkParentTitle: 'Text Hyperlink_Rebuilding Kits'
+  };
+
+  trackAnalytics(linkClickObj, 'linkClick', 'paginationClick', undefined, false, eventObj);
+};

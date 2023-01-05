@@ -37,6 +37,32 @@
             <h2 class="tp-rk__heading js-rk__heading">
                 Rebuilding kits
             </h2>
+            <!-- Actions -->
+            <div class="tp-rk__header-action-wrapper">
+                <div class="tp-rk__header-mobile">
+                    <button class="tp-next-btn js-mobile-header-actions">
+                    <i class="icon icon-Three_Dot">
+                    </i>
+                    </button>
+                </div>
+                <div class="tp-rk__header-actions">
+                    <div class="tp-rk__header-actionicons">
+                        <div class="tp-rk__action-button second js-rk__customise-table-action">
+                            <i class="icon icon-Hide action-icon"></i>
+                            <span class="tpatom-btn__text tp-rk__header-action-text">Customise Table</span>
+                        </div>
+                        <input type="hidden" id="downloadCsvServletUrl" name="downloadCsvServletUrl" value="${data.downloadCsvServletUrl}" />
+                    
+                        <button class="tpatom-btn tp-button-link js-rk__export-csv-action tpatom-btn--primary tp-rk__action-button">
+        
+                            <i class="icon icon-Excel action-icon"></i>
+                            
+                            <span class="tpatom-btn__text sly-text">Export to CSV</span>
+                        </button>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
         <div class="tp-rk__filter-wrapper">
             <div class="tp-rk__filter-chips">
