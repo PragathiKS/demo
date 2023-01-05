@@ -142,7 +142,7 @@
                           }
                         /0001
                           {
-                          /glob "/content/tetrapak/customerhub/*.html" /type "allow"
+                          /glob "/content/tetrapak/supplierportal/*.html" /type "allow"
                           }
 			
 			/0002
