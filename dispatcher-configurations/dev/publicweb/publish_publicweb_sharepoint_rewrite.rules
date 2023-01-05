@@ -379,11 +379,17 @@ RewriteRule     (.*)/processing/handling/ice-cream-dip-and-transfer-unit$       
 RewriteRule     (.*)/processing/handling/tetra-pak-dip-and-transfer-unit-1800-m2$       https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/handling/tetra-pak-dip-and-transfer-unit-1800-m2    [R=301,L]
 RewriteRule     (.*)/processing/handling/tetra-pak-dip-and-transfer-unit-m$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/handling/tetra-pak-dip-and-transfer-unit-m  [R=301,L]
 RewriteRule     (.*)/processing/hardening$      https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/hardening      [R=301,L]
-RewriteRule     (.*)/processing/inclusion$      https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion      [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser  [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-a3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-a3    [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-m3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-m3    [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-4000-a2$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-4000-a2       [R=301,L]
+##### SMAR-30478 #####
+#RewriteRule     (.*)/processing/inclusion$      https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion      [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser  [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-a3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-a3    [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-m3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-m3    [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-4000-a2$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-4000-a2       [R=301,L]
+RewriteRule     (.*)/processing/inclusion/(ingredient-doser)?$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing  [R=301,L]
+RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/(tetra-pak-ingredient-doser-a3|tetra-pak-ingredient-doser-m3|tetra-pak-ingredient-doser-4000-a2)$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing/$2  [R=301,L]
+###
 RewriteRule     (.*)/processing/inclusion/tetra-pak-pump-station$       https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/Pump-Station      [R=301,L]
 RewriteRule     (.*)/processing/moulding$       https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/Moulding       [R=301,L]
 RewriteRule     (.*)/processing/moulding/tetra-pak-moulders$    https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/Moulding/moulders  [R=301,L]
@@ -4527,4 +4533,12 @@ RewriteRule     ^/en-vn/una-buena-eleccion$  https://www-dev.tetrapak.com/en-vn/
 #####SMAR-30251#####
 RewriteRule     (.*)/solutions/processing/main-technology-area/moulding/moulders$\
         https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/moulding  [R=301,L]
+###
+
+##### SMAR-30478 #####
+RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion/(ingredient-doser)?$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing  [R=301,L]
+
+RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion/ingredient-doser/(tetra-pak-ingredient-doser-a3|tetra-pak-ingredient-doser-m3|tetra-pak-ingredient-doser-4000-a2)$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing/$2  [R=301,L]
 ###
