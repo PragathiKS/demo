@@ -130,7 +130,7 @@
 		/auth_checker
                   {
                   # request is sent to this URL with '?uri=<page>' appended
-                  /url "/bin/customerhub/permissioncheck"
+                  /url "/bin/supplierportal/permissioncheck"
 
                   # only the requested pages matching the filter section below are checked,
                   # all other pages get delivered unchecked
