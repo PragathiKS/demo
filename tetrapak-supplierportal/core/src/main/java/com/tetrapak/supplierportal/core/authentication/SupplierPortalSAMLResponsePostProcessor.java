@@ -140,7 +140,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     }
 
     private static boolean isValidURL(String url) {
-        return url.contains(SupplierPortalConstants.SUPPLIER_PATH) && !url.contains(LOGOUT) && !url.contains(EMPTY)
+        return url.contains(SupplierPortalConstants.CONTENT_ROOT_PATH) && !url.contains(LOGOUT) && !url.contains(EMPTY)
                 && url.endsWith(SupplierPortalConstants.HTML_EXTENSION);
     }
 
