@@ -6,6 +6,9 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
+import com.tetrapak.supplierportal.core.services.UserPreferenceService;
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -31,6 +34,9 @@ public class FooterModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    @OSGiService
+    private UserPreferenceService userPreferenceService;
+
     /** The footer links. */
     private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
 
@@ -42,7 +48,8 @@ public class FooterModel {
         final List<FooterLinkModel> footerLinks;
         LOGGER.debug("inside init method");
 
-        final String path = SupplierPortalConstants.CONTENT_ROOT + CONFIGURATION_PATH;
+        String language = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+        final String path = SupplierPortalConstants.SUPPLIER_PATH + language + CONFIGURATION_PATH;
         final Resource footerConfigurationResource = request.getResourceResolver().getResource(path);
         if (Objects.nonNull(footerConfigurationResource)) {
             final FooterConfigurationModel configurationModel = footerConfigurationResource.adaptTo(
