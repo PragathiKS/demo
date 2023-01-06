@@ -4,4 +4,4 @@
     jcr:primaryType="cq:Component"
     jcr:title="Error"
     sling:resourceSuperType="customerhub/components/content/error"
-    componentGroup="sp-content-components"/>
+    componentGroup="sp-error-components"/>
