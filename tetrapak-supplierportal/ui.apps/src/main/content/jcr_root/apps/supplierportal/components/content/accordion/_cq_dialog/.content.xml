@@ -38,7 +38,7 @@
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldDescription="Enter Question Number without special characters"
-                                            fieldLabel="Question Number"
+                                            fieldLabel="Question"
                                             name="./quesNo"
                                             required="true"/>
                                         <quesDetail
