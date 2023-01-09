@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:allowedTemplates="/conf/supplierportal/settings/wcm/templates/error-template"
+        cq:conf="/conf/supplierportal"
+        cq:lastModified="{Date}2022-12-27T15:33:51.372+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/supplierportal/settings/wcm/templates/content-page"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Error Pages"
+        sling:resourceType="supplierportal/components/structure/contentpage"
+        disableClickInBreadcrumbs="false"
+        hideBreadcrumbs="false"
+        showTitle="false"
+        whiteBackground="[false,false]">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid"/>
+    </jcr:content>
+    <_x0034_00/>
+    <_x0035_00/>
+</jcr:root>

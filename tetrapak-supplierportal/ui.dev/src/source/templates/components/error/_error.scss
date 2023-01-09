@@ -1,0 +1,16 @@
+@import '~tpCustomerhub/templates/components/error/error';
+
+.tp-error {
+    &__heading {
+        @include margin-bottom($margin-md);
+        color: $color-text;
+    }
+
+    &__code {
+        font-weight: 400;
+    }
+
+    &__description {
+        font-weight: 400;
+    }
+}
