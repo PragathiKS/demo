@@ -1,4 +1,3 @@
-Jenkinsfile-CdnCache
 pipeline {
     agent {
        node {
