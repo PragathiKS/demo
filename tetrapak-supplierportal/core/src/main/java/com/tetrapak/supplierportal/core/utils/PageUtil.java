@@ -1,5 +1,6 @@
 package com.tetrapak.supplierportal.core.utils;
 
+import com.day.cq.commons.LabeledResource;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import org.apache.commons.lang.StringUtils;
@@ -18,7 +19,7 @@ public final class PageUtil {
      * @param resource current resource
      * @return true if resource is within current page
      */
-    public static boolean isCurrentPage(Page page, Resource resource) {
+    public static boolean isCurrentPage(LabeledResource page, Resource resource) {
         PageManager pageManager = resource.getResourceResolver().adaptTo(PageManager.class);
         if (null != pageManager) {
             Page currentPage = pageManager.getContainingPage(resource);
