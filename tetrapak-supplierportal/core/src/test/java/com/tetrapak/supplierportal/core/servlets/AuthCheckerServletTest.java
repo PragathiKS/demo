@@ -37,23 +37,21 @@ public class AuthCheckerServletTest {
 
         aemContext.currentResource(SERVLET_RESOURCE_PATH);
         aemContext.request().setServletPath(SERVLET_RESOURCE_PATH);
-        aemContext.request().setMethod(HttpConstants.METHOD_GET);
+        aemContext.request().setMethod(HttpConstants.METHOD_HEAD);
     }
 
     @Test
     public void doHead() {
-//        MockSlingHttpServletRequest request = aemContext.request();
-//        MockSlingHttpServletResponse response = aemContext.response();
-//
-//        Map<String, Object> parameters = new HashMap<>();
-//        parameters.put("uri", "/dashboard.html");
-//        request.setParameterMap(parameters);
-//
-//        AuthCheckerServlet authCheckerServlet = aemContext
-//                .getService(AuthCheckerServlet.class);
-//        aemContext.registerInjectActivateService(authCheckerServlet);
-//        authCheckerServlet.doHead(request, response);
-//        assertEquals("status should be ok ", HttpStatus.SC_OK, response.getStatus());
+        MockSlingHttpServletRequest request = aemContext.request();
+        MockSlingHttpServletResponse response = aemContext.response();
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("uri", "/dashboard.html");
+        request.setParameterMap(parameters);
+
+        AuthCheckerServlet authCheckerServlet = aemContext.getService(AuthCheckerServlet.class);
+        authCheckerServlet.doHead(request, response);
+        assertEquals("status should be ok ", HttpStatus.SC_OK, response.getStatus());
     }
 
     private <T> List<GenericServiceType<T>> getMultipleMockedService() {
