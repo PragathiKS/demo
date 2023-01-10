@@ -59,7 +59,7 @@ function _processTableData(data){
   return data;
 }
 
-function _limitFilterSelection($modal) {
+export function _limitFilterSelection($modal) {
   const $countWrapper = $modal.find('.js-tp-my-equipment__filter-count');
   const maxItems = parseInt($countWrapper.data('max-filters'), 10);
   const $currentCountTxt = $modal.find('.js-tp-my-equipment__filter-count-current');

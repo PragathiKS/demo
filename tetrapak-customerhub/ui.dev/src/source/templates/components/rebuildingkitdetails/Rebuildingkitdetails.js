@@ -36,7 +36,6 @@ function _renderRebuildingKitDetails() {
 
 function _renderCtiDocuments(langAvailable, otherLang) {
   const $this = this;
- 
   if (!langAvailable) {
     const errorMessage ='No data in api';
     render.fn({
@@ -133,7 +132,7 @@ function _getRebuildingKitDetails() {
       equipmentNumber = value;
     }
   }
-  
+
 
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
