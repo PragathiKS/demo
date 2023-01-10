@@ -1,7 +1,19 @@
 /* eslint-disable */
 
 export const _mapQueryParams = (key) => {
-  return key.toLowerCase();
+  switch (key) {
+    case 'implDeadline': {
+      return 'impldeadlinestart';
+    }
+    case 'plannedDate': {
+      return 'planneddatestart';
+    }
+    case 'releaseDate': {
+      return 'releasedatestart';
+    }
+    default:
+      return key.toLowerCase();
+  }
 };
 
 
@@ -27,7 +39,6 @@ export const _remapFilterProperty = (filterProperty) => {
 };
 
 export const _buildQueryUrl = (combinedFiltersObj, filterVal) => {
-  console.log({ combinedFiltersObj });
   if (Object.keys(combinedFiltersObj).length) {
     const queryString = Object.keys(combinedFiltersObj).map(key => {
       const appliedFilterApiKey = _remapFilterProperty(key);
