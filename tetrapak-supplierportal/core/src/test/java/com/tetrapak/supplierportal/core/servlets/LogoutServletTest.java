@@ -4,7 +4,9 @@ import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.settings.SlingSettingsService;
+import org.eclipse.jetty.http.HttpHeader;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -47,9 +49,9 @@ import static org.junit.Assert.assertEquals;
         cookie.setMaxAge(1);
 
 
-        Mockito.when(request.getCookie(LogoutServlet.LOGIN_TOKEN_KEY)).thenReturn(loginCookie);
+        Mockito.when(request.getCookie(LogoutServlet.LOGIN_TOKEN)).thenReturn(loginCookie);
         Mockito.when(request.getCookie(SupplierPortalConstants.TOKEN_NAME)).thenReturn(tokenCookie);
-        Mockito.when(request.getCookie(LogoutServlet.AUTH_TOKEN_KEY)).thenReturn(authCookie);
+        Mockito.when(request.getCookie(LogoutServlet.AUTH_TOKEN)).thenReturn(authCookie);
         Mockito.when(request.getCookie(SupplierPortalConstants.SAML_REQUEST_PATH)).thenReturn(samlCookie);
         Mockito.when(request.getCookie(SupplierPortalConstants.COOKIE_NAME)).thenReturn(cookie);
 
@@ -61,10 +63,10 @@ import static org.junit.Assert.assertEquals;
 
     @Test public void doGet() {
         servlet.doGet(request, response);
-        assertEquals("Age should be 0", loginCookie.getMaxAge(), 0);
-        assertEquals("Age should be 0", tokenCookie.getMaxAge(), 0);
-        assertEquals("Age should be 0", authCookie.getMaxAge(), 0);
-        assertEquals("Age should be 0", samlCookie.getMaxAge(), 0);
-        assertEquals("Age should be 0", cookie.getMaxAge(), 0);
+        assertEquals(loginCookie.getMaxAge(), 0);
+        assertEquals(tokenCookie.getMaxAge(), 0);
+        assertEquals(authCookie.getMaxAge(), 0);
+        assertEquals(samlCookie.getMaxAge(), 0);
+        assertEquals(cookie.getMaxAge(), 0);
     }
 }
