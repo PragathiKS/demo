@@ -33,7 +33,7 @@ public final class GlobalUtil {
     private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
     private static final String NAVIGATION = "navigationconfiguration";
 
-    public GlobalUtil() {
+    private GlobalUtil() {
     }
     /**
      * Method to get service.
