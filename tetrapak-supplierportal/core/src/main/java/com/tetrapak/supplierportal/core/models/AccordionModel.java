@@ -27,10 +27,21 @@ public class AccordionModel {
 	@Inject
 	private List<FAQModel> questionList;
 
+	/**
+	 * Gets the heading.
+	 *
+	 * @return the heading
+	 */
 	public String getHeading() {
 		return heading;
 	}
 
+
+	/**
+	 * Gets the Question List.
+	 *
+	 * @return lists
+	 */
 	public List<FAQModel> getQuestionList() {
 		final List<FAQModel> lists = new ArrayList<>();
 		if (Objects.nonNull(questionList)) {
