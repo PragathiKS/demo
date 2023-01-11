@@ -1,6 +1,6 @@
 {
   "name": "supplierportal",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "dependencies": {
     "argon-logger": "^0.1.2",
     "deparam.js": "^2.1.1",
@@ -31,12 +31,12 @@
     "chunkAnalyzer": "webpack-bundle-analyzer app/jcr_root/stats.json"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/plugin-proposal-class-properties": "^7.17.8",
-    "@babel/plugin-syntax-dynamic-import": "^7.17.8",
-    "@babel/plugin-transform-runtime": "^7.17.8",
-    "@babel/preset-env": "^7.17.8",
-    "@babel/runtime": "^7.17.8",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
     "aemsync": "1.0.2",
     "argon-cli": "^0.2.7",
     "argon-clientlibs": "^0.1.1",
