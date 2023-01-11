@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { trackAnalytics } from '../utils/analytics';
 
 export const getDocType = (url) => {
