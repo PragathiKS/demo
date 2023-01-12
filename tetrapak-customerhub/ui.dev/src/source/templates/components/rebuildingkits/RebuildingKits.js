@@ -602,7 +602,7 @@ class RebuildingKits {
     this.cache.$content.addClass('d-none');
 
     auth.getToken(({ data: authData }) => {
-      this.getAllAvailableFilterVals(this.cache.apiFilterKeys, true);
+      this.getAllAvailableFilterVals(RK_API_FILTER_KEYS, true);
       ajaxWrapper
         .getXhrObj({
           url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}`,
