@@ -70,7 +70,6 @@ import java.util.Set;
         if (null != aemCustomerNameCookie) {
             aemCustomerNameCookie.setMaxAge(0);
             aemCustomerNameCookie.setPath("/");
-            aemCustomerNameCookie.setDomain("." + SupplierPortalConstants.DOMAIN_NAME);
             response.addCookie(aemCustomerNameCookie);
             LOGGER.debug("cookie " + SupplierPortalConstants.COOKIE_NAME + " was deleted");
         }
