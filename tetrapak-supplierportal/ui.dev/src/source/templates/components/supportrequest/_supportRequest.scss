@@ -260,7 +260,7 @@ $color-grey: rgba(74, 74, 74, 0.5);
         &-last {
             @include margin-top($margin-md);
             @media #{$desktop} {
-                margin: 0 0 0 $margin-l;
+                margin: 0 0 0 24px;
             }
         }
 
@@ -269,7 +269,6 @@ $color-grey: rgba(74, 74, 74, 0.5);
             border-radius: 4px;
             height: 40px;
             width: 100%;
-            padding: $padding-sm $padding-md;
 
             &:not(.tp-support-request__field-long-input) {
                 min-width: 256px;
@@ -311,8 +310,7 @@ $color-grey: rgba(74, 74, 74, 0.5);
         }
 
         &--error {
-            input,
-            textarea {
+            input, textarea {
                 border: 1px solid $color-alert;
             }
         }
