@@ -114,7 +114,7 @@ public final class SearchMapHelper {
     public static void setCommonMap(String fulltextSearchTerm, Map<String, String> map, int pageParam,
             int noOfResultsPerHit, int guessTotal) {
         if (StringUtils.isNotBlank(fulltextSearchTerm)) {
-            map.put("fulltext", fulltextSearchTerm);
+            map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
         map.put("104_orderby", "@jcr:score");
@@ -137,7 +137,7 @@ public final class SearchMapHelper {
      * @param map            the map
      * @param searchResultsModel the search results model
      */
-    public static void setThemesPredicates(String[] themes, PredicateGroup tagsPredicateGroup, Map<String, String> themeMap) {
+    public static void setThemesPredicates(String[] themes, PredicateGroup tagsPredicateGroup , Map<String, String> themeMap) {
         if (themes != null && themes.length > 0) {
             for (int i = 0; i < themes.length; i++) {
                 String tag = themeMap.get(themes[i]);

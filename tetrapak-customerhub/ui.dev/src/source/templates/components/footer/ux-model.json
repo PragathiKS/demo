@@ -1,0 +1,16 @@
+{
+  "footerNavigationLinks": {
+    "jcr:primaryType": "nt:unstructured",
+    "item0": {
+      "jcr:primaryType": "nt:unstructured",
+      "linkText": "Link text 2",
+      "linkPath": "/content/tetrapak/publicweb"
+    },
+    "item1": {
+      "jcr:primaryType": "nt:unstructured",
+      "linkText": "Link text 3",
+      "linkPath": "/content/tetrapak/publicweb"
+    }
+  },
+  "languageSwitchLabel": "Change Language"
+}

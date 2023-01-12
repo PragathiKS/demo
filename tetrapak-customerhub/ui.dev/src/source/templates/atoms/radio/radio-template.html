@@ -1,0 +1,18 @@
+<sly data-sly-template.radio_template="${@ data, activeLang, langList, flag}">
+    <div class="tpatom-radio tp-prelang-selector">
+        <label class="tpatom-radio__label clearfix" for="tpatomRadio${data}">
+            <input
+                type="radio"
+                class="tpatom-radio__input js-radio__input-preferredlanguage float-left"
+                id="tpatomRadio${data}"
+                value="${data}"
+                name="preferredlanguage"
+                checked="${activeLang == data ? 'checked':''}"
+                data-langcode="${data}"
+                data-langdesc="${langList[data]}" />
+            <i class="tpatom-radio__icon icon icon-Tick float-left"></i>
+            <span class="tpatom-radio__text js-radio__text">${langList[data]}</span>
+        </label>
+    </div>
+</sly>
+  

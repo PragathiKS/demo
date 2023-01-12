@@ -207,9 +207,11 @@ public class StoriesModel {
      * Generate list semi automatically.
      */
     private void generateListSemiAutomatically() {
-        List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, semiAutomaticList);
-        if (!aggregatorList.isEmpty()) {
-            setTabListfromAggregator(aggregatorList);
+        if (Objects.nonNull(semiAutomaticList) && !semiAutomaticList.isEmpty()) {
+            List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, semiAutomaticList);
+            if (!aggregatorList.isEmpty()) {
+                setTabListfromAggregator(aggregatorList);
+            }
         }
     }
 

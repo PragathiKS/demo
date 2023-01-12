@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2023-01-05T17:52:20.769+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="/conf/supplierportal/settings/wcm/templates/error-template"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="500"
+        sling:resourceType="supplierportal/components/structure/page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <responsivegrid
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="wcm/foundation/components/responsivegrid">
+                <error
+                    jcr:created="{Date}2023-01-05T17:45:26.396+05:30"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2023-01-05T17:52:20.767+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="supplierportal/components/content/error"
+                    errorDescription="&lt;h1 style=&quot;text-align: center;&quot;>We Are Sorry!&lt;/h1>&#xd;&#xa;&lt;p style=&quot;text-align: center;&quot;>We are currently experiencing some technical difficulties and are working to solve the problem. Please try to access the page again shortly.&lt;/p>&#xd;&#xa;&lt;h2 style=&quot;text-align: center;&quot;>Looking to manage procurement event?&lt;/h2>&#xd;&#xa;&lt;h3 style=&quot;text-align: center;&quot;>&lt;a href=&quot;https://author-tetrapak-test65.adobecqms.net/dashboard.html&quot;>SAP Bussiness Network&lt;/a>&lt;/h3>&#xd;&#xa;"
+                    textIsRich="true"/>
+            </responsivegrid>
+        </root>
+    </jcr:content>
+</jcr:root>
