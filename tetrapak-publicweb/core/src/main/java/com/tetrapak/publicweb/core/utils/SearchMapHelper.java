@@ -114,7 +114,7 @@ public final class SearchMapHelper {
     public static void setCommonMap(String fulltextSearchTerm, Map<String, String> map, int pageParam,
             int noOfResultsPerHit, int guessTotal) {
         if (StringUtils.isNotBlank(fulltextSearchTerm)) {
-            map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
+            map.put("fulltext", fulltextSearchTerm);
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
         map.put("104_orderby", "@jcr:score");
