@@ -27,9 +27,9 @@ import java.util.Set;
     private static final long serialVersionUID = 5277815225105722120L;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoutServlet.class);
-    private static final String LOGIN_TOKEN = "login-token";
-    private static final String AUTH_TOKEN = "authToken";
-    private static final String REDIRECT_URL = "redirectURL";
+    static final String LOGIN_TOKEN = "login-token";
+    static final String AUTH_TOKEN = "authToken";
+    static final String REDIRECT_URL = "redirectURL";
 
     @Reference private SlingSettingsService slingSettingsService;
 
