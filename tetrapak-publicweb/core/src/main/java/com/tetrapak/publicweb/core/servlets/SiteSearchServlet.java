@@ -181,7 +181,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 } else if (fulltextSearchTerm.contains("&gt;")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&gt;", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains("&quot;")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace("&quot;", StringUtils.EMPTY);
+                    fulltextSearchTerm = fulltextSearchTerm.replace("&quot;", "\"");
                 }
             }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
@@ -191,12 +191,15 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             Map<String, String> map = new HashMap<>();
             map.put("1_group.p.or", "true");
 
+            PredicateGroup tagsPredicateGroup = new PredicateGroup();
+            tagsPredicateGroup.setAllRequired(false);
+
             if (isValidRequest(contentType, themes, fulltextSearchTerm)) {
                 index = setContentMap(map, searchResultsModel, contentType, index);
                 SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
-                SearchMapHelper.setThemesMap(themes, map, themeMap);
+                SearchMapHelper.setThemesPredicates(themes, tagsPredicateGroup, themeMap);
                 SearchMapHelper.filterGatedContent(map, index, searchResultsModel);
-                setSearchBean(request, map, searchResultsModel);
+                setSearchBean(request, map, tagsPredicateGroup, searchResultsModel);
             }
             Gson gson = new Gson();
             String responseJSON;
@@ -322,9 +325,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * @param searchResultsModel
      *            the search results model
      */
-    private void setSearchBean(SlingHttpServletRequest request, Map<String, String> map,
+    private void setSearchBean(SlingHttpServletRequest request, Map<String, String> map, PredicateGroup tagsPredicate,
             SearchResultsModel searchResultsModel) {
-        Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+        PredicateGroup predicates = PredicateGroup.create(map);
+        predicates.add(tagsPredicate);
+        Query query = queryBuilder.createQuery(predicates, session);
         SearchResult result = query.getResult();
         long noOfResults = result.getTotalMatches();
 
