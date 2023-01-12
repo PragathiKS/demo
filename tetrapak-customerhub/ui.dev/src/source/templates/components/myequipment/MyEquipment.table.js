@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 /**
  * Returns an obj containing all table rows to be rendered with HBS
  */
