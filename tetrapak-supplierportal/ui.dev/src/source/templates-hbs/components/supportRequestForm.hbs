@@ -1,0 +1,215 @@
+<h1 class="tp-support-request__title js-tp-support-request__title">{{i18n key=i18nKeys.title}}</h1>
+<p class="tp-support-request__subtitle">{{i18n key=i18nKeys.subTitle}}</p>
+<form class="tp-support-request__form" enctype="multipart/form-data">
+    <div class="row tp-support-request__section">
+        <div class="col-lg-11">
+            <h3>{{i18n key=i18nKeys.purposeContactHeading}}</h3>
+            {{!-- {{> atoms/radio/radio value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                    uniqueKey=option
+                    name=@root.radioGroupName
+                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                    jsMyEquipmentFilter="js-tp-support-request-filter-radio"
+            }}
+            {{> atoms/radio/radio value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                    uniqueKey=option
+                    name=@root.radioGroupName
+                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                    jsMyEquipmentFilter="js-tp-support-request-filter-radio"
+            }} --}}
+            <div class="js-tp-support-request__form-element tp-support-request__section-content tp-support-request__form-element">
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=(concat "SAP Ariba - " i18nKeys.onboardingMaintanance)
+                    name="purposeOfContact"
+                    id="onboardingMaintanance"
+                    value=(concat "SAP Ariba - " i18nKeys.onboardingMaintanance)
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                <p>Get support with registration, updating supplier information or similar</p>
+               </div>
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=(concat "SAP Ariba - " i18nKeys.sourcingContracting)
+                    name="purposeOfContact"
+                    id="sourcing&contacting"
+                    value=(concat "SAP Ariba - " i18nKeys.sourcingContracting)
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                 <p>Get support with creating or maintaining catalogues</p>
+               </div>
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=(concat "SAP Ariba - " i18nKeys.catalogues)
+                    name="purposeOfContact"
+                    id="catalogues"
+                    value=(concat "SAP Ariba - " i18nKeys.catalogues)
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                <p>Sourcing & Contracting Get support with sending and responding to RFI/RFQs, participating in auctions, using electronic signatures or similar</p>
+               </div>
+            <div class="error-msg">{{i18n key=i18nKeys.purposeContactErrorMsg}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row tp-support-request__section">
+        <div class="col-lg-11">
+            <h3>{{i18n key=i18nKeys.howHelpHeading}}</h3>
+            <p class="tp-support-request__details-subtitle">{{i18n key=i18nKeys.describeQuery}}</p>
+            <div class="js-tp-support-request__form-element tp-support-request__form-element">
+                {{> atoms/textarea/textarea
+                        placeholder=(concat i18nKeys.queryPlaceholder "...")
+                        name="howHelp"
+                        required="true"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.howHelpErrorMsg}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 tp-support-request__drag-and-drop-wrapper">
+            <div class="tp-support-request__drag-and-drop js-tp-support-request__drag-and-drop">
+                {{> atoms/buttons/button/button
+                        modifier="transparent"
+                        jsClass="js-tp-support-request__drag-and-drop-button"
+                        className="tp-support-request__drag-and-drop-button"
+                        iconClass="icon-Share"
+                        text=i18nKeys.dragAndDropButton
+                }}
+                <p class="tp-support-request__drag-and-drop-subtitle">{{i18n key=i18nKeys.dragAndDropSubtitle}}</p>
+                {{#if i18nKeys.fileFormatSubtitle}}
+                    <p class="tp-support-request__drag-and-drop-subtitle">
+                        {{i18n key=i18nKeys.fileFormatSubtitle}}
+                    </p>
+                {{/if}}
+                <div class="tp-support-request__file-error js-tp-support-request__file-error" hidden>
+                    {{i18n key=i18nKeys.fileExtensionErrorMsg}}
+                </div>
+                <div class="js-tp-support-request__drag-and-drop-files-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tp-support-request__section">
+        <div class="col-lg-8">
+            <h3>{{i18n key=i18nKeys.contactInfoHeading}}</h3>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-disabled">
+                {{> atoms/input/input
+                        labelText=i18nKeys.name
+                        name="name"
+                        defaultValue=i18nKeys.nameVal
+                        disabled="true"
+                        eleClasses="tp-support-request__field-input-disabled"
+                        labelClasses="tp-support-request__field-label disabled"
+                }}
+                </div>
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-last tp-support-request__form-element-disabled">
+                {{> atoms/input/input
+                    type="email"
+                    labelText=i18nKeys.emailAddress
+                    defaultValue=i18nKeys.emailVal
+                    disabled="true"
+                    name="emailAddress"
+                    eleClasses="tp-support-request__field-input-disabled"
+                    labelClasses="tp-support-request__field-label disabled"
+                }}
+                </div>
+            </div> 
+            <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                {{> atoms/input/input
+                    labelText=i18nKeys.companyLegalName
+                    name="companyLegalName"
+                    required="true"
+                    eleClasses="tp-support-request__field-long-input"
+                    labelClasses="tp-support-request__field-label"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.companyLegalNameErrorMsg}}</div>
+            </div>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.country
+                            name="country"
+                            required="true"
+                            labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.countryErrorMsg}}</div>
+                </div>
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-last">
+                    {{> atoms/input/input
+                        labelText=i18nKeys.city
+                        required="true"
+                        name="city"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.cityErrorMsg}}</div>
+                </div>
+            </div>  
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        labelText=i18nKeys.phone
+                        name="ownPhoneNumber"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.phoneErrorMsg}}</div>
+                </div>
+            </div>     
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-lg-8">
+            <h3 class="tp-support-request__heading-space">{{i18n key=i18nKeys.otherInfoHeading}}</h3>
+            <p class="tp-support-request__details-subtitle">{{i18n key=i18nKeys.otherInfoText}}</p>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        labelText=i18nKeys.aribaNetworkId
+                        name="aribaNetworkId"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                </div>
+            </div>  
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        type="email"
+                        labelText=i18nKeys.aribaAccountAdminEmail
+                        name="aribaAccountAdminEmail"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.adminEmailErrorMsg}}</div>
+                </div>
+            </div> 
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        type="email"
+                        labelText=i18nKeys.tpContactEmail
+                        name="tpContactEmail"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.contactEmailErrorMsg}}</div>
+                </div>
+            </div>         
+        </div>
+    </div>
+    {{> atoms/buttons/button/button
+            buttonType="submit"
+            modifier="primary"
+            iconClass="icon-Chevron_Right"
+            text=i18nKeys.submitButtonLabel
+            className="tp-support-request__submit js-tp-support-request__submit"
+    }}
+    </div>
+</form>

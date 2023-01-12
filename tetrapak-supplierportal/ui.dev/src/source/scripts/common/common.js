@@ -7,11 +7,37 @@ export const getDocType = (url) => {
   const fileList = ['pdf', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pttx', 'jpeg', 'png', 'jpg', 'svg'];
   const endPart = url && url.split('/').pop();
   const docType = endPart.split('.').pop();
-
   if(fileList.includes(docType)){
     return docType;
   }
 };
+/**
+ * Parse JSON string if it is parsable. Otherwise returns the original string.
+ * @param {string} jsonData JSON string
+*/
+export const parseJson = (data) => {
+  let parsedData = data;
+  if (typeof data === 'string') {
+    try {
+      parsedData = JSON.parse(data);
+    } catch (e) {
+      parsedData = data;
+    }
+  }
+  return parsedData;
+};
+/**
+  * Returns true if current selector is valid
+  * @param {string|object|object[]} selector Selector string or object
+*/
+export const isValidSelector = (selector) => (
+  typeof selector === 'string'
+    || selector instanceof $
+    || selector instanceof Node
+    || selector instanceof NodeList
+    || selector instanceof HTMLCollection
+    || Array.isArray(selector)
+);
 
 export const getLinkClickAnalytics = (e, parentTitle, componentName, linkClass, redirect = true, dataObj = {}) => {
   const $target = $(e.target);
