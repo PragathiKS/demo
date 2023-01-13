@@ -180,6 +180,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&lt;", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains("&gt;")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&gt;", StringUtils.EMPTY);
+                } else if (fulltextSearchTerm.contains("&quot;")) {
+                    fulltextSearchTerm = fulltextSearchTerm.replace("&quot;", "\"");
                 }
             }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
