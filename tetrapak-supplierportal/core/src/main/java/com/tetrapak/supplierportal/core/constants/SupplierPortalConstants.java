@@ -104,7 +104,7 @@ public final class SupplierPortalConstants {
 
     public static final String COOKIE_NAME = "SP-AEMCustomerName";
 
-    public static final String DOMAIN_NAME = "supplier.tetrapak.com";
+    public static final String DOMAIN_NAME = "tetrapak.com";
 
     public static final String TOKEN_NAME = "acctoken";
 
