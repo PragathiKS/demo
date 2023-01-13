@@ -2,19 +2,19 @@
 ## Collect the dispatchers number
 PassEnv DISP_ID
 
-# Defining Virtual host for ${SUPPLIER_URL}
+# Defining Virtual host for mypages-qa.tetrapak.com
 <VirtualHost *:80>
-        ServerName      ${SUPPLIER_URL}
+        ServerName       ${SUPPLIER_URL}
         ## Put names of which domains are used for your published site/content here
-		ServerAlias      ${SUPPLIER_URL}
-		
+                ServerAlias     ${SUPPLIER_URL}
+
         ## Use a doc root that matches what's in the /etc/httpd/conf/publish-farm.any
         DocumentRoot    ${PUBLISH_DOCROOT}/supplierportal
         ## Add header breadcrumbs for help in troubleshooting
         <IfModule mod_headers.c>
                 Header add X-Dispatcher ${DISP_ID}
                 Header add X-Vhost "publish"
-		<FilesMatch "\.(html)$">
+                <FilesMatch "\.(html)$">
                         Header set Cache-Control no-cache,no-store
                         Header set Pragma no-cache
                 </FilesMatch>
@@ -26,7 +26,7 @@ PassEnv DISP_ID
                 </FilesMatch>
 		<FilesMatch "\.(jpg|JPG|jpeg|JPEG|png|PNG|avi|AVI|wmv|WMV|mp4|MP4|mov|MOV|pdf)$">
 		     Header set Content-Disposition "inline"
-	        </FilesMatch>
+	     </FilesMatch>
          </IfModule>
         <Directory />
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_WHITELIST_ENABLED from 0 or 1 to enable or disable ip restriction rules
@@ -63,10 +63,10 @@ PassEnv DISP_ID
                 Header append Vary User-Agent env=!dont-vary
                 #### Prevent clickjacking
                 Header always append X-Frame-Options SAMEORIGIN
-                #<If "%{HTTP_HOST} =~ /${PUBLISH_DEFAULT_HOSTNAME}/">
-               # RequestHeader append Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
+                <If "%{HTTP_HOST} =~ /tetrapak-dev64a.dev.adobecqms.net/">
+                RequestHeader append Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
                 #Header add Authorization "Basic c2FtcGxlLWdlbmVyYWwtY3VnOlNhbXBsZUAxMjM0NQ=="
-                #</If>
+                </If>
         </Directory>
         <Directory "${PUBLISH_DOCROOT}">
                 AllowOverride None
@@ -77,25 +77,25 @@ PassEnv DISP_ID
                 DispatcherUseProcessedURL       1
                 ## Default setting to allow all errors to come from the aem instance
                 DispatcherPassError             1
-		#DispatcherLogLevel 		3
         </IfModule>
         <IfModule mod_rewrite.c>
                 ReWriteEngine   on
                 LogLevel warn rewrite:info
                 ##Global rewrite include
                 Include /etc/httpd/conf.d/rewrites/base_rewrite.rules
-				##Publish  rewrite include
+                                ##Publish  rewrite include
                 Include /etc/httpd/conf.d/rewrites/publish_supplierportal_rewrite.rules
-				
+
                 ## Update /etc/sysconfig/httpd with setting the PUBLISH_FORCE_SSL from 0 or 1 to enable or disable enforcing SSL
                 <If "${PUBLISH_FORCE_SSL} == 1">
                         Include /etc/httpd/conf.d/rewrites/xforwarded_forcessl_rewrite.rules
                 </If>
         </IfModule>
-		<IfModule mod_expires.c>
-			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
-			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
-			SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.woff" long_expires=true
-			Header set Cache-Control max-age=2592000 env=long_expires
-		</IfModule>
+                <IfModule mod_expires.c>
+                        SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.js" long_expires=true
+                        SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.css" long_expires=true
+                        SetEnvIf Request_URI "(\.min)?\.[a-f0-9]+\.woff" long_expires=true
+                        Header set Cache-Control max-age=2592000 env=long_expires
+                </IfModule>
 </VirtualHost>
+

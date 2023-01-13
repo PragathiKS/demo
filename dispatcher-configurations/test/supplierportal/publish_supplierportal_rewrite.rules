@@ -18,12 +18,13 @@ RewriteCond   %{REQUEST_URI} !^/.*/jcr:content.*$
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|woff2|ttf|svg|tif|ppt|pptx|xml)$"
 RewriteCond   %{HTTP_HOST}  '${SUPPLIER_URL}'
 #RewriteCond   %{HTTP_COOKIE}##en ^.*lang-code=([^;]+)|##(en)
-#RewriteRule   "^/(.*).html$" "/content/tetrapak/supplierportal/global/en/$1.%1%2.html" [QSA,PT,L]     
+#RewriteRule   "^/(.*).html$" "/content/tetrapak/supplierportal/global/en/$1.%1%2.html" [QSA,PT,L] 
+
 RewriteRule   "^/(.*)$" "/content/tetrapak/supplierportal/global/en/$1.html" [PT,L]
 
 <LocationMatch "/content/tetrapak/supplierportal/global/en*">
 ErrorDocument 404 "/error-pages/404"
 ErrorDocument 500 "/error-pages/500"
 ErrorDocument 403 "/error-pages/403"
-ErrorDocument 400 "/error-pages/400"
 </LocationMatch>
+

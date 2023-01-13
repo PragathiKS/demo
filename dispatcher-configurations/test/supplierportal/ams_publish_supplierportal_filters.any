@@ -16,7 +16,7 @@
 /0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html|PNG|excel|mp4|wmv|xls|xlsx|doc|docx|icc|acb)' /path "/content/*" }  ## disable this rule to allow mapped content only
 
 ## Enable specific mime types in non-public content directories
-/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|video/mp4|xls|xlsx|doc|docx)' }
+/0011 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2|video/mp4)' }
 
 ## Enable clientlibs proxy servlet
 /0012 { /type "allow" /method "GET" /url "/etc.clientlibs/*" }
@@ -56,5 +56,7 @@
 #/0043 { /type "allow"  /url "/content/tetrapak/customerhubtools/*" }
 /0044 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/*plantmasterlicenses*" }
 /0045 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/*plantmastertrainings*" }
-#/0046 { /type "allow" /method "GET" /url "/content/tetrapak/customerhub/content-components/*/*.assets.json" }  ## allow GETS to get keylines json
+
+#/0046 { /type "allow" /method "GET" /url "/content/tetrapak/customerhub/content-components/*/*.assets.json" } ## allow GETS to get keylines json
+
 
