@@ -27,15 +27,15 @@ import java.util.Set;
     private static final long serialVersionUID = 5277815225105722120L;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LogoutServlet.class);
-    static final String LOGIN_TOKEN = "login-token";
-    static final String AUTH_TOKEN = "authToken";
-    static final String REDIRECT_URL = "redirectURL";
+    static final String LOGIN_TOKEN_KEY = "login-token";
+    static final String AUTH_TOKEN_KEY = "authToken";
+    static final String REDIRECT_URL_KEY = "redirectURL";
 
     @Reference private SlingSettingsService slingSettingsService;
 
     @Override protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
         LOGGER.debug("LogoutServlet was called");
-        Cookie loginTokenCookie = request.getCookie(LOGIN_TOKEN);
+        Cookie loginTokenCookie = request.getCookie(LOGIN_TOKEN_KEY);
         if (null != loginTokenCookie && !(isRunModeAvailable(Externalizer.AUTHOR))) {
             loginTokenCookie.setMaxAge(0);
             loginTokenCookie.setPath("/");
@@ -49,7 +49,7 @@ import java.util.Set;
             response.addCookie(accTokenCookie);
             LOGGER.debug("cookie acctoken was deleted");
         }
-        Cookie authTokenCookie = request.getCookie(AUTH_TOKEN);
+        Cookie authTokenCookie = request.getCookie(AUTH_TOKEN_KEY);
         if (null != authTokenCookie) {
             authTokenCookie.setValue(null);
             authTokenCookie.setMaxAge(0);
@@ -74,7 +74,7 @@ import java.util.Set;
             response.addCookie(aemCustomerNameCookie);
             LOGGER.debug("cookie " + SupplierPortalConstants.COOKIE_NAME + " was deleted");
         }
-        String redirectURL = request.getParameter(REDIRECT_URL);
+        String redirectURL = request.getParameter(REDIRECT_URL_KEY);
         try {
             if (StringUtils.isNotEmpty(redirectURL)) {
                 response.sendRedirect(redirectURL);

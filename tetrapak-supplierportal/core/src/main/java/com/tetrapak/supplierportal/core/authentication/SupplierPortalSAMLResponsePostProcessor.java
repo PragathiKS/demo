@@ -104,17 +104,13 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
 
     private static void setCustomerNameCookie(HttpServletResponse response, Map<String, String> attrMap)
             throws UnsupportedEncodingException {
-        String firstName;
+        String firstName = StringUtils.EMPTY;
         if (StringUtils.isNoneBlank(attrMap.get(FIRST_NAME))) {
             firstName = attrMap.get(FIRST_NAME);
-        } else {
-            firstName = StringUtils.EMPTY;
         }
-        String lastName;
+        String lastName = StringUtils.EMPTY;
         if (StringUtils.isNoneBlank(attrMap.get(LAST_NAME))) {
             lastName = attrMap.get(LAST_NAME);
-        } else {
-            lastName = StringUtils.EMPTY;
         }
 
         String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
