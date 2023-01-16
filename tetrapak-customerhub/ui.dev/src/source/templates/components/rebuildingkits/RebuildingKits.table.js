@@ -52,7 +52,10 @@ import {
   RK_I18N_IMPL_DEADLINE_TOOLTIP,
   RK_I18N_STATUS_TOOLTIP,
   RK_I18N_HANDLING_TOOLTIP,
-  RK_I18N_ORDER_TOOLTIP
+  RK_I18N_ORDER_TOOLTIP,
+  RK_PLANNED_DATE,
+  RK_I18N_PLANNED_DATE,
+  RK_I18N_PLANNED_DATE_TOOLTIP
 } from './constants';
 
 /**
@@ -168,6 +171,10 @@ export const _getKeyMap = (key, i18nKeys) => {
       mapKeysToHeaderObj(RK_I18N_IMPL_DEADLINE,RK_I18N_IMPL_DEADLINE_TOOLTIP);
       break;
     }
+    case RK_PLANNED_DATE: {
+      mapKeysToHeaderObj(RK_I18N_PLANNED_DATE,RK_I18N_PLANNED_DATE_TOOLTIP);
+      break;
+    }
     case RK_STATUS: {
       mapKeysToHeaderObj(RK_I18N_STATUS,RK_I18N_STATUS_TOOLTIP);
       break;
@@ -190,12 +197,16 @@ export const _getKeyMap = (key, i18nKeys) => {
 /**
  * Return obj. contaning table header data used in HBS rendering
  */
+
 export const _mapHeadings = (
   keys,
   i18nKeys
-) => keys.map((key) => ({
-  key,
-  i18nKey: _getKeyMap(key, i18nKeys).keyLabel,
-  showTooltip: _getKeyMap(key, i18nKeys).showTooltip,
-  tooltipText: _getKeyMap(key, i18nKeys).tooltipText
-}));
+) => keys.map((key) => {
+  const keyMap = _getKeyMap(key, i18nKeys);
+  return {
+    key,
+    i18nKey: keyMap.keyLabel,
+    showTooltip: keyMap.showTooltip,
+    tooltipText: keyMap.toolTipText
+  };
+});
