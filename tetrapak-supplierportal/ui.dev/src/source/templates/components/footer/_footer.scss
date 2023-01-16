@@ -4,7 +4,6 @@
     background-color: transparent;
     @media #{$desktop} {
         @include margin-top($margin-l);
-        @include margin-left(240px);
     }
 
     &__container {
