@@ -15,6 +15,13 @@
         }
     }
 
+    .tp-accordion__event{
+        &:not(.collapsed) {
+            background: $color-wild-sand;
+            border-bottom: 0;
+        }
+    }
+
     &__events {
         display: flex;
         flex-direction: column;
