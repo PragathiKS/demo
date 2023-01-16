@@ -7,6 +7,13 @@
         margin-left: 0;
         margin-right: 0;
     }
+    
+    .tp-accordion__event{
+        &:not(.collapsed) {
+            background: $color-wild-sand;
+            border-bottom: 0;
+        }
+    }
 
     &__events {
         display: flex;
