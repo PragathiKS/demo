@@ -20,12 +20,14 @@ public class FooterLinkModel {
     /**
      * The link label.
      */
-    @ValueMapValue private String linkLabel;
+    @ValueMapValue
+    private String linkLabel;
 
     /**
      * The link path.
      */
-    @ValueMapValue private String linkPath;
+    @ValueMapValue
+    private String linkPath;
 
     /**
      * Gets the link label.
