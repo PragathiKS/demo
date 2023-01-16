@@ -73,10 +73,10 @@ public final class LinkUtil {
         } else if (Boolean.TRUE.equals(isPreviewURL(request))) {
             return request.getResourceResolver().map(link);
         }
-        return sanitizeLink0(link, request);
+        return internalSanitizeLink(link, request);
     }
 
-    private static String sanitizeLink0(final String link, final SlingHttpServletRequest request) {
+    private static String internalSanitizeLink(final String link, final SlingHttpServletRequest request) {
         if (link.startsWith(SupplierPortalConstants.CONTENT_PATH) && !link.startsWith(
                 SupplierPortalConstants.CONTENT_DAM_PATH) && !link.endsWith(SupplierPortalConstants.HTML_EXTENSION)
                 && !link.endsWith(SupplierPortalConstants.HTM_EXTENSION)) {
