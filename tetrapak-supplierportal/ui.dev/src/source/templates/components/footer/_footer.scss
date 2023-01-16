@@ -41,8 +41,8 @@
             @include margin-bottom($margin-md);
             @media #{$desktop} {
                 @include margin-right($margin-xxl);
-                margin-bottom: 0;
                 display: block;
+                margin-bottom: 0;
             }
 
         }

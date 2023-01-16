@@ -7,20 +7,6 @@
         margin-left: 0;
         margin-right: 0;
     }
-    
-    .tp-accordion__event{
-        &:not(.collapsed) {
-            background: $color-wild-sand;
-            border-bottom: 0;
-        }
-    }
-
-    .tp-accordion__event{
-        &:not(.collapsed) {
-            background: $color-wild-sand;
-            border-bottom: 0;
-        }
-    }
 
     &__events {
         display: flex;
@@ -122,6 +108,8 @@
         }
 
         &:not(.collapsed) {
+            background: $color-wild-sand;
+            border-bottom: 0;
             @media #{$mobile} {
                 color: $color-tundora;
                 background: $color-wild-sand;
