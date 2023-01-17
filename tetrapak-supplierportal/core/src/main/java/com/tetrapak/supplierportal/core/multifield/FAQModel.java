@@ -39,13 +39,4 @@ public class FAQModel {
 		return quesDetail;
 	}
 
-	/**
-	 * Sets the question Detail.
-	 *
-	 * @param quesDetail the new question detail
-	 */
-	public void setLinkPath(String quesDetail) {
-		this.quesDetail = quesDetail;
-	}
-
 }

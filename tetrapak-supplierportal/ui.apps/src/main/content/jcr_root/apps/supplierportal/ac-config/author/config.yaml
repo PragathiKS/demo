@@ -11,11 +11,23 @@
 
     - sp_global_authors:
 
+        - path: /content
+          permission: deny
+          privileges: jcr:modifyAccessControl,crx:replicate,jcr:versionManagement,rep:write,jcr:lockManagement
+
         - path: /content/tetrapak
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+
+        - path: /content/dam/tetrapak
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+
+        - path: /content/tetrapak/supplierportal
           permission: allow
           privileges: jcr:modifyAccessControl,jcr:read,jcr:readAccessControl,crx:replicate,jcr:versionManagement,rep:write,jcr:lockManagement
 
-        - path: /content/dam/tetrapak
+        - path: /content/dam/tetrapak/supplierportal
           permission: allow
           privileges: jcr:modifyAccessControl,jcr:read,jcr:readAccessControl,crx:replicate,jcr:versionManagement,rep:write,jcr:lockManagement
 
