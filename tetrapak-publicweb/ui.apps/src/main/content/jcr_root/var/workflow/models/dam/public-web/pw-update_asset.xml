@@ -8,7 +8,7 @@
     title="TP DAM Update Asset">
     <metaData
         cq:generatingPage="/conf/global/settings/workflow/models/dam/public-web/pw-update_asset/jcr:content"
-        cq:lastModified="{Long}1673962200580"
+        cq:lastModified="{Long}1673970416699"
         cq:lastModifiedBy="admin"
         jcr:primaryType="nt:unstructured"
         tags="dam,wcm"
