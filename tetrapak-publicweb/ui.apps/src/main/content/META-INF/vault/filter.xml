@@ -12,4 +12,16 @@
     <filter root="/etc/acs-commons/lists/countries" mode="update"/>
     <filter root="/etc/notification/email/publicweb" mode="update"/>
 	<filter root="/apps/wcm/core/content/editor/jcr:content/content/items/content/header/items/headerbar/items/pageinfopopover/items/list/items/preview-page" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_create" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_create_(post-6.3)" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_mod" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_mod_(post-6.3)" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_mod_reupload" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/update_asset_create" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/update_asset_create_without_DM" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/update_asset_mod" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/update_asset_mod_without_DM" mode="update"/>
+	<filter root="/conf/global/settings/workflow/launcher/config/public-web" mode="update"/>
+	<filter root="/conf/global/settings/workflow/models/dam/public-web" mode="update"/>
+	<filter root="/var/workflow/models/dam/public-web" mode="update"/>
 </workspaceFilter>
