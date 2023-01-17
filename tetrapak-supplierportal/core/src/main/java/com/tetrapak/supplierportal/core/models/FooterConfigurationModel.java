@@ -19,11 +19,15 @@ import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterConfigurationModel {
 
-	/** The request. */
+	/**
+	 * The request.
+	 */
 	@Self
 	private Resource resource;
 
-	/** The footer links. */
+	/**
+	 * The footer links.
+	 */
 	@Inject
 	private List<FooterLinkModel> footerLinks;
 

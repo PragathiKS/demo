@@ -16,11 +16,15 @@ import com.tetrapak.supplierportal.core.multifield.FAQModel;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AccordionModel {
 
-	/** The request. */
+	/**
+	 * The request.
+	 */
 	@Self
 	private Resource resource;
 
-	/** Heading. */
+	/**
+	 * Heading.
+	 */
 	@Inject
 	private String heading;
 
@@ -35,7 +39,6 @@ public class AccordionModel {
 	public String getHeading() {
 		return heading;
 	}
-
 
 	/**
 	 * Gets the Question List.

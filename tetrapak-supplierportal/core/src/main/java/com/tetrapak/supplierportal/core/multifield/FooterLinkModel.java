@@ -12,15 +12,20 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterLinkModel {
 
-	/** The resource. */
-	@Self
-	private Resource request;
+	/**
+	 * The resource.
+	 */
+	@Self private Resource request;
 
-	/** The link label. */
+	/**
+	 * The link label.
+	 */
 	@ValueMapValue
 	private String linkLabel;
 
-	/** The link path. */
+	/**
+	 * The link path.
+	 */
 	@ValueMapValue
 	private String linkPath;
 

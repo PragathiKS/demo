@@ -8,16 +8,22 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FAQModel {
-	
-	/** The resource. */
+
+	/**
+	 * The resource.
+	 */
 	@Self
 	private Resource request;
-	
-	/** The questionNo. */
+
+	/**
+	 * The questionNo.
+	 */
 	@ValueMapValue
 	private String quesNo;
 
-	/** The questionDetail. */
+	/**
+	 * The questionDetail.
+	 */
 	@ValueMapValue
 	private String quesDetail;
 
@@ -38,5 +44,6 @@ public class FAQModel {
 	public String getQuestionDetail() {
 		return quesDetail;
 	}
+
 
 }
