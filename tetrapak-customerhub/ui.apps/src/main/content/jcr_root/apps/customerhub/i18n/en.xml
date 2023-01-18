@@ -1858,4 +1858,56 @@
             jcr:mixinTypes="[sling:Message]"
             sling:key="cuhu.myequipment.rkcti.requesttranslation"
             sling:message="Request translation"/>
+    <cuhu.myequipment.rkcti.noctiavailable
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.rkcti.noctiavailable"
+            sling:message="No CTI is available"/>
+    <cuhu.myequipment.rkcti.thankyoutext
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.rkcti.thankyoutext"
+            sling:message="Thank you!"/>
+    <cuhu.myequipment.rkcti.thankyoumessage
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.rkcti.thankyoumessage"
+            sling:message="We are now processing your request. When the document is available we will notify you, on average this takes 2 weeks."/>
+    <cuhu.rebuildingkits.ctiSubject
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiSubject"
+            sling:message="Request for CTI"/>
+    <cuhu.rebuildingkits.ctiSalutation
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiSalutation"
+            sling:message="Dear Support,"/>
+    <cuhu.rebuildingkits.ctiBody
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiBody"
+            sling:message=""/>
+    <cuhu.rebuildingkits.ctiEmailAddressText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiEmailAddressText"
+            sling:message="Email Id"/>
+    <cuhu.rebuildingkits.ctiUsernametext
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiUsernametext"
+            sling:message="Username"/>
+    <cuhu.rebuildingkits.ctiFunctionalLocationText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiFunctionalLocationText"
+            sling:message="Functional Location"/>
+    <cuhu.rebuildingkits.ctiMconText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiMconText"
+            sling:message="MCON"/>
+    <cuhu.rebuildingkits.ctiRequestedLanguageText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiRequestedLanguageText"
+            sling:message="Requested Language"/>
+    <cuhu.rebuildingkits.ctiRkTbNumberText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiRkTbNumberText"
+            sling:message="RK_TB_NUMBER"/>
+    <cuhu.rebuildingkits.ctiCommentText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiCommentText"
+            sling:message="User Comment"/>
 </jcr:root>
