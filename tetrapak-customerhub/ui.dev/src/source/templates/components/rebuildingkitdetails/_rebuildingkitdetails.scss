@@ -38,6 +38,10 @@
             @include padding($padding-sm $padding-zero);
             color: $color-alert;
         }
+        .js-langcode {
+            @include margin-top($margin-sm);
+            display: inline-block;
+        }
     }
     &__info-card-col {
         @include margin-bottom($margin-xxl);
@@ -314,22 +318,26 @@
         &-list {
             @include font-size($font-baseline);
             @include line-height($font-l, $font-baseline);
-            @include padding($padding-zero $padding-md);
+            @include padding($padding-zero);
             li {
-                @include padding-bottom($padding-md);
+                @include padding-top($padding-md);
                 display: flex;
-                align-items: flex-start;
+                align-items: center;
+                &:first-child {
+                    @include padding-top($padding-zero);
+                }
             }
             &.section {
                 @include padding($padding-zero);
             }
             &.bottom {
-                @include margin($margin-zero $margin-md);
-                @include padding($padding-zero);
+                @include margin($margin-l $margin-zero);
+                @include padding($padding-l $padding-zero);
                 border-top: solid 1px $color-mercury;
+                border-bottom: solid 1px $color-mercury;
                 li {
                     &:first-child {
-                        @include padding-top($padding-md);
+                        @include padding-top($padding-zero);
                     }
                 }
             }
@@ -345,6 +353,38 @@
             @include line-height($font-l, $font-baseline);
             display: inline-block;
             color: $color-tundora;
+        }
+    }
+    &__request-field {
+        .tpatom-dropdown {
+            @include padding-bottom($padding-md);
+        }
+        .error-msg {
+            @include padding-bottom($padding-md);
+            display: none;
+            &.error-msg--active {
+                display: block;
+                color: $color-alert;
+            }
+        }
+    }
+    &__success {
+        @include padding($padding-zero 10px);
+        p {
+            color: $color-text;
+        }
+        &-thankyou {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            @include padding-bottom(14px);
+            display: flex;
+            font-weight: 700;
+            align-items: center;
+        }
+        &-description {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            font-weight: 400;
         }
     }
 }
@@ -365,6 +405,12 @@
                     margin-top: $margin-zero;
                 }
             }
+        }
+    }
+
+    &-rk-cti-language {
+        &__modal-body {
+            @include padding($padding-zero $padding-l $padding-l $padding-l);
         }
     }
 }
