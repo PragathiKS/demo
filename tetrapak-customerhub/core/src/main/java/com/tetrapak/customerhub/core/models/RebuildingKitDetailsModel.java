@@ -8,7 +8,6 @@ import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 
-import com.tetrapak.customerhub.core.servlets.PlantMasterLicensesEmailServlet;
 import com.tetrapak.customerhub.core.servlets.RebuildingKitsEmailServlet;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -16,7 +15,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
@@ -37,7 +35,6 @@ import com.tetrapak.customerhub.core.utils.GlobalUtil;
 }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class RebuildingKitDetailsModel {
 
-    public static final String EMAIL_USERNAME = "username";
     public static final String EMAIL_ADDRESS = "emailaddress";
     public static final String EMAIL_SALUTATION = "salutation";
     public static final String EMAIL_SUBJECT = "subject";
@@ -223,9 +220,6 @@ public class RebuildingKitDetailsModel {
     private String rkctiUsernameText;
 
     @ValueMapValue
-    private String emailCommentText;
-
-    @ValueMapValue
     private String rktbnumbertext;
 
     @ValueMapValue
@@ -243,6 +237,20 @@ public class RebuildingKitDetailsModel {
     @ValueMapValue
     private String rkctiemailaddress;
 
+    @ValueMapValue
+    private String rkReqCtiNewTranslation;
+
+    @ValueMapValue
+    private String rkReqCtiATranslation;
+
+    @ValueMapValue
+    private String rkReqCtiThankyoutext;
+
+    @ValueMapValue
+    private String rkReqCtiThankyoumessage;
+
+    @ValueMapValue
+    private String rkReqCtiDropdownError;
 
 	/**
 	 * The rebuildingKitDetailsApi
@@ -307,6 +315,11 @@ public class RebuildingKitDetailsModel {
         i18KeyMap.put(CustomerHubConstants.SERVICE_ORDER, getServiceOrder());
         i18KeyMap.put(CustomerHubConstants.RK_NO_CTI_TEXT, getRkNoCtiText());
         i18KeyMap.put(CustomerHubConstants.RK_REQ_CTI_TEXT, getRkReqCtiText());
+        i18KeyMap.put(CustomerHubConstants.REQUEST_NEW_CTI_TRANSLATION, getRkReqCtiNewTranslation());
+        i18KeyMap.put(CustomerHubConstants.REQUEST_A_CTI_TRANSLATION, getRkReqCtiATranslation());
+        i18KeyMap.put(CustomerHubConstants.CTI_REQUEST_THANKYOU_TEXT, getRkReqCtiThankyoutext());
+        i18KeyMap.put(CustomerHubConstants.CTI_REQUEST_THANKYOU_MESSAGE, getRkReqCtiThankyoumessage());
+        i18KeyMap.put(CustomerHubConstants.CTI_TRANSLATION_DROPDOWN_ERROR, getRkReqCtiDropdownError());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
@@ -640,9 +653,6 @@ public class RebuildingKitDetailsModel {
         return rkctiemailaddress;
     }
 
-    public String getEmailCommentText() {
-        return emailCommentText;
-    }
     public String getEmailAddressValue() {
         return StringUtils.defaultIfEmpty(emailAddressValue, StringUtils.EMPTY);
     }
@@ -656,5 +666,29 @@ public class RebuildingKitDetailsModel {
 
     public String getEmailApiUrl() {
         return emailApiUrl;
+    }
+
+    public SlingHttpServletRequest getRequest() {
+        return request;
+    }
+
+    public String getRkReqCtiNewTranslation() {
+        return rkReqCtiNewTranslation;
+    }
+
+    public String getRkReqCtiATranslation() {
+        return rkReqCtiATranslation;
+    }
+
+    public String getRkReqCtiThankyoutext() {
+        return rkReqCtiThankyoutext;
+    }
+
+    public String getRkReqCtiThankyoumessage() {
+        return rkReqCtiThankyoumessage;
+    }
+
+    public String getRkReqCtiDropdownError() {
+        return rkReqCtiDropdownError;
     }
 }

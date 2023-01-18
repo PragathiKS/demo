@@ -6,6 +6,7 @@ import com.tetrapak.customerhub.core.models.*;
 import com.tetrapak.customerhub.core.services.RebuildingKitsEmailService;
 import com.tetrapak.customerhub.core.services.config.RebuildingKitsEmailConfiguration;
 import com.tetrapak.customerhub.core.utils.EmailUtil;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.component.annotations.Activate;
@@ -15,14 +16,15 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-import static com.tetrapak.customerhub.core.utils.GlobalUtil.getI18nValue;
 
 /**
- * The Class PlantMasterLicensesService Implementation.
+ * The Class RebuildingKitsEmailService Implementation.
  */
 @Component(service = RebuildingKitsEmailService.class, immediate = true,
         configurationPolicy = ConfigurationPolicy.OPTIONAL)
@@ -34,11 +36,6 @@ public class RebuildingKitsEmailServiceImpl implements RebuildingKitsEmailServic
     // However, this is still a provision to allow for prefixes, if authors don't specify keys with prefix
     private static final String I18N_PREFIX = StringUtils.EMPTY;
     private static final String VALUE = "Value";
-    private static final String HIDE_SUFFIX = "HideClass";
-    private static final String HIDE_CSS_CLASS = "hide";
-    private static final String USERS_HTML_NAME = "<tr><td class='license-list'> NAME </td>";
-    private static final String USERS_HTML_DATE = "<td class='license-list'> DATE </td> ";
-    private static final String USERS_HTML_LICENSES = "<td class='license-list'> \tLICENSES </td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
     private static final String RK_TRANSLATION_REQUEST_EMAIL_TEMPLATE = "/etc/notification/email/customerhub/rebuildingkits/rktranslationrequestemail.html";
 
     /** The job mgr. */
@@ -70,9 +67,11 @@ public class RebuildingKitsEmailServiceImpl implements RebuildingKitsEmailServic
     }
 
     /**
-     * Send email for active license withdrawal request
+     * Send email for cti creation request
      * @param bundle
      * @param recipients
+     * @param requestData
+     * @param rebuildingKitDetailsModel
      * @return operation result
      * @throws IOException
      */
@@ -81,29 +80,29 @@ public class RebuildingKitsEmailServiceImpl implements RebuildingKitsEmailServic
         boolean isSuccess = false;
         if (Objects.nonNull(recipients)) {
             RebuildingKitsEmailFormBean bean = createRebuildingKitsEmailFormBean(requestData);
-            LOGGER.debug("Data Ojbject for withdrawal license : {}", bean.toString());
             Map<String, String> emailParams = new HashMap<>();
             extractRebuildingKitDetailsModelProps(emailParams, bundle, I18N_PREFIX, rebuildingKitDetailsModel);
             extractRebuildingKitsEmailFormData(emailParams, bean);
             isSuccess = EmailUtil.addEmailJob(emailParams,recipients, RK_TRANSLATION_REQUEST_EMAIL_TEMPLATE, jobMgr);
         } else {
-            LOGGER.debug("Withdrawal email recipients list is missing");
+            LOGGER.debug("RebuildingKits cti creation recipients list is missing");
         }
         return isSuccess;
 
     }
 
     private RebuildingKitsEmailFormBean createRebuildingKitsEmailFormBean(String requestData) {
-        LOGGER.debug("Withdrawal License Request data json : {}", requestData);
+        LOGGER.debug("RebuildingKits CTI creation request data json : {}", requestData);
         Gson gson = new Gson();
         return gson.fromJson(requestData, RebuildingKitsEmailFormBean.class);
     }
 
     /**
-     * Extract labels to be used in email for withdrawal Request
+     * Extract labels to be used in email for cti creation request for rebuildingKits
      * @param emailParams
      * @param bundle
      * @param prefix
+     * @param rkDetailsModel
      */
     private void extractRebuildingKitDetailsModelProps(Map<String, String> emailParams, ResourceBundle bundle,
                                                     String prefix, RebuildingKitDetailsModel rkDetailsModel) {
@@ -119,6 +118,8 @@ public class RebuildingKitsEmailServiceImpl implements RebuildingKitsEmailServic
         emailParams.put(RebuildingKitDetailsModel.FUNCTIONAL_LOCATION,getI18nValue(bundle, prefix, rkDetailsModel.getRkctifunctionalLocationtext()));
         emailParams.put(RebuildingKitDetailsModel.REQUESTED_CTI_LANGUAGE,getI18nValue(bundle, prefix, rkDetailsModel.getRkctirequestedlanguage()));
         emailParams.put(RebuildingKitDetailsModel.COMMENTS_JSON_KEY,getI18nValue(bundle, prefix, rkDetailsModel.getRkcticommenttext()));
+        emailParams.putAll(EmailUtil.cssHideIfEmpty(RebuildingKitDetailsModel.COMMENTS_JSON_KEY,
+                getI18nValue(bundle, prefix, rkDetailsModel.getRkcticommenttext())));
         emailParams.put(RebuildingKitDetailsModel.USERNAME + VALUE, getI18nValue(bundle, prefix, rkDetailsModel.getUserNameValue()));
         emailParams.put(RebuildingKitDetailsModel.EMAIL_ADDRESS + VALUE,
                 getI18nValue(bundle, prefix, rkDetailsModel.getEmailAddressValue()));
@@ -127,7 +128,7 @@ public class RebuildingKitsEmailServiceImpl implements RebuildingKitsEmailServic
     }
 
     /**
-     * Extract values from submitted form for withdrawal License type
+     * Extract values from submitted form for cti creation for rebuildingkits
      * @param emailParams email Parameter
      * @param rebuildingKitsEmailFormBean withdrawal licence form bean
      */
@@ -137,6 +138,11 @@ public class RebuildingKitsEmailServiceImpl implements RebuildingKitsEmailServic
         emailParams.put(RebuildingKitDetailsModel.MCON + VALUE, rebuildingKitsEmailFormBean.getMcon());
         emailParams.put(RebuildingKitDetailsModel.FUNCTIONAL_LOCATION + VALUE, rebuildingKitsEmailFormBean.getFunctionalLocation());
         emailParams.put(RebuildingKitDetailsModel.REQUESTED_CTI_LANGUAGE + VALUE, rebuildingKitsEmailFormBean.getRequestedCTILanguage());
+        emailParams.putAll(EmailUtil.cssHideIfEmpty(RebuildingKitDetailsModel.COMMENTS_JSON_KEY + VALUE, rebuildingKitsEmailFormBean.getUserComment()));
+    }
+
+    public String getI18nValue(ResourceBundle bundle, String i18nKey, String prefix) {
+        return GlobalUtil.getI18nValue(bundle, prefix, i18nKey);
     }
 
 }

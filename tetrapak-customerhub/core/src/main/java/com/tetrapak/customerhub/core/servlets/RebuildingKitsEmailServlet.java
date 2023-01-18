@@ -5,7 +5,6 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.models.RebuildingKitDetailsModel;
 import com.tetrapak.customerhub.core.services.RebuildingKitsEmailService;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
-import org.apache.commons.httpclient.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
@@ -36,8 +35,6 @@ public class RebuildingKitsEmailServlet extends SlingAllMethodsServlet {
     public static final String SLING_SERVLET_SELECTOR = "email";
     public static final String INVALID_JSON_REQUEST_MESSAGE = "Invalid JSON request";
     public static final String SESSION_NULL_MESSAGE = "Session is null";
-    public static final String SUCCESS_MESSAGE = "Success";
-    public static final String BAD_REQUEST_MESSAGE = "Bad Request";
     private static final long serialVersionUID = -5172343245182589288L;
     private static final Logger LOGGER = LoggerFactory.getLogger(RebuildingKitsEmailServlet.class);
 
@@ -52,8 +49,9 @@ public class RebuildingKitsEmailServlet extends SlingAllMethodsServlet {
 
         try {
             if (null == session) {
-                LOGGER.error("PlantMasterLicensesEmailServlet exception: " + SESSION_NULL_MESSAGE);
+                LOGGER.error("RebuildingKitsEmailServlet exception: " + SESSION_NULL_MESSAGE);
                 jsonResponse = HttpUtil.setJsonResponse(jsonResponse, SESSION_NULL_MESSAGE, HttpURLConnection.HTTP_BAD_REQUEST);
+                response.setStatus(jsonResponse.get(CustomerHubConstants.STATUS).getAsInt());
                 HttpUtil.writeJsonResponse(response, jsonResponse);
                 return;
             }
