@@ -1852,7 +1852,7 @@
             sling:message="KPI Excl"/>
     <cuhu.myequipment.rkcti.requestanewtranslation
             jcr:mixinTypes="[sling:Message]"
-            sling:key="rkcti.requestanewtranslation"
+            sling:key="cuhu.myequipment.rkcti.requestanewtranslation"
             sling:message="Request a new translation"/>
     <cuhu.myequipment.rkcti.requesttranslation
             jcr:mixinTypes="[sling:Message]"
