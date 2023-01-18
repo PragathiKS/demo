@@ -859,6 +859,23 @@ public final class CustomerHubConstants {
     /** The constant DATA_ROOT_PATH. */
     public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
 
+    /** Anchor Link Target New Tab*/
+    public static final String REQUEST_NEW_CTI_TRANSLATION = "rkReqCtiNewTranslation";
+
+    /** Anchor Link Target New Tab*/
+    public static final String REQUEST_A_CTI_TRANSLATION = "rkReqCtiATranslation";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_REQUEST_THANKYOU_TEXT = "rkReqCtiThankyoutext";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_REQUEST_THANKYOU_MESSAGE = "rkReqCtiThankyoumessage";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_TRANSLATION_DROPDOWN_ERROR = "rkReqCtiDropdownError";
+
+
+
     /**
      * Instantiates a new customer hub constants.
      */

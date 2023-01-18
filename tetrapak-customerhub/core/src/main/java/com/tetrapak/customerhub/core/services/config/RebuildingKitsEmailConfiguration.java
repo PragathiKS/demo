@@ -22,17 +22,6 @@ public @interface RebuildingKitsEmailConfiguration {
     String[] rebuildingKitsRecipientAddresses();
 
     /**
-     * Plant master email template path.
-     *
-     * @return the string
-     */
-    @AttributeDefinition(
-            name = "RebuildingKits Email Template Path",
-            description = "RebuildingKits Email Template Path",
-            type = AttributeType.STRING)
-    String rebuildingKitsEmailTemplatePath();
-
-    /**
      * Checks if is rebuildingKits email service enabled.
      *
      * @return true, if is rebuildingKits email service enabled

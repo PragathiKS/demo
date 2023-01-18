@@ -1850,25 +1850,25 @@
             jcr:mixinTypes="[sling:Message]"
             sling:key="cuhu.myequipment.csvheader.kpiExcl"
             sling:message="KPI Excl"/>
-    <cuhu.myequipment.rkcti.requestanewtranslation
+    <cuhu.rebuildingkits.ctiRequestanewtranslation
             jcr:mixinTypes="[sling:Message]"
-            sling:key="cuhu.myequipment.rkcti.requestanewtranslation"
+            sling:key="cuhu.rebuildingkits.ctiRequestanewtranslation"
             sling:message="Request a new translation"/>
-    <cuhu.myequipment.rkcti.requesttranslation
+    <cuhu.rebuildingkits.ctiRequesttranslation
             jcr:mixinTypes="[sling:Message]"
-            sling:key="cuhu.myequipment.rkcti.requesttranslation"
+            sling:key="cuhu.rebuildingkits.ctiRequesttranslation"
             sling:message="Request translation"/>
-    <cuhu.myequipment.rkcti.noctiavailable
+    <cuhu.rebuildingkits.ctiNoctiavailable
             jcr:mixinTypes="[sling:Message]"
-            sling:key="cuhu.myequipment.rkcti.noctiavailable"
+            sling:key="cuhu.rebuildingkits.ctiNoctiavailable"
             sling:message="No CTI is available"/>
-    <cuhu.myequipment.rkcti.thankyoutext
+    <cuhu.rebuildingkits.ctiThankyoutext
             jcr:mixinTypes="[sling:Message]"
-            sling:key="cuhu.myequipment.rkcti.thankyoutext"
+            sling:key="cuhu.rebuildingkits.ctiThankyoutext"
             sling:message="Thank you!"/>
-    <cuhu.myequipment.rkcti.thankyoumessage
+    <cuhu.rebuildingkits.ctiThankyoumessage
             jcr:mixinTypes="[sling:Message]"
-            sling:key="cuhu.myequipment.rkcti.thankyoumessage"
+            sling:key="cuhu.rebuildingkits.ctiThankyoumessage"
             sling:message="We are now processing your request. When the document is available we will notify you, on average this takes 2 weeks."/>
     <cuhu.rebuildingkits.ctiSubject
             jcr:mixinTypes="[sling:Message]"
@@ -1910,4 +1910,8 @@
             jcr:mixinTypes="[sling:Message]"
             sling:key="cuhu.rebuildingkits.ctiCommentText"
             sling:message="User Comment"/>
+    <cuhu.rebuildingkits.ctiDropdownError
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiDropdownError"
+            sling:message="Please select one option"/>
 </jcr:root>
