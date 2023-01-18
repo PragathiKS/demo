@@ -1,3 +1,4 @@
+/* eslint-disable */
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
@@ -34,7 +35,7 @@ function _renderRebuildingKitDetails() {
   });
 }
 
-function _renderCtiDocuments(langAvailable, otherLang) {
+function _renderCtiDocuments(langAvailable, otherLang, reqOtherLang) {
   const $this = this;
   const { i18nKeys } = $this.cache;
  
@@ -52,17 +53,101 @@ function _renderCtiDocuments(langAvailable, otherLang) {
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
-      data : {i18nKeys: i18nKeys, ctiData: langAvailable, ctiOther:otherLang}
+      data : {
+        i18nKeys: i18nKeys,
+        ctiData: langAvailable,
+        ctiOther:otherLang,
+        reqLanguages: reqOtherLang
+      }
     });
+
+    const rkCTIModal = $('.js-rk-cti-modal');
+
     $('.js-langcode').on('click',function(e){
       e.preventDefault();
-      $('.js-rk-cti-modal').modal('show');
+      rkCTIModal.modal('show');
     });
     $('.js-close-btn').on('click',function(e){
       e.preventDefault();
-      $('.js-rk-cti-modal').modal('hide');
+      rkCTIModal.modal('hide');
+    });
+  
+    $this.cache.$requestTranlation = rkCTIModal.find('.js-request-translation');
+    $this.cache.$reqCtiDrpdwn = rkCTIModal.find('#requestCtiLanguage');
+    $this.cache.$errMsg = rkCTIModal.find('.error-msg');
+    $this.cache.$ctiDocContainer = rkCTIModal.find('.tp-rebuilding-details__content');
+    $this.cache.$reqCtiSuccess = rkCTIModal.find('.tp-rebuilding-details__success');
+
+    $this.cache.$reqCtiSuccess.hide();
+    $this.cache.$requestTranlation.on('click', function () {
+      const reqLang = $this.cache.$reqCtiDrpdwn.val();
+      console.log('Hiren Parmar | Request Translation', reqLang)
+      if (reqLang === "") {
+        $this.cache.$errMsg.addClass('error-msg--active');
+      } else {
+        if ($this.cache.$errMsg.hasClass('error-msg--active')) {
+          $this.cache.$errMsg.removeClass('error-msg--active');
+        }
+        $this.requestCtiLanguage(reqLang);
+      }
     });
   }
+}
+
+function _requestCtiLanguage(lang) {
+  const $this = this;
+  const { apiRequestCTI, $rebuildingData } = $this.cache;
+  const data = {
+    'apiURL': apiRequestCTI,
+    'rkCTIdetails': {
+      'rkTbNumber': $rebuildingData.technicalBulletin,
+      'mcon': $rebuildingData.rkGeneralNumber,
+      'functionalLocation': $rebuildingData.location,
+      'requestedCTILanguage': lang
+    }
+  }
+  $this.submitCTIemail(data);
+}
+
+function _submitCTIemail(dataObj) {
+  const $this = this;
+  const { $ctiDocContainer, $reqCtiSuccess, $requestTranlation, $reqCtiDrpdwn, $errMsg } = $this.cache;
+  $requestTranlation.prop('disabled', true);
+  auth.getToken(({ data: authData }) => {
+    ajaxWrapper.getXhrObj({
+      url: dataObj.apiURL,
+      method: ajaxMethods.POST,
+      cache: true,
+      contentType: 'application/json; charset=utf-8',
+      dataType:'json',
+      data: JSON.stringify(dataObj.rkCTIdetails),
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader(
+          'Authorization',
+          `Bearer ${authData.access_token}`
+        );
+        jqXHR.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded'
+        );
+      }
+    }).done((response) => {
+      console.log('Response', response);
+      $requestTranlation.prop('disabled', false);
+      $ctiDocContainer.hide();
+      $reqCtiSuccess.show();
+    }).fail((e) => {
+      logger.error(e);
+      $requestTranlation.prop('disabled', false);
+      $ctiDocContainer.show();
+      $reqCtiSuccess.hide();
+      $reqCtiDrpdwn.val("");
+      if ($errMsg.hasClass('error-msg--active')) {
+        $errMsg.removeClass('error-msg--active');
+      }
+      // this.showModalContent();
+    });
+  });
 }
 
 function _getCtiDocuments() {
@@ -109,7 +194,13 @@ function _getCtiDocuments() {
                 return item;
               }
             });
-            $this.renderCtiDocuments(langAvailable,otherLang);
+            const dataA = Object.keys($this.cache.langlist);
+            const reqOtherLang = $this.cache.$ctiData.ctiDocuments.filter((item) => {
+              return !dataA.some((item1) => { 
+                return item.langCode === item1;
+              });
+            });
+            $this.renderCtiDocuments(langAvailable, otherLang, reqOtherLang);
           }
         })
         .fail((e) => {
@@ -184,6 +275,7 @@ class Rebuildingkitdetails {
     this.cache.rebuildingdetailsApi = this.root.data('rebuilding-details-api');
     this.cache.apiURL = this.root.data('preferred-language-api');
     this.cache.apiCTI = this.root.data('cti-api');
+    this.cache.apiRequestCTI = this.root.data('request-cti-api');
     this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
       '.js-rebuilding-details__contentbottom'
@@ -197,7 +289,6 @@ class Rebuildingkitdetails {
     this.cache.$modal = this.root.parent().find('.js-language-modal');
     this.cache.$closeBtn = this.root.parent().find('.js-close-btn');
     this.cache.$applyLanguage = this.root.parent().find('.js-apply-language');
-    
     this.cache.$spinner = this.root.find('.tp-spinner');
     // Create Local Array Object for Language List
     const $this = this;
@@ -268,6 +359,12 @@ class Rebuildingkitdetails {
   }
   renderRebuildingKitDetailsBottom() {
     return _renderRebuildingKitDetailsBottom.apply(this, arguments);
+  }
+  requestCtiLanguage() {
+    return _requestCtiLanguage.apply(this,arguments);
+  }
+  submitCTIemail() {
+    return _submitCTIemail.apply(this,arguments);
   }
 
   bindEvents() {
