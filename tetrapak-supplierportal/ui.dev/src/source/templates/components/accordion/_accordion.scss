@@ -8,13 +8,6 @@
         margin-right: 0;
     }
 
-    .tp-accordion__event {
-        &:not(.collapsed) {
-            background: $color-wild-sand;
-            border-bottom: 0;
-        }
-    }
-
     &__events {
         display: flex;
         flex-direction: column;
@@ -115,10 +108,8 @@
         }
 
         &:not(.collapsed) {
-            @media #{$mobile} {
-                color: $color-tundora;
-                background: $color-wild-sand;
-            }
+            background: $color-wild-sand;
+            border-bottom: 0;
 
             .icon-Chevron_Down {
                 @media #{$mobile} {
