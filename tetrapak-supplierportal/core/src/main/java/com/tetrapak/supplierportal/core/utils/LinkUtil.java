@@ -64,7 +64,7 @@ public final class LinkUtil {
         }
         return (!link.startsWith(SupplierPortalConstants.CONTENT_PATH)
                 && (link.startsWith(SupplierPortalConstants.HTTP) || link.startsWith(SupplierPortalConstants.HTTPS)
-                || link.startsWith(SupplierPortalConstants.WWW)));
+                        || link.startsWith(SupplierPortalConstants.WWW)));
     }
 
     public static String sanitizeLink(final String link, final SlingHttpServletRequest request) {

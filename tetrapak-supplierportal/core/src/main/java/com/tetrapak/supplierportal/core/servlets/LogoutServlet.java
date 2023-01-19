@@ -69,8 +69,8 @@ import java.util.Set;
         Cookie aemCustomerNameCookie = request.getCookie(SupplierPortalConstants.COOKIE_NAME);
         if (null != aemCustomerNameCookie) {
             aemCustomerNameCookie.setMaxAge(0);
-            aemCustomerNameCookie.setDomain("." + SupplierPortalConstants.DOMAIN_NAME);
             aemCustomerNameCookie.setPath("/");
+            aemCustomerNameCookie.setDomain("." + SupplierPortalConstants.DOMAIN_NAME);
             response.addCookie(aemCustomerNameCookie);
             LOGGER.debug("cookie " + SupplierPortalConstants.COOKIE_NAME + " was deleted");
         }

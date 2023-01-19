@@ -10,25 +10,25 @@ import org.junit.Test;
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 public class AccordionModelTest {
-    @Rule
-    public AemContext context = new AemContext();
+	@Rule
+	public AemContext context = new AemContext();
 
-    /** The Constant RESOURCE_CONTENT. */
-    private static final String RESOURCE_CONTENT = "/accordianModel/test-content.json";
+	/** The Constant RESOURCE_CONTENT. */
+	private static final String RESOURCE_CONTENT = "/accordianModel/test-content.json";
 
-    /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en/dashboard";
+	/** The Constant TEST_CONTENT_ROOT. */
+	private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en/dashboard";
 
-    /** The Constant RESOURCE. */
-    private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/accordion";
+	/** The Constant RESOURCE. */
+	private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/accordion";
 
-    /** The model. */
-    private AccordionModel model;
+	/** The model. */
+	private AccordionModel model;
 
-    /** The resource. */
-    private Resource resource;
+	/** The resource. */
+	private Resource resource;
 
-    /**
+	 /**
      * Sets the up.
      *
      * @param context
@@ -42,11 +42,11 @@ public class AccordionModelTest {
         Class<AccordionModel> modelClass = AccordionModel.class;
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-        context.addModelsForClasses(modelClass);
+        context.addModelsForClasses(modelClass);        
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
     }
-
+    
     /**
      * Test model, resource and all getters of the Footer Config model.
      *
@@ -55,9 +55,9 @@ public class AccordionModelTest {
      */
     @Test
     public void testSimpleLoadAndGetters() throws Exception {
-        assertEquals("The heading should be 'FAQ Questions'","FAQ Questions", model.getHeading());
+    	assertEquals("The heading should be 'FAQ Questions'","FAQ Questions", model.getHeading());
         assertEquals("First question should be: Question 1", "Question 1", model.getQuestionList().get(0).getQuestionNo());
         assertEquals("The detail is : <p>ad</p>","<p>ad</p>", model.getQuestionList().get(0).getQuestionDetail());
-
+        
     }
 }

@@ -38,7 +38,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static final Logger LOGGER = LoggerFactory.getLogger(SupplierPortalSAMLResponsePostProcessor.class);
     private static final int MAX_FIRSTLEVEL_CHILD_COUNT = 10;
     private static final String LOCATION_HEADER = "Location";
-    private static final String SAML_LOGIN = "saml_login";
+    private static final String SAML_LOGIN = "supplierportal/saml_login";
     private static final String TOKEN_VALUE = "accesstoken";
     private static final String SAML_RESPONSE = "SAMLResponse";
     private static final String EMPTY = "empty";
@@ -118,8 +118,8 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
             Cookie samlCookie = new Cookie(SupplierPortalConstants.COOKIE_NAME, customerName);
             samlCookie.setHttpOnly(true);
-            samlCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
             samlCookie.setPath("/");
+            samlCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
             response.addCookie(samlCookie);
         }
     }
