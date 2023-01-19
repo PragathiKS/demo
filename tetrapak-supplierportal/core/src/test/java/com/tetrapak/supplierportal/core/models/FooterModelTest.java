@@ -20,7 +20,7 @@ public class FooterModelTest {
     private static final String RESOURCE_CONTENT = "/footer/test-content.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/global/en";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
@@ -62,9 +62,9 @@ public class FooterModelTest {
      *             the exception
      */
     @Test
-    public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
-        assertEquals("link", model.getFooterLinks().get(0).getLinkPath());
+    public void testSimpleLoadAndGetters() throws Exception {
+        assertEquals("Label should be: 'Link text 2'","Link text 2", model.getFooterLinks().get(0).getLinkLabel());
+        assertEquals("Label should be: 'link'","link", model.getFooterLinks().get(0).getLinkPath());
         
     }
 }

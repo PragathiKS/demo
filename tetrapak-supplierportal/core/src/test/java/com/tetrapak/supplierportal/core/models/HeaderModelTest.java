@@ -13,7 +13,7 @@ public class HeaderModelTest {
 
     private static final String RESOURCE_CONTENT = "/header/header.json";
 
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/global/en";
 
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
 
@@ -43,7 +43,7 @@ public class HeaderModelTest {
 
     }
 
-    @Test public void simpleLoadAndGettersTest() throws Exception {
+    @Test public void testSimpleLoadAndGetters() throws Exception {
         assertEquals("Header", "/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
         assertEquals("Header", "/content/tetrapak/supplierportal/ca/en.html", model.getLogoLink());
         assertEquals("Header", true, model.logoLinkInternal());

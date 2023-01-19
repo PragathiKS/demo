@@ -13,7 +13,7 @@ public class HeaderConfigurationModelTest {
 
     private static final String RESOURCE_CONTENT = "/header/header.json";
 
-    private static final String TEST_CONTENT_ROOT = "/content/supplierportal/en";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/global/en";
 
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/headerconfiguration";
 
@@ -32,8 +32,8 @@ public class HeaderConfigurationModelTest {
         model = resource.adaptTo(modelClass);
     }
 
-    @Test public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("/content/tetrapak/supplierportal/ca/en", model.getLogoLink());
-        assertEquals("/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
+    @Test public void testSimpleLoadAndGetters() throws Exception {
+        assertEquals("Link should be: '/content/tetrapak/supplierportal/ca/en'","/content/tetrapak/supplierportal/ca/en", model.getLogoLink());
+        assertEquals("Ulr is: '/content/dam/tetrapak/supplierportal/Logo.png'","/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
     }
 }

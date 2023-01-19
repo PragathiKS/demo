@@ -17,7 +17,7 @@ public class FooterConfigurationModelTest {
     private static final String RESOURCE_CONTENT = "/footerconfiguration/test-content.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/global";
 
     /** The Constant RESOURCE. */
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/footerconfiguration";
@@ -42,7 +42,7 @@ public class FooterConfigurationModelTest {
         Class<FooterConfigurationModel> modelClass = FooterConfigurationModel.class;
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-        context.addModelsForClasses(modelClass);        
+        context.addModelsForClasses(modelClass);
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
     }
@@ -53,10 +53,9 @@ public class FooterConfigurationModelTest {
      * @throws Exception
      *             the exception
      */
-    @Test
-    public void simpleLoadAndGettersTest() throws Exception {
-        assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
-        assertEquals("/content/tetrapak/publicweb", model.getFooterLinks().get(0).getLinkPath());
-        
+    @Test public void testSimpleLoadAndGetters() throws Exception {
+        assertEquals("Text should be: 'Link text 2'", "Link text 2", model.getFooterLinks().get(0).getLinkLabel());
+        assertEquals("Path should be: '/content/tetrapak/publicweb'","/content/tetrapak/publicweb", model.getFooterLinks().get(0).getLinkPath());
+
     }
 }

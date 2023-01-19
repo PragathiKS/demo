@@ -1,0 +1,42 @@
+{
+"heading":"Heading",
+"pwTheme": "grayscale-white",
+"columnOneTitle": "Title One",
+"columnTwoTitle":"Title Two",
+"columnOneList": [
+    {
+      "linkLabel": "Solutions",
+      "linkUrl": "/content/tetrapak/public-web/global/en/solutions.html",
+      "linkType": "internal"
+    },
+    {
+      "linkLabel": "Home",
+      "linkUrl": "/content/tetrapak/public-web/global/en/home.html",
+      "linkType": "internal"
+    }
+  ],
+  "columnTwoList": [
+    {
+      "linkLabel": "Solutions",
+      "linkUrl": "/content/tetrapak/public-web/global/en/solutions.html",
+      "linkType": "internal"
+    },
+    {
+      "linkLabel": "Home",
+      "linkUrl": "/content/tetrapak/public-web/global/en/home.html",
+      "linkType": "internal"
+    }
+  ],
+  "columnThreeList": [
+    {
+      "linkLabel": "Solutions",
+      "linkUrl": "/content/tetrapak/public-web/global/en/solutions.html",
+      "linkType": "internal"
+    },
+    {
+      "linkLabel": "Home",
+      "linkUrl": "/content/dam/tetrapak/publicweb/test.pdf",
+      "linkType": "download"
+    }
+  ]
+}
