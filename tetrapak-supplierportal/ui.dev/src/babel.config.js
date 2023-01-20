@@ -11,9 +11,7 @@ module.exports = function (api) {
       plugins: [
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-transform-runtime',
-        '@babel/plugin-syntax-dynamic-import',
-        "@babel/plugin-proposal-object-rest-spread",
-        "@babel/plugin-transform-modules-commonjs"
+        '@babel/plugin-syntax-dynamic-import'
       ],
       env: {
         test: {

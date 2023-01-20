@@ -108,8 +108,6 @@
         }
 
         &:not(.collapsed) {
-            background: $color-wild-sand;
-            border-bottom: 0;
             @media #{$mobile} {
                 color: $color-tundora;
                 background: $color-wild-sand;

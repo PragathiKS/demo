@@ -37,7 +37,7 @@ function _renderRebuildingKitDetails() {
 function _renderCtiDocuments(langAvailable, otherLang) {
   const $this = this;
   const { i18nKeys } = $this.cache;
-
+ 
   if (!langAvailable) {
     render.fn({
       template: 'rebuildingCtiDocuments',
@@ -135,7 +135,7 @@ function _getRebuildingKitDetails() {
       equipmentNumber = value;
     }
   }
-
+  
 
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
@@ -197,7 +197,7 @@ class Rebuildingkitdetails {
     this.cache.$modal = this.root.parent().find('.js-language-modal');
     this.cache.$closeBtn = this.root.parent().find('.js-close-btn');
     this.cache.$applyLanguage = this.root.parent().find('.js-apply-language');
-
+    
     this.cache.$spinner = this.root.find('.tp-spinner');
     // Create Local Array Object for Language List
     const $this = this;

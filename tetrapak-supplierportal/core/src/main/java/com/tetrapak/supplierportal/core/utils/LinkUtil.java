@@ -6,8 +6,6 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * This is a Link util class to access link utility methods
  *
@@ -47,9 +45,8 @@ public final class LinkUtil {
      */
 
     private static boolean isInternalLink(String path) {
-        return StringUtils.isNotBlank(path) && path.startsWith(SupplierPortalConstants.CONTENT_PATH)
-                && !path.startsWith(SupplierPortalConstants.CONTENT_DAM_PATH) && !path.endsWith(
-                SupplierPortalConstants.HTML_EXTENSION);
+        return StringUtils.isNotBlank(path) && path.startsWith(SupplierPortalConstants.CONTENT_PATH) && !path.startsWith(SupplierPortalConstants.CONTENT_DAM_PATH)
+                && !path.endsWith(SupplierPortalConstants.HTML_EXTENSION);
     }
 
     /**
@@ -59,10 +56,7 @@ public final class LinkUtil {
      * @return the boolean
      */
     public static Boolean isExternalLink(final String link) {
-        if (StringUtils.isEmpty(link)) {
-            return Boolean.FALSE;
-        }
-        return (!link.startsWith(SupplierPortalConstants.CONTENT_PATH)
+        return (!StringUtils.isEmpty(link) && !link.startsWith(SupplierPortalConstants.CONTENT_PATH)
                 && (link.startsWith(SupplierPortalConstants.HTTP) || link.startsWith(SupplierPortalConstants.HTTPS)
                         || link.startsWith(SupplierPortalConstants.WWW)));
     }
@@ -72,13 +66,7 @@ public final class LinkUtil {
             return SupplierPortalConstants.HASH;
         } else if (Boolean.TRUE.equals(isPreviewURL(request))) {
             return request.getResourceResolver().map(link);
-        }
-        return internalSanitizeLink(link, request);
-    }
-
-    private static String internalSanitizeLink(final String link, final SlingHttpServletRequest request) {
-        if (link.startsWith(SupplierPortalConstants.CONTENT_PATH) && !link.startsWith(
-                SupplierPortalConstants.CONTENT_DAM_PATH) && !link.endsWith(SupplierPortalConstants.HTML_EXTENSION)
+        } else if (link.startsWith(SupplierPortalConstants.CONTENT_PATH) && !link.startsWith(SupplierPortalConstants.CONTENT_DAM_PATH) && !link.endsWith(SupplierPortalConstants.HTML_EXTENSION)
                 && !link.endsWith(SupplierPortalConstants.HTM_EXTENSION)) {
             if (GlobalUtil.isPublish()) {
                 return request.getResourceResolver().map(link);
@@ -88,7 +76,7 @@ public final class LinkUtil {
         return link;
     }
 
-    public static Boolean isPreviewURL(HttpServletRequest request) {
+    public static Boolean isPreviewURL(SlingHttpServletRequest request) {
         String previewHeader = request.getHeader(SupplierPortalConstants.PREVIEW);
         Boolean isPreviewURL = false;
         if (SupplierPortalConstants.TRUE.equalsIgnoreCase(previewHeader)) {
