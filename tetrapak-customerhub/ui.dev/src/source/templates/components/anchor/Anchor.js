@@ -20,14 +20,14 @@ class Anchor {
     const $this = $(e.target);
     const anchorId = $this.data('link-section');
     const linkName = $this.data('link-name');
-    
+
     const trackingObj = {
       linkType: 'internal',
       linkSection: `Hyperlink click`,
       linkParentTitle: '',
       linkName
     };
-      
+
     const eventObj = {
       eventType: 'linkClick',
       event: 'Anchor Tag'

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 /**
  * Returns an obj containing pagination data, based on totalItems, currentPage, pageSize, maxPages
  */

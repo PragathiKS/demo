@@ -21,6 +21,10 @@ import java.util.List;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LeftNavigationModel {
 
+    private static final String NAV_HEADING_I18N_PROPERTY = "navHeadingI18n";
+
+    private static final String CLOSE_BTN_TEXT_PROPERTY = "closeBtnText";
+
     @SlingObject private SlingHttpServletRequest request;
 
     private String navHeading;
@@ -28,9 +32,6 @@ public class LeftNavigationModel {
     private String closeBtnText;
 
     private List<LeftNavigationBean> leftNavItems = new ArrayList<>();
-
-    private static final String NAV_HEADING_I18N_PROPERTY = "navHeadingI18n";
-    private static final String CLOSE_BTN_TEXT_PROPERTY = "closeBtnText";
 
     private String selectedLanguage;
 
@@ -67,6 +68,9 @@ public class LeftNavigationModel {
     }
 
     public String getLocale() {
-        return StringUtils.isEmpty(selectedLanguage) ? SupplierPortalConstants.DEFAULT_LOCALE : selectedLanguage;
+        if (StringUtils.isEmpty(selectedLanguage)) {
+            return SupplierPortalConstants.DEFAULT_LOCALE;
+        }
+        return selectedLanguage;
     }
 }
