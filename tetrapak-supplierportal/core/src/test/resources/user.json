@@ -1,0 +1,4403 @@
+{
+  "jcr:primaryType": "rep:AuthorizableFolder",
+  "jcr:mixinTypes": [
+    "rep:AccessControllable"
+  ],
+  "rep:policy": {
+    "jcr:primaryType": "rep:ACL",
+    "deny": {
+      "jcr:primaryType": "rep:DenyACE",
+      "rep:principalName": "everyone",
+      "rep:privileges": [
+        "jcr:read"
+      ]
+    },
+    "allow1": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "user-administrators",
+      "rep:privileges": [
+        "jcr:all"
+      ]
+    },
+    "allow2": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "activity-service",
+      "rep:privileges": [
+        "jcr:addChildNodes",
+        "rep:readNodes",
+        "jcr:nodeTypeManagement"
+      ]
+    },
+    "allow3": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "activity-service",
+      "rep:privileges": [
+        "rep:readProperties"
+      ],
+      "rep:restrictions": {
+        "jcr:primaryType": "rep:Restrictions",
+        "rep:itemNames": [
+          "jcr:primaryType",
+          "jcr:uuid"
+        ]
+      }
+    },
+    "allow4": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "activity-service",
+      "rep:privileges": [
+        "rep:addProperties"
+      ],
+      "rep:restrictions": {
+        "jcr:primaryType": "rep:Restrictions",
+        "rep:glob": "*/activities/sling:resourceType"
+      }
+    },
+    "allow5": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "activity-service",
+      "rep:privileges": [
+        "rep:addProperties"
+      ],
+      "rep:restrictions": {
+        "jcr:primaryType": "rep:Restrictions",
+        "rep:glob": "*/activities/*/sling:resourceType"
+      }
+    },
+    "allow6": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "security-userproperties-service",
+      "rep:privileges": [
+        "jcr:modifyAccessControl",
+        "jcr:read",
+        "jcr:readAccessControl"
+      ]
+    },
+    "allow7": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "everyone",
+      "rep:privileges": [
+        "jcr:read"
+      ],
+      "rep:restrictions": {
+        "jcr:primaryType": "rep:Restrictions",
+        "rep:glob": "*/profiles/public"
+      }
+    },
+    "allow8": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "everyone",
+      "rep:privileges": [
+        "jcr:read"
+      ],
+      "rep:restrictions": {
+        "jcr:primaryType": "rep:Restrictions",
+        "rep:glob": "*/profiles/public/*"
+      }
+    },
+    "allow9": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "communities-user-admin",
+      "rep:privileges": [
+        "jcr:all"
+      ],
+      "rep:restrictions": {
+        "jcr:primaryType": "rep:Restrictions",
+        "rep:glob": "*/activities/*"
+      }
+    },
+    "allow10": {
+      "jcr:primaryType": "rep:GrantACE",
+      "rep:principalName": "customer-hub-user-manager",
+      "rep:privileges": [
+        "jcr:versionManagement",
+        "jcr:modifyProperties",
+        "jcr:read",
+        "jcr:addChildNodes",
+        "jcr:lockManagement",
+        "jcr:nodeTypeManagement"
+      ]
+    }
+  },
+  "users": {
+    "1": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "1SkP_7cYPwGTFjqiiYv1": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "",
+        "jcr:created": "Tue Feb 05 2019 13:59:31 GMT+0530",
+        "rep:principalName": "anonymous",
+        "jcr:uuid": "294de355-7d9d-30b3-92d8-a1e6aab028cf",
+        "rep:authorizableId": "anonymous",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "everyone",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "jcr:primaryType": "rep:AuthorizableFolder",
+    "jcr:mixinTypes": [
+      "rep:AccessControllable"
+    ],
+    "screens": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "rep:AccessControllable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:58 GMT+0530",
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "allow": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "author-publish-screens-service",
+          "rep:privileges": [
+            "jcr:read"
+          ]
+        },
+        "allow1": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "author-publish-screens-service",
+          "rep:privileges": [
+            "jcr:modifyProperties",
+            "jcr:read"
+          ],
+          "rep:restrictions": {
+            "jcr:primaryType": "rep:Restrictions",
+            "rep:glob": "/*/devices/*/profile_screens"
+          }
+        },
+        "allow2": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "author-publish-screens-service",
+          "rep:privileges": [
+            "jcr:read",
+            "rep:write"
+          ],
+          "rep:restrictions": {
+            "jcr:primaryType": "rep:Restrictions",
+            "rep:glob": "/*/devices/*/profile_screens*"
+          }
+        },
+        "allow3": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "workflow-process-service",
+          "rep:privileges": [
+            "crx:replicate"
+          ],
+          "rep:restrictions": {
+            "jcr:primaryType": "rep:Restrictions",
+            "rep:glob": "/*/devices/*/profile_screens*"
+          }
+        }
+      }
+    },
+    "x": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "xX7ki4lCBoY-Wo-Qvssx": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "rep:password": "{SHA-256}bc412435ead3fe80-1000-1602f0a8fd1b9541e9124acf65e07327e8c9399a035b561571dcf4d55749f108",
+        "jcr:created": "Fri Feb 15 2019 20:55:35 GMT+0530",
+        "cq:lastModified": "Fri Feb 15 2019 20:55:35 GMT+0530",
+        "rep:principalName": "xxx",
+        "jcr:lastModified": "Fri Feb 15 2019 20:55:35 GMT+0530",
+        "jcr:uuid": "f561aaf6-ef0b-314d-8208-bb46a4ccb3ad",
+        "rep:authorizableId": "xxx",
+        "cq:lastModifiedBy": "admin",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "mix:title",
+            "granite:Ranking"
+          ],
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "profiles": {
+          "jcr:primaryType": "nt:unstructured",
+          "public": {
+            "jcr:primaryType": "nt:unstructured",
+            "jcr:mixinTypes": [
+              "mix:title",
+              "granite:Ranking"
+            ],
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "xxx",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      }
+    },
+    "a": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530"
+    },
+    "community": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "rep:AccessControllable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "allow": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "everyone",
+          "rep:privileges": [
+            "jcr:read"
+          ],
+          "rep:restrictions": {
+            "jcr:primaryType": "rep:Restrictions",
+            "rep:glob": "*/profile*"
+          }
+        }
+      }
+    },
+    "O": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "O55NcpUFJE9AaGYbJrYE": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "",
+        "rep:password": "{SHA-256}b28f40566da87879-1000-cf108cedfe1f5de1240765fb12796401824a5fde8d570339bf69530c59b25492",
+        "jcr:created": "Tue Feb 05 2019 13:59:31 GMT+0530",
+        "rep:principalName": "admin",
+        "jcr:uuid": "21232f29-7a57-35a7-8389-4a0e4a801fc3",
+        "rep:authorizableId": "admin",
+        "orderPreferences": [
+          "orderNumber",
+          "poNumber",
+          "orderDate",
+          "status",
+          "requestedDelivery",
+          "ETA"
+        ],
+        ".tokens": {
+          "jcr:primaryType": "rep:Unstructured",
+          "18ccb376-77ac-494d-b631-353cf177fc98": {
+            "jcr:primaryType": "rep:Token",
+            "rep:token.exp": "Wed Mar 20 2019 20:50:04 GMT+0530",
+            "rep:token.key": "{SHA-256}e7d26e747fa08c67-4e1c349e4df448fb1d28775f075afc195cf75234cefc662a999663b2391bca35",
+            "ip": "0:0:0:0:0:0:0:1",
+            "useragent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36",
+            "jcr:uuid": "18ccb376-77ac-494d-b631-353cf177fc98",
+            "referer": "http://localhost:4502/crx/de/index.jsp"
+          }
+        },
+        "preferences": {
+          "jcr:primaryType": "nt:unstructured",
+          "granite.shell.showonboarding620": "false",
+          "cq.authoring.editor.page.showOnboarding62": "false"
+        },
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "familyName": "Administrator",
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "deny": {
+            "jcr:primaryType": "rep:DenyACE",
+            "rep:principalName": "user-administrators",
+            "rep:privileges": [
+              "jcr:versionManagement",
+              "jcr:modifyAccessControl",
+              "rep:userManagement",
+              "jcr:readAccessControl",
+              "crx:replicate",
+              "rep:write",
+              "jcr:lifecycleManagement",
+              "jcr:retentionManagement",
+              "jcr:lockManagement"
+            ]
+          }
+        }
+      }
+    },
+    "we-retail": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "mix:lockable",
+        "rep:AccessControllable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+      "8JAGqC5EvPed3Thbazkj": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:password": "{SHA-256}19391177f61a2bda-1000-37a81f258014d6130408faf86c00b90bedfe44137552d9fcafc6ef92e04f58d5",
+        "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+        "rep:principalName": "varmstrong",
+        "jcr:uuid": "21c2b180-a554-35ae-a7d5-efd39bb7920f",
+        "rep:authorizableId": "varmstrong",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "granite:Ranking",
+            "mix:title"
+          ],
+          "jobTitle": "Merchandising Acquisition",
+          "gender": "female",
+          "aboutMe": "Virginia works in the Merchandising Acquisition team at We.Retail. She works with vendors to retrieve assets for the products.",
+          "email": "virginia.l.armstrong@we-retail.net",
+          "familyName": "Armstrong",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Virginia",
+          "photos": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "varmstrong",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "allow": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "everyone",
+          "rep:privileges": [
+            "jcr:read"
+          ],
+          "rep:restrictions": {
+            "jcr:primaryType": "rep:Restrictions",
+            "rep:glob": "*/profile*"
+          }
+        },
+        "allow1": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "context-simulation",
+          "rep:privileges": [
+            "jcr:read"
+          ]
+        }
+      },
+      "Aix-6nTt7XZlJM9OBgoj": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:password": "{SHA-256}ec3e275974960e1d-1000-50b1668e1ae1db46e2fec057525269ccc651fe13a8d577ecd4fa35f42de40d8e",
+        "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+        "rep:principalName": "imccoy",
+        "jcr:uuid": "0c44d27b-ea6d-397a-873b-8d297617ba6d",
+        "rep:authorizableId": "imccoy",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "granite:Ranking",
+            "mix:title"
+          ],
+          "jobTitle": "E-Commerce Director",
+          "gender": "female",
+          "aboutMe": "Iris is E-Commerce Director at We.Retail",
+          "email": "iris.r.mccoy@we-retail.net",
+          "familyName": "Mccoy",
+          "birthday": "Mon Mar 12 1979 00:00:00 GMT+0100",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Iris",
+          "photos": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "imccoy",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "GiD2HN-AG3sjkijGqU1g": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:password": "{SHA-256}84fdc35a569cf0dd-1000-b494619d2cf5a15ff5c406338a3b1407c80e47742bc6474aaef9fd7abba70e6a",
+        "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+        "rep:principalName": "ksaner",
+        "jcr:uuid": "94bf4658-721f-30ee-94b9-fd1931312de4",
+        "rep:authorizableId": "ksaner",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "granite:Ranking",
+            "mix:title"
+          ],
+          "jobTitle": "Marketing Manager",
+          "gender": "female",
+          "aboutMe": "Kerri is Marketing Manager at We.Retail",
+          "email": "kerri.saner@we-retail.net",
+          "familyName": "Saner",
+          "birthday": "Thu Feb 27 1992 00:00:00 GMT+0100",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Kerri",
+          "photos": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "ksaner",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "-ovva86cmKknBL-dJNLw": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:password": "{SHA-256}60efef6f01858ea8-1000-54caf332eee1b8672a811e1f6e138d13e2d6efac2effc85ba870e1448735317b",
+        "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+        "rep:principalName": "zachary.mitchell@spambob.com",
+        "jcr:uuid": "fa4797a6-c44c-3591-a1de-b331a4b041a3",
+        "rep:authorizableId": "zachary.mitchell@spambob.com",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "granite:Ranking",
+            "mix:title"
+          ],
+          "gender": "male",
+          "aboutMe": "Zachary is an avid rock climber that spends summer and winter climbing on week-ends. He is a regular customer at We.Retail.",
+          "email": "zachary.mitchell@spambob.com",
+          "familyName": "Mitchell",
+          "birthday": "Sun Sep 03 1995 00:00:00 GMT+0100",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Zachary",
+          "photos": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "zachary.mitchell@spambob.com",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "e4BozbZJR5ZClEhtA2QQ": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:password": "{SHA-256}18bda1aa64671ec4-1000-020b1654af033d572b6e26aebcfea5a6c532237c59144e27ab2008b41c9bc3c9",
+        "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+        "rep:principalName": "olive.pixley@spambob.com",
+        "jcr:uuid": "fee46314-cf48-3c13-92eb-b9ecd1279eb1",
+        "rep:authorizableId": "olive.pixley@spambob.com",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "granite:Ranking",
+            "mix:title"
+          ],
+          "gender": "female",
+          "aboutMe": "Olive enjoys long distance running. She is a regular customer at We.Retail.",
+          "email": "olive.pixley@spambob.com",
+          "familyName": "Pixley",
+          "birthday": "Mon Apr 29 1991 00:00:00 GMT+0100",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Olive",
+          "photos": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "olive.pixley@spambob.com",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "DSCP-athB1NYLBXvdTuN": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:password": "{SHA-256}f7cee9405296b12c-1000-9fc189a2a2b95ce9a67b4dc14e52518b5d5de1603abe1c19c4ab673c8fe1ab90",
+        "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+        "rep:principalName": "cavery",
+        "jcr:uuid": "6c618b3b-8147-3a1b-90c9-9f836678dfca",
+        "rep:authorizableId": "cavery",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "granite:Ranking",
+            "mix:title"
+          ],
+          "jobTitle": "Merchandising Manager",
+          "gender": "female",
+          "aboutMe": "Carlene is Merchandising Manager at We.Retail. She owns the women clothing products.",
+          "email": "cavery@we-retail.net",
+          "familyName": "Avery",
+          "birthday": "Thu Aug 15 1957 00:00:00 GMT+0100",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Carlene",
+          "photos": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "cavery",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "S5ScWXiJ-K-8dTDVPFUQ": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:password": "{SHA-256}165dd4b83880f685-1000-6c2fe52afa7b2123a54cd7faed366eaae965b9a291403f1c5683c7b9758e519a",
+        "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530",
+        "rep:principalName": "willie.melton@dodgit.com",
+        "jcr:uuid": "11e18cf3-b1f4-39de-9122-964b9dbdd00c",
+        "rep:authorizableId": "willie.melton@dodgit.com",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "granite:Ranking",
+            "mix:title"
+          ],
+          "gender": "male",
+          "aboutMe": "Willie is an avid bike courier. He has not shopped at We.Retail.",
+          "email": "willie.melton@dodgit.com",
+          "familyName": "Melton",
+          "birthday": "Thu Nov 03 1983 00:00:00 GMT+0100",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Willie",
+          "photos": {
+            "jcr:primaryType": "sling:Folder",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:03:55 GMT+0530"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "willie.melton@dodgit.com",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      }
+    },
+    "system": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "rep:AccessControllable"
+      ],
+      "fZTZTC4-maHgEXoou0vm": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "communities-utility-reader",
+        "jcr:uuid": "b3b09bc3-b16d-3a03-93eb-87efe771f8b9",
+        "rep:authorizableId": "communities-utility-reader"
+      },
+      "activity-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:22 GMT+0530",
+        "rep:principalName": "activity-service",
+        "jcr:uuid": "05345a6c-113b-33fc-a3c2-6cf65dc9ebc8",
+        "rep:authorizableId": "activity-service"
+      },
+      "pageexporterservice": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "pageexporterservice",
+        "jcr:uuid": "b5707ce1-4ef3-3a1e-a20c-1ff6f913c63f",
+        "rep:authorizableId": "pageexporterservice"
+      },
+      "LeLoQ2GM92VcDXPtR-2m": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "analyticsservice",
+        "jcr:uuid": "40f4ca50-b5d3-325c-b21b-39dd92d6ca1a",
+        "rep:authorizableId": "analyticsservice"
+      },
+      "BmFRnxoLanFsKItkL_zq": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "dam-metadata-export-service",
+        "jcr:uuid": "db509f54-aad7-3cbc-898c-592e0e6b7f7b",
+        "rep:authorizableId": "dam-metadata-export-service"
+      },
+      "screens": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:58 GMT+0530",
+        "author-publish-screens-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:00:58 GMT+0530",
+          "rep:principalName": "author-publish-screens-service",
+          "jcr:uuid": "97681627-a91c-3bd7-b8b7-605e93edcb27",
+          "rep:authorizableId": "author-publish-screens-service",
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        }
+      },
+      "0S8BNURJW2uFW794JBfn": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "user-administration-service",
+        "jcr:uuid": "f4808edd-8cb7-3052-8552-5958382a005c",
+        "rep:authorizableId": "user-administration-service"
+      },
+      "foundation": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:53 GMT+0530",
+        "foundation-forms-store-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:48 GMT+0530",
+          "rep:principalName": "foundation-forms-store-service",
+          "jcr:uuid": "f177ed86-9213-3bfb-970f-0d552e5810ed",
+          "rep:authorizableId": "foundation-forms-store-service"
+        },
+        "foundation-forms-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:48 GMT+0530",
+          "rep:principalName": "foundation-forms-service",
+          "jcr:uuid": "28814005-fcca-3284-a295-0a3431755677",
+          "rep:authorizableId": "foundation-forms-service"
+        }
+      },
+      "fr434tRGNVxWfcybRfXP": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "searchpromote-service",
+        "jcr:uuid": "b5af727a-9bcb-3b11-99cf-e2743b208ab4",
+        "rep:authorizableId": "searchpromote-service"
+      },
+      "rz7gCnf3NS_n3pfVFu4z": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "sling-tenant",
+        "jcr:uuid": "fe668333-7e85-36a9-83bf-c5140b7b47ff",
+        "rep:authorizableId": "sling-tenant"
+      },
+      "8bSqQNs3PEVZ_OuSf1X8": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "async-jobs-service",
+        "jcr:uuid": "f83d326f-9349-3e54-baac-6459f5156a46",
+        "rep:authorizableId": "async-jobs-service"
+      },
+      "cK5avjhZw_38dWB6zClq": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "version-manager-service",
+        "jcr:uuid": "95fbc1dd-01b4-3817-b6ba-0b8bc8af4869",
+        "rep:authorizableId": "version-manager-service"
+      },
+      "XnyMCpGwhZFYEiurv11_": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "fd-service",
+        "jcr:uuid": "bd2c399e-1a6a-3842-81be-06ac9db629b4",
+        "rep:authorizableId": "fd-service"
+      },
+      "authentication-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:13 GMT+0530",
+        "rep:principalName": "authentication-service",
+        "jcr:uuid": "4917dd68-a0c1-3021-b5b7-435d0044b0dd",
+        "rep:authorizableId": "authentication-service",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "authentication-service",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "m38XpGNvLhk9FPjArpiU": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "dam-writer-service",
+        "jcr:uuid": "2018c732-1e79-3c1e-88b3-de3ce2ceee41",
+        "rep:authorizableId": "dam-writer-service"
+      },
+      "gVm4KnNAJ7d8b_CfG1_J": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "projects-service",
+        "jcr:uuid": "e2484592-c2a2-3917-9040-a5432d4c9d2c",
+        "rep:authorizableId": "projects-service"
+      },
+      "wGBfDAqys2FJShcdNCIf": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "dtm-reactor-service",
+        "jcr:uuid": "32fdd04c-597d-303a-bcf9-d4bde244fa79",
+        "rep:authorizableId": "dtm-reactor-service"
+      },
+      "0-MwJurIZrcSgk_nUxZj": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "repository-change-listener-service",
+        "jcr:uuid": "93e77162-acbf-3fa6-ad14-2cc57f8966dc",
+        "rep:authorizableId": "repository-change-listener-service"
+      },
+      "monitoringScripts": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:13 GMT+0530",
+        "rep:principalName": "monitoringScripts",
+        "jcr:uuid": "4e74a7ac-f587-3084-a706-dc96f9219b75",
+        "rep:authorizableId": "monitoringScripts"
+      },
+      "cryptoservice": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:32 GMT+0530",
+        "rep:principalName": "cryptoservice",
+        "jcr:uuid": "7323c399-9f44-3585-8424-1c397b190a14",
+        "rep:authorizableId": "cryptoservice"
+      },
+      "ti6H-uko-CGtr-WaDByd": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "cloudconfig-scripttags",
+        "jcr:uuid": "0b8716eb-63b6-3105-84af-3fa75c1c3f69",
+        "rep:authorizableId": "cloudconfig-scripttags"
+      },
+      "zFq4lbKe3Bm_P8IVAFuM": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "configuration-reader-service",
+        "jcr:uuid": "d9474ed1-edbc-3646-af6e-54c03fbe3968",
+        "rep:authorizableId": "configuration-reader-service"
+      },
+      "Kt8GZrCFjK1w_iEm3WAe": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "sling-scripting",
+        "jcr:uuid": "adfb653f-c41a-3003-8bf5-637cefe0df97",
+        "rep:authorizableId": "sling-scripting"
+      },
+      "snapshotservice": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "snapshotservice",
+        "jcr:uuid": "6d25f089-a181-3dd7-bdf1-6149eb600c55",
+        "rep:authorizableId": "snapshotservice"
+      },
+      "tag-garbage-collection-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "tag-garbage-collection-service",
+        "jcr:uuid": "810248ab-e327-3e38-a0c5-b0df8ca28a68",
+        "rep:authorizableId": "tag-garbage-collection-service"
+      },
+      "contentsync-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "contentsync-service",
+        "jcr:uuid": "f428b031-e89c-3dc8-9064-4f9527650c3f",
+        "rep:authorizableId": "contentsync-service"
+      },
+      "DASrJAnUzNN_dSclYZ5d": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "analytics-content-updater-service",
+        "jcr:uuid": "1ae9e401-5001-38f0-b84f-a0f73bcdf86b",
+        "rep:authorizableId": "analytics-content-updater-service"
+      },
+      "account": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:41 GMT+0530",
+        "account-manager": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+          "rep:principalName": "account-manager",
+          "jcr:uuid": "7638b96a-8b32-3204-b24d-650d1bfd3588",
+          "rep:authorizableId": "account-manager"
+        }
+      },
+      "index-admin": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "index-admin",
+        "jcr:uuid": "44a72a4d-b799-3e44-853e-2e556457c28d",
+        "rep:authorizableId": "index-admin",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "familyName": "Index Admin",
+          "sling:resourceType": "cq/security/components/profile"
+        }
+      },
+      "stock-imsconfig-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:46 GMT+0530",
+        "rep:principalName": "stock-imsconfig-service",
+        "jcr:uuid": "6457b78a-4d75-31be-bd3b-28a45c14957a",
+        "rep:authorizableId": "stock-imsconfig-service",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "stock-imsconfig-service",
+            "rep:privileges": [
+              "jcr:read",
+              "rep:write"
+            ]
+          }
+        }
+      },
+      "offloading-jobcloner": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:46 GMT+0530",
+        "rep:principalName": "offloading-jobcloner",
+        "jcr:uuid": "23f30ebb-b479-337d-bf0d-a438fb8b46dc",
+        "rep:authorizableId": "offloading-jobcloner"
+      },
+      "MIs-DdAY-pJb7ppEX9wK": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "wcm-workflow-service",
+        "jcr:uuid": "cacb1630-4bae-30ab-a518-d92e399296af",
+        "rep:authorizableId": "wcm-workflow-service"
+      },
+      "hl9w85OUq46nDH3aG_eS": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "sling-discovery",
+        "jcr:uuid": "dc902648-84ed-306a-9233-5066baab5cfd",
+        "rep:authorizableId": "sling-discovery"
+      },
+      "scheduled-exporter-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "scheduled-exporter-service",
+        "jcr:uuid": "cf1fa340-2b92-37f1-85e5-ae6b89062cc9",
+        "rep:authorizableId": "scheduled-exporter-service"
+      },
+      "replication-receiver": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "rep:disabled": "Please enable this user before using it as replication transport agent.",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "replication-receiver",
+        "jcr:uuid": "345bef9b-ffa1-3e09-85df-1e03cfa0fb37",
+        "rep:authorizableId": "replication-receiver",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "replication-receiver",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "commerce": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:08 GMT+0530",
+        "commerce-orders-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:31 GMT+0530",
+          "rep:principalName": "commerce-orders-service",
+          "jcr:uuid": "605c8b35-7f12-3dab-bc8f-91b73d2a76c8",
+          "rep:authorizableId": "commerce-orders-service"
+        },
+        "commerce-backend-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:31 GMT+0530",
+          "rep:principalName": "commerce-backend-service",
+          "jcr:uuid": "342d5a5a-09d7-306a-853c-cab9bd495322",
+          "rep:authorizableId": "commerce-backend-service"
+        }
+      },
+      "dtm-reactor-imsconfig-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:25 GMT+0530",
+        "rep:principalName": "dtm-reactor-imsconfig-service",
+        "jcr:uuid": "f9e44111-5909-3886-a4de-01ec8d0b7bbc",
+        "rep:authorizableId": "dtm-reactor-imsconfig-service",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "dtm-reactor-imsconfig-service",
+            "rep:privileges": [
+              "jcr:read",
+              "rep:write"
+            ]
+          }
+        }
+      },
+      "34BcSTXcNiSN9kmV8Mi5": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "content-writer-service",
+        "jcr:uuid": "ca97a5e5-8ccb-366e-80ce-e111677ca18b",
+        "rep:authorizableId": "content-writer-service"
+      },
+      "yyF-zfYMqkI5u6uT28KF": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "sling-xss",
+        "jcr:uuid": "f5194cb5-0b95-3b26-b216-cfe6814056c3",
+        "rep:authorizableId": "sling-xss"
+      },
+      "LHo-Q5tKXhyg8XNxALmQ": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Wed Mar 13 2019 15:05:54 GMT+0530",
+        "rep:principalName": "customer-hub-user-manager",
+        "jcr:uuid": "24d0e37b-5351-34d2-a020-02922ce9ade5",
+        "rep:authorizableId": "customer-hub-user-manager"
+      },
+      "w13HBhmo0NaGKOD21nhS": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "targetservice",
+        "jcr:uuid": "a274a842-5e27-3834-a639-6d7c7f79acdb",
+        "rep:authorizableId": "targetservice"
+      },
+      "namespace-mgmt-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "namespace-mgmt-service",
+        "jcr:uuid": "1c7780d4-e968-3ce0-95ba-d7c84dd10f49",
+        "rep:authorizableId": "namespace-mgmt-service"
+      },
+      "9cE8tIBw8SvHG7vB2fvf": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "repository-reader-service",
+        "jcr:uuid": "5418c619-9a98-3fba-944c-262eb1ea4b7c",
+        "rep:authorizableId": "repository-reader-service"
+      },
+      "X0axHMEmANAk9yZFdHYX": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "sling-jcr-install",
+        "jcr:uuid": "eded6a6d-4926-3a18-9005-f3012deb11c7",
+        "rep:authorizableId": "sling-jcr-install"
+      },
+      "eMtk33z2fdhjGXhbWDZt": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "assetdownloadservice",
+        "jcr:uuid": "f2e23fe2-6c3b-31b5-a506-a12e03d13ec6",
+        "rep:authorizableId": "assetdownloadservice"
+      },
+      "9Gj_eyar0HOXwyN0spnH": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "recs-deleted-products-listener-service",
+        "jcr:uuid": "d7b5614a-b4aa-34b0-97b2-72b2711fc898",
+        "rep:authorizableId": "recs-deleted-products-listener-service"
+      },
+      "imc55M3AopM04JwphxCS": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "fd-cloudservice",
+        "jcr:uuid": "e08eeb7f-6f92-3b95-9e98-f1eac2777e48",
+        "rep:authorizableId": "fd-cloudservice"
+      },
+      "linkstorage-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "linkstorage-service",
+        "jcr:uuid": "ee581545-b5e5-3c68-8f57-55dd428c2c9e",
+        "rep:authorizableId": "linkstorage-service"
+      },
+      "campaign-reader": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:11 GMT+0530",
+        "rep:principalName": "campaign-reader",
+        "jcr:uuid": "e8fdf685-212a-329b-8955-031cdbc724c1",
+        "rep:authorizableId": "campaign-reader"
+      },
+      "dam-replication-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:41 GMT+0530",
+        "rep:principalName": "dam-replication-service",
+        "jcr:uuid": "9ad4f1b8-b7e2-32e8-8703-97ca8777ca3f",
+        "rep:authorizableId": "dam-replication-service"
+      },
+      "ZuxaYaZ6pDLvCfUI8f53": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "workflow-process-service",
+        "jcr:uuid": "ae8ec16a-d6ae-3d63-828b-a10bd0b02b2f",
+        "rep:authorizableId": "workflow-process-service"
+      },
+      "packagelist-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "packagelist-service",
+        "jcr:uuid": "4e002242-c4c4-39e6-8060-f80611cbcfcb",
+        "rep:authorizableId": "packagelist-service"
+      },
+      "webservice-support": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:57 GMT+0530",
+        "webservice-support-servicelibfinder": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:14 GMT+0530",
+          "rep:principalName": "webservice-support-servicelibfinder",
+          "jcr:uuid": "3755c07c-dd3f-3e03-afc5-29c5fb04ad5c",
+          "rep:authorizableId": "webservice-support-servicelibfinder"
+        },
+        "webservice-support-replication": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:14 GMT+0530",
+          "rep:principalName": "webservice-support-replication",
+          "jcr:uuid": "6f85fc2a-48d8-3442-b3a4-8c7d848a442a",
+          "rep:authorizableId": "webservice-support-replication"
+        }
+      },
+      "Ra02c7fqKEFF6Eaoou-8": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "scene7-config-writer-service",
+        "jcr:uuid": "2deecec3-c18d-3ee5-8d6a-c04393953af3",
+        "rep:authorizableId": "scene7-config-writer-service"
+      },
+      "oauthservice": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:33 GMT+0530",
+        "rep:principalName": "oauthservice",
+        "jcr:uuid": "9e0b7cf5-54bc-37c1-ae9d-dec9343780a7",
+        "rep:authorizableId": "oauthservice"
+      },
+      "taskmanagement-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:34 GMT+0530",
+        "rep:principalName": "taskmanagement-service",
+        "jcr:uuid": "755a5f70-ea11-3d1e-a963-ec0fa3d041c2",
+        "rep:authorizableId": "taskmanagement-service"
+      },
+      "spellchecker-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "spellchecker-service",
+        "jcr:uuid": "a71c38ed-4253-33b7-9d7f-5fe47459df43",
+        "rep:authorizableId": "spellchecker-service"
+      },
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "deny": {
+          "jcr:primaryType": "rep:DenyACE",
+          "rep:principalName": "everyone",
+          "rep:privileges": [
+            "jcr:all"
+          ]
+        }
+      },
+      "dam": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:49 GMT+0530",
+        "teammgr-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "dam-teammgr-service",
+          "jcr:uuid": "5e098491-a790-3215-9b7f-7eaac31c4083",
+          "rep:authorizableId": "dam-teammgr-service"
+        },
+        "activitypurgesrv": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "activitypurgesrv",
+          "jcr:uuid": "d57434ad-1cca-34d1-b6f7-cb2929fae617",
+          "rep:authorizableId": "activitypurgesrv",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "idsprocessor": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "idsjobprocessor",
+          "jcr:uuid": "b69e7207-05a6-3896-b3f2-1f299f14647c",
+          "rep:authorizableId": "idsjobprocessor"
+        },
+        "formitemseditor-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "dam-formitemseditor-service",
+          "jcr:uuid": "ba18ae78-648f-3f95-b599-4f33ce15bfc4",
+          "rep:authorizableId": "dam-formitemseditor-service"
+        },
+        "dynamic-media-s7sync": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:41 GMT+0530",
+          "rep:principalName": "dynamic-media-s7sync",
+          "jcr:uuid": "b1e25366-5bf3-335a-aa75-6f074095bed9",
+          "rep:authorizableId": "dynamic-media-s7sync",
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "dam-update-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:49 GMT+0530",
+          "rep:principalName": "dam-update-service",
+          "jcr:uuid": "391d2edd-105e-385d-9a9b-9317acb7a405",
+          "rep:authorizableId": "dam-update-service",
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "assetusagetrackeruser": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "assetusagetrackeruser",
+          "jcr:uuid": "1518b4ba-6dba-3a0c-b238-b0fdc39f4758",
+          "rep:authorizableId": "assetusagetrackeruser"
+        },
+        "youtube-authenticator-user": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "youtube-authenticator-user",
+          "jcr:uuid": "5d7f0134-32bb-378b-91cd-75da2e8ba5f3",
+          "rep:authorizableId": "youtube-authenticator-user"
+        },
+        "webdavbkpservice": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "webdavbkpservice",
+          "jcr:uuid": "e0927162-53fb-3414-97ae-6c35a389e8d0",
+          "rep:authorizableId": "webdavbkpservice"
+        },
+        "dynamicmedia-config-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "dynamicmedia-config-service",
+          "jcr:uuid": "5e57ed4d-fbd3-3832-90ec-d3e7a255ec98",
+          "rep:authorizableId": "dynamicmedia-config-service"
+        },
+        "activitywriter-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "dam-activitywriter-service",
+          "jcr:uuid": "c6d2d286-0304-3007-8ce6-cf3578e17755",
+          "rep:authorizableId": "dam-activitywriter-service"
+        },
+        "scene7-config-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "scene7-config-service",
+          "jcr:uuid": "8a601df7-d2b8-32d5-b0a4-acb9d4400dd9",
+          "rep:authorizableId": "scene7-config-service"
+        },
+        "dynamic-media-replication-filter": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:41 GMT+0530",
+          "rep:principalName": "dynamic-media-replication-filter",
+          "jcr:uuid": "e5362790-2087-393a-b8b8-956a37c9644d",
+          "rep:authorizableId": "dynamic-media-replication-filter"
+        },
+        "dynamic-media-replication": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:50 GMT+0530",
+          "rep:principalName": "dynamic-media-replication",
+          "jcr:uuid": "ef6929d8-f30d-37f4-8d5b-41131c241404",
+          "rep:authorizableId": "dynamic-media-replication",
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "s7dam-config-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "s7dam-config-service",
+          "jcr:uuid": "ab424ba2-c513-3338-abfd-74ce48879f73",
+          "rep:authorizableId": "s7dam-config-service"
+        },
+        "assetlinkshareservice": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "assetlinkshareservice",
+          "jcr:uuid": "15a700a3-9feb-323b-9870-c82112c9ce26",
+          "rep:authorizableId": "assetlinkshareservice",
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "resourcecollectionservice": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:40 GMT+0530",
+          "rep:principalName": "resourcecollectionservice",
+          "jcr:uuid": "83f45522-817c-3623-9111-518e4b2b338c",
+          "rep:authorizableId": "resourcecollectionservice"
+        }
+      },
+      "offloading-agentmanager": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:46 GMT+0530",
+        "rep:principalName": "offloading-agentmanager",
+        "jcr:uuid": "cc88f88c-563e-38df-9a66-fec4e1c9d124",
+        "rep:authorizableId": "offloading-agentmanager"
+      },
+      "acs-commons": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+        "workflow-remover": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-workflow-remover-service",
+          "jcr:uuid": "cf6360a5-f76b-364e-8257-0fc54accfc1f",
+          "rep:authorizableId": "acs-commons-workflow-remover-service"
+        },
+        "ensure-oak-index-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-ensure-oak-index-service",
+          "jcr:uuid": "006878ae-9772-3f3f-89b3-3a9cbf701988",
+          "rep:authorizableId": "acs-commons-ensure-oak-index-service"
+        },
+        "system-notifications": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-system-notifications-service",
+          "jcr:uuid": "8c1283dc-f7f0-3084-909b-5bc052b01cd0",
+          "rep:authorizableId": "acs-commons-system-notifications-service"
+        },
+        "form-helper-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-form-helper-service",
+          "jcr:uuid": "78dade7c-4e5d-3b4a-8e9a-e33dbd10d6ab",
+          "rep:authorizableId": "acs-commons-form-helper-service"
+        },
+        "bulk-workflow": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-bulk-workflow-service",
+          "jcr:uuid": "b03204a7-0df9-30eb-85d9-513054ee5443",
+          "rep:authorizableId": "acs-commons-bulk-workflow-service"
+        },
+        "error-page-handler": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-error-page-handler-service",
+          "jcr:uuid": "80101d3e-6fb1-378e-a4f5-c13a94f795a6",
+          "rep:authorizableId": "acs-commons-error-page-handler-service"
+        },
+        "wcm-inbox-cleanup": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-wcm-inbox-cleanup-service",
+          "jcr:uuid": "b807037b-10f3-340c-bd11-8a0409975e09",
+          "rep:authorizableId": "acs-commons-wcm-inbox-cleanup-service"
+        },
+        "email-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-email-service",
+          "jcr:uuid": "42e38ac7-6920-3f53-beaf-53ebc4842d24",
+          "rep:authorizableId": "acs-commons-email-service"
+        },
+        "package-replication-event-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-package-replication-status-event-service",
+          "jcr:uuid": "6a14e71d-f983-35e6-8353-cdfa7c15284d",
+          "rep:authorizableId": "acs-commons-package-replication-status-event-service"
+        },
+        "httpcache-jcr-storage-provider": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-httpcache-jcr-storage-service",
+          "jcr:uuid": "42d94156-26bc-3ed8-8d98-136dcf762d35",
+          "rep:authorizableId": "acs-commons-httpcache-jcr-storage-service"
+        },
+        "automatic-package-replicator": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-automatic-package-replicator-service",
+          "jcr:uuid": "deca910d-5895-3639-b549-c3a91ffaeed1",
+          "rep:authorizableId": "acs-commons-automatic-package-replicator-service"
+        },
+        "component-error-handler": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-component-error-handler-service",
+          "jcr:uuid": "017fba56-806e-3919-86e8-8733aff8f6d3",
+          "rep:authorizableId": "acs-commons-component-error-handler-service"
+        },
+        "dispatcher-flush-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-dispatcher-flush-service",
+          "jcr:uuid": "0cdb16c9-534e-3f02-b307-55083160bb30",
+          "rep:authorizableId": "acs-commons-dispatcher-flush-service"
+        },
+        "on-deploy-scripts-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-on-deploy-scripts-service",
+          "jcr:uuid": "7ed78675-7b76-3fe1-b6a9-d3528844f21e",
+          "rep:authorizableId": "acs-commons-on-deploy-scripts-service"
+        },
+        "manage-controlled-processes": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-manage-controlled-processes-service",
+          "jcr:uuid": "e1d82695-b8e5-32b9-a0cd-841af885907b",
+          "rep:authorizableId": "acs-commons-manage-controlled-processes-service"
+        },
+        "shared-component-props-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-shared-component-props-service",
+          "jcr:uuid": "de08ffa2-0d09-36a5-9a11-536e92940515",
+          "rep:authorizableId": "acs-commons-shared-component-props-service"
+        },
+        "twitter-updater": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-twitter-updater-service",
+          "jcr:uuid": "71bf2fa4-4e65-3a40-be1f-008699379c61",
+          "rep:authorizableId": "acs-commons-twitter-updater-service"
+        },
+        "ensure-service-user": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-ensure-service-user-service",
+          "jcr:uuid": "631f75c7-4e6b-3186-82c4-2b5df96de1d8",
+          "rep:authorizableId": "acs-commons-ensure-service-user-service"
+        },
+        "review-task-asset-mover-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Fri Feb 08 2019 12:09:50 GMT+0530",
+          "rep:principalName": "acs-commons-review-task-asset-mover-service",
+          "jcr:uuid": "fe2f3e40-e46f-3af2-9668-62072d41dff5",
+          "rep:authorizableId": "acs-commons-review-task-asset-mover-service"
+        }
+      },
+      "msm-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+        "rep:principalName": "msm-service",
+        "jcr:uuid": "cd773d7d-a0b8-3f66-a38e-742e2f6d6f8e",
+        "rep:authorizableId": "msm-service"
+      },
+      "dtmservice": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:53 GMT+0530",
+        "rep:principalName": "dtmservice",
+        "jcr:uuid": "52a19c1b-a824-3372-a138-d27d3168f374",
+        "rep:authorizableId": "dtmservice"
+      },
+      "iSF-0qiQ7UXNuopcQzse": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "group-administration-service",
+        "jcr:uuid": "cc1dc23f-2112-37d5-be0b-fad751abd6a1",
+        "rep:authorizableId": "group-administration-service"
+      },
+      "communities": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:mixinTypes": [
+          "mix:title",
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:title": "Communities Service Users",
+        "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+        "communities-analytics-admin": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+          "rep:principalName": "communities-analytics-admin",
+          "jcr:uuid": "d01452ee-5e36-3b61-bce5-f6db98664365",
+          "rep:authorizableId": "communities-analytics-admin",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "Communities Analytics Admin",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "communities-acl-manager": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+          "rep:principalName": "communities-acl-manager",
+          "jcr:uuid": "ec7db7c9-6ea3-3dab-bacf-d6dbf57cd351",
+          "rep:authorizableId": "communities-acl-manager",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "Communities ACL Manager",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "social-enablement-tmp-manager": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:28 GMT+0530",
+          "rep:principalName": "social-enablement-tmp-manager",
+          "jcr:uuid": "800e2b74-69b6-3089-8a6d-d136a49475c2",
+          "rep:authorizableId": "social-enablement-tmp-manager",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "social-enablement-tmp-manager",
+            "sling:resourceType": "cq/security/components/profile"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "social-enablement-replication-user": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:28 GMT+0530",
+          "rep:principalName": "social-enablement-replication-user",
+          "jcr:uuid": "33b5e0e5-4862-3ecb-957c-c7aeb74b0937",
+          "rep:authorizableId": "social-enablement-replication-user",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "social-enablement-replication-user",
+            "sling:resourceType": "cq/security/components/profile"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "communities-tag-admin": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+          "rep:principalName": "communities-tag-admin",
+          "jcr:uuid": "6e098931-4453-36c9-8f54-c97cb58b4085",
+          "rep:authorizableId": "communities-tag-admin",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "Communities Tag Admin",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "communities-srp-config-reader": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+          "rep:principalName": "communities-srp-config-reader",
+          "jcr:uuid": "90bc83bd-d732-3944-bcec-b545a24a7bd6",
+          "rep:authorizableId": "communities-srp-config-reader",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "Communities SRP Config Reader",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "communities-enablement-property-writer": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+          "rep:principalName": "communities-enablement-property-writer",
+          "jcr:uuid": "d845d228-37b1-39dd-8315-711a56f04a1a",
+          "rep:authorizableId": "communities-enablement-property-writer",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "Communities Enablement Property Writer",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "communities-user-admin",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          },
+          "allow1": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "communities-user-admin",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        },
+        "communities-ugc-writer": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+          "rep:principalName": "communities-ugc-writer",
+          "jcr:uuid": "5b76e5f6-db5a-3117-a34c-9ef07333c3df",
+          "rep:authorizableId": "communities-ugc-writer",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "Communities UGC Writer",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        },
+        "communities-user-admin": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+          "rep:principalName": "communities-user-admin",
+          "jcr:uuid": "6351fadd-c9a3-3e6d-ad53-ed1f28b552b0",
+          "rep:authorizableId": "communities-user-admin",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "familyName": "Communities User Admin",
+            "sling:resourceType": "cq/security/components/profile"
+          }
+        }
+      },
+      "cgP0iYpav9OhusCS5wkm": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "group-reader-service",
+        "jcr:uuid": "4ceb4bab-38db-3169-b7c7-6e2b00869160",
+        "rep:authorizableId": "group-reader-service"
+      },
+      "wcm": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:57 GMT+0530",
+        "versions-preview-service-user": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "versions-preview-service-user",
+          "jcr:uuid": "558b4408-a4d4-3c1c-9246-f4600d48ddfb",
+          "rep:authorizableId": "versions-preview-service-user"
+        },
+        "primary-resource-search-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "primary-resource-search-service",
+          "jcr:uuid": "3f39659c-9f20-3662-bbcb-9e9a421e0624",
+          "rep:authorizableId": "primary-resource-search-service"
+        },
+        "undo-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "undo-service",
+          "jcr:uuid": "13354c37-151a-361f-b66e-ec2cdc334a32",
+          "rep:authorizableId": "undo-service"
+        },
+        "canvaspage-delete-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:14 GMT+0530",
+          "rep:principalName": "canvaspage-delete-service",
+          "jcr:uuid": "44bd67ba-121f-3f60-864f-00df30f5df67",
+          "rep:authorizableId": "canvaspage-delete-service"
+        },
+        "canvaspage-activate-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:14 GMT+0530",
+          "rep:principalName": "canvaspage-activate-service",
+          "jcr:uuid": "450f4b30-88d1-3fbd-ab7b-f9ff602ec2f9",
+          "rep:authorizableId": "canvaspage-activate-service"
+        },
+        "notification-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "notification-service",
+          "jcr:uuid": "8faa8638-f45e-3e2e-ba8c-e485e76b9825",
+          "rep:authorizableId": "notification-service"
+        },
+        "version-purge-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "version-purge-service",
+          "jcr:uuid": "d6e74d05-b3aa-3306-8c6f-d39ee163c507",
+          "rep:authorizableId": "version-purge-service"
+        },
+        "design-cache-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "design-cache-service",
+          "jcr:uuid": "3ed523ad-6a40-315a-9145-cc3f6647e0a2",
+          "rep:authorizableId": "design-cache-service"
+        },
+        "launches": {
+          "jcr:primaryType": "rep:AuthorizableFolder",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:01:09 GMT+0530",
+          "launch-event-service": {
+            "jcr:primaryType": "rep:SystemUser",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:01:09 GMT+0530",
+            "rep:principalName": "launch-event-service",
+            "jcr:uuid": "a648ff85-3de0-367c-8c8b-b3d2d5f495d7",
+            "rep:authorizableId": "launch-event-service"
+          },
+          "launch-promote-service": {
+            "jcr:primaryType": "rep:SystemUser",
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:01:09 GMT+0530",
+            "rep:principalName": "launch-promote-service",
+            "jcr:uuid": "c6f682fb-0b59-35b2-aa1b-f706332fb18a",
+            "rep:authorizableId": "launch-promote-service"
+          }
+        },
+        "language-manager-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "language-manager-service",
+          "jcr:uuid": "91b8b431-af8e-32f8-a8f4-d320d2f2dce0",
+          "rep:authorizableId": "language-manager-service"
+        },
+        "reference-adjustment-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:13 GMT+0530",
+          "rep:principalName": "reference-adjustment-service",
+          "jcr:uuid": "356cc9bd-1699-3d25-9909-3f788218d38f",
+          "rep:authorizableId": "reference-adjustment-service"
+        },
+        "page-name-validator-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:14 GMT+0530",
+          "rep:principalName": "page-name-validator-service",
+          "jcr:uuid": "db695469-83c9-3357-9054-654c55c3bb15",
+          "rep:authorizableId": "page-name-validator-service"
+        },
+        "wurfl-loader-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:14 GMT+0530",
+          "rep:principalName": "wurfl-loader-service",
+          "jcr:uuid": "08164a97-201c-3a86-8616-516541018f9c",
+          "rep:authorizableId": "wurfl-loader-service"
+        }
+      },
+      "rN_NaUdiEOH1tcxHXiyq": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "workflow-service",
+        "jcr:uuid": "f1f58f23-8466-3208-8dca-bbd04152eab2",
+        "rep:authorizableId": "workflow-service"
+      },
+      "clientlibs-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:15 GMT+0530",
+        "rep:principalName": "clientlibs-service",
+        "jcr:uuid": "e91d28d8-caad-36cf-9435-b38fb4fd5ea1",
+        "rep:authorizableId": "clientlibs-service"
+      },
+      "offloading-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:46 GMT+0530",
+        "rep:principalName": "offloading-service",
+        "jcr:uuid": "b6aa3ec9-ce10-398a-a57c-ae92d5f0681b",
+        "rep:authorizableId": "offloading-service"
+      },
+      "X5YcCpWZcA1yc5V0ck7U": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "root-reader-service",
+        "jcr:uuid": "ebd4903c-8187-398c-ba54-78983bb58f8d",
+        "rep:authorizableId": "root-reader-service"
+      },
+      "security": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:23 GMT+0530",
+        "ssl-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:00:23 GMT+0530",
+          "rep:principalName": "ssl-service",
+          "jcr:uuid": "9c4f89c2-3aa5-337b-ba1c-8a349fc45211",
+          "rep:authorizableId": "ssl-service",
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "security-userproperties-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:57:59 GMT+0530",
+          "rep:principalName": "security-userproperties-service",
+          "jcr:uuid": "c0b6a110-451b-392d-9008-ae2cb1795676",
+          "rep:authorizableId": "security-userproperties-service"
+        }
+      },
+      "replication-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "replication-service",
+        "jcr:uuid": "11bfa658-5ca6-355f-9b81-c17ecf1a56eb",
+        "rep:authorizableId": "replication-service"
+      },
+      "XEVN-Qn2ZDkzG8DK7us_": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "content-reader-service",
+        "jcr:uuid": "619e49cb-f900-3458-a786-f31bd456dbfa",
+        "rep:authorizableId": "content-reader-service"
+      },
+      "fontconfig-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "fontconfig-service",
+        "jcr:uuid": "6f1fe9f4-0d0e-35ff-a8ca-fe5028e1717f",
+        "rep:authorizableId": "fontconfig-service"
+      },
+      "statistics-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "statistics-service",
+        "jcr:uuid": "ab09ae6f-4f4a-3613-9e2e-24298736d569",
+        "rep:authorizableId": "statistics-service"
+      },
+      "cug-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:13 GMT+0530",
+        "rep:principalName": "cug-service",
+        "jcr:uuid": "df1d99fa-220a-338e-82ba-53aa579d911e",
+        "rep:authorizableId": "cug-service"
+      },
+      "platform": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:41 GMT+0530",
+        "polling-importer-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+          "rep:principalName": "polling-importer-service",
+          "jcr:uuid": "cf17c01a-8bfe-32c6-b776-37ed74066613",
+          "rep:authorizableId": "polling-importer-service"
+        }
+      },
+      "UxPz0fUoJGcaHwlYKitf": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "sling-context-aware-config-web-console",
+        "jcr:uuid": "6382051c-528a-31a5-b285-4ea90fb6bb13",
+        "rep:authorizableId": "sling-context-aware-config-web-console"
+      },
+      "zN6WpXUYQvQfSs_CRlt1": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "contexthub-conf-reader",
+        "jcr:uuid": "7a54f331-12ed-3150-b2c5-49b1671d0f92",
+        "rep:authorizableId": "contexthub-conf-reader"
+      },
+      "3zl-MGMcs9TMRqnfzEh7": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "dam-reports-manager-service",
+        "jcr:uuid": "38386955-7c46-326b-b7cb-580496cab1b6",
+        "rep:authorizableId": "dam-reports-manager-service"
+      },
+      "campaign-remote": {
+        "jcr:primaryType": "rep:User",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:11 GMT+0530",
+        "rep:principalName": "campaign-remote",
+        "jcr:uuid": "090df2fb-8d3c-32ae-86f1-4bbd09628b84",
+        "rep:authorizableId": "campaign-remote",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "campaign-remote",
+            "rep:privileges": [
+              "jcr:all"
+            ]
+          }
+        }
+      },
+      "sling-installer-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "sling-installer-service",
+        "jcr:uuid": "a7e90d53-4158-3de8-9223-e6028e8513f4",
+        "rep:authorizableId": "sling-installer-service"
+      },
+      "tag-validation-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "tag-validation-service",
+        "jcr:uuid": "c310a5ce-223e-34a9-bed8-0839602ec09a",
+        "rep:authorizableId": "tag-validation-service"
+      },
+      "campaign-cloudservice": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:11 GMT+0530",
+        "rep:principalName": "campaign-cloudservice",
+        "jcr:uuid": "d4eb8148-6718-3158-9d65-ffcc0b283a24",
+        "rep:authorizableId": "campaign-cloudservice"
+      },
+      "r0EI11Wieu9lw5QfeFMo": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "truststore-reader-service",
+        "jcr:uuid": "d2bde02a-4f80-3d99-9ad8-cc72875c4d33",
+        "rep:authorizableId": "truststore-reader-service"
+      },
+      "BlwUackbhln8RUxMllv7": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "projects-purge-service",
+        "jcr:uuid": "de9c2e6f-02f5-39ea-b366-61959f6b2f54",
+        "rep:authorizableId": "projects-purge-service"
+      },
+      "lW3HlbV6b3oOfWFQVPxr": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "sling-event",
+        "jcr:uuid": "3165447d-ee32-3744-b202-0ed6e7149ffb",
+        "rep:authorizableId": "sling-event"
+      },
+      "0jDoMAX7RniynZsQCNkK": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "user-reader-service",
+        "jcr:uuid": "13db0725-b2de-35fe-ad92-24973676de7d",
+        "rep:authorizableId": "user-reader-service"
+      },
+      "nlp-reader": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:12 GMT+0530",
+        "rep:principalName": "nlp-reader",
+        "jcr:uuid": "4a939030-35a2-3b99-b3de-90fc1eb3dc92",
+        "rep:authorizableId": "nlp-reader"
+      },
+      "LL44oMF4qsYlTjEU_SL-": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "compat-codeupgrade-service",
+        "jcr:uuid": "804131bf-8452-39d4-9525-bd0b6043a685",
+        "rep:authorizableId": "compat-codeupgrade-service"
+      },
+      "zAdG6HDApbp2rJ2t1JpA": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "reference-processing-service",
+        "jcr:uuid": "c966e08c-e975-3a95-90e3-45495493a7c1",
+        "rep:authorizableId": "reference-processing-service"
+      },
+      "omnisearch-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:14 GMT+0530",
+        "rep:principalName": "omnisearch-service",
+        "jcr:uuid": "a3256358-81ec-3b15-8613-290df08e80e7",
+        "rep:authorizableId": "omnisearch-service"
+      },
+      "CjuawycE9jgaIjBq56mR": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "experience-fragments-service",
+        "jcr:uuid": "a9aa8f2b-279e-34c5-b445-84eb48f2d91b",
+        "rep:authorizableId": "experience-fragments-service"
+      },
+      "audit-service": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 17:58:54 GMT+0530",
+        "rep:principalName": "audit-service",
+        "jcr:uuid": "4e82abff-5786-3f64-9983-c59a8872c428",
+        "rep:authorizableId": "audit-service"
+      },
+      "translation": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "translation-job-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:59:14 GMT+0530",
+          "rep:principalName": "translation-job-service",
+          "jcr:uuid": "7473143f-137a-3040-9856-516deb1f1e04",
+          "rep:authorizableId": "translation-job-service"
+        },
+        "translation-preview-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:00 GMT+0530",
+          "rep:principalName": "translation-preview-service",
+          "jcr:uuid": "f6dd23d6-2d34-30b6-bc0a-d917a3b83a9e",
+          "rep:authorizableId": "translation-preview-service",
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "translation-config-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 17:58:00 GMT+0530",
+          "rep:principalName": "translation-config-service",
+          "jcr:uuid": "16e5906c-175f-33b2-9f1b-bcc0e6324bf1",
+          "rep:authorizableId": "translation-config-service"
+        }
+      },
+      "cdn": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:10 GMT+0530",
+        "cdn-service": {
+          "jcr:primaryType": "rep:SystemUser",
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:00:10 GMT+0530",
+          "rep:principalName": "cdn-service",
+          "jcr:uuid": "1be06c41-30ec-3e17-b4f4-351e870ab850",
+          "rep:authorizableId": "cdn-service"
+        }
+      },
+      "U9izgKU5yGi10P7eCN9r": {
+        "jcr:primaryType": "rep:SystemUser",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 13:59:34 GMT+0530",
+        "rep:principalName": "dam-reader-service",
+        "jcr:uuid": "43116dd1-4e2d-3004-bfc5-bc8232115695",
+        "rep:authorizableId": "dam-reader-service"
+      }
+    },
+    "mac": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "rep:AccessControllable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:01:51 GMT+0530",
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "allow": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "dam-replication-service",
+          "rep:privileges": [
+            "jcr:modifyAccessControl",
+            "rep:userManagement",
+            "jcr:readAccessControl",
+            "rep:write"
+          ]
+        }
+      }
+    },
+    "rep:policy": {
+      "jcr:primaryType": "rep:ACL",
+      "allow": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "user-reader-service",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow1": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "user-administration-service",
+        "rep:privileges": [
+          "jcr:all"
+        ]
+      },
+      "allow2": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "dam-reports-manager-service",
+        "rep:privileges": [
+          "jcr:read"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:glob": "*/*/activities/dam*"
+        }
+      },
+      "allow3": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "compat-codeupgrade-service",
+        "rep:privileges": [
+          "jcr:modifyProperties",
+          "jcr:read"
+        ]
+      },
+      "allow4": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "notification-service",
+        "rep:privileges": [
+          "jcr:read",
+          "rep:write"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:glob": "*/wcm/notification*"
+        }
+      },
+      "allow5": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "activitypurgesrv",
+        "rep:privileges": [
+          "jcr:removeChildNodes",
+          "jcr:removeNode",
+          "rep:removeProperties",
+          "jcr:read"
+        ]
+      },
+      "allow6": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "dam-activitywriter-service",
+        "rep:privileges": [
+          "jcr:read",
+          "rep:write"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:glob": "*/*/activities/dam*"
+        }
+      },
+      "allow7": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "fd-service",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow8": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "contentsync-service",
+        "rep:privileges": [
+          "rep:readNodes"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:ntNames": [
+            "rep:User"
+          ]
+        }
+      },
+      "allow9": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "contentsync-service",
+        "rep:privileges": [
+          "rep:readProperties"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:itemNames": [
+            "rep:authorizableId",
+            "rep:principalName",
+            "jcr:uuid",
+            "jcr:primaryType"
+          ]
+        }
+      },
+      "allow10": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "translation-job-service",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow11": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "social-enablement-replication-user",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow12": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "acs-commons-wcm-inbox-cleanup-service",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow13": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "acs-commons-wcm-inbox-cleanup-service",
+        "rep:privileges": [
+          "jcr:removeChildNodes"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:glob": "*/wcm/notification/inbox"
+        }
+      },
+      "allow14": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "acs-commons-wcm-inbox-cleanup-service",
+        "rep:privileges": [
+          "jcr:removeNode"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:glob": "*/wcm/notification/inbox/*"
+        }
+      },
+      "allow15": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "acs-commons-ensure-service-user-service",
+        "rep:privileges": [
+          "rep:userManagement"
+        ]
+      }
+    }
+  },
+  "groups": {
+    "jcr:primaryType": "rep:AuthorizableFolder",
+    "jcr:mixinTypes": [
+      "rep:AccessControllable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:created": "Tue Feb 05 2019 13:59:35 GMT+0530",
+    "screens": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:58 GMT+0530",
+      "screens-devices-master": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:58 GMT+0530",
+        "rep:principalName": "screens-devices-master",
+        "jcr:uuid": "55c50260-0b19-3476-a89a-ef9dc8a9e81a",
+        "rep:authorizableId": "screens-devices-master",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "Screens devices master group",
+          "givenName": "Screens Devices Master"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "screens-devices-master",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "a": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+      "analytics-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+        "rep:principalName": "analytics-administrators",
+        "jcr:uuid": "2877e3c1-7dbd-3d7a-a568-2668add85fb1",
+        "sling:resourceType": "rep:Group",
+        "rep:members": [
+          "d01452ee-5e36-3b61-bce5-f6db98664365",
+          "3ebb1c04-76dd-317e-a9ee-5164182bc390",
+          "a6a112a8-c046-3afc-8be2-fe331bba819a"
+        ],
+        "rep:authorizableId": "analytics-administrators",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "Analytics Administrators group",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Analytics Admininstrators"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "analytics-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "af-template-script-writers": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "af-template-script-writers",
+        "jcr:uuid": "8092fa60-4a6f-3b3f-8a6d-9b27cf24b30a",
+        "rep:authorizableId": "af-template-script-writers",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "AEM forms group with permissions to write scripts in Adaptive Forms template",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "af-template-script-writers"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "af-template-script-writers",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "administrators",
+        "jcr:uuid": "d04952b3-df94-347c-84fc-2dc28396a62d",
+        "rep:members": [
+          "345bef9b-ffa1-3e09-85df-1e03cfa0fb37"
+        ],
+        "rep:authorizableId": "administrators",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "deny": {
+            "jcr:primaryType": "rep:DenyACE",
+            "rep:principalName": "user-administrators",
+            "rep:privileges": [
+              "jcr:versionManagement",
+              "jcr:modifyAccessControl",
+              "rep:userManagement",
+              "jcr:readAccessControl",
+              "crx:replicate",
+              "rep:write",
+              "jcr:lifecycleManagement",
+              "jcr:retentionManagement",
+              "jcr:lockManagement"
+            ]
+          }
+        }
+      }
+    },
+    "projects": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "rep:AccessControllable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:57 GMT+0530",
+      "admin": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:04:15 GMT+0530",
+        "tetrapak": {
+          "jcr:primaryType": "rep:AuthorizableFolder",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "6K2GBlA7g79WHMggSqcu": {
+            "jcr:primaryType": "rep:Group",
+            "jcr:mixinTypes": [
+              "rep:AccessControllable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "tetrapak",
+            "jcr:created": "Wed Feb 06 2019 12:36:51 GMT+0530",
+            "rep:principalName": "projects-tetrapak",
+            "jcr:uuid": "beba106b-7969-3191-bb33-f29131099b12",
+            "rep:members": [
+              "21232f29-7a57-35a7-8389-4a0e4a801fc3"
+            ],
+            "rep:authorizableId": "projects-tetrapak"
+          },
+          "bLs-PSZ3y2zLWo6kTwAR": {
+            "jcr:primaryType": "rep:Group",
+            "jcr:mixinTypes": [
+              "rep:AccessControllable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Feb 06 2019 12:36:51 GMT+0530",
+            "rep:principalName": "projects-tetrapak-editor",
+            "jcr:uuid": "8fa9db3c-e82c-390d-9fce-9723d6ffae70",
+            "rep:authorizableId": "projects-tetrapak-editor"
+          },
+          "6NoZ8xZ1vY_ezn2rwcIc": {
+            "jcr:primaryType": "rep:Group",
+            "jcr:mixinTypes": [
+              "rep:AccessControllable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:created": "Wed Feb 06 2019 12:36:51 GMT+0530",
+            "rep:principalName": "projects-tetrapak-owner",
+            "jcr:uuid": "91611046-c60b-3114-981e-5d1a5716192a",
+            "rep:members": [
+              "21232f29-7a57-35a7-8389-4a0e4a801fc3"
+            ],
+            "rep:authorizableId": "projects-tetrapak-owner"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "we_retail": {
+          "jcr:primaryType": "rep:AuthorizableFolder",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:15 GMT+0530",
+          "q27c7e1tHiWy8BeqoIYJ": {
+            "jcr:primaryType": "rep:Group",
+            "jcr:mixinTypes": [
+              "rep:AccessControllable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:04:15 GMT+0530",
+            "rep:principalName": "projects-we_retail-editor",
+            "jcr:uuid": "7dca9e4f-ed88-3021-9b40-b55f325a01f3",
+            "rep:authorizableId": "projects-we_retail-editor"
+          },
+          "O_LY03w9YjQvgikeLaWw": {
+            "jcr:primaryType": "rep:Group",
+            "jcr:mixinTypes": [
+              "rep:AccessControllable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:title": "We.Retail",
+            "jcr:created": "Tue Feb 05 2019 14:04:15 GMT+0530",
+            "rep:principalName": "projects-we_retail",
+            "jcr:uuid": "18e52d33-53c8-3759-9b87-d22aa5e4d319",
+            "rep:authorizableId": "projects-we_retail"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          },
+          "t7fr6ph7uUv1tfbOJBDK": {
+            "jcr:primaryType": "rep:Group",
+            "jcr:mixinTypes": [
+              "rep:AccessControllable"
+            ],
+            "jcr:createdBy": "admin",
+            "jcr:created": "Tue Feb 05 2019 14:04:15 GMT+0530",
+            "rep:principalName": "projects-we_retail-owner",
+            "jcr:uuid": "49902166-0051-3436-ba7f-1c1494138bd2",
+            "rep:authorizableId": "projects-we_retail-owner"
+          }
+        }
+      },
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "allow": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "projects-administrators",
+          "rep:privileges": [
+            "jcr:all"
+          ]
+        },
+        "allow1": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "projects-service",
+          "rep:privileges": [
+            "jcr:read"
+          ]
+        },
+        "allow2": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "projects-purge-service",
+          "rep:privileges": [
+            "jcr:all"
+          ]
+        },
+        "allow3": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "translation-job-service",
+          "rep:privileges": [
+            "jcr:all"
+          ]
+        }
+      },
+      "projects-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:04 GMT+0530",
+        "rep:principalName": "projects-administrators",
+        "jcr:uuid": "cd497a0e-033d-3337-82af-090041afb2c8",
+        "rep:authorizableId": "projects-administrators",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "projects-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "projects-users": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:04 GMT+0530",
+        "rep:principalName": "projects-users",
+        "jcr:uuid": "1a1c4599-125a-3104-aa0e-472dfd741b63",
+        "rep:members": [
+          "cd497a0e-033d-3337-82af-090041afb2c8",
+          "beba106b-7969-3191-bb33-f29131099b12"
+        ],
+        "rep:authorizableId": "projects-users",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "projects-users",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "f": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "mix:lockable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+      "forms-submission-reviewers": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:03:15 GMT+0530",
+        "rep:principalName": "forms-submission-reviewers",
+        "jcr:uuid": "7d3f7a3f-9392-3963-9fc9-406821f74c32",
+        "rep:authorizableId": "forms-submission-reviewers",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "forms-submission-reviewers",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "forms-users": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "forms-users",
+        "jcr:uuid": "aa79250f-e000-3e3b-b0d8-d14c68ca99d0",
+        "rep:members": [
+          "bd2c399e-1a6a-3842-81be-06ac9db629b4",
+          "7da66560-c4a9-3ee7-86d2-d9a3beeb56d2"
+        ],
+        "rep:authorizableId": "forms-users",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "forms-users",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "community": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "mix:lockable",
+        "rep:AccessControllable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+      "community-moderators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+        "rep:principalName": "community-moderators",
+        "jcr:uuid": "5dfe4edc-66a4-320e-adc2-47e60d79ca51",
+        "sling:resourceType": "rep:Group",
+        "rep:authorizableId": "community-moderators",
+        "preferences": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq:Preferences"
+        },
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "Community members who act as moderators",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Community Moderators"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "community-moderators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "community-sitecontentmanager": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:04:20 GMT+0530",
+        "rep:principalName": "community-sitecontentmanager",
+        "jcr:uuid": "5e795ef1-4dae-3da6-b237-83d57f647374",
+        "rep:authorizableId": "community-sitecontentmanager",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Community Site Content Manager"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "community-sitecontentmanager",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "community-members": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:04:20 GMT+0530",
+        "rep:principalName": "community-members",
+        "jcr:uuid": "3fd4f097-d361-33de-abe7-bafdda208360",
+        "rep:authorizableId": "community-members",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "community user list",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Community Members"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "community-members",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "community-minqg": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+        "jqwd6yzKY01kKUrvoDTP": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-members",
+          "path": "/content/we-retail/us/en/community",
+          "jcr:uuid": "ea919e37-38bd-3e2b-ad7d-d5d5f646c6f4",
+          "rep:members": [
+            "20e428cc-23ee-3076-8a27-1b739822e80b",
+            "07cf6521-f84e-3214-928e-6c100695f200",
+            "f9873982-f535-3c15-ae8e-c5a6f66ae4d2",
+            "8f4b017f-a6da-3126-852d-3b6203fc40bc",
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b",
+            "9faea3b5-80ac-3342-a0ab-b033c6c285b2",
+            "bdfd0a70-f6ce-3139-ba98-d6f1c7c5ae95",
+            "ed95eb74-be80-3dfb-bc02-0cf6950ebd91",
+            "512181cb-a4c3-3ccd-b820-4f1b7f82330c"
+          ],
+          "rep:authorizableId": "community-community-minqg-members",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "aboutMe": "members for site /content/we-retail/us/en/community",
+            "givenName": "Community Community Members"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "0s_1HP0oqSIO3ihKnlj2": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-siteenablementmanagers",
+          "path": "/content/we-retail/us/en/community",
+          "jcr:uuid": "bdfd0a70-f6ce-3139-ba98-d6f1c7c5ae95",
+          "rep:members": [
+            "79eb763f-4a7f-3772-ab8b-77278e3ae9f3"
+          ],
+          "rep:authorizableId": "community-community-minqg-siteenablementmanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "aboutMe": "siteenablementmanagers for site /content/we-retail/us/en/community",
+            "givenName": "Community Community Siteenablementmanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "GEaZXECnpKIl-PvG-p-p": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+          "rep:principalName": "community-community-minqg-running-lhvtn-members",
+          "jcr:uuid": "8f4b017f-a6da-3126-852d-3b6203fc40bc",
+          "rep:members": [
+            "46274622-4986-38f4-a750-22a243a66b70",
+            "9faea3b5-80ac-3342-a0ab-b033c6c285b2"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/running",
+          "rep:authorizableId": "community-community-minqg-running-lhvtn-members",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Running Lhvtn Members"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "MNezbzsDtcOXWzkjz4vk": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-surfing-mriu7-communitymanagers",
+          "jcr:uuid": "01f4fdb4-16e8-37b9-9284-65255c0685cd",
+          "rep:members": [
+            "5eef69f1-fa9d-38da-b3a6-48a94496aa57"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/surfing",
+          "rep:authorizableId": "community-community-minqg-surfing-mriu7-communitymanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Surfing Mriu7 Communitymanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "Ku9I8KoX7x3WlBvMyEd3": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-sitecontentmanager",
+          "path": "/content/we-retail/us/en/community",
+          "jcr:uuid": "9faea3b5-80ac-3342-a0ab-b033c6c285b2",
+          "rep:members": [
+            "79eb763f-4a7f-3772-ab8b-77278e3ae9f3"
+          ],
+          "rep:authorizableId": "community-community-minqg-sitecontentmanager",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "aboutMe": "sitecontentmanager for site /content/we-retail/us/en/community",
+            "givenName": "Community Community Sitecontentmanager"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "szK5MFIMo9rFNky7AR64": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-desert-hiking-qgkwj-moderators",
+          "jcr:uuid": "01e4abde-1b77-3065-b77f-3c4237dd7bbb",
+          "rep:members": [
+            "9e5848ad-7989-32c3-a5c8-a142bc3c212b",
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/hiking/groups/desert-hiking",
+          "rep:authorizableId": "community-community-minqg-desert-hiking-qgkwj-moderators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Desert Hiking Qgkwj Moderators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "yddl6cIwR8yXHuKULMpW": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-privilegedmembers",
+          "path": "/content/we-retail/us/en/community",
+          "jcr:uuid": "cc9340ab-9721-383e-8398-d0058b6e41a9",
+          "rep:members": [
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b"
+          ],
+          "rep:authorizableId": "community-community-minqg-privilegedmembers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "aboutMe": "privilegedmembers for site /content/we-retail/us/en/community",
+            "givenName": "Community Community Privilegedmembers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "tW1oKjRkebsoR9O8drGL": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-skiing-hg2qu-members",
+          "jcr:uuid": "512181cb-a4c3-3ccd-b820-4f1b7f82330c",
+          "rep:members": [
+            "9faea3b5-80ac-3342-a0ab-b033c6c285b2",
+            "dfef1698-4a9d-34e8-a47a-bd2b66463309"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/skiing",
+          "rep:authorizableId": "community-community-minqg-skiing-hg2qu-members",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Skiing Hg2qu Members"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "V76L2OoT4xUXjpNPQ_vz": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+          "rep:principalName": "community-community-minqg-groupadministrators",
+          "path": "/content/we-retail/us/en/community",
+          "jcr:uuid": "effc7444-255a-39b5-b047-6021bc92660e",
+          "rep:members": [
+            "79eb763f-4a7f-3772-ab8b-77278e3ae9f3"
+          ],
+          "rep:authorizableId": "community-community-minqg-groupadministrators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "aboutMe": "groupadministrators for site /content/we-retail/us/en/community",
+            "givenName": "Community Community Groupadministrators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "50ILm8Cy7QwOJ1WMJGu7": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+          "rep:principalName": "community-community-minqg-desert-hiking-qgkwj-members",
+          "jcr:uuid": "f9873982-f535-3c15-ae8e-c5a6f66ae4d2",
+          "rep:members": [
+            "d3518b26-fbee-3278-88ad-7e82bcc2b9c8",
+            "9faea3b5-80ac-3342-a0ab-b033c6c285b2",
+            "39716f84-c160-3973-9bab-5fdee968ffef",
+            "01e4abde-1b77-3065-b77f-3c4237dd7bbb"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/hiking/groups/desert-hiking",
+          "rep:authorizableId": "community-community-minqg-desert-hiking-qgkwj-members",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Desert Hiking Qgkwj Members"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "94PosU_aRoq7SObrPIbq": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-moderators",
+          "path": "/content/we-retail/us/en/community",
+          "jcr:uuid": "99c58b0a-b94e-3628-89f4-4d248dcd453b",
+          "rep:members": [
+            "5eef69f1-fa9d-38da-b3a6-48a94496aa57"
+          ],
+          "rep:authorizableId": "community-community-minqg-moderators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "aboutMe": "moderators for site /content/we-retail/us/en/community",
+            "givenName": "Community Community Moderators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "soK7eOyrbLRb-5b6E0Gc": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+          "rep:principalName": "community-community-minqg-wintersports-fkjy9-members",
+          "jcr:uuid": "20e428cc-23ee-3076-8a27-1b739822e80b",
+          "rep:members": [
+            "4b56016b-def4-39c8-8b26-c7af7af3a9a1",
+            "9faea3b5-80ac-3342-a0ab-b033c6c285b2"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/wintersports",
+          "rep:authorizableId": "community-community-minqg-wintersports-fkjy9-members",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Wintersports Fkjy9 Members"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "aWJIaBHmIImO1uyRXYIT": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-desert-hiking-qgkwj-communitymanagers",
+          "jcr:uuid": "9e5848ad-7989-32c3-a5c8-a142bc3c212b",
+          "rep:members": [
+            "5eef69f1-fa9d-38da-b3a6-48a94496aa57"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/hiking/groups/desert-hiking",
+          "rep:authorizableId": "community-community-minqg-desert-hiking-qgkwj-communitymanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Desert Hiking Qgkwj Communitymanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "PeZEd50EMM0LI1_qMMcy": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-communitymanagers",
+          "path": "/content/we-retail/us/en/community",
+          "jcr:uuid": "5eef69f1-fa9d-38da-b3a6-48a94496aa57",
+          "rep:members": [
+            "79eb763f-4a7f-3772-ab8b-77278e3ae9f3"
+          ],
+          "rep:authorizableId": "community-community-minqg-communitymanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "aboutMe": "communitymanagers for site /content/we-retail/us/en/community",
+            "givenName": "Community Community Communitymanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "HVZfkKa3sabbSr56y0vA": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+          "rep:principalName": "community-community-minqg-hiking-n5u5z-communitymanagers",
+          "jcr:uuid": "d3518b26-fbee-3278-88ad-7e82bcc2b9c8",
+          "rep:members": [
+            "5eef69f1-fa9d-38da-b3a6-48a94496aa57"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/hiking",
+          "rep:authorizableId": "community-community-minqg-hiking-n5u5z-communitymanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Hiking N5u5z Communitymanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "tWUD-5-cp1v9ZcCFsSfm": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-hiking-n5u5z-moderators",
+          "jcr:uuid": "39716f84-c160-3973-9bab-5fdee968ffef",
+          "rep:members": [
+            "d3518b26-fbee-3278-88ad-7e82bcc2b9c8",
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/hiking",
+          "rep:authorizableId": "community-community-minqg-hiking-n5u5z-moderators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Hiking N5u5z Moderators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "BVtzApMxyNbOvYVtSA4k": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-surfing-mriu7-moderators",
+          "jcr:uuid": "a7d26a65-0caf-3f45-8f88-92a3a5cef345",
+          "rep:members": [
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b",
+            "01f4fdb4-16e8-37b9-9284-65255c0685cd"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/surfing",
+          "rep:authorizableId": "community-community-minqg-surfing-mriu7-moderators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Surfing Mriu7 Moderators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "KhXKcAPMHI_jDPmZQ_Wi": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-surfing-mriu7-members",
+          "jcr:uuid": "ed95eb74-be80-3dfb-bc02-0cf6950ebd91",
+          "rep:members": [
+            "a7d26a65-0caf-3f45-8f88-92a3a5cef345",
+            "9faea3b5-80ac-3342-a0ab-b033c6c285b2"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/surfing",
+          "rep:authorizableId": "community-community-minqg-surfing-mriu7-members",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Surfing Mriu7 Members"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "XPUgJDNGkgk_9ISgdg6Y": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-wintersports-fkjy9-communitymanagers",
+          "jcr:uuid": "98ee6d7e-c101-3c84-a3dc-1ff32e6bc420",
+          "rep:members": [
+            "5eef69f1-fa9d-38da-b3a6-48a94496aa57"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/wintersports",
+          "rep:authorizableId": "community-community-minqg-wintersports-fkjy9-communitymanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Wintersports Fkjy9 Communitymanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "4z1u6Jl3cCLjCluWHGgi": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+          "rep:principalName": "community-community-minqg-wintersports-fkjy9-moderators",
+          "jcr:uuid": "4b56016b-def4-39c8-8b26-c7af7af3a9a1",
+          "rep:members": [
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b",
+            "98ee6d7e-c101-3c84-a3dc-1ff32e6bc420"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/wintersports",
+          "rep:authorizableId": "community-community-minqg-wintersports-fkjy9-moderators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Wintersports Fkjy9 Moderators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "3HiJrYW9qpt0_J-1OLPs": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-running-lhvtn-moderators",
+          "jcr:uuid": "46274622-4986-38f4-a750-22a243a66b70",
+          "rep:members": [
+            "c099b35d-22d5-38f9-b7a2-c85e38f203c1",
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/running",
+          "rep:authorizableId": "community-community-minqg-running-lhvtn-moderators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Running Lhvtn Moderators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "dJ--QY-fS-UVA40Chy91": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-skiing-hg2qu-communitymanagers",
+          "jcr:uuid": "a2e2df52-076b-3c10-990e-f22ed6ef812c",
+          "rep:members": [
+            "5eef69f1-fa9d-38da-b3a6-48a94496aa57"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/skiing",
+          "rep:authorizableId": "community-community-minqg-skiing-hg2qu-communitymanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Skiing Hg2qu Communitymanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "at6shcXMQbFRdaD_Jbyj": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-skiing-hg2qu-moderators",
+          "jcr:uuid": "dfef1698-4a9d-34e8-a47a-bd2b66463309",
+          "rep:members": [
+            "99c58b0a-b94e-3628-89f4-4d248dcd453b",
+            "a2e2df52-076b-3c10-990e-f22ed6ef812c"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/skiing",
+          "rep:authorizableId": "community-community-minqg-skiing-hg2qu-moderators",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Skiing Hg2qu Moderators"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "okRMQ1g42b_kMzTlx_sO": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:32 GMT+0530",
+          "rep:principalName": "community-community-minqg-running-lhvtn-communitymanagers",
+          "jcr:uuid": "c099b35d-22d5-38f9-b7a2-c85e38f203c1",
+          "rep:members": [
+            "5eef69f1-fa9d-38da-b3a6-48a94496aa57"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/running",
+          "rep:authorizableId": "community-community-minqg-running-lhvtn-communitymanagers",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Running Lhvtn Communitymanagers"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        },
+        "ajhrwTn8fICAmU-KgOXq": {
+          "jcr:primaryType": "rep:Group",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "jcr:createdBy": "admin",
+          "jcr:created": "Tue Feb 05 2019 14:04:31 GMT+0530",
+          "rep:principalName": "community-community-minqg-hiking-n5u5z-members",
+          "jcr:uuid": "07cf6521-f84e-3214-928e-6c100695f200",
+          "rep:members": [
+            "f9873982-f535-3c15-ae8e-c5a6f66ae4d2",
+            "9faea3b5-80ac-3342-a0ab-b033c6c285b2",
+            "39716f84-c160-3973-9bab-5fdee968ffef"
+          ],
+          "liveCopyPath": "/content/we-retail/us/en/community/groups/hiking",
+          "rep:authorizableId": "community-community-minqg-hiking-n5u5z-members",
+          "profile": {
+            "jcr:primaryType": "nt:unstructured",
+            "givenName": "Community Community Hiking N5u5z Members"
+          },
+          "rep:policy": {
+            "jcr:primaryType": "rep:ACL"
+          }
+        }
+      },
+      "community-groupadmin": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:04:20 GMT+0530",
+        "rep:principalName": "community-groupadmin",
+        "jcr:uuid": "57ba7c97-01eb-3de5-8f94-bb0065731a18",
+        "rep:authorizableId": "community-groupadmin",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Community Group Administrators"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "community-groupadmin",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "allow": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "community-administrators",
+          "rep:privileges": [
+            "jcr:read"
+          ]
+        },
+        "allow1": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "community-members",
+          "rep:privileges": [
+            "jcr:read"
+          ]
+        }
+      },
+      "community-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:28 GMT+0530",
+        "cq:lastModified": "Mon Sep 14 2015 14:21:45 GMT-0700",
+        "rep:principalName": "community-administrators",
+        "jcr:uuid": "79eb763f-4a7f-3772-ab8b-77278e3ae9f3",
+        "rep:members": [
+          "6351fadd-c9a3-3e6d-ad53-ed1f28b552b0"
+        ],
+        "rep:authorizableId": "community-administrators",
+        "cq:lastModifiedBy": "admin",
+        "preferences": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq:Preferences"
+        },
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Communities Administrators"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "community-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "community-enablementmanagers": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:04:28 GMT+0530",
+        "rep:principalName": "community-enablementmanagers",
+        "jcr:uuid": "a6a112a8-c046-3afc-8be2-fe331bba819a",
+        "rep:authorizableId": "community-enablementmanagers",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "Group allowed to create and manage enablement resources",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Community Enablement Managers"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "community-enablementmanagers",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "w": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "mix:lockable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:27 GMT+0530",
+      "workflow-users": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:27 GMT+0530",
+        "rep:principalName": "workflow-users",
+        "jcr:uuid": "ca58c408-fe06-357e-953c-2d23ffe1e096",
+        "sling:resourceType": "rep:Group",
+        "rep:members": [
+          "b96369b0-6ade-3592-9905-151f11af5062",
+          "e8351d1c-4d5f-30c0-b2f7-37c856f92040",
+          "f5777a0b-a933-3b4d-9405-613d8bc39cc7",
+          "aa79250f-e000-3e3b-b0d8-d14c68ca99d0",
+          "1a1c4599-125a-3104-aa0e-472dfd741b63",
+          "bd2c399e-1a6a-3842-81be-06ac9db629b4"
+        ],
+        "rep:authorizableId": "workflow-users",
+        "preferences": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq:Preferences"
+        },
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "aboutMe": "Group allowed to use workflows",
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "workflow-users",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "workflow-editors": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:27 GMT+0530",
+        "rep:principalName": "workflow-editors",
+        "jcr:uuid": "e8351d1c-4d5f-30c0-b2f7-37c856f92040",
+        "sling:resourceType": "rep:Group",
+        "rep:members": [
+          "b96369b0-6ade-3592-9905-151f11af5062"
+        ],
+        "rep:authorizableId": "workflow-editors",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "aboutMe": "Group that is allowed to create and modify workflow models",
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "workflow-editors",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "workflow-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:27 GMT+0530",
+        "cq:lastModified": "Tue Jan 26 2016 11:56:56 GMT-0500",
+        "rep:principalName": "workflow-administrators",
+        "jcr:uuid": "b96369b0-6ade-3592-9905-151f11af5062",
+        "rep:authorizableId": "workflow-administrators",
+        "cq:lastModifiedBy": "admin",
+        "preferences": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq:Preferences"
+        },
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "Group that is allowed to administer workflows",
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "workflow-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "mac": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "rep:AccessControllable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:01:49 GMT+0530",
+      "rep:policy": {
+        "jcr:primaryType": "rep:ACL",
+        "allow": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "dam-teammgr-service",
+          "rep:privileges": [
+            "jcr:modifyAccessControl",
+            "jcr:read",
+            "rep:userManagement",
+            "jcr:readAccessControl",
+            "rep:write"
+          ]
+        },
+        "allow1": {
+          "jcr:primaryType": "rep:GrantACE",
+          "rep:principalName": "dam-replication-service",
+          "rep:privileges": [
+            "jcr:modifyAccessControl",
+            "rep:userManagement",
+            "jcr:readAccessControl",
+            "rep:write"
+          ]
+        }
+      }
+    },
+    "o": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+      "operators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "operators",
+        "jcr:uuid": "0997fb35-6c24-3146-bfe9-7cce96f88459",
+        "rep:authorizableId": "operators",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "operators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "t": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "mix:lockable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+      "template-authors": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "template-authors",
+        "jcr:uuid": "9e0886fe-4848-3e28-922b-682d75533ef1",
+        "sling:resourceType": "rep:Group",
+        "rep:authorizableId": "template-authors",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "template-authors",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "tag-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "tag-administrators",
+        "jcr:uuid": "d3c827d3-4db2-30cc-9c41-0ed8117dbaff",
+        "sling:resourceType": "rep:Group",
+        "rep:members": [
+          "aa79250f-e000-3e3b-b0d8-d14c68ca99d0",
+          "6e098931-4453-36c9-8f54-c97cb58b4085",
+          "94bf4658-721f-30ee-94b9-fd1931312de4",
+          "6c618b3b-8147-3a1b-90c9-9f836678dfca",
+          "0c44d27b-ea6d-397a-873b-8d297617ba6d"
+        ],
+        "rep:authorizableId": "tag-administrators",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "aboutMe": "Group that is allowed to edit tags",
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "tag-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "target-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "target-administrators",
+        "jcr:uuid": "a69a3187-f1a1-3a74-a602-34c9f767f859",
+        "sling:resourceType": "rep:Group",
+        "rep:authorizableId": "target-administrators",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "This group represents Target administrators",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Target Administrators"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "target-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "target-activity-authors": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:02 GMT+0530",
+        "rep:principalName": "target-activity-authors",
+        "jcr:uuid": "23f12d5e-3cc3-3d07-8d6a-bde8a537c744",
+        "sling:resourceType": "rep:Group",
+        "rep:members": [
+          "0c44d27b-ea6d-397a-873b-8d297617ba6d"
+        ],
+        "rep:authorizableId": "target-activity-authors",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "This group can set up Target Activities",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Target Activity Authors"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "target-activity-authors",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "default": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "mix:lockable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:01:08 GMT+0530",
+      "order-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:08 GMT+0530",
+        "rep:principalName": "order-administrators",
+        "jcr:uuid": "de287c73-8d14-36e4-a940-e0c71b3fb984",
+        "sling:resourceType": "rep:Group",
+        "rep:members": [
+          "0c44d27b-ea6d-397a-873b-8d297617ba6d",
+          "94bf4658-721f-30ee-94b9-fd1931312de4"
+        ],
+        "rep:authorizableId": "order-administrators",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "aboutMe": "The group responsible for administrating customer orders.",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Order Administrators"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "order-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "rep:policy": {
+      "jcr:primaryType": "rep:ACL",
+      "allow": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "group-reader-service",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow1": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "group-administration-service",
+        "rep:privileges": [
+          "jcr:all"
+        ]
+      },
+      "allow2": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "compat-codeupgrade-service",
+        "rep:privileges": [
+          "jcr:modifyAccessControl",
+          "jcr:read",
+          "rep:userManagement",
+          "jcr:readAccessControl",
+          "rep:write"
+        ]
+      },
+      "allow3": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "fd-service",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow4": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "account-manager",
+        "rep:privileges": [
+          "jcr:read",
+          "rep:userManagement"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:itemNames": [
+            "rep:members"
+          ]
+        }
+      },
+      "allow5": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "contentsync-service",
+        "rep:privileges": [
+          "rep:readNodes"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:ntNames": [
+            "rep:Group"
+          ]
+        }
+      },
+      "allow6": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "contentsync-service",
+        "rep:privileges": [
+          "rep:readProperties"
+        ],
+        "rep:restrictions": {
+          "jcr:primaryType": "rep:Restrictions",
+          "rep:itemNames": [
+            "rep:authorizableId",
+            "rep:principalName",
+            "jcr:uuid",
+            "jcr:primaryType"
+          ]
+        }
+      },
+      "allow7": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "translation-job-service",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow8": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "social-enablement-replication-user",
+        "rep:privileges": [
+          "jcr:read"
+        ]
+      },
+      "allow9": {
+        "jcr:primaryType": "rep:GrantACE",
+        "rep:principalName": "acs-commons-ensure-service-user-service",
+        "rep:privileges": [
+          "rep:userManagement"
+        ]
+      }
+    },
+    "d": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:mixinTypes": [
+        "mix:lockable"
+      ],
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+      "dam-users": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "cq:lastModified": "Thu Jan 24 2013 05:10:29 GMT+0000",
+        "rep:principalName": "dam-users",
+        "jcr:uuid": "f5777a0b-a933-3b4d-9405-613d8bc39cc7",
+        "rep:members": [
+          "6c618b3b-8147-3a1b-90c9-9f836678dfca",
+          "94bf4658-721f-30ee-94b9-fd1931312de4",
+          "0c44d27b-ea6d-397a-873b-8d297617ba6d",
+          "21c2b180-a554-35ae-a7d5-efd39bb7920f"
+        ],
+        "rep:authorizableId": "dam-users",
+        "cq:lastModifiedBy": "admin",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "Users of the DAM system",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "DAM Users"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "dam-users",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          },
+          "allow1": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "dam-replication-service",
+            "rep:privileges": [
+              "rep:userManagement"
+            ]
+          }
+        }
+      }
+    },
+    "u": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+      "user-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "user-administrators",
+        "jcr:uuid": "429bbd5b-46a6-3c3d-808b-5fd4219d5c4d",
+        "rep:members": [
+          "6351fadd-c9a3-3e6d-ad53-ed1f28b552b0"
+        ],
+        "rep:authorizableId": "user-administrators",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "user-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "forms": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:02:19 GMT+0530",
+      "forms-power-users": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:19 GMT+0530",
+        "rep:principalName": "forms-power-users",
+        "jcr:uuid": "7da66560-c4a9-3ee7-86d2-d9a3beeb56d2",
+        "rep:authorizableId": "forms-power-users",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "AEM forms user group with additional priviledges such as write scripts and import XDPs etc.",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "forms-power-users"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "forms-power-users",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "forms-xfa-writers": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:19 GMT+0530",
+        "rep:principalName": "forms-xfa-writers",
+        "jcr:uuid": "9aece702-9553-3b91-91a3-0c500a37853d",
+        "rep:members": [
+          "7da66560-c4a9-3ee7-86d2-d9a3beeb56d2"
+        ],
+        "rep:authorizableId": "forms-xfa-writers",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "AEM forms user group having permissions to upload XDP",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "forms-xfa-users"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "forms-xfa-writers",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "rnc": {
+        "jcr:primaryType": "rep:AuthorizableFolder",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:19 GMT+0530",
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "fd-service",
+            "rep:privileges": [
+              "jcr:modifyAccessControl",
+              "rep:userManagement",
+              "jcr:readAccessControl",
+              "rep:write"
+            ]
+          }
+        }
+      },
+      "fd-administrators": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:19 GMT+0530",
+        "rep:principalName": "fd-administrators",
+        "jcr:uuid": "bc7b7e83-40a8-314f-b9ca-2c1e1b006275",
+        "rep:authorizableId": "fd-administrators",
+        "preferences": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq:Preferences"
+        },
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "fd-administrators"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "fd-administrators",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "forms-script-writers": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:02:19 GMT+0530",
+        "rep:principalName": "forms-script-writers",
+        "jcr:uuid": "c5ae7175-5837-38b7-a449-6b0ae85ddab0",
+        "rep:members": [
+          "7da66560-c4a9-3ee7-86d2-d9a3beeb56d2"
+        ],
+        "rep:authorizableId": "forms-script-writers",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "AEM forms user group having access to write scripts",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "forms-script-writers"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "forms-script-writers",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "e": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+      "everyone": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "everyone",
+        "jcr:uuid": "ed881bac-6397-3de3-bc0a-285c9f50bb83",
+        "rep:authorizableId": "everyone",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "aboutMe": "Built-in group automatically containing all existing users and groups. The list of members cannot be edited.",
+          "sling:resourceType": "cq/security/components/profile"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "everyone",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "experience-fragments-editors": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:01:22 GMT+0530",
+        "rep:principalName": "experience-fragments-editors",
+        "jcr:uuid": "4e764363-45fc-31da-97fe-c1a39cd18d67",
+        "rep:members": [
+          "94bf4658-721f-30ee-94b9-fd1931312de4",
+          "0c44d27b-ea6d-397a-873b-8d297617ba6d"
+        ],
+        "rep:authorizableId": "experience-fragments-editors",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "aboutMe": "The members of this group are allowed to create, updated and delete Experience Fragments and variations.",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Experience Fragments Editors"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "experience-fragments-editors",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    },
+    "c": {
+      "jcr:primaryType": "rep:AuthorizableFolder",
+      "jcr:createdBy": "admin",
+      "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+      "content-authors": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:35 GMT+0530",
+        "rep:principalName": "content-authors",
+        "jcr:uuid": "3ebb1c04-76dd-317e-a9ee-5164182bc390",
+        "sling:resourceType": "rep:Group",
+        "rep:members": [
+          "aa79250f-e000-3e3b-b0d8-d14c68ca99d0",
+          "79eb763f-4a7f-3772-ab8b-77278e3ae9f3",
+          "94bf4658-721f-30ee-94b9-fd1931312de4",
+          "6c618b3b-8147-3a1b-90c9-9f836678dfca",
+          "0c44d27b-ea6d-397a-873b-8d297617ba6d"
+        ],
+        "rep:authorizableId": "content-authors",
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "aboutMe": "The group responsible for content editing.",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Authors"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "content-authors",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      },
+      "contributor": {
+        "jcr:primaryType": "rep:Group",
+        "jcr:mixinTypes": [
+          "rep:AccessControllable"
+        ],
+        "jcr:createdBy": "admin",
+        "jcr:created": "Tue Feb 05 2019 14:00:09 GMT+0530",
+        "rep:principalName": "contributor",
+        "jcr:uuid": "bba23486-31bb-3ef0-a2b7-3dde6b38fdc1",
+        "rep:members": [
+          "429bbd5b-46a6-3c3d-808b-5fd4219d5c4d",
+          "ca58c408-fe06-357e-953c-2d23ffe1e096",
+          "9e0886fe-4848-3e28-922b-682d75533ef1",
+          "3ebb1c04-76dd-317e-a9ee-5164182bc390",
+          "d3c827d3-4db2-30cc-9c41-0ed8117dbaff",
+          "f5777a0b-a933-3b4d-9405-613d8bc39cc7",
+          "aa79250f-e000-3e3b-b0d8-d14c68ca99d0",
+          "a6a112a8-c046-3afc-8be2-fe331bba819a"
+        ],
+        "rep:authorizableId": "contributor",
+        "preferences": {
+          "jcr:primaryType": "nt:unstructured",
+          "sling:resourceType": "cq:Preferences"
+        },
+        "profile": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:mixinTypes": [
+            "rep:AccessControllable"
+          ],
+          "aboutMe": "Base group for all user and groups that must be able to access the authoring environment.",
+          "sling:resourceType": "cq/security/components/profile",
+          "givenName": "Contributors"
+        },
+        "rep:policy": {
+          "jcr:primaryType": "rep:ACL",
+          "allow": {
+            "jcr:primaryType": "rep:GrantACE",
+            "rep:principalName": "contributor",
+            "rep:privileges": [
+              "jcr:read"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

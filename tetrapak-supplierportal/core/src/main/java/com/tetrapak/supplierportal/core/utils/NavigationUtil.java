@@ -10,8 +10,8 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * The Class NavigationUtil.
@@ -72,7 +72,7 @@ public final class NavigationUtil {
      * @param childPage    child page
      */
     public static void populateLeftNavItems(ResourceResolver resolver, Resource resource,
-            List<LeftNavigationBean> leftNavItems, Page childPage) {
+            Collection<LeftNavigationBean> leftNavItems, Page childPage) {
         if (null != childPage && null != childPage.getContentResource()) {
             ValueMap valueMap = childPage.getContentResource().getValueMap();
             if (isNotHiddenInNavigation(valueMap)) {
