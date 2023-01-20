@@ -411,6 +411,9 @@
     &-rk-cti-language {
         &__modal-body {
             @include padding($padding-zero $padding-l $padding-l $padding-l);
+            p {
+                color: $color-text;
+            }
         }
     }
 }

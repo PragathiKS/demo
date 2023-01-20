@@ -23,7 +23,13 @@
     <div class="modal-content tp-modal-content">
       <div class="modal-header tpmol-modal-header">
         <div class="js-language-header tp-language-header tp-rk-preferred-language__modal-header"
-          auto_locator="headlineOverlay">{{i18n key=i18nKeys.rkCTI}}</div>
+          auto_locator="headlineOverlay">
+          {{#if noData}}
+            Request CTI
+          {{else}}
+            {{i18n key=i18nKeys.rkCTI}}
+          {{/if}}
+          </div>
         <button type="button" auto_locator="closebtnOverlay"
           class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
           <span class="sr-only">Close</span>
@@ -31,6 +37,26 @@
       </div>
       <div class="modal-body tp-modal-body tp-rk-cti-language__modal-body js-rk-cti">
         <div class="tp-rebuilding-details__content">
+          {{#if noData}}
+          <!-- When no CTI available | Request CTI -->
+          <div class="tp-rebuilding-details__request-cti">
+            <p>What Language Do You Want?</p>
+            <div class="tp-rebuilding-details__request-field">
+              {{> molecules/requestCtiDropdown/requestCtiDropdown
+              defaultValue="Select Language"
+              options=reqLanguages
+              name="requestCtiLanguage"
+              wrapClasses="tp-rebuilding-details__request-cti"
+              }}
+              <div class="error-msg">{{i18n key=i18nKeys.ctiDropdownError}}</div>
+            </div>
+            <button type="button" class="tpatom-link tpatom-link--primary js-request-translation tp-request-translation"
+              title="Request Translation">
+              <span class="tpatom-link__text sly-text">Request CTI</span>
+            </button>
+          </div>
+          {{else}}
+          <!-- When CTI available -->
           <ul class="tp-rebuilding-details__cti-list">
             {{#each ctiData}}
             <li>
@@ -42,7 +68,6 @@
             </li>
             {{/each}}
           </ul>
-
           <ul class="tp-rebuilding-details__cti-list bottom">
             {{#each ctiOther}}
             <li>
@@ -54,6 +79,7 @@
             </li>
             {{/each}}
           </ul>
+          <!-- Request More CTI -->
           <div class="tp-rebuilding-details__request-cti">
             <h3>{{i18n key=cuhu.myequipment.rkcti.requestanewtranslation}}</h3>
             <div class="tp-rebuilding-details__request-field">
@@ -70,6 +96,7 @@
               <span class="tpatom-link__text sly-text">{{i18n key=cuhu.myequipment.rkcti.requesttranslation}}</span>
             </button>
           </div>
+          {{/if}}
         </div>
         <div class="tp-rebuilding-details__success">
           <div class="tp-rebuilding-details__success-thankyou">
