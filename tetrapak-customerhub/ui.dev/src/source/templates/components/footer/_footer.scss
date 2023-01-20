@@ -10,15 +10,19 @@
         }
     }
     &__navigation-list {
-        @include margin-top($margin-zero);
+        @include margin-top($margin-xxxl);
 
         @media #{$desktop} {
+            @include margin-top($spacing-big);
             display: flex;
             flex-wrap: wrap;
             margin-top: 0;
         }
+
         &__item {
-            @include margin-bottom($margin-sm);
+            @include margin-bottom($margin-md);
+            @include margin(0);
+
             @media #{$desktop} {
                 @include margin-left($margin-l);
                 @include margin-bottom($margin-l);
@@ -29,31 +33,11 @@
                 }
             }
         }
-        &__link {
-            @include font-size($font-baseline);
-            @include line-height($font-l, $font-baseline);
-            color: $color-congress-blue;
-            font-weight: 500;
-
-            &:hover {
-                color: $color-sky-blue;
-            }
-        }
     }
 
     .tp_changeLangBtn {
         @media #{$desktop} {
             text-align: center;
-        }
-        .tp-footer__link {
-            @include font-size($font-baseline);
-            @include line-height($font-l, $font-baseline);
-            color: $color-congress-blue;
-            font-weight: 500;
-
-            &:hover {
-                color: $color-sky-blue;
-            }
         }
     }
 }

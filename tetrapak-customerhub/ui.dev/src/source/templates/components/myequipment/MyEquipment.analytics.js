@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { getI18n } from '../../../scripts/common/common';
 

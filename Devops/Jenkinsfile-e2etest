@@ -4,7 +4,7 @@ pipeline {
     agent {
         node {
         label 'cfe-deploy'
-       }
+i        }
     }
          triggers {
          cron('H 20 * * 1-5')
@@ -62,25 +62,28 @@ pipeline {
             }
         }
 
+        
 
-
-
+       
 
 }
 }
 
 
-
+   
 
 def buildandsonar() {
                 echo "Build ${appname}"
                 dir("tetrapak-${appname}/e2e.tests") {
-
+         
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
-                     sh   "mvn clean install sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}/e2e.tests  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**"
-                    }  
-    }
-}
+                    sh "mvn clean install sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}/e2e.tests  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**"
+                    }
+    
+
+
+
+
 
 

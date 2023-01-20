@@ -101,9 +101,6 @@
                                                     <Training jcr:primaryType="nt:unstructured"
                                                               text="Training"
                                                               value="icon-Training"/>
-                                                    <Question jcr:primaryType="nt:unstructured"
-                                                              text="Question"
-                                                              value="icon-Question"/>
                                                     <Collaboration jcr:primaryType="nt:unstructured"
                                                                    text="Collaboration"
                                                                    value="icon-Collaboration"/>
