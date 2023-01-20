@@ -64,7 +64,7 @@ function _getFolderData(stepKey, options) {
         showLoader: true
       }).done(res => {
         searchResults.hide();
-        
+
         let finalData = res.data;
         let srNo = '';
         if(stepKey === 'line') {
@@ -224,7 +224,7 @@ class TechnicalPublications {
     this.cache.$folderListingWrapper = this.root.find('.js-tech-pub__folder-listing');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.searchResults = this.root.find('.js-tech-pub__search-count');
-    
+
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
       countries: {},
@@ -322,7 +322,7 @@ class TechnicalPublications {
       const { folderNavData, searchResults } = $this.cache;
 
       searchResults.hide();
-      
+
       // set isCurrentPage after clicking on breadcrumb
       Object.entries(folderNavData).forEach(([key]) => {
         const stepObj = folderNavData[key];

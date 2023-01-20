@@ -230,7 +230,6 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
          *                      the SAX exception
          */
         @Override
-        @SuppressWarnings("deprecation")
         public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
             final AttributesImpl attributes = new AttributesImpl(atts);
             final String href = attributes.getValue(SupplierPortalConstants.HREF);
@@ -240,8 +239,9 @@ public class SupplierPortalLinkTransformerFactory implements TransformerFactory 
                 LOGGER.info("SupplierPortalLink Transformer processing valid : {}", href);
                 for (int i = 0; i < attributes.getLength(); i++) {
                     if (SupplierPortalConstants.HREF.equalsIgnoreCase(attributes.getQName(i))) {
-                        attributes.setValue(i,
-                                LinkUtil.sanitizeLink(attributes.getValue(i).replaceAll(SupplierPortalConstants.HTML_EXTENSION, ""), request));
+                        attributes.setValue(i, LinkUtil.sanitizeLink(
+                                attributes.getValue(i).replaceAll(SupplierPortalConstants.HTML_EXTENSION, ""),
+                                request));
                         break;
                     }
                 }

@@ -24,7 +24,7 @@ import java.util.Iterator;
  *
  * @author Nitin Kumar
  */
-public class GlobalUtil {
+public final class GlobalUtil {
 
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
@@ -33,6 +33,8 @@ public class GlobalUtil {
     private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
     private static final String NAVIGATION = "navigationconfiguration";
 
+    public GlobalUtil() {
+    }
     /**
      * Method to get service.
      *
