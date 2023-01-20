@@ -1,125 +1,165 @@
-<div class="tp-support-request tp-card" data-src_ispublishenvironment="true" data-submit-api="/content/tetrapak/customerhub/global/en/support-request/jcr:content/root/responsivegrid/addequipment.addequipment.json" data-module="SupportRequest">
-    <code class="d-none js-tp-support-request__config">{"submitSubtitle":"cuhu.addequipment.submit.subtitle","countryLabel":"cuhu.addequipment.details.country","machineSystemLabel":"cuhu.addequipment.details.machine","title":"cuhu.addequipment.title","addAnotherEquipmentLabel":"cuhu.addequipment.submit.add","dropdownPlaceholder":"cuhu.addequipment.details.dropdown.placeholder","detailsSubtitle":"If these details are not clear from your attached documents or photos, Tetra Pak will get in touch to understand what data to enter.","siteLabel":"cuhu.addequipment.details.site","manufactureOfAssetErrorMsg":"cuhu.addequipment.details.manufacture.asset.empty","manufactureModelNumberLabel":"cuhu.addequipment.details.manufacture.model","positionErrorMsg":"cuhu.addequipment.details.position.empty","equipmentStatusLabel":"cuhu.addequipment.details.status","subTitle":"Have added a new equipment to your installed base that is not showing up in your equipment list?","dragAndDropSubtitle":"cuhu.addequipment.dnd.subtitle","dragAndDropButton":"cuhu.addequipment.dnd.button","serialNumberErrorMsg":"cuhu.addequipment.serialnumber.empty","dragAndDropTitle":"cuhu.addequipment.dnd.title","equipmentDescriptionErrorMsg":"cuhu.addequipment.details.equipment.empty","constructionYearLabel":"cuhu.addequipment.details.construction","constructionYearErrorMsg":"cuhu.addequipment.details.construction.empty","dragAndDropDescription":"cuhu.addequipment.dnd.desc","commentsLabel":"cuhu.addequipment.details.comments","equipmentStatusErrorMsg":"cuhu.addequipment.details.status.empty","equipmentDescriptionLabel":"cuhu.addequipment.details.equipment","countryOfManufactureLabel":"cuhu.addequipment.details.manufacture.country","detailsTitle":"cuhu.addequipment.details.title","dragAndDropRemoveFileLabel":"cuhu.addequipment.dnd.remove","submitTitle":"cuhu.addequipment.submit.title","siteErrorMsg":"cuhu.addequipment.details.site.empty","positionLabel":"cuhu.addequipment.details.position","submitButtonLabel":"cuhu.addequipment.details.submit","lineErrorMsg":"cuhu.addequipment.details.line.empty","countryErrorMsg":"cuhu.addequipment.details.country.empty","countryOfManufactureErrorMsg":"cuhu.addequipment.details.manufacture.country.empty","manufactureOfAssetLabel":"cuhu.addequipment.details.manufacture.asset","serialNumberLabel":"cuhu.addequipment.serialnumber","lineLabel":"cuhu.addequipment.details.line"}</code>
-    <div class="tp-spinner js-tp-spinner d-none">
+<div class="tp-support-request tp-card" data-submit-api=".addequipment.html" data-module="SupportRequest">
+        <code class="d-none js-tp-support-request__config">{ "title": "Contact support", "subTitle": "Didn’t find an answer to your question? Please fill out the form and we will get back to you as soon as possible. ", "purposeContactHeading": "Purpose of contact", "onboardingMaintanance": "Onboarding and maintanace", "sourcingContracting": "Sourcing &amp; Contracting", "catalogues": "Catalogues", "purposeContactErrorMsg": "Please select a purpouse", "howHelpHeading": "How can we help you?", "describeQuery": "Describe your query", "queryPlaceholder": "Tell us, more in detail, about your query", "dragAndDropSubtitle": "Max file size: 10 MB", "dragAndDropButton": "Add file", "dragAndDropRemoveFileLabel": "Remove file", "contactInfoHeading": "Your contact information", "name": "Name", "emailAddress":"Email address", "companyLegalName":"Company legal name", "country": "Country", "city": "City", "phone": "Phone (Optional)", "otherInfoHeading":  "Other information", "otherInfoText": "When possible, share a little more information. This may help our support team to help you faster." ,"aribaNetworkId": "Ariba Network ID (optional)", "aribaAccountAdminEmail": "Ariba account administrator email (optional)", "tpContactEmail": "Tetra Pak account email (optional)", "equipmentDescriptionLabel": "Equipment description", "manufactureModelNumberLabel": "Manufacture model number (Optional)", "manufactureOfAssetLabel": "Manufacture of asset", "countryOfManufactureLabel": "Country of manufacture", "constructionYearLabel": "Construction year", "submitButtonLabel": "Send", "submitTitle": "Thank you! ", "submitSubtitle": "We will get back to you via email as soon as possible.", "sendAnotherSupportRequest": "Send another Support Request", "howHelpErrorMsg": "Please describe your query", "companyLegalNameErrorMsg": "please enter your company legal name", "countryErrorMsg": "Please enter your country", "cityErrorMsg": "Please enter your city", "phoneErrorMsg": "Please enter correct phone number", "adminEmailErrorMsg": "Please provide correct email", "contactEmailErrorMsg": "Please provide correct email", "nameVal": "Gustavo Common", "emailVal": "Gustavo.Common@supplier.com" }</code>
+        <div class="tp-spinner js-tp-spinner d-none">
+            
+  <div class="tpatom-loader js-loader">
+    
+  <div class="tpatom-loading-anim"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
-        <div class="tpatom-loader js-loader">
-
-            <div class="tpatom-loading-anim"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+  </div>
 
         </div>
-
+        <div class="js-tp-support-request__content-wrapper"><h1 class="tp-support-request__title js-tp-support-request__title">Contact support</h1>
+<p class="tp-support-request__subtitle">Didn’t find an answer to your question? Please fill out the form and we will get back to you as soon as possible. </p>
+<form class="tp-support-request__form" enctype="multipart/form-data">
+    <div class="row tp-support-request__section">
+        <div class="col-lg-11">
+            <h3>Purpose of contact</h3>
+            <div class="js-tp-support-request__form-element tp-support-request__section-content tp-support-request__form-element js-tp-support-request__toggle-mandatory">
+               <div class="tp-support-request__radio-row">
+                <div class="tpatom-radio-button">
+                    <input class="tpatom-radio-button__input tp-support-request__radio-input" type="radio" name="purposeOfContact" id="onboardingMaintanance" value="SAP Ariba - Onboarding and maintanace" required="">
+                        <label class="tpatom-radio-button__label  tp-support-request__radio-label" for="onboardingMaintanance">SAP Ariba - Onboarding and maintanace</label>
+                    <div class="form-check-radio"></div>
+                </div>                <p>Get support with registration, updating supplier information or similar</p>
+               </div>
+               <div class="tp-support-request__radio-row">
+                <div class="tpatom-radio-button">
+                    <input class="tpatom-radio-button__input tp-support-request__radio-input" type="radio" name="purposeOfContact" id="sourcing&amp;contacting" value="SAP Ariba - Sourcing &amp; Contracting" required="">
+                        <label class="tpatom-radio-button__label  tp-support-request__radio-label" for="sourcing&amp;contacting">SAP Ariba - Sourcing &amp; Contracting</label>
+                    <div class="form-check-radio"></div>
+                </div>                 <p>Get support with creating or maintaining catalogues</p>
+               </div>
+               <div class="tp-support-request__radio-row">
+                <div class="tpatom-radio-button">
+                    <input class="tpatom-radio-button__input tp-support-request__radio-input" type="radio" name="purposeOfContact" id="catalogues" value="SAP Ariba - Catalogues" required="">
+                        <label class="tpatom-radio-button__label  tp-support-request__radio-label" for="catalogues">SAP Ariba - Catalogues</label>
+                    <div class="form-check-radio"></div>
+                </div>                <p>Sourcing &amp; Contracting Get support with sending and responding to RFI/RFQs, participating in auctions, using electronic signatures or similar</p>
+               </div>
+            <div class="error-msg">Please select a purpouse</div>
+            </div>
+        </div>
     </div>
-    <div class="js-tp-support-request__content-wrapper"><h1 class="tp-support-request__title">Send new support request</h1>
-        <p class="tp-support-request__subtitle">Have you send already support request?</p>
-        <form class="tp-support-request__form">
-            <div class="row">
-                <div class="col-lg-3 tp-support-request__serial-number-wrapper js-tp-support-request__form-element tp-support-request__form-element">
-                    <label class="tpatom-input-box__text tp-support-request__field-label" for="supportRequestSerialNumber">Serial number</label>
+    <div class="row tp-support-request__section">
+        <div class="col-lg-11">
+            <h3>How can we help you?</h3>
+            <p class="tp-support-request__details-subtitle">Describe your query</p>
+            <div class="js-tp-support-request__form-element tp-support-request__form-element js-tp-support-request__toggle-mandatory">
+                <div class="tpatom-textarea-box">
+                
+                    <textarea name="howHelp" id="howHelp" class="tpatom-textarea-box__input" required="" placeholder="Tell us, more in detail, about your query..."></textarea>
+                </div>
+                <div class="error-msg">Please describe your query</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 tp-support-request__drag-and-drop-wrapper">
+            <div class="tp-support-request__drag-and-drop js-tp-support-request__drag-and-drop">
+                <button type="button" class="tpatom-btn tpatom-btn--transparent js-tp-support-request__drag-and-drop-button tp-support-request__drag-and-drop-button">
+                        <span class="tpatom-btn__text">Add file</span><i class="icon icon-Share"></i>
+                </button>
+                <p class="tp-support-request__drag-and-drop-subtitle">Max file size: 10 MB</p>
+                <div class="tp-support-request__file-error js-tp-support-request__file-error" hidden="">
+                    undefined
+                </div>
+                <div class="js-tp-support-request__drag-and-drop-files-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tp-support-request__section">
+        <div class="col-lg-8">
+            <h3>Your contact information</h3>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-disabled">
+                    <label class="tpatom-input-box__text tp-support-request__field-label disabled" for="name">Name</label>
+                <div class="tpatom-input-box">
+                    <input type="text" name="name" id="name" class="tpatom-input-box__input tp-support-request__field-input-disabled" value="Gustavo Common">
+                </div>
+                </div>
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-last tp-support-request__form-element-disabled">
+                    <label class="tpatom-input-box__text tp-support-request__field-label disabled" for="emailAddress">Email address</label>
+                <div class="tpatom-input-box">
+                    <input type="email" name="emailAddress" id="emailAddress" class="tpatom-input-box__input tp-support-request__field-input-disabled" value="Gustavo.Common@supplier.com">
+                </div>
+                </div>
+            </div> 
+            <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element js-tp-support-request__toggle-mandatory">
+                    <label class="tpatom-input-box__text tp-support-request__field-label" for="companyLegalName">Company legal name</label>
+                <div class="tpatom-input-box">
+                    <input type="text" name="companyLegalName" id="companyLegalName" class="tpatom-input-box__input tp-support-request__field-long-input" required="">
+                </div>
+                <div class="error-msg">please enter your company legal name</div>
+            </div>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element js-tp-support-request__toggle-mandatory">
+                        <label class="tpatom-input-box__text tp-support-request__field-label" for="country">Country</label>
                     <div class="tpatom-input-box">
-                        <input type="text" name="supportRequestSerialNumber" id="supportRequestSerialNumber" class="tpatom-input-box__input" placeholder="444454-44444" required="">
+                        <input type="text" name="country" id="country" class="tpatom-input-box__input" required="">
                     </div>
-                    <div class="error-msg">Enter serial number</div>
+                    <div class="error-msg">Please enter your country</div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 tp-support-request__drag-and-drop-wrapper">
-                    <div class="tp-support-request__drag-and-drop-description-wrapper">
-                        <p class="tp-support-request__drag-and-drop-description">Add photo or file to your equipment</p>
-                        <i class="icon-Info"></i>
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-last js-tp-support-request__toggle-mandatory">
+                        <label class="tpatom-input-box__text tp-support-request__field-label" for="city">City</label>
+                    <div class="tpatom-input-box">
+                        <input type="text" name="city" id="city" class="tpatom-input-box__input" required="">
                     </div>
-                    <div class="tp-support-request__drag-and-drop js-tp-support-request__drag-and-drop">
-                        <h2 class="tp-support-request__drag-and-drop-title">Upload a file</h2>
-                        <p class="tp-support-request__drag-and-drop-subtitle">Max file size: 10 MB</p>
-                        <button type="button" class="tpatom-btn tpatom-btn--transparent js-tp-support-request__drag-and-drop-button tp-support-request__drag-and-drop-button">
-                            <span class="tpatom-btn__text">Select a file</span><i class="icon icon-Plus"></i>
-                        </button>
-                        <div class="js-tp-support-request__drag-and-drop-files-container">    <div class="tp-support-request__drag-and-drop-file-container">
-                            <div class="tp-support-request__drag-and-drop-file-info-container">
-                                <i class="icon-PDF tp-support-request__drag-and-drop-file-icon tp-support-request__drag-and-drop-file-icon--file"></i>
-                                <p class="tp-support-request__drag-and-drop-file-name">File1.png (0.19 MB)</p>
-                            </div>
-                            <div class="tp-support-request__drag-and-drop-file-remove-container js-tp-support-request__drag-and-drop-file-remove-container" data-index="0">
-                                <i class="icon-My_Euipment_Bin_X tp-support-request__drag-and-drop-file-icon tp-support-request__drag-and-drop-file-icon--trash"></i>
-                                <p class="tp-support-request__drag-and-drop-file-remove">Remove file</p>
-                            </div>
-                        </div>
-                            <div class="tp-support-request__drag-and-drop-file-container">
-                                <div class="tp-support-request__drag-and-drop-file-info-container">
-                                    <i class="icon-PDF tp-support-request__drag-and-drop-file-icon tp-support-request__drag-and-drop-file-icon--file"></i>
-                                    <p class="tp-support-request__drag-and-drop-file-name">File2.png (0.16 MB)</p>
-                                </div>
-                                <div class="tp-support-request__drag-and-drop-file-remove-container js-tp-support-request__drag-and-drop-file-remove-container" data-index="1">
-                                    <i class="icon-My_Euipment_Bin_X tp-support-request__drag-and-drop-file-icon tp-support-request__drag-and-drop-file-icon--trash"></i>
-                                    <p class="tp-support-request__drag-and-drop-file-remove">Remove file</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="error-msg">Please enter your city</div>
+                </div>
+            </div>  
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                        <label class="tpatom-input-box__text tp-support-request__field-label" for="ownPhoneNumber">Phone (Optional)</label>
+                    <div class="tpatom-input-box">
+                        <input type="text" name="ownPhoneNumber" id="ownPhoneNumber" class="tpatom-input-box__input">
+                    </div>
+                    <div class="error-msg">Please enter correct phone number</div>
+                </div>
+            </div>     
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-lg-8">
+            <h3 class="tp-support-request__heading-space">Other information</h3>
+            <p class="tp-support-request__details-subtitle">When possible, share a little more information. This may help our support team to help you faster.</p>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                        <label class="tpatom-input-box__text tp-support-request__field-label" for="aribaNetworkId">Ariba Network ID (optional)</label>
+                    <div class="tpatom-input-box">
+                        <input type="text" name="aribaNetworkId" id="aribaNetworkId" class="tpatom-input-box__input">
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6 tp-support-request__details-wrapper">
-                    <div class="tp-support-request__details">
-                        <h2 class="tp-support-request__details-title">Details</h2>
-                        <p class="tp-support-request__details-subtitle">If these details are not clear from your attached documents or photos, Tetra Pak will get in touch to understand what data to enter.</p>
-                        <div class="js-tp-support-request__form-element tp-support-request__form-element">
-                            <label class="tpatom-input-box__text tp-support-request__field-label" for="supportRequestPosition">Position</label>
-                            <div class="tpatom-input-box">
-                                <input type="text" name="supportRequestPosition" id="supportRequestPosition" class="tpatom-input-box__input" required="">
-                            </div>
-                            <div class="error-msg">Enter position</div>
-                        </div>
-                        <div class="js-tp-support-request__form-element tp-support-request__form-element">
-                            <label class="tpatom-input-box__text tp-support-request__field-label" for="supportRequestMachineSystem">Machine system (Optional)</label>
-                            <div class="tpatom-input-box">
-                                <input type="text" name="supportRequestMachineSystem" id="supportRequestMachineSystem" class="tpatom-input-box__input">
-                            </div>
-                        </div>
-                        <div class="js-tp-support-request__form-element tp-support-request__form-element js-tp-support-request__toggle-mandatory">
-                            <label class="tpatom-input-box__text tp-support-request__field-label" for="supportRequestEquipmentDescription">Equipment description</label>
-                            <div class="tpatom-input-box">
-                                <input type="text" name="supportRequestEquipmentDescription" id="supportRequestEquipmentDescription" class="tpatom-input-box__input">
-                            </div>
-                            <div class="error-msg">Enter equipment description</div>
-                        </div>
-                        <div class="js-tp-support-request__form-element tp-support-request__form-element">
-                            <label class="tpatom-input-box__text tp-support-request__field-label" for="supportRequestManufactureModelNumber">Manufacture model number (Optional)</label>
-                            <div class="tpatom-input-box">
-                                <input type="text" name="supportRequestManufactureModelNumber" id="supportRequestManufactureModelNumber" class="tpatom-input-box__input">
-                            </div>
-                        </div>
-                        <div class="js-tp-support-request__form-element tp-support-request__form-element js-tp-support-request__toggle-mandatory">
-                            <label class="tpatom-input-box__text tp-support-request__field-label" for="supportRequestManufactureOfAsset">Manufacture of asset</label>
-                            <div class="tpatom-input-box">
-                                <input type="text" name="supportRequestManufactureOfAsset" id="supportRequestManufactureOfAsset" class="tpatom-input-box__input">
-                            </div>
-                            <div class="error-msg">Enter manufacture of asset</div>
-                        </div>
-                        <div class="js-tp-support-request__form-element tp-support-request__form-element js-tp-support-request__toggle-mandatory">
-                            <label class="tpatom-input-box__text tp-support-request__field-label" for="supportRequestConstructionYear">Construction year</label>
-                            <div class="tpatom-input-box">
-                                <input type="number" name="supportRequestConstructionYear" id="supportRequestConstructionYear" class="tpatom-input-box__input">
-                            </div>
-                            <div class="error-msg">Enter construction year</div>
-                        </div>
-                        <div class="js-tp-support-request__form-element tp-support-request__form-element">
-                            <div class="tpatom-textarea-box">
-                                <label class="tpatom-textarea-box__text tp-support-request__field-label" for="supportRequestComments">Comments (Optional)</label>
-
-                                <textarea name="supportRequestComments" id="supportRequestComments" class="tpatom-textarea-box__input"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="tpatom-btn tpatom-btn--primary tp-support-request__submit js-tp-support-request__submit">
-                            <span class="tpatom-btn__text">Submit</span><i class="icon icon-Chevron_Right"></i>
-                        </button>
+            </div>  
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                        <label class="tpatom-input-box__text tp-support-request__field-label" for="aribaAccountAdminEmail">Ariba account administrator email (optional)</label>
+                    <div class="tpatom-input-box">
+                        <input type="email" name="aribaAccountAdminEmail" id="aribaAccountAdminEmail" class="tpatom-input-box__input">
                     </div>
+                    <div class="error-msg">Please provide correct email</div>
                 </div>
-            </div>
-        </form>
-
-        <div class="tp-support-request__submit-title-wrapper">
+            </div> 
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                        <label class="tpatom-input-box__text tp-support-request__field-label" for="tpContactEmail">Tetra Pak account email (optional)</label>
+                    <div class="tpatom-input-box">
+                        <input type="email" name="tpContactEmail" id="tpContactEmail" class="tpatom-input-box__input">
+                    </div>
+                    <div class="error-msg">Please provide correct email</div>
+                </div>
+            </div>         
+        </div>
+    </div>
+    <button type="submit" class="tpatom-btn tpatom-btn--primary tp-support-request__submit js-tp-support-request__submit">
+            <span class="tpatom-btn__text">Send</span><i class="icon icon-Chevron_Right"></i>
+    </button>
+    
+</form>
+ <div class="tp-support-request__submit-title-wrapper">
             <i class="icon-Circle_filled_Tick tp-support-request__submit-title-icon"></i>
             <p class="tp-support-request__submit-title">Thank you!</p>
         </div>

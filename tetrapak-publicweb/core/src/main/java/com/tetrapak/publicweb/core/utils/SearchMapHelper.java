@@ -1,12 +1,14 @@
 package com.tetrapak.publicweb.core.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.day.cq.search.PredicateGroup;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -111,14 +113,18 @@ public final class SearchMapHelper {
      * @param pageParam            the page param
      * @param noOfResultsPerHit the no of results per hit
      */
-    public static void setCommonMap(String fulltextSearchTerm, Map<String, String> map, int pageParam,
+    public static void setCommonMap(String fulltextSearchTerm, String[] contentType, Map<String, String> map, int pageParam,
             int noOfResultsPerHit, int guessTotal) {
         if (StringUtils.isNotBlank(fulltextSearchTerm)) {
-            map.put("fulltext", "\"" + fulltextSearchTerm + "\"");
+            map.put("fulltext", fulltextSearchTerm);
         }
         map.put("p.guessTotal", String.valueOf(guessTotal));
         map.put("104_orderby", "@jcr:score");
-        map.put("105_orderby", "@jcr:content/articleDate");
+        if(ArrayUtils.isNotEmpty(contentType) && Boolean.TRUE.equals(isValidContentType(contentType)) && ArrayUtils.contains( contentType, "media" )){
+            map.put("105_orderby", "@jcr:content/jcr:lastModified");
+        }else{
+            map.put("105_orderby", "@jcr:content/articleDate");
+        }
         map.put("104_orderby.sort", "desc");
         map.put("105_orderby.sort", "desc");
 
@@ -247,6 +253,27 @@ public final class SearchMapHelper {
                 LOGGER.debug("No template available");
         }
         return templateList;
+    }
+
+    /**
+     * Checks if is valid content type.
+     *
+     * @param contentTypes
+     *            the content types
+     * @return the boolean
+     */
+    public static Boolean isValidContentType(String[] contentTypes) {
+        Boolean isValidContentType = false;
+        for (String contentType : contentTypes) {
+            if (PWConstants.NEWS.equalsIgnoreCase(contentType.toLowerCase())
+                    || PWConstants.EVENTS.equalsIgnoreCase(contentType)
+                    || PWConstants.PRODUCTS.equalsIgnoreCase(contentType)
+                    || PWConstants.CASES.equalsIgnoreCase(contentType)
+                    || PWConstants.MEDIA.equalsIgnoreCase(contentType)) {
+                isValidContentType = true;
+            }
+        }
+        return isValidContentType;
     }
 
 }
