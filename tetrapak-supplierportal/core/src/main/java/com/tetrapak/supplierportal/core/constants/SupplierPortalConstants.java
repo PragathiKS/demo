@@ -121,4 +121,41 @@ public final class SupplierPortalConstants {
     private SupplierPortalConstants() {
         throw new IllegalStateException("Utility class");
     }
+    
+    /**
+     * The Constant Support Request Form
+     */
+    public static final String SUPPORTREQUESTGENERALTITLE = "generalTitleLabel";
+    public static final String SUPPORTREQUESTGENERALSUBTITLE = "generalSubtitleLabel";
+    public static final String SUPPORTREQUESTPURPOSEOFCONTACT ="purposeOfContactLabel";
+    public static final String SUPPORTREQUESTPURPOSEERRORMSG ="purposeErrorMsgLabel";
+    public static final String SUPPORTREQUESTQUERYTITLE = "queryTitle";
+    public static final String SUPPORTREQUESTQUERYSUBTITLE = "querySubtitle";
+    public static final String SUPPORTREQUESTQUERYERRORMSG = "queryErrorMsgLabel";
+    public static final String SUPPORTREQUESTDRAGANDDROPTITLE = "dragAndDropTitle";
+    public static final String SUPPORTREQUESTDRAGANDDROPSUBTITLE = "dragAndDropSubtitle";
+    public static final String SUPPORTREQUESTFILEERRORMSG = "fileErrorMsg";
+    public static final String SUPPORTREQUESTFILEFORMATSUBTITLE = "fileFormatSubtitle";
+    public static final String SUPPORTREQUESTDRAGANDDROPBUTTONLABEL = "dragAndDropButtonLabel";
+    public static final String SUPPORTREQUESTDRAGANDDROPREMOVEFILE = "dragAndDropRemoveFileLabel";
+    public static final String SUPPORTREQUESTDETAILSTITLE = "detailsTitle";
+    public static final String SUPPORTREQUESTNAMELABEL ="nameLabel";
+    public static final String SUPPORTREQUESTEMAILLABEL = "emailLabel";
+    public static final String SUPPORTREQUESTCOMPANYERRORMSG = "companyErrorMsg";
+    public static final String SUPPORTREQUESTCOMPANYLABEL = "companyLabel";
+    public static final String SUPPORTREQUESTCOUNTRYLABEL = "countryLabel";
+    public static final String SUPPORTREQUESTCOUNTRYERRORMSG = "countryErrorMsg";
+    public static final String SUPPORTREQUESTCITYLABEL = "cityLabel";
+    public static final String SUPPORTREQUESTCITYERRORMSG = "cityErrorMsg";
+    public static final String SUPPORTREQUESTPHONELABEL = "phoneLabel";
+    public static final String SUPPORTREQUESTOTHERTITLE = "otherTitle";
+    public static final String SUPPORTREQUESTOTHERDESCRIPTIONLABEL = "otherDescriptionLabel";
+    public static final String SUPPORTREQUESTARABIANETWORKLABEL = "arabiaNetworkLabel";
+    public static final String SUPPORTREQUESTARABIAEMAILLABEL = "arabiaEmailLabel";
+    public static final String SUPPORTREQUESTTPEMAILLABEL = "tpEmailLabel";
+    public static final String SUPPORTREQUESTSENDBUTTONLABEL = "SendButtonLabel";
+    public static final String SUPPORTREQUESTTHANKYOUTITLE = "thankyouTitleLabel";
+    public static final String SUPPORTREQUESTTHANKYOUSUBTITLE = "thankyouSubtitleLabel";
+    public static final String SUPPORTREQUESTHOMEBUTTON = "homeButtonLabel";
+    
 }
