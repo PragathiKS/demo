@@ -22,13 +22,13 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="General title (i18N key)"
-                                name="./generalTitleLabel"
+                                name="./generalTitle"
                                 required="true"/>
                             <generalSubtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="General Subtitle (i18N key)"
-                                name="./generalSubtitleLabel"
+                                name="./generalSubtitle"
                                 required="true"/>
                             <purposeOfContactLabel
                                 jcr:primaryType="nt:unstructured"
@@ -227,13 +227,13 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Thankyou title (i18N key)"
-                                name="./thankyouTitleLabel"
+                                name="./thankyouTitle"
                                 required="true"/>
                             <thankyouSubtitle
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Thankyou subtitle (i18N key)"
-                                name="./thankyouSubtitleLabel"
+                                name="./thankyouSubtitle"
                                 required="true"/>
                             <homeButtonLabel
                                 jcr:primaryType="nt:unstructured"
