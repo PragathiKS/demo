@@ -124,6 +124,13 @@ class SupportRequest {
           });
         }
       });
+      // if(phoneNumberField.val() && !isValidPhoneNumber(phoneNumberField.val())) {
+      //   $this.addErrorMsg(phoneNumberField);
+      //   formErrors.push({
+      //     formErrorMessage: phoneNumberField.closest('.js-tp-support-request__form-element').find('.error-msg').text().trim(),
+      //     formErrorField: $(this).closest('.js-tp-support-request__form-element').find('.tp-support-request__field-label').text().trim()
+      //   });
+      // }
       if (!formErrors.length) {
         $this.cache.$contentWrapper.addClass('d-none');
         $this.cache.$spinner.removeClass('d-none');

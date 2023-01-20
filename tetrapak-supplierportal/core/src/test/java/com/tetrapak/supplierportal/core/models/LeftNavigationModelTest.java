@@ -23,6 +23,7 @@ public class LeftNavigationModelTest {
     public void setup() {
         aemContext.currentResource(CONTENT_ROOT);
         leftNavigationModel = aemContext.request().adaptTo(LeftNavigationModel.class);
+        System.out.println("");
     }
 
     @Test

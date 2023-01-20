@@ -5,9 +5,6 @@
     @media #{$desktop} {
         @include margin-top($margin-l);
     }
-    &__content {
-        @include margin-top($margin-zero);
-    }
 
     &__container {
         @include padding($padding-md);
@@ -44,9 +41,9 @@
         &__item {
             @include margin-bottom($margin-md);
             @media #{$desktop} {
-                display: block;
                 margin: 0 $margin-l;
                 margin-bottom: 0;
+                display: block;
             }
 
         }
