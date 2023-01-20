@@ -1,6 +1,16 @@
 $color-red: #ff0000;
 
 .tp-rk {
+    &__table_wrapper {
+        td {
+            &[data-key='serialNumber'] {
+                color: $color-congress-blue;
+            }
+            &[data-key='rkNumber'] {
+                color: $color-congress-blue;
+            }
+        }
+    }
     &__modal-content {
         max-height: 80vh;
 
