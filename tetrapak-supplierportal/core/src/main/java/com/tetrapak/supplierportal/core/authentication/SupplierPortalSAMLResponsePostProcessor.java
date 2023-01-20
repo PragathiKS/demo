@@ -38,7 +38,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static final Logger LOGGER = LoggerFactory.getLogger(SupplierPortalSAMLResponsePostProcessor.class);
     private static final int MAX_FIRSTLEVEL_CHILD_COUNT = 10;
     private static final String LOCATION_HEADER = "Location";
-    private static final String SAML_LOGIN = "saml_login";
+    private static final String SAML_LOGIN = "supplierportal/saml_login";
     private static final String TOKEN_VALUE = "accesstoken";
     private static final String SAML_RESPONSE = "SAMLResponse";
     private static final String EMPTY = "empty";
@@ -104,17 +104,22 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
 
     private static void setCustomerNameCookie(HttpServletResponse response, Map<String, String> attrMap)
             throws UnsupportedEncodingException {
-        String firstName = StringUtils.isNoneBlank(attrMap.get(FIRST_NAME)) ?
-                attrMap.get(FIRST_NAME) :
-                StringUtils.EMPTY;
-        String lastName = StringUtils.isNoneBlank(attrMap.get(LAST_NAME)) ? attrMap.get(LAST_NAME) : StringUtils.EMPTY;
+        String firstName = StringUtils.EMPTY;
+        if (StringUtils.isNoneBlank(attrMap.get(FIRST_NAME))) {
+            firstName = attrMap.get(FIRST_NAME);
+        }
+        String lastName = StringUtils.EMPTY;
+        if (StringUtils.isNoneBlank(attrMap.get(LAST_NAME))) {
+            lastName = attrMap.get(LAST_NAME);
+        }
+
         String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
 
         if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
             Cookie samlCookie = new Cookie(SupplierPortalConstants.COOKIE_NAME, customerName);
             samlCookie.setHttpOnly(true);
-            samlCookie.setPath("/");
             samlCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
+            samlCookie.setPath("/");
             response.addCookie(samlCookie);
         }
     }
