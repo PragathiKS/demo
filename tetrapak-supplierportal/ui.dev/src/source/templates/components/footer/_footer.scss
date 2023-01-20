@@ -5,9 +5,6 @@
     @media #{$desktop} {
         @include margin-top($margin-l);
     }
-    &__content {
-        @include margin-top($margin-zero);
-    }
 
     &__container {
         @include padding($padding-md);

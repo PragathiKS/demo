@@ -180,8 +180,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&lt;", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains("&gt;")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&gt;", StringUtils.EMPTY);
-                } else if (fulltextSearchTerm.contains("&quot;")) {
-                    fulltextSearchTerm = fulltextSearchTerm.replace("&quot;", "\"");
                 }
             }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
@@ -196,7 +194,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
             if (isValidRequest(contentType, themes, fulltextSearchTerm)) {
                 index = setContentMap(map, searchResultsModel, contentType, index);
-                SearchMapHelper.setCommonMap(fulltextSearchTerm, contentType, map, pageParam, noOfResultsPerHit, guessTotal);
+                SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
                 SearchMapHelper.setThemesPredicates(themes, tagsPredicateGroup, themeMap);
                 SearchMapHelper.filterGatedContent(map, index, searchResultsModel);
                 setSearchBean(request, map, tagsPredicateGroup, searchResultsModel);
@@ -239,7 +237,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         if (StringUtils.isBlank(searchTerm) && ArrayUtils.isEmpty(contentTypes) && ArrayUtils.isEmpty(themes)) {
             isValidRequest = false;
         }
-        if (ArrayUtils.isNotEmpty(contentTypes) && Boolean.FALSE.equals(SearchMapHelper.isValidContentType(contentTypes))) {
+        if (ArrayUtils.isNotEmpty(contentTypes) && Boolean.FALSE.equals(isValidContentType(contentTypes))) {
             isValidRequest = false;
         }
         if (ArrayUtils.isNotEmpty(themes) && Boolean.FALSE.equals(isValidThemeType(themes))) {
@@ -264,7 +262,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      */
     private int setContentMap(Map<String, String> map, SearchResultsModel searchResultsModel, String[] contentType,
             int index) {
-        if (ArrayUtils.isNotEmpty(contentType) && Boolean.TRUE.equals(SearchMapHelper.isValidContentType(contentType))) {
+        if (ArrayUtils.isNotEmpty(contentType) && Boolean.TRUE.equals(isValidContentType(contentType))) {
             for (String type : contentType) {
                 if (type.equalsIgnoreCase("media")) {
                     index = SearchMapHelper.setMediaMap(map, index, searchResultsModel);
@@ -279,7 +277,26 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         return index;
     }
 
-
+    /**
+     * Checks if is valid content type.
+     *
+     * @param contentTypes
+     *            the content types
+     * @return the boolean
+     */
+    private Boolean isValidContentType(String[] contentTypes) {
+        Boolean isValidContentType = false;
+        for (String contentType : contentTypes) {
+            if (PWConstants.NEWS.equalsIgnoreCase(contentType.toLowerCase())
+                    || PWConstants.EVENTS.equalsIgnoreCase(contentType)
+                    || PWConstants.PRODUCTS.equalsIgnoreCase(contentType)
+                    || PWConstants.CASES.equalsIgnoreCase(contentType)
+                    || PWConstants.MEDIA.equalsIgnoreCase(contentType)) {
+                isValidContentType = true;
+            }
+        }
+        return isValidContentType;
+    }
 
     /**
      * Checks if is valid theme type.

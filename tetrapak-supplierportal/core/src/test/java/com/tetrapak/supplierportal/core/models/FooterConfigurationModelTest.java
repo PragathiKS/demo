@@ -53,9 +53,10 @@ public class FooterConfigurationModelTest {
      * @throws Exception
      *             the exception
      */
-    @Test public void testSimpleLoadAndGetters() throws Exception {
-        assertEquals("Text should be: 'Link text 2'", "Link text 2", model.getFooterLinks().get(0).getLinkLabel());
-        assertEquals("Path should be: '/content/tetrapak/publicweb'","/content/tetrapak/publicweb", model.getFooterLinks().get(0).getLinkPath());
-
+    @Test
+    public void simpleLoadAndGettersTest() throws Exception {
+        assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
+        assertEquals("/content/tetrapak/publicweb", model.getFooterLinks().get(0).getLinkPath());
+        
     }
 }
