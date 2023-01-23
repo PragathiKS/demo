@@ -932,6 +932,12 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String CTI_TRANSLATION_DROPDOWN_ERROR = "rkReqCtiDropdownError";
 
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_REQUEST_TEXT = "rkRequestCTIText";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
+
 
 
     /**

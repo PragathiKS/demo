@@ -1914,4 +1914,13 @@
             jcr:mixinTypes="[sling:Message]"
             sling:key="cuhu.rebuildingkits.ctiDropdownError"
             sling:message="Please select one option"/>
+    <cuhu.rebuildingkits.requestCTIText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.requestCTIText"
+            sling:message="Request CTI"/>
+    <cuhu.rebuildingkits.whatLanguageWantText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.whatLanguageWantText"
+            sling:message="What Language Do You Want?"/>
+
 </jcr:root>

@@ -252,6 +252,12 @@ public class RebuildingKitDetailsModel {
     @ValueMapValue
     private String rkReqCtiDropdownError;
 
+    @ValueMapValue
+    private String rkRequestCTIText;
+
+    @ValueMapValue
+    private String rkReqWhatLanguageWantText;
+
 	/**
 	 * The rebuildingKitDetailsApi
 	 */
@@ -320,7 +326,8 @@ public class RebuildingKitDetailsModel {
         i18KeyMap.put(CustomerHubConstants.CTI_REQUEST_THANKYOU_TEXT, getRkReqCtiThankyoutext());
         i18KeyMap.put(CustomerHubConstants.CTI_REQUEST_THANKYOU_MESSAGE, getRkReqCtiThankyoumessage());
         i18KeyMap.put(CustomerHubConstants.CTI_TRANSLATION_DROPDOWN_ERROR, getRkReqCtiDropdownError());
-
+        i18KeyMap.put(CustomerHubConstants.CTI_REQUEST_TEXT, getRkRequestCTIText());
+        i18KeyMap.put(CustomerHubConstants.CTI_WHAT_LANGUAGE_REQUIRED_TEXT, getRkReqWhatLanguageWantText());
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
@@ -690,5 +697,13 @@ public class RebuildingKitDetailsModel {
 
     public String getRkReqCtiDropdownError() {
         return rkReqCtiDropdownError;
+    }
+
+    public String getRkRequestCTIText() {
+        return rkRequestCTIText;
+    }
+
+    public String getRkReqWhatLanguageWantText() {
+        return rkReqWhatLanguageWantText;
     }
 }
