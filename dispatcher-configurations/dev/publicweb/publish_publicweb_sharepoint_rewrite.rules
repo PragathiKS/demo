@@ -4558,3 +4558,7 @@ RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion/ingredi
 RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion/ingredient-doser/(tetra-pak-ingredient-doser-a3|tetra-pak-ingredient-doser-m3|tetra-pak-ingredient-doser-4000-a2)$\
         https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing/$2  [R=301,L]
 ###
+#####SMAR-30024#####
+RewriteRule     (.*)/campaigns/go-nature-go-carton/explore/watertree-project-malaysia$\
+        https://${PUBLICWEB_URL}$1/campaigns/go-nature-go-carton/home  [R=301,L]
+###
