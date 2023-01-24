@@ -1,11 +1,10 @@
-/* eslint-disable */
-import $ from "jquery";
-import "bootstrap";
-import { render } from "../../../scripts/utils/render";
-import { ajaxWrapper } from "../../../scripts/utils/ajax";
-import auth from "../../../scripts/utils/auth";
-import { ajaxMethods } from "../../../scripts/utils/constants";
-import { logger } from "../../../scripts/utils/logger";
+import $ from 'jquery';
+import 'bootstrap';
+import { render } from '../../../scripts/utils/render';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import auth from '../../../scripts/utils/auth';
+import { ajaxMethods } from '../../../scripts/utils/constants';
+import { logger } from '../../../scripts/utils/logger';
 
 /**
  * Fetch and render the Rebuilding kit Details
@@ -17,9 +16,9 @@ function _renderRebuildingKitDetailsBottom() {
   const { i18nKeys } = $this.cache;
 
   render.fn({
-    template: "rebuildingkitDetailsBottom",
+    template: 'rebuildingkitDetailsBottom',
     target: this.cache.$contenbottom,
-    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData },
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData }
   });
 }
 
@@ -29,9 +28,9 @@ function _renderRebuildingKitDetails() {
   const { i18nKeys } = $this.cache;
 
   render.fn({
-    template: "rebuildingkitDetails",
+    template: 'rebuildingkitDetails',
     target: $this.cache.$content,
-    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData },
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData }
   });
 }
 
@@ -45,87 +44,88 @@ function _renderCtiDocuments(langAvailable, otherLang, reqOtherLang) {
   if (!langAvailable) {
     const errorMessage ='No data in api';
     render.fn({
-      template: "rebuildingCtiDocuments",
+      template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
       data: {
         noData: true,
         i18nKeys: i18nKeys,
-        reqLanguages: reqOtherLang,
-      },
+        reqLanguages: reqOtherLang
+      }
     });
-    // $('.js-langcode').addClass('d-none');
-    const rkCTIModal = $(".js-rk-cti-modal");
-    $(".js-langcode").on("click", function (e) {
-      e.preventDefault();
-      rkCTIModal.modal("show");
-    });
-    $(".js-close-btn").on("click", function (e) {
-      e.preventDefault();
-      rkCTIModal.modal("hide");
-    });
-    $this.cache.$requestTranlation = rkCTIModal.find(".js-request-translation");
-    $this.cache.$reqCtiDrpdwn = rkCTIModal.find("#requestCtiLanguage");
-    $this.cache.$errMsg = rkCTIModal.find(".error-msg");
-    $this.cache.$ctiDocContainer = rkCTIModal.find(
-      ".tp-rebuilding-details__content"
-    );
-    $this.cache.$reqCtiSuccess = rkCTIModal.find(
-      ".tp-rebuilding-details__success"
-    );
 
-    $this.cache.$reqCtiSuccess.hide();
-    $this.cache.$requestTranlation.on("click", function () {
+    const rkCTIModal = $('.js-rk-cti-modal');
+    $this.cache.$requestTranlation = rkCTIModal.find('.js-request-translation');
+    $this.cache.$reqCtiDrpdwn = rkCTIModal.find('#requestCtiLanguage');
+    $this.cache.$errMsg = rkCTIModal.find('.error-msg');
+    $this.cache.$ctiDocContainer = rkCTIModal.find('.tp-rebuilding-details__content');
+    $this.cache.$reqCtiSuccess = rkCTIModal.find('.tp-rebuilding-details__success');
+
+    $('.js-langcode').on('click', function (e) {
+      e.preventDefault();
+      rkCTIModal.modal('show');
+      $this.cache.$ctiDocContainer.removeClass('d-none');
+      $this.cache.$reqCtiSuccess.addClass('d-none');
+    });
+    $('.js-close-btn').on('click', function (e) {
+      e.preventDefault();
+      rkCTIModal.modal('hide');
+      $this.cache.$ctiDocContainer.removeClass('d-none');
+      $this.cache.$reqCtiSuccess.addClass('d-none');
+    });
+    $this.cache.$ctiDocContainer.removeClass('d-none');
+    $this.cache.$reqCtiSuccess.addClass('d-none');
+    $this.cache.$requestTranlation.on('click', function () {
       const reqLang = $this.cache.$reqCtiDrpdwn.val();
-      console.log("Hiren Parmar | Request Translation", reqLang);
-      if (reqLang === "") {
-        $this.cache.$errMsg.addClass("error-msg--active");
+      if (reqLang === '') {
+        $this.cache.$errMsg.addClass('error-msg--active');
       } else {
-        if ($this.cache.$errMsg.hasClass("error-msg--active")) {
-          $this.cache.$errMsg.removeClass("error-msg--active");
+        if ($this.cache.$errMsg.hasClass('error-msg--active')) {
+          $this.cache.$errMsg.removeClass('error-msg--active');
         }
         $this.requestCtiLanguage(reqLang);
       }
     });
   } else {
     render.fn({
-      template: "rebuildingCtiDocuments",
+      template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
       data: {
         i18nKeys: i18nKeys,
         ctiData: langAvailable,
         ctiOther: otherLang,
-        reqLanguages: reqOtherLang,
-      },
+        reqLanguages: reqOtherLang
+      }
     });
 
-    const rkCTIModal = $(".js-rk-cti-modal");
-    $(".js-langcode").on("click", function (e) {
+    const rkCTIModal = $('.js-rk-cti-modal');
+    $this.cache.$requestTranlation = rkCTIModal.find('.js-request-translation');
+    $this.cache.$reqCtiDrpdwn = rkCTIModal.find('#requestCtiLanguage');
+    $this.cache.$errMsg = rkCTIModal.find('.error-msg');
+    $this.cache.$ctiDocContainer = rkCTIModal.find('.tp-rebuilding-details__content');
+    $this.cache.$reqCtiSuccess = rkCTIModal.find('.tp-rebuilding-details__success');
+
+    $('.js-langcode').on('click', function (e) {
       e.preventDefault();
-      rkCTIModal.modal("show");
+      rkCTIModal.modal('show');
+      $this.cache.$ctiDocContainer.removeClass('d-none');
+      $this.cache.$reqCtiSuccess.addClass('d-none');
     });
-    $(".js-close-btn").on("click", function (e) {
+    $('.js-close-btn').on('click', function (e) {
       e.preventDefault();
-      rkCTIModal.modal("hide");
+      rkCTIModal.modal('hide');
+      $this.cache.$ctiDocContainer.removeClass('d-none');
+      $this.cache.$reqCtiSuccess.addClass('d-none');
     });
 
-    $this.cache.$requestTranlation = rkCTIModal.find(".js-request-translation");
-    $this.cache.$reqCtiDrpdwn = rkCTIModal.find("#requestCtiLanguage");
-    $this.cache.$errMsg = rkCTIModal.find(".error-msg");
-    $this.cache.$ctiDocContainer = rkCTIModal.find(
-      ".tp-rebuilding-details__content"
-    );
-    $this.cache.$reqCtiSuccess = rkCTIModal.find(
-      ".tp-rebuilding-details__success"
-    );
-
-    $this.cache.$reqCtiSuccess.hide();
-    $this.cache.$requestTranlation.on("click", function () {
+    $this.cache.$ctiDocContainer.removeClass('d-none');
+    $this.cache.$reqCtiSuccess.addClass('d-none');
+    $this.cache.$requestTranlation.on('click', function () {
       const reqLang = $this.cache.$reqCtiDrpdwn.val();
-      if (reqLang === "") {
-        $this.cache.$errMsg.addClass("error-msg--active");
+      if (reqLang === '') {
+        $this.cache.$errMsg.addClass('error-msg--active');
       } else {
-        if ($this.cache.$errMsg.hasClass("error-msg--active")) {
-          $this.cache.$errMsg.removeClass("error-msg--active");
+        if ($this.cache.$errMsg.hasClass('error-msg--active')) {
+          $this.cache.$errMsg.removeClass('error-msg--active');
         }
         $this.requestCtiLanguage(reqLang);
       }
@@ -142,8 +142,8 @@ function _requestCtiLanguage(lang) {
       rkTbNumber: $rebuildingData.technicalBulletin,
       mcon: $rebuildingData.rkGeneralNumber,
       functionalLocation: $rebuildingData.location,
-      requestedCTILanguage: lang,
-    },
+      requestedCTILanguage: lang
+    }
   };
   $this.submitCTIemail(data);
 }
@@ -156,44 +156,44 @@ function _submitCTIemail(dataObj) {
     $requestTranlation,
     $reqCtiDrpdwn,
     $errMsg,
+    $spinner
   } = $this.cache;
-  $requestTranlation.prop("disabled", true);
+  $requestTranlation.prop('disabled', true);
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
         url: dataObj.apiURL,
         method: ajaxMethods.POST,
         cache: true,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
         data: JSON.stringify(dataObj.rkCTIdetails),
+        showLoader: true,
         beforeSend(jqXHR) {
           jqXHR.setRequestHeader(
-            "Authorization",
+            'Authorization',
             `Bearer ${authData.access_token}`
           );
-          jqXHR.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-          );
-        },
+        }
       })
       .done((response) => {
-        console.log("Response", response);
-        $requestTranlation.prop("disabled", false);
-        $ctiDocContainer.hide();
-        $reqCtiSuccess.show();
+        if (response.status === 202) {
+          $requestTranlation.prop('disabled', false);
+          $ctiDocContainer.addClass('d-none');
+          $reqCtiSuccess.removeClass('d-none');
+          $spinner.addClass('d-none');
+        }
       })
       .fail((e) => {
         logger.error(e);
-        $requestTranlation.prop("disabled", false);
-        $ctiDocContainer.show();
-        $reqCtiSuccess.hide();
-        $reqCtiDrpdwn.val("");
-        if ($errMsg.hasClass("error-msg--active")) {
-          $errMsg.removeClass("error-msg--active");
+        $requestTranlation.prop('disabled', false);
+        $ctiDocContainer.removeClass('d-none');
+        $reqCtiSuccess.addClass('d-none');
+        $reqCtiDrpdwn.val('');
+        $spinner.addClass('d-none');
+        if ($errMsg.hasClass('error-msg--active')) {
+          $errMsg.removeClass('error-msg--active');
         }
-        // this.showModalContent();
       });
   });
 }
@@ -202,26 +202,26 @@ function _getCtiDocuments() {
   const $this = this;
   const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
   // const rkRelease = 'TT3_2020_01_01';
-  if (rkRelease !== "") {
+  if (rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
           url: `https://api-dev.tetrapak.com/technicalbulletins/${rkRelease}/cti`,
           method: ajaxMethods.GET,
           cache: true,
-          dataType: "json",
-          contentType: "application/json",
+          dataType: 'json',
+          contentType: 'application/json',
           beforeSend(jqXHR) {
             jqXHR.setRequestHeader(
-              "Authorization",
+              'Authorization',
               `Bearer ${authData.access_token}`
             );
             jqXHR.setRequestHeader(
-              "Content-Type",
-              "application/x-www-form-urlencoded"
+              'Content-Type',
+              'application/x-www-form-urlencoded'
             );
           },
-          showLoader: true,
+          showLoader: true
         })
         .done((res) => {
           $this.cache.$ctiData = res.data[0];
@@ -230,11 +230,11 @@ function _getCtiDocuments() {
               (item) => {
                 if (
                   item.langCode === $this.cache.$currentLanguage ||
-                  item.langCode === "en"
+                  item.langCode === 'en'
                 ) {
-                  item["langDesc"] = $this.cache.langlist[item.langCode]
+                  item['langDesc'] = $this.cache.langlist[item.langCode]
                     ? $this.cache.langlist[item.langCode]
-                    : "";
+                    : '';
                   return item;
                 }
               }
@@ -243,13 +243,13 @@ function _getCtiDocuments() {
               (item) => {
                 if (
                   item.langCode === $this.cache.$currentLanguage ||
-                  item.langCode === "en"
+                  item.langCode === 'en'
                 ) {
                   return false;
                 } else {
-                  item["langDesc"] = $this.cache.langlist[item.langCode]
+                  item['langDesc'] = $this.cache.langlist[item.langCode]
                     ? $this.cache.langlist[item.langCode]
-                    : "";
+                    : '';
                   return item;
                 }
               }
@@ -267,14 +267,13 @@ function _getCtiDocuments() {
         })
         .fail((e) => {
           logger.error(e);
-          var objKeys = Object.keys($this.cache.langlist);
-          var objValues = Object.values($this.cache.langlist);
-
-          var reqOtherLang = [];
+          const objKeys = Object.keys($this.cache.langlist);
+          const objValues = Object.values($this.cache.langlist);
+          const reqOtherLang = [];
           objKeys.forEach((item, i) => {
-            var obj = {
+            const obj = {
               langCode: objKeys[i],
-              langDesc: objValues[i],
+              langDesc: objValues[i]
             };
             reqOtherLang.push(obj);
           });
@@ -291,10 +290,10 @@ function _getRebuildingKitDetails() {
   const urlParams = new URLSearchParams(window.location.search);
   let rkNumber, equipmentNumber;
   for (const [key, value] of urlParams) {
-    if (key === "rkNumber") {
+    if (key === 'rkNumber') {
       rkNumber = value;
     }
-    if (key === "equipment") {
+    if (key === 'equipment') {
       equipmentNumber = value;
     }
   }
@@ -305,23 +304,23 @@ function _getRebuildingKitDetails() {
         url: `${$this.cache.rebuildingdetailsApi}?rknumbers=${rkNumber}&equipmentnumber=${equipmentNumber}`,
         method: ajaxMethods.GET,
         cache: true,
-        dataType: "json",
-        contentType: "application/json",
+        dataType: 'json',
+        contentType: 'application/json',
         beforeSend(jqXHR) {
           jqXHR.setRequestHeader(
-            "Authorization",
+            'Authorization',
             `Bearer ${authData.access_token}`
           );
           jqXHR.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
+            'Content-Type',
+            'application/x-www-form-urlencoded'
           );
         },
-        showLoader: true,
+        showLoader: true
       })
       .done((res) => {
-        $this.cache.$contentWrapper.removeClass("d-none");
-        $this.cache.$spinner.addClass("d-none");
+        $this.cache.$contentWrapper.removeClass('d-none');
+        $this.cache.$spinner.addClass('d-none');
         $this.cache.$rebuildingData = res.data[0];
         $this.renderRebuildingKitDetails();
         this.getCtiDocuments();
@@ -340,20 +339,20 @@ class Rebuildingkitdetails {
   cache = {};
   initCache() {
     this.cache.configJson = this.root
-      .find(".js-rebuilding-details__config")
+      .find('.js-rebuilding-details__config')
       .text();
     this.cache.$contentWrapper = this.root.find(
-      ".tp-rk-detail__content-wrapper"
+      '.tp-rk-detail__content-wrapper'
     );
-    this.cache.rebuildingdetailsApi = this.root.data("rebuilding-details-api");
-    this.cache.apiURL = this.root.data("preferred-language-api");
-    this.cache.apiCTI = this.root.data("cti-api");
-    this.cache.apiRequestCTI = this.root.data("request-cti-api");
-    this.cache.$content = this.root.find(".js-rebuilding-details__content");
+    this.cache.rebuildingdetailsApi = this.root.data('rebuilding-details-api');
+    this.cache.apiURL = this.root.data('preferred-language-api');
+    this.cache.apiCTI = this.root.data('cti-api');
+    this.cache.apiRequestCTI = this.root.data('request-cti-api');
+    this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
-      ".js-rebuilding-details__contentbottom"
+      '.js-rebuilding-details__contentbottom'
     );
-    this.cache.$contentdocs = $(".tp-rebuilding-details__ctidocs");
+    this.cache.$contentdocs = $('.tp-rebuilding-details__ctidocs');
     this.cache.languagesList = $('input[name="preferredlanguage"]');
     this.cache.$currentLanguage = $(
       'input[name="preferredlanguage"]:checked'
@@ -368,8 +367,8 @@ class Rebuildingkitdetails {
     const $this = this;
     this.cache.langlist = {};
     $.each(this.cache.languagesList, function (index, element) {
-      const lcode = $(element).data("langcode");
-      const ldesc = $(element).data("langdesc");
+      const lcode = $(element).data('langcode');
+      const ldesc = $(element).data('langdesc');
       $this.cache.langlist[`${lcode}`] = ldesc;
     });
     try {
@@ -390,31 +389,31 @@ class Rebuildingkitdetails {
           url: newURL,
           method: ajaxMethods.POST,
           cache: true,
-          dataType: "json",
-          contentType: "application/json",
+          dataType: 'json',
+          contentType: 'application/json',
           beforeSend(jqXHR) {
             jqXHR.setRequestHeader(
-              "Authorization",
+              'Authorization',
               `Bearer ${authData.access_token}`
             );
             jqXHR.setRequestHeader(
-              "Content-Type",
-              "application/x-www-form-urlencoded"
+              'Content-Type',
+              'application/x-www-form-urlencoded'
             );
-          },
+          }
         })
         .done((res) => {
-          if (res.status === "success") {
+          if (res.status === 'success') {
             this.cache.$currentLanguage = updatedLang;
             $preferredLangLink.text(langlist[updatedLang]);
-            $modal.modal("hide");
+            $modal.modal('hide');
             $this.getCtiDocuments();
           }
-          $(btn).removeAttr("disabled");
+          $(btn).removeAttr('disabled');
         })
         .fail((e) => {
           logger.error(e);
-          $(btn).removeAttr("disabled");
+          $(btn).removeAttr('disabled');
         });
     });
   }
@@ -436,9 +435,6 @@ class Rebuildingkitdetails {
   requestCtiLanguage() {
     return _requestCtiLanguage.apply(this, arguments);
   }
-  initCTIModal() {
-    return _initCTIModal.apply(this, arguments);
-  }
   submitCTIemail() {
     return _submitCTIemail.apply(this, arguments);
   }
@@ -448,16 +444,16 @@ class Rebuildingkitdetails {
     const { $preferredLangLink, $modal, $closeBtn, $applyLanguage } =
       this.cache;
 
-    $preferredLangLink.on("click", function (e) {
+    $preferredLangLink.on('click', function (e) {
       e.preventDefault();
-      $modal.modal("show");
+      $modal.modal('show');
     });
-    $applyLanguage.on("click", function () {
-      $(this).attr("disabled", "disabled");
+    $applyLanguage.on('click', function () {
+      $(this).attr('disabled', 'disabled');
       $this.changePreferredLanguage(this);
     });
-    $closeBtn.on("click", function () {
-      $modal.modal("hide");
+    $closeBtn.on('click', function () {
+      $modal.modal('hide');
     });
   }
 
