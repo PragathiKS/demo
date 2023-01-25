@@ -1,0 +1,46 @@
+.tp-footer {
+    @include margin($margin-l $margin-zero);
+    @media #{$desktop} {
+        @include margin($margin-l $margin-zero);
+    }
+    &__content {
+        @include margin-top($margin-zero);
+    }
+    &__link {
+        &:hover,
+        &:active {
+            text-decoration: none;
+        }
+    }
+    &__navigation-list {
+        @include margin-top($margin-xxxl);
+
+        @media #{$desktop} {
+            @include margin-top($spacing-big);
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 0;
+        }
+
+        &__item {
+            @include margin-bottom($margin-md);
+            @include margin(0);
+
+            @media #{$desktop} {
+                @include margin-left($margin-l);
+                @include margin-bottom($margin-l);
+                display: block;
+
+                &:first-child {
+                    @include margin-left($margin-zero);
+                }
+            }
+        }
+    }
+
+    .tp_changeLangBtn {
+        @media #{$desktop} {
+            text-align: center;
+        }
+    }
+}
