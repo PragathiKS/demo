@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/supplierportal/components" mode="update"/>
+    <filter root="/apps/supplierportal/ac-config" mode="replace"/>
+    <filter root="/apps/supplierportal/config.author" mode="replace"/>
+    <filter root="/apps/supplierportal/config.publish" mode="replace"/>
+    <filter root="/apps/supplierportal/config.dev.publish" mode="replace"/>
+    <filter root="/apps/supplierportal/config.qa.publish" mode="replace"/>
+    <filter root="/apps/supplierportal/config.stage.publish" mode="replace"/>
+    <filter root="/apps/supplierportal/config.prod.publish" mode="replace"/>
+    <filter root="/apps/supplierportal/clientlibs" mode="update"/>
+    <filter root="/apps/supplierportal/config" mode="replace"/>
+    <filter root="/apps/supplierportal/i18n">
+        <exclude pattern="/apps/supplierportal/i18n(/.*)?"/>
+    </filter>
+</workspaceFilter>

@@ -1,0 +1,339 @@
+.tp-accordion {
+    display: flex;
+    flex-direction: column;
+
+    .tp-container & {
+        @include padding($padding-md);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    &__events {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+
+        @media #{$desktop} {
+            @include padding-right($padding-l);
+            padding-left: 0;
+        }
+    }
+
+
+    &__heading {
+        @include font-size($font-l);
+        @include line-height($padding-xxl, $font-m-xl);
+        @media #{$desktop} {
+            @include font-size($font-xl);
+            @include line-height($padding-xxl, $font-xl);
+            font-weight: 700;
+        }
+    }
+
+    &__event {
+        @include line-height($font-l, $font-baseline);
+        display: block;
+        color: $color-tundora;
+        background-color: transparent;
+        border-top: 1px solid $color-mercury;
+        border-bottom: 1px solid $color-mercury;
+        margin-top: -1px;
+        position: relative;
+        width: 100%;
+        text-align: left;
+        transition: ease-in-out 0.3s;
+
+        &:first-child {
+            border-top: 0;
+        }
+
+        .tp-accordion__event-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        div {
+            @include padding($padding-md $margin-xl $padding-md $padding-md);
+
+            @media #{$desktop} {
+                @include padding($padding-md);
+            }
+        }
+
+        &:first-of-type {
+            @include margin-top($margin-md);
+        }
+
+        &:last-of-type.collapsed {
+            @media #{$mobile} {
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+
+        .icon-Chevron_Down {
+            @include right($margin-md);
+            @include width($spacing-big-half);
+            @include height($spacing-big-half);
+            @include font-size($font-sm);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            transition: transform $anim-speed-quick $anim-ease;
+            transform: rotate(180deg);
+
+            @media #{$desktop} {
+                @include right($margin-md);
+            }
+
+            &::before {
+                vertical-align: top;
+            }
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+        }
+
+        &.collapsed {
+            .tp-accordion__event-title {
+                font-weight: 400;
+            }
+            .icon-Chevron_Down {
+                transform: rotate(0);
+            }
+            @media #{$mobile} {
+                border-color: $color-mercury;
+            }
+        }
+
+        &:not(.collapsed) {
+            background: $color-wild-sand;
+            border-bottom: 0;
+
+            @media #{$mobile} {
+                color: $color-tundora;
+            }
+
+            .icon-Chevron_Down {
+                @media #{$mobile} {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+
+    &__event-detail-wrapper {
+        @include padding($padding-md);
+        background-color: $color-wild-sand;
+    }
+
+    &-detail-wrapper {
+        background: $color-wild-sand;
+        padding: 1rem;
+        .tp-accordion-detail {
+            .tp-accordion__event-detail-description {
+                li {
+                    display: table-row;
+                }
+                h1 {
+                    @include font-size($font-l);
+                    @include margin-bottom($margin-md);
+                    @include line-height($font-l, $font-m-xl);
+                    font-weight: 300;
+                }
+                h2 {
+                    @include font-size($font-md);
+                    @include line-height($font-l, $font-md);
+                    @include margin-bottom($margin-md);
+                }
+                h3 {
+                    @include font-size($font-l);
+                    @include line-height($font-xl, $font-l);
+                    @include margin-bottom($margin-md);
+                    font-weight: 400;
+                }
+                h4 {
+                    @include font-size($font-m-md);
+                    @include margin-bottom($margin-md);
+                    @include line-height($font-m-xl, $font-m-md);
+                    font-weight: 500;
+                }
+                p {
+                    @include font-size($font-baseline);
+                    @include line-height($font-m-xl, $font-l);
+                    @include margin-bottom($margin-md);
+                    font-weight: 400;
+                }
+                small {
+                    @include font-size($font-baseline);
+                    @include line-height($font-l, $font-baseline);
+                    @include margin-bottom($margin-md);
+                    font-weight: 500;
+                }
+                ol,
+                ul {
+                    @include margin-bottom(8px);
+                    @include padding-left($padding-xxl);
+                }
+                ul {
+                    display: table;
+                    li {
+                        &::before {
+                            @include padding-right($padding-sm);
+                            display: table-cell;
+                            color: $color-tundora;
+                            content: '\2022';
+                        }
+                    }
+                }
+                ol {
+                    display: table;
+                    counter-reset: section;
+                    list-style-type: none;
+                    li {
+                        &::before {
+                            @include margin-right($margin-sm);
+                            @include font-size($font-baseline);
+                            @include padding-right($padding-sm);
+                            display: table-cell;
+                            content: counters(section, '.') ' ';
+                            counter-increment: section;
+                        }
+                    }
+                }
+                ol ol,
+                ul ul {
+                    @include padding(0 0 0 20px);
+                }
+                ul > li > ul,
+                ol > li > ol {
+                    @include margin-bottom($margin-zero);
+                    :last-child {
+                        @include padding-bottom($padding-zero);
+                    }
+                }
+                ul li,
+                ol li {
+                    @include font-size($font-baseline);
+                    @include padding-bottom($padding-md);
+                    &::before {
+                        color: $color-tundora;
+                    }
+                    &:last-child {
+                        @include padding-bottom($padding-zero);
+                    }
+                    li {
+                        @include padding-bottom($padding-sm);
+                    }
+                }
+                ol li ol,
+                ul li ul {
+                    @include padding-top($padding-md);
+                }
+                ul ul ul {
+                    li {
+                        @include font-size($font-sm);
+                        @include padding-bottom($padding-sm);
+                        &::before {
+                            content: '\2012';
+                            font-weight: 400;
+                        }
+                    }
+                }
+                ol ol ol {
+                    @include padding-left(28px);
+                    li {
+                        @include font-size($font-sm);
+                        @include padding-bottom($padding-sm);
+                    }
+                }
+                table {
+                    @include margin-bottom($margin-l);
+                    display: block;
+                    border-collapse: collapse;
+                    overflow-x: auto;
+                    width: 100%;
+                    // sass-lint:disable no-vendor-prefixes
+                    &::-webkit-scrollbar {
+                        -webkit-appearance: none;
+                        &:horizontal {
+                            height: 11px;
+                        }
+                    }
+                    // sass-lint:disable no-vendor-prefixes
+                    &::-webkit-scrollbar-thumb {
+                        border: 2px solid $color-white;
+                        border-radius: 8px;
+                        background-color: $color-light-gray;
+                    }
+                    // sass-lint:disable no-vendor-prefixes
+                    &::-webkit-scrollbar-track {
+                        background-color: $color-white;
+                        border-radius: 8px;
+                    }
+                    tbody {
+                        display: table;
+                        width: 100%;
+                    }
+                    th {
+                        @include padding-top(9px);
+                        @include padding-bottom(9px);
+                        border-bottom: 1px solid $color-black;
+                        font-weight: 500;
+                    }
+                    td {
+                        @include padding-top(11px);
+                        @include padding-bottom(11px);
+                        border-bottom: 1px solid $color-mercury;
+                    }
+                    td,
+                    th {
+                        @include padding-left($padding-sm);
+                        @include padding-right(14px);
+                        white-space: pre-wrap;
+                    }
+                }
+                @media #{$desktop} {
+                    h1 {
+                        @include font-size($font-xl);
+                        @include line-height($font-d-xl, $font-xl);
+                        font-weight: 700;
+                    }
+                    h2 {
+                        @include font-size($font-l);
+                        @include line-height($font-xl, $font-l);
+                    }
+                    h3 {
+                        @include font-size($font-md);
+                        @include line-height($font-l, $font-md);
+                        font-weight: 400;
+                    }
+                    h4 {
+                        @include font-size($font-md);
+                        @include line-height(48px, $font-md);
+                        font-weight: 500;
+                    }
+                    p {
+                        @include font-size($font-baseline);
+                        @include line-height($font-l, $font-baseline);
+                        font-weight: 400;
+                    }
+                    small {
+                        @include font-size($font-sm);
+                        @include line-height($font-m-md, $font-sm);
+                        @include margin-bottom($margin-l);
+                    }
+                    ol,
+                    ul {
+                        @include margin-bottom($margin-l);
+                    }
+                    table,
+                    p {
+                        @include margin-bottom($margin-md);
+                    }
+                }
+            }
+        }
+    }
+}
