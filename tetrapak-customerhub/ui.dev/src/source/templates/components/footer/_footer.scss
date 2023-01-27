@@ -1,5 +1,5 @@
 .tp-footer {
-    @include margin($margin-zero $margin-zero $margin-l $margin-zero);
+    @include margin($margin-l $margin-zero $margin-l $margin-zero);
     &__content {
         @include margin-top($margin-zero);
     }
