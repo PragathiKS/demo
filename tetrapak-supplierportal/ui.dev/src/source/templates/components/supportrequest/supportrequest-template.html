@@ -1,9 +1,7 @@
 <sly data-sly-template.supportrequest_template="${@data, flag}">
     <div class="tp-support-request tp-card"
          data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
-         data-subtitle="${data.subTitle}"
-         data-details-subtitle="${data.detailsSubtitle}"
-         data-submit-api="${data.mappedResourcePath}.addequipment.html"
+         data-submit-api="${data.mappedResourcePath}.supportrequest.html"
          data-module="SupportRequest">
         <code class="d-none js-tp-support-request__config">${data.i18nKeys}</code>
         <div class="tp-spinner js-tp-spinner">
