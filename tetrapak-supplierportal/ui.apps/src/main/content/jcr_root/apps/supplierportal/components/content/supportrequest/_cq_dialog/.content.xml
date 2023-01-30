@@ -171,6 +171,12 @@
                                 fieldLabel="Phone Number Label (i18N key)"
                                 name="./phoneLabel"
                                 required="true"/>
+                            <phoneErrorMsg
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Phone error message (i18N key)"
+                                name="./phoneErrorMsg"
+                                required="true"/>
                         </items>
                     </column3>
                     <column4
@@ -191,23 +197,35 @@
                                 fieldLabel="Other description Label (i18N key)"
                                 name="./otherDescriptionLabel"
                                 required="true"/>
-                            <arabiaNetworkLabel
+                            <aribaNetworkLabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Arabia Network label (i18N key)"
-                                name="./arabiaNetworkLabel"
+                                fieldLabel="Ariba Network label (i18N key)"
+                                name="./aribaNetworkLabel"
                                 required="true"/>
-                            <arabiaEmailLabel
+                            <aribaEmailLabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Arabia Email Label"
-                                name="./arabiaEmailLabel"
+                                fieldLabel="Ariba Email Label"
+                                name="./aribaEmailLabel"
+                                required="true"/>
+                            <aribaEmailErrorMsg
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Ariba Email Error Label"
+                                name="./aribaEmailErrorMsg"
                                 required="true"/>
                             <tpEmailLabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Tetrapak Email label (i18N key)"
                                 name="./tpEmailLabel"
+                                required="true"/>
+                            <tpEmailErrorMsg
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Tetrapak Email Error label (i18N key)"
+                                name="./tpEmailErrorMsg"
                                 required="true"/>
                             <sendButtonLabel
                                 jcr:primaryType="nt:unstructured"
