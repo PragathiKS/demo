@@ -8,9 +8,11 @@ import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
@@ -23,7 +25,7 @@ public class SupportRequestFormModel {
 	private Resource resource;
 
 	/** The site label. */
-	@Inject
+	@ValueMapValue
 	private String generalTitleLabel;
 
 	@Inject
@@ -91,6 +93,9 @@ public class SupportRequestFormModel {
 
 	@Inject
 	private String phoneLabel;
+	
+	@Inject
+	private String phoneErrorMsg;
 
 	@Inject
 	private String otherTitle;
@@ -99,13 +104,19 @@ public class SupportRequestFormModel {
 	private String otherDescriptionLabel;
 
 	@Inject
-	private String arabiaNetworkLabel;
+	private String aribaNetworkLabel;
 
 	@Inject
-	private String arabiaEmailLabel;
+	private String aribaEmailLabel;
+	
+	@Inject
+	private String aribaEmailErrorMsg;
 
 	@Inject
 	private String tpEmailLabel;
+
+	@Inject
+	private String tpEmailErrorMsg;
 
 	@Inject
 	private String SendButtonLabel;
@@ -319,20 +330,20 @@ public class SupportRequestFormModel {
 		this.otherDescriptionLabel = otherDescriptionLabel;
 	}
 
-	public String getArabiaNetworkLabel() {
-		return arabiaNetworkLabel;
+	public String getAribaNetworkLabel() {
+		return aribaNetworkLabel;
 	}
 
-	public void setArabiaNetworkLabel(String arabiaNetworkLabel) {
-		this.arabiaNetworkLabel = arabiaNetworkLabel;
+	public void setAribaNetworkLabel(String aribaNetworkLabel) {
+		this.aribaNetworkLabel = aribaNetworkLabel;
 	}
 
-	public String getArabiaEmailLabel() {
-		return arabiaEmailLabel;
+	public String getAribaEmailLabel() {
+		return aribaEmailLabel;
 	}
 
-	public void setArabiaEmailLabel(String arabiaEmailLabel) {
-		this.arabiaEmailLabel = arabiaEmailLabel;
+	public void setAribaEmailLabel(String aribaEmailLabel) {
+		this.aribaEmailLabel = aribaEmailLabel;
 	}
 
 	public String getTpEmailLabel() {
@@ -374,6 +385,30 @@ public class SupportRequestFormModel {
 	public void setHomeButtonLabel(String homeButtonLabel) {
 		this.homeButtonLabel = homeButtonLabel;
 	}
+	
+	public String getPhoneErrorMsg() {
+		return phoneErrorMsg;
+	}
+
+	public void setPhoneErrorMsg(String phoneErrorMsg) {
+		this.phoneErrorMsg = phoneErrorMsg;
+	}
+
+	public String getAribaEmailErrorMsg() {
+		return aribaEmailErrorMsg;
+	}
+
+	public void setAribaEmailErrorMsg(String aribaEmailErrorMsg) {
+		this.aribaEmailErrorMsg = aribaEmailErrorMsg;
+	}
+
+	public String getTpEmailErrorMsg() {
+		return tpEmailErrorMsg;
+	}
+
+	public void setTpEmailErrorMsg(String tpEmailErrorMsg) {
+		this.tpEmailErrorMsg = tpEmailErrorMsg;
+	}
 
 	/** The i 18 n keys. */
 	private String i18nKeys;
@@ -387,6 +422,16 @@ public class SupportRequestFormModel {
 		return i18nKeys;
 	}
 
+	/**
+     * Gets the Mapped Path of this resource.
+     *
+     * @return the mappedPath
+     */
+    public String getMappedResourcePath() {
+        ResourceResolver resolver = resource.getResourceResolver();
+        return resolver.map(resource.getPath());
+    }
+    
 	/**
 	 * init method.
 	 */
@@ -417,11 +462,14 @@ public class SupportRequestFormModel {
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCITYLABEL, getCityLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCITYERRORMSG, getCityErrorMsg());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTPHONELABEL, getPhoneLabel());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTPHONEERRORMSG, getPhoneErrorMsg());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTOTHERTITLE, getOtherTitle());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTOTHERDESCRIPTIONLABEL, getOtherDescriptionLabel());
-		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTARABIANETWORKLABEL, getArabiaNetworkLabel());
-		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTARABIAEMAILLABEL, getArabiaEmailLabel());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTARIBANETWORKLABEL, getAribaNetworkLabel());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTARIBAEMAILLABEL, getAribaEmailLabel());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTARIBAEMAILERRORMSG, getAribaEmailErrorMsg());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTTPEMAILLABEL, getTpEmailLabel());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTTPEMAILERRORMSG, getTpEmailErrorMsg());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTSENDBUTTONLABEL, getSendButtonLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTTHANKYOUTITLE, getThankyouTitleLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTTHANKYOUSUBTITLE, getThankyouSubtitleLabel());
