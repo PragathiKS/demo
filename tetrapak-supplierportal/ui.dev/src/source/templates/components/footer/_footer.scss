@@ -44,8 +44,8 @@
         &__item {
             @include margin-bottom($margin-md);
             @media #{$desktop} {
-                margin: 0 $margin-l;
                 display: block;
+                margin: 0 $margin-l;
                 margin-bottom: 0;
             }
 
