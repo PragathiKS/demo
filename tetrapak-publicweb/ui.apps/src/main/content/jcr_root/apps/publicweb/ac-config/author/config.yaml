@@ -9,18 +9,6 @@
           path: /home/groups/publicweb
 
 
-    - publicweb-content-editors-se:
-
-       - name: "Public Web Content Authors for Sweden"
-         isMemberOf: fragment-editor,publicweb-basic
-         path: /home/groups/publicweb
-
-    - publicweb-content-owners-se:
-
-       - name: "Public Web Content Owners for Sweden"
-         isMemberOf: fragment-editor,publicweb-basic
-         path: /home/groups/publicwebgroups
-
 - ace_config:
 
     - publicweb-basic:
@@ -80,46 +68,6 @@
           repGlob:
 
         - path: /content/cq:tags/tetrapak
-          permission: allow
-          actions: read
-          privileges:
-          repGlob:
-
-    - publicweb-content-editors-se:
-
-        - path: /content/tetrapak/publicweb/se
-          permission: allow
-          actions: read,modify,create
-          privileges:
-          repGlob:
-
-        - path: /content/dam/tetrapak/publicweb/se
-          permission: allow
-          actions: read,modify,create,delete,replicate
-          privileges:
-          repGlob:
-
-        - path: /content/dam/tetrapak/publicweb/gb
-          permission: allow
-          actions: read
-          privileges:
-          repGlob:
-
-    - publicweb-content-owners-se:
-
-        - path: /content/tetrapak/publicweb/se
-          permission: allow
-          actions: read,modify,create,replicate
-          privileges:
-          repGlob:
-
-        - path: /content/dam/tetrapak/publicweb/se
-          permission: allow
-          actions: read,modify,create,delete,replicate
-          privileges:
-          repGlob:
-
-        - path: /content/dam/tetrapak/publicweb/gb
           permission: allow
           actions: read
           privileges:

@@ -1176,7 +1176,7 @@ RewriteRule      ^/pt-br/sobre_a_tetra_pak/publicacoes/meio_ambiente/pages/publi
 RewriteRule      ^/pt-br/sobre_a_tetra_pak/responsabilidade_social/pages/responsabilidade_social.aspx$      https://${PUBLICWEB_URL}/pt-br/about-tetra-pak  [R=301,L]
 RewriteRule      ^/pt-br/sobre-a-tetra-pak/publicacoes/dairyindex$  https://${PUBLICWEB_URL}/pt-br/insights/tetra-pak-index [R=301,L]
 RewriteRule      ^/pt-br/sustainability/cases-and-articles/new-school-milk-programme-sri-lanka$     https://${PUBLICWEB_URL}/pt-br/insights/cases-articles  [R=301,L]
-RewriteRule      ^/pt-br/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}/pt-br/insights/cases-articles  [R=301,L]
+#RewriteRule      ^/pt-br/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}/pt-br/insights/cases-articles  [R=301,L] ### SMAR-29729
 RewriteRule      ^/pt-br/sustainability/cases-and-articles/schools-recycling-japan$ https://${PUBLICWEB_URL}/pt-br/insights/cases-articles  [R=301,L]
 RewriteRule      ^/pt-br/sustainability/cases-and-articles/the-green-roof-project$  https://${PUBLICWEB_URL}/pt-br/insights/cases-articles  [R=301,L]
 RewriteRule      ^/pt-br/sustainability/cases-and-articles/toward-100-percent-renewable-electricity$        https://${PUBLICWEB_URL}/pt-br/insights/cases-articles       [R=301,L]
@@ -1572,7 +1572,7 @@ RewriteRule      ^/it-it/services/e-business$       https://${PUBLICWEB_URL}/it-
 RewriteRule      ^/it-it/services/secure-food-safety-and-quality$   https://${PUBLICWEB_URL}/it-it  [R=301,L]
 RewriteRule      ^/it-it/services/secure-food-safety-and-quality/$  https://${PUBLICWEB_URL}/it-it  [R=301,L]
 RewriteRule      ^/it-it/services/service-cases$    https://${PUBLICWEB_URL}/it-it  [R=301,L]
-RewriteRule      ^/it-it/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}/it-it  [R=301,L]
+#RewriteRule      ^/it-it/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}/it-it  [R=301,L] ### SMAR-29729
 RewriteRule      ^/it-it/sustainability/cases-and-articles/reducing-impact-green-buildings$ https://${PUBLICWEB_URL}/it-it  [R=301,L]
 RewriteRule      ^/it-it/sustainability/cases-and-articles/schools-recycling-japan$ https://${PUBLICWEB_URL}/it-it  [R=301,L]
 RewriteRule      ^/it-it/sustainability/cases-and-articles/the-green-roof-project$  https://${PUBLICWEB_URL}/it-it  [R=301,L]
@@ -1799,7 +1799,7 @@ RewriteRule      ^/es-mx/services/secure-food-safety-and-quality/$  https://${PU
 RewriteRule      ^/es-mx/services/service-cases$    https://${PUBLICWEB_URL}/es-mx  [R=301,L]
 RewriteRule      ^/es-mx/sustainability/cases-and-articles/develop-dairy-farming-uganda$    https://${PUBLICWEB_URL}/es-mx  [R=301,L]
 RewriteRule      ^/es-mx/sustainability/cases-and-articles/new-school-milk-programme-sri-lanka$     https://${PUBLICWEB_URL}/es-mx  [R=301,L]
-RewriteRule      ^/es-mx/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}/es-mx  [R=301,L]
+#RewriteRule      ^/es-mx/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}/es-mx  [R=301,L] ### SMAR-29729
 RewriteRule      ^/es-mx/sustainability/cases-and-articles/schools-recycling-japan$ https://${PUBLICWEB_URL}/es-mx  [R=301,L]
 RewriteRule      ^/es-mx/sustainability/cases-and-articles/the-green-roof-project$  https://${PUBLICWEB_URL}/es-mx  [R=301,L]
 RewriteRule      ^/es-mx/sustainability/cases-and-articles/toward-100-percent-renewable-electricity$        https://${PUBLICWEB_URL}/es-mx  [R=301,L]
@@ -2044,7 +2044,7 @@ RewriteRule      ^/sustainability/cases-and-articles/develop-dairy-farming-ugand
 RewriteRule      ^/sustainability/cases-and-articles/flexible-working$   https://${PUBLICWEB_URL}/insights       [R=301,L]
 RewriteRule      ^/sustainability/cases-and-articles/new-school-milk-programme-sri-lanka$        https://${PUBLICWEB_URL}/insights       [R=301,L]
 RewriteRule      ^/sustainability/cases-and-articles/providing-shelter-through-recycling$        https://${PUBLICWEB_URL}/insights       [R=301,L]
-RewriteRule      ^/sustainability/cases-and-articles/recycling-partnership-russia$       https://${PUBLICWEB_URL}/insights       [R=301,L]
+#RewriteRule      ^/sustainability/cases-and-articles/recycling-partnership-russia$       https://${PUBLICWEB_URL}/insights       [R=301,L] ### SMAR-29729
 RewriteRule      ^/sustainability/cases-and-articles/reducing-impact-green-buildings$    https://${PUBLICWEB_URL}/insights       [R=301,L]
 RewriteRule      ^/sustainability/cases-and-articles/schools-recycling-japan$    https://${PUBLICWEB_URL}/insights       [R=301,L]
 RewriteRule      ^/sustainability/cases-and-articles/the-green-roof-project$     https://${PUBLICWEB_URL}/insights       [R=301,L]
@@ -3715,7 +3715,7 @@ RewriteRule     (.*)/sustainability/cases-and-articles/harnessing-digitalisation
 RewriteRule     (.*)/sustainability/cases-and-articles/flexible-working$        https://${PUBLICWEB_URL}$1/insights/cases-articles/flexible-working-arrangements [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/reducing-impact-green-buildings$ https://${PUBLICWEB_URL}$1/insights/cases-articles/reducing-our-impact-through--green-buildings- [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/providing-shelter-through-recycling$     https://${PUBLICWEB_URL}$1/insights/cases-articles/green-roof-project---providing-shelter-through-recycling      [R=301,L]
-RewriteRule     (.*)/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}$1/insights/cases-articles/new-carton-recycling-partnership-in-russia    [R=301,L]
+#RewriteRule     (.*)/sustainability/cases-and-articles/recycling-partnership-russia$    https://${PUBLICWEB_URL}$1/insights/cases-articles/new-carton-recycling-partnership-in-russia    [R=301,L] ### SMAR-29729
 RewriteRule     (.*)/sustainability/cases-and-articles/new-school-milk-programme-sri-lanka$     https://${PUBLICWEB_URL}$1/insights/cases-articles/new-school-milk-programme-in-sri-lanka        [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/zero-waste-project-turkey$       https://${PUBLICWEB_URL}$1/insights/cases-articles/zero-waste-project-teaches-turkey-s-school-children-about-protec      [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/develop-dairy-farming-uganda$    https://${PUBLICWEB_URL}$1/insights/cases-articles/partnering-to-develop-dairy-farming-in-uganda [R=301,L]
@@ -9912,4 +9912,10 @@ RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion/ingredi
 #####SMAR-30024#####
 RewriteRule     (.*)/campaigns/go-nature-go-carton/explore/watertree-project-malaysia$\
         https://${PUBLICWEB_URL}$1/campaigns/go-nature-go-carton/home  [R=301,L]
+###
+######## SMAR-29729 #####
+RewriteRule     (.*)/insights/cases-articles/recycling-partnership-russia$\
+        https://${PUBLICWEB_URL}$1/insights/cases-articles  [R=301,L]
+RewriteRule     (.*)/sustainability/cases-and-articles/recycling-partnership-russia$\
+        https://${PUBLICWEB_URL}$1/insights/cases-articles   [R=301,L]
 ###
