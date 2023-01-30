@@ -47,6 +47,12 @@ public final class SupplierPortalConstants {
 	 * The Constant HTML_EXTENSION.
 	 */
 	public static final String HREF = "href";
+	
+	/** The Constant RESULT. */
+    public static final String RESULT = "result";
+
+    /** The Constant STATUS. */
+    public static final String STATUS = "status";
 
 	/**
 	 * The Constant CONTENT_PATH .
@@ -161,7 +167,7 @@ public final class SupplierPortalConstants {
 	public static final String SUPPORTREQUESTARIBAEMAILERRORMSG = "aribaEmailErrorMsg";
 	public static final String SUPPORTREQUESTTPEMAILLABEL = "tpEmailLabel";
 	public static final String SUPPORTREQUESTTPEMAILERRORMSG = "tpEmailErrorMsg";
-	public static final String SUPPORTREQUESTSENDBUTTONLABEL = "SendButtonLabel";
+	public static final String SUPPORTREQUESTSENDBUTTONLABEL = "sendButtonLabel";
 	public static final String SUPPORTREQUESTTHANKYOUTITLE = "thankyouTitle";
 	public static final String SUPPORTREQUESTTHANKYOUSUBTITLE = "thankyouSubtitle";
 	public static final String SUPPORTREQUESTHOMEBUTTON = "homeButtonLabel";
