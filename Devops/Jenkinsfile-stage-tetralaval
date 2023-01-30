@@ -124,11 +124,12 @@ pipeline {
 }
     def buildandsonar() {
                 echo "Build ${appname}"
-                dir("${appname}") {
+                dir("tetrapak-${appname}") {
                 sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
                 sh "npm cache clean --force"
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
                     {
+
                                                 sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbaseline.skip=true -Dbuildversion=1.0.0-${build_id_number}"
                                                 if (!params.Sonar_Analysis) {
                         echo "Skipping Sonar execution for customerhub module"
@@ -222,5 +223,4 @@ pipeline {
                     sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
                 }
     }
-
 

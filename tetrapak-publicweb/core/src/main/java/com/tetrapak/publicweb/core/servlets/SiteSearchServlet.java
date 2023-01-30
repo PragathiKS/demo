@@ -180,6 +180,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&lt;", StringUtils.EMPTY);
                 } else if (fulltextSearchTerm.contains("&gt;")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&gt;", StringUtils.EMPTY);
+                } else if (fulltextSearchTerm.contains("&quot;")) {
+                    fulltextSearchTerm = fulltextSearchTerm.replace("&quot;", "\"");
                 }
             }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
@@ -189,12 +191,15 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             Map<String, String> map = new HashMap<>();
             map.put("1_group.p.or", "true");
 
+            PredicateGroup tagsPredicateGroup = new PredicateGroup();
+            tagsPredicateGroup.setAllRequired(false);
+
             if (isValidRequest(contentType, themes, fulltextSearchTerm)) {
                 index = setContentMap(map, searchResultsModel, contentType, index);
-                SearchMapHelper.setCommonMap(fulltextSearchTerm, map, pageParam, noOfResultsPerHit, guessTotal);
-                SearchMapHelper.setThemesMap(themes, map, themeMap);
+                SearchMapHelper.setCommonMap(fulltextSearchTerm, contentType, map, pageParam, noOfResultsPerHit, guessTotal);
+                SearchMapHelper.setThemesPredicates(themes, tagsPredicateGroup, themeMap);
                 SearchMapHelper.filterGatedContent(map, index, searchResultsModel);
-                setSearchBean(request, map, searchResultsModel);
+                setSearchBean(request, map, tagsPredicateGroup, searchResultsModel);
             }
             Gson gson = new Gson();
             String responseJSON;
@@ -234,7 +239,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         if (StringUtils.isBlank(searchTerm) && ArrayUtils.isEmpty(contentTypes) && ArrayUtils.isEmpty(themes)) {
             isValidRequest = false;
         }
-        if (ArrayUtils.isNotEmpty(contentTypes) && Boolean.FALSE.equals(isValidContentType(contentTypes))) {
+        if (ArrayUtils.isNotEmpty(contentTypes) && Boolean.FALSE.equals(SearchMapHelper.isValidContentType(contentTypes))) {
             isValidRequest = false;
         }
         if (ArrayUtils.isNotEmpty(themes) && Boolean.FALSE.equals(isValidThemeType(themes))) {
@@ -259,7 +264,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      */
     private int setContentMap(Map<String, String> map, SearchResultsModel searchResultsModel, String[] contentType,
             int index) {
-        if (ArrayUtils.isNotEmpty(contentType) && Boolean.TRUE.equals(isValidContentType(contentType))) {
+        if (ArrayUtils.isNotEmpty(contentType) && Boolean.TRUE.equals(SearchMapHelper.isValidContentType(contentType))) {
             for (String type : contentType) {
                 if (type.equalsIgnoreCase("media")) {
                     index = SearchMapHelper.setMediaMap(map, index, searchResultsModel);
@@ -274,26 +279,7 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
         return index;
     }
 
-    /**
-     * Checks if is valid content type.
-     *
-     * @param contentTypes
-     *            the content types
-     * @return the boolean
-     */
-    private Boolean isValidContentType(String[] contentTypes) {
-        Boolean isValidContentType = false;
-        for (String contentType : contentTypes) {
-            if (PWConstants.NEWS.equalsIgnoreCase(contentType.toLowerCase())
-                    || PWConstants.EVENTS.equalsIgnoreCase(contentType)
-                    || PWConstants.PRODUCTS.equalsIgnoreCase(contentType)
-                    || PWConstants.CASES.equalsIgnoreCase(contentType)
-                    || PWConstants.MEDIA.equalsIgnoreCase(contentType)) {
-                isValidContentType = true;
-            }
-        }
-        return isValidContentType;
-    }
+
 
     /**
      * Checks if is valid theme type.
@@ -320,9 +306,11 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * @param searchResultsModel
      *            the search results model
      */
-    private void setSearchBean(SlingHttpServletRequest request, Map<String, String> map,
+    private void setSearchBean(SlingHttpServletRequest request, Map<String, String> map, PredicateGroup tagsPredicate,
             SearchResultsModel searchResultsModel) {
-        Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+        PredicateGroup predicates = PredicateGroup.create(map);
+        predicates.add(tagsPredicate);
+        Query query = queryBuilder.createQuery(predicates, session);
         SearchResult result = query.getResult();
         long noOfResults = result.getTotalMatches();
 

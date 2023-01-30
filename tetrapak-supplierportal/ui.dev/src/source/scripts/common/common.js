@@ -1,5 +1,3 @@
-
-
 import $ from 'jquery';
 import { trackAnalytics } from '../utils/analytics';
 

@@ -67,6 +67,9 @@ public final class TLConstants {
 
     /** The Constant TEXT_PROPERTY. */
     public static final String TEXT_PROPERTY = "text";
+    
+    /** The Constant DOMAINSCRIPT */
+    public static final String DOMAINSCRIPT ="domainScript";
 
     /**
      * Instantiates a new TL constants.
