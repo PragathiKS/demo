@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -15,7 +17,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
-@Model(adaptables = { Resource.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SupportRequestFormModel {
 
 	/** The resource. */
@@ -26,106 +28,106 @@ public class SupportRequestFormModel {
 	@ValueMapValue
 	private String generalTitleLabel;
 
-	@ValueMapValue
+	@Inject
 	private String generalSubtitleLabel;
 
-	@ValueMapValue
+	@Inject
 	private String purposeOfContactLabel;
 
-	@ValueMapValue
+	@Inject
 	private String purposeErrorMsgLabel;
 
-	@ValueMapValue
+	@Inject
 	private String queryTitle;
 
-	@ValueMapValue
+	@Inject
 	private String querySubtitle;
 
-	@ValueMapValue
+	@Inject
 	private String queryErrorMsgLabel;
 
-	@ValueMapValue
+	@Inject
 	private String dragAndDropTitle;
 
-	@ValueMapValue
+	@Inject
 	private String dragAndDropSubtitle;
 
-	@ValueMapValue
+	@Inject
 	private String fileErrorMsg;
 
-	@ValueMapValue
+	@Inject
 	private String fileFormatSubtitle;
 
-	@ValueMapValue
+	@Inject
 	private String dragAndDropButtonLabel;
 
-	@ValueMapValue
+	@Inject
 	private String dragAndDropRemoveFileLabel;
 
-	@ValueMapValue
+	@Inject
 	private String detailsTitle;
 
-	@ValueMapValue
+	@Inject
 	private String nameLabel;
 
-	@ValueMapValue
+	@Inject
 	private String emailLabel;
 
-	@ValueMapValue
+	@Inject
 	private String companyErrorMsg;
 
-	@ValueMapValue
+	@Inject
 	private String companyLabel;
 
-	@ValueMapValue
+	@Inject
 	private String countryLabel;
 
-	@ValueMapValue
+	@Inject
 	private String countryErrorMsg;
 
-	@ValueMapValue
+	@Inject
 	private String cityLabel;
 
-	@ValueMapValue
+	@Inject
 	private String cityErrorMsg;
 
-	@ValueMapValue
+	@Inject
 	private String phoneLabel;
-
-	@ValueMapValue
+	
+	@Inject
 	private String phoneErrorMsg;
 
-	@ValueMapValue
+	@Inject
 	private String otherTitle;
 
-	@ValueMapValue
+	@Inject
 	private String otherDescriptionLabel;
 
-	@ValueMapValue
+	@Inject
 	private String aribaNetworkLabel;
 
-	@ValueMapValue
+	@Inject
 	private String aribaEmailLabel;
-
-	@ValueMapValue
+	
+	@Inject
 	private String aribaEmailErrorMsg;
 
-	@ValueMapValue
+	@Inject
 	private String tpEmailLabel;
 
-	@ValueMapValue
+	@Inject
 	private String tpEmailErrorMsg;
 
-	@ValueMapValue
+	@Inject
 	private String SendButtonLabel;
 
-	@ValueMapValue
+	@Inject
 	private String thankyouTitleLabel;
 
-	@ValueMapValue
+	@Inject
 	private String thankyouSubtitleLabel;
 
-	@ValueMapValue
+	@Inject
 	private String homeButtonLabel;
 
 	public String getGeneralTitleLabel() {
@@ -383,7 +385,7 @@ public class SupportRequestFormModel {
 	public void setHomeButtonLabel(String homeButtonLabel) {
 		this.homeButtonLabel = homeButtonLabel;
 	}
-
+	
 	public String getPhoneErrorMsg() {
 		return phoneErrorMsg;
 	}
@@ -421,15 +423,15 @@ public class SupportRequestFormModel {
 	}
 
 	/**
-	 * Gets the Mapped Path of this resource.
-	 *
-	 * @return the mappedPath
-	 */
-	public String getMappedResourcePath() {
-		ResourceResolver resolver = resource.getResourceResolver();
-		return resolver.map(resource.getPath());
-	}
-
+     * Gets the Mapped Path of this resource.
+     *
+     * @return the mappedPath
+     */
+    public String getMappedResourcePath() {
+        ResourceResolver resolver = resource.getResourceResolver();
+        return resolver.map(resource.getPath());
+    }
+    
 	/**
 	 * init method.
 	 */
@@ -444,6 +446,8 @@ public class SupportRequestFormModel {
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTQUERYTITLE, getQueryTitle());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTQUERYSUBTITLE, getQuerySubtitle());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTQUERYERRORMSG, getQueryErrorMsgLabel());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTDRAGANDDROPTITLE, getDragAndDropTitle());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTDRAGANDDROPSUBTITLE, getDragAndDropSubtitle());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTFILEERRORMSG, getFileErrorMsg());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTFILEFORMATSUBTITLE, getFileFormatSubtitle());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTDRAGANDDROPBUTTONLABEL, getDragAndDropButtonLabel());

@@ -10,8 +10,6 @@ public final class SupplierPortalConstants {
 	public static final String CONTENT_ROOT = SUPPLIER_PATH + "/en";
 
 	public static final String SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH = "/etc/notification/email/supplierportal/supportrequestemail.html";
-	
-	public static final String SEND_EMAIL_JOB_TOPIC = "com/tetrapak/supplierportal/sendemail";
 
 	/**
 	 * The Constant HTML_EXTENSION.
@@ -47,12 +45,6 @@ public final class SupplierPortalConstants {
 	 * The Constant HTML_EXTENSION.
 	 */
 	public static final String HREF = "href";
-	
-	/** The Constant RESULT. */
-    public static final String RESULT = "result";
-
-    /** The Constant STATUS. */
-    public static final String STATUS = "status";
 
 	/**
 	 * The Constant CONTENT_PATH .
@@ -136,22 +128,22 @@ public final class SupplierPortalConstants {
 	/**
 	 * The Constant Support Request Form
 	 */
-	public static final String SUPPORTREQUESTGENERALTITLE = "title";
-	public static final String SUPPORTREQUESTGENERALSUBTITLE = "subtitle";
-	public static final String SUPPORTREQUESTPURPOSEOFCONTACT = "purposeContactHeading";
-	public static final String SUPPORTREQUESTPURPOSEERRORMSG = "purposeErrorMsg";
+	public static final String SUPPORTREQUESTGENERALTITLE = "generalTitleLabel";
+	public static final String SUPPORTREQUESTGENERALSUBTITLE = "generalSubtitleLabel";
+	public static final String SUPPORTREQUESTPURPOSEOFCONTACT = "purposeOfContactLabel";
+	public static final String SUPPORTREQUESTPURPOSEERRORMSG = "purposeErrorMsgLabel";
 	public static final String SUPPORTREQUESTQUERYTITLE = "queryTitle";
 	public static final String SUPPORTREQUESTQUERYSUBTITLE = "querySubtitle";
-	public static final String SUPPORTREQUESTQUERYERRORMSG = "queryErrorMsg";
-	//public static final String SUPPORTREQUESTDRAGANDDROPTITLE = "dragAndDropTitle";
-	//public static final String SUPPORTREQUESTDRAGANDDROPSUBTITLE = "dragAndDropSubtitle";
+	public static final String SUPPORTREQUESTQUERYERRORMSG = "queryErrorMsgLabel";
+	public static final String SUPPORTREQUESTDRAGANDDROPTITLE = "dragAndDropTitle";
+	public static final String SUPPORTREQUESTDRAGANDDROPSUBTITLE = "dragAndDropSubtitle";
 	public static final String SUPPORTREQUESTFILEERRORMSG = "fileErrorMsg";
 	public static final String SUPPORTREQUESTFILEFORMATSUBTITLE = "fileFormatSubtitle";
 	public static final String SUPPORTREQUESTDRAGANDDROPBUTTONLABEL = "dragAndDropButtonLabel";
-	public static final String SUPPORTREQUESTDRAGANDDROPREMOVEFILE = "removeFileLabel";
+	public static final String SUPPORTREQUESTDRAGANDDROPREMOVEFILE = "dragAndDropRemoveFileLabel";
 	public static final String SUPPORTREQUESTDETAILSTITLE = "detailsTitle";
 	public static final String SUPPORTREQUESTNAMELABEL = "nameLabel";
-	public static final String SUPPORTREQUESTEMAILLABEL = "emailAddressLabel";
+	public static final String SUPPORTREQUESTEMAILLABEL = "emailLabel";
 	public static final String SUPPORTREQUESTCOMPANYERRORMSG = "companyErrorMsg";
 	public static final String SUPPORTREQUESTCOMPANYLABEL = "companyLabel";
 	public static final String SUPPORTREQUESTCOUNTRYLABEL = "countryLabel";
@@ -161,15 +153,15 @@ public final class SupplierPortalConstants {
 	public static final String SUPPORTREQUESTPHONELABEL = "phoneLabel";
 	public static final String SUPPORTREQUESTPHONEERRORMSG = "phoneErrorMsg";
 	public static final String SUPPORTREQUESTOTHERTITLE = "otherTitle";
-	public static final String SUPPORTREQUESTOTHERDESCRIPTIONLABEL = "otherSubtitle";
+	public static final String SUPPORTREQUESTOTHERDESCRIPTIONLABEL = "otherDescriptionLabel";
 	public static final String SUPPORTREQUESTARIBANETWORKLABEL = "aribaNetworkLabel";
 	public static final String SUPPORTREQUESTARIBAEMAILLABEL = "aribaEmailLabel";
 	public static final String SUPPORTREQUESTARIBAEMAILERRORMSG = "aribaEmailErrorMsg";
 	public static final String SUPPORTREQUESTTPEMAILLABEL = "tpEmailLabel";
 	public static final String SUPPORTREQUESTTPEMAILERRORMSG = "tpEmailErrorMsg";
-	public static final String SUPPORTREQUESTSENDBUTTONLABEL = "sendButtonLabel";
-	public static final String SUPPORTREQUESTTHANKYOUTITLE = "thankyouTitle";
-	public static final String SUPPORTREQUESTTHANKYOUSUBTITLE = "thankyouSubtitle";
+	public static final String SUPPORTREQUESTSENDBUTTONLABEL = "SendButtonLabel";
+	public static final String SUPPORTREQUESTTHANKYOUTITLE = "thankyouTitleLabel";
+	public static final String SUPPORTREQUESTTHANKYOUSUBTITLE = "thankyouSubtitleLabel";
 	public static final String SUPPORTREQUESTHOMEBUTTON = "homeButtonLabel";
 
 	public static final String EMAILSUBJECT = "subject";
