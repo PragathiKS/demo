@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Inject;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -28,106 +27,106 @@ public class SupportRequestFormModel {
 	@ValueMapValue
 	private String generalTitleLabel;
 
-	@Inject
+	@ValueMapValue
 	private String generalSubtitleLabel;
 
-	@Inject
+	@ValueMapValue
 	private String purposeOfContactLabel;
 
-	@Inject
+	@ValueMapValue
 	private String purposeErrorMsgLabel;
 
-	@Inject
+	@ValueMapValue
 	private String queryTitle;
 
-	@Inject
+	@ValueMapValue
 	private String querySubtitle;
 
-	@Inject
+	@ValueMapValue
 	private String queryErrorMsgLabel;
 
-	@Inject
+	@ValueMapValue
 	private String dragAndDropTitle;
 
-	@Inject
+	@ValueMapValue
 	private String dragAndDropSubtitle;
 
-	@Inject
+	@ValueMapValue
 	private String fileErrorMsg;
 
-	@Inject
+	@ValueMapValue
 	private String fileFormatSubtitle;
 
-	@Inject
+	@ValueMapValue
 	private String dragAndDropButtonLabel;
 
-	@Inject
+	@ValueMapValue
 	private String dragAndDropRemoveFileLabel;
 
-	@Inject
+	@ValueMapValue
 	private String detailsTitle;
 
-	@Inject
+	@ValueMapValue
 	private String nameLabel;
 
-	@Inject
+	@ValueMapValue
 	private String emailLabel;
 
-	@Inject
+	@ValueMapValue
 	private String companyErrorMsg;
 
-	@Inject
+	@ValueMapValue
 	private String companyLabel;
 
-	@Inject
+	@ValueMapValue
 	private String countryLabel;
 
-	@Inject
+	@ValueMapValue
 	private String countryErrorMsg;
 
-	@Inject
+	@ValueMapValue
 	private String cityLabel;
 
-	@Inject
+	@ValueMapValue
 	private String cityErrorMsg;
 
-	@Inject
+	@ValueMapValue
 	private String phoneLabel;
 	
-	@Inject
+	@ValueMapValue
 	private String phoneErrorMsg;
 
-	@Inject
+	@ValueMapValue
 	private String otherTitle;
 
-	@Inject
+	@ValueMapValue
 	private String otherDescriptionLabel;
 
-	@Inject
+	@ValueMapValue
 	private String aribaNetworkLabel;
 
-	@Inject
+	@ValueMapValue
 	private String aribaEmailLabel;
 	
-	@Inject
+	@ValueMapValue
 	private String aribaEmailErrorMsg;
 
-	@Inject
+	@ValueMapValue
 	private String tpEmailLabel;
 
-	@Inject
+	@ValueMapValue
 	private String tpEmailErrorMsg;
 
-	@Inject
+	@ValueMapValue
 	private String SendButtonLabel;
 
-	@Inject
+	@ValueMapValue
 	private String thankyouTitleLabel;
 
-	@Inject
+	@ValueMapValue
 	private String thankyouSubtitleLabel;
 
-	@Inject
+	@ValueMapValue
 	private String homeButtonLabel;
 
 	public String getGeneralTitleLabel() {
