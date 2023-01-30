@@ -917,9 +917,6 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
 
-    /** Anchor Link Target New Tab*/
-    public static final String LINK_TARGET_NEWTAB = "_blank";
-
     /**
      * Instantiates a new customer hub constants.
      */
