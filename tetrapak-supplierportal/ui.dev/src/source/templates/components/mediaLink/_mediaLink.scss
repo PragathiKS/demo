@@ -1,0 +1,115 @@
+.medialink {
+    @include border-radius($border-radius);
+    @include padding-left($padding-md);
+    @include padding-right($padding-md);
+    @include padding-top($padding-l);
+    @include margin($margin-zero);
+    @media #{$desktop} {
+        @include padding($padding-l);
+        @include padding-left($padding-l);
+        @include padding-right($padding-l);
+        @include margin($margin-l $margin-zero $margin-zero);
+    }
+
+    &__heading {
+        @include font-size($font-l);
+        @include padding-top($padding-zero);
+        @include margin-bottom($margin-md);
+        @media #{$desktop} {
+            @include padding-top($padding-zero);
+            @include margin-bottom($margin-sm);
+        }
+
+        h3 {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            font-weight: 400;
+            @media #{$desktop} {
+                @include font-size($font-l);
+                @include line-height(40px, $font-l);
+                font-weight: 400;
+            }
+        }
+    }
+
+    &__subheading {
+        @include margin-top($margin-md);
+        @include margin-bottom($margin-zero);
+        @include min-height(24px);
+        h4 {
+            @include padding-left($padding-zero);
+            @include font-size($font-md);
+            @include line-height($font-l, $font-md);
+            font-weight: 500;
+        }
+    }
+
+    &__linklist {
+        @include margin-bottom($margin-l);
+        &:last-child {
+            @include margin-bottom($margin-l);
+        }
+        &.noMobileHeader {
+            @include margin-top(-$margin-l);
+        }
+        @media #{$desktop} {
+            @include padding-left($margin-l);
+            @include padding-right($margin-l);
+            @include margin-bottom($margin-zero);
+            &:first-child {
+                @include padding-left(15px);
+            }
+            &:last-child {
+                @include padding-right(15px);
+                @include margin-bottom($margin-zero);
+            }
+            &.noMobileHeader {
+                @include margin-top($margin-zero);
+            }
+        }
+    }
+    &__link.tpatom-link--transparent {
+        @include min-height(56px);
+        @include line-height(24px, 14px);
+        @include font-size(14px);
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $color-mercury;
+        span {
+            @include margin($margin-md);
+            @media #{$desktop} {
+                @include margin-left($margin-zero);
+            }
+            @include line-height(24px, 14px);
+            font-weight: 500;
+        }
+        i.icon {
+            @include margin-left(16px);
+            @include margin-right(16px);
+            @include margin-top(16px);
+            display: inline-block;
+            line-height: 24px;
+            &.icon-PDF {
+                color: $color-alert;
+            }
+            &::before {
+                font-size: $font-sm;
+
+            }
+        }
+        .icon.icon-Circle_Arrow_Right_pw {
+            @include margin-top(16px);
+            @include padding-right(16px);
+            line-height: 24px;
+        }
+    }
+    .topMargin {
+        @include margin-top($margin-xxl);
+    }
+    .noMobile {
+        display: none;
+        @media #{$desktop} {
+            display: block;
+        }
+    }
+}

@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Rebuilding Kits List Excel Generator Servlet",
 		"sling.servlet.methods=" + HttpConstants.METHOD_POST, "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-		"sling.servlet.resourceTypes=" + "customerhub/components/content/rebuildingkitdetails",
+		"sling.servlet.resourceTypes=" + "customerhub/components/content/rebuildingkits",
 		"sling.servlet.selectors=" + "download", "sling.servlet.extensions=" + CustomerHubConstants.EXCEL })
 public class RebuildingKitsListExcelDownloadServlet extends SlingAllMethodsServlet {
 

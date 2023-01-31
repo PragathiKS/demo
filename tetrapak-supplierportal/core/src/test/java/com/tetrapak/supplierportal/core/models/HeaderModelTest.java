@@ -13,7 +13,7 @@ public class HeaderModelTest {
 
     private static final String RESOURCE_CONTENT = "/header/header.json";
 
-    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/en";
+    private static final String TEST_CONTENT_ROOT = "/content/tetrapak/supplierportal/global/en";
 
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
 
@@ -31,31 +31,24 @@ public class HeaderModelTest {
 
     Class<HeaderModel> modelClass = HeaderModel.class;
 
-	@Before
-	public void setUp() throws Exception {
-		//TODO
-		
-		/*
-		 * 
-		 * MockSlingHttpServletRequest request = context.request();
-		 * context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-		 * context.addModelsForPackage("com.tetrapak.supplierportal.core.models");
-		 * 
-		 * context.request().setPathInfo(TEST_CONTENT_ROOT);
-		 * request.setResource(context.resourceResolver().getResource(RESOURCE));
-		 * resource = context.currentResource(RESOURCE); model =
-		 * request.adaptTo(modelClass);
-		 * 
-		 */}
+    @Before public void setUp() throws Exception {
+        MockSlingHttpServletRequest request = context.request();
+        context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
+        context.addModelsForPackage("com.tetrapak.supplierportal.core.models");
 
-    @Test public void simpleLoadAndGettersTest() throws Exception {
-    	//TODO
-		/*
-		 * assertEquals("Header", "/content/dam/tetrapak/supplierporta/Logo.png",
-		 * model.getLogoUrl()); assertEquals("Header",
-		 * "/content/tetrapak/supplierporta/ca/de.html", model.getMLogoLink());
-		 * assertEquals("Header", "/content/tetrapak/supplierporta/ca/en.html",
-		 * model.getDLogoLink());
-		 */
+        context.request().setPathInfo(TEST_CONTENT_ROOT);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
+        resource = context.currentResource(RESOURCE);
+        model = request.adaptTo(modelClass);
+
+    }
+
+    @Test public void testSimpleLoadAndGetters() throws Exception {
+        assertEquals("Header", "/content/dam/tetrapak/supplierportal/Logo.png", model.getLogoUrl());
+        assertEquals("Header", "/content/tetrapak/supplierportal/ca/en.html", model.getLogoLink());
+        assertEquals("Header", true, model.logoLinkInternal());
+        assertEquals("Header", "sp.logotext.text", model.getLogoTextI18n());
+        assertEquals("Header", "Charlie Svensson", model.getGetUserInfoI18n());
+
     }
 }

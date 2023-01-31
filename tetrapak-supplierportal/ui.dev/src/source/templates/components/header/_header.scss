@@ -12,4 +12,26 @@
             }
         }
     }
+
+    .tp-close-btn {
+        margin-left: -14px;
+    }
+
+    &.menu-opened .tp-header__burger-menu {
+        display: none;
+    }
+
+    .tp-header__user{
+        @media #{$mobile} {
+            text-indent: -9999px;
+        }
+
+
+        &::before{
+            @media #{$mobile} {
+                text-indent: 0;
+                float: left;
+            }
+        }
+    }
 }

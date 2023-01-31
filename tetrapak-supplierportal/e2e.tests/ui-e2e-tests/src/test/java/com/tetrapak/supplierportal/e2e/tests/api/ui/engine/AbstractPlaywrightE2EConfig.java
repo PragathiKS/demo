@@ -20,12 +20,15 @@ public abstract class AbstractPlaywrightE2EConfig {
     //add mobile and desktop tests
     @BeforeAll static void setUpClass() {
         playwright = Playwright.create();
-        BrowserType browserType = playwright.chromium();
-        browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false));
+        BrowserType browserType = playwright.webkit();
+        browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(true));
     }
 
     @BeforeEach void setup() {
-        context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1366, 768));
+        context = browser.newContext(new Browser.NewContextOptions()
+                .setViewportSize(1366, 768)
+                .setIsMobile(false)
+        );
         page = context.newPage();
     }
 

@@ -36,14 +36,15 @@ function _renderRebuildingKitDetails() {
 
 function _renderCtiDocuments(langAvailable, otherLang) {
   const $this = this;
- 
+  const { i18nKeys } = $this.cache;
+
   if (!langAvailable) {
-    const errorMessage ='No data in api';
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
-      data : { 
-        noError:errorMessage
+      data : {
+        noData:true,
+        i18nKeys:i18nKeys
       }
     });
     $('.js-langcode').addClass('d-none');
@@ -51,7 +52,7 @@ function _renderCtiDocuments(langAvailable, otherLang) {
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
-      data : {ctiData: langAvailable, ctiOther:otherLang}
+      data : {i18nKeys: i18nKeys, ctiData: langAvailable, ctiOther:otherLang}
     });
     $('.js-langcode').on('click',function(e){
       e.preventDefault();
@@ -66,13 +67,14 @@ function _renderCtiDocuments(langAvailable, otherLang) {
 
 function _getCtiDocuments() {
   const $this = this;
+  const { apiCTI } = $this.cache;
   const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
   // const rkRelease = 'TT3_2020_01_01';
   if(rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
-          url: `https://api-dev.tetrapak.com/technicalbulletins/${rkRelease}/cti`,
+          url: `${apiCTI}/${rkRelease}/cti`,
           method: ajaxMethods.GET,
           cache: true,
           dataType: 'json',
@@ -94,7 +96,7 @@ function _getCtiDocuments() {
           if($this.cache.$ctiData && $this.cache.$ctiData.ctiDocuments) {
             const langAvailable = $this.cache.$ctiData.ctiDocuments.filter((item) => {
               if(item.langCode === $this.cache.$currentLanguage || item.langCode === 'en') {
-                item['langDesc'] = $this.cache.langlist[item.langCode];
+                item['langDesc'] = $this.cache.langlist[item.langCode] ? $this.cache.langlist[item.langCode]: '';
                 return item;
               }
             });
@@ -103,7 +105,7 @@ function _getCtiDocuments() {
                 return false;
               }
               else {
-                item['langDesc'] = $this.cache.langlist[item.langCode];
+                item['langDesc'] = $this.cache.langlist[item.langCode] ? $this.cache.langlist[item.langCode]: '';
                 return item;
               }
             });
@@ -133,7 +135,7 @@ function _getRebuildingKitDetails() {
       equipmentNumber = value;
     }
   }
-  
+
 
   auth.getToken(({ data: authData }) => {
     ajaxWrapper
@@ -180,6 +182,8 @@ class Rebuildingkitdetails {
       .text();
     this.cache.$contentWrapper = this.root.find('.tp-rk-detail__content-wrapper');
     this.cache.rebuildingdetailsApi = this.root.data('rebuilding-details-api');
+    this.cache.apiURL = this.root.data('preferred-language-api');
+    this.cache.apiCTI = this.root.data('cti-api');
     this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
       '.js-rebuilding-details__contentbottom'
@@ -193,7 +197,7 @@ class Rebuildingkitdetails {
     this.cache.$modal = this.root.parent().find('.js-language-modal');
     this.cache.$closeBtn = this.root.parent().find('.js-close-btn');
     this.cache.$applyLanguage = this.root.parent().find('.js-apply-language');
-    this.cache.apiURL = this.root.data('preferred-language-api');
+
     this.cache.$spinner = this.root.find('.tp-spinner');
     // Create Local Array Object for Language List
     const $this = this;
@@ -211,6 +215,7 @@ class Rebuildingkitdetails {
     }
   }
   changePreferredLanguage(btn) {
+    const $this = this;
     const { apiURL, langlist, $preferredLangLink, $modal } = this.cache;
     const updatedLang = $('input[name="preferredlanguage"]:checked').val();
     const newURL = `${apiURL}?langcode=${updatedLang}`;
@@ -239,11 +244,13 @@ class Rebuildingkitdetails {
             this.cache.$currentLanguage = updatedLang;
             $preferredLangLink.text(langlist[updatedLang]);
             $modal.modal('hide');
+            $this.getCtiDocuments();
           }
           $(btn).removeAttr('disabled');
         })
         .fail((e) => {
           logger.error(e);
+          $(btn).removeAttr('disabled');
         });
     });
   }
