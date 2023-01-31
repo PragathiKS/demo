@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods } from '../../../scripts/utils/constants';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
 import { REG_NUM } from '../../../scripts/utils/constants';
@@ -14,7 +16,7 @@ function _renderLayout() {
   render.fn({
     template: 'supportRequestForm',
     target: '.js-tp-support-request__content-wrapper',
-    data: { subTitle: $this.cache.subTitle, detailsSubtitle: $this.cache.detailsSubtitle, i18nKeys: $this.cache.i18nKeys, country: $this.cache.countryData, equipmentStatus: $this.cache.statusData, allCountries:  $this.cache.allCountriesData}
+    data: { subTitle: $this.cache.subTitle, detailsSubtitle: $this.cache.detailsSubtitle, i18nKeys: $this.cache.i18nKeys }
   }, () => {
     $this.cache.$contentWrapper.removeClass('d-none');
     $this.cache.$spinner.addClass('d-none');
@@ -162,14 +164,6 @@ class SupportRequest {
         data: formData,
         showLoader: true
       }).done(() => {
-        const formFields = [];
-        for(const data of formData.entries()) {
-          const $el = $(`#${  data[0]}`);
-          formFields.push({
-            formFieldName: $el.closest('.js-tp-support-request__form-element').find('.tp-support-request__field-label').text().trim(),
-            formFieldValue: data[1]
-          });
-        }
         $this.renderSubmit();
       }).fail(() => {
         $this.cache.$contentWrapper.removeClass('d-none');
