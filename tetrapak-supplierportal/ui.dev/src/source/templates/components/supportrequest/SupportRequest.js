@@ -151,7 +151,30 @@ class SupportRequest {
         formData.append('files', $this.cache.files[i]);
       }
     }
-    $this.renderSubmit();
+
+    ajaxWrapper
+      .getXhrObj({
+        url: $this.cache.submitApi,
+        method: ajaxMethods.POST,
+        cache: true,
+        processData: false,
+        contentType: false,
+        data: formData,
+        showLoader: true
+      }).done(() => {
+        const formFields = [];
+        for(const data of formData.entries()) {
+          const $el = $(`#${  data[0]}`);
+          formFields.push({
+            formFieldName: $el.closest('.js-tp-support-request__form-element').find('.tp-support-request__field-label').text().trim(),
+            formFieldValue: data[1]
+          });
+        }
+        $this.renderSubmit();
+      }).fail(() => {
+        $this.cache.$contentWrapper.removeClass('d-none');
+        $this.cache.$spinner.addClass('d-none');
+      });
   }
   addErrorMsg(el) {
     const formElement = $(el).closest('.js-tp-support-request__form-element');
