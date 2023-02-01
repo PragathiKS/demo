@@ -54,10 +54,10 @@ public class AccordionModelTest {
      *             the exception
      */
     @Test
-    public void simpleLoadAndGettersTest() throws Exception {
-    	assertEquals("FAQ Questions", model.getHeading());
-        assertEquals("Question 1", model.getQuestionList().get(0).getQuestionNo());
-        assertEquals("<p>ad</p>", model.getQuestionList().get(0).getQuestionDetail());
+    public void testSimpleLoadAndGetters() throws Exception {
+    	assertEquals("The heading should be 'FAQ Questions'","FAQ Questions", model.getHeading());
+        assertEquals("First question should be: Question 1", "Question 1", model.getQuestionList().get(0).getQuestionNo());
+        assertEquals("The detail is : <p>ad</p>","<p>ad</p>", model.getQuestionList().get(0).getQuestionDetail());
         
     }
 }

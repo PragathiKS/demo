@@ -1,5 +1,6 @@
 package com.tetrapak.supplierportal.core.utils;
 
+import com.day.cq.commons.LabeledResource;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import org.apache.commons.lang.StringUtils;
