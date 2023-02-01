@@ -664,6 +664,12 @@ public final class CustomerHubConstants {
 
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
+    
+    /** The Constant CUSTOMERHUB. */
+    public static final String CUSTOMERHUB = "customerhub";
+    
+    /** The Constant DOMAINSCRIPT. */
+    public static final String DOMAINSCRIPT = "domainScript";
 
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
