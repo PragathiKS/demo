@@ -1,7 +1,7 @@
-<sly data-sly-template.supportrequest_template="${@data, flag}">
+<sly data-sly-template.supportrequest_template="${@data, cookie, flag}">
     <div class="tp-support-request tp-card"
          data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
-         data-submit-api="${data.mappedResourcePath}.supportrequest.html"
+         data-submit-api="/bin/supplierportal/supportrequestform.html"
          data-module="SupportRequest">
         <code class="d-none js-tp-support-request__config">${data.i18nKeys}</code>
         <div class="tp-spinner js-tp-spinner">
