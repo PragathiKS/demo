@@ -385,11 +385,20 @@ RewriteRule     (.*)/processing/handling/ice-cream-dip-and-transfer-unit$       
 RewriteRule     (.*)/processing/handling/tetra-pak-dip-and-transfer-unit-1800-m2$       https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/handling/tetra-pak-dip-and-transfer-unit-1800-m2    [R=301,L]
 RewriteRule     (.*)/processing/handling/tetra-pak-dip-and-transfer-unit-m$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/handling/tetra-pak-dip-and-transfer-unit-m  [R=301,L]
 RewriteRule     (.*)/processing/hardening$      https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/hardening      [R=301,L]
-RewriteRule     (.*)/processing/inclusion$      https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion      [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser  [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-a3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-a3    [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-m3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-m3    [R=301,L]
-RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-4000-a2$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-4000-a2       [R=301,L]
+##### SMAR-30478 #####
+#RewriteRule     (.*)/processing/inclusion$      https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion      [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser$   https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser  [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-a3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-a3    [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-m3$     https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-m3    [R=301,L]
+#RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/tetra-pak-ingredient-doser-4000-a2$        https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/ingredient-doser/tetra-pak-ingredient-doser-4000-a2       [R=301,L]
+RewriteRule     (.*)/processing/inclusion$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing  [R=301,L]
+RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing  [R=301,L]
+RewriteRule     (.*)/processing/inclusion/tetra-pak-ingredient-doser/(tetra-pak-ingredient-doser-a3|tetra-pak-ingredient-doser-m3|tetra-pak-ingredient-doser-4000-a2)$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing/$2  [R=301,L]
+###
+
 RewriteRule     (.*)/processing/inclusion/tetra-pak-pump-station$       https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/inclusion/Pump-Station      [R=301,L]
 RewriteRule     (.*)/processing/moulding$       https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/Moulding       [R=301,L]
 RewriteRule     (.*)/processing/moulding/tetra-pak-moulders$    https://www-dev.tetrapak.com$1/solutions/processing/main-technology-area/Moulding/moulders  [R=301,L]
@@ -847,7 +856,7 @@ RewriteRule     (.*)/sustainability/cases-and-articles/harnessing-digitalisation
 RewriteRule     (.*)/sustainability/cases-and-articles/flexible-working$        https://www-dev.tetrapak.com$1/insights/cases-articles/flexible-working-arrangements [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/reducing-impact-green-buildings$ https://www-dev.tetrapak.com$1/insights/cases-articles/reducing-our-impact-through--green-buildings- [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/providing-shelter-through-recycling$     https://www-dev.tetrapak.com$1/insights/cases-articles/green-roof-project---providing-shelter-through-recycling      [R=301,L]
-RewriteRule     (.*)/sustainability/cases-and-articles/recycling-partnership-russia$    https://www-dev.tetrapak.com$1/insights/cases-articles/new-carton-recycling-partnership-in-russia    [R=301,L]
+#RewriteRule     (.*)/sustainability/cases-and-articles/recycling-partnership-russia$    https://www-dev.tetrapak.com$1/insights/cases-articles/new-carton-recycling-partnership-in-russia    [R=301,L] ##SMAR-29729
 RewriteRule     (.*)/sustainability/cases-and-articles/new-school-milk-programme-sri-lanka$     https://www-dev.tetrapak.com$1/insights/cases-articles/new-school-milk-programme-in-sri-lanka        [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/zero-waste-project-turkey$       https://www-dev.tetrapak.com$1/insights/cases-articles/zero-waste-project-teaches-turkey-s-school-children-about-protec      [R=301,L]
 RewriteRule     (.*)/sustainability/cases-and-articles/develop-dairy-farming-uganda$    https://www-dev.tetrapak.com$1/insights/cases-articles/partnering-to-develop-dairy-farming-in-uganda [R=301,L]
@@ -4538,4 +4547,26 @@ RewriteRule     (.*)/solutions/processing/main-technology-area/moulding/moulders
 ##### SMAR-30143 #####
 RewriteRule     (.*)/solutions/processing/main-technology-area/extrusion/(tetra-pak-sandwich-unit-lt|tetra-pak-extrusion-unit-lt)$\
         https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/extrusion  [R=301,L]
+###
+
+##### SMAR-30478 #####
+RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing  [R=301,L]
+RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion/ingredient-doser$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing  [R=301,L]
+
+RewriteRule     (.*)/solutions/processing/main-technology-area/inclusion/ingredient-doser/(tetra-pak-ingredient-doser-a3|tetra-pak-ingredient-doser-m3|tetra-pak-ingredient-doser-4000-a2)$\
+        https://${PUBLICWEB_URL}$1/solutions/processing/main-technology-area/ingredient-dosing/$2  [R=301,L]
+###
+
+#####SMAR-30024#####
+RewriteRule     (.*)/campaigns/go-nature-go-carton/explore/watertree-project-malaysia$\
+        https://${PUBLICWEB_URL}$1/campaigns/go-nature-go-carton/home  [R=301,L]
+###
+
+######## SMAR-29729 #####
+RewriteRule     (.*)/insights/cases-articles/recycling-partnership-russia$\
+        https://${PUBLICWEB_URL}$1/insights/cases-articles  [R=301,L]
+RewriteRule     (.*)/sustainability/cases-and-articles/recycling-partnership-russia$\
+        https://${PUBLICWEB_URL}$1/insights/cases-articles   [R=301,L]
 ###

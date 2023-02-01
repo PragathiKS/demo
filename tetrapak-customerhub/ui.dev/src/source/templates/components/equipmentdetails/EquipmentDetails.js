@@ -147,7 +147,7 @@ function  _renderEquipUpdateModal() {
 function _clearFieldsOnCountryChange($form) {
   $form.find('input:not([id="equipmentTypeDesc"]), textarea').val('');
   if($form.find('#equipmentStatus option[value="EXPO"]').length > 0){
-    $form.find('select[id="equipmentStatus"]').val('EXPO'); 
+    $form.find('select[id="equipmentStatus"]').val('EXPO');
   }
 }
 
