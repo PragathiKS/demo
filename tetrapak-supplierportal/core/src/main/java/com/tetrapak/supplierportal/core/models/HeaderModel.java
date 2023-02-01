@@ -33,7 +33,7 @@ public class HeaderModel {
     @PostConstruct protected void init() {
         String language = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
         Resource resource = request.getResourceResolver()
-                .getResource(SupplierPortalConstants.SUPPLIER_PORTAL + language + CONFIGURATION_PATH);
+                .getResource(SupplierPortalConstants.SUPPLIER_PATH + language + CONFIGURATION_PATH);
         if (null != resource) {
             HeaderConfigurationModel model = resource.adaptTo(HeaderConfigurationModel.class);
             if (model != null) {
