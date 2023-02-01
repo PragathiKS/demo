@@ -139,14 +139,12 @@ public final class SupplierPortalConstants {
 	public static final String SUPPORTREQUESTGENERALTITLE = "title";
 	public static final String SUPPORTREQUESTGENERALSUBTITLE = "subtitle";
 	public static final String SUPPORTREQUESTPURPOSEOFCONTACT = "purposeContactHeading";
-	public static final String SUPPORTREQUESTPURPOSEERRORMSG = "purposeErrorMsg";
+	public static final String SUPPORTREQUESTPURPOSEERRORMSG = "purposeContactErrorMsg";
 	public static final String SUPPORTREQUESTQUERYTITLE = "queryTitle";
 	public static final String SUPPORTREQUESTQUERYSUBTITLE = "querySubtitle";
 	public static final String SUPPORTREQUESTQUERYERRORMSG = "queryErrorMsg";
-	//public static final String SUPPORTREQUESTDRAGANDDROPTITLE = "dragAndDropTitle";
-	//public static final String SUPPORTREQUESTDRAGANDDROPSUBTITLE = "dragAndDropSubtitle";
 	public static final String SUPPORTREQUESTFILEERRORMSG = "fileErrorMsg";
-	public static final String SUPPORTREQUESTFILEFORMATSUBTITLE = "fileFormatSubtitle";
+	public static final String SUPPORTREQUESTQUERYPLACEHOLDER = "queryPlaceholder";
 	public static final String SUPPORTREQUESTDRAGANDDROPBUTTONLABEL = "dragAndDropButtonLabel";
 	public static final String SUPPORTREQUESTDRAGANDDROPREMOVEFILE = "removeFileLabel";
 	public static final String SUPPORTREQUESTDETAILSTITLE = "detailsTitle";

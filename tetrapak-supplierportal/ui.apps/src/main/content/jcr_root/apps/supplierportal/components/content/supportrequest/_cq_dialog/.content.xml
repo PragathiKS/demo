@@ -34,7 +34,7 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Purpose of Contact (i18N key)"
-                                name="./purposeOfContantLabel"
+                                name="./purposeOfContactLabel"
                                 required="true"/>
                             <purposeErrorMsgLabel
                                 jcr:primaryType="nt:unstructured"
@@ -47,6 +47,12 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Query Title (i18N key)"
                                 name="./queryTitle"
+                                required="true"/>
+                            <queryPlaceholder
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Query Subtitle (i18N key)"
+                                name="./queryPlaceholder"
                                 required="true"/>
                             <querySubtitle
                                 jcr:primaryType="nt:unstructured"
@@ -68,29 +74,12 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <dragAndDropTitle
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Drag and drop - title (i18N key)"
-                                name="./dragAndDropTitle"
-                                required="true"/>
-                            <dragAndDropSubtitle
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Drag and drop - subtitle (i18N key)"
-                                name="./dragAndDropSubtitle"
-                                required="true"/>
                             <fileUpdloadErrorMsg
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="File Upload error message (i18N key)"
                                 name="./fileErrorMsg"
                                 required="true"/>
-                            <fileFormatSubtitle
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="File format - subtitle (i18N key)"
-                                name="./fileFormatSubtitle"/>
                             <dragAndDropButtonLabel
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

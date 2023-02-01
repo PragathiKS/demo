@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.http.HttpStatus;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -11,6 +12,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonObject;
 import com.tetrapak.supplierportal.core.constants.FormConstants;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.models.SupportRequestFormBean;
@@ -26,10 +28,11 @@ public class SupportRequestFormEmailServiceImpl implements SupportRequestFormEma
 	private JobManager jobMgr;
 
 	@Override
-	public void sendEmailForNotification(SupportRequestFormBean SupportRequestFormBean, String mailAddresses) {
+	public JsonObject sendEmailForNotification(SupportRequestFormBean SupportRequestFormBean, String mailAddresses) {
 		LOGGER.debug("inside sendEmailForNotification");
-
+		JsonObject emailResponse = new JsonObject();
 		if (Objects.nonNull(mailAddresses)) {
+			LOGGER.debug("email address is " + mailAddresses);
 			// Set the dynamic variables of email template
 			final Map<String, String> emailParams = new HashMap<>();
 
@@ -54,10 +57,17 @@ public class SupportRequestFormEmailServiceImpl implements SupportRequestFormEma
 			properties.put("emailParams", emailParams);
 			properties.put("receipientsArray", mailAddresses);
 			if (jobMgr != null) {
-			//	jobMgr.addJob(PWConstants.SEND_EMAIL_JOB_TOPIC, properties);
+				LOGGER.debug("inside job");
+				jobMgr.addJob(SupplierPortalConstants.SEND_EMAIL_JOB_TOPIC, properties);
+				emailResponse.addProperty(SupplierPortalConstants.RESULT, "success");
+				emailResponse.addProperty(SupplierPortalConstants.STATUS, "200");
 			} else {
 				LOGGER.error("JobManager Reference null");
+				emailResponse.addProperty(SupplierPortalConstants.RESULT, "email failed");
+				emailResponse.addProperty(SupplierPortalConstants.STATUS, HttpStatus.SC_BAD_REQUEST);
 			}
 		}
+
+		return emailResponse;
 	}
 }

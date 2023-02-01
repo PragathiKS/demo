@@ -6,21 +6,15 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
-@Model(adaptables = { Resource.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SupportRequestFormModel {
-
-	/** The resource. */
-	@Self
-	private Resource resource;
 
 	/** The site label. */
 	@ValueMapValue
@@ -42,19 +36,13 @@ public class SupportRequestFormModel {
 	private String querySubtitle;
 
 	@ValueMapValue
+	private String queryPlaceholder;
+
+	@ValueMapValue
 	private String queryErrorMsgLabel;
 
 	@ValueMapValue
-	private String dragAndDropTitle;
-
-	@ValueMapValue
-	private String dragAndDropSubtitle;
-
-	@ValueMapValue
 	private String fileErrorMsg;
-
-	@ValueMapValue
-	private String fileFormatSubtitle;
 
 	@ValueMapValue
 	private String dragAndDropButtonLabel;
@@ -184,22 +172,6 @@ public class SupportRequestFormModel {
 		this.queryErrorMsgLabel = queryErrorMsgLabel;
 	}
 
-	public String getDragAndDropTitle() {
-		return dragAndDropTitle;
-	}
-
-	public void setDragAndDropTitle(String dragAndDropTitle) {
-		this.dragAndDropTitle = dragAndDropTitle;
-	}
-
-	public String getDragAndDropSubtitle() {
-		return dragAndDropSubtitle;
-	}
-
-	public void setDragAndDropSubtitle(String dragAndDropSubtitle) {
-		this.dragAndDropSubtitle = dragAndDropSubtitle;
-	}
-
 	public String getFileErrorMsg() {
 		return fileErrorMsg;
 	}
@@ -208,12 +180,12 @@ public class SupportRequestFormModel {
 		this.fileErrorMsg = fileErrorMsg;
 	}
 
-	public String getFileFormatSubtitle() {
-		return fileFormatSubtitle;
+	public String getQueryPlaceholder() {
+		return queryPlaceholder;
 	}
 
-	public void setFileFormatSubtitle(String fileFormatSubtitle) {
-		this.fileFormatSubtitle = fileFormatSubtitle;
+	public void setQueryPlaceholder(String queryPlaceholder) {
+		this.queryPlaceholder = queryPlaceholder;
 	}
 
 	public String getDragAndDropButtonLabel() {
@@ -421,16 +393,6 @@ public class SupportRequestFormModel {
 	}
 
 	/**
-	 * Gets the Mapped Path of this resource.
-	 *
-	 * @return the mappedPath
-	 */
-	public String getMappedResourcePath() {
-		ResourceResolver resolver = resource.getResourceResolver();
-		return resolver.map(resource.getPath());
-	}
-
-	/**
 	 * init method.
 	 */
 	@PostConstruct
@@ -445,7 +407,7 @@ public class SupportRequestFormModel {
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTQUERYSUBTITLE, getQuerySubtitle());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTQUERYERRORMSG, getQueryErrorMsgLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTFILEERRORMSG, getFileErrorMsg());
-		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTFILEFORMATSUBTITLE, getFileFormatSubtitle());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTQUERYPLACEHOLDER, getQueryPlaceholder());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTDRAGANDDROPBUTTONLABEL, getDragAndDropButtonLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTDRAGANDDROPREMOVEFILE, getDragAndDropRemoveFileLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTDETAILSTITLE, getDetailsTitle());
