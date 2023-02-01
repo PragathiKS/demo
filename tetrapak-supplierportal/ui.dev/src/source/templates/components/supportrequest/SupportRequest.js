@@ -29,7 +29,7 @@ function _renderLayout() {
 function _renderFiles() {
   const $this = this;
   const $fileExtensionError = $this.root.find('.js-tp-support-request__file-error');
-  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.dragAndDropRemoveFileLabel, isError: true }));
+  const obj = $this.cache.files.map(obj => ({ name: obj.name, size: `${(obj.size / (1024 * 1024)).toFixed(2)  } MB`, removeFileLabel: $this.cache.i18nKeys.removeFileLabel, isError: true }));
   render.fn({
     template: 'supportRequestFiles',
     target: '.js-tp-support-request__drag-and-drop-files-container',
