@@ -5,12 +5,19 @@
     @media #{$desktop} {
         @include margin-top($margin-l);
     }
+    &__content {
+        @include margin-top($margin-zero);
+    }
 
     &__container {
         @include padding($padding-md);
 
         @media #{$desktop} {
             @include padding($padding-l);
+        }
+
+        @media #{$mobile} {
+            padding: 0;
         }
     }
 
@@ -37,9 +44,9 @@
         &__item {
             @include margin-bottom($margin-md);
             @media #{$desktop} {
-                @include margin-right($margin-xxl);
-                margin-bottom: 0;
                 display: block;
+                margin: 0 $margin-l;
+                margin-bottom: 0;
             }
 
         }

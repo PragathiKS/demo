@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.annotation.PostConstruct;
-
 import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -22,15 +20,21 @@ import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
 import com.tetrapak.supplierportal.core.utils.LinkUtil;
 
+import javax.annotation.PostConstruct;
+
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterModel {
 
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(FooterModel.class);
 
     private static final String CONFIGURATION_PATH = "/jcr:content/root/responsivegrid/footerconfiguration";
 
-    /** The request. */
+    /**
+     * The request.
+     */
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -38,6 +42,9 @@ public class FooterModel {
     private UserPreferenceService userPreferenceService;
 
     /** The footer links. */
+    /**
+     * The footer links.
+     */
     private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
 
     /**
