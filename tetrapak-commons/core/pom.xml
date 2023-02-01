@@ -165,7 +165,6 @@
         <dependency>
             <groupId>com.adobe.acs</groupId>
             <artifactId>acs-aem-commons-bundle</artifactId>
-            <version>5.4.0</version>
         </dependency>
     </dependencies>
 </project>
