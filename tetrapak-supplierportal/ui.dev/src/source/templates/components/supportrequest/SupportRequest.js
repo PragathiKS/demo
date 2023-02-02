@@ -91,6 +91,10 @@ class SupportRequest {
       $this.addInputTypeFile();
     });
 
+    $this.root.on('click', '.js-tp-support-request__send-another-support-request', () => {
+      $this.urlRedirectToHome();
+    });
+
     $this.root.on('click', '.js-tp-support-request__drag-and-drop-file-remove-container', e => {
       $this.removeFile(e);
     });
@@ -259,6 +263,9 @@ class SupportRequest {
   }
   renderSubmit() {
     return _renderSubmit.apply(this, arguments);
+  }
+  urlRedirectToHome(){
+    return window.location.assign('dashboard.html').reload().toString();
   }
   init() {
     this.initCache();
