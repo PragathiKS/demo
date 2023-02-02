@@ -248,8 +248,9 @@ $color-grey: rgba(74, 74, 74, 0.5);
 
         &-long-input {
             width: 100%;
-
+            
             @media #{$desktop} {
+                max-width: 536px;
                 min-width: 536px;
             }
         }
