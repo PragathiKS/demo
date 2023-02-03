@@ -70,6 +70,50 @@
                     </column1>
                     <column2
                         jcr:primaryType="nt:unstructured"
+                        jcr:title="Contact Of Puropose"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        maximized="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <onboardingMaintanance
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="On Boarding Maintanance (i18N key)"
+                                name="./onboardingMaintanance"
+                                required="true"/>
+                            <onboardingMaintananceSubtitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="On Boarding Maintanance Subtitle(i18N key)"
+                                name="./onboardingMaintananceSubtitle"
+                                required="true"/>
+                            <sourcingContracting
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Sourcing Contracting (i18N key)"
+                                name="./sourcingContracting"
+                                required="true"/>
+                            <sourcingContractingSubtitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Sourcing Contracting Subtitle (i18N key)"
+                                name="./sourcingContractingSubtitle"
+                                required="true"/>
+                            <catalogues
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Catalogues (i18N key)"
+                                name="./catalogues"
+                                required="true"/>
+                            <cataloguesSubtitle
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Catalogues Subtitle (i18N key)"
+                                name="./cataloguesSubtitle"
+                                required="true"/>
+                        </items>
+                    </column2>
+                    <column3
+                        jcr:primaryType="nt:unstructured"
                         jcr:title="Drag and drop"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
@@ -93,8 +137,8 @@
                                 name="./dragAndDropRemoveFileLabel"
                                 required="true"/>
                         </items>
-                    </column2>
-                    <column3
+                    </column3>
+                    <column4
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Personal Details form"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -167,8 +211,8 @@
                                 name="./phoneErrorMsg"
                                 required="true"/>
                         </items>
-                    </column3>
-                    <column4
+                    </column4>
+                    <column5
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Other Details"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -223,8 +267,8 @@
                                 name="./SendButtonLabel"
                                 required="true"/>
                         </items>
-                    </column4>
-                    <column5
+                    </column5>
+                    <column6
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Thank you form"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -249,7 +293,7 @@
                                 name="./homeButtonLabel"
                                 required="true"/>
                         </items>
-                    </column5>
+                    </column6>
                 </items>
             </tabs>
         </items>
