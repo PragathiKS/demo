@@ -7,6 +7,9 @@ import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.adobe.acs.commons.email.EmailService;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
@@ -21,6 +24,8 @@ public class SendEmailJob implements JobConsumer {
 	@Reference
 	private EmailService emailService;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailJob.class);
+
 	/**
 	 * Process.
 	 *
@@ -29,7 +34,7 @@ public class SendEmailJob implements JobConsumer {
 	 */
 	@Override
 	public JobResult process(final Job job) {
-
+		LOGGER.info("inside job");
 		emailService.sendEmail(job.getProperty("templatePath").toString(),
 				(Map<String, String>) job.getProperty("emailParams"), (String[]) job.getProperty("receipientsArray"));
 		return JobResult.OK;
