@@ -116,6 +116,24 @@ public class SupportRequestFormModel {
 	@ValueMapValue
 	private String homeButtonLabel;
 
+	@ValueMapValue
+	private String onboardingMaintanance;
+
+	@ValueMapValue
+	private String onboardingMaintananceSubtitle;
+
+	@ValueMapValue
+	private String sourcingContracting;
+
+	@ValueMapValue
+	private String sourcingContractingSubtitle;
+
+	@ValueMapValue
+	private String catalogues;
+
+	@ValueMapValue
+	private String cataloguesSubtitle;
+
 	public String getGeneralTitleLabel() {
 		return generalTitleLabel;
 	}
@@ -380,6 +398,54 @@ public class SupportRequestFormModel {
 		this.tpEmailErrorMsg = tpEmailErrorMsg;
 	}
 
+	public String getOnboardingMaintanance() {
+		return onboardingMaintanance;
+	}
+
+	public void setOnboardingMaintanance(String onboardingMaintanance) {
+		this.onboardingMaintanance = onboardingMaintanance;
+	}
+
+	public String getOnboardingMaintananceSubtitle() {
+		return onboardingMaintananceSubtitle;
+	}
+
+	public void setOnboardingMaintananceSubtitle(String onboardingMaintananceSubtitle) {
+		this.onboardingMaintananceSubtitle = onboardingMaintananceSubtitle;
+	}
+
+	public String getSourcingContracting() {
+		return sourcingContracting;
+	}
+
+	public void setSourcingContracting(String sourcingContracting) {
+		this.sourcingContracting = sourcingContracting;
+	}
+
+	public String getSourcingContractingSubtitle() {
+		return sourcingContractingSubtitle;
+	}
+
+	public void setSourcingContractingSubtitle(String sourcingContractingSubtitle) {
+		this.sourcingContractingSubtitle = sourcingContractingSubtitle;
+	}
+
+	public String getCatalogues() {
+		return catalogues;
+	}
+
+	public void setCatalogues(String catalogues) {
+		this.catalogues = catalogues;
+	}
+
+	public String getCataloguesSubtitle() {
+		return cataloguesSubtitle;
+	}
+
+	public void setCataloguesSubtitle(String cataloguesSubtitle) {
+		this.cataloguesSubtitle = cataloguesSubtitle;
+	}
+
 	/** The i 18 n keys. */
 	private String i18nKeys;
 
@@ -432,6 +498,13 @@ public class SupportRequestFormModel {
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTTHANKYOUTITLE, getThankyouTitleLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTTHANKYOUSUBTITLE, getThankyouSubtitleLabel());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTHOMEBUTTON, getHomeButtonLabel());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTONBOARDINGMAINTAIN, getOnboardingMaintanance());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTONBOARDINGMAINTAINSUBTITLE,
+				getOnboardingMaintananceSubtitle());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTSOURCING, getSourcingContracting());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTSOURCINGSUBTITLE, getSourcingContractingSubtitle());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCATALOGUES, getCatalogues());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCATALOUGESSUBTITLE, getCataloguesSubtitle());
 
 		Gson gson = new Gson();
 		i18nKeys = gson.toJson(i18KeyMap);

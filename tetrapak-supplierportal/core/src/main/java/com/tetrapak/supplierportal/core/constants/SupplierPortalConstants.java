@@ -169,7 +169,13 @@ public final class SupplierPortalConstants {
 	public static final String SUPPORTREQUESTTHANKYOUTITLE = "thankyouTitle";
 	public static final String SUPPORTREQUESTTHANKYOUSUBTITLE = "thankyouSubtitle";
 	public static final String SUPPORTREQUESTHOMEBUTTON = "homeButtonLabel";
-
+	public static final String SUPPORTREQUESTONBOARDINGMAINTAIN = "onboardingMaintanance";
+	public static final String SUPPORTREQUESTONBOARDINGMAINTAINSUBTITLE = "onboardingMaintananceSubtitle";
+	public static final String SUPPORTREQUESTSOURCING = "sourcingContracting";
+	public static final String SUPPORTREQUESTSOURCINGSUBTITLE = "sourcingContractingSubtitle";
+	public static final String SUPPORTREQUESTCATALOGUES = "catalogues";
+	public static final String SUPPORTREQUESTCATALOUGESSUBTITLE = "cataloguesSubtitle";
+	
 	public static final String EMAILSUBJECT = "subject";
 
 }
