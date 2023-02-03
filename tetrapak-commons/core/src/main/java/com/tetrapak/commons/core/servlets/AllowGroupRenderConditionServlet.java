@@ -26,6 +26,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 
+import static com.tetrapak.commons.core.constants.CommonsConstants.ADMIN_USER;
+import static com.tetrapak.commons.core.constants.CommonsConstants.USER_GROUP_READ_SERVICE;
+
 /**
  * This is a render condition to show or hide a granite field in any dialog
  * based on the allowedGroups property configured in the granite:rendercondition node
@@ -44,17 +47,19 @@ public class AllowGroupRenderConditionServlet extends SlingSafeMethodsServlet {
     @Reference
     private transient ResourceResolverFactory resolverFactory;
 
+    private static final String ALLOWED_GROUPS = "allowedGroups";
+
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response) {
 
         boolean render = false;
         final Map<String, Object> authInfo = Collections.singletonMap(ResourceResolverFactory.SUBSERVICE,
-                "readUserGroupsService");
+                USER_GROUP_READ_SERVICE);
         try(ResourceResolver adminResolver = resolverFactory.getServiceResourceResolver(authInfo)){
             Config config = new Config(request.getResource());
             String currentUserId = request.getResourceResolver().getUserID();
-            String[] allowedGroups = config.get("allowedGroups", String[].class);
-            if(currentUserId.equals("admin")){
+            String[] allowedGroups = config.get(ALLOWED_GROUPS, String[].class);
+            if(currentUserId.equals(ADMIN_USER)){
                 render = true;
             }
             if(!render && allowedGroups != null && allowedGroups.length > 0){
