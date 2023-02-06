@@ -1922,5 +1922,9 @@
             jcr:mixinTypes="[sling:Message]"
             sling:key="cuhu.rebuildingkits.whatLanguageWantText"
             sling:message="What Language Do You Want?"/>
+    <cuhu.rebuildingkits.rkSelectLanguage
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.rkSelectLanguage"
+            sling:message="Select Language"/>
 
 </jcr:root>
