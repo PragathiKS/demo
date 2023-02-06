@@ -10,3 +10,6 @@ export const orientationTypes = {
   UNSUPPORTED: 'unsupported'
 };
 export const TRANSITION_END = 'webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend';
+
+// Servlet URLs
+export const LANGUAGE_PREFERENCE_SERVLET_URL = '/bin/supplierportal/saveLanguagePreference';
