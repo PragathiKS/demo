@@ -7,39 +7,39 @@
             <div class="js-tp-support-request__form-element tp-support-request__section-content tp-support-request__form-element">
                <div class="tp-support-request__radio-row">
                 {{> atoms/radioButton/radioButton
-                    labelText=(concat "SAP Ariba - " i18nKeys.onboardingMaintanance)
+                    labelText=i18nKeys.onboardingMaintanance
                     name="purposeOfContact"
                     id="onboardingMaintanance"
-                    value=(concat "SAP Ariba - " i18nKeys.onboardingMaintanance)
+                    value=i18nKeys.onboardingMaintanance
                     required="true"
                     eleClasses="tp-support-request__radio-input"
                     labelClasses="tp-support-request__radio-label"
                 }}
-                <p>Get support with registration, updating supplier information or similar</p>
+                <p>{{i18n key=i18nKeys.onboardingMaintananceSubtitle}}</p>
                </div>
                <div class="tp-support-request__radio-row">
                 {{> atoms/radioButton/radioButton
-                    labelText=(concat "SAP Ariba - " i18nKeys.sourcingContracting)
+                    labelText=i18nKeys.sourcingContracting
                     name="purposeOfContact"
                     id="sourcing&contacting"
-                    value=(concat "SAP Ariba - " i18nKeys.sourcingContracting)
+                    value=i18nKeys.sourcingContracting
                     required="true"
                     eleClasses="tp-support-request__radio-input"
                     labelClasses="tp-support-request__radio-label"
                 }}
-                 <p>Get support with creating or maintaining catalogues</p>
+                 <p>{{i18n key=i18nKeys.sourcingContractingSubtitle}}</p>
                </div>
                <div class="tp-support-request__radio-row">
                 {{> atoms/radioButton/radioButton
-                    labelText=(concat "SAP Ariba - " i18nKeys.catalogues)
+                    labelText=i18nKeys.catalogues
                     name="purposeOfContact"
                     id="catalogues"
-                    value=(concat "SAP Ariba - " i18nKeys.catalogues)
+                    value=i18nKeys.catalogues
                     required="true"
                     eleClasses="tp-support-request__radio-input"
                     labelClasses="tp-support-request__radio-label"
                 }}
-                <p>Sourcing & Contracting Get support with sending and responding to RFI/RFQs, participating in auctions, using electronic signatures or similar</p>
+                <p>{{i18n key=i18nKeys.cataloguesSubtitle}}</p>
                </div>
             <div class="error-msg">{{i18n key=i18nKeys.purposeContactErrorMsg}}</div>
             </div>
