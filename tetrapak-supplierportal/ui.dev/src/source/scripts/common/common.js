@@ -11,6 +11,8 @@ export const strCompressed = new LZStorage({
   compression: true
 });
 
+export const isCallable = (param) => (typeof param === 'function');
+
 export const getDocType = (url) => {
   const fileList = ['pdf', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pttx', 'jpeg', 'png', 'jpg', 'svg'];
   const endPart = url && url.split('/').pop();
