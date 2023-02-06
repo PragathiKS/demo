@@ -2,6 +2,14 @@
 
 import $ from 'jquery';
 import { trackAnalytics } from '../utils/analytics';
+import LZStorage from 'lzstorage';
+
+
+// Initialize storage utility
+export const storageUtil = new LZStorage();
+export const strCompressed = new LZStorage({
+  compression: true
+});
 
 export const getDocType = (url) => {
   const fileList = ['pdf', 'xls', 'xlsx', 'doc', 'docx', 'ppt', 'pttx', 'jpeg', 'png', 'jpg', 'svg'];
