@@ -92,7 +92,7 @@ class SupportRequest {
     });
 
     $this.root.on('click', '.js-tp-support-request__send-another-support-request', () => {
-      $this.urlRedirectToHome();
+      window.location.assign('dashboard.html').reload();
     });
 
     $this.root.on('click', '.js-tp-support-request__drag-and-drop-file-remove-container', e => {
@@ -263,9 +263,6 @@ class SupportRequest {
   }
   renderSubmit() {
     return _renderSubmit.apply(this, arguments);
-  }
-  urlRedirectToHome(){
-    return window.location.assign('dashboard.html').reload().toString();
   }
   init() {
     this.initCache();
