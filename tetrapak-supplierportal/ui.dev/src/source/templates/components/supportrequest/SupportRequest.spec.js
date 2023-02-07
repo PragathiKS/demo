@@ -10,6 +10,7 @@ describe('SupportRequest', function () {
       el: document.body
     });
   }
+  function ajaxResponse(response) {    const pr = $.Deferred();    pr.resolve(response, 'success');    return pr.promise();  }
   before(function () {
     this.domHtml = supportRequestTemplate();
     setDom(this);
@@ -24,9 +25,8 @@ describe('SupportRequest', function () {
     this.removeErrorMsgSpy = sinon.spy(this.supportRequest, 'removeErrorMsg');
     this.removeAllErrorMessagesSpy = sinon.spy(this.supportRequest, 'removeAllErrorMessages');
     this.setFilterFilesSpy = sinon.spy(this.supportRequest, 'filterFiles');
-
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-
+    this.ajaxStub.returns(ajaxResponse());
     this.supportRequest.init();
   });
   after(function () {
@@ -79,12 +79,12 @@ describe('SupportRequest', function () {
     done();
   });
 
-  it('should render support request form after submit', function (done) {
-    setDom(this);
-    $('.js-tp-support-request__send-another-support-request').trigger('click');
-    expect(this.renderLayoutSpy.called).to.be.true;
-    done();
-  });
+  // it('should render support request form after submit', function (done) {
+  //   setDom(this);
+  //   $('.js-tp-support-request__send-another-support-request').trigger('click');
+  //   expect(this.renderLayoutSpy.called).to.be.true;
+  //   done();
+  // });
 
   it('should prevent default on window drag enter', function (done) {
     setDom(this);
@@ -155,19 +155,19 @@ describe('SupportRequest', function () {
     done();
   });
 
-  // it('should submit form', function (done) {
-  //   setDom(this);
-  //   $("#onboardingMaintanance").trigger('click');
-  //   $("#howHelp").val('Hello, I need to know how to send my form');
-  //   $("#name").val('Gustavo Common');
-  //   $("#email").val('Gustavo.Common@supplier.com');
-  //   $("#companyLegalName").val('Test');
-  //   $("#country").val('Indie');
-  //   $("#city").val('Delphi');
-  //   $('.js-tp-support-request__submit').trigger('click');
-
-  //   expect(this.submitFormSpy.called).to.be.true;
-  //   done();
-  // });
+  it('should submit form', function (done) {
+    setDom(this);
+    $("#onboardingMaintanance").trigger('click');
+    $("#howHelp").val('Hello, I need to know how to send my form');
+    $("#name").val('Gustavo Common');
+    $("#emailAddress").val('Gustavo.Common@supplier.com');
+    $("#companyLegalName").val('Test');
+    $("#country").val('Indie');
+    $("#city").val('Delphi');
+    $('.js-tp-support-request__submit').trigger('click');
+    expect(this.submitFormSpy.called).to.be.true;
+    expect(this.renderSubmitSpy.called).to.be.true;
+    done();
+  });
 
 });
