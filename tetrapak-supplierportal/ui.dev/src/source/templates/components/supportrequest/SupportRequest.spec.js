@@ -10,7 +10,7 @@ describe('SupportRequest', function () {
       el: document.body
     });
   }
-  function ajaxResponse(response) {    const pr = $.Deferred();    pr.resolve(response, 'success');    return pr.promise();  }
+  function ajaxResponse(response = { status: 200 }) {    const pr = $.Deferred();    if(response.status === 200) {      pr.resolve(response, 'success');    } else {      pr.reject(response, 'error');    }    return pr.promise();  }
   before(function () {
     this.domHtml = supportRequestTemplate();
     setDom(this);
@@ -167,6 +167,25 @@ describe('SupportRequest', function () {
     $('.js-tp-support-request__submit').trigger('click');
     expect(this.submitFormSpy.called).to.be.true;
     expect(this.renderSubmitSpy.called).to.be.true;
+    done();
+  });
+
+  it('should fail submit form', function(done) {
+    setDom(this);
+    this.renderSubmitSpy.resetHistory();
+    this.ajaxStub.returns(ajaxResponse({
+      status: 500
+    }, 'error'));
+    $("#onboardingMaintanance").trigger('click');
+    $("#howHelp").val('Hello, I need to know how to send my form');
+    $("#name").val('Gustavo Common');
+    $("#emailAddress").val('Gustavo.Common@supplier.com');
+    $("#companyLegalName").val('Test');
+    $("#country").val('Indie');
+    $("#city").val('Delphi');
+    $('.js-tp-support-request__submit').trigger('click');
+    expect(this.submitFormSpy.called).to.be.true;
+    expect(this.renderSubmitSpy.called).to.be.false;
     done();
   });
 
