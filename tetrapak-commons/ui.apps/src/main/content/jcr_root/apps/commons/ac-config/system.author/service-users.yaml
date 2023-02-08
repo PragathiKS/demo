@@ -1,0 +1,21 @@
+- user_config:
+
+    - tetrapak-readusergroups-system-user:
+
+        - name:
+          path: tetrapak
+          isSystemUser: true
+
+- ace_config:
+
+    - tetrapak-readusergroups-system-user:
+
+        - path: /home/groups
+          permission: allow
+          actions: read, acl_read
+          privileges:
+
+        - path: /home/users
+          permission: allow
+          actions: read, acl_read
+          privileges:
