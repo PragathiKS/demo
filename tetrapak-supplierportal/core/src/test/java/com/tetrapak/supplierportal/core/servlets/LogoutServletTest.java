@@ -39,6 +39,8 @@ import static org.junit.Assert.assertEquals;
 
     @Mock private Cookie cookie;
 
+    @Mock private Cookie cookieEmail;
+
     @Before public void setUp() throws IOException {
         loginCookie.setMaxAge(1);
         tokenCookie.setMaxAge(1);
@@ -52,6 +54,7 @@ import static org.junit.Assert.assertEquals;
         Mockito.when(request.getCookie(LogoutServlet.AUTH_TOKEN_KEY)).thenReturn(authCookie);
         Mockito.when(request.getCookie(SupplierPortalConstants.SAML_REQUEST_PATH)).thenReturn(samlCookie);
         Mockito.when(request.getCookie(SupplierPortalConstants.COOKIE_NAME)).thenReturn(cookie);
+        Mockito.when(request.getCookie(SupplierPortalConstants.COOKIE_EMAIL)).thenReturn(cookieEmail);
 
         Set<String> modes = new HashSet<>();
         modes.add("publish");
