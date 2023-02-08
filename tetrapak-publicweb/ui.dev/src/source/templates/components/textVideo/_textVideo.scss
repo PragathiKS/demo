@@ -214,7 +214,7 @@
 
     &__novideo {
         @include border-radius($border-radius);
-        display: flex;
+        display: none;
         align-items: center;
         background-color: $color-mercury;
         flex-direction: column;

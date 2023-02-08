@@ -17,10 +17,9 @@ class TextVideo {
     $textVideoButton.on('click', this.trackAnalytics);
     setTimeout(function(){
       const noVideo = window.OptanonActiveGroups;
-      $('.pw-text-video__novideo').hide();
-      if (noVideo === ',1,') {
+      if (!noVideo.includes('4')) {
         $('.pw-text-video__video').css('display', 'none');
-        $('.pw-text-video__novideo').show();
+        $('.pw-text-video__novideo').css('display', 'flex');
       }
     }, 2000);
 
