@@ -44,6 +44,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static final String EMPTY = "empty";
     private static final String FIRST_NAME = "firstname";
     private static final String LAST_NAME = "lastname";
+    private static final String EMAIL = "mail";
     private static final String SAML_ATTRIBUTE_VALUE = "saml:AttributeValue";
     private static final String SAML_ATTRIBUTE = "saml:Attribute";
     private static final String SAML_ATTRIBUTE_STATEMENT = "saml:AttributeStatement";
@@ -113,6 +114,11 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
             lastName = attrMap.get(LAST_NAME);
         }
 
+        String email = StringUtils.EMPTY;
+        if (StringUtils.isNoneBlank(attrMap.get(EMAIL))) {
+            email = attrMap.get(EMAIL);
+        }
+
         String customerName = URLEncoder.encode(firstName + " " + lastName, "UTF-8").replaceAll("\\+", "%20");
 
         if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
@@ -121,6 +127,14 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
             samlCookie.setPath("/");
             samlCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
             response.addCookie(samlCookie);
+        }
+
+        if (StringUtils.isNotBlank(email)) {
+            Cookie emailCookie = new Cookie(SupplierPortalConstants.COOKIE_EMAIL, email);
+            emailCookie.setHttpOnly(true);
+            emailCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
+            emailCookie.setPath("/");
+            response.addCookie(emailCookie);
         }
     }
 
