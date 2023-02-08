@@ -2,6 +2,7 @@
   "heading": "Heading",
   "anchorId": "anchor011",
   "anchorTitle": "Anchor Title",
+  "baiduMapKey": "i2VwWovOU2OomMlYNPhXmGhMXcESpXVr",
   "googleApiKey": "AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ",
   "servletPath": "/content/tetrapak/publicweb/lang-masters/en/solutions/jcr:content/root/responsivegrid/findmyoffice.json"
 }
