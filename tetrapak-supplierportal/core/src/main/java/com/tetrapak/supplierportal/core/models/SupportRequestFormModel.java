@@ -512,9 +512,6 @@ public class SupportRequestFormModel {
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCATALOGUES, getCatalogues());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCATALOUGESSUBTITLE, getCataloguesSubtitle());
 
-		Gson gson = new Gson();
-		i18nKeys = gson.toJson(i18KeyMap);
-
 		Cookie nameCookie = request.getCookie(SupplierPortalConstants.COOKIE_NAME);
 		if (nameCookie != null) {
 			i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTUSERNAME, nameCookie.getValue());
@@ -524,5 +521,8 @@ public class SupportRequestFormModel {
 		if (emailCookie != null) {
 			i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTUSEREMAIL, emailCookie.getValue());
 		}
+
+		Gson gson = new Gson();
+		i18nKeys = gson.toJson(i18KeyMap);
 	}
 }
