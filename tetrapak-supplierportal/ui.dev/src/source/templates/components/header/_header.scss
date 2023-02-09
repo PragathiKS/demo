@@ -22,6 +22,7 @@
     }
 
     .tp-header__user{
+        align-items: center;
         @media #{$mobile} {
             display: block;
             text-indent: -9999px;
@@ -30,7 +31,9 @@
 
 
         &::before{
+            font-size: $font-l;
             @media #{$mobile} {
+                font-size: $font-normal;
                 text-indent: 0;
                 float: left;
             }
