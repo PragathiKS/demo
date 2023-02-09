@@ -1,0 +1,54 @@
+.cmp-form {
+    @include margin(0 auto);
+    @include padding($padding-md);
+    max-width: 90vw;
+
+    @media #{$mobile-large} {
+        @include padding($padding-l);
+    }
+
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+        max-width: 470px;
+    }
+    background: $color-white;
+
+    &-text {
+        @include padding-bottom($padding-sm);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        font-size: 14px;
+        line-height: 24px;
+
+        label {
+            display: block;
+        }
+        input, textarea {
+            @include padding($padding-sm $padding-md);
+            display: block;
+            width: 100%;
+        }
+        textarea {
+            resize: none;
+        }
+    }
+
+    &-button {
+        @include margin-top($margin-sm);
+        @include padding($padding-sm $padding-md $padding-sm $padding-md);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+
+        background-color: $color-congress-blue;
+        color: $color-white;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 250ms ease;
+        font-weight: 400;
+        letter-spacing: normal;
+
+        &:hover {
+            background-color: $color-sky-blue;
+        }
+    }
+}
