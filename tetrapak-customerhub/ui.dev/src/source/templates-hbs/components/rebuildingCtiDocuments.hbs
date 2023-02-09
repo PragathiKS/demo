@@ -76,7 +76,7 @@
               <i class="icon icon-PDF"></i>
               <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
                 {{#if_noteq langDesc ""}}{{langDesc}}{{/if_noteq}}
-                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}}
+                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}} - {{ctiNo}}
               </a>
             </li>
             {{/each}}
