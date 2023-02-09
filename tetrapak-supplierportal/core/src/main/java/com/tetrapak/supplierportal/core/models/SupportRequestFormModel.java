@@ -4,16 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.Cookie;
 
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SupportRequestFormModel {
 
 	/** The site label. */
@@ -133,6 +136,13 @@ public class SupportRequestFormModel {
 
 	@ValueMapValue
 	private String cataloguesSubtitle;
+
+	private String name;
+
+	private String email;
+
+    @SlingObject
+    private SlingHttpServletRequest request;
 
 	public String getGeneralTitleLabel() {
 		return generalTitleLabel;
@@ -458,6 +468,14 @@ public class SupportRequestFormModel {
 		return i18nKeys;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
 	/**
 	 * init method.
 	 */
@@ -509,5 +527,14 @@ public class SupportRequestFormModel {
 		Gson gson = new Gson();
 		i18nKeys = gson.toJson(i18KeyMap);
 
+		Cookie nameCookie = request.getCookie("SP-AEMCustomerName");
+		if (nameCookie != null) {
+			name = nameCookie.getValue();
+		}
+
+		Cookie emailCookie = request.getCookie("SP-AEMCustomerEmail");
+		if (emailCookie != null) {
+			email = emailCookie.getValue();
+		}
 	}
 }
