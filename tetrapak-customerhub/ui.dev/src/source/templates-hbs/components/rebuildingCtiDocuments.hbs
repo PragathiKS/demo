@@ -43,7 +43,7 @@
             <p>{{i18n key=i18nKeys.whatLanguageWantText}}</p>
             <div class="tp-rebuilding-details__request-field">
               {{> molecules/requestCtiDropdown/requestCtiDropdown
-              defaultValue="{{i18n key=i18nKeys.rkSelectLanguage}}"
+              defaultValue=i18nKeys.rkSelectLanguage
               options=reqLanguages
               name="requestCtiLanguage"
               wrapClasses="tp-rebuilding-details__request-cti"
@@ -63,7 +63,7 @@
               <i class="icon icon-PDF"></i>
               <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
                 {{#if_noteq langDesc ""}}{{langDesc}}{{/if_noteq}}
-                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}}
+                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}} - {{ctiNo}}
               </a>
             </li>
             {{/each}}
@@ -74,7 +74,7 @@
               <i class="icon icon-PDF"></i>
               <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
                 {{#if_noteq langDesc ""}}{{langDesc}}{{/if_noteq}}
-                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}}
+                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}} - {{ctiNo}}
               </a>
             </li>
             {{/each}}
@@ -84,7 +84,7 @@
             <h3>{{i18n key=cuhu.myequipment.rkcti.requestanewtranslation}}</h3>
             <div class="tp-rebuilding-details__request-field">
               {{> molecules/requestCtiDropdown/requestCtiDropdown
-              defaultValue="Select Language"
+              defaultValue=i18nKeys.rkSelectLanguage
               options=reqLanguages
               name="requestCtiLanguage"
               wrapClasses="tp-rebuilding-details__request-cti"
