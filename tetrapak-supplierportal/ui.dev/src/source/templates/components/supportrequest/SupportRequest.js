@@ -64,6 +64,7 @@ class SupportRequest {
     this.cache.$contentWrapper = this.root.find('.js-tp-support-request__content-wrapper');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.configJson = this.root.find('.js-tp-support-request__config').text();
+    this.cache.configCookie = this.root.find('.js-tp-support-request__configCookie').text();
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) {
