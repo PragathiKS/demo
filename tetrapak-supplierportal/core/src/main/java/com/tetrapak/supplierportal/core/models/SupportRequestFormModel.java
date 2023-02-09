@@ -137,10 +137,6 @@ public class SupportRequestFormModel {
 	@ValueMapValue
 	private String cataloguesSubtitle;
 
-	private String name;
-
-	private String email;
-
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -468,14 +464,6 @@ public class SupportRequestFormModel {
 		return i18nKeys;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
 	/**
 	 * init method.
 	 */
@@ -527,14 +515,14 @@ public class SupportRequestFormModel {
 		Gson gson = new Gson();
 		i18nKeys = gson.toJson(i18KeyMap);
 
-		Cookie nameCookie = request.getCookie("SP-AEMCustomerName");
+		Cookie nameCookie = request.getCookie(SupplierPortalConstants.COOKIE_NAME);
 		if (nameCookie != null) {
-			name = nameCookie.getValue();
+			i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTUSERNAME, nameCookie.getValue());
 		}
 
-		Cookie emailCookie = request.getCookie("SP-AEMCustomerEmail");
+		Cookie emailCookie = request.getCookie(SupplierPortalConstants.COOKIE_EMAIL);
 		if (emailCookie != null) {
-			email = emailCookie.getValue();
+			i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTUSEREMAIL, emailCookie.getValue());
 		}
 	}
 }
