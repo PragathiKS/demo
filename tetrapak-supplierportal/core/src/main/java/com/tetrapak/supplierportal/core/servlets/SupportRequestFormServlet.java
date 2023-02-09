@@ -1,13 +1,21 @@
 package com.tetrapak.supplierportal.core.servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.Servlet;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.xss.XSSAPI;
@@ -34,8 +42,16 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 	@Reference
 	private transient XSSAPI xssAPI;
 
+	public static final String CONTENT_TYPE = "contentType";
+	public static final String FILE_NAME = "fileName";
+	public static final String STREAM = "stream";
+
+	final String[] onBoardingMaintanance = { "ariba.suppliersupport@tetrapak.com", "Shilpa.Khandave@tetrapak.com" };
+	final String[] sourcingContracting = {"Supplier.Maintenance@tetrapak.com", "abhay.gaikwad@tetrapak.com"};
+	final String[] catalogues = {"dhananjay.kumar@tetrapak.com", "sawez.khan@tetrapak.com"};
+
 	@Reference
-	private SupportRequestFormEmailService SupportRequestFormEmailService;
+	private SupportRequestFormEmailService supportRequestFormEmailService;
 
 	private Gson gson = new Gson();
 
@@ -46,9 +62,12 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 		JsonObject jsonObject = new JsonObject();
 		try {
 			SupportRequestFormBean bean = createRequestAccessBean(request);
+
+			List<Map<String, String>> files = prepareAttachments(request);
 			if (bean != null && validateRequest(bean)) {
-				String emailAddress = "surbhi.gupta1@publicissapient.com";
-				jsonObject = SupportRequestFormEmailService.sendEmailForNotification(bean, emailAddress);
+				String[] emailAddress = getEmailAddress(bean.getPurposeOfContact());
+				// send email
+				jsonObject = supportRequestFormEmailService.sendEmailForNotification(bean, emailAddress, files);
 
 			} else {
 				LOGGER.error("Support Request Details servlet exception: request is not valid");
@@ -63,6 +82,18 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 		response.setStatus(jsonObject.get(SupplierPortalConstants.STATUS).getAsInt());
 		HttpUtil.writeJsonResponse(response, jsonObject);
 
+	}
+
+	private String[] getEmailAddress(String purposeOfContact) {
+		String[] emails = null;
+		if (purposeOfContact.contains("On Boardiing Maintanance")) {
+			emails = onBoardingMaintanance;
+		} else if (purposeOfContact.contains("Sourcing Contracting")) {
+			emails = sourcingContracting;
+		} else if (purposeOfContact.contains("Catalogues")) {
+			emails = catalogues;
+		}
+		return emails;
 	}
 
 	private boolean validateRequest(SupportRequestFormBean bean) {
@@ -87,4 +118,25 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 		return jsonObject;
 	}
 
+	private List<Map<String, String>> prepareAttachments(final SlingHttpServletRequest request) throws IOException {
+		List<Map<String, String>> listOfAttachments = new ArrayList<>();
+		Map<String, RequestParameter[]> requestParameters = request.getRequestParameterMap();
+		for (final Map.Entry<String, RequestParameter[]> entry : requestParameters.entrySet()) {
+			RequestParameter[] pArr = entry.getValue();
+			for (RequestParameter param : pArr) {
+				InputStream stream = param.getInputStream();
+				if (!param.isFormField()) {
+					Map<String, String> attachment = new HashMap<>();
+					LOGGER.debug("File detected with name : {} and content type : {}", param.getFileName(),
+							param.getContentType());
+					attachment.put(CONTENT_TYPE, param.getContentType());
+					attachment.put(FILE_NAME, param.getFileName());
+					byte[] bytes = IOUtils.toByteArray(stream);
+					attachment.put(STREAM, Base64.getEncoder().encodeToString(bytes));
+					listOfAttachments.add(attachment);
+				}
+			}
+		}
+		return listOfAttachments;
+	}
 }

@@ -1,6 +1,7 @@
 package com.tetrapak.supplierportal.core.services.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -28,7 +29,8 @@ public class SupportRequestFormEmailServiceImpl implements SupportRequestFormEma
 	private JobManager jobMgr;
 
 	@Override
-	public JsonObject sendEmailForNotification(SupportRequestFormBean SupportRequestFormBean, String mailAddresses) {
+	public JsonObject sendEmailForNotification(SupportRequestFormBean supportRequestFormBean, String[] mailAddresses,
+			List<Map<String, String>> files) {
 		LOGGER.debug("inside sendEmailForNotification");
 		JsonObject emailResponse = new JsonObject();
 		if (Objects.nonNull(mailAddresses)) {
@@ -37,25 +39,27 @@ public class SupportRequestFormEmailServiceImpl implements SupportRequestFormEma
 			final Map<String, String> emailParams = new HashMap<>();
 
 			// these parameters are used in email template
-			String emailSubject = SupportRequestFormBean.getPurposeOfContact() + " "
-					+ SupportRequestFormBean.getCompanyLegalName();
+			String emailSubject = supportRequestFormBean.getPurposeOfContact() + " "
+					+ supportRequestFormBean.getCompanyLegalName();
 
-			emailParams.put(FormConstants.NAME, SupportRequestFormBean.getName());
-			emailParams.put(FormConstants.PURPOSE, SupportRequestFormBean.getPurposeOfContact());
+			emailParams.put(FormConstants.NAME, supportRequestFormBean.getName());
+			emailParams.put(FormConstants.PURPOSE, supportRequestFormBean.getPurposeOfContact());
 			emailParams.put(SupplierPortalConstants.EMAILSUBJECT, emailSubject);
-			emailParams.put(FormConstants.COUNTRY, SupportRequestFormBean.getCountry());
-			emailParams.put(FormConstants.QUERYDESCRIPTION, SupportRequestFormBean.getHowHelp());
-			emailParams.put(FormConstants.EMAIL, SupportRequestFormBean.getEmailAddress());
-			emailParams.put(FormConstants.COMPANY_LEGALNAME, SupportRequestFormBean.getCompanyLegalName());
-			emailParams.put(FormConstants.CITY, SupportRequestFormBean.getCity());
-			emailParams.put(FormConstants.PHONE, SupportRequestFormBean.getOwnPhoneNumber());
-			emailParams.put(FormConstants.ARIBANETWORKID, SupportRequestFormBean.getAribaNetworkId());
-			emailParams.put(FormConstants.ARIBAEMAIL, SupportRequestFormBean.getAribaAccountAdminEmail());
-			emailParams.put(FormConstants.TPEMAIL, SupportRequestFormBean.getTpContactEmail());
+			emailParams.put(FormConstants.COUNTRY, supportRequestFormBean.getCountry());
+			emailParams.put(FormConstants.QUERYDESCRIPTION, supportRequestFormBean.getHowHelp());
+			emailParams.put(FormConstants.EMAIL, supportRequestFormBean.getEmailAddress());
+			emailParams.put(FormConstants.COMPANY_LEGALNAME, supportRequestFormBean.getCompanyLegalName());
+			emailParams.put(FormConstants.CITY, supportRequestFormBean.getCity());
+			emailParams.put(FormConstants.PHONE, supportRequestFormBean.getOwnPhoneNumber());
+			emailParams.put(FormConstants.ARIBANETWORKID, supportRequestFormBean.getAribaNetworkId());
+			emailParams.put(FormConstants.ARIBAEMAIL, supportRequestFormBean.getAribaAccountAdminEmail());
+			emailParams.put(FormConstants.TPEMAIL, supportRequestFormBean.getTpContactEmail());
+
 			final Map<String, Object> properties = new HashMap<>();
 			properties.put("templatePath", SupplierPortalConstants.SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH);
 			properties.put("emailParams", emailParams);
 			properties.put("receipientsArray", mailAddresses);
+			properties.put("attachments", files);
 			if (jobMgr != null) {
 				LOGGER.debug("inside job");
 				jobMgr.addJob(SupplierPortalConstants.SEND_EMAIL_JOB_TOPIC, properties);
