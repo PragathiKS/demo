@@ -179,5 +179,7 @@ public final class SupplierPortalConstants {
 	public static final String SUPPORTREQUESTCATALOUGESSUBTITLE = "cataloguesSubtitle";
 	
 	public static final String EMAILSUBJECT = "subject";
+	public static final String SUPPORTREQUESTUSERNAME= "userName";
+	public static final String SUPPORTREQUESTUSEREMAIL= "userEmail";
 
 }
