@@ -16,7 +16,8 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
-@Model(adaptables = { Resource.class, SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = { Resource.class,
+		SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SupportRequestFormModel {
 
 	/** The site label. */
@@ -137,8 +138,14 @@ public class SupportRequestFormModel {
 	@ValueMapValue
 	private String cataloguesSubtitle;
 
-    @SlingObject
-    private SlingHttpServletRequest request;
+	@ValueMapValue
+	private String otherPurpose;
+
+	@ValueMapValue
+	private String otherPurposeSubtitle;
+
+	@SlingObject
+	private SlingHttpServletRequest request;
 
 	public String getGeneralTitleLabel() {
 		return generalTitleLabel;
@@ -452,6 +459,22 @@ public class SupportRequestFormModel {
 		this.cataloguesSubtitle = cataloguesSubtitle;
 	}
 
+	public String getOtherPurpose() {
+		return otherPurpose;
+	}
+
+	public void setOtherPurpose(String otherPurpose) {
+		this.otherPurpose = otherPurpose;
+	}
+
+	public String getOtherPurposeSubtitle() {
+		return otherPurposeSubtitle;
+	}
+
+	public void setOtherPurposeSubtitle(String otherPurposeSubtitle) {
+		this.otherPurposeSubtitle = otherPurposeSubtitle;
+	}
+
 	/** The i 18 n keys. */
 	private String i18nKeys;
 
@@ -511,6 +534,8 @@ public class SupportRequestFormModel {
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTSOURCINGSUBTITLE, getSourcingContractingSubtitle());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCATALOGUES, getCatalogues());
 		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTCATALOUGESSUBTITLE, getCataloguesSubtitle());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTOTHERPURPOSE, getOtherPurpose());
+		i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTOTHERPURPOSESUBTITLE, getOtherPurposeSubtitle());
 
 		Cookie nameCookie = request.getCookie(SupplierPortalConstants.COOKIE_NAME);
 		if (nameCookie != null) {

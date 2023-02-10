@@ -1,6 +1,8 @@
 package com.tetrapak.supplierportal.core.models;
 
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.factory.ModelFactory;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -38,10 +40,12 @@ public class SupportRequestFormModelTest {
 
 		Class<SupportRequestFormModel> modelClass = SupportRequestFormModel.class;
 		// load the resources for each object
+		MockSlingHttpServletRequest request = context.request();
 		context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
 		context.addModelsForClasses(modelClass);
+		 request.setResource(context.resourceResolver().getResource(RESOURCE));
 		resource = context.currentResource(RESOURCE);
-		model = resource.adaptTo(modelClass);
+		model = request.adaptTo(modelClass);
 	}
 
 	@Test
