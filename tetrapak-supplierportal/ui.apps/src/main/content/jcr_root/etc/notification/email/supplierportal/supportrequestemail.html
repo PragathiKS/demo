@@ -1,102 +1,68 @@
-From: noreply@communications.tetrapak.com
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Email Design</title>
+    <title>Tetrapak Email</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-        .email-logo {
-            text-align: center;
-            width: 100%;
-            padding-bottom: 24px;
-        }
-
-        .mail-wrapper {
-            padding: 24px;
-        }
-
-        .logo-size {
-            width: 138px;
-            height: 21px;
-        }
-
-        @media screen and (min-device-width: 1024px) {
-            .field {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .mail-wrapper {
-                padding: 48px;
-            }
-
-            .email-logo {
-                padding-bottom: 48px;
-            }
-
-            .logo-size {
-                width: 158px;
-                height: 24px;
-            }
-        }
-    </style>
+	<style>
+		body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+		table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+		table { border-collapse: collapse !important; }
+		body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; }
+		a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; font-size: inherit !important; font-family: inherit !important; font-weight: inherit !important; line-height: inherit !important; }
+	</style>
+    
 </head>
-
-<body>
-    <div class="mail-wrapper"
-        style="font-size: 14px;font-family: Arial, Helvetica, sans-serif;line-height: 32px;color: #000000;">
-
-        <div style="padding-bottom: 24px;">
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Purpose of contact:</div>
-                <div>${purpose}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Query description:</div>
-                <div>${query_description}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Requested by:</div>
-                <div>${name}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">E-mail address:</div>
-                <div>${email}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Company Legal name:</div>
-                <div>${company_legal_name}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Country:</div>
-                <div>${country}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">City:</div>
-                <div>${city}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Phone number (optional):</div>
-                <div>${phone_number}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Ariba Network ID (optional):</div>
-                <div>${ariba_network_id}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Ariba Account Administrator email (optional):</div>
-                <div>${ariba_email_id}</div>
-            </div>
-            <div class="field">
-                <div style="font-weight: 700;min-width: 180px;">Tetra pak contact email (optional):</div>
-                <div>${tetrapak_email_id}</div>
-            </div>
-
-        </div>
-    </div>
-</body>
-
-</html>
+   <body style="background-color: #ffffff; margin: 0 !important; padding: 0 !important;">
+   
+	   <table border="0" cellpadding="0" cellspacing="0" width="100%" align="left">
+		   <tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Purpose of contact:</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${purpose}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Query description:</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${query_description}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Requested by:</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${name}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">E-mail address:</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${email}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Company Legal name:</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${company_legal_name}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Country:</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${country}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">City:</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${city}</td>
+			</tr>
+            <tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Phone number (optional):</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${phone_number}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Ariba Network ID (optional):</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${ariba_network_id}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Ariba Account Administrator email (optional):</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${ariba_email_id}</td>
+			</tr>
+			<tr>
+				<th align="left" valign="top" style="padding:15px 0; font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; line-height: 32px;width: 30%;">Tetra pak contact email (optional):</th>
+				<td align="left" valign="top" style="padding:15px 0;font-family: Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 32px;">${tetrapak_email_id}</td>
+			</tr>
+	   </table>
+   
+   </body>
