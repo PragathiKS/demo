@@ -46,9 +46,9 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 	public static final String FILE_NAME = "fileName";
 	public static final String STREAM = "stream";
 
-	final String[] onBoardingMaintanance = { "ariba.suppliersupport@tetrapak.com", "Shilpa.Khandave@tetrapak.com" };
-	final String[] sourcingContracting = {"Supplier.Maintenance@tetrapak.com", "abhay.gaikwad@tetrapak.com"};
-	final String[] catalogues = {"dhananjay.kumar@tetrapak.com", "sawez.khan@tetrapak.com"};
+	final String[] onBoardingMaintanance = {"ariba.suppliersupport@tetrapak.com"};
+	final String[] sourcingContracting = {"ariba.suppliersupport@tetrapak.com"};
+	final String[] catalogues = {"tetrapaksuppliers@ariba.com"};
 
 	@Reference
 	private SupportRequestFormEmailService supportRequestFormEmailService;
@@ -85,7 +85,7 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 	}
 
 	private String[] getEmailAddress(String purposeOfContact) {
-		String[] emails = null;
+		String[] emails = {"supplier.maintenance@tetrapak.com"};
 		if (purposeOfContact.contains("On Boardiing Maintanance")) {
 			emails = onBoardingMaintanance;
 		} else if (purposeOfContact.contains("Sourcing Contracting")) {
