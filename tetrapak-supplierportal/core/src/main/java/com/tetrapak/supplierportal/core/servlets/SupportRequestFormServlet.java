@@ -29,6 +29,7 @@ import com.google.gson.JsonObject;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.models.SupportRequestFormBean;
 import com.tetrapak.supplierportal.core.services.SupportRequestFormEmailService;
+import com.tetrapak.supplierportal.core.services.SupportRequestPurposesEmailsService;
 import com.tetrapak.supplierportal.core.utils.HttpUtil;
 
 @Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_POST,
@@ -46,12 +47,11 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 	public static final String FILE_NAME = "fileName";
 	public static final String STREAM = "stream";
 
-	final String[] onBoardingMaintanance = {"ariba.suppliersupport@tetrapak.com"};
-	final String[] sourcingContracting = {"ariba.suppliersupport@tetrapak.com"};
-	final String[] catalogues = {"tetrapaksuppliers@ariba.com"};
-
 	@Reference
 	private SupportRequestFormEmailService supportRequestFormEmailService;
+
+	@Reference
+	private SupportRequestPurposesEmailsService supportRequestPurposesEmailsService;
 
 	private Gson gson = new Gson();
 
@@ -85,13 +85,13 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 	}
 
 	private String[] getEmailAddress(String purposeOfContact) {
-		String[] emails = {"supplier.maintenance@tetrapak.com"};
+		String[] emails = supportRequestPurposesEmailsService.getOtherEmail();
 		if (purposeOfContact.contains("On Boardiing Maintanance")) {
-			emails = onBoardingMaintanance;
+			emails = supportRequestPurposesEmailsService.getOnBoardingMaintananceEmail();
 		} else if (purposeOfContact.contains("Sourcing Contracting")) {
-			emails = sourcingContracting;
+			emails = supportRequestPurposesEmailsService.getSourcingContractingEmail();
 		} else if (purposeOfContact.contains("Catalogues")) {
-			emails = catalogues;
+			emails = supportRequestPurposesEmailsService.getCataloguesEmail();
 		}
 		return emails;
 	}
