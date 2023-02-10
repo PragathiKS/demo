@@ -41,6 +41,18 @@
                 }}
                 <p>{{i18n key=i18nKeys.cataloguesSubtitle}}</p>
                </div>
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=i18nKeys.otherPurpose
+                    name="purposeOfContact"
+                    id="otherPurpose"
+                    value=i18nKeys.otherPurpose
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                <p>{{i18n key=i18nKeys.otherPurposeSubtitle}}</p>
+               </div>
             <div class="error-msg">{{i18n key=i18nKeys.purposeContactErrorMsg}}</div>
             </div>
         </div>
