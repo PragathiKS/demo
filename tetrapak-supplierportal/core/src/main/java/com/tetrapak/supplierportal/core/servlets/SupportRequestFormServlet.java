@@ -97,7 +97,7 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 	}
 
 	private boolean validateRequest(SupportRequestFormBean bean) {
-		return !(StringUtils.isEmpty(bean.getPurposeOfContact()) || StringUtils.isEmpty(bean.getHowHelp())
+		return !(StringUtils.isEmpty(bean.getName()) || StringUtils.isEmpty(bean.getEmailAddress()) || StringUtils.isEmpty(bean.getPurposeOfContact()) || StringUtils.isEmpty(bean.getHowHelp())
 				|| StringUtils.isEmpty(bean.getCompanyLegalName()) || StringUtils.isEmpty(bean.getCountry())
 				|| StringUtils.isEmpty(bean.getCity()));
 	}
