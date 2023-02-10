@@ -177,6 +177,8 @@ public final class SupplierPortalConstants {
 	public static final String SUPPORTREQUESTSOURCINGSUBTITLE = "sourcingContractingSubtitle";
 	public static final String SUPPORTREQUESTCATALOGUES = "catalogues";
 	public static final String SUPPORTREQUESTCATALOUGESSUBTITLE = "cataloguesSubtitle";
+	public static final String SUPPORTREQUESTOTHERPURPOSE = "otherPurpose";
+	public static final String SUPPORTREQUESTOTHERPURPOSESUBTITLE = "otherPurposeSubtitle";
 	
 	public static final String EMAILSUBJECT = "subject";
 	public static final String SUPPORTREQUESTUSERNAME= "userName";
