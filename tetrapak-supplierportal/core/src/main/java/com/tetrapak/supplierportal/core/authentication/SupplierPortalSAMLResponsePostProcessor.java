@@ -48,9 +48,11 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static final String SAML_ATTRIBUTE_VALUE = "saml:AttributeValue";
     private static final String SAML_ATTRIBUTE = "saml:Attribute";
     private static final String SAML_ATTRIBUTE_STATEMENT = "saml:AttributeStatement";
+    private static final String SAML_SUBJECT = "saml:Subject";
     private static final String SAML_ASSERTION = "saml:Assertion";
     private static final String LOGOUT = "logout";
     private static final String TOKEN_NAME = "acctoken";
+    private static final String SAML_USER_ID = "saml:NameID";
 
     @Reference private UserPreferenceService userPreferenceService;
 
@@ -82,7 +84,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
                 }
                 setCustomerNameCookie(response, attrMap);
                 setAccesTokenCookie(response, attrMap);
-                setLangCodeCookie(request, response, base64DecodedResponse);
+                setLangCodeCookie(request, response, attrMap);
                 if (processedURL.contains(EMPTY)) {
                     response.setHeader(LOCATION_HEADER,
                             SupplierPortalConstants.HTTPS + "://" + request.getServerName() + processedURL);
@@ -155,12 +157,12 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     }
 
     private void setLangCodeCookie(HttpServletRequest request, HttpServletResponse response,
-            String base64DecodedResponse) throws ParserConfigurationException, SAXException, IOException {
-        String userID = getUserIDFromSamlResponse(base64DecodedResponse);
-        LOGGER.debug("user ID: {}", userID);
-        final String langCode = userPreferenceService.getSavedPreferences(userID,
+            Map<String, String> attrMap) {
+        String userId = attrMap.get(SAML_USER_ID);
+        LOGGER.debug("user ID: {}", userId);
+        final String langCode = userPreferenceService.getSavedPreferences(userId,
                 SupplierPortalConstants.LANGUGAGE_PREFERENCES);
-        if (null != userID && StringUtils.isNotEmpty(langCode)) {
+        if (null != userId && StringUtils.isNotEmpty(langCode)) {
             LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
             setLanguageCookie(request, response, langCode);
         }
@@ -171,59 +173,6 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         cookie.setPath("/");
         cookie.setDomain(request.getServerName());
         response.addCookie(cookie);
-    }
-
-    private String getUserIDFromSamlResponse(String base64DecodedResponse)
-            throws ParserConfigurationException, SAXException, IOException {
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        try {
-            documentBuilderFactory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-            documentBuilderFactory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-        } catch (ParserConfigurationException e) {
-            LOGGER.error("ParserConfigurationException", e);
-        }
-        documentBuilderFactory.setXIncludeAware(false);
-        documentBuilderFactory.setExpandEntityReferences(false);
-        documentBuilderFactory.setNamespaceAware(true);
-        DocumentBuilder docBuilder = documentBuilderFactory.newDocumentBuilder();
-        StringReader strReader = new StringReader(base64DecodedResponse);
-        InputSource inputSource = new InputSource(strReader);
-        Document document = docBuilder.parse(inputSource);
-        NodeList samlAssertion = document.getElementsByTagName("saml:Assertion");
-        return populateUserAttrMap(samlAssertion);
-    }
-
-    private String populateUserAttrMap(NodeList samlAssertion) {
-        Node samlAssertionNode = samlAssertion.item(0);
-        NodeList childNodes = samlAssertionNode.getChildNodes();
-
-        int maxChildNodeCount = childNodes.getLength();
-        if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
-            for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
-                Node subChildNode = childNodes.item(childCount);
-                if ("saml:Subject".equalsIgnoreCase(subChildNode.getNodeName())) {
-                    return getUserID(subChildNode);
-                }
-            }
-        }
-        LOGGER.debug("user ID is null from SAML response");
-        return null;
-    }
-
-    private String getUserID(Node subChildNode) {
-        NodeList attributeStatementChildNodes = subChildNode.getChildNodes();
-
-        int maxChildNodeCount = attributeStatementChildNodes.getLength();
-        if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
-            for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
-                Node childNode = attributeStatementChildNodes.item(childCount);
-                if ("saml:NameID".equalsIgnoreCase(childNode.getNodeName())) {
-                    return childNode.getTextContent();
-                }
-            }
-        }
-        return null;
     }
 
     /**
@@ -275,7 +224,8 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
             for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
                 Node subChildNode = childNodes.item(childCount);
-                if (SAML_ATTRIBUTE_STATEMENT.equalsIgnoreCase(subChildNode.getNodeName())) {
+                if (SAML_ATTRIBUTE_STATEMENT.equalsIgnoreCase(subChildNode.getNodeName())
+                        || SAML_SUBJECT.equalsIgnoreCase(subChildNode.getNodeName())) {
                     getNodes(samlAttributeMap, subChildNode);
                 }
             }
@@ -295,6 +245,9 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
                     NodeList attrValNodeList = childNode.getChildNodes();
                     int maxNodeCount = Math.min(attrValNodeList.getLength(), MAX_FIRSTLEVEL_CHILD_COUNT);
                     putSAMLAttributes(samlAttributeMap, attributeValue, attrValNodeList, maxNodeCount);
+                }
+                if (SAML_USER_ID.equalsIgnoreCase(childNode.getNodeName())) {
+                    samlAttributeMap.put(SAML_USER_ID, childNode.getTextContent());
                 }
             }
         }
