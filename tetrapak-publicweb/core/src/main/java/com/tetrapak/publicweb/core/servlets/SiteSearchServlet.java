@@ -235,7 +235,8 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
      * @return true, if is valid request
      */
     private boolean isValidRequest(String[] contentTypes, String[] themes, String searchTerm) {
-        boolean isValidRequest = true;
+        boolean isValidRequest = !StringUtils.isBlank(searchTerm);
+
         if (StringUtils.isBlank(searchTerm) && ArrayUtils.isEmpty(contentTypes) && ArrayUtils.isEmpty(themes)) {
             isValidRequest = false;
         }
@@ -373,6 +374,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 if (PWConstants.DOCUMENT.equalsIgnoreCase(mediaType)) {
                     searchResultItem.setAssetThumbnail(searchResultsModel.getDocumentThumbnail());
                 }
+                if (Objects.nonNull(hit.getProperties().get("jcr:lastModified"))) {
+                    searchResultItem.setDate(formatDate(hit.getProperties().get("jcr:lastModified", String.class)));
+                }
             } else {
                 searchResultItem.setTitle(PageUtil.getCurrentPage(hit.getResource()).getTitle());
                 searchResultItem.setPath(LinkUtils.sanitizeLink(hit.getPath(), request));
@@ -462,6 +466,9 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 searchResultItem.setDate(formatDate(hit.getProperties().get("articleDate", String.class)));
             } else if (Objects.nonNull(hit.getProperties().get("cq:lastModified"))) {
                 searchResultItem.setDate(formatDate(hit.getProperties().get("cq:lastModified", String.class)));
+            }
+            else if (Objects.nonNull(hit.getProperties().get("jcr:lastModified"))) {
+                searchResultItem.setDate(formatDate(hit.getProperties().get("jcr:lastModified", String.class)));
             }
             if (PWConstants.EVENTS.equalsIgnoreCase(contentType)) {
                 searchResultItem.setType(searchResultsModel.getEventLabel());

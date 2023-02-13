@@ -66,7 +66,18 @@
 		  "rkSubType": "cuhu.rebuildingkits.rkSubType",
 		  "rkValidation": "cuhu.rebuildingkits.rkValidation",
 		  "rkNoCtiText": "cuhu.rebuildingkits.rkNoCtiText",
-		  "rkReqCtiText": "cuhu.rebuildingkits.rkReqCtiText"
+		  "rkReqCtiText": "cuhu.rebuildingkits.rkReqCtiText",
+          "rkctisalutationtext": "cuhu.rebuildingkits.ctiSalutation",
+          "rktbnumbertext": "cuhu.rebuildingkits.ctiRkTbNumberText",
+          "rkctifunctionalLocationtext": "cuhu.rebuildingkits.ctiFunctionalLocationText",
+          "rkctiUsernameText": "cuhu.rebuildingkits.ctiUsernametext",
+          "rkctisubjecttext": "cuhu.rebuildingkits.ctiSubject",
+          "rkctiemailaddress": "cuhu.rebuildingkits.ctiEmailAddressText",
+          "rkctibodytext":      "cuhu.rebuildingkits.ctiBody",
+          "rkctimcontext": "cuhu.rebuildingkits.ctiMconText",
+          "rkctirequestedlanguage": "cuhu.rebuildingkits.ctiRequestedLanguageText",
+          "rkcticommenttext": "cuhu.rebuildingkits.ctiCommentText"
+
         }
       }
     }

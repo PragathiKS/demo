@@ -1,6 +1,7 @@
 package com.tetrapak.publicweb.core.servlets;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -116,10 +117,12 @@ public class SiteSearchServletTest {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("page", "1");
         parameterMap.put("contentType", CONTENT_TYPES);
+        parameterMap.put("searchTerm","Tetra Pak");
         
         XSSAPI xssAPI = new MockXSSAPI(CONTENT_TYPES);
         context.registerService(XSSAPI.class, xssAPI);
         context.registerService(XSSFilter.class, xssFilter);
+        when(xssFilter.filter("Tetra Pak")).thenReturn("Tetra Pak");
 
         context.request().setParameterMap(parameterMap);
         siteSerarchServlet = MockHelper.getServlet(context, SiteSearchServlet.class);
@@ -140,6 +143,8 @@ public class SiteSearchServletTest {
         XSSAPI xssAPI = new MockXSSAPI(THEME);
         context.registerService(XSSAPI.class, xssAPI);
         context.registerService(XSSFilter.class, xssFilter);
+        when(xssFilter.filter("Tetra Pak")).thenReturn("Tetra Pak");
+        parameterMap.put("searchTerm","Tetra Pak");
         
         context.request().setParameterMap(parameterMap);
         siteSerarchServlet = MockHelper.getServlet(context, SiteSearchServlet.class);
