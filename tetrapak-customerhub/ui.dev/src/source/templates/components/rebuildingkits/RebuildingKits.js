@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import $ from 'jquery';
 import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
@@ -8,10 +6,9 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _paginationAnalytics, _customizeTableBtnAnalytics } from './RebuildingKits.analytics';
 import { _limitFilterSelection } from '../myequipment/MyEquipment';
-import { _hideShowAllFiltersAnalytics } from '../myequipment/MyEquipment.analytics';
+import { _hideShowAllFiltersAnalytics , _addFilterAnalytics, _removeFilterAnalytics, _removeAllFiltersAnalytics} from '../myequipment/MyEquipment.analytics';
 import { _remapFilterProperty, _buildQueryUrl } from './RebuildingKits.utils';
 import { _getFormattedCountryData, _remapFilterOptionKey } from '../myequipment/MyEquipment.utils';
-import { _groupByBusinessType } from '../myequipment/MyEquipment.table';
 import { render } from '../../../scripts/utils/render';
 import { getI18n } from '../../../scripts/common/common';
 import { _paginate } from './RebuildingKits.paginate';
@@ -56,7 +53,7 @@ import {
   RK_PROPERTY_KEYS,
   RK_API_FILTER_KEYS,
   RK_PLANNED_DATE,
-  RK_I18N_PLANNED_DATE,
+  RK_I18N_PLANNED_DATE
 } from './constants';
 
 class RebuildingKits {
@@ -150,9 +147,9 @@ class RebuildingKits {
 
   getFilterModalData(filterByProperty) {
     const { combinedFiltersObj, allApiFilterValsObj, currentApiFilterValsObj } = this.cache;
-    let alphabeticalSortKey = 'option';
-    let optionDisplayTextKey = filterByProperty;
-    let optionValueKey = filterByProperty;
+    const alphabeticalSortKey = 'option';
+    const optionDisplayTextKey = filterByProperty;
+    const optionValueKey = filterByProperty;
     const filterOptionsArr = [];
     let filterOptionsDatasource = [];
 
@@ -178,7 +175,7 @@ class RebuildingKits {
       return a[alphabeticalSortKey].localeCompare(b[alphabeticalSortKey]);
     });
 
-    return filterOptionsArr;  
+    return filterOptionsArr;
   }
 
   renderPaginationTableData = (list) => {
@@ -263,7 +260,7 @@ class RebuildingKits {
           this.cache.authData = authData;
           const { countryCode } = this.cache.countryData && this.cache.countryData[0];
           const { itemsPerPage } = this.cache;
-          
+
           this.getAllAvailableFilterVals(RK_API_FILTER_KEYS, true);
 
           ajaxWrapper
@@ -313,7 +310,7 @@ class RebuildingKits {
     });
   };
 
-  renderNewPage = ({resetSkip}) => {
+  renderNewPage = ({resetSkip, analyticsAction}) => {
     const {itemsPerPage, activeSortData, countryData, combinedFiltersObj} = this.cache;
     const rkApi = this.cache.rkApi.data('rklist-api');
     const activeCountry = countryData.filter(e => e.isChecked);
@@ -399,7 +396,7 @@ class RebuildingKits {
 
   renderFilterForm = (data, formDetail, $filterBtn) => {
     const { i18nKeys } = this.cache;
-    const selectedItemsNo = 0;
+    let selectedItemsNo = 0;
 
     if (formDetail.header === i18nKeys['country']) {
       data.forEach((item,index) => {
@@ -530,7 +527,7 @@ class RebuildingKits {
         label = i18nKeys['generalRkNumber'];
         break;
       }
-      
+
       case 'customise-table':{
         filterData = this.cache.customisableTableHeaders;
         $filtersCheckbox.each(function(index) {
@@ -624,8 +621,13 @@ class RebuildingKits {
             ...item,
             equipmentStatus: item.equipmentStatus || ''
           }));
+
           this.deleteAllFilters();
-          const tableData = _processTableData.call(this, {summary:this.cache.tableData,i18nKeys:this.cache.i18nKeys,meta:this.cache.meta});
+          const tableData = this.processTableData({
+            summary: this.cache.tableData,
+            i18nKeys: this.cache.i18nKeys,
+            meta: this.cache.meta
+          });
           this.renderPaginationTableData(tableData);
           this.renderSearchCount();
           this.updateFilterCountValue(label,1,$countryFilterLabel);
@@ -836,18 +838,26 @@ class RebuildingKits {
       {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:true,index:5,isDisabled:false},
       {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:6,isDisabled:true},
       {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:false,index:7,isDisabled:false},
-      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:false,index:8,isDisabled:false},
+      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:8,isDisabled:false},
       {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:9,isDisabled:false},
       {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:10,isDisabled:false},
-      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:11,isDisabled:false},
-      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:12,isDisabled:false},
+      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:true,index:11,isDisabled:false},
+      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:true,index:12,isDisabled:false},
       {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:13,isDisabled:false},
       {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:14,isDisabled:false},
       {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:15,isDisabled:false},
-      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:16,isDisabled:false},
-      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:17,isDisabled:false},
+      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:true,index:16,isDisabled:false},
+      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:true,index:17,isDisabled:false},
       {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:18,isDisabled:false}
     ];
+
+    const getNOfOptions = (keyCode) => {
+      const data = this.cache.filterModalData[keyCode];
+      if (data) {
+        return data.length;
+      }
+      return 10;
+    };
 
     this.cache.$countryFilterLabel.on('click', () => {
       const formDetail = { activeForm:'country',header:i18nKeys['country'], singleButton: true, isRadio: true, radioGroupName: 'countryRadio' };
@@ -856,8 +866,8 @@ class RebuildingKits {
     });
 
     this.cache.$functionalLocationFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'lineCode',header:i18nKeys['functionalLocation']};
       this.cache.filterModalData['lineCode'] = this.getFilterModalData('lineCode');
+      const formDetail = {activeForm:'lineCode',header:i18nKeys['functionalLocation'],maxFiltersSelection:getNOfOptions('lineCode')};
       this.renderFilterForm(this.cache.filterModalData['lineCode'], formDetail, this.cache.$functionalLocationFilterLabel);
       $modal.modal();
     });
@@ -882,52 +892,52 @@ class RebuildingKits {
       this.renderFilterForm(currValue, formDetail, this.cache.$rkNumberFilterLabel);
       $modal.modal();
     });
-    
+
     this.cache.$rkDescFilterLabel.on('click', () => {
       const formDetail = {activeForm:'rkDesc',header:i18nKeys['rkDesc'], isTextInput: true};
       const currValue = this.cache.combinedFiltersObj['rkDesc'] ? this.cache.combinedFiltersObj['rkDesc'] : '';
       this.renderFilterForm(currValue, formDetail, this.cache.$rkDescFilterLabel);
       $modal.modal();
     });
-    
+
     this.cache.$implStatusFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'implStatus',header:i18nKeys['implStatus']};
       this.cache.filterModalData['implStatus'] = this.getFilterModalData('implStatus');
+      const formDetail = {activeForm:'implStatus',header:i18nKeys['implStatus'],maxFiltersSelection:getNOfOptions('implStatus')};
       this.renderFilterForm(this.cache.filterModalData['implStatus'], formDetail, this.cache.$implStatusFilterLabel);
       $modal.modal();
     });
 
     this.cache.$machineSystemFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'machineSystem',header:i18nKeys['machineSystem']};
       this.cache.filterModalData['machineSystem'] = this.getFilterModalData('machineSystem');
+      const formDetail = {activeForm:'machineSystem',header:i18nKeys['machineSystem'],maxFiltersSelection:getNOfOptions('machineSystem')};
       this.renderFilterForm(this.cache.filterModalData['machineSystem'], formDetail, this.cache.$machineSystemFilterLabel);
       $modal.modal();
     });
 
     this.cache.$equipmentStatusFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'equipmentStatus',header:i18nKeys['equipmentStatus']};
       this.cache.filterModalData['equipmentStatus'] = this.getFilterModalData('equipmentStatus');
+      const formDetail = {activeForm:'equipmentStatus',header:i18nKeys['equipmentStatus'],maxFiltersSelection:getNOfOptions('equipmentStatus')};
       this.renderFilterForm(this.cache.filterModalData['equipmentStatus'], formDetail, this.cache.$equipmentStatusFilterLabel);
       $modal.modal();
     });
 
     this.cache.$rkTypeFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'rkTypeCode',header:i18nKeys['rkType']};
       this.cache.filterModalData['rkTypeCode'] = this.getFilterModalData('rkTypeCode');
+      const formDetail = {activeForm:'rkTypeCode',header:i18nKeys['rkType'],maxFiltersSelection:getNOfOptions('rkTypeCode')};
       this.renderFilterForm(this.cache.filterModalData['rkTypeCode'], formDetail, this.cache.$rkTypeFilterLabel);
       $modal.modal();
     });
 
     this.cache.$rkStatusFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'rkStatus',header:i18nKeys['rkStatus']};
       this.cache.filterModalData['rkStatus'] = this.getFilterModalData('rebuildingKitStatus');
+      const formDetail = {activeForm:'rkStatus',header:i18nKeys['rkStatus'],maxFiltersSelection:getNOfOptions('rkStatus')};
       this.renderFilterForm(this.cache.filterModalData['rkStatus'], formDetail, this.cache.$rkStatusFilterLabel);
       $modal.modal();
     });
 
     this.cache.$rkHandlingFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'rkHandling',header:i18nKeys['rkHandling']};
       this.cache.filterModalData['rkHandling'] = this.getFilterModalData('rkHandling');
+      const formDetail = {activeForm:'rkHandling',header:i18nKeys['rkHandling'],maxFiltersSelection:getNOfOptions('rkHandling')};
       this.renderFilterForm(this.cache.filterModalData['rkHandling'], formDetail, this.cache.$rkHandlingFilterLabel);
       $modal.modal();
     });
