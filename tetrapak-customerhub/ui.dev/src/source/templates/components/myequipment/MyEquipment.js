@@ -276,7 +276,7 @@ class MyEquipment {
       const id = $(e.currentTarget).attr('href');
       const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
       const url = `${equipmentDetailsUrl}?id=${id}`;
-      const $linkName = $(e.currentTarget).find('td').eq(4).text().trim() + '-' + id;
+      const $linkName = `${$(e.currentTarget).find('td').eq(4).text().trim()  }-${  id}`;
       _trackEquipmentLinkClick($linkName);
       window.open(url, '_blank');
     });
