@@ -1,5 +1,6 @@
 
 import $ from 'jquery';
+import { render } from '../../../scripts/utils/render';
 import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
 class TextVideo {
   constructor({ el }) {
@@ -20,7 +21,12 @@ class TextVideo {
       const noVideo = window.OptanonActiveGroups;
       if (noVideo === ',1,') {
         $('.pw-text-video__video').css('display', 'none');
-        $('.pw-text-video__novideo').css('display', 'flex');
+        render.fn({
+          template: 'noVideoContent',
+          data: {  },
+          target: '.pw-text-video__novideo',
+          hidden: false
+        });
       }
     }, 2000);
 
@@ -37,7 +43,6 @@ class TextVideo {
     setTimeout(() => {
       $('#onetrust-accept-btn-handler').on('click', () => {
         $('.pw-text-video__video').css('display', 'block');
-        $('.pw-text-video__novideo').css('display', 'none');
       });
     },2500);
   }
