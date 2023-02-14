@@ -36,6 +36,8 @@ public final class GlobalUtil {
     private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
     private static final String NAVIGATION = "navigationconfiguration";
 
+    public static final String LANG_CODE = "lang-code";
+
     public GlobalUtil() {
     }
     /**
@@ -158,7 +160,7 @@ public final class GlobalUtil {
      * @return string language code
      */
     public static String getSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
-        Cookie languageCookie = request.getCookie("lang-code");
+        Cookie languageCookie = request.getCookie(LANG_CODE);
         if (null != languageCookie) {
             return languageCookie.getValue();
         }

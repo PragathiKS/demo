@@ -3,6 +3,7 @@ package com.tetrapak.supplierportal.core.servlets;
 import com.google.gson.JsonObject;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.UserPreferenceService;
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import com.tetrapak.supplierportal.core.utils.HttpUtil;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -48,7 +49,7 @@ public class SaveLanguagePreferenceServlet extends SlingAllMethodsServlet {
         }
 
         String userId = session.getUserID();
-        String langCode = request.getParameter("lang-code");
+        String langCode = request.getParameter(GlobalUtil.LANG_CODE);
         langCode = getValidLangCode(langCode);
         if (null != langCode) {
             boolean langPrefStatus = userPreferenceService.setPreferences(userId, SupplierPortalConstants.LANGUGAGE_PREFERENCES, langCode);
