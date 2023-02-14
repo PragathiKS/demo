@@ -118,8 +118,6 @@ pipeline {
             steps {
                 script {
                     author_url = "https://author1westeurope.stage65.tetrapak.adobecqms.net"
-                    username = "sapient-user"
-                    password = "*?qbpgyd+hNKR6E%mQmle[XK"
                     stagedeployment()
                 }
             }
@@ -290,37 +288,39 @@ pipeline {
     }   
 
     def authordeploy() {
-
-        echo "Uninstalling Old Package on author"
-        sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
-        sleep 60
-        echo "Deleting Old Package on author"
-        sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
-        sleep 60
-        echo "Uploading New Package on author"
-        sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-        sleep 60
-        echo "Installing New Package on author"
-        sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
-        sleep 60
-
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sapient-user', usernameVariable: 'username', passwordVariable: 'password']])
+        {
+            echo "Uninstalling Old Package on author"
+            sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
+            sleep 60
+            echo "Deleting Old Package on author"
+            sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
+            sleep 60
+            echo "Uploading New Package on author"
+            sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+            sleep 60
+            echo "Installing New Package on author"
+            sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
+            sleep 60
+        }
     }
 
     def publishdeploy() {
-                
-        echo "Uninstalling Old Package on publish"
-        sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
-        sleep 60
-        echo "Deleting Old Package on publish"
-        sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
-        sleep 60
-        echo "Uploading New Package on publish"
-        sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-        sleep 60
-        echo "Installing New Package on publish"
-        sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
-        sleep 60
-
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sapient-user', usernameVariable: 'username', passwordVariable: 'password']])
+        {        
+            echo "Uninstalling Old Package on publish"
+            sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
+            sleep 60
+            echo "Deleting Old Package on publish"
+            sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
+            sleep 60
+            echo "Uploading New Package on publish"
+            sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
+            sleep 60
+            echo "Installing New Package on publish"
+            sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
+            sleep 60
+        }
     }     
     def cacheflush() {
         echo "Starting Stage Dispatcher Cache Clear"
