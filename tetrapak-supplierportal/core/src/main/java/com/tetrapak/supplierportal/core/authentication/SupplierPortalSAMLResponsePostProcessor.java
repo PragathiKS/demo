@@ -3,6 +3,7 @@ package com.tetrapak.supplierportal.core.authentication;
 import com.day.cq.commons.Externalizer;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.UserPreferenceService;
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
@@ -169,7 +170,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     }
 
     private void setLanguageCookie(HttpServletRequest request, HttpServletResponse response, String langCode) {
-        Cookie cookie = new Cookie("lang-code", langCode);
+        Cookie cookie = new Cookie(GlobalUtil.LANG_CODE, langCode);
         cookie.setPath("/");
         cookie.setDomain(request.getServerName());
         response.addCookie(cookie);

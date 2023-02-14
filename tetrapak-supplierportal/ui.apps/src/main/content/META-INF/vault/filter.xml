@@ -4,7 +4,6 @@
     <filter root="/apps/supplierportal/ac-config" mode="replace"/>
     <filter root="/apps/supplierportal/config.author" mode="replace"/>
     <filter root="/apps/supplierportal/config.publish" mode="replace"/>
-    <filter root="/apps/supplierportal/config.local.publish" mode="replace"/>
     <filter root="/apps/supplierportal/config.dev.publish" mode="replace"/>
     <filter root="/apps/supplierportal/config.qa.publish" mode="replace"/>
     <filter root="/apps/supplierportal/config.stage.publish" mode="replace"/>
