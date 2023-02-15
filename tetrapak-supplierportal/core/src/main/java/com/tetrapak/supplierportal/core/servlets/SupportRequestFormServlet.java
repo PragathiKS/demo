@@ -17,6 +17,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.request.RequestParameter;
 import org.apache.sling.api.servlets.HttpConstants;
+import org.apache.sling.api.servlets.ServletResolverConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.xss.XSSAPI;
 import org.osgi.service.component.annotations.Component;
@@ -32,13 +33,21 @@ import com.tetrapak.supplierportal.core.services.SupportRequestFormEmailService;
 import com.tetrapak.supplierportal.core.services.SupportRequestPurposesEmailsService;
 import com.tetrapak.supplierportal.core.utils.HttpUtil;
 
-@Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_POST,
-		"sling.servlet.extensions=" + "html", "sling.servlet.paths=" + "/bin/supplierportal/supportrequestform" })
+@Component(service = Servlet.class, property = {
+        ServletResolverConstants.SLING_SERVLET_METHODS + "=" + HttpConstants.METHOD_POST,
+        ServletResolverConstants.SLING_SERVLET_EXTENSIONS + "=" + "html",
+        ServletResolverConstants.SLING_SERVLET_RESOURCE_TYPES + "=" + "supplierportal/components/content/supportrequest"
+})
 public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 	private static final long serialVersionUID = -7410933110610280308L;
 	private static final String AUTH_TOKEN = "authToken";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SupportRequestFormServlet.class);
+
+    private static final String ON_BOARDING_PURPOSE = "On Boardiing Maintanance";
+    private static final String CONTRACTING_PURPOSE = "Sourcing Contracting";
+    private static final String CATALOGUES_PURPOSE = "Catalogues";
+	private static final String FILES_KEY = "files";
 
 	@Reference
 	private transient XSSAPI xssAPI;
@@ -86,11 +95,11 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 
 	private String[] getEmailAddress(String purposeOfContact) {
 		String[] emails = supportRequestPurposesEmailsService.getOtherEmail();
-		if (purposeOfContact.contains("On Boardiing Maintanance")) {
+		if (purposeOfContact.contains(ON_BOARDING_PURPOSE)) {
 			emails = supportRequestPurposesEmailsService.getOnBoardingMaintananceEmail();
-		} else if (purposeOfContact.contains("Sourcing Contracting")) {
+		} else if (purposeOfContact.contains(CONTRACTING_PURPOSE)) {
 			emails = supportRequestPurposesEmailsService.getSourcingContractingEmail();
-		} else if (purposeOfContact.contains("Catalogues")) {
+		} else if (purposeOfContact.contains(CATALOGUES_PURPOSE)) {
 			emails = supportRequestPurposesEmailsService.getCataloguesEmail();
 		}
 		return emails;
@@ -106,7 +115,7 @@ public class SupportRequestFormServlet extends SlingAllMethodsServlet {
 		String jsonString = gson.toJson(request.getParameterMap());
 		jsonString = xssAPI.getValidJSON(jsonString, StringUtils.EMPTY);
 		JsonObject jsonObject = gson.fromJson(jsonString, JsonObject.class);
-		jsonObject.remove("files");
+		jsonObject.remove(FILES_KEY);
 		jsonObject = replaceArraysInJsonObject(jsonObject);
 		return gson.fromJson(jsonObject, SupportRequestFormBean.class);
 	}

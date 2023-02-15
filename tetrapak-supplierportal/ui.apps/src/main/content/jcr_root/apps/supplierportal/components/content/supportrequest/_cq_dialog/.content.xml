@@ -177,7 +177,7 @@
                             <companyErrorMsg
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="company error message (i18N key)"
+                                fieldLabel="Company error message (i18N key)"
                                 name="./companyErrorMsg"
                                 required="true"/>
                             <companyLabel

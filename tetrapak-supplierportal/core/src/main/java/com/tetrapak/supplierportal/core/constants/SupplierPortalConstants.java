@@ -114,8 +114,6 @@ public final class SupplierPortalConstants {
 
 	public static final String COOKIE_NAME = "SP-AEMCustomerName";
 
-	public static final String COOKIE_EMAIL = "SP-AEMCustomerEmail";
-
 	public static final String DOMAIN_NAME = "tetrapak.com";
 
 	public static final String TOKEN_NAME = "acctoken";
@@ -183,5 +181,8 @@ public final class SupplierPortalConstants {
 	public static final String EMAILSUBJECT = "subject";
 	public static final String SUPPORTREQUESTUSERNAME= "userName";
 	public static final String SUPPORTREQUESTUSEREMAIL= "userEmail";
+
+	/** The Constant for Email ID. */
+	public static final String CUSTOMER_EMAIL_ID = "emailId";
 
 }
