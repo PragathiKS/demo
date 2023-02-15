@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -542,11 +544,10 @@ public class SupportRequestFormModel {
 			i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTUSERNAME, nameCookie.getValue());
 		}
 
-		Cookie emailCookie = request.getCookie(SupplierPortalConstants.COOKIE_EMAIL);
-		if (emailCookie != null) {
-			i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTUSEREMAIL, emailCookie.getValue());
+		String email = GlobalUtil.getCustomerEmailAddress(request);
+		if (!StringUtils.isEmpty(email)) {
+			i18KeyMap.put(SupplierPortalConstants.SUPPORTREQUESTUSEREMAIL, email);
 		}
-
 		Gson gson = new Gson();
 		i18nKeys = gson.toJson(i18KeyMap);
 	}

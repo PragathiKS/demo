@@ -75,15 +75,6 @@ import java.util.Set;
             LOGGER.debug("cookie " + SupplierPortalConstants.COOKIE_NAME + " was deleted");
         }
 
-        Cookie aemCustomerEmailCookie = request.getCookie(SupplierPortalConstants.COOKIE_EMAIL);
-        if (null != aemCustomerEmailCookie) {
-            aemCustomerEmailCookie.setMaxAge(0);
-            aemCustomerEmailCookie.setDomain("." + SupplierPortalConstants.DOMAIN_NAME);
-            aemCustomerEmailCookie.setPath("/");
-            response.addCookie(aemCustomerEmailCookie);
-            LOGGER.debug("cookie " + SupplierPortalConstants.COOKIE_EMAIL + " was deleted");
-        }
-
         String redirectURL = request.getParameter(REDIRECT_URL_KEY);
         try {
             if (StringUtils.isNotEmpty(redirectURL)) {

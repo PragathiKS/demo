@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.tetrapak.supplierportal.core.jobs.SendEmailJob;
 import org.apache.http.HttpStatus;
 import org.apache.sling.event.jobs.JobManager;
 import org.osgi.service.component.annotations.Component;
@@ -24,6 +25,8 @@ public class SupportRequestFormEmailServiceImpl implements SupportRequestFormEma
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SupportRequestFormEmailServiceImpl.class);
 
+	private static final String SUCCESS_MSG = "success";
+	private static final String FAILED_MSG = "email failed";
 	/** The job mgr. */
 	@Reference
 	private JobManager jobMgr;
@@ -34,7 +37,6 @@ public class SupportRequestFormEmailServiceImpl implements SupportRequestFormEma
 		LOGGER.debug("inside sendEmailForNotification");
 		JsonObject emailResponse = new JsonObject();
 		if (Objects.nonNull(mailAddresses)) {
-			LOGGER.debug("email address is " + mailAddresses);
 			// Set the dynamic variables of email template
 			final Map<String, String> emailParams = new HashMap<>();
 
@@ -56,18 +58,18 @@ public class SupportRequestFormEmailServiceImpl implements SupportRequestFormEma
 			emailParams.put(FormConstants.TPEMAIL, supportRequestFormBean.getTpContactEmail());
 
 			final Map<String, Object> properties = new HashMap<>();
-			properties.put("templatePath", SupplierPortalConstants.SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH);
-			properties.put("emailParams", emailParams);
-			properties.put("receipientsArray", mailAddresses);
-			properties.put("attachments", files);
+			properties.put(SendEmailJob.TEMPLATE_PATH, SupplierPortalConstants.SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH);
+			properties.put(SendEmailJob.EMAIL_PARAMS, emailParams);
+			properties.put(SendEmailJob.RECIPIENTS_ARRAY, mailAddresses);
+			properties.put(SendEmailJob.ATTACHMENTS, files);
 			if (jobMgr != null) {
 				LOGGER.debug("inside job");
 				jobMgr.addJob(SupplierPortalConstants.SEND_EMAIL_JOB_TOPIC, properties);
-				emailResponse.addProperty(SupplierPortalConstants.RESULT, "success");
-				emailResponse.addProperty(SupplierPortalConstants.STATUS, "200");
+				emailResponse.addProperty(SupplierPortalConstants.RESULT, SUCCESS_MSG);
+				emailResponse.addProperty(SupplierPortalConstants.STATUS, HttpStatus.SC_OK);
 			} else {
 				LOGGER.error("JobManager Reference null");
-				emailResponse.addProperty(SupplierPortalConstants.RESULT, "email failed");
+				emailResponse.addProperty(SupplierPortalConstants.RESULT, FAILED_MSG);
 				emailResponse.addProperty(SupplierPortalConstants.STATUS, HttpStatus.SC_BAD_REQUEST);
 			}
 		}
