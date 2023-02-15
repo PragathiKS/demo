@@ -12,7 +12,7 @@ import org.osgi.service.component.annotations.Component;
 public class RedirectLocationHeaderAdjuster implements LocationHeaderAdjuster {
     @Override
     public String adjust(SlingHttpServletRequest request, String location) {
-        if(location.startsWith(CommonsConstants.AEM_CONTENT_PATH) && location.endsWith(CommonsConstants.HTML)){
+        if(request.getPathInfo().startsWith(CommonsConstants.AEM_CONTENT_PATH) && location.endsWith(CommonsConstants.HTML)){
             return request.getResourceResolver().map(location.replace(CommonsConstants.HTML,""));
         }
         return request.getResourceResolver().map(location);

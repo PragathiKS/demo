@@ -10,8 +10,8 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to delete Publicweb cache', name: 'Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to delete Customerhub cache', name: 'Customerhub'
         booleanParam defaultValue: true, description: 'Please check in case you want to delete Brandsource cache', name: 'Brandsource'
-	booleanParam defaultValue: true, description: 'Please check in case you want to delete Tetralaval cache', name: 'Tetralaval'
-
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete Tetralaval cache', name: 'Tetralaval'
+         booleanParam defaultValue: true, description: 'Please check in case you want to delete Supplierportal cache', name: 'Supplierportal'
             }
 
     options {
@@ -28,32 +28,32 @@ pipeline {
                     if (params.Environment == "DEV65") {
 
                             DEV65()
-                                                    
+
                     }
-                    
+
                    if (params.Environment == "QA65") {
 
                             QA65()
-                                                    
+
                     }
-						if (params.Environment == "Stage65") {
+                                                if (params.Environment == "Stage65") {
 
                             Stage65()
-                                                    
+
                     }
-                    
+
                 }
             }
         }
-        
+
     }
 }
 
 
     def DEV65() {
-	          echo " Deleting CDN cache"
-			  if (params.Publicweb) {
-			  sh '''#!/bin/bash			  
+                  echo " Deleting CDN cache"
+                          if (params.Publicweb) {
+                          sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
 date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
@@ -70,10 +70,10 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
         ],
  "urlAction":"delete"
 }'
-			  '''
+                          '''
         }
-		if (params.Customerhub) {
-			  sh '''#!/bin/bash			  
+                if (params.Customerhub) {
+                          sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
 date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
@@ -90,9 +90,9 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
         ],
  "urlAction":"delete"
 }'
-			  '''
+                          '''
         }
-	if (params.Brandsource) {
+        if (params.Brandsource) {
                           sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
@@ -112,7 +112,7 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
 }'
                           '''
         }
-	if (params.Tetralaval) {
+        if (params.Tetralaval) {
                           sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
@@ -133,14 +133,35 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
                           '''
         }
 
+         if (params.Supplierportal) {
+                          sh '''#!/bin/bash
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
 
-		
-		}
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://supplier-dev.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+                          '''
+        }
+
+
+
+                }
 
 def QA65() {
-	          echo " Deleting CDN cache"
-			  if (params.Publicweb) {
-			  sh '''#!/bin/bash			  
+                  echo " Deleting CDN cache"
+                          if (params.Publicweb) {
+                          sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
 date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
@@ -157,10 +178,10 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
         ],
  "urlAction":"delete"
 }'
-			  '''
+                          '''
         }
-		if (params.Customerhub) {
-			  sh '''#!/bin/bash			  
+                if (params.Customerhub) {
+                          sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
 date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
@@ -177,9 +198,9 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
         ],
  "urlAction":"delete"
 }'
-			  '''
+                          '''
         }
-	if (params.Brandsource) {
+        if (params.Brandsource) {
                           sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
@@ -200,7 +221,7 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
                           '''
         }
 
-		if (params.Tetralaval) {
+                if (params.Tetralaval) {
                           sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
@@ -220,13 +241,32 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
 }'
                           '''
         }
-		
-		}	
-		
+  if (params.Supplierportal) {
+                          sh '''#!/bin/bash
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://supplier-qa.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+                          '''
+        }
+                }
+
 def Stage65() {
-	          echo " Deleting CDN cache"
-			  if (params.Publicweb) {
-			  sh '''#!/bin/bash			  
+                  echo " Deleting CDN cache"
+                          if (params.Publicweb) {
+                          sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
 date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
@@ -243,10 +283,10 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
         ],
  "urlAction":"delete"
 }'
-			  '''
+                          '''
         }
-		if (params.Customerhub) {
-			  sh '''#!/bin/bash			  
+                if (params.Customerhub) {
+                          sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
 date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
@@ -263,9 +303,9 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
         ],
  "urlAction":"delete"
 }'
-			  '''
+                          '''
         }
-	if (params.Brandsource) {
+        if (params.Brandsource) {
                           sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
@@ -286,7 +326,7 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
                           '''
         }
 
-		if (params.Tetralaval) {
+                if (params.Tetralaval) {
                           sh '''#!/bin/bash
 username="kumar.rajeev2@publicissapient.com"
 apiKey="hteKgi4ZM2ytX#"
@@ -306,6 +346,35 @@ curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
 }'
                           '''
         }
-		
-		}
-		
+        if (params.Supplierportal) {
+                          sh '''#!/bin/bash
+username="kumar.rajeev2@publicissapient.com"
+apiKey="hteKgi4ZM2ytX#"
+date=`env LANG="en_US.UTF-8" date -u "+%a, %d %b %Y %H:%M:%S GMT"`
+password=`echo -en "$date" | openssl dgst -sha1 -hmac $apiKey -binary | openssl enc -base64`
+
+curl  -i --url "https://api.cdnetworks.com/ccm/purge/ItemIdReceiver" \
+-X "POST" \
+-u "$username:$password" \
+-H "Date:$date" \
+-H "Content-Type: application/json" \
+-d'{
+    "urls": [
+        "https://supplier-stage.tetrapak.com/"
+        ],
+ "urlAction":"delete"
+}'
+                          '''
+        }
+
+                }
+
+
+
+
+
+
+
+
+
+

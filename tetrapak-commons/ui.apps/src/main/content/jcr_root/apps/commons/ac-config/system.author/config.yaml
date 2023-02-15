@@ -110,6 +110,12 @@
           privileges: jcr:read,jcr:readAccessControl
           repGlob: /jcr:*
 
+        - path: /conf/global/settings/dam/adminui-extension/metadataschema
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
 
     - fragment-restrict-for-everyone:
 

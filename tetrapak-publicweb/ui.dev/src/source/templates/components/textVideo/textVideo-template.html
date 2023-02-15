@@ -72,20 +72,22 @@
           </div>
         </sly>
         <sly data-sly-test="${data.videoSource == 'youtube'}">
-            <sly data-sly-test.author="${wcmmode.edit || wcmmode.design || wcmmode.preview}"/>
+            <sly data-sly-use.digitalDataModel="com.tetrapak.publicweb.core.models.PageLoadAnalyticsModel"></sly>
             <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.youtubeEmbedURL}"
                  data-video-type="${data.videoSource}" data-video-name="${data.youtubeEmbedURL}">
-                <sly data-sly-test="${author}">
+                <sly data-sly-test="${!digitalDataModel.isPublisher}">
                     <iframe  class='js-yt-player' src="${data.youtubeEmbedURL}" frameborder="0"
                              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                              allowfullscreen></iframe>
                 </sly>
-                <sly data-sly-test="${!author}">
+                <sly data-sly-test="${digitalDataModel.isPublisher}">
                     <iframe  class='js-yt-player' class="optanon-category-4" data-src="${data.youtubeEmbedURL}" frameborder="0"
                              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                              allowfullscreen></iframe>
                 </sly>
             </div>
+            <div class="pw-text-video__novideo">
+          </div>
         </sly>
         <sly data-sly-test="${data.subTitle}"><p class="pw-text-video__subTitle font-fixing d-md-block d-lg-none">${data.subTitle @ context='html'}</p></sly>
         <div class="pw-text-video__title d-md-block d-lg-none">

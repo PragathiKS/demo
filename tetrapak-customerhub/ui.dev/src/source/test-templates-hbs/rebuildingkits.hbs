@@ -47,13 +47,18 @@
                 </div>
                 <div class="tp-rk__header-actions">
                     <div class="tp-rk__header-actionicons">
-                    <div class="tp-rk__action-button second js-rk__customise-table-action">
-                        <i class="icon icon-Hide action-icon"></i>
-                        <span class="tpatom-btn__text tp-rk__header-action-text">Customise Table</span>
-                    </div>
-                    <input type="hidden" id="downloadExcelServletUrl" name="downloadExcelServletUrl" value="${data.downloadExcelServletUrl}" />
-                    <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
-                            data-sly-call="${btnRef.buttonlink_template @text='cuhu.rebuildingkits.exportToCsv',modifier='primary',baseClass='tp-button-link',iconClass='icon-Excel action-icon',className='tp-rk__action-button',jsClass='js-rk__export-csv-action'}" />
+                        <div class="tp-rk__action-button second js-rk__customise-table-action">
+                            <i class="icon icon-Hide action-icon"></i>
+                            <span class="tpatom-btn__text tp-rk__header-action-text">Customise Table</span>
+                        </div>
+                        <input type="hidden" id="downloadCsvServletUrl" name="downloadCsvServletUrl" value="${data.downloadCsvServletUrl}" />
+
+                        <button class="tpatom-btn tp-button-link js-rk__export-csv-action tpatom-btn--primary tp-rk__action-button">
+
+                            <i class="icon icon-Excel action-icon"></i>
+
+                            <span class="tpatom-btn__text sly-text">Export to CSV</span>
+                        </button>
                     </div>
                 </div>
                 </div>
@@ -64,6 +69,136 @@
                 <button type="button" data-label="Country +"
                     class="tp-rk__country-button-filter tp-rk__filter-button active" auto_locator="countryFilter">
                     Country: 1
+                </button>
+                <button
+                        type="button"
+                        data-label="MOCK_VALUE" 
+                        class="tp-rk__functionalLocation-filter tp-rk__filter-button"
+                        auto_locator="functionalLocationFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__equipmentDescription-filter tp-rk__filter-button"
+                        auto_locator="equipmentDescriptionFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__serialNumber-filter tp-rk__filter-button"
+                        auto_locator="serialNumberFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__rkNumber-filter tp-rk__filter-button"
+                        auto_locator="rkNumberFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__rkDesc-filter tp-rk__filter-button"
+                        auto_locator="rkDescFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__implStatus-filter tp-rk__filter-button"
+                        auto_locator="implStatusFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__machineSystem-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="machineSystemFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__equipmentStatus-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="equipmentStatusFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__rkType-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="rkTypeFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__rkStatus-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="rkStatusFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__rkHandling-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="rkHandlingFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__implDeadline-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="implDeadlineFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__plannedDate-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="plannedDateFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__releaseDate-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="releaseDateFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+                    <button
+                        type="button"
+                        data-label="MOCK_VALUE"
+                        class="tp-rk__generalRkNumber-filter tp-rk__filter-button tp-rk__filter-button-all"
+                        auto_locator="generalRkNumberFilter"
+                    >
+                        MOCK_VALUE
+                    </button>
+            </div>
+            <div>
+                <button data-show-label="${'cuhu.rebuildingkits.showAllFilters' @i18n}" data-hide-label="${'cuhu.rebuildingkits.hideFilters' @i18n}" class="tpatom-btn tp-rk__show-hide-button js-tp-rk__show-hide-all-button" auto_locator="hideFilter">
+                    <i class="icon icon-Filter"></i>
+                    <span class="tpatom-btn__text sly-text">${"cuhu.rebuildingkits.showAllFilters" @i18n}</span>
+                </button>
+                <button class="tpatom-btn tp-rk__remove-button js-tp-rk__remove-all-button" auto_locator="removeFilter" hidden>
+                    <i class="icon icon-My_Euipment_Bin_X"></i>
+                    <span class="tpatom-btn__text sly-text">${"cuhu.rebuildingkits.removeAllFilters" @i18n}</span>
                 </button>
             </div>
         </div>

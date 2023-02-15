@@ -198,6 +198,12 @@
                                 fieldDescription="Provide Global BU form handler URL. Valid URL starts with - https://go.tetrapak.com/"
                                 fieldLabel="Global BU form handler URL"
                                 name="./pardotUrl"/>
+							<chinaapiurl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Provide China BU form handler URL. Valid URL starts with either - https://go.demo.pardot.com/ or https://go-cn.tetrapak.com/"
+                                fieldLabel="China BU form handler URL"
+                                name="./pardotChinaUrl"/>                            
                             <thankyou
                                 jcr:primaryType="nt:unstructured"
                                 jcr:title="Thank you section"
