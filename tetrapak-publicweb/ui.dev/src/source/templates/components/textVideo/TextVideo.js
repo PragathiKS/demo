@@ -43,6 +43,7 @@ class TextVideo {
     setTimeout(() => {
       $('#onetrust-accept-btn-handler').on('click', () => {
         $('.pw-text-video__video').css('display', 'block');
+        $('.pw-text-video__novideo').css('display', 'none');
       });
     },2500);
   }
