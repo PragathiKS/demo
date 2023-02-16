@@ -17,6 +17,7 @@ import com.tetrapak.publicweb.core.services.BaiduMapService;
 public class PageHeadModel {
 
 
+
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;

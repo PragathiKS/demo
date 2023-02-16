@@ -17,6 +17,10 @@ public final class CommonsConstants {
     /** The Constant HTML. */
     public static final String HTML = ".html";
 
+    public static final String USER_GROUP_READ_SERVICE = "readUserGroupsService";
+
+    public static final String ADMIN_USER = "admin";
+
     /**
      * Instantiates a new Commons constants.
      */

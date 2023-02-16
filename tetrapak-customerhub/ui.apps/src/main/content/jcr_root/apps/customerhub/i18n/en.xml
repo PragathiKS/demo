@@ -1678,5 +1678,253 @@
         jcr:mixinTypes="[sling:Message]"
         jcr:primaryType="nt:folder"
         sling:key="cuhu.packDesign.keylines.errorMessage"
-        sling:message="Right now there is an issue downloading the file. Please try again in a short while. Sorry for the inconvenience."/>     
+        sling:message="Right now there is an issue downloading the file. Please try again in a short while. Sorry for the inconvenience."/>
+        sling:message="Download Keyline"/>
+    <cuhu.technicalpublications.documentNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.documentNumber"
+        sling:message="Document Number"/>
+    <cuhu.technicalpublications.documentType
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.documentType"
+        sling:message="Document Type"/>
+    <cuhu.technicalpublications.serialNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.serialNumber"
+        sling:message="Serial Number"/>
+    <cuhu.technicalpublications.rebuildingKitNumber
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.rebuildingKitNumber"
+        sling:message="Rebuilding Kit Number"/>
+    <cuhu.technicalpublications.rebuildingKitName
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.rebuildingKitName"
+        sling:message="Rebuilding Kit Name"/>
+        sling:message="Rebuilding Kit Name"/>
+     <cuhu.technicalpublications.allFiles
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.allFiles"
+        sling:message="All Files"/>
+     <cuhu.technicalpublications.country
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.country"
+        sling:message="County"/>
+     <cuhu.technicalpublications.customer
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.customer"
+        sling:message="Customer"/>
+     <cuhu.technicalpublications.issueDate
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.issueDate"
+        sling:message="Issue Date"/>
+     <cuhu.technicalpublications.line
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.line"
+        sling:message="Line"/>
+     <cuhu.technicalpublications.lineEquipment
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.lineEquipment"
+        sling:message="Line/Equipment"/>
+     <cuhu.technicalpublications.name
+        jcr:mixinTypes="[sling:Message]"
+        jcr:primaryType="nt:folder"
+        sling:key="cuhu.technicalpublications.name"
+        sling:message="Name"/>
+    ----------------------------------------------
+    <cuhu.myequipment.csvheader.rkNumber
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkNumber"
+            sling:message="RK number"/>
+    <cuhu.myequipment.csvheader.rkDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkDesc"
+            sling:message="RK description"/>
+    <cuhu.myequipment.csvheader.implDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implDate"
+            sling:message="Impl date"/>
+    <cuhu.myequipment.csvheader.rkNumber
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkNumber"
+            sling:message="RK number"/>
+    <cuhu.myequipment.csvheader.implStatus
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implStatus"
+            sling:message="Impl status"/>
+    <cuhu.myequipment.csvheader.implStatusDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implStatusDate"
+            sling:message="Impl status date"/>
+    <cuhu.myequipment.csvheader.rebuildingKitStatus
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rebuildingKitStatus"
+            sling:message="Rebuilding kits Status"/>
+    <cuhu.myequipment.csvheader.releaseDateFirst
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.releaseDateFirst"
+            sling:message="Release date first"/>
+    <cuhu.myequipment.csvheader.releaseDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.releaseDate"
+            sling:message="Release date"/>
+    <cuhu.myequipment.csvheader.mechanicalSkills
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.mechanicalSkills"
+            sling:message="Mechanical Skills"/>
+    <cuhu.myequipment.csvheader.automationSkills
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.automationSkills"
+            sling:message="Automation Skills"/>
+    <cuhu.myequipment.csvheader.electricalSkills
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.electricalSkills"
+            sling:message="Electrical Skills"/>
+    <cuhu.myequipment.csvheader.machineSystemDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.machineSystemDesc"
+            sling:message="Machine System Description"/>
+    <cuhu.myequipment.csvheader.lineCode
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.lineCode"
+            sling:message="Line"/>
+    <cuhu.myequipment.csvheader.implDeadline
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.implDeadline"
+            sling:message="Impl Deadline"/>
+    <cuhu.myequipment.csvheader.equipmentStructure
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.equipmentStructure"
+            sling:message="Equipment Structure"/>
+    <cuhu.myequipment.csvheader.serviceOrder
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.serviceOrder"
+            sling:message="Service Order"/>
+    <cuhu.myequipment.csvheader.order
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.order"
+            sling:message="Order"/>
+    <cuhu.myequipment.csvheader.technicalBulletin
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.technicalBulletin"
+            sling:message="Ref for CTI"/>
+    <cuhu.myequipment.csvheader.rkTypeDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkTypeDesc"
+            sling:message="RK Type"/>
+    <cuhu.myequipment.csvheader.plannedDate
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.plannedDate"
+            sling:message="Planned Date"/>
+    <cuhu.myequipment.csvheader.rkHandling
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkHandling"
+            sling:message="RK Handling"/>
+    <cuhu.myequipment.csvheader.equipmentMaterial
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.equipmentMaterial"
+            sling:message="Equipment Material"/>
+    <cuhu.myequipment.csvheader.equipmentMaterialDesc
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.equipmentMaterialDesc"
+            sling:message="Equipment Material Description"/>
+    <cuhu.myequipment.csvheader.equipmentNumber
+        jcr:mixinTypes="[sling:Message]"
+        sling:key="cuhu.myequipment.csvheader.equipmentNumber"
+        sling:message="Equipment"/>
+    <cuhu.myequipment.csvheader.rkTime
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.rkTime"
+            sling:message="Time, Hours"/>
+    <cuhu.myequipment.csvheader.kpiExcl
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.myequipment.csvheader.kpiExcl"
+            sling:message="KPI Excl"/>
+    <cuhu.rebuildingkits.ctiRequestanewtranslation
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiRequestanewtranslation"
+            sling:message="Request a new translation"/>
+    <cuhu.rebuildingkits.ctiRequesttranslation
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiRequesttranslation"
+            sling:message="Request translation"/>
+    <cuhu.rebuildingkits.ctiNoctiavailable
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiNoctiavailable"
+            sling:message="No CTI is available"/>
+    <cuhu.rebuildingkits.ctiThankyoutext
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiThankyoutext"
+            sling:message="Thank you!"/>
+    <cuhu.rebuildingkits.ctiThankyoumessage
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiThankyoumessage"
+            sling:message="We are now processing your request. When the document is available we will notify you, on average this takes 2 weeks."/>
+    <cuhu.rebuildingkits.ctiSubject
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiSubject"
+            sling:message="Request for CTI"/>
+    <cuhu.rebuildingkits.ctiSalutation
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiSalutation"
+            sling:message="Dear Support,"/>
+    <cuhu.rebuildingkits.ctiBody
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiBody"
+            sling:message=""/>
+    <cuhu.rebuildingkits.ctiEmailAddressText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiEmailAddressText"
+            sling:message="Email Id"/>
+    <cuhu.rebuildingkits.ctiUsernametext
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiUsernametext"
+            sling:message="Username"/>
+    <cuhu.rebuildingkits.ctiFunctionalLocationText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiFunctionalLocationText"
+            sling:message="Functional Location"/>
+    <cuhu.rebuildingkits.ctiMconText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiMconText"
+            sling:message="MCON"/>
+    <cuhu.rebuildingkits.ctiRequestedLanguageText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiRequestedLanguageText"
+            sling:message="Requested Language"/>
+    <cuhu.rebuildingkits.ctiRkTbNumberText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiRkTbNumberText"
+            sling:message="RK_TB_NUMBER"/>
+    <cuhu.rebuildingkits.ctiCommentText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiCommentText"
+            sling:message="User Comment"/>
+    <cuhu.rebuildingkits.ctiDropdownError
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.ctiDropdownError"
+            sling:message="Please select one option"/>
+    <cuhu.rebuildingkits.requestCTIText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.requestCTIText"
+            sling:message="Request CTI"/>
+    <cuhu.rebuildingkits.whatLanguageWantText
+            jcr:mixinTypes="[sling:Message]"
+            sling:key="cuhu.rebuildingkits.whatLanguageWantText"
+            sling:message="What Language Do You Want?"/>
+    <cuhu.rebuildingkits.rkSelectLanguage
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.rkSelectLanguage"
+            sling:message="Select Language"/>
+
 </jcr:root>

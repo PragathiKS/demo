@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+		  jcr:primaryType="sling:OsgiConfig"
+		  cookieDomainScriptConfig="[&quot;tetralaval&quot;={&quot;siteAbbreviation&quot;:&quot;tl&quot;\,&quot;domainScript&quot;:&quot;651b0627-cd33-48b7-8b85-7d28bf01ad3d-test&quot;}]"/>

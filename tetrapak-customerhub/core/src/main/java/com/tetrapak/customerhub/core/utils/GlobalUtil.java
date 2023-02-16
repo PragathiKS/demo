@@ -47,6 +47,15 @@ import java.util.Set;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -55,7 +64,9 @@ import java.util.stream.Collectors;
  */
 public class GlobalUtil {
 
-    /** The Constant LOGGER. */
+    /**
+     * The Constant LOGGER.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**
@@ -388,6 +399,21 @@ public class GlobalUtil {
         Session session = request.getResourceResolver().adaptTo(Session.class);
         if (null != session && null != userPreferenceService) {
             return userPreferenceService.getSavedPreferences(session.getUserID(), CustomerHubConstants.LANGUGAGE_PREFERENCES);
+        }
+        return null;
+    }
+    
+    /**
+     * Method to get additional selected language.
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
+     * @return string language code
+     */
+    public static String getAdditionalSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        if (null != session && null != userPreferenceService) {
+            return userPreferenceService.getSavedPreferences(session.getUserID(), CustomerHubConstants.ADDITIONAL_LANGUAGE_PREFERENCES);
         }
         return null;
     }

@@ -118,8 +118,8 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         if (StringUtils.isNotBlank(firstName) || StringUtils.isNotBlank(lastName)) {
             Cookie samlCookie = new Cookie(SupplierPortalConstants.COOKIE_NAME, customerName);
             samlCookie.setHttpOnly(true);
-            samlCookie.setPath("/");
             samlCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
+            samlCookie.setPath("/");
             response.addCookie(samlCookie);
         }
     }

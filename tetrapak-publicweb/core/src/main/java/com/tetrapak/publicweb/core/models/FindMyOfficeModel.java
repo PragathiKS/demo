@@ -8,6 +8,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.publicweb.core.services.BaiduMapService;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
 /**
@@ -32,6 +33,10 @@ public class FindMyOfficeModel {
     @ValueMapValue
     private String anchorTitle;
 
+
+    /** The find my office service impl. */
+    @Inject
+    private BaiduMapService baiduMapService;
 
     /** The find my office service impl. */
     @Inject
@@ -80,6 +85,15 @@ public class FindMyOfficeModel {
      */
     public String getGoogleApiKey() {
         return findMyOfficeService.getGoogleApiKey();
+    }
+
+    /**
+     * Gets the Baidu Map key values.
+     *
+     * @return the Baidu Map key values
+     */
+    public String getBaiduMapKey() {
+        return baiduMapService.getBaiduMapKey();
     }
 
 }

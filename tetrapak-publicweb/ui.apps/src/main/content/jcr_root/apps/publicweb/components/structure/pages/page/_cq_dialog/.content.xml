@@ -99,6 +99,10 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     allowBulkEdit="{Boolean}true"
                                                     cq-msm-lockable="hideInNav"/>
+                                                <granite:rendercondition
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType = "commons/renderconditions/allowgroups"
+                                                    allowedGroups="[administrators]"/>
                                             </hideinnav>
                                             <charset
                                                 jcr:primaryType="nt:unstructured"
@@ -329,7 +333,7 @@
                     </pwBaseConfig>
                     <aggregator
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Public Web Aggregator Configuration"
+                        jcr:title="Public Web Aggregator Configuration *"
                         sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                         <items jcr:primaryType="nt:unstructured">
                             <column
@@ -353,7 +357,8 @@
                                                 fieldDescription="Original Image should be in 16:9 aspect ratio"
                                                 fieldLabel="Thumbnail Image path"
                                                 name="./imagePath"
-                                                rootPath="/content/dam/tetrapak">
+                                                rootPath="/content/dam/tetrapak"
+												required="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="imagePath"/>
@@ -364,7 +369,8 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Required for Accessibility use"
                                                 fieldLabel="Thumbnail Image Alt Text"
-                                                name="./altText">
+                                                name="./altText"
+												required="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="altText"/>
@@ -375,7 +381,8 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Text available for the visitor"
                                                 fieldLabel="Link Text"
-                                                name="./linkText">
+                                                name="./linkText"
+												required="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="linkText"/>
@@ -387,7 +394,8 @@
                                                 fieldDescription="Link to destination URL"
                                                 fieldLabel="Link Path"
                                                 name="./linkPath"
-                                                rootPath="/content">
+                                                rootPath="/content"
+												required="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="linkPath"/>
