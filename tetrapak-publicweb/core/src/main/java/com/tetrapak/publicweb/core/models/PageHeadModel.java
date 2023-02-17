@@ -1,7 +1,11 @@
 package com.tetrapak.publicweb.core.models;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.utils.PageUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -21,6 +25,9 @@ public class PageHeadModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    @Inject
+    private Page currentPage;
+
     /** The BaiduMapService. */
     @OSGiService
     private BaiduMapService baiduMapService;
@@ -31,15 +38,24 @@ public class PageHeadModel {
     /** The One Trust Servlet call api. */
     private String cookieTokenServletUrl;
 
+    private String pageTitleCountrySuffix;
+
     /**
      * Inits the model.
      */
     @PostConstruct
     public void initModel() {
         final String path = request.getResource().getPath();
+        pageTitleCountrySuffix = StringUtils.EMPTY;
         cookieTokenServletUrl = path.concat(".onetrustcookietoken.json");
         if(baiduMapService.getBaiduMapKey() != null && path.contains("/cn")) {
             baiduMapkey = baiduMapService.getBaiduMapKey();
+        }
+        if(currentPage!=null){
+            Page countryPage = PageUtil.getCountryPage(currentPage);
+            if(StringUtils.isNotBlank(countryPage.getTitle())){
+                pageTitleCountrySuffix = countryPage.getTitle();
+            }
         }
     }
 
@@ -58,5 +74,9 @@ public class PageHeadModel {
      */
     public String getCookieTokenServletUrl() {
         return cookieTokenServletUrl;
+    }
+
+    public String getPageTitleCountrySuffix() {
+        return pageTitleCountrySuffix;
     }
 }

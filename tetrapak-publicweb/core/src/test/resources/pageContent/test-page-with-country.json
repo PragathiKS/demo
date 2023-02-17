@@ -1,0 +1,198 @@
+{
+  "jcr:primaryType":"cq:Page",
+  "jcr:mixinTypes":[
+    "rep:AccessControllable"
+  ],
+  "jcr:createdBy":"admin",
+  "jcr:created":"Tue Oct 04 2022 13:04:00 GMT+0200",
+  "jcr:content":{
+    "jcr:primaryType":"cq:PageContent",
+    "jcr:mixinTypes":[
+      "cq:LiveSync",
+      "cq:PropertyLiveSyncCancelled",
+      "mix:versionable"
+    ],
+    "jcr:createdBy":"admin",
+    "jcr:title":"China",
+    "cq:propertyInheritanceCancelled":[
+      "jcr:title"
+    ],
+    "cq:lastReplicationAction":"Activate",
+    "jcr:versionHistory":"e39c02ff-d52f-4a30-9fca-8b16f5343436",
+    "countryName":"中国",
+    "cq:template":"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "cq:lastReplicatedBy":"inkumarpa",
+    "cq:lastRolledout":"Tue Oct 13 2020 16:32:02 GMT+0000",
+    "jcr:predecessors":[
+      "9e46d374-1d76-4b06-a0a9-5a390e1f9f44"
+    ],
+    "cq:siteOwner":"admin",
+    "jcr:created":"Tue Oct 04 2022 13:04:00 GMT+0200",
+    "cq:lastReplicated":"Fri Aug 06 2021 11:06:13 GMT+0000",
+    "cq:lastModified":"Mon Sep 28 2020 08:43:53 GMT+0000",
+    "jcr:baseVersion":"9e46d374-1d76-4b06-a0a9-5a390e1f9f44",
+    "jcr:isCheckedOut":true,
+    "jcr:uuid":"0c8b148b-b8ff-4287-893d-92e4314bd29f",
+    "sling:resourceType":"publicweb/components/structure/pages/landingpage",
+    "cq:allowedTemplates":"/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+    "cq:lastRolledoutBy":"msm-service",
+    "cq:lastModifiedBy":"tetra-write",
+    "footer":{
+      "jcr:primaryType":"nt:unstructured",
+      "jcr:mixinTypes":[
+        "cq:LiveRelationship"
+      ],
+      "jcr:lastModifiedBy":"admin",
+      "cq:lastRolledout":"Tue Oct 13 2020 16:32:02 GMT+0000",
+      "imageLink":"/content/tetrapak/publicweb/cn/es",
+      "imagePath":"/content/dam/publicweb/logo_tetra_pak_white.svg",
+      "imageAltI18n":"Tetra Pak",
+      "footerNavigationLinks":[
+        "{\"linkTextI18n\":\"Legal Information\",\"linkTooltipI18n\":\"Legal Information\",\"linkPath\":\"http://tetrapak.com/about/legal-information\",\"targetBlank\":\"on\"}",
+        "{\"linkTextI18n\":\"Contact Us\",\"linkTooltipI18n\":\"Contact Us\",\"linkPath\":\"http://tetrapak.com/contact\",\"targetBlank\":\"on\"}",
+        "{\"linkTextI18n\":\"Tetra Laval Group\",\"linkTooltipI18n\":\"Tetra Laval Group\",\"linkPath\":\"http://www.tetralaval.com/\",\"targetBlank\":\"on\"}",
+        "{\"linkTextI18n\":\"沪ICP备17056308号-1\",\"linkTooltipI18n\":\"Chinese Statute\",\"linkPath\":\"http://www.miitbeian.gov.cn\",\"targetBlank\":\"on\"}"
+      ],
+      "socialMediaFacebook":"http://www.facebook.com/tetrapak",
+      "jcr:lastModified":"Mon Sep 28 2020 08:40:35 GMT+0000",
+      "socialMediaLinkedin":"http://www.linkedin.com",
+      "sling:resourceType":"publicweb/components/structure/footer",
+      "ctaLabelI18n":"To top",
+      "imageTitleI18n":"Image Title?",
+      "socialMediaYoutube":"http://www.youtube.com/tetrapak",
+      "cq:lastRolledoutBy":"msm-service",
+      "socialMediaTwitter":"http://www.twitter.com/tetrapak"
+    },
+    "header":{
+      "jcr:primaryType":"nt:unstructured",
+      "jcr:mixinTypes":[
+        "cq:LiveRelationship"
+      ],
+      "strategyPath":"cq/personalization/clientlib/source/strategies/list/first.js",
+      "jcr:lastModifiedBy":"roomahaj",
+      "cq:lastRolledout":"Tue Oct 13 2020 16:32:02 GMT+0000",
+      "accurateTargeting":true,
+      "jcr:lastModified":"Mon Sep 28 2020 08:40:35 GMT+0000",
+      "sling:resourceType":"cq/personalization/components/target",
+      "cq:lastRolledoutBy":"msm-service",
+      "location":"cfdd01b0-5d13-4bd3-8350-73085e916688"
+    },
+    "root":{
+      "jcr:primaryType":"nt:unstructured",
+      "jcr:mixinTypes":[
+        "cq:LiveRelationship"
+      ],
+      "cq:lastRolledout":"Tue Oct 13 2020 16:32:02 GMT+0000",
+      "sling:resourceType":"wcm/foundation/components/responsivegrid",
+      "cq:lastRolledoutBy":"msm-service"
+    },
+    "cq:LiveSyncConfig":{
+      "jcr:primaryType":"cq:LiveCopy",
+      "cq:rolloutConfigs":[
+        "/libs/msm/wcm/rolloutconfigs/activate",
+        "/libs/msm/wcm/rolloutconfigs/default",
+        "/libs/msm/wcm/rolloutconfigs/deactivate"
+      ],
+      "cq:isDeep":false,
+      "cq:master":"/content/tetrapak/publicweb/lang-masters"
+    }
+  },
+  "zh":{
+    "jcr:primaryType":"cq:Page",
+    "jcr:createdBy":"admin",
+    "jcr:created":"Tue Oct 04 2022 13:04:00 GMT+0200",
+    "jcr:content":{
+      "jcr:primaryType":"cq:PageContent",
+      "jcr:mixinTypes":[
+        "cq:LiveRelationship",
+        "cq:LiveSync",
+        "mix:versionable"
+      ],
+      "cq:ctNeedTMUpdate":false,
+      "cq:ctTransItemId":"ece478be-e1ef-4e24-bf7a-ab186b1df32d",
+      "jcr:createdBy":"admin",
+      "socialMedia":[
+        "facebook",
+        "pinterest"
+      ],
+      "jcr:title":"英语",
+      "cq:lastReplicationAction":"Activate",
+      "jcr:versionHistory":"42967ee8-75ed-43c4-a632-1eab305688a9",
+      "cq:template":"/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+      "cq:lastReplicatedBy":"innagavekarb",
+      "jcr:language":"zh",
+      "cq:lastRolledout":"Thu Sep 02 2021 13:57:22 GMT+0000",
+      "jcr:predecessors":[
+        "b924f112-488b-4386-a204-c61e0f26eb74"
+      ],
+      "disableEnvelope":"false",
+      "cq:lastTranslationSource":"en",
+      "cq:lastTranslationUpdate":"Wed May 20 2020 12:22:36 GMT+0000",
+      "jcr:created":"Tue Oct 04 2022 13:04:00 GMT+0200",
+      "cq:lastReplicated":"Fri Oct 01 2021 05:11:43 GMT+0000",
+      "cq:lastModified":"Fri Oct 01 2021 05:11:34 GMT+0000",
+      "cq:ctTranslated":"Tue Sep 15 2020 13:03:01 GMT+0000",
+      "jcr:baseVersion":"b924f112-488b-4386-a204-c61e0f26eb74",
+      "jcr:isCheckedOut":true,
+      "jcr:uuid":"8ce73619-4952-4be4-b43d-73793a47f359",
+      "sling:resourceType":"publicweb/components/structure/pages/languagepage",
+      "cq:allowedTemplates":[
+        "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+        "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page",
+        "/conf/publicweb/settings/wcm/templates/public-web-filling-machine-page",
+        "/conf/publicweb/settings/wcm/templates/public-web-processing-equipment-page",
+        "/conf/publicweb/settings/wcm/templates/public-web-package-type-page",
+        "/conf/publicweb/settings/wcm/templates/case-article",
+        "/conf/publicweb/settings/wcm/templates/news-article",
+        "/conf/publicweb/settings/wcm/templates/press-release",
+        "/conf/publicweb/settings/wcm/templates/event",
+        "/conf/publicweb/settings/wcm/templates/awareness-campaign",
+        "/conf/publicweb/settings/wcm/templates/product-campaign",
+        "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu"
+      ],
+      "errorPages":"/content/tetrapak/publicweb/cn/zh/error",
+      "cq:lastRolledoutBy":"sapient-suraksha",
+      "cq:lastModifiedBy":"innagavekarb"
+    },
+    "home":{
+      "jcr:primaryType":"cq:Page",
+      "jcr:createdBy":"admin",
+      "jcr:created":"Tue Oct 04 2022 13:04:00 GMT+0200",
+      "jcr:content": {
+        "jcr:primaryType": "cq:PageContent",
+        "jcr:createdBy": "admin",
+        "jcr:title": "Homepage",
+        "title": "title",
+        "jcr:description": "Description",
+        "author": "admin",
+        "hideInNav": "false",
+        "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+        "jcr:created": "Wed Nov 01 2017 17:09:43 GMT+0530",
+        "cq:lastModified": "Wed Nov 01 2017 17:09:43 GMT+0530",
+        "cq:lastReplicated": "Wed Nov 01 2017 17:09:43 GMT+0530",
+        "subtitle": "home",
+        "hideContactAnchorLink": "true",
+        "hideContactFooterForm": "true",
+        "navTitle": "Nav Title",
+        "altText": "Image Alt Text",
+        "imagePath": "/content/dam/publicweb/asset.jpg",
+        "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+        "linkTarget": "true",
+        "vanityDescription": "Vanity Description",
+        "ctaTexti18nKey": "Cta Text i18n Key",
+        "openInNewWindow":"true",
+        "showImage":"true",
+        "articleImagePath":"/content/dam/publicweb/1320x500-test1.png",
+        "articleImageAltI18n":"Article Image Alt I18n",
+        "linkText": [
+          "Link Text",
+          "/content/tetrapak/publicweb/global/en/test"
+        ],
+        "cq:tags": [
+          "we-retail:activity"
+        ],
+        "cq:lastModifiedBy": "admin"
+      }
+    }
+  }
+}
