@@ -13,7 +13,7 @@ pipeline {
         booleanParam (defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak')
 	    booleanParam (defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_Tetralaval')
 	    booleanParam (defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal')
-        string (description: "Type in full branch name (e.g. release/develop-***)", name: 'Build_Branch', trim: true)
+        string (description: "Type in branch name (e.g. release/develop-***)", name: 'Build_Branch', trim: true)
     }
 
     options {
@@ -28,21 +28,6 @@ pipeline {
     }
 
     stages {
-        stage("Check out branch") {
-            steps {
-                script {
-                    if (params.Build_Branch != null && params.Build_Branch != "") {
-                        checkout poll: false, scm: [$class: 'GitSCM',
-                            branches: [[name: "*/${params.Build_Branch}"]],
-                            extensions: [[$class: 'LocalBranch']],
-                            userRemoteConfigs: [[credentialsId: 'jenkins-ci-ssh-creds',
-                                                  url: 'git@bitbucket.org:tetrapak-smartsales/cfe-tetrapak.git']]]
-                    } else {
-                        error "Unable to checkout Branch"
-                    }
-                }
-            }
-        }
         stage('init-build-Number') {
             steps {
                 script {
@@ -55,7 +40,7 @@ pipeline {
             }
         }
 
-        stage('Build Prod Artifact') {
+        stage('Build Stage Artifact') {
             agent {
                 dockerfile {
                     args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
@@ -249,9 +234,7 @@ pipeline {
                     },
                     "Publisher PublicWeb" : {                  
                         publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
-                        publishdeploy()
-                            //},
-                            //"Publisher 2 PublicWeb" : {                  
+                        publishdeploy()                 
                         publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
                         publishdeploy()
                     }
@@ -269,8 +252,7 @@ pipeline {
                     "Publisher Tetralaval" : {
                         publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
                         publishdeploy()
-                            //},
-                            //"Publisher 2 Tetralaval" : {
+                        
                         publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
                         publishdeploy()
                     }
