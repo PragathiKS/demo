@@ -31,6 +31,9 @@ public class FooterConfigurationModel {
     @Inject
     private List<FooterLinkModel> footerLinks;
 
+	@Inject
+	private String changeLanguage;
+
     /**
      * Gets the footer link.
      *
@@ -43,6 +46,10 @@ public class FooterConfigurationModel {
         }
         return lists;
 
-    }
+	}
+
+	 public String getChangeLanguage() {
+	        return changeLanguage;
+	    }
 
 }

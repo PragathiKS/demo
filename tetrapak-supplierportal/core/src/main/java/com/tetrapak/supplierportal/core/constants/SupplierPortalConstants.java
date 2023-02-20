@@ -122,6 +122,17 @@ public final class SupplierPortalConstants {
 
 	/** The Constant SUPPLIER_PORTAL. */
 	public static final String SUPPLIER_PORTAL = "supplierportal";
+    /** The Constant LANGUGAGE_PREFERENCES. */
+    public static final String LANGUGAGE_PREFERENCES = "languagePreference";
+
+    /** The Constant RESPONSE_STATUS_FAILURE. */
+    public static final String RESPONSE_STATUS_FAILURE = "failure";
+
+    /** The Constant RESPONSE_STATUS_SUCCESS. */
+    public static final String RESPONSE_STATUS_SUCCESS = "success";
+
+    /** The Constant SUPPLIER_PORTAL. */
+    public static final String SUPPLIER_PORTAL = "supplierportal";
 
 	/** The Constant DOMAINSCRIPT. */
 	public static final String DOMAINSCRIPT = "domainScript";
@@ -185,4 +196,13 @@ public final class SupplierPortalConstants {
 	/** The Constant for Email ID. */
 	public static final String CUSTOMER_EMAIL_ID = "emailId";
 
+    /** The Constant DOMAINSCRIPT. */
+    public static final String DOMAINSCRIPT = "domainScript";
+
+    /**
+     * Instantiates a new customer hub constants.
+     */
+    private SupplierPortalConstants() {
+        throw new IllegalStateException("Utility class");
+    }
 }
