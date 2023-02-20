@@ -86,7 +86,7 @@ export const RK_API_FILTER_KEYS = [
   'lines',
   'implstatuses',
   'machinesystems',
-  'equipmentstatuses', 
+  'equipmentstatuses',
   'rktypes',
   'rkstatuses',
   'rkhandlings'

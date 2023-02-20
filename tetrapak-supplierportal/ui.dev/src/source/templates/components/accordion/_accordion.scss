@@ -8,6 +8,9 @@
         margin-right: 0;
     }
 
+    .padding-zero{
+        @include padding($padding-zero);
+    }
     &__events {
         display: flex;
         flex-direction: column;
