@@ -122,6 +122,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
             samlCookie.setPath("/");
             response.addCookie(samlCookie);
         }
+
     }
 
     private static String setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response,
