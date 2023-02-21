@@ -36,4 +36,8 @@
         <input type="hidden" id="siteImproveScript" name="siteImproveScript" value="${globalUtil.siteImproveScript}" />
     </sly>
 </div>
-<sly data-sly-resource="${'inactivitydialog' @ resourceType='customerhub/components/content/inactivitydialog'}"/>
+<sly data-sly-use.cookiemodel="com.tetrapak.customerhub.core.models.CookieConsentModel" />
+<sly data-sly-test="${!cookiemodel.isCookieConsentDisabled}">
+    <sly data-sly-resource="${'cookieconsent' @ resourceType='/apps/customerhub/components/content/cookieconsent'}" />
+</sly>
+<sly data-sly-resource="${'inactivitydialog' @ resourceType='customerhub/components/content/inactivitydialog'}" />
