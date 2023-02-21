@@ -11,8 +11,8 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.tetralaval.beans.Dropdown;
 import com.tetralaval.config.FormDatasourceConfiguration;
-import com.tetralaval.core.beans.Dropdown;
 import com.tetralaval.services.FormDatasourceConfigService;
 
 @Component(immediate = true, service = FormDatasourceConfigService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)

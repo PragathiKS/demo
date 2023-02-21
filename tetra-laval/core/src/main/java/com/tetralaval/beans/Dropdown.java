@@ -1,4 +1,4 @@
-package com.tetralaval.core.beans;
+package com.tetralaval.beans;
 
 public class Dropdown {
 

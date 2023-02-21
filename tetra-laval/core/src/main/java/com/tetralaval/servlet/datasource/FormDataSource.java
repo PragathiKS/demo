@@ -24,7 +24,7 @@ import com.adobe.granite.ui.components.ds.DataSource;
 import com.adobe.granite.ui.components.ds.SimpleDataSource;
 import com.adobe.granite.ui.components.ds.ValueMapResource;
 import com.day.cq.commons.jcr.JcrConstants;
-import com.tetralaval.core.beans.Dropdown;
+import com.tetralaval.beans.Dropdown;
 import com.tetralaval.services.FormDatasourceConfigService;
 
 @Component(service = Servlet.class, property = {
