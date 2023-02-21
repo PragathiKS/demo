@@ -1,1 +1,258 @@
 @import '~tpPublic/templates/components/tabslist/tabslist';
+
+.pw-tablist__event-detail-description{
+    li {
+        display: table-row;
+    }
+
+    h1 {
+        @include font-size($font-l);
+        @include margin-bottom($margin-md);
+        @include line-height(32px, $font-xl);
+        font-weight: 300;
+    }
+
+    h2 {
+        @include font-size(18px);
+        @include line-height(24px, 18px);
+        @include margin-bottom($margin-md);
+    }
+
+    h3 {
+        @include font-size($font-l);
+        @include line-height(32px, $font-l);
+        @include margin-bottom($margin-md);
+        font-weight: 400;
+    }
+
+    h4 {
+        @include font-size(20px);
+        @include margin-bottom($margin-md);
+        @include line-height(28px, 20px);
+        font-weight: 500;
+    }
+
+    p {
+        @include font-size(16px);
+        @include line-height(28px, 16px);
+        @include margin-bottom(8px);
+        font-weight: 400;
+        @media #{$desktop} {
+            @include margin-bottom(8px);
+        }
+        a {
+            @include padding(0);
+            border: 0;
+            color: $color-congress-blue;
+            background: none;
+            cursor: pointer;
+    
+            &:hover {
+                color: $color-sky-blue;
+                background-color: transparent;
+            }
+            & > .icon {
+                @include padding-left(6px);
+            }
+        }
+    }
+
+    small {
+        @include font-size(14px);
+        @include line-height(24px, 14px);
+        @include margin-bottom(16px);
+        font-weight: 500;
+    }
+
+    ol,
+    ul {
+        @include margin-bottom(8px);
+        @include padding-left($padding-xxl);
+    }
+
+    ul {
+        display: table;
+        li {
+            &::before {
+                @include margin-right($padding-sm);
+                display: table-cell;
+                color: $color-tundora;
+                content: '\2022';
+            }
+        }
+    }
+
+    ol {
+        display: table;
+        counter-reset: section;
+        list-style-type: none;
+        li {
+            &::before {
+                @include margin-right($margin-sm);
+                @include font-size(14px);
+                @include padding-right($padding-sm);
+                display: table-cell;
+                content: counters(section, '.') ' ';
+                counter-increment: section;
+            }
+        }
+    }
+
+    ol ol,
+    ul ul {
+        @include padding(0 0 0 20px);
+    }
+
+    ul > li > ul,
+    ol > li > ol {
+        @include margin-bottom(0);
+        :last-child {
+            @include padding-bottom(0);
+        }
+    }
+
+    ul li,
+    ol li {
+        @include font-size(14px);
+        @include padding-bottom(16px);
+        &::before {
+            color: $color-tundora;
+        }
+        &:last-child {
+            @include padding-bottom(0);
+        }
+        li {
+            @include padding-bottom(8px);
+        }
+    }
+
+    ol li ol,
+    ul li ul {
+        @include padding-top(16px);
+    }
+
+    ul ul ul {
+        li {
+            @include font-size(12px);
+            @include padding-bottom(8px);
+            &::before {
+                content: '\2012';
+                font-weight: 400;
+            }
+        }
+    }
+
+    ol ol ol {
+        @include padding-left(28px);
+        li {
+            @include font-size(12px);
+            @include padding-bottom(8px);
+        }
+    }
+
+    table {
+        @include margin-bottom($margin-l);
+        display: block;
+        border-collapse: collapse;
+        overflow-x: auto;
+        width: 100%;
+
+        // sass-lint:disable no-vendor-prefixes
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            &:horizontal {
+                height: 11px;
+            }
+        }
+
+        // sass-lint:disable no-vendor-prefixes
+        &::-webkit-scrollbar-thumb {
+            border: 2px solid $color-white;
+            border-radius: 8px;
+            background-color: $color-light-gray;
+        }
+
+        // sass-lint:disable no-vendor-prefixes
+        &::-webkit-scrollbar-track {
+            background-color: $color-white;
+            border-radius: 8px;
+        }
+
+        tbody {
+            display: table;
+            width: 100%;
+        }
+        th {
+            @include padding-top(9px);
+            @include padding-bottom(9px);
+            border-bottom: 1px solid $color-black;
+            font-weight: 500;
+        }
+
+        td {
+            @include padding-top(11px);
+            @include padding-bottom(11px);
+            border-bottom: 1px solid $color-mercury;
+        }
+
+        td,
+        th {
+            @include padding-left(8px);
+            @include padding-right(14px);
+            white-space: pre-wrap;
+        }
+    }
+    @media #{$desktop} {
+        &.tp-pw-richText-container {
+            @include margin-top(0);
+            @include margin-left(48px);
+            @include margin-right(48px);
+            @include padding(48px);
+        }
+        h1 {
+            @include font-size($font-xxl);
+            @include line-height(48px, $font-xxl);
+            font-weight: 700;
+        }
+        h2 {
+            @include font-size($font-xl);
+            @include line-height(40px, $font-xl);
+        }
+        h3 {
+            @include font-size($font-l);
+            @include line-height(32px, $font-l);
+            font-weight: 400;
+        }
+        h4 {
+            @include font-size($font-md);
+            @include line-height(48px, $font-md);
+            font-weight: 500;
+        }
+        p {
+            @include font-size(14px);
+            @include line-height(24px, 14px);
+            font-weight: 400;
+        }
+
+        small {
+            @include font-size(12px);
+            @include line-height(20px, 12px);
+            @include margin-bottom(24px);
+        }
+        ol,
+        ul {
+            @include margin-bottom($margin-l);
+        }
+
+        table,
+        p {
+            @include margin-bottom(8px);
+        }
+    }
+}
+
+.tpatom-link--primary{
+    .icon{
+        margin-top: 4px;
+    }
+} 
