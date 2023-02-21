@@ -1,6 +1,6 @@
 @import '~tpPublic/templates/components/tabslist/tabslist';
 
-.pw-tablist__event-detail-description{
+.pw-tablist__event-detail-description {
     li {
         display: table-row;
     }
@@ -251,8 +251,12 @@
     }
 }
 
-.tpatom-link--primary{
+.tpatom-link--primary {
     .icon{
         margin-top: 4px;
     }
 } 
+
+.pw-tablist__event-title-icright {
+    margin-bottom: 0;
+}
