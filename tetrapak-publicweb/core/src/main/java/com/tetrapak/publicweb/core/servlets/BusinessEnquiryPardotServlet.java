@@ -37,7 +37,7 @@ public class BusinessEnquiryPardotServlet extends SlingAllMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(BusinessEnquiryPardotServlet.class);
 
     @Reference
-    private PardotService pardotService;
+    private transient PardotService pardotService;
 
     /**
      * Do get.
