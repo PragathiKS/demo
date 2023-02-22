@@ -25,7 +25,7 @@ public class AuthCheckerServletTest {
 
     private static final String SERVLET_RESOURCE_PATH = "/content/tetrapak/supplierportal/"
             + "global/dashboard/jcr:content/root/responsivegrid/introscreen";
-    private static final String SERVLET_RESOURCE_JSON = "leftnavigation/allContent.json";
+    private static final String SERVLET_RESOURCE_JSON = "allContent.json";
 
     @Rule
     public final AemContext aemContext = SupplierPortalCoreAemContext.getAemContextWithJcrMock(SERVLET_RESOURCE_JSON,
