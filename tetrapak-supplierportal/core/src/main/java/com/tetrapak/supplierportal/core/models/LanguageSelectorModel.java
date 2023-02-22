@@ -13,7 +13,9 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
@@ -31,9 +33,21 @@ import java.util.stream.Collectors;
 @Model(adaptables = { SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class LanguageSelectorModel {
 
+    private static final String HEADING = "headingI18n";
+
+    private static final String CLOSE_BTN = "closeBtnText";
+
     @SlingObject private SlingHttpServletRequest request;
 
     @OSGiService private UserPreferenceService userPreferenceService;
+
+    @Self
+    @Via("resourceResolver")
+    PageManager pageManager;
+
+    @Self
+    @Via("resourceResolver")
+    BlueprintManager blueprintManager;
 
     private String headingI18n;
 
@@ -44,11 +58,8 @@ public class LanguageSelectorModel {
     private Map<String, String> listOfLanguages = new HashMap<>();
 
     @PostConstruct protected void init() throws WCMException {
-        BlueprintManager manager = request.getResourceResolver().adaptTo(BlueprintManager.class);
-        PageManager pageManager = request.getResourceResolver().adaptTo(PageManager.class);
-
-        List<Page> pages = manager.getBlueprints().stream()
-                .filter(x -> x.getSitePath().startsWith("/content/tetrapak/supplierportal/global"))
+        List<Page> pages = blueprintManager.getBlueprints().stream()
+                .filter(x -> x.getSitePath().startsWith(SupplierPortalConstants.SUPPLIER_PATH))
                 .map(x -> pageManager.getPage(x.getSitePath())).collect(Collectors.toList());
 
         pages.forEach(p -> listOfLanguages.put(p.getName(), p.getTitle()));
@@ -61,8 +72,8 @@ public class LanguageSelectorModel {
         Resource navigationConfigurationResource = GlobalUtil.getNavigationConfigurationResource(request);
         if (null != navigationConfigurationResource) {
             ValueMap map = navigationConfigurationResource.getValueMap();
-            headingI18n = (String) map.get("headingI18n");
-            closeBtnTextI18n = (String) map.get("closeBtnText");
+            headingI18n = (String) map.get(HEADING);
+            closeBtnTextI18n = (String) map.get(CLOSE_BTN);
         }
     }
 
