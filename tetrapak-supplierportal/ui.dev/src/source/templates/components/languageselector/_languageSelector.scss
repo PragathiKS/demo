@@ -4,7 +4,7 @@
     font-weight: 400;
 
     &__heading {
-        font-size: 1.71429rem;
+        font-size: $font-l;
         line-height: 1.33333;
         font-weight: 400;
         word-wrap: break-word;
@@ -12,18 +12,18 @@
 
     .tpmol-modal-header {
         border: 0;
-        padding: 1.2rem;
+        padding: $font-m-md;
         align-items: center;
         @media #{$desktop} {
-            padding: 1.5rem;
+            padding: $padding-l;
         }
     }
 
     &__body {
-        @include padding(0 $padding-md 12px);
+        @include padding(0 $padding-md $font-sm);
 
         @media #{$desktop} {
-            @include padding(0 $padding-l 20px);
+            @include padding(0 $padding-l $font-m-md);
         }
     }
 
@@ -37,7 +37,7 @@
     }
 
     &__selected-lang {
-        @include margin-bottom(12px);
+        @include margin-bottom($font-sm);
 
         &-label {
             @include padding($padding-xs);
