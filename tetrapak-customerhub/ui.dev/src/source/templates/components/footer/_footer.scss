@@ -1,0 +1,59 @@
+.tp-footer {
+    @include margin($margin-l $margin-zero $margin-l $margin-zero);
+    &__content {
+        @include margin-top($margin-zero);
+    }
+    &__link {
+        &:hover,
+        &:active {
+            text-decoration: none;
+        }
+    }
+    &__navigation-list {
+        @include margin-top($margin-zero);
+
+        @media #{$desktop} {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 0;
+        }
+        &__item {
+            @include margin-bottom($margin-sm);
+            @media #{$desktop} {
+                @include margin-left($margin-l);
+                @include margin-bottom($margin-l);
+                display: block;
+
+                &:first-child {
+                    @include margin-left($margin-zero);
+                }
+            }
+        }
+        &__link {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            color: $color-congress-blue;
+            font-weight: 500;
+
+            &:hover {
+                color: $color-sky-blue;
+            }
+        }
+    }
+
+    .tp_changeLangBtn {
+        @media #{$desktop} {
+            text-align: center;
+        }
+        .tp-footer__link {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            color: $color-congress-blue;
+            font-weight: 500;
+
+            &:hover {
+                color: $color-sky-blue;
+            }
+        }
+    }
+}
