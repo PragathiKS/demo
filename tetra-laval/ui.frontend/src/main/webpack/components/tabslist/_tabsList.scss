@@ -8,37 +8,37 @@
     h1 {
         @include font-size($font-l);
         @include margin-bottom($margin-md);
-        @include line-height(32px, $font-xl);
+        @include line-height($line-height-header-s, $line-height-header-s);
         font-weight: 300;
     }
 
     h2 {
-        @include font-size(18px);
-        @include line-height(24px, 18px);
+        @include font-size($font-md);
+        @include line-height($line-height-body, $font-md);
         @include margin-bottom($margin-md);
     }
 
     h3 {
         @include font-size($font-l);
-        @include line-height(32px, $font-l);
+        @include line-height($line-height-header-s, $line-height-body);
         @include margin-bottom($margin-md);
         font-weight: 400;
     }
 
     h4 {
-        @include font-size(20px);
+        @include font-size($font-m-md);
         @include margin-bottom($margin-md);
-        @include line-height(28px, 20px);
+        @include line-height($font-m-xl, $line-height-medium);
         font-weight: 500;
     }
 
     p {
-        @include font-size(16px);
-        @include line-height(28px, 16px);
-        @include margin-bottom(8px);
+        @include font-size($font-normal);
+        @include line-height($font-m-xl, $font-normal);
+        @include margin-bottom($font-xxs);
         font-weight: 400;
         @media #{$desktop} {
-            @include margin-bottom(8px);
+            @include margin-bottom($font-xxs);
         }
         a {
             @include padding(0);
@@ -58,15 +58,15 @@
     }
 
     small {
-        @include font-size(14px);
-        @include line-height(24px, 14px);
-        @include margin-bottom(16px);
+        @include font-size($font-baseline);
+        @include line-height($line-height-body, $font-baseline);
+        @include margin-bottom($font-normal);
         font-weight: 500;
     }
 
     ol,
     ul {
-        @include margin-bottom(8px);
+        @include margin-bottom($font-xxs);
         @include padding-left($padding-xxl);
     }
 
@@ -89,7 +89,7 @@
         li {
             &::before {
                 @include margin-right($margin-sm);
-                @include font-size(14px);
+                @include font-size($font-baseline);
                 @include padding-right($padding-sm);
                 display: table-cell;
                 content: counters(section, '.') ' ';
@@ -100,7 +100,7 @@
 
     ol ol,
     ul ul {
-        @include padding(0 0 0 20px);
+        @include padding(0 0 0 $font-m-md);
     }
 
     ul > li > ul,
@@ -113,8 +113,8 @@
 
     ul li,
     ol li {
-        @include font-size(14px);
-        @include padding-bottom(16px);
+        @include font-size($font-baseline);
+        @include padding-bottom($font-normal);
         &::before {
             color: $color-tundora;
         }
@@ -122,19 +122,19 @@
             @include padding-bottom(0);
         }
         li {
-            @include padding-bottom(8px);
+            @include padding-bottom($font-xxs);
         }
     }
 
     ol li ol,
     ul li ul {
-        @include padding-top(16px);
+        @include padding-top($font-normal);
     }
 
     ul ul ul {
         li {
-            @include font-size(12px);
-            @include padding-bottom(8px);
+            @include font-size($font-sm);
+            @include padding-bottom($font-xxs);
             &::before {
                 content: '\2012';
                 font-weight: 400;
@@ -143,10 +143,10 @@
     }
 
     ol ol ol {
-        @include padding-left(28px);
+        @include padding-left($font-m-xl);
         li {
-            @include font-size(12px);
-            @include padding-bottom(8px);
+            @include font-size($font-sm);
+            @include padding-bottom($font-xxs);
         }
     }
 
@@ -168,14 +168,14 @@
         // sass-lint:disable no-vendor-prefixes
         &::-webkit-scrollbar-thumb {
             border: 2px solid $color-white;
-            border-radius: 8px;
+            border-radius: $font-xxs;
             background-color: $color-light-gray;
         }
 
         // sass-lint:disable no-vendor-prefixes
         &::-webkit-scrollbar-track {
             background-color: $color-white;
-            border-radius: 8px;
+            border-radius: $font-xxs;
         }
 
         tbody {
@@ -197,47 +197,47 @@
 
         td,
         th {
-            @include padding-left(8px);
-            @include padding-right(14px);
+            @include padding-left($font-xxs);
+            @include padding-right($font-baseline);
             white-space: pre-wrap;
         }
     }
     @media #{$desktop} {
         &.tp-pw-richText-container {
             @include margin-top(0);
-            @include margin-left(48px);
-            @include margin-right(48px);
-            @include padding(48px);
+            @include margin-left($margin-xxxl);
+            @include margin-right($margin-xxxl);
+            @include padding($padding-xxxl);
         }
         h1 {
             @include font-size($font-xxl);
-            @include line-height(48px, $font-xxl);
+            @include line-height($line-height-header-l, $font-xxl);
             font-weight: 700;
         }
         h2 {
             @include font-size($font-xl);
-            @include line-height(40px, $font-xl);
+            @include line-height($line-height-header-m, $font-xl);
         }
         h3 {
             @include font-size($font-l);
-            @include line-height(32px, $font-l);
+            @include line-height($font-xl, $font-l);
             font-weight: 400;
         }
         h4 {
             @include font-size($font-md);
-            @include line-height(48px, $font-md);
+            @include line-height($line-height-header-l, $font-md);
             font-weight: 500;
         }
         p {
-            @include font-size(14px);
-            @include line-height(24px, 14px);
+            @include font-size($font-baseline);
+            @include line-height($line-height-body, $font-baseline);
             font-weight: 400;
         }
 
         small {
-            @include font-size(12px);
-            @include line-height(20px, 12px);
-            @include margin-bottom(24px);
+            @include font-size($font-sm);
+            @include line-height($line-height-medium, $font-sm);
+            @include margin-bottom($font-l);
         }
         ol,
         ul {
@@ -246,7 +246,7 @@
 
         table,
         p {
-            @include margin-bottom(8px);
+            @include margin-bottom($font-xxs);
         }
     }
 }
