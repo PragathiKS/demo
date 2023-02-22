@@ -2,7 +2,7 @@
     color: $color-tundora;
     font-family: $font-monsterrat;
     font-weight: 400;
-    
+
     &__heading {
         font-size: 1.71429rem;
         line-height: 1.33333;
@@ -11,8 +11,8 @@
     }
 
     .tpmol-modal-header {
-        padding: 1.2rem;
         border: 0;
+        padding: 1.2rem;
         align-items: center;
         @media #{$desktop} {
             padding: 1.5rem;
@@ -53,7 +53,7 @@
             @include padding($padding-xs $padding-md $padding-xs 0);
             width: 25%;
 
-            &:nth-child(4n+4) {
+            &:nth-child(4n + 4) {
                 padding-right: 0;
             }
         }
