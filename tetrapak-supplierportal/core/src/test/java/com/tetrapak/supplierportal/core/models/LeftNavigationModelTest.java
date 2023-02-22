@@ -14,7 +14,7 @@ public class LeftNavigationModelTest {
     private LeftNavigationModel leftNavigationModel = null;
 
     private static final String CONTENT_ROOT = "/content/tetrapak/supplierportal/global/en";
-    private static final String RESOURCE_JSON = "leftnavigation/allContent.json";
+    private static final String RESOURCE_JSON = "allContent.json";
 
     @Rule
     public final AemContext aemContext = SupplierPortalCoreAemContext.getAemContext(RESOURCE_JSON, CONTENT_ROOT);
