@@ -14,6 +14,24 @@ class TextVideo {
     this.cache.componentName = this.root.find('.componentName-textvideo').val();
   }
 
+  toggleVideoContent(noVideo) {
+    if(noVideo === ',1,' || noVideo === ',1,2,') {
+      $('.pw-text-video__video').css('display', 'none');
+      if(!$('.pw-text-video__novideo').children().length) {
+        render.fn({
+          template: 'noVideoContent',
+          data: {  },
+          target: '.pw-text-video__novideo',
+          hidden: false
+        });
+      }
+      $('.pw-text-video__novideo').css('display', 'block');
+    } else {
+      $('.pw-text-video__video').css('display', 'block');
+      $('.pw-text-video__novideo').css('display', 'none');
+    }
+  }
+
   bindEvents() {
     const { $textVideoButton } = this.cache;
     $textVideoButton.on('click', this.trackAnalytics);
@@ -29,30 +47,19 @@ class TextVideo {
     });
 
     setTimeout(() => {
-      $('#accept-recommended-btn-handler').on('click', () => {
+      if(document.cookie.includes('OptanonAlertBoxClosed')) {
+        this.toggleVideoContent(window.OptanonActiveGroups);
+      }
+        
+      $('#accept-recommended-btn-handler, #onetrust-accept-btn-handler').on('click', () => {
         $('.pw-text-video__video').css('display', 'block');
         $('.pw-text-video__novideo').css('display', 'none');
       });
 
       $('.save-preference-btn-handler').on('click', () => {
-        const noVideo = window.OptanonActiveGroups;
-        if(noVideo === ',1,' || noVideo === ',1,2,') {
-          $('.pw-text-video__video').css('display', 'none');
-          if(!$('.pw-text-video__novideo').children().length) {
-            render.fn({
-              template: 'noVideoContent',
-              data: {  },
-              target: '.pw-text-video__novideo',
-              hidden: false
-            });
-          }
-          $('.pw-text-video__novideo').css('display', 'block');
-        } else {
-          $('.pw-text-video__video').css('display', 'block');
-          $('.pw-text-video__novideo').css('display', 'none');
-        }
+        this.toggleVideoContent(window.OptanonActiveGroups);
       });
-    },2500);
+    }, 2500);
   }
 
 
