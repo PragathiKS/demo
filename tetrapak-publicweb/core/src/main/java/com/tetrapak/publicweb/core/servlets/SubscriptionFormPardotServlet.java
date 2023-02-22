@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PardotService;
-import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
  * The Class SubscriptionFormPardotServlet.
@@ -50,11 +49,7 @@ public class SubscriptionFormPardotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {                       
-            if (GlobalUtil.isChinaDataFlow(request)) {
-                submitCustomFormData(request);
-            } else {
-                pardotService.submitPardotPostRespose(request.getParameterMap());
-            }             
+            submitCustomFormData(request);
             // send response
             sendResponse(resp);
         } catch (final IOException ioException) {
