@@ -5,9 +5,7 @@ public final class SupplierPortalConstants {
 	/** The Constant DEFAULT_LOCALE. */
 	public static final String DEFAULT_LOCALE = "en";
 
-	public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global";
-
-	public static final String CONTENT_ROOT = SUPPLIER_PATH + "/en";
+	public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global/";
 
 	public static final String SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH = "/etc/notification/email/supplierportal/supportrequestemail.html";
 	
