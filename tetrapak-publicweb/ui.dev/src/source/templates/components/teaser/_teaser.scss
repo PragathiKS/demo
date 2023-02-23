@@ -110,6 +110,14 @@
             @include font-size($font-md);
             line-height: 24px;
         }
+        .block-time {
+            @include margin-top($margin-md);
+            @include margin-bottom($margin-sm);
+            @include font-size($font-sm);
+            color: $color-boulder;
+            line-height: $font-m-md;
+            font-weight: 500;
+        }
         .link {
             @include margin-top($margin-md);
             @include margin-bottom($margin-zero);
