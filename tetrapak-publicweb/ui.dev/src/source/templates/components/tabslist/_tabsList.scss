@@ -370,6 +370,14 @@
         }
     }
 
+    &__event-detail-block-time {
+        @include margin-bottom($margin-sm);
+        @include font-size($font-sm);
+        color: $color-boulder;
+        line-height: $font-m-md;
+        font-weight: 500;
+    }
+
     &__event-detail-description {
         @include font-size($font-baseline);
         @include line-height($font-l, $font-baseline);
