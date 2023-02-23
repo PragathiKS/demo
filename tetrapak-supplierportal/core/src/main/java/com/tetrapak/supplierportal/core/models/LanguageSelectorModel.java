@@ -3,7 +3,10 @@ package com.tetrapak.supplierportal.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
+import com.day.cq.wcm.msm.api.Blueprint;
 import com.day.cq.wcm.msm.api.BlueprintManager;
+import com.day.cq.wcm.msm.api.LiveRelationship;
+import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
@@ -19,10 +22,11 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.annotation.PostConstruct;
+import javax.jcr.RangeIterator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -41,13 +45,11 @@ public class LanguageSelectorModel {
 
     @OSGiService private UserPreferenceService userPreferenceService;
 
-    @Self
-    @Via("resourceResolver")
-    PageManager pageManager;
+    @Self @Via("resourceResolver") PageManager pageManager;
 
-    @Self
-    @Via("resourceResolver")
-    BlueprintManager blueprintManager;
+    @Self @Via("resourceResolver") BlueprintManager blueprintManager;
+
+    @Self @Via("resourceResolver") LiveRelationshipManager liveRelationshipManager;
 
     private String headingI18n;
 
@@ -58,15 +60,31 @@ public class LanguageSelectorModel {
     private Map<String, String> listOfLanguages = new HashMap<>();
 
     @PostConstruct protected void init() throws WCMException {
-        List<Page> pages = blueprintManager.getBlueprints().stream()
-                .filter(x -> x.getSitePath().startsWith(SupplierPortalConstants.SUPPLIER_PATH))
-                .map(x -> pageManager.getPage(x.getSitePath())).collect(Collectors.toList());
+        Optional<Blueprint> blueprint = blueprintManager.getBlueprints().stream()
+                .filter(x -> x.getSitePath().startsWith(SupplierPortalConstants.SUPPLIER_PATH)).findFirst();
 
-        pages.forEach(p -> listOfLanguages.put(p.getName(), p.getTitle()));
-        listOfLanguages = listOfLanguages.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(String.CASE_INSENSITIVE_ORDER))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        if (blueprint.isPresent()) {
+            Page blueprintPage = pageManager.getPage(blueprint.get().getSitePath());
+            if (blueprintPage != null) {
+                listOfLanguages.put(blueprintPage.getName(), blueprintPage.getTitle());
+                RangeIterator rangeIterator = liveRelationshipManager.getLiveRelationships(
+                        blueprintPage.getContentResource(), "", null);
+                if (rangeIterator != null) {
+                    while (rangeIterator.hasNext()) {
+                        LiveRelationship relationship = (LiveRelationship) rangeIterator.next();
+                        Page liveCopy = pageManager.getPage(relationship.getLiveCopy().getPath());
+                        if (liveCopy != null) {
+                            listOfLanguages.put(liveCopy.getName(), liveCopy.getTitle());
+                        }
+                    }
+                }
+            }
 
+            listOfLanguages = listOfLanguages.entrySet().stream()
+                    .sorted(Map.Entry.comparingByValue(String.CASE_INSENSITIVE_ORDER)).collect(
+                            Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1,
+                                    LinkedHashMap::new));
+        }
         selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
 
         Resource navigationConfigurationResource = GlobalUtil.getNavigationConfigurationResource(request);

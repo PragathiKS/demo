@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
 import com.day.cq.wcm.msm.api.Blueprint;
 import com.day.cq.wcm.msm.api.BlueprintManager;
+import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.tetrapak.supplierportal.core.mock.MockUserPreferenceServiceImpl;
 import com.tetrapak.supplierportal.core.mock.SupplierPortalCoreAemContext;
 import com.tetrapak.supplierportal.core.services.UserPreferenceService;
@@ -23,11 +24,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.jcr.Session;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RunWith(MockitoJUnitRunner.class) public class LanguageSelectorModelTest {
@@ -50,6 +49,8 @@ import java.util.Map;
     private Collection<Blueprint> blueprints = new ArrayList<>();
 
     @Mock private Blueprint blueprint;
+
+    @Mock private LiveRelationshipManager liveRelationshipManager;
 
     @InjectMocks private LanguageSelectorModel languageSelectorModel = new LanguageSelectorModel();
 
