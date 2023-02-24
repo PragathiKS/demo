@@ -354,7 +354,6 @@ public class PardotServiceImpl implements PardotService {
 
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
         for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
-            if (!"pardotUrl".equalsIgnoreCase(entry.getKey())) {
                 if("types-communication".equalsIgnoreCase(entry.getKey())
                         || "interestArea".equalsIgnoreCase(entry.getKey())){
                     for(String value :entry.getValue()) {
@@ -364,9 +363,8 @@ public class PardotServiceImpl implements PardotService {
                 else {
                     postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
                 }
-            }
         }
-
+        LOGGER.debug("Post Parameters {}", postParameters);
         final HttpClient httpClient = HttpClientBuilder.create().build();
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
         final HttpResponse httpResponse = httpClient.execute(postRequest);
@@ -381,6 +379,7 @@ public class PardotServiceImpl implements PardotService {
                 break;
             default:
                 throw new HttpException("Error occurred while submitting custom form service data to APIGEE");
-            }      
+            }
     }
+
 }

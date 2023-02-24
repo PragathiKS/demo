@@ -66,7 +66,7 @@ class Subscriptionform {
 
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
-    const pardotURL = this.cache.businessformapi.data('sf-pardot-url');
+    const pardotURL = this.cache.businessformapi.data('sf-pardot-url')?.replace(/^https?:\/\//, '');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
@@ -88,7 +88,7 @@ class Subscriptionform {
       dataObj['route_country'] = 'China';
     }
     else {
-      dataObj['route_country'] = this.cache.requestPayload['country'];
+      dataObj['route_country'] = 'Global';
     }
     dataObj['pardotUrl'] = pardotURL;
     subscriptionAnalytics(

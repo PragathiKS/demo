@@ -153,7 +153,7 @@ class Businessinquiryform {
     const servletPath = this.cache.businessformapi.data('bef-api-servlet');
     const countryCode = this.cache.businessformapi.data('bef-countrycode');
     const langCode = this.cache.businessformapi.data('bef-langcode');
-    const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
+    const befPardotURL = this.cache.businessformapi.data('bef-pardoturl')?.replace(/^https?:\/\//, '');
     const dataObj = {};
     $.each( requestPayload, function( key, value ) {
       if(isInvalidBusinessAreaOption(key, requestPayload.businessArea)) {
@@ -168,7 +168,7 @@ class Businessinquiryform {
       dataObj['route_country'] = 'China';
     }
     else {
-      dataObj['route_country'] = requestPayload.country;
+      dataObj['route_country'] = 'Global';
     }
     dataObj['pardotUrl'] = befPardotURL;
     dataObj['pardot_extra_field'] = this.cache.requestPayload.pardot_extra_field || '';

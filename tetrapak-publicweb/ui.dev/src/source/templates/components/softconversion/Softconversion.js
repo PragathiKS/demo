@@ -270,7 +270,7 @@ class Softconversion {
 
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
-    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
+    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url')?.replace(/^https?:\/\//, '');
     const apiPayload =  {};
 
     const userType = parseInt(storageUtil.getCookie('userType'), 10);
@@ -321,7 +321,7 @@ class Softconversion {
       apiPayload.route_country = 'China';
     }
     else {
-      apiPayload.route_country = apiPayload.country;
+      apiPayload.route_country = 'Global';
     }
     apiPayload.pardotUrl = pardotUrl;
     apiPayload.pageurl = this.getPageURL();
