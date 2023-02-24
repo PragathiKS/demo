@@ -35,6 +35,9 @@ function _renderRebuildingKitDetails({ isNotConfirmed }) {
   $('.js-rebuilding-details__update').on('click', function() {
     $this.renderRebuildingKitReportModal();
   });
+  $('.js-rebuilding-details__update').on('click', function() {
+    $this.renderRebuildingKitReportModal();
+  });
 }
 
 function _renderCtiDocuments(langAvailable, otherLang, reqOtherLang) {
@@ -157,6 +160,9 @@ function  _renderRebuildingKitReportModal() {
         showLoader: true
       })
       .done((res) => {
+        $this.cache.$rebuildingData = res.data;
+
+        logger.log('i18nKeys: ', i18nKeys);
         $this.cache.$contentWrapper.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
         render.fn({
