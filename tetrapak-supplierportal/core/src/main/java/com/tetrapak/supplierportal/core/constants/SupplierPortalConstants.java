@@ -7,6 +7,8 @@ public final class SupplierPortalConstants {
 
 	public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global/";
 
+	public static final String CONTENT_ROOT = SUPPLIER_PATH + "en";
+
 	public static final String SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH = "/etc/notification/email/supplierportal/supportrequestemail.html";
 	
 	public static final String SEND_EMAIL_JOB_TOPIC = "com/tetrapak/supplierportal/sendemail";

@@ -3,8 +3,6 @@ package com.tetrapak.supplierportal.core.models;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.day.cq.wcm.api.WCMException;
-import com.day.cq.wcm.msm.api.Blueprint;
-import com.day.cq.wcm.msm.api.BlueprintManager;
 import com.day.cq.wcm.msm.api.LiveRelationship;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
@@ -26,7 +24,6 @@ import javax.jcr.RangeIterator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -47,8 +44,6 @@ public class LanguageSelectorModel {
 
     @Self @Via("resourceResolver") PageManager pageManager;
 
-    @Self @Via("resourceResolver") BlueprintManager blueprintManager;
-
     @Self @Via("resourceResolver") LiveRelationshipManager liveRelationshipManager;
 
     private String headingI18n;
@@ -60,22 +55,17 @@ public class LanguageSelectorModel {
     private Map<String, String> listOfLanguages = new HashMap<>();
 
     @PostConstruct protected void init() throws WCMException {
-        Optional<Blueprint> blueprint = blueprintManager.getBlueprints().stream()
-                .filter(x -> x.getSitePath().startsWith(SupplierPortalConstants.SUPPLIER_PATH)).findFirst();
-
-        if (blueprint.isPresent()) {
-            Page blueprintPage = pageManager.getPage(blueprint.get().getSitePath());
-            if (blueprintPage != null) {
-                listOfLanguages.put(blueprintPage.getName(), blueprintPage.getTitle());
-                RangeIterator rangeIterator = liveRelationshipManager.getLiveRelationships(
-                        blueprintPage.getContentResource(), "", null);
-                if (rangeIterator != null) {
-                    while (rangeIterator.hasNext()) {
-                        LiveRelationship relationship = (LiveRelationship) rangeIterator.next();
-                        Page liveCopy = pageManager.getPage(relationship.getLiveCopy().getPath());
-                        if (liveCopy != null) {
-                            listOfLanguages.put(liveCopy.getName(), liveCopy.getTitle());
-                        }
+        Page blueprintPage = pageManager.getPage(SupplierPortalConstants.CONTENT_ROOT);
+        if (blueprintPage != null) {
+            listOfLanguages.put(blueprintPage.getName(), blueprintPage.getTitle());
+            RangeIterator rangeIterator = liveRelationshipManager.getLiveRelationships(
+                    blueprintPage.getContentResource(), "", null);
+            if (rangeIterator != null) {
+                while (rangeIterator.hasNext()) {
+                    LiveRelationship relationship = (LiveRelationship) rangeIterator.next();
+                    Page liveCopy = pageManager.getPage(relationship.getLiveCopy().getPath());
+                    if (liveCopy != null) {
+                        listOfLanguages.put(liveCopy.getName(), liveCopy.getTitle());
                     }
                 }
             }
