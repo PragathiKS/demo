@@ -35,6 +35,9 @@ function _renderRebuildingKitDetails({ isNotConfirmed }) {
   $('.js-rebuilding-details__update').on('click', function() {
     $this.renderRebuildingKitReportModal();
   });
+  $('.js-rebuilding-details__update').on('click', function() {
+    $this.renderRebuildingKitReportModal();
+  });
 }
 
 function _renderCtiDocuments(langAvailable, otherLang, reqOtherLang) {
