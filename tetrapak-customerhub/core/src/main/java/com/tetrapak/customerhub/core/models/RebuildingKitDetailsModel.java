@@ -12,7 +12,6 @@ import com.tetrapak.customerhub.core.servlets.RebuildingKitsEmailServlet;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
@@ -148,18 +147,6 @@ public class RebuildingKitDetailsModel {
 	 */
     @ValueMapValue
     private String makeUpdate;
-
-    /**
-	 * The RK Report Thank you title
-	 */
-    @ValueMapValue
-    private String rkReportThankyoutitle;
-
-    /**
-	 * The RK Report Thank you Description
-	 */
-    @ValueMapValue
-    private String rkReportThankyoudesc;
 
     /**
 	 * The RK Note
@@ -395,8 +382,6 @@ public class RebuildingKitDetailsModel {
         i18KeyMap.put(CustomerHubConstants.COMMENTS_LABEL, getCommentsLabel());
         i18KeyMap.put(CustomerHubConstants.COMMENTS_PLACEHOLDER, getCommentsPlaceholder());
         i18KeyMap.put(CustomerHubConstants.MAKE_UPDATE, getMakeUpdate());
-        i18KeyMap.put(CustomerHubConstants.RK_REPORT_THANKYOU_TITLE, getRKReportThankyoutitle());
-        i18KeyMap.put(CustomerHubConstants.RK_REPORT_THANKYOU_DESC, getRKReportThankyoudesc());
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
@@ -577,24 +562,6 @@ public class RebuildingKitDetailsModel {
      */
 	public String getMakeUpdate() {
 		return makeUpdate;
-	}
-
-    /**
-     * Gets the rKReportThankyoutitle.
-     *
-     * @return the rKReportThankyoutitle
-     */
-	public String getRKReportThankyoutitle() {
-		return rkReportThankyoutitle;
-	}
-
-    /**
-     * Gets the rKReportThankyoudesc.
-     *
-     * @return the rKReportThankyoudesc
-     */
-	public String getRKReportThankyoudesc() {
-		return rkReportThankyoudesc;
 	}
 
     /**
@@ -867,10 +834,5 @@ public class RebuildingKitDetailsModel {
 
     public String getRkReqWhatLanguageWantText() {
         return rkReqWhatLanguageWantText;
-    }
-
-    public String getMappedResourcePath() {
-        ResourceResolver resolver = resource.getResourceResolver();
-        return resolver.map(resource.getPath());
     }
 }
