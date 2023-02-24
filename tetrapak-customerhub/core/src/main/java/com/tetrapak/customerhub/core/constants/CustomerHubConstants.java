@@ -716,6 +716,9 @@ public final class CustomerHubConstants {
     /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
     public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
 
+    /** The Constant Rebuildingkits modal report header . */
+    public static final String RK_MODAL_REPORT_HEADING = "rKModalReportHeading";
+
     /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
 
@@ -838,24 +841,6 @@ public final class CustomerHubConstants {
     
     /** The Constant for RELEASE_DATE_TOOL_TIP **/
     public static final String RELEASE_DATE_TOOL_TIP = "releaseDateToolTip";
-
-    /** The Constant for RELEASE_DATE_TOOL_TIP **/
-    public static final String FROM_DATE_TEXT = "fromDateText";
-
-    /** The Constant for RELEASE_DATE_TOOL_TIP **/
-    public static final String TO_DATE_TEXT = "toDateText";
-
-    /** The Constant for RELEASE_DATE_TOOL_TIP **/
-    public static final String INVALID_DATE_TEXT = "invalidDateText";
-
-    /** The Constant for RELEASE_DATE_TOOL_TIP **/
-    public static final String PAST_ERROR_TEXT = "pastDateErrorText";
-
-    /** The Constant for RELEASE_DATE_TOOL_TIP **/
-    public static final String DATE_LATER_THAN_ERROR = "dateLaterThanError";
-
-    /** The Constant for RELEASE_DATE_TOOL_TIP **/
-    public static final String DATE_BEFORE_THAN_ERROR = "dateBeforeThanError";
     
     /** The Constant for GENERAL_RKNUMBER_TOOL_TIP **/
     public static final String GENERAL_RKNUMBER_TOOL_TIP = "generalRkNumberToolTip";
@@ -897,7 +882,10 @@ public final class CustomerHubConstants {
     public static final String EQUIPMENT_STRUCTURE = "equipmentStructure";
     
     /** The Constant Report Implementation Status */
-    public static final String REPOST_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+    public static final String REPORT_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+
+    /** The Constant Make Update */
+    public static final String MAKE_UPDATE = "makeUpdate";
     
     /** The Constant RK Note */
     public static final String RK_NOTE = "rkNote";
@@ -928,6 +916,9 @@ public final class CustomerHubConstants {
     
     /** The Constant Rebuilding Kit Details API. */
     public static final String RK_DETAILS_API = "rebuildingkits-rebuildingkitdetails";
+
+    /** The Constant Rebuilding Kit Implementation Status_List API. */
+    public static final String RK_IMPL_STATUSLIST_API = "rebuildingkits-implstatuslist";
     
     /** The Technical Bulleting API. */
     public static final String TECHNICAL_BULLETIN_API = "technicalbulletins";
@@ -956,17 +947,20 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
 
-    /** One Trust Token Servlet Url */
-    public static final String ONETRUST_TOKEN_SERVLET_URL= ".onetrustcookietoken.json";
+    /** Dropdown Placeholder */
+    public static final String DROPDOWN_PLACEHOLDER = "dropdownPlaceholder";
 
-    public static final String RK_MANDATORY_KITS_TEXT = "rkMandatoryKitsText";
+    /** Status Label */
+    public static final String STATUS_LABEL = "statusLabel";
 
-    public static final String READ_GL_USER = "readGenericListsUser";
+    /** Date Label */
+    public static final String DATE_LABEL = "dateLabel";
 
-    public static final String ENGLISH_LANGUAGE = "en";
+    /** Comments Label */
+    public static final String COMMENTS_LABEL = "commentsLabel";
 
-    public static final String RK_LIABILITY_CONDITIONS_TITLE = "Liability Conditions";
-
+    /** Comments Placeholder */
+    public static final String COMMENTS_PLACEHOLDER = "commentsPlaceholder";
 
 
     /**

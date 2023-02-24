@@ -122,6 +122,7 @@ public class RebuildingKitDetailsModelTest {
 	@Test
 	public void testApi() {
 		assertTrue(model.getRebuildingKitDetailsApi().contains("installedbase/rebuildingkits"));
+		assertTrue(model.getRebuildingKitImplStatusListApi().contains("installedbase/rebuildingkits"));
 		assertTrue(model.getTechnicalBulletinApi().contains("technicalbulletins"));
 	}
 
