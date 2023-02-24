@@ -22,7 +22,7 @@ function _renderRebuildingKitDetailsBottom() {
   });
 }
 
-function _renderRebuildingKitDetails({ isNotConfirmed }) {
+function _renderRebuildingKitDetails() {
   const $this = this;
   const { $rebuildingData } = $this.cache;
   const { i18nKeys } = $this.cache;
@@ -30,7 +30,7 @@ function _renderRebuildingKitDetails({ isNotConfirmed }) {
   render.fn({
     template: 'rebuildingkitDetails',
     target: $this.cache.$content,
-    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData, isNotConfirmed }
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData }
   });
   $('.js-rebuilding-details__update').on('click', function() {
     $this.renderRebuildingKitReportModal();
@@ -157,6 +157,9 @@ function  _renderRebuildingKitReportModal() {
         showLoader: true
       })
       .done((res) => {
+        $this.cache.$rebuildingData = res.data;
+
+        logger.log('i18nKeys: ', i18nKeys);
         $this.cache.$contentWrapper.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
         render.fn({
@@ -178,48 +181,9 @@ function  _renderRebuildingKitReportModal() {
     $reportModal.modal('hide');
   });
 
-  this.root.on('click', '.js-rk-make-update',  (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget.form);
-    auth.getToken(({ data: authData }) => {
-      ajaxWrapper
-        .getXhrObj({
-          url: $this.cache.rebuildingReportApi,
-          method: ajaxMethods.POST,
-          cache: true,
-          dataType: 'json',
-          contentType: 'application/json',
-          data: JSON.stringify({
-            serialnumber: $this.cache.$rebuildingData.serialNumber,
-            reportedrebuildingkit: $this.cache.$rebuildingData.rkNumber,
-            reportedrebuildingkitname: $this.cache.$rebuildingData.rkDesc,
-            reportedby: 'My Tetra Pak',
-            comment: formData.get('comments'),
-            currentstatus: $this.cache.$rebuildingData.implStatus,
-            reportedstatus: formData.get('status'),
-            date: formData.get('date'),
-            source: 'My Tetra Pak'
-          }),
-          beforeSend(jqXHR) {
-            jqXHR.setRequestHeader(
-              'Authorization',
-              `Bearer ${authData.access_token}`
-            );
-          },
-          showLoader: true
-        })
-        .done(() => {
-          $this.cache.$contentWrapper.removeClass('d-none');
-          $this.cache.$spinner.addClass('d-none');
-          $reportModal.modal('hide');
-          this.renderRebuildingKitDetails({ isNotConfirmed: false });
-        })
-        .fail((e) => {
-          $this.cache.$contentWrapper.removeClass('d-none');
-          $this.cache.$spinner.addClass('d-none');
-          logger.error(e);
-        });
-    });
+  this.root.on('click', '.js-rk-make-update',  () => {
+    logger.log('report rk detail data');
+    $reportModal.modal('hide');
   });
 }
 
@@ -418,7 +382,7 @@ function _getRebuildingKitDetails() {
         $this.cache.$contentWrapper.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
         $this.cache.$rebuildingData = res.data[0];
-        $this.renderRebuildingKitDetails({ isNotConfirmed: true });
+        $this.renderRebuildingKitDetails();
         this.getCtiDocuments();
         $this.renderRebuildingKitDetailsBottom();
       })
@@ -442,7 +406,6 @@ class Rebuildingkitdetails {
     );
     this.cache.rebuildingdetailsApi = this.root.data('rebuilding-details-api');
     this.cache.rebuildingImplStatusListApi = this.root.data('rebuilding-impl-statuslist-api');
-    this.cache.rebuildingReportApi = this.root.data('rebuilding-report-api');
     this.cache.apiURL = this.root.data('preferred-language-api');
     this.cache.apiCTI = this.root.data('cti-api');
     this.cache.apiRequestCTI = this.root.data('request-cti-api');
@@ -522,8 +485,8 @@ class Rebuildingkitdetails {
   getCtiDocuments() {
     return _getCtiDocuments.apply(this, arguments);
   }
-  renderRebuildingKitDetails(view) {
-    return _renderRebuildingKitDetails.call(this, view);
+  renderRebuildingKitDetails() {
+    return _renderRebuildingKitDetails.apply(this, arguments);
   }
   renderCtiDocuments() {
     return _renderCtiDocuments.apply(this, arguments);
