@@ -244,18 +244,6 @@
                                             fieldLabel="Make Update (i18N key)"
                                             name="./makeUpdate"
                                             required="true"/>
-                                    <rkReportThankyoutitle
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            fieldLabel="RK Report Translation Thank You Title (i18N key)"
-                                            name="./rkReportThankyoutitle"
-                                            required="true"/>
-                                    <rkReportThankyoudesc
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                            fieldLabel="RK Report Translation Thank You Description (i18N key)"
-                                            name="./rkReportThankyoudesc"
-                                            required="true"/>
                                     <rkReqCtiThankyoumessage
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
