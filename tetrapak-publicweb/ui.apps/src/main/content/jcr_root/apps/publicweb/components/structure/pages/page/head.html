@@ -58,7 +58,7 @@
     </script>
   </sly>
   
-  <sly data-sly-test="${digitalDataModel.isPublisher}">
+  <!-- <sly data-sly-test="${digitalDataModel.isPublisher}"> -->
     <!-- <script>
       var OneTrust = {
         dataSubjectParams: {
@@ -141,15 +141,15 @@
 
       //# sourceURL=cookieDebug.js
     </script>
-  </sly>
-  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
-    <script src="https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript}/otSDKStub.js"
+  <!-- </sly> -->
+  <!-- <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}"> -->
+    <script src="https://cdn.cookielaw.org/consent/f0b882cb-3811-4f2d-a94b-f1fe7247149c-test/otSDKStub.js"
       data-document-language="true" type="text/javascript" charset="UTF-8"
-      data-domain-script="${digitalDataModel.dataDomainScript}" defer></script>
+      data-domain-script="f0b882cb-3811-4f2d-a94b-f1fe7247149c-test" defer></script>
     <script type="text/javascript" defer>
       function OptanonWrapper() { }
     </script>
-  </sly>
+  <!-- </sly> -->
 
   <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
     <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
