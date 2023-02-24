@@ -199,8 +199,8 @@
     }
 
     &__action-wrap {
-        display: flex;
-        margin-top: auto;
+        display: block;
+        margin-top: $margin-md;
 
         .tpatom-btn {
             @include margin-left($margin-md);
@@ -414,6 +414,33 @@
             p {
                 color: $color-text;
             }
+        }
+    }
+
+    &-rk {
+        &-report__modal {
+            &-content {
+                @include padding($padding-l);
+                max-width: 369px;
+                max-height: 851px;
+            }
+            &-header {
+                @include padding(0 $padding-md $padding-xs 0);
+            }
+            &-heading {
+                font-weight: 400;
+                font-size: $font-l;
+            }
+            &-body {
+                padding: 0;
+            }
+        }
+        &-make-update {
+            @include margin($margin-md 0 0 0);
+        }
+        &-field-textarea {
+            @include padding($padding-sm $padding-md $padding-sm $padding-md);
+            height: 155px;
         }
     }
 }
