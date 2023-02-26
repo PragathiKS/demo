@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 
+import com.adobe.acs.commons.models.injectors.annotation.I18N;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -22,129 +23,139 @@ import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 		SlingHttpServletRequest.class }, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SupportRequestFormModel {
 
-	/** The site label. */
+	/**
+	 * The site label.
+	 */
+	//	General Tab
 	@ValueMapValue
 	private String generalTitleLabel;
 
 	@ValueMapValue
 	private String generalSubtitleLabel;
 
-	@ValueMapValue
+	@I18N("Purpose of contract")
 	private String purposeOfContactLabel;
 
-	@ValueMapValue
+	@I18N("Please select a purpose")
 	private String purposeErrorMsgLabel;
 
-	@ValueMapValue
+	@I18N("How can we help you?")
 	private String queryTitle;
 
-	@ValueMapValue
-	private String querySubtitle;
-
-	@ValueMapValue
+	@I18N("Tell us, more in detail, about your query...")
 	private String queryPlaceholder;
 
-	@ValueMapValue
+	@I18N("Describe your query")
+	private String querySubtitle;
+
+	@I18N("Please describe your query")
 	private String queryErrorMsgLabel;
 
-	@ValueMapValue
-	private String fileErrorMsg;
-
-	@ValueMapValue
-	private String dragAndDropButtonLabel;
-
-	@ValueMapValue
-	private String dragAndDropRemoveFileLabel;
-
-	@ValueMapValue
-	private String detailsTitle;
-
-	@ValueMapValue
-	private String nameLabel;
-
-	@ValueMapValue
-	private String emailLabel;
-
-	@ValueMapValue
-	private String companyErrorMsg;
-
-	@ValueMapValue
-	private String companyLabel;
-
-	@ValueMapValue
-	private String countryLabel;
-
-	@ValueMapValue
-	private String countryErrorMsg;
-
-	@ValueMapValue
-	private String cityLabel;
-
-	@ValueMapValue
-	private String cityErrorMsg;
-
-	@ValueMapValue
-	private String phoneLabel;
-
-	@ValueMapValue
-	private String phoneErrorMsg;
-
-	@ValueMapValue
-	private String otherTitle;
-
-	@ValueMapValue
-	private String otherDescriptionLabel;
-
-	@ValueMapValue
-	private String aribaNetworkLabel;
-
-	@ValueMapValue
-	private String aribaEmailLabel;
-
-	@ValueMapValue
-	private String aribaEmailErrorMsg;
-
-	@ValueMapValue
-	private String tpEmailLabel;
-
-	@ValueMapValue
-	private String tpEmailErrorMsg;
-
-	@ValueMapValue
-	private String SendButtonLabel;
-
-	@ValueMapValue
-	private String thankyouTitleLabel;
-
-	@ValueMapValue
-	private String thankyouSubtitleLabel;
-
-	@ValueMapValue
-	private String homeButtonLabel;
-
-	@ValueMapValue
+	@I18N("SAP Ariba - Onboarding and maintenance")
 	private String onboardingMaintanance;
 
-	@ValueMapValue
+	@I18N("Get support with registration, "
+			+ "updating supplier information or similar")
 	private String onboardingMaintananceSubtitle;
 
-	@ValueMapValue
+	@I18N("SAP Ariba - Sourcing & Contracting")
 	private String sourcingContracting;
 
-	@ValueMapValue
+	@I18N("Get support with sending and responding to RFI/RFQs, "
+			+ "participating in auctions, using electronic signature")
 	private String sourcingContractingSubtitle;
 
-	@ValueMapValue
+	@I18N("SAP Ariba - Catalogues")
 	private String catalogues;
 
-	@ValueMapValue
+	@I18N("Get support with creating or maintaining catalogues")
 	private String cataloguesSubtitle;
 
-	@ValueMapValue
+	@I18N("Other purpose")
 	private String otherPurpose;
 
-	@ValueMapValue
+	@I18N("Get support with something that is not covered in above purposes")
 	private String otherPurposeSubtitle;
+
+	// Drag and drop tab
+	@I18N("File size cannot exceed 5MB")
+	private String fileErrorMsg;
+
+	@I18N("Attach file")
+	private String dragAndDropButtonLabel;
+
+	@I18N("Remove file")
+	private String dragAndDropRemoveFileLabel;
+
+	// Personal Detail form
+	@I18N("Your contact information")
+	private String detailsTitle;
+
+	@I18N("Name")
+	private String nameLabel;
+
+	@I18N("Email address")
+	private String emailLabel;
+
+	@I18N("Please enter your company legal name")
+	private String companyErrorMsg;
+
+	@I18N("Company legal name")
+	private String companyLabel;
+
+	@I18N("Country")
+	private String countryLabel;
+
+	@I18N("Please enter your country")
+	private String countryErrorMsg;
+
+	@I18N("City")
+	private String cityLabel;
+
+	@I18N("Please enter your city")
+	private String cityErrorMsg;
+
+	@I18N("Phone number")
+	private String phoneLabel;
+
+	@I18N("Please enter a valid mobile telephone number")
+	private String phoneErrorMsg;
+
+	// Other Details
+	@I18N("Other information")
+	private String otherTitle;
+
+	@I18N("When possible, share a little more information. This may help our support"
+			+ " team to help you faster.")
+	private String otherDescriptionLabel;
+
+	@I18N("Ariba Network ID(optional)")
+	private String aribaNetworkLabel;
+
+	@I18N("Ariba account administrator email(optional)")
+	private String aribaEmailLabel;
+
+	@I18N("Please enter a valid email")
+	private String aribaEmailErrorMsg;
+
+	@I18N("Tetra Pak contact email(optional)")
+	private String tpEmailLabel;
+
+	@I18N("Please enter a valid email")
+	private String tpEmailErrorMsg;
+
+	@I18N("Submit")
+	private String SendButtonLabel;
+
+	// Thank you form
+	@I18N("Thank you!")
+	private String thankyouTitleLabel;
+
+	@I18N("We will get back to you via email as soon as possible")
+	private String thankyouSubtitleLabel;
+
+	@I18N("Go to Home")
+	private String homeButtonLabel;
 
 	@SlingObject
 	private SlingHttpServletRequest request;
