@@ -3,10 +3,14 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { render } from '../../../scripts/utils/render';
 import { logger } from '../../../scripts/utils/logger';
-import { REG_NUM } from '../../../scripts/utils/constants';
+import { REG_EMAIL, REG_NUM } from '../../../scripts/utils/constants';
 
 function isValidPhoneNumber(phone) {
   return REG_NUM.test(phone);
+}
+
+function isEmailValid(email) {
+  return REG_EMAIL.test(email);
 }
 /**
  * Render form
@@ -120,16 +124,27 @@ class SupportRequest {
           });
         }
       });
-      const phoneNumberField =  $('#ownPhoneNumber');
-      [phoneNumberField, $('#aribaAccountAdminEmail'), $('#tpContactEmail')].forEach(function(el) {
-        if(el.attr('name') !== 'ownPhoneNumber' && el.val() || el.val() && !isValidPhoneNumber(el.val())) {
+
+      // const $telephone = this.root.find('#ownPhoneNumber');
+      // const phoneNumber = $telephone.val();
+      // if (phoneNumber && !isValidPhoneNumber(phoneNumber)) {
+      //   this.addErrorMsg($telephone);
+      //   formErrors.push({
+      //     formErrorMessage: $telephone.closest('.js-tp-support-request__form-element').find('.error-msg').text().trim(),
+      //     formErrorField: $telephone.closest('.js-tp-support-request__form-element').find('.tp-support-request__field-label').text().trim()
+      //   });
+      // }
+
+      [$('#ownPhoneNumber'), $('#aribaAccountAdminEmail'), $('#tpContactEmail')].forEach(function(el) {
+        if(($(el).val() && !isValidPhoneNumber($(el).val())) && ($(el).val() && !isEmailValid(el.val()))) {
           $this.addErrorMsg(el);
           formErrors.push({
-            formErrorMessage: phoneNumberField.closest('.js-tp-support-request__form-element').find('.error-msg').text().trim(),
-            formErrorField: $(this).closest('.js-tp-support-request__form-element').find('.tp-support-request__field-label').text().trim()
+            formErrorMessage: $(el).closest('.js-tp-support-request__form-element').find('.error-msg').text().trim(),
+            formErrorField: $(el).closest('.js-tp-support-request__form-element').find('.tp-support-request__field-label').text().trim()
           });
         }
       });
+      
       if (!formErrors.length) {
         $this.cache.$contentWrapper.addClass('d-none');
         $this.cache.$spinner.removeClass('d-none');
