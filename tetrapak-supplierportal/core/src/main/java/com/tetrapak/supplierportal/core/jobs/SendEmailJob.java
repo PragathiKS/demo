@@ -1,7 +1,7 @@
 
 package com.tetrapak.supplierportal.core.jobs;
 
-import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,13 +51,10 @@ public class SendEmailJob implements JobConsumer {
 		String[] recipients = (String[]) job.getProperty(RECIPIENTS_ARRAY);
 		if (listOfAttachments != null) {
 			for (Map<String, String> attachment : listOfAttachments) {
-				try {
-					DataSource fileDS = new ByteArrayDataSource(attachment.get(SupportRequestFormServlet.STREAM),
-							attachment.get(SupportRequestFormServlet.CONTENT_TYPE));
-					attachments.put(attachment.get(SupportRequestFormServlet.FILE_NAME), fileDS);
-				} catch (IOException e) {
-					LOGGER.error("error in attachment -- " + e);
-				}
+				attachments.put(attachment.get(SupportRequestFormServlet.FILE_NAME), new ByteArrayDataSource(
+						Base64.getDecoder().decode(attachment.get(SupportRequestFormServlet.STREAM)),
+						attachment.get(SupportRequestFormServlet.CONTENT_TYPE)));
+
 			}
 		}
 		List<String> emailResult = emailService.sendEmail(job.getProperty(TEMPLATE_PATH).toString(),
