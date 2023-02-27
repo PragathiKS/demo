@@ -125,8 +125,18 @@ class SupportRequest {
         }
       });
 
-      [$('#ownPhoneNumber'), $('#aribaAccountAdminEmail'), $('#tpContactEmail')].forEach(function(el) {
-        if(($(el).val() && !isValidPhoneNumber($(el).val())) && ($(el).val() && !isEmailValid(el.val()))) {
+      const $telephone = this.root.find('#ownPhoneNumber');
+      const phoneNumber = $telephone.val();
+      if (phoneNumber && !isValidPhoneNumber(phoneNumber)) {
+        this.addErrorMsg($telephone);
+        formErrors.push({
+          formErrorMessage: $telephone.closest('.js-tp-support-request__form-element').find('.error-msg').text().trim(),
+          formErrorField: $telephone.closest('.js-tp-support-request__form-element').find('.tp-support-request__field-label').text().trim()
+        });
+      }
+
+      [$('#aribaAccountAdminEmail'), $('#tpContactEmail')].forEach(function(el) {
+        if($(el).val() && !isEmailValid(el.val())) {
           $this.addErrorMsg(el);
           formErrors.push({
             formErrorMessage: $(el).closest('.js-tp-support-request__form-element').find('.error-msg').text().trim(),
