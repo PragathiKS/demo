@@ -31,9 +31,14 @@ public class FormDatasourceConfigServiceImpl implements FormDatasourceConfigServ
 
     @Override
     public List<Dropdown> getActionTypes() {
+	String[] actionTypesConfig = config.actionTypes();
+	return getConfig(actionTypesConfig);
+    }
+
+    private List<Dropdown> getConfig(String[] actionTypesConfig) {
 	List<Dropdown> actionTypes = new ArrayList<>();
 	try {
-	    String[] actionTypesConfig = config.actionTypes();
+
 	    for (String actionType : actionTypesConfig) {
 		String[] values = StringUtils.split(actionType, ":");
 		if (values.length == 2) {
@@ -45,5 +50,11 @@ public class FormDatasourceConfigServiceImpl implements FormDatasourceConfigServ
 	    LOGGER.error("Error while reading Form Datasource Configuration", e);
 	}
 	return actionTypes;
+    }
+
+    @Override
+    public List<Dropdown> getEmailTemplates() {
+	String[] emailTemplatesConfig = config.emailTemplates();
+	return getConfig(emailTemplatesConfig);
     }
 }

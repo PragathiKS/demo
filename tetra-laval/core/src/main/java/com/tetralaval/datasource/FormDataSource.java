@@ -1,4 +1,4 @@
-package com.tetralaval.servlet.datasource;
+package com.tetralaval.datasource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,9 +39,8 @@ public class FormDataSource extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = 5259185175033873202L;
     private static final String TEXT = "text";
     private static final String VALUE = "value";
-    private static final String HTML_INPUT = "htmlInput";
-    private static final String HTML_DROP_DOWN = "htmlDropDown";
     private static final String ACTION_TYPE = "actionType";
+    private static final String EMAIL_TEMPLATE = "emailTemplate";
     private static final String DROP_DOWN_TYPE = "dropDownType";
     private static final String DATASOURCE = "datasource";
 
@@ -61,7 +60,9 @@ public class FormDataSource extends SlingSafeMethodsServlet {
 	    case ACTION_TYPE:
 		dropDownList = formDialogDropDownService.getActionTypes();
 		break;
-
+	    case EMAIL_TEMPLATE:
+		dropDownList = formDialogDropDownService.getEmailTemplates();
+		break;	
 	    default:
 		break;
 	    }

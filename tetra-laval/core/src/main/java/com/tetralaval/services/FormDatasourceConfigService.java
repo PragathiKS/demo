@@ -7,5 +7,7 @@ import com.tetralaval.beans.Dropdown;
 public interface FormDatasourceConfigService {
 
     List<Dropdown> getActionTypes();
+    
+    List<Dropdown> getEmailTemplates();
 
 }

@@ -15,15 +15,16 @@
                     <div class="tl-contactForm">
                          <form data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container"
                               data-sly-use.grid="com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid"
-                              method="${container.method}" action="${resource.path}.${properties.actionType}.html"
+                              data-sly-use.model="com.tetralaval.models.FormContainer"
+                              method="${container.method}" action="${resource.path}.${model.actionType}.html"
                               id="${container.id}" name="${container.name}" enctype="${container.enctype}"
-                              class="cmp-form ${grid.cssClass} ${properties.cssClass}">
+                              class="cmp-form ${grid.cssClass} ${model.cssClass}">
                               <input type="hidden" name=":formstart" value="${resource.path}" />
                               <input type="hidden" name="_charset_" value="utf-8" />
                               <input
-                                   data-sly-test.isRedirect="${properties.redirectUrl && properties.thankYouType=='showThankYouPage'}"
+                                   data-sly-test.isRedirect="${model.redirectUrl && model.thankYouType=='showThankYouPage'}"
                                    type="hidden" name=":redirect"
-                                   value="${properties.redirectUrl @ extension='html'}" />
+                                   value="${model.redirectUrl @ extension='html'}" />
                               <sly data-sly-repeat.paragraph="${grid.paragraphs}"
                                    data-sly-resource="${paragraph.path @ resourceType=paragraph.resourceType, decorationTagName=(wcmmode.disabled ? '' : 'div'), cssClassName=paragraph.cssClass}">
                               </sly>
@@ -32,9 +33,9 @@
                          </form>
                     </div>
                     <div class="tl-contactForm__thankyou"
-                         data-sly-test="${properties.thankYouType=='showThankYouMessage'}">
-                         <h2>${properties.thankYouTitle}</h2>
-                         <p>${properties.thankYouTitle}</p>
+                         data-sly-test="${model.thankYouType=='showThankYouMessage'}">
+                         <h2>${model.thankYouTitle}</h2>
+                         <p>${model.thankYouTitle}</p>
                     </div>
                </div>
           </div>

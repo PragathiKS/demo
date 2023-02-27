@@ -164,6 +164,15 @@ Import-Package: javax.annotation;version=0.0.0,*
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.models.api</artifactId>
         </dependency>
+        <dependency>
+		    <groupId>com.adobe.acs</groupId>
+		    <artifactId>acs-aem-commons-bundle</artifactId>
+		    <scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>biz.aQute.bnd</groupId>
+		    <artifactId>bndlib</artifactId>
+		</dependency>
 
 
         <!-- Testing -->

@@ -40,6 +40,18 @@
                                                     sling:resourceType="tetra-laval/components/content/form/datasource/formdata"
                                                     dropDownType="actionType"/>
                                             </actionType>
+                                            <emailTemplate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                deleteHint="{Boolean}true"
+                                                fieldDescription="Indicates the email Template to be used when sending the email"
+                                                fieldLabel="Email Template"
+                                                name="./emailTemplate">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="tetra-laval/components/content/form/datasource/formdata"
+                                                    dropDownType="emailTemplate"/>
+                                            </emailTemplate>
                                             <subject
 	                                            jcr:primaryType="nt:unstructured"
 				                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
