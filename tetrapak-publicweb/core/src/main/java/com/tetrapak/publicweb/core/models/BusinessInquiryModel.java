@@ -41,10 +41,6 @@ public class BusinessInquiryModel extends FormModel {
     @ValueMapValue
     private String befPardotURL;
 
-    /** Business Enquiry China Pardot URL. */
-    @ValueMapValue
-    private String befChinaPardotURL;
-
     /** The pardot service. */
     @OSGiService
     private PardotService pardotService;
@@ -229,15 +225,6 @@ public class BusinessInquiryModel extends FormModel {
      */
     public String getBefPardotURL() {
         return befPardotURL;
-    }
-
-    /**
-     * Gets the bef china pardot URL.
-     *
-     * @return the bef china pardot URL
-     */
-    public String getBefChinaPardotURL() {
-        return LinkUtils.getUrlWithoutProtocol(befChinaPardotURL);
     }
 
 }

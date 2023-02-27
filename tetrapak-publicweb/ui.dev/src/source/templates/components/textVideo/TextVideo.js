@@ -14,13 +14,10 @@ class TextVideo {
     this.cache.componentName = this.root.find('.componentName-textvideo').val();
   }
 
-  bindEvents() {
-    const { $textVideoButton } = this.cache;
-    $textVideoButton.on('click', this.trackAnalytics);
-    setTimeout(function(){
-      const noVideo = window.OptanonActiveGroups;
-      if (noVideo === ',1,') {
-        $('.pw-text-video__video').css('display', 'none');
+  toggleVideoContent(noVideo) {
+    if(noVideo === ',1,' || noVideo === ',1,2,') {
+      $('.pw-text-video__video').css('display', 'none');
+      if(!$('.pw-text-video__novideo').children().length) {
         render.fn({
           template: 'noVideoContent',
           data: {  },
@@ -28,7 +25,16 @@ class TextVideo {
           hidden: false
         });
       }
-    }, 2000);
+      $('.pw-text-video__novideo').css('display', 'block');
+    } else {
+      $('.pw-text-video__video').css('display', 'block');
+      $('.pw-text-video__novideo').css('display', 'none');
+    }
+  }
+
+  bindEvents() {
+    const { $textVideoButton } = this.cache;
+    $textVideoButton.on('click', this.trackAnalytics);
 
     this.root.find('.js-softconversion-pw-textvideo').on('click', (e) => {
       getLinkClickAnalytics(e,'video-title','Text & Video','.js-softconversion-pw-textvideo', false);
@@ -41,11 +47,19 @@ class TextVideo {
     });
 
     setTimeout(() => {
-      $('#onetrust-accept-btn-handler').on('click', () => {
+      if(document.cookie.includes('OptanonAlertBoxClosed')) {
+        this.toggleVideoContent(window.OptanonActiveGroups);
+      }
+        
+      $('#accept-recommended-btn-handler, #onetrust-accept-btn-handler').on('click', () => {
         $('.pw-text-video__video').css('display', 'block');
         $('.pw-text-video__novideo').css('display', 'none');
       });
-    },2500);
+
+      $('.save-preference-btn-handler').on('click', () => {
+        this.toggleVideoContent(window.OptanonActiveGroups);
+      });
+    }, 2500);
   }
 
 

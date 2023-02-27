@@ -125,8 +125,6 @@ public class SubscriptionFormModelTest {
         assertEquals("Form", "/content/search.html", model.getMoreButtonActionSubscription());
         assertEquals("Form", "More Insights", model.getMoreButtonLabelSubscription());
         assertEquals("form", "http://pardotURL", model.getPardotUrlSubscription());
-        assertEquals("form", "pardotChinaURL", model.getPardotChinaUrlSubscription());
-
     }
 
     @Test

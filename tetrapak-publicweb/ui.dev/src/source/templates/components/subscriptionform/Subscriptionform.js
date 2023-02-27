@@ -67,7 +67,6 @@ class Subscriptionform {
   submitForm = () => {
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const pardotURL = this.cache.businessformapi.data('sf-pardot-url');
-    const chinapardotURL = this.cache.businessformapi.data('sf-china-pardot-url');
     const countryCode = this.cache.businessformapi.data('sf-countrycode');
     const marketSiteSubscribed = this.cache.businessformapi.data('sf-marketsitesubscribed');
     const langCode = this.cache.businessformapi.data('sf-langcode');
@@ -86,12 +85,12 @@ class Subscriptionform {
     dataObj['country'] = this.cache.requestPayload['country'];
     // dataObj['pageurl'] = this.cache.requestPayload['pageurl'];
     if(this.cache.requestPayload['country'] === 'China' || countryCode === 'cn') {
-      dataObj['pardotUrl'] = chinapardotURL;
       dataObj['route_country'] = 'China';
     }
     else {
-      dataObj['pardotUrl'] = pardotURL;
+      dataObj['route_country'] = this.cache.requestPayload['country'];
     }
+    dataObj['pardotUrl'] = pardotURL;
     subscriptionAnalytics(
       this.cache.mainHead, {
         'E-mail': 'NA',
