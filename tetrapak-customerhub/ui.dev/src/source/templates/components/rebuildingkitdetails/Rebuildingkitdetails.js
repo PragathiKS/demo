@@ -252,14 +252,19 @@ function _getCtiDocuments() {
               }
             );
             const dataA = Object.keys($this.cache.langlist);
-            const reqOtherLang = $this.cache.$ctiData.ctiDocuments.filter(
-              (item) => {
-                return !dataA.some((item1) => {
-                  return item.langCode === item1;
-                });
-              }
-            );
-            $this.renderCtiDocuments(langAvailable, otherLang, reqOtherLang);
+            const reqOtherLang = dataA.filter(item => !$this.cache.$ctiData.ctiDocuments.some(x => x.langCode === item));
+            const reqLangList = [];
+            Object.keys($this.cache.langlist).forEach((key) => {
+              reqOtherLang.filter(function (item) {
+                if (key === item) {
+                  var newObj = {};
+                  newObj.langCode = key;
+                  newObj.langDesc = $this.cache.langlist[key];
+                  reqLangList.push(newObj);
+                }
+              });
+            });
+            $this.renderCtiDocuments(langAvailable, otherLang, reqLangList);
           }
         })
         .fail((e) => {
