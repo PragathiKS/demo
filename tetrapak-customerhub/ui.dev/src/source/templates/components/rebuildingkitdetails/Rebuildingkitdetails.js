@@ -252,7 +252,7 @@ function _getCtiDocuments() {
               }
             );
             const dataA = Object.keys($this.cache.langlist);
-            const reqOtherLang = dataA.filter(item => !$this.cache.$ctiData.ctiDocuments.some(x => x.langCode === item));
+            const reqOtherLang = dataA.filter(item => !$this.cache.$ctiData.ctiDocuments.some(docData => docData.langCode === item));
             const reqLangList = [];
             Object.keys($this.cache.langlist).forEach((key) => {
               reqOtherLang.filter(function (item) {
