@@ -1,43 +1,25 @@
-<div class="modal tp-modal tl-contact-modal js-contact-modal fade" id="tl-contactus" data-module="FormContainer" tabindex="-1"
-     role="dialog" aria-modal="true">
-     <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
-          <div class="modal-content tp-modal-content">
-               <div class="modal-header pw-lang-selector__header" auto_locator="countrySelectorHeader">
-                    <h4 role="heading" class="pw-lang-selector__header__heading">
-                         Form Title
-                    </h4>
-                    <button type="button" auto_locator="languageSelectModal"
-                         class="tp-close-btn icon-Close_pw pw-lang-selector__header__close js-close-btn"
-                         aria-label="Market selector close button" title="Market selector close button"></button>
-               </div>
-
-               <div class="modal-body pw-lang-selector__body row">
-                    <div class="tl-contactForm">
-                         <form data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container"
-                              data-sly-use.grid="com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid"
-                              data-sly-use.model="com.tetralaval.models.FormContainer"
-                              method="${container.method}" action="${resource.path}.${model.actionType}.html"
-                              id="${container.id}" name="${container.name}" enctype="${container.enctype}"
-                              class="cmp-form ${grid.cssClass} ${model.cssClass}">
-                              <input type="hidden" name=":formstart" value="${resource.path}" />
-                              <input type="hidden" name="_charset_" value="utf-8" />
-                              <input
-                                   data-sly-test.isRedirect="${model.redirectUrl && model.thankYouType=='showThankYouPage'}"
-                                   type="hidden" name=":redirect"
-                                   value="${model.redirectUrl @ extension='html'}" />
-                              <sly data-sly-repeat.paragraph="${grid.paragraphs}"
-                                   data-sly-resource="${paragraph.path @ resourceType=paragraph.resourceType, decorationTagName=(wcmmode.disabled ? '' : 'div'), cssClassName=paragraph.cssClass}">
-                              </sly>
-                              <sly data-sly-resource="${resource.path @ resourceType=container.resourceTypeForDropArea, appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
-                                   data-sly-test="${wcmmode.edit || wcmmode.preview}"></sly>
-                         </form>
-                    </div>
-                    <div class="tl-contactForm__thankyou"
-                         data-sly-test="${model.thankYouType=='showThankYouMessage'}">
-                         <h2>${model.thankYouTitle}</h2>
-                         <p>${model.thankYouTitle}</p>
-                    </div>
-               </div>
-          </div>
-     </div>
+<div class="tl-contactForm">
+     <form data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container"
+          data-sly-use.grid="com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid"
+          data-sly-use.model="com.tetralaval.models.FormContainer"
+          method="${container.method}" action="${resource.path}.${model.actionType}.html"
+          id="${container.id}" name="${container.name}" enctype="${container.enctype}"
+          class="cmp-form ${grid.cssClass} ${model.cssClass}">
+          <input type="hidden" name=":formstart" value="${resource.path}" />
+          <input type="hidden" name="_charset_" value="utf-8" />
+          <input
+               data-sly-test.isRedirect="${model.redirectUrl && model.thankYouType=='showThankYouPage'}"
+               type="hidden" name=":redirect"
+               value="${model.redirectUrl @ extension='html'}" />
+          <sly data-sly-repeat.paragraph="${grid.paragraphs}"
+               data-sly-resource="${paragraph.path @ resourceType=paragraph.resourceType, decorationTagName=(wcmmode.disabled ? '' : 'div'), cssClassName=paragraph.cssClass}">
+          </sly>
+          <sly data-sly-resource="${resource.path @ resourceType=container.resourceTypeForDropArea, appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+               data-sly-test="${wcmmode.edit || wcmmode.preview}"></sly>
+     </form>
+</div>
+<div class="tl-contactForm__thankyou"
+     data-sly-test="${model.thankYouType=='showThankYouMessage'}">
+     <h2>${model.thankYouTitle}</h2>
+     <p>${model.thankYouTitle}</p>
 </div>
