@@ -14,6 +14,24 @@ class TextVideo {
     this.cache.componentName = this.root.find('.componentName-textvideo').val();
   }
 
+  toggleVideoContent(noVideo) {
+    if(noVideo === ',1,' || noVideo === ',1,2,') {
+      $('.pw-text-video__video').css('display', 'none');
+      if(!$('.pw-text-video_content').children().length) {
+        render.fn({
+          template: 'noVideoContent',
+          data: {  },
+          target: '.pw-text-video_content',
+          hidden: false
+        });
+      }
+      $('.pw-text-video__novideo').css('display', 'block');
+    } else {
+      $('.pw-text-video__video').css('display', 'block');
+      $('.pw-text-video__novideo').css('display', 'none');
+    }
+  }
+
   bindEvents() {
     const { $textVideoButton } = this.cache;
     $textVideoButton.on('click', this.trackAnalytics);
