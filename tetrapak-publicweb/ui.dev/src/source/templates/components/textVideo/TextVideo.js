@@ -17,11 +17,11 @@ class TextVideo {
   toggleVideoContent(noVideo) {
     if(noVideo === ',1,' || noVideo === ',1,2,') {
       $('.pw-text-video__video').css('display', 'none');
-      if(!$('.pw-text-video__novideo').children().length) {
+      if(!$('.pw-text-video_content').children().length) {
         render.fn({
           template: 'noVideoContent',
           data: {  },
-          target: '.pw-text-video__novideo',
+          target: '.pw-text-video_content',
           hidden: false
         });
       }
