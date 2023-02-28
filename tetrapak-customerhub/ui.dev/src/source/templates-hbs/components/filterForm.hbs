@@ -10,49 +10,58 @@
             </button>
         </div>
         <div class='modal-body tp-modal-body tp-my-equipment__modal-body'>
-            {{#if isTextInput}}
-                {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-my-equipment-filter-input"}}
+            {{#if isDatePicker}}
+                <div 
+                    class="js-dp" 
+                    data-from-label="{{i18n key=dateFrom}}" 
+                    data-to-label="{{i18n key=dateTo}}"
+                    data-error-label="{{i18n key=dateError}}"
+                />
             {{else}}
-                {{#if isEquipmentType}}
-                    {{#each formData}}
-                        {{> atoms/checkbox/checkbox value=this.businessTypeLabel text=this.businessTypeLabel check=isChecked disabled=isDisabled
-                                uniqueKey=this.businessTypeLabel
-                                baseClass="tp-my-equipment__type-group-option js-tp-my-equipment-type-group-option"
-                                autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                jsMyEquipmentFilter="js-tp-my-equipment-filter-group-checkbox js-tp-my-equipment-filter-checkbox"}}
-
-                        <div class="tp-my-equipment-filter-options tp-my-equipment-group-filter-options">
-                            {{#each this.options}}
-                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                        uniqueKey=option
-                                        autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                        jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
-                            {{/each}}
-                        </div>
-                    {{/each}}
+                {{#if isTextInput}}
+                    {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-my-equipment-filter-input"}}
                 {{else}}
-                    <div class="tp-my-equipment-filter-options">
-                        {{#if isRadio}}
-                            {{#each formData}}
-                                {{> atoms/radio/radio value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                        uniqueKey=option
-                                        name=@root.radioGroupName
-                                        autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                        jsMyEquipmentFilter="js-tp-my-equipment-filter-radio"}}
-                            {{/each}}
-                        {{else}}
-                            {{#each formData}}
-                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                        uniqueKey=option
-                                        autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                        jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
-                            {{/each}}
-                        {{/if}}
-                    </div>
+                    {{#if isEquipmentType}}
+                        {{#each formData}}
+                            {{> atoms/checkbox/checkbox value=this.businessTypeLabel text=this.businessTypeLabel check=isChecked disabled=isDisabled
+                                    uniqueKey=this.businessTypeLabel
+                                    baseClass="tp-my-equipment__type-group-option js-tp-my-equipment-type-group-option"
+                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                    jsMyEquipmentFilter="js-tp-my-equipment-filter-group-checkbox js-tp-my-equipment-filter-checkbox"}}
+
+                            <div class="tp-my-equipment-filter-options tp-my-equipment-group-filter-options">
+                                {{#each this.options}}
+                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                {{/each}}
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <div class="tp-my-equipment-filter-options">
+                            {{#if isRadio}}
+                                {{#each formData}}
+                                    {{> atoms/radio/radio value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            name=@root.radioGroupName
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-radio"}}
+                                {{/each}}
+                            {{else}}
+                                {{#each formData}}
+                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                    {{/if}}
                 {{/if}}
             {{/if}}
         </div>
