@@ -1,6 +1,6 @@
 
 import $ from 'jquery';
-import { render } from '../../../scripts/utils/render';
+// import { render } from '../../../scripts/utils/render';
 import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
 class TextVideo {
   constructor({ el }) {
@@ -12,24 +12,6 @@ class TextVideo {
   initCache() {
     this.cache.$textVideoButton = this.root.find('.js-textVideo-analytics');
     this.cache.componentName = this.root.find('.componentName-textvideo').val();
-  }
-
-  toggleVideoContent(noVideo) {
-    if(noVideo === ',1,' || noVideo === ',1,2,') {
-      $('.pw-text-video__video').css('display', 'none');
-      if(!$('.pw-text-video_content').children().length) {
-        render.fn({
-          template: 'noVideoContent',
-          data: {  },
-          target: '.pw-text-video_content',
-          hidden: false
-        });
-      }
-      $('.pw-text-video__novideo').css('display', 'block');
-    } else {
-      $('.pw-text-video__video').css('display', 'block');
-      $('.pw-text-video__novideo').css('display', 'none');
-    }
   }
 
   bindEvents() {
@@ -45,21 +27,6 @@ class TextVideo {
       getLinkClickAnalytics(e,'video-title','Text & Video','.js-subscription-pw-textvideo', false);
       $('body').find('.'+this.cache.componentName).trigger('showSubscription-pw');
     });
-
-    setTimeout(() => {
-      if(document.cookie.includes('OptanonAlertBoxClosed')) {
-        this.toggleVideoContent(window.OptanonActiveGroups);
-      }
-        
-      $('#accept-recommended-btn-handler, #onetrust-accept-btn-handler').on('click', () => {
-        $('.pw-text-video__video').css('display', 'block');
-        $('.pw-text-video__novideo').css('display', 'none');
-      });
-
-      $('.save-preference-btn-handler').on('click', () => {
-        this.toggleVideoContent(window.OptanonActiveGroups);
-      });
-    }, 2500);
   }
 
 
