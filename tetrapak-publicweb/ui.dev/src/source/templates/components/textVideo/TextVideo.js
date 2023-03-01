@@ -1,6 +1,5 @@
 
 import $ from 'jquery';
-// import { render } from '../../../scripts/utils/render';
 import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
 class TextVideo {
   constructor({ el }) {
