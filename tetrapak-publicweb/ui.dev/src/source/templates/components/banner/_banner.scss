@@ -33,7 +33,9 @@
             }
         }
         .banner-parent {
-            background-color: rgba($color-wild-sand, 0.9);
+            &.gray {
+                background-color: rgba($color-wild-sand, 0.9);
+            }
         }
     }
 }
