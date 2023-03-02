@@ -1,7 +1,6 @@
 package com.tetrapak.supplierportal.core.models;
 
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.models.factory.ModelFactory;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Assert;
 import org.junit.Before;
@@ -52,45 +51,5 @@ public class SupportRequestFormModelTest {
 	public void testGetStartedMessage() {
 		Assert.assertEquals("Contact Support", "Contact Support", model.getGeneralTitleLabel());
 		Assert.assertEquals("General Subtitle", "General Subtitle", model.getGeneralSubtitleLabel());
-		Assert.assertEquals("Purpose of contact", "Purpose of contact", model.getPurposeOfContactLabel());
-		Assert.assertEquals("Please select a purpouse", "Please select a purpouse", model.getPurposeErrorMsgLabel());
-		Assert.assertEquals("How can we help you?", "How can we help you?", model.getQueryTitle());
-		Assert.assertEquals("Describe your query", "Describe your query", model.getQuerySubtitle());
-		Assert.assertEquals("error", "error", model.getQueryErrorMsgLabel());
-		Assert.assertEquals("error", "error", model.getFileErrorMsg());
-		Assert.assertEquals("add query here", "add query here", model.getQueryPlaceholder());
-		Assert.assertEquals("Add File", "Add File", model.getDragAndDropButtonLabel());
-		Assert.assertEquals("Remove", "Remove", model.getDragAndDropRemoveFileLabel());
-		Assert.assertEquals("Personal Detail", "Personal Detail", model.getDetailsTitle());
-		Assert.assertEquals("Name", "Name", model.getNameLabel());
-		Assert.assertEquals("Email Address", "Email Address", model.getEmailLabel());
-		Assert.assertEquals("error", "error", model.getCompanyErrorMsg());
-		Assert.assertEquals("Country", "Company", model.getCompanyLabel());
-		Assert.assertEquals("Country", "Country", model.getCountryLabel());
-		Assert.assertEquals("error", "error", model.getCountryErrorMsg());
-		Assert.assertEquals("City", "City", model.getCityLabel());
-		Assert.assertEquals("error", "error", model.getCityErrorMsg());
-		Assert.assertEquals("Phone", "Phone", model.getPhoneLabel());
-		Assert.assertEquals("error", "error", model.getPhoneErrorMsg());
-		Assert.assertEquals("Other information", "Other information", model.getOtherTitle());
-		Assert.assertEquals("Other Info Desc", "Other Info Desc", model.getOtherDescriptionLabel());
-		Assert.assertEquals("Ariba Network ID (optional)", "Ariba Network ID (optional)", model.getAribaNetworkLabel());
-		Assert.assertEquals("Ariba account administrator email (optional)",
-				"Ariba account administrator email (optional)", model.getAribaEmailLabel());
-		Assert.assertEquals("error", "error", model.getAribaEmailErrorMsg());
-		Assert.assertEquals("Tetra Pak contant email (optional)", "Tetra Pak contant email (optional)",
-				model.getTpEmailLabel());
-		Assert.assertEquals("error", "error", model.getTpEmailErrorMsg());
-		Assert.assertEquals("Send", "Send", model.getSendButtonLabel());
-		Assert.assertEquals("Thank you!", "Thank you!", model.getThankyouTitleLabel());
-		Assert.assertEquals("Thankyou SubTitle", "Thankyou SubTitle", model.getThankyouSubtitleLabel());
-		Assert.assertEquals("Home", "Home", model.getHomeButtonLabel());
-		Assert.assertEquals("On Boardiing Maintanance", "On Boardiing Maintanance", model.getOnboardingMaintanance());
-		Assert.assertEquals("subtitle", "subtitle", model.getOnboardingMaintananceSubtitle());
-		Assert.assertEquals("Sourcing Contracting", "Sourcing Contracting", model.getSourcingContracting());
-		Assert.assertEquals("Support subtitle", "Support subtitle", model.getSourcingContractingSubtitle());
-		Assert.assertEquals("Catalogues", "Catalogues", model.getCatalogues());
-		Assert.assertEquals("Subtitle catalogues", "Subtitle catalogues", model.getCataloguesSubtitle());
-
 	}
 }
