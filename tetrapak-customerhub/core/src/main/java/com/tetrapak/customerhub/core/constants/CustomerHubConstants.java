@@ -968,6 +968,9 @@ public final class CustomerHubConstants {
     /** Comments Placeholder */
     public static final String COMMENTS_PLACEHOLDER = "commentsPlaceholder";
 
+    /** The Constant Rebuilding Kits Request Update API. */
+    public static final String RK_REQUEST_UPDATE_API = "rebuildingkits-requestupdate";
+
 
     /**
      * Instantiates a new customer hub constants.
