@@ -5,331 +5,331 @@
     - publicweb-content-owners-se:
 
         - name: "Public Web Content Owners for Sweden"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-za:
 
         - name: "Public Web Content Owners for South Africa"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ru:
 
         - name: "Public Web Content Owners for Russia and Kazakhstan"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-cn:
 
         - name: "Public Web Content Owners for China"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-tr:
 
         - name: "Public Web Content Owners for Turkey"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-jp:
 
         - name: "Public Web Content Owners for Japan"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ch:
 
         - name: "Public Web Content Owners for Switzerland"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ca:
 
         - name: "Public Web Content Owners for Canada"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-maghreb:
 
         - name: "Public Web Content Owners for Maghreb"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-fr:
 
         - name: "Public Web Content Owners for France"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-be:
 
         - name: "Public Web Content Owners for Belgium"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-cac:
 
         - name: "Public Web Content Owners for Central America and Carribean"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ar:
 
         - name: "Public Web Content Owners for Argentina"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ve:
 
         - name: "Public Web Content Owners for Venezuela"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-es:
 
         - name: "Public Web Content Owners for Spain"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-pe:
 
         - name: "Public Web Content Owners for Peru"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-py:
 
         - name: "Public Web Content Owners for Paraguay"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-mx:
 
         - name: "Public Web Content Owners for Mexico"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ec:
 
         - name: "Public Web Content Owners for Ecuador"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-co:
 
         - name: "Public Web Content Owners for Colombia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-cl:
 
         - name: "Public Web Content Owners for Chile"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-de:
 
         - name: "Public Web Content Owners for Germany, Austria and Switzerland"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-it:
 
         - name: "Public Web Content Owners for Italy"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-br:
 
         - name: "Public Web Content Owners for Brazil"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-pt:
 
         - name: "Public Web Content Owners for Portugal"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-vn:
 
         - name: "Public Web Content Owners for Vietnam"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-us:
 
         - name: "Public Web Content Owners for USA"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-th:
 
         - name: "Public Web Content Owners for Thailand"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-tw:
 
         - name: "Public Web Content Owners for Taiwan"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-kr:
 
         - name: "Public Web Content Owners for South Korea"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-sk:
 
         - name: "Public Web Content Owners for Slovakia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-sg:
 
         - name: "Public Web Content Owners for Singapore"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-rs:
 
         - name: "Public Web Content Owners for Serbia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-sa:
 
         - name: "Public Web Content Owners for Saudi Arabia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ro:
 
         - name: "Public Web Content Owners for Romania"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-pl:
 
         - name: "Public Web Content Owners for Poland"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ph:
 
         - name: "Public Web Content Owners for Philippines"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-pk:
 
         - name: "Public Web Content Owners for Pakistan"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-no:
 
         - name: "Public Web Content Owners for Norway"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-nl:
 
         - name: "Public Web Content Owners for Netherlands"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-my:
 
         - name: "Public Web Content Owners for Malaysia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-lv:
 
         - name: "Public Web Content Owners for Latvia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ie:
 
         - name: "Public Web Content Owners for Ireland"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ir:
 
         - name: "Public Web Content Owners for Iran"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-id:
 
         - name: "Public Web Content Owners for Indonesia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-in:
 
         - name: "Public Web Content Owners for India"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-hu:
 
         - name: "Public Web Content Owners for Hungary"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-gr:
 
         - name: "Public Web Content Owners for Greece"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-fi:
 
         - name: "Public Web Content Owners for Finland"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-cz:
 
         - name: "Public Web Content Owners for Czech Republic"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-hr:
 
         - name: "Public Web Content Owners for Croatia"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-au:
 
         - name: "Public Web Content Owners for Australia and New Zealand"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-global:
 
         - name: "Public Web Content Owners for Global"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-gb:
 
         - name: "Public Web Content Owners for United Kingdom"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
     - publicweb-content-owners-ua:
 
         - name: "Public Web Content Owners for Ukraine"
-          isMemberOf: fragment-editor,publicweb-basic
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
           path: /home/groups/publicwebgroups
 
 
@@ -1380,6 +1380,24 @@
         - path: /content/tetrapak/publicweb/global
           permission: allow
           actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/tetrapak/publicweb/lang-masters
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/publicweb/lang-masters
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:content
+
+        - path: /content/tetrapak/publicweb/lang-masters/en
+          permission: allow
+          actions: read,modify,create
           privileges:
           repGlob:
 
