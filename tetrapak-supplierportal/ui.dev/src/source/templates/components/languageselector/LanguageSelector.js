@@ -6,12 +6,10 @@ import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constant
 import { logger } from '../../../scripts/utils/logger';
 import { $body } from '../../../scripts/utils/commonSelectors';
 class LanguageSelector {
-    
   constructor({ el }) {
     this.root = $(el);
   }
       cache = {};
-    
       initCache() {
         this.cache.$modal = this.root.parent().find('.js-lang-modal');
         try {
@@ -21,7 +19,6 @@ class LanguageSelector {
           logger.error(e);
         }
       }
-    
       bindEvents() {
         const $this = this;
         const { $modal } = $this.cache;
@@ -40,7 +37,6 @@ class LanguageSelector {
           .on('showlanuagepreferencepopup', function () {
             $modal.modal();
           });
-    
       }
       closeModalHandler() {
         const langCookie = storageUtil.getCookie('lang-code');
@@ -48,8 +44,8 @@ class LanguageSelector {
           storageUtil.setCookie('lang-code', 'en');
         }
       }
-    
       setCustomerLanguage(langCode) {
+        const oldLang = '/' + storageUtil.getCookie('lang-code') + '/';
         ajaxWrapper.getXhrObj({
           url: LANGUAGE_PREFERENCE_SERVLET_URL,
           data: {
@@ -57,14 +53,13 @@ class LanguageSelector {
           }
         }).always(() => {
           storageUtil.setCookie('lang-code', langCode);
-          this.reloadPage();
+          const redirect = window.location.href.replace(oldLang, '/' + langCode + '/');
+          this.reloadPage(redirect);
         });
       }
-    
-      reloadPage() {
-        window.location.reload();
+      reloadPage(redirect) {
+        window.location.href = redirect;
       }
-    
       showPopup(isInit) {
         const { $modal, selectedLanguage } = this.cache;
         const langCookie = storageUtil.getCookie('lang-code');
@@ -78,7 +73,6 @@ class LanguageSelector {
           $modal.modal();
         }
       }
-    
       init() {
         this.initCache();
         this.bindEvents();
