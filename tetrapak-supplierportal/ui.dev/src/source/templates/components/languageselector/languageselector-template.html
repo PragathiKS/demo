@@ -10,18 +10,23 @@
                        data-sly-call="${closeButton.closeButton_template @closeBtnText=closeBtnText, btnClasses='tpatom-btn--close tpmol-modal-header__close js-close-btn'}" />
                </div>
                <div class="modal-body tp-lang-selector__body">
-                 <sly data-sly-test.userLanguage="${data.selectedLanguage ? data.selectedLanguage : 'en'}" />
-                 <sly data-sly-test.selectedLanguage="${data.listOfLanguages[userLanguage]}" />
-                 <div class="tp-lang-selector__selected-lang">
-                   <i class="icon-Globe"></i>
-                   <p class="tp-lang-selector__selected-lang-label d-inline">${selectedLanguage}</p>
-                 </div>
-                 <div class="tp-lang-selector__lang-container">
-                     <sly data-sly-list=${data.listOfLanguages}>
-                         <sly data-sly-test.language="${data.listOfLanguages[item]}" />
-                         <button type="button" class='tp-lang-selector__btn text-left js-lang-selector__btn' data-langcode="${item}" datatag="internal" ctype="choose your language" ctypeone="notset" cttitle="${language}" aria-label="${language}">${language}</button>
-                     </sly>
-               </div>
+                   <sly data-sly-test.userLanguage="${data.selectedLanguage ? data.selectedLanguage : 'en'}"/>
+                   <sly data-sly-test.selectedLanguage="${data.listOfLanguages[userLanguage]}">
+                       <div class="tp-lang-selector__selected-lang">
+                           <i class="icon-Globe"></i>
+                           <p class="tp-lang-selector__selected-lang-label d-inline">${selectedLanguage.title}</p>
+                       </div>
+                   </sly>
+                   <div class="tp-lang-selector__lang-container">
+                       <sly data-sly-list=${data.listOfLanguages}>
+                           <sly data-sly-test.language="${data.listOfLanguages[item]}">
+                               <button type="button" class='tp-lang-selector__btn text-left js-lang-selector__btn'
+                                       data-langcode="${item}" data-link="${language.link}" datatag="internal" ctype="choose your language"
+                                       ctypeone="notset" cttitle="${language.title}" aria-label="${language.title}">${language.title}
+                               </button>
+                           </sly>
+                       </sly>
+                   </div>
                </div>
            </div>
        </div>

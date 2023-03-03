@@ -32,7 +32,7 @@ class LanguageSelector {
             }
           })
           .on('click', '.js-lang-selector__btn', function () {
-            $this.setCustomerLanguage($(this).data('langcode'));
+            $this.setCustomerLanguage($(this).data('langcode'), $(this).data('link'));
           })
           .on('showlanuagepreferencepopup', function () {
             $modal.modal();
@@ -44,8 +44,7 @@ class LanguageSelector {
           storageUtil.setCookie('lang-code', 'en');
         }
       }
-      setCustomerLanguage(langCode) {
-        const oldLang = '/' + storageUtil.getCookie('lang-code') + '/';
+      setCustomerLanguage(langCode, url) {
         ajaxWrapper.getXhrObj({
           url: LANGUAGE_PREFERENCE_SERVLET_URL,
           data: {
@@ -53,12 +52,11 @@ class LanguageSelector {
           }
         }).always(() => {
           storageUtil.setCookie('lang-code', langCode);
-          const redirect = window.location.href.replace(oldLang, '/' + langCode + '/');
-          this.reloadPage(redirect);
+          this.reloadPage(url);
         });
       }
-      reloadPage(redirect) {
-        window.location.href = redirect;
+      reloadPage(url) {
+        window.location.href = url;
       }
       showPopup(isInit) {
         const { $modal, selectedLanguage } = this.cache;
