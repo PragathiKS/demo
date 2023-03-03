@@ -4,6 +4,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-12 tp-rebuilding-details__info-card-col">
         <div class="tp-rebuilding-details__info-card js-rebuilding-details__info-card top">
             <h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.rkAndEquipmentInformation}}</h3>
+            {{#if isNotConfirmed}}
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="row tp-rebuilding-details__row">
@@ -71,6 +72,16 @@
                     {{i18n key=i18nKeys.rkNoteValue}}
                 </div>
             </div>
+            {{else}}
+            <!-- Thank you page starts -->
+                <p class="tp-rebuilding-details__conf-title">
+                    <i class="icon icon-Circle_filled_Tick"></i>Thank you
+                </p>
+                <p>
+                    We are now processing your request update. It can take a few days, in the meanwhile you will still see the old data.
+                </p>
+            <!-- Thank you page ends -->
+            {{/if}}
         </div>
     </div>
 </div>
