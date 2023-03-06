@@ -50,6 +50,13 @@ export const isExternal = function(url) {
   }
 };
 
+export const getUrl = function($el) {
+  if ($el.prop('nodeName') === 'A') { 
+    return $el.attr('href'); 
+  }
+  return $el.closest('a').attr('href') || '';
+};
+
 export const isDownloable = function(url) {
   const fileList = [
     '.pdf',
