@@ -22,8 +22,6 @@ pipeline {
     }
 
     environment {
-        sonar_url = "https://sonarcloud.io"
-        login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
         build_id_number = ""
     }
 
@@ -264,10 +262,10 @@ pipeline {
     def authordeploylaval() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sapient-user', usernameVariable: 'username', passwordVariable: 'password']])
         {
-            sh label: "Uninstalling Old Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}'  && sleep 60"
-            sh label: "Deleting Old Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}' && sleep 60"
+            sh label: "Uninstalling Old Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'  && sleep 60"
+            sh label: "Deleting Old Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}' && sleep 60"
             sh label: "Uploading New Package on author", script: "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose && sleep 60"
-            sh label: "Installing New Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}' && sleep 60"
+            sh label: "Installing New Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}' && sleep 60"
         }
     }
 
