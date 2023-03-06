@@ -58,6 +58,13 @@ public class SearchResultsModel {
     
     /** The content type list. */
     private List<SearchListModel> contentTypeList = new ArrayList<>();
+    
+    private String isEvent;
+    
+    private String isCasesArticles;
+    
+    /** The Search Landing model. */
+    //private SearchLandingModel searchLandingModel = new SearchLandingModel();
 
     /**
      * Inits the.
@@ -76,6 +83,9 @@ public class SearchResultsModel {
             setContentType(configurationModel.getCaseLabel(), PWConstants.CASES);
             setContentType(configurationModel.getMediaLabel(), PWConstants.MEDIA);
         }
+        resource = request.getResource();
+        isEvent = resource.getValueMap().get("isEvent", StringUtils.EMPTY).toString();
+        isCasesArticles = resource.getValueMap().get("isCasesArticles", StringUtils.EMPTY).toString();
     }
     
     /**
@@ -329,6 +339,24 @@ public class SearchResultsModel {
      */
     public Page getCurrentPage() {
         return currentPage;
+    }
+    
+    /**
+     * Gets the isEvent flag.
+     *
+     * @return the isEvent flag
+     */
+    public String getIsEvent() {
+        return isEvent;
+    }
+    
+    /**
+     * Gets the isEvent flag.
+     *
+     * @return the isEvent flag
+     */
+    public String getIsCasesArticles() {
+        return isCasesArticles;
     }
 
 }
