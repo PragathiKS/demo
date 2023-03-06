@@ -99,11 +99,11 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 		LOGGER.debug("Redirect from Referrer Header as Redirect is not provided: {}", redirect);
 	    }
 	    contactUsResponse = new ContactUsResponse("200", "OK");
-	    // sendResponse(response, contactUsResponse);
+	    sendResponse(response, contactUsResponse);
 
-	    redirect = redirect + "?status=200";
+	   /* redirect = redirect + "?status=200";
 	    LOGGER.debug("Redirect....");
-	    response.sendRedirect(redirect);
+	    response.sendRedirect(redirect);*/
 
 	} catch (final Exception e) {
 	    LOGGER.error("Exception :{}", e.getMessage(), e);
