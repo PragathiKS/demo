@@ -19,7 +19,7 @@ pipeline {
 	    booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Pa11y_Execution'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'ZAP_Run'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'ZAP_Run'
 
     }
 
@@ -42,7 +42,6 @@ pipeline {
     }
 
     stages {
-
         stage('init-build-Number') {
             steps {
                 script {
@@ -309,10 +308,10 @@ def devdeployment() {
         devartifactdownloadlaval()
         parallel (
             "Author tetra-laval" : {
-                authordeploylaval()
+                authordeploy()
             },
             "Publisher tetra-laval" : {
-                publishdeploylaval()
+                publishdeploy()
             }
         )
     }
@@ -439,21 +438,5 @@ def devdeployment() {
         {
             sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
             echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
-
         }
-    }
-
-
-    def authordeploylaval() {
-        sh label: "Uninstalling Old Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}' && sleep 60"
-        sh label: "Deleting Old Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'  && sleep 60"
-        sh label: "Uploading New Package on author", script: "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose   && sleep 60"
-        sh label: "Uploading New Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'  && sleep 60"
-    }
-
-    def publishdeploylaval() {
-        sh label: "Uninstalling Old Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'  && sleep 60"
-        sh label: "Deleting Old Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}'   && sleep 60"
-        sh label: "Uploading New Package on publish", script: "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose   && sleep 60"
-        sh label: "Installing New Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'   && sleep 60"
     }
