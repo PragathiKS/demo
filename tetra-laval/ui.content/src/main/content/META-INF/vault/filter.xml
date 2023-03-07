@@ -2,4 +2,5 @@
 <workspaceFilter version="1.0">
     <filter root="/conf/tetra-laval"/>
     <filter root="/conf/global/settings/dam/adminui-extension/metadataschema/tetralaval"/>
+    <filter root="/etc/notification/email/tetralaval"/>
 </workspaceFilter>
