@@ -8,6 +8,7 @@ import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
+import com.tetrapak.supplierportal.core.utils.LinkUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -52,12 +53,14 @@ public class LanguageSelectorModel {
 
     private String selectedLanguage;
 
-    private Map<String, String> listOfLanguages = new HashMap<>();
+    private Map<String, LanguageBean> listOfLanguages = new HashMap<>();
 
     @PostConstruct protected void init() throws WCMException {
         Page blueprintPage = pageManager.getPage(SupplierPortalConstants.CONTENT_ROOT);
         if (blueprintPage != null) {
-            listOfLanguages.put(blueprintPage.getName(), blueprintPage.getTitle());
+            listOfLanguages.put(blueprintPage.getName(), new LanguageBean(blueprintPage.getTitle(),
+                    LinkUtil.getValidLink(request.getResource(),
+                            SupplierPortalConstants.SUPPLIER_PATH + blueprintPage.getName() + SupplierPortalConstants.DEFAULT_URL)));
             RangeIterator rangeIterator = liveRelationshipManager.getLiveRelationships(
                     blueprintPage.getContentResource(), "", null);
             if (rangeIterator != null) {
@@ -65,15 +68,15 @@ public class LanguageSelectorModel {
                     LiveRelationship relationship = (LiveRelationship) rangeIterator.next();
                     Page liveCopy = pageManager.getPage(relationship.getLiveCopy().getPath());
                     if (liveCopy != null) {
-                        listOfLanguages.put(liveCopy.getName(), liveCopy.getTitle());
+                        listOfLanguages.put(liveCopy.getName(), new LanguageBean(liveCopy.getTitle(),
+                                LinkUtil.getValidLink(request.getResource(),
+                                        SupplierPortalConstants.SUPPLIER_PATH + liveCopy.getName() + SupplierPortalConstants.DEFAULT_URL)));
                     }
                 }
             }
-
-            listOfLanguages = listOfLanguages.entrySet().stream()
-                    .sorted(Map.Entry.comparingByValue(String.CASE_INSENSITIVE_ORDER)).collect(
-                            Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1,
-                                    LinkedHashMap::new));
+            listOfLanguages = listOfLanguages.entrySet().stream().sorted(Map.Entry.comparingByValue(
+                    (o1, o2) -> String.CASE_INSENSITIVE_ORDER.compare(o1.getTitle(), o2.getTitle()))).collect(
+                    Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
         }
         selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
 
@@ -101,7 +104,7 @@ public class LanguageSelectorModel {
         return selectedLanguage;
     }
 
-    public Map<String, String> getListOfLanguages() {
+    public Map<String, LanguageBean> getListOfLanguages() {
         return listOfLanguages;
     }
 }
