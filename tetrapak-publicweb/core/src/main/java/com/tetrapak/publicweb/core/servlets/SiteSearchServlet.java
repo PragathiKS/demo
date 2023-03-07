@@ -65,7 +65,8 @@ import com.tetrapak.publicweb.core.utils.SearchMapHelper;
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Search service",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.resourceTypes=" + "publicweb/components/content/searchresults" })
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/searchresults",
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/searchlanding" })
 @Designate(ocd = SiteSearchServlet.Config.class)
 public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
@@ -138,10 +139,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
 
     /** The resource resolver. */
     private transient ResourceResolver resourceResolver;
-    
-    private String isEvent;
-    
-    private String isCasesArticles;
 
     /**
      * Do get.
@@ -164,16 +161,12 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
             session = resourceResolver.adaptTo(Session.class);
             queryBuilder = resourceResolver.adaptTo(QueryBuilder.class);
             searchBean = new SearchBean();
-            isEvent = searchResultsModel.getIsEvent();
-            isCasesArticles = searchResultsModel.getIsCasesArticles();
 
             // get search arguments
             final String contentTypeParam = xssAPI.getValidHref(request.getParameter("contentType"));
             String[] contentType = null;
             if (StringUtils.isNoneBlank(contentTypeParam)) {
                 contentType = contentTypeParam.split(",");
-            } else if (isEvent.equalsIgnoreCase("true")) {
-            	contentType = PWConstants.EVENTS.split(",");
             }
             final String themesParam = xssAPI.getValidHref(request.getParameter("theme"));
             String[] themes = null;
@@ -191,8 +184,6 @@ public class SiteSearchServlet extends SlingSafeMethodsServlet {
                 } else if (fulltextSearchTerm.contains("&quot;")) {
                     fulltextSearchTerm = fulltextSearchTerm.replace("&quot;", "\"");
                 }
-            } else if (isEvent.equalsIgnoreCase("true")) {
-            	fulltextSearchTerm = PWConstants.EVENTS;
             }
             LOGGER.info("Keyword to search : {}", fulltextSearchTerm);
 
