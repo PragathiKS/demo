@@ -2,4 +2,7 @@
     <p data-emptytext="configure ${component.title}"
        class="cq-placeholder"></p>
 </sly>
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.SearchLandingModel"
+     data-sly-use.lib="searchlanding-template.html"
+     data-sly-call="${lib.searchlanding_template @ data=model}" />
 <div data-sly-resource="${'searchresults' @ resourceType='publicweb/components/content/searchresults'}"/>
