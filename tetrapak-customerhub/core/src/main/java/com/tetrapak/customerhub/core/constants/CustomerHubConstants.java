@@ -719,6 +719,12 @@ public final class CustomerHubConstants {
     /** The Constant Rebuildingkits modal report header . */
     public static final String RK_MODAL_REPORT_HEADING = "rKModalReportHeading";
 
+    /** REBUIlDING_KITS REPORT THANK_YOU TITLE */
+    public static final String RK_REPORT_THANKYOU_TITLE = "rkReportThankyoutitle";
+
+    /** REBUILDING_KITS REPORT THANK_YOU DESCRIPTION */
+    public static final String RK_REPORT_THANKYOU_DESC = "rkReportThankyoudesc";
+
     /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
 
