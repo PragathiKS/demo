@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.mock;
 
+import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.beans.rebuildingkits.ImplementationStatusUpdateBean;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import java.util.ArrayList;
@@ -15,6 +17,11 @@ public class MockRebuildingKitsApiServiceImpl implements RebuildingKitsApiServic
 	@Override
 	public int getNoOfRecordsCount() {
 		return 750;
+	}
+
+	@Override
+	public JsonObject updateImplementationStatus(String token, String emailId, ImplementationStatusUpdateBean bean) {
+		return null;
 	}
 
 	public List<RebuildingKits> getMockRebuildingKitsList() {
