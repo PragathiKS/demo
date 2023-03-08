@@ -57,7 +57,7 @@ public class RebuildingKitDetailsModelTest {
         aemContext.registerService(APIGEEService.class, apigeeService);
 		aemContext.runMode("publish");
         when(apigeeService.getApigeeServiceUrl()).thenReturn(new String("https://api-dev.tetrapak.com"));
-        when(apigeeService.getApiMappings()).thenReturn(new String[]{"rebuildingkits-rebuildingkitdetails:installedbase/rebuildingkits","technicalbulletins:technicalbulletins"});
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"rebuildingkits-rebuildingkitdetails:installedbase/rebuildingkits","rebuildingkits-implstatuslist:installedbase/rebuildingkits/implstatuses","technicalbulletins:technicalbulletins"});
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		aemContext.request().setResource(resource);
 		model = aemContext.request().adaptTo(RebuildingKitDetailsModel.class);
