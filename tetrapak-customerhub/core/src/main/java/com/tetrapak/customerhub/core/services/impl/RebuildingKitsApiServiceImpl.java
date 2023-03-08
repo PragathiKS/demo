@@ -2,6 +2,9 @@ package com.tetrapak.customerhub.core.services.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.beans.equipment.EquipmentApiUpdateRequestBean;
+import com.tetrapak.customerhub.core.beans.rebuildingkits.ImplementationStatusUpdateBean;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RKResults;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
@@ -11,6 +14,7 @@ import com.tetrapak.customerhub.core.services.config.RebuildingKitsApiServiceCon
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.xss.XSSFilter;
 import org.osgi.service.component.annotations.*;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
@@ -35,7 +39,12 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 
 	private RebuildingKitsApiServiceConfig config;
 
+	@Reference
+	private XSSFilter xssFilter;
+
 	ExecutorService executor;
+
+	private static final String RK_REQUEST_UPDATE = "rebuildingkits-requestupdate";
 
 	/**
 	 * activate method
@@ -63,6 +72,28 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	@Override
 	public int getNoOfRecordsCount() {
 		return config.noOfRecords();
+	}
+
+	@Override public JsonObject updateImplementationStatus(String token, String emailId, ImplementationStatusUpdateBean bean) {
+		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
+				+ GlobalUtil.getSelectedApiMapping(apigeeService, RK_REQUEST_UPDATE);
+		Gson gson = new Gson();
+		String apiJsonBean = gson.toJson(convertFormToApiJson(emailId, bean));
+		return HttpUtil.sendAPIGeePostWithEntity(url, token, apiJsonBean);
+	}
+
+	private ImplementationStatusUpdateBean convertFormToApiJson(String emailId, ImplementationStatusUpdateBean bean) {
+		ImplementationStatusUpdateBean requestBean = new ImplementationStatusUpdateBean();
+		requestBean.setReportedBy(emailId);
+		requestBean.setReportedRebuildingKit(xssFilter.filter(bean.getReportedRebuildingKit()));
+		requestBean.setReportedRebuildingKitName(xssFilter.filter(bean.getReportedRebuildingKitName()));
+		requestBean.setSerialNumber(xssFilter.filter(bean.getSerialNumber()));
+		requestBean.setComment(xssFilter.filter(bean.getComment()));
+		requestBean.setSource("My Tetra Pak");
+		requestBean.setCurrentStatus(xssFilter.filter(bean.getCurrentStatus()));
+		requestBean.setReportedStatus(xssFilter.filter(bean.getReportedStatus()));
+		requestBean.setDate((xssFilter.filter(bean.getDate())));
+		return requestBean;
 	}
 
 	@Override
