@@ -1,0 +1,26 @@
+<sly data-sly-template.technicalpublications_template="${@data, flag}">
+    <div class="tp-card tp-tech-pub" data-sly-test="${data.isPublishEnvironment}"
+        data-countries-api="${data.allCountriesApi}" data-equipment-api="${data.equipmentListApi}"
+        data-line-api="${data.lineListApi}" data-customer-api="${data.customerListApi}"
+        data-tech-pub-api="${data.technicalPublicationsApi}"
+        data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
+        data-module="TechnicalPublications">
+
+        <code class="d-none js-tech-pub__config">${data.i18nKeys}</code>
+
+        <div class="tp-spinner js-tp-spinner">
+            <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html"
+                data-sly-call="${loading.loader_template}" />
+        </div>
+
+        <div class="js-tech-pub__wrapper d-none">
+            <div class="tp-tech-pub__header-wrapper">
+                <h1 class="tp-tech-pub__heading">${data.title @i18n,locale=data.locale}</h1>
+            </div>
+            
+            <div class="tp-tech-pub__breadcrumbs js-tech-pub__breadcrumbs"></div>
+            <div class="tp-tech-pub__search-count js-tech-pub__search-count"></div>
+            <div class="tp-tech-pub__folder-listing js-tech-pub__folder-listing"></div>
+        </div>
+    </div>
+</sly>

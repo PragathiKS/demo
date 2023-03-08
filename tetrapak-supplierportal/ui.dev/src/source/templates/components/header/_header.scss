@@ -23,7 +23,9 @@
 
     .tp-header__user{
         @media #{$mobile} {
+            display: block;
             text-indent: -9999px;
+            white-space: nowrap;
         }
 
 

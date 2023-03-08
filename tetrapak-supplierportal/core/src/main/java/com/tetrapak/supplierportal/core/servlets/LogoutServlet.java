@@ -69,11 +69,12 @@ import java.util.Set;
         Cookie aemCustomerNameCookie = request.getCookie(SupplierPortalConstants.COOKIE_NAME);
         if (null != aemCustomerNameCookie) {
             aemCustomerNameCookie.setMaxAge(0);
-            aemCustomerNameCookie.setPath("/");
             aemCustomerNameCookie.setDomain("." + SupplierPortalConstants.DOMAIN_NAME);
+            aemCustomerNameCookie.setPath("/");
             response.addCookie(aemCustomerNameCookie);
             LOGGER.debug("cookie " + SupplierPortalConstants.COOKIE_NAME + " was deleted");
         }
+
         String redirectURL = request.getParameter(REDIRECT_URL_KEY);
         try {
             if (StringUtils.isNotEmpty(redirectURL)) {

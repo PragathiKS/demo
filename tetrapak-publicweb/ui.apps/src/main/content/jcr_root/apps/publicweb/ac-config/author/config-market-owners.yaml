@@ -1,0 +1,1448 @@
+# Market owners
+
+- group_config:
+
+    - publicweb-content-owners-se:
+
+        - name: "Public Web Content Owners for Sweden"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-za:
+
+        - name: "Public Web Content Owners for South Africa"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ru:
+
+        - name: "Public Web Content Owners for Russia and Kazakhstan"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-cn:
+
+        - name: "Public Web Content Owners for China"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-tr:
+
+        - name: "Public Web Content Owners for Turkey"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-jp:
+
+        - name: "Public Web Content Owners for Japan"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ch:
+
+        - name: "Public Web Content Owners for Switzerland"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ca:
+
+        - name: "Public Web Content Owners for Canada"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-maghreb:
+
+        - name: "Public Web Content Owners for Maghreb"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-fr:
+
+        - name: "Public Web Content Owners for France"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-be:
+
+        - name: "Public Web Content Owners for Belgium"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-cac:
+
+        - name: "Public Web Content Owners for Central America and Carribean"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ar:
+
+        - name: "Public Web Content Owners for Argentina"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ve:
+
+        - name: "Public Web Content Owners for Venezuela"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-es:
+
+        - name: "Public Web Content Owners for Spain"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-pe:
+
+        - name: "Public Web Content Owners for Peru"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-py:
+
+        - name: "Public Web Content Owners for Paraguay"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-mx:
+
+        - name: "Public Web Content Owners for Mexico"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ec:
+
+        - name: "Public Web Content Owners for Ecuador"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-co:
+
+        - name: "Public Web Content Owners for Colombia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-cl:
+
+        - name: "Public Web Content Owners for Chile"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-de:
+
+        - name: "Public Web Content Owners for Germany, Austria and Switzerland"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-it:
+
+        - name: "Public Web Content Owners for Italy"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-br:
+
+        - name: "Public Web Content Owners for Brazil"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-pt:
+
+        - name: "Public Web Content Owners for Portugal"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-vn:
+
+        - name: "Public Web Content Owners for Vietnam"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-us:
+
+        - name: "Public Web Content Owners for USA"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-th:
+
+        - name: "Public Web Content Owners for Thailand"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-tw:
+
+        - name: "Public Web Content Owners for Taiwan"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-kr:
+
+        - name: "Public Web Content Owners for South Korea"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-sk:
+
+        - name: "Public Web Content Owners for Slovakia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-sg:
+
+        - name: "Public Web Content Owners for Singapore"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-rs:
+
+        - name: "Public Web Content Owners for Serbia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-sa:
+
+        - name: "Public Web Content Owners for Saudi Arabia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ro:
+
+        - name: "Public Web Content Owners for Romania"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-pl:
+
+        - name: "Public Web Content Owners for Poland"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ph:
+
+        - name: "Public Web Content Owners for Philippines"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-pk:
+
+        - name: "Public Web Content Owners for Pakistan"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-no:
+
+        - name: "Public Web Content Owners for Norway"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-nl:
+
+        - name: "Public Web Content Owners for Netherlands"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-my:
+
+        - name: "Public Web Content Owners for Malaysia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-lv:
+
+        - name: "Public Web Content Owners for Latvia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ie:
+
+        - name: "Public Web Content Owners for Ireland"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ir:
+
+        - name: "Public Web Content Owners for Iran"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-id:
+
+        - name: "Public Web Content Owners for Indonesia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-in:
+
+        - name: "Public Web Content Owners for India"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-hu:
+
+        - name: "Public Web Content Owners for Hungary"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-gr:
+
+        - name: "Public Web Content Owners for Greece"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-fi:
+
+        - name: "Public Web Content Owners for Finland"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-cz:
+
+        - name: "Public Web Content Owners for Czech Republic"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-hr:
+
+        - name: "Public Web Content Owners for Croatia"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-au:
+
+        - name: "Public Web Content Owners for Australia and New Zealand"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-global:
+
+        - name: "Public Web Content Owners for Global"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-gb:
+
+        - name: "Public Web Content Owners for United Kingdom"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+    - publicweb-content-owners-ua:
+
+        - name: "Public Web Content Owners for Ukraine"
+          isMemberOf: fragment-editor,publicweb-basic,siteimprove-users
+          path: /home/groups/publicwebgroups
+
+
+- ace_config:
+
+    - publicweb-content-owners-se:
+
+        - path: /content/tetrapak/publicweb/se
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/se
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-za:
+
+        - path: /content/tetrapak/publicweb/za
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/za
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ru:
+
+        - path: /content/tetrapak/publicweb/ru
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ru
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-cn:
+
+        - path: /content/tetrapak/publicweb/cn
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/cn
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-tr:
+
+        - path: /content/tetrapak/publicweb/tr
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/tr
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-jp:
+
+        - path: /content/tetrapak/publicweb/jp
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/jp
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ch:
+
+        - path: /content/tetrapak/publicweb/ch
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ch
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ca:
+
+        - path: /content/tetrapak/publicweb/ca
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ca
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-maghreb:
+
+        - path: /content/tetrapak/publicweb/maghreb
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/maghreb
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-fr:
+
+        - path: /content/tetrapak/publicweb/fr
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/fr
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-be:
+
+        - path: /content/tetrapak/publicweb/be
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/be
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-cac:
+
+        - path: /content/tetrapak/publicweb/cac
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/cac
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ar:
+
+        - path: /content/tetrapak/publicweb/ar
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ar
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ar
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ve:
+
+        - path: /content/tetrapak/publicweb/ve
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ve
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-es:
+
+        - path: /content/tetrapak/publicweb/es
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/es
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-pe:
+
+        - path: /content/tetrapak/publicweb/pe
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/pe
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-py:
+
+        - path: /content/tetrapak/publicweb/py
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/py
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-mx:
+
+        - path: /content/tetrapak/publicweb/mx
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/mx
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ec:
+
+        - path: /content/tetrapak/publicweb/ec
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ec
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-co:
+
+        - path: /content/tetrapak/publicweb/co
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/co
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-cl:
+
+        - path: /content/tetrapak/publicweb/cl
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/cl
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-de:
+
+        - path: /content/tetrapak/publicweb/de
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/de
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-it:
+
+        - path: /content/tetrapak/publicweb/it
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/it
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-br:
+
+        - path: /content/tetrapak/publicweb/br
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/br
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-pt:
+
+        - path: /content/tetrapak/publicweb/pt
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/pt
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-vn:
+
+        - path: /content/tetrapak/publicweb/vn
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/vn
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-us:
+
+        - path: /content/tetrapak/publicweb/us
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/us
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-th:
+
+        - path: /content/tetrapak/publicweb/th
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/th
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-tw:
+
+        - path: /content/tetrapak/publicweb/tw
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/tw
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-kr:
+
+        - path: /content/tetrapak/publicweb/kr
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/kr
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-sk:
+
+        - path: /content/tetrapak/publicweb/sk
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/sk
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-sg:
+
+        - path: /content/tetrapak/publicweb/sg
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/sg
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-rs:
+
+        - path: /content/tetrapak/publicweb/rs
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/rs
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-sa:
+
+        - path: /content/tetrapak/publicweb/sa
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/sa
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ro:
+
+        - path: /content/tetrapak/publicweb/ro
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ro
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-pl:
+
+        - path: /content/tetrapak/publicweb/pl
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/pl
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ph:
+
+        - path: /content/tetrapak/publicweb/ph
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ph
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-pk:
+
+        - path: /content/tetrapak/publicweb/pk
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/pk
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-no:
+
+        - path: /content/tetrapak/publicweb/no
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/no
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-nl:
+
+        - path: /content/tetrapak/publicweb/nl
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/nl
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-my:
+
+        - path: /content/tetrapak/publicweb/my
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/my
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-lv:
+
+        - path: /content/tetrapak/publicweb/lv
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/lv
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ie:
+
+        - path: /content/tetrapak/publicweb/ie
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ie
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ir:
+
+        - path: /content/tetrapak/publicweb/ir
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ir
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-id:
+
+        - path: /content/tetrapak/publicweb/id
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/id
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-in:
+
+        - path: /content/tetrapak/publicweb/in
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/in
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-hu:
+
+        - path: /content/tetrapak/publicweb/hu
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/hu
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-gr:
+
+        - path: /content/tetrapak/publicweb/gr
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gr
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-fi:
+
+        - path: /content/tetrapak/publicweb/fi
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/fi
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-cz:
+
+        - path: /content/tetrapak/publicweb/cz
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/cz
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-hr:
+
+        - path: /content/tetrapak/publicweb/hr
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/hrd
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-au:
+
+        - path: /content/tetrapak/publicweb/au
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/au
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-global:
+
+        - path: /content/tetrapak/publicweb/global
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/tetrapak/publicweb/lang-masters
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/publicweb/lang-masters
+          permission: allow
+          actions:
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:content
+
+        - path: /content/tetrapak/publicweb/lang-masters/en
+          permission: allow
+          actions: read,modify,create
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/global
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-gb:
+
+        - path: /content/tetrapak/publicweb/gb
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/uk
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
+    - publicweb-content-owners-ua:
+
+        - path: /content/tetrapak/publicweb/ua
+          permission: allow
+          actions: read,modify,create,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/ua
+          permission: allow
+          actions: read,modify,create,delete,replicate
+          privileges:
+          repGlob:
+
+        - path: /content/dam/tetrapak/publicweb/gb
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:

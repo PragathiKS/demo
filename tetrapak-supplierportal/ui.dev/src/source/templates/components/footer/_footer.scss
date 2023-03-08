@@ -15,6 +15,10 @@
         @media #{$desktop} {
             @include padding($padding-l);
         }
+
+        @media #{$mobile} {
+            padding: 0;
+        }
     }
 
     &__link {
@@ -40,8 +44,8 @@
         &__item {
             @include margin-bottom($margin-md);
             @media #{$desktop} {
-                @include margin-right($margin-xxl);
                 display: block;
+                margin: 0 $margin-l;
                 margin-bottom: 0;
             }
 

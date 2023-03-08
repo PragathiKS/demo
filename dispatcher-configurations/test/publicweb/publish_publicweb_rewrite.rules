@@ -784,3 +784,9 @@ ErrorDocument 404 "/en-gb/error/404"
 ErrorDocument 500 "/en-gb/error/500"
 ErrorDocument 403 "/en-gb/error/403"
 </LocationMatch>
+
+<LocationMatch "/content/tetrapak/publicweb/ua/en*">
+ErrorDocument 404 "/en-ua/error/404"
+ErrorDocument 500 "/en-ua/error/500"
+ErrorDocument 403 "/en-ua/error/403"
+</LocationMatch>

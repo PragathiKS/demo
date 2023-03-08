@@ -45,7 +45,7 @@ import java.util.Base64;
 public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
 
     @Reference
-    private APIGEEService apigeeService;
+    private transient APIGEEService apigeeService;
 
     /** The XSSAPI  */
     @Reference

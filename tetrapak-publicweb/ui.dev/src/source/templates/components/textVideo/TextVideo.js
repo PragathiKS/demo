@@ -1,3 +1,4 @@
+
 import $ from 'jquery';
 import { getLinkClickAnalytics,addLinkAttr } from '../../../scripts/common/common';
 class TextVideo {

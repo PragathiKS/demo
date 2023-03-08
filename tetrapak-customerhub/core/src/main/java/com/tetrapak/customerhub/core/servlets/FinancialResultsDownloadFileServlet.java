@@ -42,13 +42,13 @@ public class FinancialResultsDownloadFileServlet extends SlingAllMethodsServlet 
     private static final long serialVersionUID = 2323660841296799482L;
 
     @Reference
-    private FinancialResultsApiService financialsResultsApiService;
+    private transient FinancialResultsApiService financialsResultsApiService;
 
     @Reference
-    private FinancialResultsPDFService generatePDF;
+    private transient FinancialResultsPDFService generatePDF;
 
     @Reference
-    private FinancialResultsExcelService excelService;
+    private transient FinancialResultsExcelService excelService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FinancialResultsDownloadFileServlet.class);
 
