@@ -72,7 +72,6 @@
 
 
 <sly data-sly-template.bannerCommon="${@bannerData, dataLinkSectionCTAText, isFormTypeAuthored, isSoftConvEnabled, heroBanner, textImageBanner, cardTheme, cardThemeReverse}">
-    <div data-sly-test="${bannerData.subtitle || bannerData.title || bannerData.text}" class="pw-banner__content banner-sibling ${bannerData.pwDisplay} ${bannerData.pwCardTheme}"></div>
     <div class="pw-banner__content banner-parent ${bannerData.pwDisplay}
         ${bannerData.pwCardTheme}">
         <div data-sly-test="${bannerData.subtitle}" class="pw-banner__content__subtitle ${bannerData.pwCardTheme}" auto_locator="bannerSubtitle">
