@@ -26,18 +26,22 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Description"
                                 name="./description"/>	
-                            <events
+                            <type
 								jcr:primaryType="nt:unstructured"
-								sling:resourceType="granite/ui/components/foundation/form/checkbox"
-								text="Events"
-								name="./isEvent"
-								value="true"/>
-							<casesarticles
-								jcr:primaryType="nt:unstructured"
-								sling:resourceType="granite/ui/components/foundation/form/checkbox"
-								text="Cases and Articles"
-								name="./isCasesArticles"
-								value="true"/>
+								sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+								name="./type"
+								fieldLabel="Type of page to display">
+									<items jcr:primaryType="nt:unstructured">
+										<option1
+											jcr:primaryType="nt:unstructured"
+											text="Events"
+											value="events"/>
+										<option2
+											jcr:primaryType="nt:unstructured"
+											text="Cases And Articles"
+											value="cases"/>
+									</items>
+							</type>
                         </items>
                     </column>
                 </items>

@@ -13,14 +13,10 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class SearchLandingModel {
     
-    /** The isEvent flag. */
+    /** The type flag. */
     @Inject
-    private String isEvent;
+    private String type;
 
-    /** The isCasesArticles flag. */
-    @Inject
-    private String isCasesArticles;
-    
     /** The heading. */
     @Inject
     private String heading;
@@ -33,22 +29,13 @@ public class SearchLandingModel {
     @Self
     private Resource resource;
 
-    /**
-     * Gets the isEvent flag.
-     *
-     * @return the isEvent flag
-     */
-	public String getIsEvent() {
-		return isEvent;
-	}
-
 	/**
-     * Gets the isCasesArticles flag.
+     * Gets the type.
      *
-     * @return the isCasesArticles flag
+     * @return the type
      */
-	public String getIsCasesArticles() {
-		return isCasesArticles;
+	public String getType() {
+		return type;
 	}
 
 	/**
