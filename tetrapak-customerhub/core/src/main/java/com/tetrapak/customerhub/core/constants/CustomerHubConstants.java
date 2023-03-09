@@ -938,6 +938,8 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
 
+    public static final String RK_MANDATORY_KITS_TEXT = "rkMandatoryKitsText";
+
 
 
     /**
