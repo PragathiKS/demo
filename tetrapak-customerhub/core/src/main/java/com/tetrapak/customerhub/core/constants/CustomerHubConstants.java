@@ -958,12 +958,6 @@ public final class CustomerHubConstants {
 
     public static final String RK_MANDATORY_KITS_TEXT = "rkMandatoryKitsText";
 
-    public static final String READ_GL_USER = "readGenericListsUser";
-
-    public static final String ENGLISH_LANGUAGE = "en";
-
-    public static final String RK_LIABILITY_CONDITIONS_DEFAULT_TITLE = "Liability Conditions";
-
 
 
     /**
