@@ -58,7 +58,7 @@ public class SearchResultsModel {
     
     /** The content type list. */
     private List<SearchListModel> contentTypeList = new ArrayList<>();
-    
+
     /**
      * Inits the.
      */
