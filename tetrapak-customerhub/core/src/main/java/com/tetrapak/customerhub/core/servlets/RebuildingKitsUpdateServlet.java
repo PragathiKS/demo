@@ -64,6 +64,11 @@ public class RebuildingKitsUpdateServlet extends SlingAllMethodsServlet {
         if (bean != null && bean.isValid() && StringUtils.isNotEmpty(token)) {
             jsonObject = rebuildingKitsApiService.updateImplementationStatus(token,GlobalUtil.getCustomerEmailAddress(request),bean);
             if (jsonObject != null) {
+                if(jsonObject.has(CustomerHubConstants.STATUS) && jsonObject.get(CustomerHubConstants.STATUS).getAsInt()!=HttpStatus.SC_CREATED && jsonObject.get(CustomerHubConstants.STATUS).getAsInt()!=HttpStatus.SC_OK){
+                    jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", jsonObject.get(CustomerHubConstants.STATUS).getAsInt());
+                    HttpUtil.writeJsonResponse(response, jsonObject);
+                    return;
+                }
                 HttpUtil.writeJsonResponse(response, jsonObject);
             } else {
                 jsonObject = new JsonObject();

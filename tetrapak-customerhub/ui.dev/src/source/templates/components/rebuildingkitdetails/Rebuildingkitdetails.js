@@ -162,7 +162,7 @@ function  _renderRebuildingKitReportModal() {
         render.fn({
           template: 'rebuildingkitDetailsReport',
           data: {
-            statuses: res.data.map(status => ({ key: status.id, desc: status.implStatus })),
+            statuses: res.data.map(status => ({ key: status.implStatus, desc: status.implStatus })),
             i18nKeys: i18nKeys
           },
           target: '.js-update-modal'
