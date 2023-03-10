@@ -89,7 +89,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 		requestBean.setReportedRebuildingKitName(xssFilter.filter(bean.getReportedRebuildingKitName()));
 		requestBean.setSerialNumber(xssFilter.filter(bean.getSerialNumber()));
 		requestBean.setComment(xssFilter.filter(bean.getComment()));
-		requestBean.setSource("My Tetra Pak");
+		requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB_SOURCENAME);
 		requestBean.setCurrentStatus(xssFilter.filter(bean.getCurrentStatus()));
 		requestBean.setReportedStatus(xssFilter.filter(bean.getReportedStatus()));
 		requestBean.setDate((xssFilter.filter(bean.getDate())));
