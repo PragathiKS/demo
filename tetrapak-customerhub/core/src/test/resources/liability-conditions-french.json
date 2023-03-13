@@ -1,0 +1,141 @@
+{
+  "jcr:primaryType":"dam:Asset",
+  "jcr:mixinTypes":[
+    "mix:referenceable"
+  ],
+  "jcr:createdBy":"admin",
+  "jcr:created":"Mon Mar 13 2023 09:41:30 GMT+0100",
+  "jcr:uuid":"b9b8d7cd-92fa-4f13-b5ce-baef3872df48",
+  "jcr:content":{
+    "jcr:primaryType":"dam:AssetContent",
+    "jcr:lastModifiedBy":"admin",
+    "dam:assetState":"processed",
+    "jcr:lastModified":"Mon Mar 13 2023 09:41:35 GMT+0100",
+    "renditions":{
+      "jcr:primaryType":"nt:folder",
+      "jcr:createdBy":"admin",
+      "jcr:created":"Mon Mar 13 2023 09:41:30 GMT+0100",
+      "cq5dam.thumbnail.48.48.png":{
+        "jcr:primaryType":"nt:file",
+        "jcr:createdBy":"workflow-process-service",
+        "jcr:created":"Mon Mar 13 2023 09:41:35 GMT+0100",
+        "jcr:content":{
+          "jcr:primaryType":"oak:Resource",
+          "jcr:lastModifiedBy":"workflow-process-service",
+          "jcr:mimeType":"image/png",
+          "jcr:lastModified":"Mon Mar 13 2023 09:41:35 GMT+0100",
+          ":jcr:data":818
+        }
+      },
+      "cq5dam.thumbnail.140.100.png":{
+        "jcr:primaryType":"nt:file",
+        "jcr:createdBy":"workflow-process-service",
+        "jcr:created":"Mon Mar 13 2023 09:41:35 GMT+0100",
+        "jcr:content":{
+          "jcr:primaryType":"oak:Resource",
+          "jcr:lastModifiedBy":"workflow-process-service",
+          "jcr:mimeType":"image/png",
+          "jcr:lastModified":"Mon Mar 13 2023 09:41:35 GMT+0100",
+          ":jcr:data":2374
+        }
+      },
+      "cq5dam.web.1280.1280.jpeg":{
+        "jcr:primaryType":"nt:file",
+        "jcr:createdBy":"workflow-process-service",
+        "jcr:created":"Mon Mar 13 2023 09:41:35 GMT+0100",
+        "jcr:content":{
+          "jcr:primaryType":"oak:Resource",
+          "jcr:lastModifiedBy":"workflow-process-service",
+          "jcr:mimeType":"image/jpeg",
+          "jcr:lastModified":"Mon Mar 13 2023 09:41:35 GMT+0100",
+          ":jcr:data":37694
+        }
+      },
+      "original":{
+        "jcr:primaryType":"nt:file",
+        "jcr:createdBy":"admin",
+        "jcr:created":"Mon Mar 13 2023 09:41:30 GMT+0100",
+        "jcr:content":{
+          "jcr:primaryType":"oak:Resource",
+          "jcr:lastModifiedBy":"admin",
+          "jcr:mimeType":"application/pdf",
+          "jcr:lastModified":"Mon Mar 13 2023 09:41:30 GMT+0100",
+          ":jcr:data":863125
+        }
+      },
+      "cq5dam.thumbnail.319.319.png":{
+        "jcr:primaryType":"nt:file",
+        "jcr:createdBy":"workflow-process-service",
+        "jcr:created":"Mon Mar 13 2023 09:41:35 GMT+0100",
+        "jcr:content":{
+          "jcr:primaryType":"oak:Resource",
+          "jcr:lastModifiedBy":"workflow-process-service",
+          "jcr:mimeType":"image/png",
+          "jcr:lastModified":"Mon Mar 13 2023 09:41:35 GMT+0100",
+          ":jcr:data":13083
+        }
+      }
+    },
+    "related":{
+      "jcr:primaryType":"nt:unstructured"
+    },
+    "metadata":{
+      "jcr:primaryType":"nt:unstructured",
+      "jcr:mixinTypes":[
+        "cq:Taggable"
+      ],
+      "jcr:title":"Conditions de responsabilite",
+      "dc:creator":[
+        "SEHEDBERM"
+      ],
+      "dam:Physicalheightininches":"11.69",
+      "dam:Physicalwidthininches":"8.270000000000001",
+      "dam:numPages":29,
+      "xmp:CreatorTool":"Microsoft® Word for Microsoft 365",
+      "dam:scene7CompanyID":"c|23288",
+      "dam:scene7PublishedBy":"sechristense",
+      "dam:extracted":"Mon Mar 13 2023 09:41:31 GMT+0100",
+      "dc:format":"application/pdf",
+      "dc:description":"Tetra Pak Services Connected workforce trial service agreement",
+      "dam:Producer":"Microsoft® Word for Microsoft 365",
+      "dam:scene7ID":"a|590638326",
+      "dc:language":[
+        "en"
+      ],
+      "xmpMM:DocumentID":"uuid:CEFD13EC-35EB-47A5-B763-F81B785FB13B",
+      "dam:scene7CloudConfigPath":"/conf/TetraPak Dynamic Media/settings/cloudconfigs/dmscene7",
+      "dam:scene7FileStatus":"PublishComplete",
+      "cq:tags_xmpArrayType":"rdf:Bag",
+      "dc:modified":"Tue Dec 21 2021 16:44:33 GMT+0000",
+      "dam:scene7File":"tetrapak/trial-agreement-connected-workforcepdf",
+      "dam:scene7Name":"trial-agreement-connected-workforcepdf",
+      "dam:scene7Type":"Pdf",
+      "xmp:MetadataDate":"Tue Dec 21 2021 16:44:33 GMT+0000",
+      "cq:tags":[
+        "tetrapak:services",
+        "tetrapak:keywords/service-agreement"
+      ],
+      "pdf:Producer":"Microsoft® Word for Microsoft 365",
+      "dam:scene7UploadTimeStamp":"Fri Jul 09 2021 07:05:52 GMT+0000",
+      "dam:scene7PublishTimeStamp":"Fri Jul 09 2021 07:09:59 GMT+0000",
+      "dam:scene7JobStartDate":1625814189785,
+      "xmpMM:InstanceID":"uuid:4d8a44bc-af71-49e1-8a28-31d828ea4be1",
+      "xmp:ModifyDate":"Tue Dec 21 2021 17:44:33 GMT+0100",
+      "dc:language_xmpArrayType":"rdf:Bag",
+      "dam:Author":"SEHEDBERM",
+      "xmp:CreateDate":"Fri Jul 02 2021 17:11:36 GMT+0200",
+      "dam:scene7Domain":"http://s7g10.scene7.com/",
+      "dam:scene7Folder":"tetrapak/tetrapak/publicweb/gb/en/services/documents/",
+      "dam:sha1":"7904e8520e09456128fd187660d15594a9bf2fe2",
+      "dam:size":863125,
+      "dam:scene7APIServer":"https://s7sps3apissl.scene7.com",
+      "dc:creator_xmpArrayType":"rdf:Seq",
+      "dc:title":"Conditions de responsabilite",
+      "dam:scene7LastModified":1625814352690,
+      "Iptc4xmpCore:CreatorContactInfo":{
+        "jcr:primaryType":"nt:unstructured",
+        "xmpNodeType":"xmpStruct"
+      }
+    }
+  }
+}

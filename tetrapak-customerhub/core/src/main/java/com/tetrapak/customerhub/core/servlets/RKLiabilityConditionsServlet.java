@@ -13,6 +13,7 @@ import com.tetrapak.customerhub.core.services.RKLiabilityConditionsService;
 import com.tetrapak.customerhub.core.services.config.KeylinesConfiguration;
 import com.tetrapak.customerhub.core.services.config.RKLiabilityConditionsConfig;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
@@ -53,11 +54,12 @@ public class RKLiabilityConditionsServlet extends SlingAllMethodsServlet {
         if(rkLiabilityConditionsPDF.getEnglishPDF()==null && rkLiabilityConditionsPDF.getPreferredLanguagePDF()==null){
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("error","Internal Server error");
-            response.setStatus(HttpURLConnection.HTTP_INTERNAL_ERROR);
+            response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
             response.setCharacterEncoding(StandardCharsets.UTF_8.name());
             response.getWriter().print(jsonObject.toString());
         }else{
             String pdfLinksJSON = new Gson().toJson(rkLiabilityConditionsPDF,RKLiabilityConditionsPDF.class);
+            response.setStatus(HttpStatus.SC_OK);
             response.setCharacterEncoding(StandardCharsets.UTF_8.name());
             response.getWriter().print(pdfLinksJSON);
         }
