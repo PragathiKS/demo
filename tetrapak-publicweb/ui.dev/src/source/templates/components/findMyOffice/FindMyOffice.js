@@ -90,6 +90,17 @@ class FindMyOffice {
         if(country === 'CN' || window.OptanonActiveGroups.includes('4')) {
           this.loadBaiduMapScript();
         }
+
+        $('#accept-recommended-btn-handler, #onetrust-accept-btn-handler').on('click', () => {
+          this.loadBaiduMapScript();
+        });
+
+        $('.save-preference-btn-handler').on('click', () => {
+          if(country === 'CN' || window.OptanonActiveGroups.includes('4')) {
+            this.loadBaiduMapScript();
+          }
+        });        
+
       },getTimeoutBasedOnNetwork());
     }
     this.root.on('click', '.js-localSiteUrl', this.goToLocalSite);

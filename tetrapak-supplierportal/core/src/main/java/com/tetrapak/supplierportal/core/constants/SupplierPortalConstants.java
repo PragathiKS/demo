@@ -2,112 +2,128 @@ package com.tetrapak.supplierportal.core.constants;
 
 public final class SupplierPortalConstants {
 
-    /** The Constant DEFAULT_LOCALE. */
-    public static final String DEFAULT_LOCALE = "en";
+	/** The Constant DEFAULT_LOCALE. */
+	public static final String DEFAULT_LOCALE = "en";
 
-    public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global/";
+	public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global/";
 
-    /**
-     * The Constant HTML_EXTENSION.
-     */
-    public static final String HTML_EXTENSION = ".html";
+	public static final String CONTENT_ROOT = SUPPLIER_PATH + "en";
 
-    /**
-     * The Constant HTML_EXTENSION.
-     */
-    public static final String HTM_EXTENSION = ".htm";
-    
-    /**
-     * The Constant HTML_EXTENSION.
-     */
-    public static final String PREVIEW = "preview";
-    
-    /**
-     * The Constant HTML_EXTENSION.
-     */
-    public static final String HASH = "#";
-    
-    /**
-     * The Constant HTML_EXTENSION.
-     */
-    public static final String TRUE = "true";
-    
-    /**
-     * The Constant HTML_EXTENSION.
-     */
-    public static final String PUBLISH = "publish";
+	public static final String DEFAULT_URL = "/dashboard";
 
-    /**
-     * The Constant HTML_EXTENSION.
-     */
-    public static final String HREF = "href";
+	public static final String SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH = "/etc/notification/email/supplierportal/supportrequestemail.html";
+	
+	public static final String SEND_EMAIL_JOB_TOPIC = "com/tetrapak/supplierportal/sendemail";
 
-    /**
-     * The Constant CONTENT_PATH .
-     */
-    public static final String CONTENT_PATH = "/content/";
+	/**
+	 * The Constant HTML_EXTENSION.
+	 */
+	public static final String HTML_EXTENSION = ".html";
 
-    /** The Constant LANGUAGE_LEVEL. */
-    public static final int LANGUAGE_PAGE_LEVEL = 4;
+	/**
+	 * The Constant HTML_EXTENSION.
+	 */
+	public static final String HTM_EXTENSION = ".htm";
 
-    /** The Constant PARAM_LINK. */
-    public static final String PARAM_LINK = "linkPath";
+	/**
+	 * The Constant HTML_EXTENSION.
+	 */
+	public static final String PREVIEW = "preview";
 
-    /**
-     * The Constant CONTENT_PATH .
-     */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/supplierportal";
+	/**
+	 * The Constant HTML_EXTENSION.
+	 */
+	public static final String HASH = "#";
 
-    /**
-     * The Constant HTTP.
-     */
-    public static final String HTTP = "http";
+	/**
+	 * The Constant HTML_EXTENSION.
+	 */
+	public static final String TRUE = "true";
 
-    /**
-     * The Constant HTTPS.
-     */
-    public static final String HTTPS = "https";
+	/**
+	 * The Constant HTML_EXTENSION.
+	 */
+	public static final String PUBLISH = "publish";
 
-    /**
-     * The Constant WWW.
-     */
-    public static final String WWW = "www";
+	/**
+	 * The Constant HTML_EXTENSION.
+	 */
+	public static final String HREF = "href";
+	
+	/** The Constant RESULT. */
+    public static final String RESULT = "result";
 
-    /**
-     * The Constant CONTENT_DAM_PATH.
-     */
-    public static final String CONTENT_DAM_PATH = "/content/dam/";
+    /** The Constant STATUS. */
+    public static final String STATUS = "status";
 
-    /**
-     * The Constant DOWNLOAD_LINK.
-     */
-    public static final String DOWNLOAD_LINK = "download";
+	/**
+	 * The Constant CONTENT_PATH .
+	 */
+	public static final String CONTENT_PATH = "/content/";
 
-    /**
-     * The Constant DOWNLOAD_LINK.
-     */
-    public static final String EXTERNAL_DOWNLOAD_LINK = "externalDownload";
+	/** The Constant LANGUAGE_LEVEL. */
+	public static final int LANGUAGE_PAGE_LEVEL = 4;
 
-    /**
-     * The Constant INTERNAL_LINK.
-     */
-    public static final String INTERNAL_LINK = "internal";
+	/** The Constant PARAM_LINK. */
+	public static final String PARAM_LINK = "linkPath";
 
-    /**
-     * The Constant EXTERNAL_LINK.
-     */
-    public static final String EXTERNAL_LINK = "external";
+	/**
+	 * The Constant CONTENT_PATH .
+	 */
+	public static final String CONTENT_ROOT_PATH = "/content/tetrapak/supplierportal";
 
-    public static final String SAML_REQUEST_PATH = "saml_request_path";
+	/**
+	 * The Constant HTTP.
+	 */
+	public static final String HTTP = "http";
 
-    public static final String COOKIE_NAME = "SP-AEMCustomerName";
+	/**
+	 * The Constant HTTPS.
+	 */
+	public static final String HTTPS = "https";
 
-    public static final String DOMAIN_NAME = "tetrapak.com";
+	/**
+	 * The Constant WWW.
+	 */
+	public static final String WWW = "www";
 
-    public static final String TOKEN_NAME = "acctoken";
+	/**
+	 * The Constant CONTENT_DAM_PATH.
+	 */
+	public static final String CONTENT_DAM_PATH = "/content/dam/";
 
-    public static final String NAVIGATION_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/navigationconfiguration";
+	/**
+	 * The Constant DOWNLOAD_LINK.
+	 */
+	public static final String DOWNLOAD_LINK = "download";
 
+	/**
+	 * The Constant DOWNLOAD_LINK.
+	 */
+	public static final String EXTERNAL_DOWNLOAD_LINK = "externalDownload";
+
+	/**
+	 * The Constant INTERNAL_LINK.
+	 */
+	public static final String INTERNAL_LINK = "internal";
+
+	/**
+	 * The Constant EXTERNAL_LINK.
+	 */
+	public static final String EXTERNAL_LINK = "external";
+
+	public static final String SAML_REQUEST_PATH = "saml_request_path";
+
+	public static final String COOKIE_NAME = "SP-AEMCustomerName";
+
+	public static final String DOMAIN_NAME = "tetrapak.com";
+
+	public static final String TOKEN_NAME = "acctoken";
+
+	public static final String NAVIGATION_CONFIGURATION_RESOURCE_TYPE = "supplierportal/components/structure/navigationconfiguration";
+
+	/** The Constant SUPPLIER_PORTAL. */
+	public static final String SUPPLIER_PORTAL = "supplierportal";
     /** The Constant LANGUGAGE_PREFERENCES. */
     public static final String LANGUGAGE_PREFERENCES = "languagePreference";
 
@@ -117,8 +133,57 @@ public final class SupplierPortalConstants {
     /** The Constant RESPONSE_STATUS_SUCCESS. */
     public static final String RESPONSE_STATUS_SUCCESS = "success";
 
-    /** The Constant SUPPLIER_PORTAL. */
-    public static final String SUPPLIER_PORTAL = "supplierportal";
+	/**
+	 * The Constant Support Request Form
+	 */
+	public static final String SUPPORTREQUESTGENERALTITLE = "title";
+	public static final String SUPPORTREQUESTGENERALSUBTITLE = "subtitle";
+	public static final String SUPPORTREQUESTPURPOSEOFCONTACT = "purposeContactHeading";
+	public static final String SUPPORTREQUESTPURPOSEERRORMSG = "purposeContactErrorMsg";
+	public static final String SUPPORTREQUESTQUERYTITLE = "queryTitle";
+	public static final String SUPPORTREQUESTQUERYSUBTITLE = "querySubtitle";
+	public static final String SUPPORTREQUESTQUERYERRORMSG = "queryErrorMsg";
+	public static final String SUPPORTREQUESTFILEERRORMSG = "fileErrorMsg";
+	public static final String SUPPORTREQUESTQUERYPLACEHOLDER = "queryPlaceholder";
+	public static final String SUPPORTREQUESTDRAGANDDROPBUTTONLABEL = "dragAndDropButtonLabel";
+	public static final String SUPPORTREQUESTDRAGANDDROPREMOVEFILE = "removeFileLabel";
+	public static final String SUPPORTREQUESTDETAILSTITLE = "detailsTitle";
+	public static final String SUPPORTREQUESTNAMELABEL = "nameLabel";
+	public static final String SUPPORTREQUESTEMAILLABEL = "emailAddressLabel";
+	public static final String SUPPORTREQUESTCOMPANYERRORMSG = "companyErrorMsg";
+	public static final String SUPPORTREQUESTCOMPANYLABEL = "companyLabel";
+	public static final String SUPPORTREQUESTCOUNTRYLABEL = "countryLabel";
+	public static final String SUPPORTREQUESTCOUNTRYERRORMSG = "countryErrorMsg";
+	public static final String SUPPORTREQUESTCITYLABEL = "cityLabel";
+	public static final String SUPPORTREQUESTCITYERRORMSG = "cityErrorMsg";
+	public static final String SUPPORTREQUESTPHONELABEL = "phoneLabel";
+	public static final String SUPPORTREQUESTPHONEERRORMSG = "phoneErrorMsg";
+	public static final String SUPPORTREQUESTOTHERTITLE = "otherTitle";
+	public static final String SUPPORTREQUESTOTHERDESCRIPTIONLABEL = "otherSubtitle";
+	public static final String SUPPORTREQUESTARIBANETWORKLABEL = "aribaNetworkLabel";
+	public static final String SUPPORTREQUESTARIBAEMAILLABEL = "aribaEmailLabel";
+	public static final String SUPPORTREQUESTARIBAEMAILERRORMSG = "aribaEmailErrorMsg";
+	public static final String SUPPORTREQUESTTPEMAILLABEL = "tpEmailLabel";
+	public static final String SUPPORTREQUESTTPEMAILERRORMSG = "tpEmailErrorMsg";
+	public static final String SUPPORTREQUESTSENDBUTTONLABEL = "sendButtonLabel";
+	public static final String SUPPORTREQUESTTHANKYOUTITLE = "thankyouTitle";
+	public static final String SUPPORTREQUESTTHANKYOUSUBTITLE = "thankyouSubtitle";
+	public static final String SUPPORTREQUESTHOMEBUTTON = "homeButtonLabel";
+	public static final String SUPPORTREQUESTONBOARDINGMAINTAIN = "onboardingMaintanance";
+	public static final String SUPPORTREQUESTONBOARDINGMAINTAINSUBTITLE = "onboardingMaintananceSubtitle";
+	public static final String SUPPORTREQUESTSOURCING = "sourcingContracting";
+	public static final String SUPPORTREQUESTSOURCINGSUBTITLE = "sourcingContractingSubtitle";
+	public static final String SUPPORTREQUESTCATALOGUES = "catalogues";
+	public static final String SUPPORTREQUESTCATALOUGESSUBTITLE = "cataloguesSubtitle";
+	public static final String SUPPORTREQUESTOTHERPURPOSE = "otherPurpose";
+	public static final String SUPPORTREQUESTOTHERPURPOSESUBTITLE = "otherPurposeSubtitle";
+	
+	public static final String EMAILSUBJECT = "subject";
+	public static final String SUPPORTREQUESTUSERNAME= "userName";
+	public static final String SUPPORTREQUESTUSEREMAIL= "userEmail";
+
+	/** The Constant for Email ID. */
+	public static final String CUSTOMER_EMAIL_ID = "emailId";
 
     /** The Constant DOMAINSCRIPT. */
     public static final String DOMAINSCRIPT = "domainScript";
