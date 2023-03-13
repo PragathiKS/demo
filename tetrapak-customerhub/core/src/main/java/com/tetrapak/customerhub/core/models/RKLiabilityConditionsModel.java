@@ -33,7 +33,7 @@ public class RKLiabilityConditionsModel {
         i18nKeys = gson.toJson(i18KeyMap);
     }
 
-    public String getAPIPath() {
+    public String getApiPath() {
         ResourceResolver resolver = resource.getResourceResolver();
         return resolver.map(resource.getPath()+".getpdflinks.json");
     }
