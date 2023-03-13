@@ -213,26 +213,29 @@
     }
 
     &__novideo {
-        @include border-radius($border-radius);
-        display: none;
-        align-items: center;
-        background-color: $color-mercury;
-        flex-direction: column;
-        font-size: $font-md;
-        font-weight: 500;
-        justify-content: center;
         height: 100%;
-        p {
-            max-width: 400px;
-            text-align: center;
-            @media #{$mobile} {
-                max-width: 224px;
-                font-size: $font-baseline;
-                font-weight: 400;
+        &_content {
+            @include border-radius($border-radius);
+            display: flex;
+            align-items: center;
+            background-color: $color-mercury;
+            flex-direction: column;
+            font-size: $font-md;
+            font-weight: 500;
+            justify-content: center;
+            height: 100%;
+            p {
+                max-width: 400px;
+                text-align: center;
+                @media #{$mobile} {
+                    max-width: 224px;
+                    font-size: $font-baseline;
+                    font-weight: 400;
+                }
             }
-        }
-        button {
-            margin-top: $margin-l;
+            button {
+                margin-top: $margin-l;
+            }
         }
     }
 }

@@ -130,6 +130,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
             samlCookie.setPath("/");
             response.addCookie(samlCookie);
         }
+
     }
 
     private static String setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response,
@@ -137,7 +138,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         StringBuilder processedUrl = new StringBuilder();
         if (isValidURL(url)) {
             LOGGER.debug("request URI {}", url);
-            processedUrl.append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
+            processedUrl.append(StringUtils.substringBetween(url, "/global", StringUtils.substringAfter(url, ".")))
                     .append("html");
             String queryString = request.getQueryString();
             if (StringUtil.isNotBlank(queryString)) {
