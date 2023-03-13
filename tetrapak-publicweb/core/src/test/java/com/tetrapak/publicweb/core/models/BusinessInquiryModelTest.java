@@ -126,6 +126,7 @@ public class BusinessInquiryModelTest {
         assertEquals("Form", "Marketing Consent", model.getConsentConfig().getMarketingConsent());
         assertEquals("Form", "pardot-system-config:job-title", model.getFormConfig().getPardotSystemConfigTags()[0]);
         assertEquals("Form", "http://go.tetrapak.com/l/857883/2020-05-29/w6xt", model.getBefPardotURL());
+        assertEquals("Form", "go.tetrapak.com/l/857883/2020-05-29/w6xt", model.getBefChinaPardotURL());
     }
     
     @Test

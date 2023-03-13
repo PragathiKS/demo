@@ -55,6 +55,10 @@ public class SoftConversionModel extends FormModel {
     @ValueMapValue
     private String pardotUrl;
     
+    /** The pardot China url. */
+    @ValueMapValue
+    private String pardotChinaUrl;
+
     /** The form config. */
     private SoftConversionFormConfigModel formConfig;
 
@@ -149,6 +153,15 @@ public class SoftConversionModel extends FormModel {
      */
     public String getPardotUrl() {
         return pardotUrl;
+    }
+
+    /**
+     * Gets the pardot china url.
+     *
+     * @return the pardot china url
+     */
+    public String getPardotChinaUrl() {
+        return LinkUtils.getUrlWithoutProtocol(pardotChinaUrl);
     }
 
     /**

@@ -6,10 +6,12 @@ import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constant
 import { logger } from '../../../scripts/utils/logger';
 import { $body } from '../../../scripts/utils/commonSelectors';
 class LanguageSelector {
+    
   constructor({ el }) {
     this.root = $(el);
   }
       cache = {};
+    
       initCache() {
         this.cache.$modal = this.root.parent().find('.js-lang-modal');
         try {
@@ -19,6 +21,7 @@ class LanguageSelector {
           logger.error(e);
         }
       }
+    
       bindEvents() {
         const $this = this;
         const { $modal } = $this.cache;
@@ -32,11 +35,12 @@ class LanguageSelector {
             }
           })
           .on('click', '.js-lang-selector__btn', function () {
-            $this.setCustomerLanguage($(this).data('langcode'), $(this).data('link'));
+            $this.setCustomerLanguage($(this).data('langcode'));
           })
           .on('showlanuagepreferencepopup', function () {
             $modal.modal();
           });
+    
       }
       closeModalHandler() {
         const langCookie = storageUtil.getCookie('lang-code');
@@ -44,7 +48,8 @@ class LanguageSelector {
           storageUtil.setCookie('lang-code', 'en');
         }
       }
-      setCustomerLanguage(langCode, url) {
+    
+      setCustomerLanguage(langCode) {
         ajaxWrapper.getXhrObj({
           url: LANGUAGE_PREFERENCE_SERVLET_URL,
           data: {
@@ -52,12 +57,14 @@ class LanguageSelector {
           }
         }).always(() => {
           storageUtil.setCookie('lang-code', langCode);
-          this.reloadPage(url);
+          this.reloadPage();
         });
       }
-      reloadPage(url) {
-        window.location.href = url;
+    
+      reloadPage() {
+        window.location.reload();
       }
+    
       showPopup(isInit) {
         const { $modal, selectedLanguage } = this.cache;
         const langCookie = storageUtil.getCookie('lang-code');
@@ -71,6 +78,7 @@ class LanguageSelector {
           $modal.modal();
         }
       }
+    
       init() {
         this.initCache();
         this.bindEvents();

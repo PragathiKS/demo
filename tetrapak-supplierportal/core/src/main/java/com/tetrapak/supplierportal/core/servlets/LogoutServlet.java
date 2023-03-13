@@ -74,7 +74,6 @@ import java.util.Set;
             response.addCookie(aemCustomerNameCookie);
             LOGGER.debug("cookie " + SupplierPortalConstants.COOKIE_NAME + " was deleted");
         }
-
         String redirectURL = request.getParameter(REDIRECT_URL_KEY);
         try {
             if (StringUtils.isNotEmpty(redirectURL)) {

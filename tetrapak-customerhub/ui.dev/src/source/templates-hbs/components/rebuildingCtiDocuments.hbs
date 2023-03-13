@@ -25,7 +25,7 @@
         <div class="js-language-header tp-language-header tp-rk-preferred-language__modal-header"
           auto_locator="headlineOverlay">
           {{#if noData}}
-            {{i18n key=i18nKeys.rkRequestCTIText}}
+            {{i18n key=i18nKeys.requestCTIText}}
           {{else}}
             {{i18n key=i18nKeys.rkCTI}}
           {{/if}}
@@ -40,7 +40,7 @@
           {{#if noData}}
           <!-- When no CTI available | Request CTI -->
           <div class="tp-rebuilding-details__request-cti">
-            <p>{{i18n key=i18nKeys.rkReqWhatLanguageWantText}}</p>
+            <p>{{i18n key=i18nKeys.whatLanguageWantText}}</p>
             <div class="tp-rebuilding-details__request-field">
               {{> molecules/requestCtiDropdown/requestCtiDropdown
               defaultValue=i18nKeys.rkSelectLanguage
@@ -52,7 +52,7 @@
             </div>
             <button type="button" class="tpatom-link tpatom-link--primary js-request-translation tp-request-translation"
               title="Request Translation">
-              <span class="tpatom-link__text sly-text">{{i18n key=i18nKeys.rkRequestCTIText}}</span>
+              <span class="tpatom-link__text sly-text">{{i18n key=i18nKeys.rkReqCtiText}}</span>
             </button>
           </div>
           {{else}}
@@ -81,7 +81,7 @@
           </ul>
           <!-- Request More CTI -->
           <div class="tp-rebuilding-details__request-cti">
-            <h3>{{i18n key=i18nKeys.rkReqCtiNewTranslation}}</h3>
+            <h3>{{i18n key=cuhu.myequipment.rkcti.requestanewtranslation}}</h3>
             <div class="tp-rebuilding-details__request-field">
               {{> molecules/requestCtiDropdown/requestCtiDropdown
               defaultValue=i18nKeys.rkSelectLanguage
@@ -101,9 +101,9 @@
         <div class="tp-rebuilding-details__success d-none">
           <div class="tp-rebuilding-details__success-thankyou">
             <i class="icon-Circle_filled_Tick tp-add-equipment__submit-title-icon"></i>
-            <p>{{i18n key=i18nKeys.rkReqCtiThankyoutext}}</p>
+            <p>{{i18n key=cuhu.myequipment.rkcti.thankyoutext}}</p>
           </div>
-          <p class="tp-rebuilding-details__success-description">{{i18n key=i18nKeys.rkReqCtiThankyoumessage}}</p>
+          <p class="tp-rebuilding-details__success-description">{{i18n key=cuhu.myequipment.rkcti.thankyoumessage}}</p>
         </div>
       </div>
     </div>

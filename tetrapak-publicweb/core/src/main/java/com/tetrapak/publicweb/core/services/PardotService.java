@@ -28,6 +28,13 @@ public interface PardotService {
 	 */
     void submitPardotPostRespose(Map<String, String[]> parameters, String url);
 
+    /**
+	 * Submit pardot post respose.
+	 *
+	 * @param parameterMap the parameter map
+	 */
+    void submitPardotPostRespose(Map<String, String[]> parameterMap);
+  
 	/**
 	 * Gets the manage pref json.
 	 *

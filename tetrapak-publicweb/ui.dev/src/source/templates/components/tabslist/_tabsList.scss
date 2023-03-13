@@ -405,10 +405,6 @@
         width: 100%;
         border-radius: 4px;
     }
-    &__novideop {
-        @include padding($padding-l $padding-zero);
-        @include margin-bottom($margin-l);
-    }
 }
 
 .tpatom-youtube {

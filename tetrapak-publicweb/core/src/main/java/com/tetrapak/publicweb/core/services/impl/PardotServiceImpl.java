@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.tetrapak.publicweb.core.beans.pxp.BearerToken;
+import com.tetrapak.publicweb.core.constants.FormConstants;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PardotService;
 import com.tetrapak.publicweb.core.services.config.PardotServiceConfig;
@@ -110,6 +111,18 @@ public class PardotServiceImpl implements PardotService {
         }
     }
 
+    /**
+     * Submit pardot post respose.
+     *
+     * @param parameterMap the parameter map
+     */
+    @Override
+    public void submitPardotPostRespose(final Map<String, String[]> parameterMap) {
+
+        final String url = parameterMap.get(FormConstants.PARDOT_URL_PROPERTY)[0];
+        submitPardotPostRespose(parameterMap, url);
+
+    }
 
     /**
      * Gets the subscription form pardot URL.
@@ -354,17 +367,9 @@ public class PardotServiceImpl implements PardotService {
 
         final ArrayList<NameValuePair> postParameters = new ArrayList<>();
         for (final Map.Entry<String, String[]> entry : parameters.entrySet()) {
-                if("types-communication".equalsIgnoreCase(entry.getKey())
-                        || "interestArea".equalsIgnoreCase(entry.getKey())){
-                    for(String value :entry.getValue()) {
-                        postParameters.add(new BasicNameValuePair(entry.getKey(), value));
-                    }
-                }
-                else {
-                    postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
-                }
+            postParameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()[0]));
         }
-        LOGGER.debug("Post Parameters {}", postParameters);
+
         final HttpClient httpClient = HttpClientBuilder.create().build();
         postRequest.setEntity(new UrlEncodedFormEntity(postParameters, StandardCharsets.UTF_8));
         final HttpResponse httpResponse = httpClient.execute(postRequest);
@@ -379,7 +384,6 @@ public class PardotServiceImpl implements PardotService {
                 break;
             default:
                 throw new HttpException("Error occurred while submitting custom form service data to APIGEE");
-            }
+            }      
     }
-
 }

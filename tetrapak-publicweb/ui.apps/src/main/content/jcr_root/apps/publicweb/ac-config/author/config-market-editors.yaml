@@ -1382,24 +1382,6 @@
           privileges:
           repGlob:
 
-        - path: /content/tetrapak/publicweb/lang-masters
-          permission: allow
-          actions:
-          privileges: jcr:read,jcr:readAccessControl
-          repGlob: ""
-
-        - path: /content/tetrapak/publicweb/lang-masters
-          permission: allow
-          actions:
-          privileges: jcr:read,jcr:readAccessControl
-          repGlob: /jcr:content
-
-        - path: /content/tetrapak/publicweb/lang-masters/en
-          permission: allow
-          actions: read,modify,create
-          privileges:
-          repGlob:
-
         - path: /content/dam/tetrapak/publicweb/gb
           permission: allow
           actions: read,modify,create,delete,replicate

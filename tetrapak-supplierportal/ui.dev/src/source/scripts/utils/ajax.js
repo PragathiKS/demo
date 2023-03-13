@@ -1,6 +1,5 @@
 import { loader, isCallable } from '../common/common';
 import $ from 'jquery';
-import { ajaxMethods } from './constants';
 
 /**
  * Curry to resolve before send
@@ -23,10 +22,10 @@ function _getBeforeSend(self, ajaxOptions, beforeSendCache) {
       ajaxOptions.loader.addClass('loading');
       if (ajaxOptions.loader.hasClass(self.loaderClasses.loaderBtn)) {
         self.loaderRef = loader().insertAfter(ajaxOptions.loader);
-      } else if (ajaxOptions.loader.hasClass(self.loaderClasses.loaderAppend)) {
-        self.loaderRef = loader().appendTo(ajaxOptions.loader);
-      } else {
+      } else if (ajaxOptions.loader.hasClass(self.loaderClasses.loaderReplace)) {
         self.loaderRef = loader().target(ajaxOptions.loader);
+      } else {
+        self.loaderRef = loader().appendTo(ajaxOptions.loader);
       }
     }
     if (typeof beforeSendCache === 'function') {
@@ -99,18 +98,19 @@ export const ajaxWrapper = {
     name: 'xhrPool'
   },
   loaderClasses: {
-    loaderAppend: 'loader-append',
+    loaderReplace: 'loader-rpl',
     loaderBtn: 'loader-btn'
   },
   getXhrObj: function getXhrObj(options, callback, complete) {
     var self = this,
       ajaxOptions = {},
       defaultOptions = {
-        method: ajaxMethods.POST,
+        type: 'POST',
         async: true,
         cache: false,
         url: '',
         data: {},
+        dataType: 'json',
         loaderRef: null,
         // By default allow multiple request on one URL
         cancellable: false,
@@ -118,14 +118,6 @@ export const ajaxWrapper = {
         loader: null
       };
     ajaxOptions = $.extend({}, defaultOptions, options);
-    const { url: apiUrl } = ajaxOptions;
-    if (
-      typeof apiUrl === 'string'
-      && (/jsonData/).test(apiUrl)
-      && (/\.json$/).test(apiUrl)
-    ) {
-      ajaxOptions.method = 'GET';
-    }
     options.loader = undefined;
     var beforeSendCache = ajaxOptions.beforeSend;
     ajaxOptions.beforeSend = _getBeforeSend(self, ajaxOptions, beforeSendCache);
