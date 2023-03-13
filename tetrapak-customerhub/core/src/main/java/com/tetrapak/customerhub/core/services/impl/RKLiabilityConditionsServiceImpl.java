@@ -38,8 +38,8 @@ public class RKLiabilityConditionsServiceImpl implements RKLiabilityConditionsSe
     public RKLiabilityConditionsPDF getPDFLinksJSON(ResourceResolver resourceResolver, String preferredLanguage){
         Gson gson = new Gson();
         RKLiabilityConditionsPDF rkLiabilityConditionsPDF = new RKLiabilityConditionsPDF();
-        if(StringUtils.isNotBlank(preferredLanguage)) {
-            if (StringUtils.isNotBlank(config.pdfFolderMappingGLPath())) {
+        if(preferredLanguage!=null) {
+            if (config.pdfFolderMappingGLPath() != null) {
                 PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
                 if (pageManager != null) {
                     Page pdfFolderMappingGLPage = pageManager.getPage(config.pdfFolderMappingGLPath());
