@@ -1,0 +1,27 @@
+{
+  "jcr:primaryType":"cq:Page",
+  "jcr:createdBy":"admin",
+  "jcr:created":"Thu Mar 09 2023 14:41:17 GMT+0100",
+  "jcr:content":{
+    "jcr:primaryType":"nt:unstructured",
+    "jcr:title":"RK Liability Conditions",
+    "sling:resourceType":"acs-commons/components/utilities/genericlist",
+    "image":{
+      "jcr:primaryType":"nt:unstructured",
+      "fileReference":"/apps/acs-commons/components/utilities/genericlist/generic-list.png"
+    },
+    "list":{
+      "jcr:primaryType":"nt:unstructured",
+      "item0":{
+        "jcr:primaryType":"nt:unstructured",
+        "jcr:title":"en",
+        "value":"/content/dam/tetrapak/customerhub/english/rebuildingkits/liability-conditions.pdf"
+      },
+      "item1":{
+        "jcr:primaryType":"nt:unstructured",
+        "jcr:title":"fr",
+        "value":"/content/dam/tetrapak/customerhub/french/rebuildingkits/liability-conditions.pdf"
+      }
+    }
+  }
+}
