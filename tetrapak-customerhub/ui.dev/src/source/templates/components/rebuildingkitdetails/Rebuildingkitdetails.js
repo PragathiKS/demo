@@ -197,8 +197,8 @@ function _submitCTIemail(dataObj) {
 function _getCtiDocuments() {
   const $this = this;
   const { apiCTI } = $this.cache;
-  const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
-  // const rkRelease = 'TT3_2020_01_01';
+  //const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
+  const rkRelease = 'TT3_2020_01_01';
   if (rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
@@ -263,6 +263,10 @@ function _getCtiDocuments() {
                   reqLangList.push(newObj);
                 }
               });
+            });
+            // sort language alphabetically
+            otherLang.sort(function(a, b) {
+              return a['langDesc'].localeCompare(b['langDesc']);
             });
             $this.renderCtiDocuments(langAvailable, otherLang, reqLangList);
           }
