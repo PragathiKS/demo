@@ -2,13 +2,12 @@
     font-weight: 500;
     line-height: $font-l;
     p {
-         color: $color-congress-blue;
+        color: $color-congress-blue;
     }
     button {
         line-height: $font-l;
         font-weight: 500;
     }
-   
 
     @media #{$mobile} {
         button {
@@ -18,8 +17,10 @@
             margin-top: $margin-sm;
             margin-bottom: $margin-md;
         }
-        .icon::before {
-            margin-left: 0;
+        .icon {
+            &::before {
+                margin-left: 0;
+            }
         }
     }
 }
