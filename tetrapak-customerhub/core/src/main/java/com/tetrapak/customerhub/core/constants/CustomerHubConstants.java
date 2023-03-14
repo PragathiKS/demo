@@ -850,15 +850,9 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
     
-    /** The Constant COUNTRY_LIST_API. */
-    public static final String RK_DETAILS_API = "rebuildingkits-rebuildingkitdetails";
-    
     /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
     public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
     
-    /** The constant DATA_ROOT_PATH. */
-    public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
-
     /** Anchor Link Target New Tab*/
     public static final String REQUEST_NEW_CTI_TRANSLATION = "rkReqCtiNewTranslation";
 
