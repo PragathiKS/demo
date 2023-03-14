@@ -195,13 +195,14 @@ function _submitCTIemail(dataObj) {
 
 function _getCtiDocuments() {
   const $this = this;
+  const { apiCTI } = $this.cache;
   const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
   // const rkRelease = 'TT3_2020_01_01';
   if (rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
-          url: `https://api-dev.tetrapak.com/technicalbulletins/${rkRelease}/cti`,
+          url: `${apiCTI}/${rkRelease}/cti`,
           method: ajaxMethods.GET,
           cache: true,
           dataType: 'json',
