@@ -36,13 +36,8 @@ function _renderRebuildingKitDetails() {
 
 function _renderCtiDocuments(langAvailable, otherLang, reqOtherLang) {
   const $this = this;
-<<<<<<< HEAD
-=======
   const { i18nKeys } = $this.cache;
-
->>>>>>> 62e690bbf (SMAR-22767 - Request CTI - XT changes - WIP)
   if (!langAvailable) {
-    const errorMessage ='No data in api';
     render.fn({
       template: 'rebuildingCtiDocuments',
       target: $this.cache.$contentdocs,
@@ -384,6 +379,7 @@ class Rebuildingkitdetails {
     }
   }
   changePreferredLanguage(btn) {
+    const $this = this;
     const { apiURL, langlist, $preferredLangLink, $modal } = this.cache;
     const updatedLang = $('input[name="preferredlanguage"]:checked').val();
     const newURL = `${apiURL}?langcode=${updatedLang}`;

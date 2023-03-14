@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import file from '../../../scripts/utils/file';
+import logger from '../../../scripts/utils/logger';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _paginationAnalytics, _customizeTableBtnAnalytics } from './RebuildingKits.analytics';
