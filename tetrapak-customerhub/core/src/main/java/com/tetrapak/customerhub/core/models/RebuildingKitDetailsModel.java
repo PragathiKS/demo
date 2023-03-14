@@ -526,6 +526,24 @@ public class RebuildingKitDetailsModel {
 	}
 
     /**
+     * Gets the rkSubType.
+     *
+     * @return the rkSubType
+     */
+    public String getRkSubType() {
+        return rkSubType;
+    }
+
+    /**
+     * Gets the rkValidation.
+     *
+     * @return the rkValidation
+     */
+    public String getRkValidation() {
+        return rkValidation;
+    }
+
+    /**
      * Gets the rkHandling.
      *
      * @return the rkHandling
@@ -559,8 +577,26 @@ public class RebuildingKitDetailsModel {
      */
 	public String getServiceOrder() {
 		return serviceOrder;
-	}  
-	
+	}
+
+    /**
+     * Gets the rkNoCtiText.
+     *
+     * @return the rkNoCtiText
+     */
+    public String getRkNoCtiText() {
+        return rkNoCtiText;
+    }
+
+    /**
+     * Gets the rkReqCtiText.
+     *
+     * @return the rkReqCtiText
+     */
+    public String getRkReqCtiText() {
+        return rkReqCtiText;
+    }
+
     /**
      * Gets the Rebuilding Kit Details API.
      *
