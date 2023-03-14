@@ -236,6 +236,30 @@ public class RebuildingKitsModel {
 	/** The Order tool tip. */
 	@ValueMapValue
 	private String orderToolTip;
+
+	/** The From Date Text. */
+	@ValueMapValue
+	private String fromDateText;
+
+	/** The To Date Text. */
+	@ValueMapValue
+	private String toDateText;
+
+	/** The Invalid date Text. */
+	@ValueMapValue
+	private String invalidDateText;
+
+	/** The Past Date Error Text. */
+	@ValueMapValue
+	private String pastDateErrorText;
+
+	/** The Date Later Than error text. */
+	@ValueMapValue
+	private String dateLaterThanError;
+
+	/** The Date Before Than error text. */
+	@ValueMapValue
+	private String dateBeforeThanError;
 	
 	/** The path to rebuilding kits details. */
 	@ValueMapValue
@@ -870,7 +894,53 @@ public class RebuildingKitsModel {
 		return filtersOf;
 	}
 
+	/**
+	 *Gets the from date text
+	 * @return from date text
+	 */
+	public String getFromDateText() {
+		return fromDateText;
+	}
 
+	/**
+	 * Gets the to date text
+	 * @return to date text
+	 */
+	public String getToDateText() {
+		return toDateText;
+	}
+
+	/**
+	 *Gets the invalid date text
+	 * @return invalid date text
+	 */
+	public String getInvalidDateText() {
+		return invalidDateText;
+	}
+
+	/**
+	 *Gets the past date error text
+	 * @return past date error text
+	 */
+	public String getPastDateErrorText() {
+		return pastDateErrorText;
+	}
+
+	/**
+	 *Gets the date later than error text
+	 * @return date later than error text
+	 */
+	public String getDateLaterThanError() {
+		return dateLaterThanError;
+	}
+
+	/**
+	 *Gets the date before than error text
+	 * @return date before than error text
+	 */
+	public String getDateBeforeThanError() {
+		return dateBeforeThanError;
+	}
 
 	/**
 	 * Inits the.
@@ -935,6 +1005,12 @@ public class RebuildingKitsModel {
         i18KeyMap.put(CustomerHubConstants.RELEASE_DATE_TOOL_TIP, getReleaseDateToolTip());
         i18KeyMap.put(CustomerHubConstants.GENERAL_RKNUMBER_TOOL_TIP, getGeneralRkNumberToolTip());
 		i18KeyMap.put(CustomerHubConstants.ORDER_TOOL_TIP, getOrderToolTip());
+		i18KeyMap.put(CustomerHubConstants.FROM_DATE_TEXT, getFromDateText());
+		i18KeyMap.put(CustomerHubConstants.TO_DATE_TEXT, getToDateText());
+		i18KeyMap.put(CustomerHubConstants.INVALID_DATE_TEXT, getInvalidDateText());
+		i18KeyMap.put(CustomerHubConstants.PAST_ERROR_TEXT, getPastDateErrorText());
+		i18KeyMap.put(CustomerHubConstants.DATE_LATER_THAN_ERROR, getDateLaterThanError());
+		i18KeyMap.put(CustomerHubConstants.DATE_BEFORE_THAN_ERROR, getDateBeforeThanError());
 
         if (slingSettingsService.getRunModes().contains(CustomerHubConstants.PUBLISH)) {
             isPublishEnvironment = Boolean.TRUE;
