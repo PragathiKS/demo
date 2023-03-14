@@ -225,7 +225,8 @@
         "source/templates/components/teaser/",
         "source/templates/components/mediaLink/",
         "source/templates/components/breadcrumb/",
-        "source/templates/components/banner/"
+        "source/templates/components/banner/",
+        "source/templates/components/rkliabilityconditions/"
       ],
       "dashboard": [
         "source/templates/components/contactcard/",
