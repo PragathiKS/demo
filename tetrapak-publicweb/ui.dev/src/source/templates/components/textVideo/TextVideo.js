@@ -26,35 +26,6 @@ class TextVideo {
       getLinkClickAnalytics(e,'video-title','Text & Video','.js-subscription-pw-textvideo', false);
       $('body').find('.'+this.cache.componentName).trigger('showSubscription-pw');
     });
-<<<<<<< HEAD
-
-    setTimeout(() => {
-      $('#accept-recommended-btn-handler').on('click', () => {
-        $('.pw-text-video__video').css('display', 'block');
-        $('.pw-text-video__novideo').css('display', 'none');
-      });
-
-      $('.save-preference-btn-handler').on('click', () => {
-        const noVideo = window.OptanonActiveGroups;
-        if(noVideo === ',1,' || noVideo === ',1,2,') {
-          $('.pw-text-video__video').css('display', 'none');
-          if(!$('.pw-text-video__novideo').children().length) {
-            render.fn({
-              template: 'noVideoContent',
-              data: {  },
-              target: '.pw-text-video__novideo',
-              hidden: false
-            });
-          }
-          $('.pw-text-video__novideo').css('display', 'block');
-        } else {
-          $('.pw-text-video__video').css('display', 'block');
-          $('.pw-text-video__novideo').css('display', 'none');
-        }
-      });
-    },2500);
-=======
->>>>>>> a0ca03a61 (SMAR-27628 - OneTrust cookie - Youtube video handling)
   }
 
 
