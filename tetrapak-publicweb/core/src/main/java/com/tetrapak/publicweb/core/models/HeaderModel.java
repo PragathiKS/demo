@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.publicweb.core.beans.LinkBean;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -91,6 +93,11 @@ public class HeaderModel {
     /** The xssApi. */
     @Reference
     private XSSAPI xssApi;
+    
+    @Inject
+    private Page currentPage;
+
+    private String countryTitle;
 
     /**
      * Inits the.
@@ -120,6 +127,13 @@ public class HeaderModel {
                 solutionPage = configurationModel.getSolutionPage();
                 searchPage = LinkUtils.sanitizeLink(configurationModel.getSearchPage(),request);
                 marketSelectorDisabled = configurationModel.getMarketSelectorDisabled();
+                Page countryPage = PageUtil.getCountryPage(currentPage);
+		if (Objects.nonNull(countryPage) && !countryPage.getName().equals(PWConstants.LANG_MASTERS)) {
+		    countryTitle = countryPage.getProperties().get(PWConstants.PROP_COUNTRY_NAME, "");
+		    LOGGER.debug("countryTitle from Page Property: {}", countryTitle);
+		    countryTitle = StringUtils.isBlank(countryTitle) ? countryPage.getTitle() : "";
+		    LOGGER.debug("countryTitle: {}", countryTitle);
+		}
             }
             setMegaMenuLinksList(rootPath);
             setSolutionPageTitle();
@@ -411,5 +425,14 @@ public class HeaderModel {
      */
     public Boolean getMarketSelectorDisabled() {
         return marketSelectorDisabled;
+    }
+    
+    /**
+     * Gets the country page's title
+     * 
+     * @return country title
+     */
+    public String getCountryTitle() {
+	return countryTitle;
     }
 }
