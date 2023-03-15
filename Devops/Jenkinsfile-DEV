@@ -358,6 +358,7 @@ def karmatest() {
 }
 
 def zaptest() {
+    def test_url_pally_zap_pw = "https://www-dev.tetrapak.com/"
     echo "Starting Zap Test Run- ${appname}"
     sh 'sudo docker ps -a'
     sh 'if docker ps | grep zap; then echo "ZAP is running, initiating stop and remove" && sudo docker stop zap && sudo docker rm zap ; else echo "stopped"; fi'
