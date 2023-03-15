@@ -3,6 +3,7 @@
   "anchorId": "test",
   "anchorTitle": "title",
   "pwTheme": "grayscale-white",
+  "displayDate": "true",
   "teaserList": [
     {
       "title": "Title",
@@ -15,7 +16,7 @@
       "pwButtonTheme": "link",
       "assetName": "test.pdf",
       "pwLinkTheme": "link",
-      "date": "2023-10-01"
+      "articleDate": "2023-10-01"
     },
     {
       "title": "Title",
@@ -28,7 +29,7 @@
       "pwButtonTheme": "link",
       "assetName": "test.pdf",
       "pwLinkTheme": "link",
-      "date": "2023-10-01"
+      "articleDate": "2023-10-01"
     },
     {
       "title": "Title",
