@@ -35,7 +35,7 @@ class Rkliabilityconditions {
     const $this = this;
     auth.getToken(({ data: authData }) => {
       ajaxWrapper.getXhrObj({
-        url: `${this.cache.pdfbButtonsApi}?preferredLanguage=en`,
+        url: `${this.cache.pdfbuttonsApi}?preferredLanguage=en`,
         method: ajaxMethods.GET,
         dataType: 'json',
         contentType: 'application/json',
