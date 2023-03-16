@@ -1,7 +1,11 @@
 <sly data-sly-template.searchlanding_template="${@data, flag}">
     <div data-module="Searchlanding">
         <!--/* Component HTML code goes here */-->
-        <div>${data}</div>
-        <div>${data.heading}</div>
+        <div class="js-searchLanding-data"
+            data-link-heading="${data.heading}"
+            data-link-description="${data.description}"
+            data-link-type="${data.type}"
+            data-sly-resource="${'searchresults' @ resourceType='publicweb/components/content/searchresults'}"
+        /> 
     </div>
 </sly>
