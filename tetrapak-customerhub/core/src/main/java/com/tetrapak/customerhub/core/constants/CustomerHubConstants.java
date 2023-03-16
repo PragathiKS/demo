@@ -940,6 +940,8 @@ public final class CustomerHubConstants {
 
     public static final String RK_MANDATORY_KITS_TEXT = "rkMandatoryKitsText";
 
+    public static final String READ_GL_USER = "readGenericListsUser";
+
 
 
     /**

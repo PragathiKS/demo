@@ -1,10 +1,11 @@
 import $ from 'jquery';
-import { logger } from '../../../scripts/utils/logger';
 import { render } from '../../../scripts/utils/render';
+import { logger } from '../../../scripts/utils/logger';
 import auth from '../../../scripts/utils/auth';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { storageUtil } from '../../../scripts/common/common';
+
+
 
 class Rkliabilityconditions {
   constructor({ el }) {
@@ -32,11 +33,9 @@ class Rkliabilityconditions {
   }
   getPDFButtons() {
     const $this = this;
-    const ctiLangCode = storageUtil.getCookie('ctiLangCode') || 'en';
-    logger.log(`getPdfbuttons: ${this.cache.pdfbButtonsApi}?preferredLanguage=${ctiLangCode}`);
     auth.getToken(({ data: authData }) => {
       ajaxWrapper.getXhrObj({
-        url: `${this.cache.pdfButtonsApi}?preferredLanguage=${ctiLangCode}`,
+        url: `${this.cache.pdfbuttonsApi}?preferredLanguage=en`,
         method: ajaxMethods.GET,
         dataType: 'json',
         contentType: 'application/json',
