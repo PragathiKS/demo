@@ -1,3 +1,17 @@
+.pw-search-result-head {
+    .pw-search-title {
+        color: $color-tundora;
+        font-size: $font-xxl;
+        line-height: $padding-xxxl;
+        font-weight: 700;
+    }
+    .pw-search-description {
+        color: $color-tundora;
+        font-size: $font-baseline;
+        line-height: $spacing-big;
+        font-weight: 400;
+    }
+}
 .pw-search-results {
     @include margin-bottom($margin-l);
 
