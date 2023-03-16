@@ -131,7 +131,7 @@ public class HeaderModel {
 		if (Objects.nonNull(countryPage) && !countryPage.getName().equals(PWConstants.LANG_MASTERS)) {
 		    countryTitle = countryPage.getProperties().get(PWConstants.PROP_COUNTRY_NAME, "");
 		    LOGGER.debug("countryTitle from Page Property: {}", countryTitle);
-		    countryTitle = StringUtils.isBlank(countryTitle) ? countryPage.getTitle() : "";
+		    countryTitle = StringUtils.isBlank(countryTitle) ? countryPage.getTitle() : countryTitle;
 		    LOGGER.debug("countryTitle: {}", countryTitle);
 		}
             }
