@@ -197,6 +197,14 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
                                 path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
+                            <articledate
+                                    granite:class="pw-datepicker"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                    fieldLabel="Article Date"
+                                    name="./articleDate"
+                                    type="date">
+                            </articledate>
                           </items>
                         </column>
                       </items>

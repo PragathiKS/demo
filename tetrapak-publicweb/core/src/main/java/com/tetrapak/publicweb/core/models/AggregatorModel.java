@@ -9,6 +9,7 @@ import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -21,10 +22,7 @@ import org.slf4j.LoggerFactory;
  * The Class AggregatorModel.
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class AggregatorModel {
-
-    /** The Constant LOGGER. */
-    private static final Logger LOGGER = LoggerFactory.getLogger(AggregatorModel.class);
+public class AggregatorModel {    
 
     /** The title. */
     @Named(value = "jcr:title")
@@ -148,28 +146,7 @@ public class AggregatorModel {
 
     @PostConstruct
     protected void init() {
-        articleDate = formatDate(articleDate);
-    }
-
-/**
-     * Format date.
-     *
-     * @param dateString
-     *            the date string
-     * @return the string
-     */
-     private String formatDate(String dateString) {
-        if (dateString != null && dateString.length() > 0 && dateString.contains("T")) {
-            final String parsedDate = dateString.substring(0, dateString.indexOf('T'));
-            if (parsedDate.length() > 0) {
-                try {
-                    return parsedDate;
-                } catch (final Exception e) {
-                    LOGGER.error("Error occurred while parsing date: {} ", e.getMessage(), e);
-                }
-            }
-        }
-        return StringUtils.EMPTY;
+        articleDate = GlobalUtil.formatDate(articleDate);
     }
 
 }
