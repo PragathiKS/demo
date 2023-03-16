@@ -1,0 +1,415 @@
+.tp_container {
+    .row {
+        &.tp-rebuilding-details__details-line {
+            @include margin-right($margin-zero);
+            @include margin-left($margin-zero);
+        }
+    }
+}
+.tp-rebuilding-details {
+    &__content {
+        h1 {
+            @include margin-bottom($margin-md);
+            font-weight: 400;
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+    &__title {
+        @include line-height($font-xxl, $font-l);
+        @include margin-bottom($margin-l);
+        font-size: $font-xl;
+        font-weight: 400;
+
+        &__bold {
+            @include margin-right($margin-sm);
+            font-weight: 700;
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+        }
+    }
+    &__ctidocs {
+        @include padding-top($padding-md);
+        border-top: solid 1px $color-mercury;
+        p {
+            @include padding($padding-sm $padding-zero);
+            color: $color-alert;
+        }
+        .js-langcode {
+            @include margin-top($margin-sm);
+            display: inline-block;
+        }
+    }
+    &__info-card-col {
+        @include margin-bottom($margin-xxl);
+
+        @media #{mobile} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__info-card {
+        @include padding($padding-l);
+        display: flex;
+        background-color: $color-wild-sand;
+        border-radius: $border-radius;
+        height: 100%;
+        flex-direction: column;
+
+        @media #{mobile} {
+            @include padding($padding-md);
+        }
+
+        h3 {
+            @include padding-bottom($padding-md);
+        }
+        &.top {
+            h3 {
+                @include margin-bottom($margin-md);
+                border-bottom: solid 1px $color-mercury;
+            }
+        }
+    }
+    &__lang-link {
+        text-align: right;
+        .icon {
+            color: $color-congress-blue;
+        }
+    }
+    &__row {
+        @include padding($padding-zero $padding-sm);
+    }
+
+    &__info-line {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+
+        &--error {
+            border: 1px solid $color-alert;
+        }
+
+        @media #{$mobile} {
+            display: block;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        i {
+            @include margin-right($margin-md);
+            display: inline-block;
+            color: $color-congress-blue;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__form-element {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        position: relative;
+
+        @media #{$mobile} {
+            display: block;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        i {
+            @include margin-right($margin-md);
+            display: inline-block;
+            color: $color-congress-blue;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__info-cell-one {
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-md $padding-sm $padding-zero $padding-sm);
+
+        font-weight: 500;
+        flex-shrink: 0;
+
+        @media #{$mobile} {
+            @include line-height($font-l, $font-baseline);
+        }
+    }
+
+    &__info-cell-two {
+        @include line-height($font-l, $font-baseline);
+        @include padding-top($padding-md);
+        font-weight: 700;
+        @media #{$mobile} {
+            @include padding-left($padding-sm);
+            @include padding-right($padding-sm);
+        }
+        .error-msg {
+            display: none;
+        }
+    }
+    &__contentbottom {
+        @include margin-top($margin-l);
+    }
+
+    &__details-row {
+        @include margin-bottom($margin-xl);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__details-row-title {
+        @include font-size($font-baseline);
+        @include margin-bottom($margin-md);
+    }
+
+    &__details-line {
+        @include padding($padding-md $padding-zero);
+        display: flex;
+        border-bottom: 1px solid $color-mercury;
+
+        @media #{$mobile} {
+            display: block;
+        }
+        &.row {
+            @include margin($margin-zero);
+        }
+    }
+
+    &__details-cell {
+        @include line-height($font-l, $font-baseline);
+        font-weight: 500;
+    }
+
+    &__action-wrap {
+        display: flex;
+        margin-top: auto;
+
+        .tpatom-btn {
+            @include margin-left($margin-md);
+
+            &:first-child {
+                @include margin-left($margin-zero);
+            }
+        }
+    }
+
+    &__note {
+        @include font-size(10px);
+        @include line-height($font-normal, 10px);
+        @include margin($margin-md $margin-zero $margin-zero $margin-md);
+        font-weight: 500;
+
+        span {
+            font-weight: 700;
+        }
+    }
+
+    &__btn {
+        color: $color-congress-blue;
+        transition: color $anim-speed-quick $anim-ease;
+        font-weight: 500;
+
+        i {
+            @include font-size($font-sm);
+            @include margin-left(3px);
+            display: inline-block;
+            transform: translateY(1px);
+        }
+
+        &:hover {
+            color: $color-sky-blue;
+        }
+    }
+
+    &__back-btn {
+        @include line-height($font-l, $font-baseline);
+        @include margin-bottom(20px);
+        color: $color-congress-blue;
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+        }
+
+        i {
+            @include font-size($font-normal);
+            @include margin-right($margin-xs);
+            display: inline-block;
+            margin-left: 0;
+            transform: translateY(2px);
+        }
+    }
+
+    &__conf-title {
+        @include margin-bottom($margin-md);
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+
+        i {
+            @include font-size($font-xxl);
+            @include line-height($font-xxl, $font-xxl);
+            @include margin-right($margin-md);
+            color: $color-success-icon;
+        }
+    }
+
+    &__modal-header {
+        h2 {
+            @include margin-bottom($margin-md);
+            font-weight: 400;
+        }
+    }
+
+    &__update {
+        @include border-radius(4px);
+        @include padding($padding-sm $padding-md);
+        border: 1px solid $color-congress-blue;
+        display: flex;
+        transition: border $anim-speed-quick $anim-ease;
+
+        &:hover {
+            border-color: $color-sky-blue;
+        }
+        i {
+            @include margin-left($margin-sm);
+        }
+    }
+
+    &__req-make-update {
+        @include margin-right($margin-md);
+    }
+
+    &__conf-cancel {
+        background-color: inherit;
+    }
+
+    &-modal .tpmol-modal-footer {
+        padding-top: 0;
+
+        .tpatom-btn {
+            @include margin($margin-zero);
+            @include margin-left($margin-md);
+
+            &:first-child {
+                @include margin-left($margin-zero);
+            }
+        }
+    }
+
+    &__cti {
+        &-list {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            @include padding($padding-zero);
+            li {
+                @include padding-top($padding-md);
+                display: flex;
+                align-items: center;
+                &:first-child {
+                    @include padding-top($padding-zero);
+                }
+            }
+            &.section {
+                @include padding($padding-zero);
+            }
+            &.bottom {
+                @include margin($margin-l $margin-zero);
+                @include padding($padding-l $padding-zero);
+                border-top: solid 1px $color-mercury;
+                border-bottom: solid 1px $color-mercury;
+                li {
+                    &:first-child {
+                        @include padding-top($padding-zero);
+                    }
+                }
+            }
+            .icon {
+                @include font-size($font-sm);
+                @include line-height($font-normal, $font-sm);
+                @include padding-right($padding-sm);
+                color: $color-red;
+            }
+        }
+
+        &-file {
+            display: inline-block;
+            color: $color-tundora;
+        }
+    }
+    &__request-field {
+        .tpatom-dropdown {
+            @include padding-bottom($padding-md);
+        }
+        .error-msg {
+            @include padding-bottom($padding-md);
+            display: none;
+            &.error-msg--active {
+                display: block;
+                color: $color-alert;
+            }
+        }
+    }
+    &__success {
+        @include padding($padding-zero 10px);
+        p {
+            color: $color-text;
+        }
+        &-thankyou {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            @include padding-bottom(14px);
+            display: flex;
+            font-weight: 700;
+            align-items: center;
+        }
+        &-description {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            font-weight: 400;
+        }
+    }
+}
+.tp {
+    &-rk-preferred-language {
+        &__modal-header {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            color: $color-black;
+        }
+        &__modal-body {
+            max-height: 350px;
+            overflow-y: scroll;
+
+            li {
+                @include margin-top($margin-l);
+                &:first-child {
+                    margin-top: $margin-zero;
+                }
+            }
+        }
+    }
+
+    &-rk-cti-language {
+        &__modal-body {
+            @include padding($padding-zero $padding-l $padding-l $padding-l);
+            p {
+                color: $color-text;
+            }
+        }
+    }
+}

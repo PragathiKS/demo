@@ -22,7 +22,7 @@ class RichText {
     const $this = $(e.target);
     const linkName = $this.text();
     const thisHref = $this.attr('href');
-    const linkType =  isExternal(thisHref) ? 'external':'internal'; 
+    const linkType =  isExternal(thisHref) ? 'external':'internal';
     const firstH1 = this.cache.$attributeDivId.find('h1:first').text();
     const firstH2 = this.cache.$attributeDivId.find('h2:first').text();
     const parentTitleText = firstH1 || firstH2 || 'RTE';
@@ -37,7 +37,7 @@ class RichText {
       eventType: 'linkClick',
       event: 'RTE'
     };
-    
+
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
       window.open($this.attr('href'), '_blank');
@@ -45,7 +45,7 @@ class RichText {
     else {
       window.open($this.attr('href'),'_self');
     }
- 
+
   };
 
   init() {

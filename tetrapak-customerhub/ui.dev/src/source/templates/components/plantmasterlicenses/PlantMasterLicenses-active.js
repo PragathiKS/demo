@@ -118,7 +118,7 @@ function _submitLicenseWithdraw(licenseDetails) {
 
   auth.getToken(({ data: authData }) => {
     ajaxWrapper.getXhrObj({
-      url: submitApi + '?licenseType=activeWithdrawal',
+      url: `${submitApi  }?licenseType=activeWithdrawal`,
       method: ajaxMethods.POST,
       cache: true,
       contentType: 'application/json; charset=utf-8',

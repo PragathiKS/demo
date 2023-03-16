@@ -184,7 +184,7 @@ class CotsSupport {
           contentType: false,
           data: this.cache.formData,
           showLoader: true
-        }).done(() => {          
+        }).done(() => {
           this.trackFormComplete();
           this.renderSuccessMessage();
         }).fail(() => {
@@ -192,7 +192,7 @@ class CotsSupport {
           this.cache.$spinner.addClass('d-none');
         });
     }else {
-      const formName = this.root.find('.js-tp-cots-support__title').text().trim();   
+      const formName = this.root.find('.js-tp-cots-support__title').text().trim();
       this.trackFormError(formName, formErrors);
     }
   };
@@ -238,7 +238,7 @@ class CotsSupport {
         $this.cache.files.push(files[i]);
       }
     }
-    
+
     if ($this.cache.files.length > currentFilesCount) {
       $this.renderFiles();
     }
@@ -287,7 +287,7 @@ class CotsSupport {
     const formData = this.cache.formData;
     for(const data of formData.entries()) {
       let formFieldName, formFieldValue;
-      const $el = $('#' + data[0]);
+      const $el = $(`#${  data[0]}`);
 
       if($el.length === 0){
         if(data[0] === 'logQueryType'){
@@ -300,7 +300,7 @@ class CotsSupport {
       }else {
         formFieldValue = $el.hasClass('analytiscField') ? data[1] : 'NA';
       }
-      
+
       formFields.push({
         formFieldName: formFieldName ? formFieldName : $el.closest('.js-tp-cots-support__form-element').find('label').text().trim(),
         formFieldValue: formFieldValue

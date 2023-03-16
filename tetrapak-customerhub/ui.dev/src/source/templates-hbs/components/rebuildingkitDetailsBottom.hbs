@@ -1,0 +1,111 @@
+<div class="tp-rebuilding-details__details-row">
+    <h4 class="tp-rebuilding-details__details-row-title" auto_locator="subsectionTitle">{{i18n
+        key=i18nKeys.rkCTI}}</h4>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{i18n key=i18nKeys.refReleaseDate}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.releaseDate}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.releaseDateFirst}}</div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{i18n key=i18nKeys.rkType}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.rkTypeCode}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.rkTypeDesc}}</div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{i18n key=i18nKeys.rkStatus}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.rebuildingKitStatus}}</div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{i18n key=i18nKeys.rkHandling}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.rkHandling}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.rkTime}}</div>
+            </div>
+        </div>
+
+        {{#if_noteq rebuildingData.automationSkills ""}}
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.automationSkills}}</div>
+            </div>
+        </div>
+        {{/if_noteq}}
+
+        {{#if_noteq rebuildingData.electricalSkills ""}}
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.electricalSkills}}</div>
+            </div>
+        </div>
+        {{/if_noteq}}
+
+        {{#if_noteq rebuildingData.mechanicalSkills ""}}
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.mechanicalSkills}}</div>
+            </div>
+        </div>
+        {{/if_noteq}}
+    </div>
+</div>
+<div class="tp-rebuilding-details__details-row">
+    <h4 class="tp-rebuilding-details__details-row-title" auto_locator="subsectionTitle">{{i18n
+        key=i18nKeys.rkPlanningInformation}}</h4>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{i18n key=i18nKeys.implDeadline}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.implDate}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.implDeadline}}</div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="row tp-rebuilding-details__details-line">
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{i18n key=i18nKeys.serviceOrder}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.serviceOrder}}</div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                    auto_locator="subsectionTitle">{{rebuildingData.serviceOrderDesc}}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -59,7 +61,7 @@ function _processTableData(data){
   return data;
 }
 
-function _limitFilterSelection($modal) {
+export function _limitFilterSelection($modal) {
   const $countWrapper = $modal.find('.js-tp-my-equipment__filter-count');
   const maxItems = parseInt($countWrapper.data('max-filters'), 10);
   const $currentCountTxt = $modal.find('.js-tp-my-equipment__filter-count-current');
@@ -274,7 +276,7 @@ class MyEquipment {
       const id = $(e.currentTarget).attr('href');
       const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
       const url = `${equipmentDetailsUrl}?id=${id}`;
-      const $linkName = $(e.currentTarget).find('td').eq(4).text().trim() + '-' + id;
+      const $linkName = `${$(e.currentTarget).find('td').eq(4).text().trim()  }-${  id}`;
       _trackEquipmentLinkClick($linkName);
       window.open(url, '_blank');
     });

@@ -1,0 +1,175 @@
+{
+    "jcr:primaryType": "sling:Folder",
+    "jcr:mixinTypes": [
+    "rep:AccessControllable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Sep 14 2022 14:06:21 GMT+0200",
+    "swedish": {
+    "jcr:primaryType": "dam:Asset",
+    "jcr:mixinTypes": [
+    "mix:referenceable",
+    "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:versionHistory": "8f49b572-6cff-4cc3-a1a1-57d08fd92034",
+    "jcr:predecessors": [
+    "c29a90aa-abbe-4e3a-ae83-a46a71616eb2"
+    ],
+    "jcr:created": "Wed Sep 14 2022 14:18:43 GMT+0200",
+    "jcr:baseVersion": "c29a90aa-abbe-4e3a-ae83-a46a71616eb2",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "18e2e65b-02f5-4ef7-9652-d42c48051f01",
+    "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:title": "Swedish",
+    "jcr:lastModifiedBy": "admin",
+    "contentFragment": true,
+    "cq:name": "swedish",
+    "jcr:lastModified": "Wed Sep 14 2022 14:18:52 GMT+0200",
+    "lastFragmentSave": "Wed Sep 14 2022 14:18:52 GMT+0200",
+    "cq:parentPath": "/content/dam/tetrapak/customerhub/contentfragment",
+    "renditions": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Sep 14 2022 14:18:43 GMT+0200"
+    },
+    "related": {
+    "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:mixinTypes": [
+    "cq:Taggable"
+    ]
+    },
+    "data": {
+    "jcr:primaryType": "nt:unstructured",
+    "cq:model": "/conf/customerhub/settings/dam/cfm/models/preferred-languages",
+    "master": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:mixinTypes": [
+    "dam:cfVariationNode",
+    "cq:Taggable"
+    ],
+    "langcode": "sv",
+    "langdesc": "Swedish",
+    "langcode@LastModified": "Wed Sep 14 2022 14:18:52 GMT+0200",
+    "langdesc@LastModified": "Wed Sep 14 2022 14:18:52 GMT+0200"
+    }
+    }
+    }
+    },
+    "english": {
+    "jcr:primaryType": "dam:Asset",
+    "jcr:mixinTypes": [
+    "mix:referenceable",
+    "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:versionHistory": "6c32e798-019a-4e4b-b764-7d58334dbfc7",
+    "jcr:predecessors": [
+    "b16ac530-49d4-4063-a5a6-69b88a0748b6"
+    ],
+    "jcr:created": "Wed Sep 14 2022 14:07:47 GMT+0200",
+    "jcr:baseVersion": "b16ac530-49d4-4063-a5a6-69b88a0748b6",
+    "jcr:isCheckedOut": true,
+    "jcr:uuid": "6a54ab1f-60e6-486a-9db6-b802fc1d12df",
+    "jcr:content": {
+    "jcr:primaryType": "dam:AssetContent",
+    "jcr:title": "English",
+    "jcr:lastModifiedBy": "admin",
+    "contentFragment": true,
+    "cq:name": "english",
+    "jcr:lastModified": "Wed Sep 14 2022 14:18:25 GMT+0200",
+    "lastFragmentSave": "Wed Sep 14 2022 14:18:25 GMT+0200",
+    "cq:parentPath": "/content/dam/tetrapak/customerhub/contentfragment",
+    "renditions": {
+    "jcr:primaryType": "nt:folder",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Wed Sep 14 2022 14:07:47 GMT+0200"
+    },
+    "related": {
+    "jcr:primaryType": "nt:unstructured"
+    },
+    "metadata": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:mixinTypes": [
+    "cq:Taggable"
+    ]
+    },
+    "data": {
+    "jcr:primaryType": "nt:unstructured",
+    "cq:model": "/conf/customerhub/settings/dam/cfm/models/preferred-languages",
+    "master": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:mixinTypes": [
+    "dam:cfVariationNode",
+    "cq:Taggable"
+    ],
+    "langcode": "en",
+    "langdesc": "English",
+    "langcode@LastModified": "Wed Sep 14 2022 14:18:25 GMT+0200",
+    "langdesc@LastModified": "Wed Sep 14 2022 14:18:25 GMT+0200"
+    }
+    }
+    }
+    },
+    "jcr:content": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:title": "contentfragment",
+    "jcr:lastModifiedBy": "admin",
+    "cq:conf": "/conf/customerhub",
+    "jcr:lastModified": "Wed Sep 14 2022 14:07:18 GMT+0200",
+    "sourcing": "false"
+    },
+    "rep:policy": {
+    "jcr:primaryType": "rep:ACL",
+    "allow": {
+    "jcr:primaryType": "rep:GrantACE",
+    "rep:principalName": "mac-default-contentfragment-owner",
+    "rep:privileges": [
+    "jcr:versionManagement",
+    "jcr:read",
+    "jcr:modifyAccessControl",
+    "jcr:readAccessControl",
+    "rep:write",
+    "crx:replicate",
+    "jcr:lockManagement"
+    ]
+    },
+    "allow1": {
+    "jcr:primaryType": "rep:GrantACE",
+    "rep:principalName": "mac-default-contentfragment-editor",
+    "rep:privileges": [
+    "jcr:nodeTypeManagement",
+    "jcr:versionManagement",
+    "jcr:read",
+    "jcr:readAccessControl",
+    "jcr:addChildNodes",
+    "crx:replicate",
+    "jcr:modifyProperties",
+    "jcr:lockManagement",
+    "jcr:removeChildNodes"
+    ]
+    },
+    "allow2": {
+    "jcr:primaryType": "rep:GrantACE",
+    "rep:principalName": "mac-default-contentfragment-editor",
+    "rep:privileges": [
+    "jcr:removeNode"
+    ],
+    "rep:restrictions": {
+    "jcr:primaryType": "rep:Restrictions",
+    "rep:glob": "/*"
+    }
+    },
+    "allow3": {
+    "jcr:primaryType": "rep:GrantACE",
+    "rep:principalName": "mac-default-contentfragment",
+    "rep:privileges": [
+    "jcr:read"
+    ]
+    }
+    }
+    }

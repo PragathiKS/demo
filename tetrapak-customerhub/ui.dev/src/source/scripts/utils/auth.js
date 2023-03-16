@@ -16,7 +16,9 @@ function generateToken() {
     || $('.tp-equipment-details').attr('data-src_ispublishenvironment')
     || $('.tp-add-equipment').attr('data-src_ispublishenvironment')
     || $('.tp-aip-trainings').attr('data-src_ispublishenvironment')
-    || $('.tp-aip-licenses').attr('data-src_ispublishenvironment');
+    || $('.tp-aip-licenses').attr('data-src_ispublishenvironment')
+    || $('.tp-rk').attr('data-src_ispublishenvironment')
+    || $('.tp-rk-detail').attr('data-src_ispublishenvironment');
   return (
     new Promise(function (resolve, reject) {
       const access_token = storageUtil.get(AUTH_TOKEN_COOKIE);

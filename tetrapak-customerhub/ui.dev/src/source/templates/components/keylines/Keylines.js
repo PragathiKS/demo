@@ -49,13 +49,13 @@ class Keylines {
         desc: item.value
       }));
     }
-    
+
     const updatedi18nKeys = { ...i18nKeys };
     updatedi18nKeys.modalTitle = _replaceLabel(
       getI18n(i18nKeys.modalTitle),
       shapeTitle
     );
-    
+
     if(volume) {
       render.fn({
         template: 'keyLinesModalOpenings',
@@ -78,8 +78,8 @@ class Keylines {
       });
       $keyLinesModal.modal();
     }
-    
-    const shapeDrpDwn = $keyLinesModal.find('.'+shapeName);
+
+    const shapeDrpDwn = $keyLinesModal.find(`.${shapeName}`);
     shapeDrpDwn.on('change', function() {
       const val = shapeDrpDwn.val();
       $this.renderModal(shapeName, shapeTitle, val);

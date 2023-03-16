@@ -7,6 +7,7 @@
     <thead class="tpmol-table__head{{#if baseClass}} {{baseClass}}__head{{/if}}{{#if jsClass}} {{jsClass}}__head{{/if}}">
         <tr class="tpmol-table__rowheading{{#if baseClass}} {{baseClass}}__row {{baseClass}}__rowheading{{/if}}{{#if jsClass}} {{jsClass}}__rowheading{{/if}}">
             {{#each headings}}
+                {{#if_noteq key 'equipmentNumber'}}
                 <th data-key="{{key}}" class="tpmol-table__cellheading {{#if isSortable}}sortable {{/if}}{{#if isActiveSort}}sorted {{/if}}{{#if ../baseClass}} {{../baseClass}}__cell {{../baseClass}}__cellheading{{/if}}{{#if ../jsClass}}  {{../jsClass}}__cellheading {{../jsClass}}__cellheading--{{@index}}{{/if}}">
                     {{#if isSortable}}
                         <button type="button" class="tpmol-table__sort clearfix{{#if isActiveSort}} {{sortOrder}}{{/if}}{{#if ../baseClass}} {{../baseClass}}__sort{{/if}}{{#if ../jsClass}} {{../jsClass}}__sort{{/if}}" data-key="{{key}}" {{#if isActiveSort}}data-sort="{{sortOrder}}{{/if}}">
@@ -27,6 +28,7 @@
                         </button>
                     {{/if}}
                 </th>
+                 {{/if_noteq}}
             {{/each}}
         </tr>
     </thead>
@@ -36,16 +38,23 @@
         {{#each list}}
         <tr {{#if rowLink}}tabindex=0 role="link" href="{{rowLink}}"{{else}}{{#if isClickable}}tabindex=0{{/if}}{{/if}} class="tpmol-table__row{{#if ../baseClass}} {{../baseClass}}__row{{/if}}{{#if isClickable}}{{#if ../jsClass}} {{../jsClass}}__row {{../jsClass}}__row--{{@index}}{{/if}}{{/if}}">
             {{#each this.row}}
-            <td data-key="{{key}}" class="tpmol-table__cell{{#if ../../baseClass}} {{../../baseClass}}__cell{{/if}}{{#if ../../jsClass}} {{../../jsClass}}__cell {{../../jsClass}}__cell--{{@index}}{{/if}}">
-                {{#if isRTE}}
-                    {{rte value}} {{!-- Renders safe HTML --}}
-                {{else}}
-                    {{value}}
-                {{/if}}
-                {{#if permanentVolumeConversion}}
-                    <span class="tp-my-equipment__astrick">*</span>
-                {{/if}}
-            </td>
+                <td data-key="{{key}}" class="tpmol-table__cell{{#if ../../baseClass}} {{../../baseClass}}__cell{{/if}}{{#if ../../jsClass}} {{../../jsClass}}__cell {{../../jsClass}}__cell--{{@index}}{{/if}} {{#if_eq key 'equipmentNumber'}}d-none{{/if_eq}}">
+                    {{#if isRTE}}
+                        {{rte value}} {{!-- Renders safe HTML --}}
+                    {{else}}
+                        {{value}}
+                    {{/if}}
+                    {{#if permanentVolumeConversion}}
+                        <span class="tp-my-equipment__astrick">*</span>
+                    {{/if}}
+                    <!-- For Rebuilding Kits Details -->
+                    {{#if_eq key 'rkNumber'}}
+                        <span class="tpmol-table__key-rkNumber d-none">{{value}}</span>
+                    {{/if_eq}}
+                    {{#if_eq key 'equipmentNumber'}}
+                        <span class="tpmol-table__key-equipmentNumber d-none">{{value}}</span>
+                    {{/if_eq}}
+                </td>
             {{/each}}
         </tr>
         {{/each}}

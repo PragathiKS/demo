@@ -1,0 +1,34 @@
+.tp-prelang-selector {
+    &.tpatom-radio {
+        &:last-child {
+            .tpatom-radio__label {
+                margin-bottom: $margin-zero;
+            }
+        }
+    }
+    .tpatom-radio {
+        &__icon {
+            @include width(20px);
+            @include height(20px);
+            @include border-radius(20px);
+            display: inline-block;
+            position: relative;
+    
+            &::before {
+                @include width(10px);
+                @include height(10px);
+                @include border-radius(10px);
+                content: '';
+                background: $color-congress-blue;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+    .icon {
+        color: $color-congress-blue;
+    }
+}
