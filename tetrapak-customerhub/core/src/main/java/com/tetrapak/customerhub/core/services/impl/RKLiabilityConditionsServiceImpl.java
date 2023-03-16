@@ -9,26 +9,40 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.PDFLink;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RKLiabilityConditionsPDF;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.RKLiabilityConditionsService;
 import com.tetrapak.customerhub.core.services.config.KeylinesConfiguration;
 import com.tetrapak.customerhub.core.services.config.RKLiabilityConditionsConfig;
 import com.tetrapak.customerhub.core.servlets.RKLiabilityConditionsServlet;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component(immediate = true, service = RKLiabilityConditionsService.class)
 @Designate(ocd = RKLiabilityConditionsConfig.class)
 public class RKLiabilityConditionsServiceImpl implements RKLiabilityConditionsService {
 
     private RKLiabilityConditionsConfig config;
+
+    @Reference
+    private ResourceResolverFactory resourceResolverFactory;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RKLiabilityConditionsServiceImpl.class);
 
     @Activate
     public void activate(final RKLiabilityConditionsConfig config) {
@@ -40,28 +54,42 @@ public class RKLiabilityConditionsServiceImpl implements RKLiabilityConditionsSe
         RKLiabilityConditionsPDF rkLiabilityConditionsPDF = new RKLiabilityConditionsPDF();
         if(StringUtils.isNotBlank(preferredLanguage)) {
             if (StringUtils.isNotBlank(config.pdfFolderMappingGLPath())) {
-                PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-                if (pageManager != null) {
-                    Page pdfFolderMappingGLPage = pageManager.getPage(config.pdfFolderMappingGLPath());
-                    if (pdfFolderMappingGLPage != null) {
-                        GenericList pdfGL = pdfFolderMappingGLPage.adaptTo(GenericList.class);
-                        if (pdfGL != null) {
-                            List<GenericList.Item> itemList = pdfGL.getItems();
-                            for (GenericList.Item item : itemList) {
-                                if (item.getTitle().equals(preferredLanguage) && !preferredLanguage.equals("en")) {
-                                    PDFLink pdfLink = getPDFLinkFromAsset(item.getValue(), resourceResolver);
-                                    rkLiabilityConditionsPDF.setPreferredLanguagePDF(pdfLink);
-                                }
-                                if (item.getTitle().equals("en")) {
-                                    PDFLink pdfLink = getPDFLinkFromAsset(item.getValue(), resourceResolver);
-                                    rkLiabilityConditionsPDF.setEnglishPDF(pdfLink);
+                final Map<String, Object> paramMap = new HashMap<>();
+                paramMap.put(ResourceResolverFactory.SUBSERVICE, CustomerHubConstants.READ_GL_USER);
+                ResourceResolver serviceResourceResolver = null;
+                try {
+                    serviceResourceResolver = resourceResolverFactory.getServiceResourceResolver(paramMap);
+                    PageManager pageManager = serviceResourceResolver.adaptTo(PageManager.class);
+                    if (pageManager != null) {
+                        Page pdfFolderMappingGLPage = pageManager.getPage(config.pdfFolderMappingGLPath());
+                        if (pdfFolderMappingGLPage != null) {
+                            GenericList pdfGL = pdfFolderMappingGLPage.adaptTo(GenericList.class);
+                            if (pdfGL != null) {
+                                List<GenericList.Item> itemList = pdfGL.getItems();
+                                for (GenericList.Item item : itemList) {
+                                    if (item.getTitle().equals(preferredLanguage) && !preferredLanguage.equals("en")) {
+                                        PDFLink pdfLink = getPDFLinkFromAsset(item.getValue(), resourceResolver);
+                                        rkLiabilityConditionsPDF.setPreferredLanguagePDF(pdfLink);
+                                    }
+                                    if (item.getTitle().equals("en")) {
+                                        PDFLink pdfLink = getPDFLinkFromAsset(item.getValue(), resourceResolver);
+                                        rkLiabilityConditionsPDF.setEnglishPDF(pdfLink);
+                                    }
                                 }
                             }
+
                         }
 
                     }
-
+                } catch (LoginException e) {
+                    LOGGER.error("An error occurred while getting service resolver",e);
+                    return new RKLiabilityConditionsPDF();
+                } finally {
+                    if(serviceResourceResolver!=null && serviceResourceResolver.isLive()){
+                        serviceResourceResolver.close();
+                    }
                 }
+
 
             }
 
