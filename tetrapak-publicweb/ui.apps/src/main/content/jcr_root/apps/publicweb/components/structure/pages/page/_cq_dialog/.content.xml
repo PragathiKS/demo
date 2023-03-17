@@ -99,6 +99,10 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     allowBulkEdit="{Boolean}true"
                                                     cq-msm-lockable="hideInNav"/>
+                                                <granite:rendercondition
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType = "commons/renderconditions/allowgroups"
+                                                    allowedGroups="[administrators]"/>
                                             </hideinnav>
                                             <charset
                                                 jcr:primaryType="nt:unstructured"

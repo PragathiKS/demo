@@ -1,0 +1,488 @@
+{
+  "jcr:primaryType":"cq:Component",
+  "jcr:createdBy":"admin",
+  "jcr:title":"Public Web Base Page",
+  "jcr:created":"Thu Feb 02 2023 12:32:16 GMT+0100",
+  "sling:resourceSuperType":"core/wcm/components/page/v2/page",
+  "componentGroup":".hidden",
+  "cq:dialog":{
+    "jcr:primaryType":"nt:unstructured",
+    "jcr:title":"Base Page",
+    "extraClientlibs":[
+      "cq.common.wcm",
+      "cq.siteadmin.admin.properties"
+    ],
+    "mode":"edit",
+    "sling:resourceType":"cq/gui/components/authoring/dialog",
+    "content":{
+      "jcr:primaryType":"nt:unstructured",
+      "granite:class":"cq-dialog-content-page",
+      "sling:resourceType":"granite/ui/components/coral/foundation/container",
+      "items":{
+        "jcr:primaryType":"nt:unstructured",
+        "tabs":{
+          "jcr:primaryType":"nt:unstructured",
+          "granite:rel":"cq-siteadmin-admin-properties-tabs",
+          "sling:resourceType":"granite/ui/components/coral/foundation/tabs",
+          "items":{
+            "jcr:primaryType":"nt:unstructured",
+            "basic":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:title":"Basic",
+              "sling:resourceType":"granite/ui/components/coral/foundation/fixedcolumns",
+              "items":{
+                "jcr:primaryType":"nt:unstructured",
+                "column":{
+                  "jcr:primaryType":"nt:unstructured",
+                  "sling:resourceType":"granite/ui/components/coral/foundation/container",
+                  "items":{
+                    "jcr:primaryType":"nt:unstructured",
+                    "title":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "jcr:title":"Title and Tags",
+                      "sling:resourceType":"granite/ui/components/coral/foundation/form/fieldset",
+                      "items":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "title":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "required":true,
+                          "name":"./jcr:title",
+                          "fieldLabel":"Title",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield",
+                          "renderReadOnly":true,
+                          "fieldDescription":"Visible to the visitors in the Browser tab.The character recommendation is 60",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"jcr:title"
+                          }
+                        },
+                        "titlesuffix":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./titleSuffix",
+                          "value":"Tetra Pak",
+                          "fieldLabel":"Title suffix",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"titleSuffix"
+                          }
+                        },
+                        "pagename":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "validation":"admin.pagename",
+                          "name":"pageName",
+                          "fieldLabel":"Name",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield",
+                          "cq:hideOnEdit":true
+                        },
+                        "msmConfigEndpoint":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "granite:class":"msm-config-endpoint",
+                          "value":"${empty param.item ? requestPathInfo.suffix : param.item }",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/hidden"
+                        },
+                        "tags":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "emptyText":"Pick the most important areas/keywords",
+                          "allowBulkEdit":true,
+                          "name":"./cq:tags",
+                          "fieldLabel":"Tags",
+                          "multiple":true,
+                          "sling:resourceType":"cq/gui/components/coral/common/form/tagfield",
+                          "autocreateTag":true,
+                          "fieldDescription":"Pick the most important areas/keywords",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"cq:tags"
+                          }
+                        },
+                        "tagsShowOnCreate":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./cq:tags",
+                          "fieldLabel":"Tags",
+                          "multiple":true,
+                          "sling:resourceType":"cq/gui/components/coral/common/form/tagfield",
+                          "cq:hideOnEdit":true,
+                          "granite:comment":"Handled by a custom POST servlet for the Create Page case"
+                        },
+                        "hideinnav":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "name":"./hideInNav",
+                          "text":"Hide in Navigation",
+                          "value":"true",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/checkbox",
+                          "renderReadOnly":true,
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "allowBulkEdit":true,
+                            "cq-msm-lockable":"hideInNav"
+                          },
+                          "granite:rendercondition":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "sling:resourceType":"commons/renderconditions/allowgroups",
+                            "allowedGroups":[
+                              "administrators"
+                            ]
+                          }
+                        },
+                        "charset":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "allowBulkEdit":true,
+                          "name":"_charset_",
+                          "value":"utf-8",
+                          "ignoreData":true,
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/hidden"
+                        }
+                      }
+                    },
+                    "moretitles":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "cq:showOnCreate":true,
+                      "jcr:title":"More Titles and Description",
+                      "sling:resourceType":"granite/ui/components/coral/foundation/form/fieldset",
+                      "items":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "navigationtitle":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "allowBulkEdit":true,
+                          "name":"./navTitle",
+                          "fieldLabel":"Navigation Title",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield",
+                          "renderReadOnly":true,
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "allowBulkEdit":true,
+                            "cq-msm-lockable":"navTitle"
+                          }
+                        },
+                        "description":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./jcr:description",
+                          "maxlength":160,
+                          "fieldLabel":"Description",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textarea",
+                          "renderReadOnly":true,
+                          "fieldDescription":"Maximum character limit is 160",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "allowBulkEdit":true,
+                            "cq-msm-lockable":"jcr:description"
+                          }
+                        }
+                      }
+                    },
+                    "onofftime":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "cq:showOnCreate":false,
+                      "jcr:title":"On/Off Time",
+                      "sling:resourceType":"granite/ui/components/coral/foundation/form/fieldset",
+                      "items":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "ondate":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "displayTimezoneMessage":true,
+                          "displayedFormat":"MMMM DD, YYYY hh:mm a",
+                          "name":"./onTime",
+                          "type":"datetime",
+                          "fieldLabel":"On Time",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/datepicker",
+                          "renderReadOnly":true,
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "allowBulkEdit":true,
+                            "cq-msm-lockable":"onTime"
+                          }
+                        },
+                        "offdate":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "displayTimezoneMessage":true,
+                          "displayedFormat":"MMMM DD, YYYY hh:mm a",
+                          "name":"./offTime",
+                          "type":"datetime",
+                          "fieldLabel":"Off Time",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/datepicker",
+                          "renderReadOnly":true,
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "allowBulkEdit":true,
+                            "cq-msm-lockable":"offTime"
+                          }
+                        }
+                      }
+                    },
+                    "vanityurl":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "cq:showOnCreate":false,
+                      "jcr:title":"Vanity URL",
+                      "sling:resourceType":"granite/ui/components/coral/foundation/form/fieldset",
+                      "items":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "vanitypath":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq-msm-lockable":"sling:vanityPath",
+                          "fieldLabel":"Vanity URL",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/multifield",
+                          "renderReadOnly":true,
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"sling:vanityPath"
+                          },
+                          "field":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "required":true,
+                            "name":"./sling:vanityPath",
+                            "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield"
+                          }
+                        },
+                        "redirectVanityURL":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "name":"./sling:redirect",
+                          "text":"Redirect Vanity URL",
+                          "value":"true",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/checkbox",
+                          "renderReadOnly":true,
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"./sling:redirect"
+                          }
+                        }
+                      }
+                    },
+                    "metarobots":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "cq:showOnCreate":false,
+                      "jcr:title":"Meta Robots",
+                      "sling:resourceType":"granite/ui/components/coral/foundation/form/fieldset",
+                      "items":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "noIndex":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./noIndex",
+                          "text":"No Index/ Hide in Sitemap",
+                          "value":"true",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/checkbox",
+                          "renderReadOnly":"true",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"noIndex"
+                          }
+                        },
+                        "noFollow":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./noFollow",
+                          "text":"No Follow",
+                          "value":"nofollow",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/checkbox",
+                          "renderReadOnly":"true",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"noFollow"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "pwBaseConfig":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:title":"Public Web Base Configuration",
+              "sling:resourceType":"granite/ui/components/coral/foundation/fixedcolumns",
+              "items":{
+                "jcr:primaryType":"nt:unstructured",
+                "column":{
+                  "jcr:primaryType":"nt:unstructured",
+                  "sling:resourceType":"granite/ui/components/coral/foundation/container",
+                  "items":{
+                    "jcr:primaryType":"nt:unstructured",
+                    "baseProperties":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "jcr:title":"Public Web Base Properties",
+                      "sling:resourceType":"granite/ui/components/coral/foundation/form/fieldset",
+                      "items":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "hideInSearch":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./hideInSearch",
+                          "text":"Hide in search?",
+                          "value":"true",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/checkbox",
+                          "fieldDescription":"hide in search this page",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"hideInSearch"
+                          }
+                        },
+                        "hideInSearchDelete":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./hideInSearch@Delete",
+                          "value":true,
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/hidden",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"hideInSearch@Delete"
+                          }
+                        },
+                        "mobileoverviewlabel":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./mobileOverviewLabel",
+                          "value":"Overview",
+                          "fieldLabel":"Mobile Overview Label",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield",
+                          "fieldDescription":"Provide label to present in mobile. Default is Overview",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"mobileOverviewLabel"
+                          }
+                        },
+                        "disableenvelope":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "uncheckedValue":false,
+                          "name":"./disableEnvelope",
+                          "text":"Disable Contact us Envelope",
+                          "value":true,
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/checkbox",
+                          "fieldDescription":"disable contact us envelope on this page",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"disableEnvelope"
+                          }
+                        },
+                        "articledate":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "granite:class":"pw-datepicker",
+                          "name":"./articleDate",
+                          "type":"date",
+                          "fieldLabel":"Article Date",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/datepicker",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"articleDate"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "aggregator":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:title":"Public Web Aggregator Configuration",
+              "sling:resourceType":"granite/ui/components/coral/foundation/fixedcolumns",
+              "items":{
+                "jcr:primaryType":"nt:unstructured",
+                "column":{
+                  "jcr:primaryType":"nt:unstructured",
+                  "sling:resourceType":"granite/ui/components/coral/foundation/container",
+                  "items":{
+                    "jcr:primaryType":"nt:unstructured",
+                    "aggregator":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "jcr:title":"Aggregator Configurations",
+                      "sling:resourceType":"granite/ui/components/coral/foundation/form/fieldset",
+                      "items":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "info":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "fieldLabel":"*Please use title, tags & description from basic tab",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/field"
+                        },
+                        "imagePath":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "rootPath":"/content/dam/tetrapak",
+                          "name":"./imagePath",
+                          "fieldLabel":"Thumbnail Image path",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/pathbrowser",
+                          "fieldDescription":"Original Image should be in 16:9 aspect ratio",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"imagePath"
+                          }
+                        },
+                        "imageAltText":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./altText",
+                          "fieldLabel":"Thumbnail Image Alt Text",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield",
+                          "fieldDescription":"Required for Accessibility use",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"altText"
+                          }
+                        },
+                        "linkText":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./linkText",
+                          "fieldLabel":"Link Text",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/textfield",
+                          "fieldDescription":"Text available for the visitor",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"linkText"
+                          }
+                        },
+                        "linkPath":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "rootPath":"/content",
+                          "name":"./linkPath",
+                          "fieldLabel":"Link Path",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/pathbrowser",
+                          "fieldDescription":"Link to destination URL",
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"linkPath"
+                          }
+                        },
+                        "linkType":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "cq:showOnCreate":true,
+                          "name":"./pwButtonTheme",
+                          "fieldLabel":"Link Type",
+                          "sling:resourceType":"granite/ui/components/coral/foundation/form/select",
+                          "items":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "linkButton":{
+                              "jcr:primaryType":"nt:unstructured",
+                              "text":"Link Text",
+                              "value":"link"
+                            },
+                            "button":{
+                              "jcr:primaryType":"nt:unstructured",
+                              "text":"Button",
+                              "value":"secondary"
+                            }
+                          },
+                          "granite:data":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "cq-msm-lockable":"pwButtonTheme"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
