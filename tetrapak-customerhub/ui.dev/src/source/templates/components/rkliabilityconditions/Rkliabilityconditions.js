@@ -16,6 +16,7 @@ class Rkliabilityconditions {
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.configJson = this.root.find('.js-tp-rk-liability__config').text();
     this.cache.pdfButtonsApi = this.root.data('pdfbuttons-api');
+    this.cache.contentWrapper = this.root.find('.contentWrapper');
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) { 
@@ -32,7 +33,7 @@ class Rkliabilityconditions {
   }
   getPDFButtons() {
     const $this = this;
-    const ctiLangCode = storageUtil.getCookie('ctiLangCode') || 'en';
+    const ctiLangCode = storageUtil.getCookie('lang-code') || 'en';
     logger.log(`getPdfbuttons: ${this.cache.pdfbButtonsApi}?preferredLanguage=${ctiLangCode}`);
     auth.getToken(({ data: authData }) => {
       ajaxWrapper.getXhrObj({
@@ -44,22 +45,23 @@ class Rkliabilityconditions {
           jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
         },
         showLoader: true
-      }).done(() => {
+      }).done(( res ) => {
         $this.cache.$spinner.addClass('d-none');
         $this.cache.$content.removeClass('d-none');
-        $this.renderButtons();
+        $this.cache.$pdfvalue = res;
+        $this.renderButtons(ctiLangCode);
       }).fail(() => {
         $this.cache.$content.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
       });
     });
   }
-  renderButtons() {
+  renderButtons(ctiLangCode) {
     render.fn({
       template: 'rkliabilityconditionsButtons',
       target: '.js-tp-rk-liabilityconditions-buttons',
-      data: { i18nKeys: this.cache.i18nKeys }}, () => { 
-      this.cache.$contentWrapper.removeClass('d-none');
+      data: { i18nKeys: this.cache.i18nKeys, showPreferredLangPDF: ctiLangCode !== 'en', pdfvalue: this.cache.$pdfvalue }}, () => { 
+      this.cache.contentWrapper.removeClass('d-none');
       this.cache.$spinner.addClass('d-none');
     });
   }
