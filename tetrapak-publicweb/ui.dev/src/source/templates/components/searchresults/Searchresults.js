@@ -36,24 +36,15 @@ class Searchresults {
     this.cache.resultSearchTermText = this.cache.$searchResultsTitle.data('resultSearchTerm');
 
     this.cache.$pagination = $('.js-pagination', this.root);
-    this.cache.$searchLandingList = this.root.find('.js-searchLanding-data');
     this.cache.$searchLandingList1 = $('.pw-search-result-head');
     this.cache.searchParams = { 'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
     this.cache.totalPages = 0;
     this.cache.totalResultCount = 0;
-    this.cache.searchLandingType = this.cache.$searchLandingList.data('type');
-    this.cache.searchLandingType1 = $('.pw-search-result-head').data('type');
-    this.cache.searchLandingData = {
-      heading: this.cache.$searchLandingList.data('heading'),
-      description:  this.cache.$searchLandingList.data('description'),
-      type: this.cache.$searchLandingList.data('type')
-    };
-    logger.log(this.cache.$searchLandingList);
+    this.cache.searchLandingType = $('.pw-search-result-head').data('type');
     logger.log(this.cache.searchLandingType);
-    logger.log($('.pw-search-result-head').data('type'));
-    logger.log(this.cache.searchLandingData);
+    // logger.log($('.pw-search-result-head').data('type'));
     if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
-      $('.pw-container').addClass('custom-searchlanding');
+      $('.left-wrapper-filter').addClass('display-none');
     }
   }
 

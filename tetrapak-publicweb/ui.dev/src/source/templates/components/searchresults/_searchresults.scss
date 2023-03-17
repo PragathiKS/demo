@@ -11,6 +11,9 @@
         line-height: $spacing-big;
         font-weight: 400;
     }
+    .margin-auto {
+        margin: auto;
+    }
 }
 .pw-search-results {
     @include margin-bottom($margin-l);
@@ -225,6 +228,11 @@
                 }
             }
         }
+        .left-wrapper-filter {
+            &.display-none {
+                display: none;
+            }
+        }
     }
 
     &__results {
@@ -359,8 +367,8 @@
     }
 }
 
-.custom-searchlanding {
-    &.pw-container {
+.pw-search-landing-container {
+    .pw-container {
         margin-top: 0;
         .pw-search-results {
             padding-top: 0;
