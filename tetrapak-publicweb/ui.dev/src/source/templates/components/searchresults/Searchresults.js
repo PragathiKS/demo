@@ -36,16 +36,25 @@ class Searchresults {
     this.cache.resultSearchTermText = this.cache.$searchResultsTitle.data('resultSearchTerm');
 
     this.cache.$pagination = $('.js-pagination', this.root);
-    this.cache.$searchLanding = $('.pw-search-result-head', this.root);
-    this.cache.$searchLandingList = $('.js-searchLanding-data', this.root);
+    this.cache.$searchLandingList = this.root.find('.js-searchLanding-data');
+    this.cache.$searchLandingList1 = $('.pw-search-result-head');
     this.cache.searchParams = { 'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
     this.cache.totalPages = 0;
     this.cache.totalResultCount = 0;
+    this.cache.searchLandingType = this.cache.$searchLandingList.data('type');
+    this.cache.searchLandingType1 = $('.pw-search-result-head').data('type');
     this.cache.searchLandingData = {
       heading: this.cache.$searchLandingList.data('heading'),
       description:  this.cache.$searchLandingList.data('description'),
       type: this.cache.$searchLandingList.data('type')
     };
+    logger.log(this.cache.$searchLandingList);
+    logger.log(this.cache.searchLandingType);
+    logger.log($('.pw-search-result-head').data('type'));
+    logger.log(this.cache.searchLandingData);
+    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
+      $('.pw-container').addClass('custom-searchlanding');
+    }
   }
 
   bindEvents() {
@@ -55,7 +64,6 @@ class Searchresults {
     $('.js-filter-container-chips').on('click', $filterRemoveBtn, this.removeFilter);
     $(window).on('popstate', this.windowPopStateHandler);
     $pagination.on('click', '.js-page-number', this.renderPaginationResult);
-    this.renderSearchLanding();
 
     $('.pw-search-results__results').on('click', '.js-asset-download', function(e) {
       e.preventDefault();
@@ -461,18 +469,6 @@ class Searchresults {
         template: 'searchPagination',
         data: paginationData,
         target: this.cache.$pagination
-      });
-    }
-  }
-
-  renderSearchLanding = () => {
-    if (this.cache.searchLandingData.type === 'event' 
-    || this.cache.searchLandingData.type === 'cases') {
-      logger.log('template rendering');
-      render.fn({
-        template: 'searchLanding',
-        data: this.cache.searchLandingData,
-        target: this.cache.$searchLanding
       });
     }
   }
