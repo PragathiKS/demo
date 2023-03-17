@@ -4,6 +4,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { storageUtil } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
 /**
@@ -178,6 +179,7 @@ function _submitCTIemail(dataObj) {
           $ctiDocContainer.addClass('d-none');
           $reqCtiSuccess.removeClass('d-none');
           $spinner.addClass('d-none');
+          storageUtil.setCookie('ctiLangCode', dataObj.rkCTIdetails.requestedCTILanguage || 'en');
         }
       })
       .fail((e) => {
