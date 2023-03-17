@@ -358,3 +358,12 @@
         }
     }
 }
+
+.custom-searchlanding {
+    &.pw-container {
+        margin-top: 0;
+        .pw-search-results {
+            padding-top: 0;
+        }
+    }
+}

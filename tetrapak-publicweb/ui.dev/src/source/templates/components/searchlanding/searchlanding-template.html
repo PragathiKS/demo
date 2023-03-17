@@ -1,10 +1,18 @@
 <sly data-sly-template.searchlanding_template="${@data, flag}">
     <div data-module="Searchlanding">
+        <div class="pw-container">
+            <div class="pw-search-result-head pw-theme--grayscale-white pw-padding--regular pw-margin--regular" data-type="${data.type}">
+                <div class="row no-gutters">
+                    <div class="col-lg-9 margin-auto">
+                        <h1 class="result-title">${data.heading}</h1>
+                        <p class="result-description">${data.description}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--/* Component HTML code goes here */-->
         <div class="js-searchLanding-data"
-            data-link-heading="${data.heading}"
-            data-link-description="${data.description}"
-            data-link-type="${data.type}"
+            data-type="${data.type}"
             data-sly-resource="${'searchresults' @ resourceType='publicweb/components/content/searchresults'}"
         /> 
     </div>

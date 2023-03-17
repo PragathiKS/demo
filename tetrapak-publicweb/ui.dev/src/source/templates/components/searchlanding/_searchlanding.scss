@@ -1,0 +1,19 @@
+.pw-search-result-head {
+    padding: 0 $padding-xxxl;
+    .margin-auto {
+        margin: auto;
+    }
+    .result-title {
+        color: $color-tundora;
+        font-size: $font-xx;
+        font-weight: 700;
+        line-height: $padding-xxxl;
+
+    }
+    .result-description {
+        color: $color-tundora;
+        font-size: $font-baseline;
+        font-weight: 400;
+        line-height: $font-l;
+    }
+}
