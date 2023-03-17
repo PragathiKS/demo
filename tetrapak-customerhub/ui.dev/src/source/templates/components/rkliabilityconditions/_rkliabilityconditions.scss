@@ -4,13 +4,13 @@
     p {
         color: $color-congress-blue;
     }
-    button {
+    a {
         line-height: $font-l;
         font-weight: 500;
     }
 
     @media #{$mobile} {
-        button {
+        a {
             display: block;
         }
         p {
