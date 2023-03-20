@@ -13,6 +13,7 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -25,7 +26,7 @@ import com.tetralaval.beans.ContactUsResponse;
 import com.tetralaval.models.FormContainer;
 
 /**
- * The Class ContactUsSubmitRequestServlet.
+ * The Class ContactUsServlet.
  */
 @Component(service = Servlet.class, property = {
 	Constants.SERVICE_DESCRIPTION + "=Tetra Laval Contact Us form Submit Servlet",
@@ -47,6 +48,12 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     /** The Constant CONTACT_US_MAIL_TEMPLATE_PATH. */
     private final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/tetralaval/contactus/email.html";
 
+    private String[] ignoreParametersStartingWith = new String[] { "_", ":" };
+
+    /** The xss API. */
+    @Reference
+    private XSSAPI xssAPI;
+
     /**
      * Do get.
      *
@@ -62,13 +69,16 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    Map<String, String> emailParams = new HashMap<>();
 	    requestParams.forEach((key, value) -> {
 		LOGGER.debug("Key: {} ::: Value: {}", key, value);
-		String newValue = "";
-		if (value.length > 1) {
-		    newValue = StringUtils.join(value, ",");
-		} else {
-		    newValue = value[0];
+		if (!StringUtils.startsWithAny(key, ignoreParametersStartingWith)) {
+		    String newValue = "";
+		    if (value.length > 1) {
+			newValue = StringUtils.join(value, ",");
+		    } else {
+			newValue = value[0];
+		    }
+		    newValue = xssAPI.encodeForHTML(newValue);
+		    emailParams.put(key, newValue);
 		}
-		emailParams.put(key, newValue);
 	    });
 	    // get details configured on Form Component.
 	    Resource formResource = request.getResource();
@@ -101,9 +111,10 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    contactUsResponse = new ContactUsResponse("200", "OK");
 	    sendResponse(response, contactUsResponse);
 
-	   /* redirect = redirect + "?status=200";
-	    LOGGER.debug("Redirect....");
-	    response.sendRedirect(redirect);*/
+	    /*
+	     * redirect = redirect + "?status=200"; LOGGER.debug("Redirect....");
+	     * response.sendRedirect(redirect);
+	     */
 
 	} catch (final Exception e) {
 	    LOGGER.error("Exception :{}", e.getMessage(), e);
