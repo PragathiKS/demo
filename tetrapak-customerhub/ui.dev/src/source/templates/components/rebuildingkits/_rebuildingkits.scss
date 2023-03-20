@@ -1,4 +1,4 @@
-$color-red: #ff0000;
+@import '../datepicker/datePicker';
 
 .tp-rk {
     &__table_wrapper {
@@ -69,9 +69,9 @@ $color-red: #ff0000;
         @include margin-bottom($margin-md);
         border: 1px solid $color-congress-blue;
         color: $color-congress-blue;
+        font-weight: 500;
         box-sizing: border-box;
         border-radius: 22px;
-        font-weight: 500;
         &:hover {
             box-shadow: inset 0 0 0 1px $color-congress-blue;
             &.active {
@@ -80,8 +80,8 @@ $color-red: #ff0000;
             }
         }
         &.active {
-            box-shadow: inset 0 0 0 1px $color-congress-blue;
             font-weight: 700;
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
             background-color: $color-wild-sand;
         }
     }
@@ -116,10 +116,10 @@ $color-red: #ff0000;
         }
         th {
             @include padding($padding-md $padding-sm);
-            position: sticky;
             top: 0;
-            background: $color-white;
+            position: sticky;
             border-bottom-color: $color-mercury;
+            background: $color-white;
             &.hide {
                 display: none;
             }
@@ -150,16 +150,16 @@ $color-red: #ff0000;
             }
         }
         .dashed-border {
-            text-decoration: underline;
             text-decoration-style: dashed;
+            text-decoration: underline;
         }
     }
 
     &__table-summary__row {
         &:not(.tp-rk__table-summary__rowheading) {
             &:hover {
-                background-color: $color-wild-sand;
                 cursor: pointer;
+                background-color: $color-wild-sand;
             }
         }
     }
@@ -278,12 +278,12 @@ $color-red: #ff0000;
                 @include padding($padding-l);
                 border: solid 1px $color-mercury;
                 display: flex;
-                position: absolute;
                 right: 0;
-                background: $color-wild-sand;
+                position: absolute;
+                min-width: 256px;
                 box-shadow: 0 4px 16px rgba($color-black, 0.1);
                 border-radius: 4px;
-                min-width: 256px;
+                background: $color-wild-sand;
             }
             span {
                 color: $color-tundora;
@@ -318,12 +318,12 @@ $color-red: #ff0000;
             @include width(8px);
             @include height(8px);
             @include border-radius(10px);
+            transform: translate(-50%, -50%);
+            top: 50%;
+            position: absolute;
+            left: 50%;
             content: '';
             background: $color-congress-blue;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
         }
     }
     .action-icon {
@@ -339,12 +339,12 @@ $color-red: #ff0000;
                 @include width(8px);
                 @include height(8px);
                 @include border-radius(10px);
+                transform: translate(-50%, -50%);
+                top: 50%;
+                position: absolute;
+                left: 50%;
                 content: '';
                 background: $color-congress-blue;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
             }
         }
     }
@@ -427,9 +427,9 @@ $color-red: #ff0000;
                 a {
                     @include padding($padding-zero 9px);
                     color: $color-congress-blue;
-                    height: 24px;
                     min-width: auto;
                     line-height: 24px;
+                    height: 24px;
                     &:hover {
                         background-color: transparent;
                     }
@@ -457,9 +457,9 @@ $color-red: #ff0000;
             li.paginationjs-page {
                 a {
                     color: $color-congress-blue;
+                    line-height: 24px;
                     height: 24px;
                     border-radius: 4px;
-                    line-height: 24px;
                 }
 
                 &.active {
@@ -499,8 +499,8 @@ $color-red: #ff0000;
             }
         }
         &__flex-container {
-            flex-direction: row;
             justify-content: space-between;
+            flex-direction: row;
             align-items: center;
         }
         &__serial-desc {

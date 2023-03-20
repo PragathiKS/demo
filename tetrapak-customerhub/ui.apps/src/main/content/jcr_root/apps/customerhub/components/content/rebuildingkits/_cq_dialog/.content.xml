@@ -364,6 +364,42 @@
                                     fieldLabel="Filters Selected Text (i18N key)"
                                     required="true"
                                     name="./filtersSelected"/>
+                            <fromDateText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters from date text (i18N key)"
+                                    required="true"
+                                    name="./fromDateText"/>
+                            <toDateText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters to date Text (i18N key)"
+                                    required="true"
+                                    name="./toDateText"/>
+                            <invalidDateText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters invalid date Text (i18N key)"
+                                    required="true"
+                                    name="./invalidDateText"/>
+                            <pastDateErrorText
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters past date error Text (i18N key)"
+                                    required="true"
+                                    name="./pastDateErrorText"/>
+                            <dateLaterThanError
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters date later than error Text (i18N key)"
+                                    required="true"
+                                    name="./dateLaterThanError"/>
+                            <dateBeforeThanError
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Filters date before than error Text (i18N key)"
+                                    required="true"
+                                    name="./dateBeforeThanError"/>
                         </items>
                     </column4>
                 </items>

@@ -1,21 +1,4 @@
-/* eslint-disable */
-
-export const _mapQueryParams = (key) => {
-  switch (key) {
-    case 'implDeadline': {
-      return 'impldeadlinestart';
-    }
-    case 'plannedDate': {
-      return 'planneddatestart';
-    }
-    case 'releaseDate': {
-      return 'releasedatestart';
-    }
-    default:
-      return key.toLowerCase();
-  }
-};
-
+export const _mapQueryParams = (key) => key.toLowerCase();
 
 export const _remapFilterProperty = (filterProperty) => {
   switch (filterProperty) {
