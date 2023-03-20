@@ -52,7 +52,7 @@
                             <queryPlaceholder
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="Query Subtitle (i18N key)"
+                                    fieldLabel="Query Subtitle Placeholder(i18N key)"
                                     name="./queryPlaceholder"
                                     required="true"/>
                             <querySubtitle
@@ -184,7 +184,7 @@
                             <companyLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="Company Label"
+                                    fieldLabel="Company Label (i18N key)"
                                     name="./companyLabel"
                                     required="true"/>
                             <countryLabel
@@ -252,13 +252,13 @@
                             <aribaEmailLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="Ariba Email Label"
+                                    fieldLabel="Ariba Email Label (i18N key)"
                                     name="./aribaEmailLabel"
                                     required="true"/>
                             <aribaEmailErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="Ariba Email Error Label"
+                                    fieldLabel="Ariba Email Error Label (i18N key)"
                                     name="./aribaEmailErrorMsg"
                                     required="true"/>
                             <tpEmailLabel
