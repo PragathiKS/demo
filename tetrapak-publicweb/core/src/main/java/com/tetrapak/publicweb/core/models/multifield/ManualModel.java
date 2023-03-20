@@ -1,7 +1,5 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
-import java.util.Calendar;
-
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;

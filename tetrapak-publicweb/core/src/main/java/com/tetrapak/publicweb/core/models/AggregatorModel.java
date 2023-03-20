@@ -1,22 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
-
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Named;
 
 /**
  * The Class AggregatorModel.
