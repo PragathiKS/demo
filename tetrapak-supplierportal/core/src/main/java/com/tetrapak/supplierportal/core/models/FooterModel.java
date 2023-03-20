@@ -10,29 +10,42 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
+import com.tetrapak.supplierportal.core.services.UserPreferenceService;
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import com.tetrapak.supplierportal.core.utils.LinkUtil;
 
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterModel {
 
-	/** The Constant LOGGER. */
+	/**
+	 * The Constant LOGGER.
+	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(FooterModel.class);
 
 	private static final String CONFIGURATION_PATH = "/jcr:content/root/responsivegrid/footerconfiguration";
 
-	/** The request. */
+	/**
+	 * The request.
+	 */
 	@SlingObject
 	private SlingHttpServletRequest request;
 
+	@OSGiService
+	private UserPreferenceService userPreferenceService;
+
 	/** The footer links. */
+	/**
+	 * The footer links.
+	 */
 	private List<FooterLinkModel> footerValidLinks = new ArrayList<>();
-	
+
 	private String changeLanguage;
 
 	/**
@@ -43,7 +56,8 @@ public class FooterModel {
 		final List<FooterLinkModel> footerLinks;
 		LOGGER.debug("inside init method");
 
-		final String path = SupplierPortalConstants.CONTENT_ROOT + CONFIGURATION_PATH;
+		String language = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+		final String path = SupplierPortalConstants.SUPPLIER_PATH + language + CONFIGURATION_PATH;
 		final Resource footerConfigurationResource = request.getResourceResolver().getResource(path);
 		if (Objects.nonNull(footerConfigurationResource)) {
 			final FooterConfigurationModel configurationModel = footerConfigurationResource
@@ -64,8 +78,8 @@ public class FooterModel {
 	public List<FooterLinkModel> getFooterLinks() {
 		return new ArrayList<>(footerValidLinks);
 	}
-	
+
 	public String getChangeLanguage() {
-        return changeLanguage;
-    }
+		return changeLanguage;
+	}
 }
