@@ -5,7 +5,6 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { getI18n, parseQueryString } from '../../../scripts/common/common';
-import { logger } from '../../../scripts/utils/logger';
 
 class Searchresults {
   constructor({ el }) {
@@ -41,10 +40,11 @@ class Searchresults {
     this.cache.totalPages = 0;
     this.cache.totalResultCount = 0;
     this.cache.searchLandingType = $('.pw-search-result-head').data('type');
-    logger.log(this.cache.searchLandingType);
-    // logger.log($('.pw-search-result-head').data('type'));
+    this.cache.searchLandingServletPath = $('.pw-search-result-head').data('servlet');
     if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
       $('.left-wrapper-filter').addClass('display-none');
+    } else {
+      $('.left-wrapper-filter').removeClass('display-none');
     }
   }
 
@@ -183,6 +183,10 @@ class Searchresults {
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
+      if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases'){
+        queryParams = `${queryParams}&contenyType=${this.cache.searchLandingType}`;
+        this.cache.servletPath = this.cache.searchLandingServletPath;
+      }
       ajaxWrapper.getXhrObj({
         url: this.cache.servletPath,
         method: ajaxMethods.GET,
