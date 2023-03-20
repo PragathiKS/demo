@@ -1,9 +1,7 @@
-// sass-lint:disable no-vendor-prefixes
-
 @mixin day-active-state {
     color: $color-white;
     background-color: $color-congress-blue;
-    border-radius: 4px;
+    border-radius: $border-radius;
     height: 100%;
     width: 100%;
 
@@ -11,7 +9,7 @@
         border: 1px solid $color-congress-blue;
         color: $color-white;
         background-color: $color-congress-blue;
-        border-radius: 4px;
+        border-radius: $border-radius;
         box-sizing: border-box;
     }
 }
@@ -21,25 +19,25 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 16px;
+        margin-top: $padding-md;
     }
 
     .tpatom-input-box__input {
-        padding: 8px 16px;
+        padding: $padding-sm $padding-md;
     }
 
     input {
         &.focus-visible {
             &:focus {
-                box-shadow: 0 0 0 2px $color-sail;
+                box-shadow: 0 0 0 $padding-xxs $color-sail;
             }
         }
     }
 
     a {
-        -webkit-transition-property: none;
-        -moz-transition-property: none;
-        -o-transition-property: none;
+        -webkit-transition-property: none; // sass-lint:disable-line no-vendor-prefixes
+        -moz-transition-property: none; // sass-lint:disable-line no-vendor-prefixes
+        -o-transition-property: none; // sass-lint:disable-line no-vendor-prefixes
         transition-property: none;
    }
 
@@ -74,14 +72,14 @@
             }
 
             &:first-child {
-                margin-right: 8px;
+                margin-right: $padding-sm;
             }
 
             .dp-input-error {
                 color: $color-red;
                 font-size: 10px;
                 font-weight: 500;
-                margin-left: 2px;
+                margin-left: $padding-xxs;
             }
 
             .dp-input-label {
@@ -91,8 +89,8 @@
 
                 .icon-Close_new {
                     position: absolute;
-                    bottom: 8px;
-                    right: 14px;
+                    bottom: $padding-sm;
+                    right: $spacing-baseline;
                     cursor: pointer;
                     transform: scale(0.75);
 
@@ -108,12 +106,12 @@
         border: 1px solid $color-black;
         color: $color-tundora;
         background-color: $color-wild-sand;
-        border-radius: 4px;
+        border-radius: $border-radius;
         box-sizing: border-box;
         font-family: Montserrat;
-        font-size: 12px;
+        font-size: $font-sm;
         font-weight: 500;
-        padding: 24px 24px 16px;
+        padding: $padding-l $padding-l $padding-md;
         width: 320px;
 
         .ui-state-default {
@@ -123,14 +121,14 @@
                 border: 1px solid $color-congress-blue;
                 color: $color-congress-blue;
                 background-color: $color-white;
-                border-radius: 4px;
+                border-radius: $border-radius;
                 box-sizing: border-box;
             }
         }
 
         tbody {
-            margin-right: -8px;
-            margin-top: 8px;
+            margin-right: -$padding-sm;
+            margin-top: $padding-sm;
         }
 
         tr {
@@ -142,23 +140,23 @@
                 box-sizing: initial;
                 align-items: center;
                 font-weight: 500;
-                height: 32px;
+                height: $padding-xl;
                 justify-content: center;
-                margin-bottom: 8px;
+                margin-bottom: $padding-sm;
                 padding: 0;
-                padding-right: 8px;
-                width: 32px;
+                padding-right: $padding-sm;
+                width: $padding-xl;
 
                 &:last-of-type {
-                    margin-right: 8px;
+                    margin-right: $padding-sm;
                 }
 
                 &:first-child {
-                    border-radius: 4px 0 0 4px;
+                    border-radius: $border-radius 0 0 $border-radius;
                 }
 
                 &:last-child {
-                    border-radius: 0 4px 4px 0;
+                    border-radius: 0 $border-radius $border-radius 0;
                     padding-right: 0;
                 }
 
@@ -170,7 +168,7 @@
                 &.dp-highlight-first {
                     color: $color-white;
                     background: $color-sail;
-                    border-radius: 4px 0 0 4px;
+                    border-radius: $border-radius 0 0 $border-radius;
 
                     a {
                         @include day-active-state;
@@ -180,8 +178,8 @@
                 &.dp-highlight-last {
                     color: $color-white;
                     background: $color-sail;
-                    border-radius: 0 4px 4px 0;
-                    margin-right: 8px;
+                    border-radius: 0 $border-radius $border-radius 0;
+                    margin-right: $padding-sm;
                     padding-right: 0;
 
                     a {
@@ -197,29 +195,29 @@
                 &.dp-highlight-hover-first {
                     color: $color-white;
                     background: $color-sail;
-                    border-radius: 4px 0 0 4px;
+                    border-radius: $border-radius 0 0 $border-radius;
                 }
 
                 &.dp-highlight-hover-last {
                     color: $color-white;
                     background: $color-sail;
-                    border-radius: 0 4px 4px 0;
-                    margin-right: 8px;
+                    border-radius: 0 $border-radius $border-radius 0;
+                    margin-right: $padding-sm;
                     padding-right: 0;
                 }
 
                 &.dp-highlight-empty-last {
                     color: $color-white;
                     background: $color-sail;
-                    border-radius: 0 4px 4px 0;
-                    margin-right: 8px;
+                    border-radius: 0 $border-radius $border-radius 0;
+                    margin-right: $padding-sm;
                     padding-right: 0;
                 }
 
                 &.dp-highlight-empty-first {
                     color: $color-white;
                     background: $color-sail;
-                    border-radius: 4px 0 0 4px;
+                    border-radius: $border-radius 0 0 $border-radius;
                 }
             }
 
@@ -233,16 +231,16 @@
        }
 
         .ui-datepicker-header {
-            height: 24px;
-            margin-bottom: 16px;
+            height: $padding-l;
+            margin-bottom: $padding-md;
             position: relative;
 
             .ui-datepicker-prev,
             .ui-datepicker-next {
-                -moz-user-select: none;
-                -ms-user-select: none;
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
+                -moz-user-select: none; // sass-lint:disable-line no-vendor-prefixes
+                -ms-user-select: none; // sass-lint:disable-line no-vendor-prefixes
+                -webkit-touch-callout: none; // sass-lint:disable-line no-vendor-prefixes
+                -webkit-user-select: none; // sass-lint:disable-line no-vendor-prefixes
                 cursor: pointer;
                 position: absolute;
                 user-select: none;
@@ -270,24 +268,24 @@
                     z-index: 2;
                     border: 0;
                     user-select: none;
-                    -webkit-user-select: none;
-                    font-size: 14px;
+                    -webkit-user-select: none; // sass-lint:disable-line no-vendor-prefixes
+                    font-size: $font-baseline;
                     width: 60px;
-                    -webkit-touch-callout: none;
+                    -webkit-touch-callout: none; // sass-lint:disable-line no-vendor-prefixes
                     cursor: pointer;
-                    -ms-user-select: none;
+                    -ms-user-select: none; // sass-lint:disable-line no-vendor-prefixes
                     font-weight: 700;
-                    -moz-user-select: none;
+                    -moz-user-select: none; // sass-lint:disable-line no-vendor-prefixes
                }
 
                 .js-dp-month-icon,
                 .js-dp-year-icon {
                     display: flex;
                     color: $color-congress-blue;
-                    width: 4px;
+                    width: $padding-xs;
                     justify-content: center;
                     align-items: center;
-                    margin-top: 4px;
+                    margin-top: $padding-xs;
                 }
 
                 .js-dp-month-icon {
@@ -329,7 +327,7 @@
                     border: 1px solid $color-congress-blue;
                     color: $color-congress-blue;
                     background-color: $color-white;
-                    border-radius: 4px;
+                    border-radius: $border-radius;
                     font-weight: 700;
                 }
             }
@@ -350,7 +348,7 @@
 
             .ui-datepicker-unselectable {
                 color: $color-tundora;
-                height: 32px;
+                height: $padding-xl;
                 width: 40px;
                 box-sizing: border-box;
                 opacity: 0.5;
