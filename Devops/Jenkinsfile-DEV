@@ -7,9 +7,9 @@ pipeline {
         }
     }
     
-    triggers {
-        cron('H 1 * * 1-5')
-     }
+    // triggers {
+    //     cron('H 1 * * 1-5')
+    // }
     
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
@@ -18,9 +18,9 @@ pipeline {
 	    booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
 	    booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Pa11y_Execution'
-        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'ZAP_Run'
-
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with Sitespeed Test', name: 'Sitespeed_Run'
     }
 
     options {
@@ -32,6 +32,7 @@ pipeline {
         sonar_url = "https://sonarcloud.io"
         login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
         build_id_number = ""
+        docker_workspace_dir = ""
     }
 
     stages {
@@ -54,7 +55,6 @@ pipeline {
                     label 'cfe-deploy'
                 }
             }
-
             steps {
                 script {
                     if (params.Build_Commons) {
@@ -99,6 +99,11 @@ pipeline {
                         buildandsonarsupplier()
                     }
                 }
+                script {
+                    warnError(message: "Publish Coverage report with error") {
+                        publishCoverageReport()
+                    }
+                }
             }
         }
 
@@ -109,7 +114,7 @@ pipeline {
                     publish_url = "https://publish1westeurope.dev65.tetrapak.adobecqms.net"                        
                     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
                     {
-                        devdeployment()
+                        //devdeployment()
                     }
                 }
             }
@@ -123,36 +128,32 @@ pipeline {
             }
         }
 
-        stage('Karma, Pa11y Execution') {            
+        stage('Pa11y Execution') {            
             steps {
                 script {
-                    warnError(message: "Karma, Pa11y Execution failed with error") {
+                    warnError(message: "Pa11y Execution failed with error") {
                         if (!params.Pa11y_Execution) {
-                            echo "Skipping Tools Execution"
+                            echo "Skipping Pa11y Execution"
                         }
                         else {
-                            if (params.Build_MyTetraPak) {
-                                appname = "customerhub"
-                                karmatest() 
-                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
-                                pallycuhuscript()
-                            }
-                            if (params.Build_Publicweb) {
-                                appname = "publicweb"
-                                karmatest()
-                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
-                                pallypwscript()
-                            }
-                        }
-                    
-                        if (params.Sonar_Analysis) {
-                            sonarreport()
+                            parallel (
+                                "MyTetrapak Pa11y Test" : {
+                                    if (params.Build_MyTetraPak) {
+                                        pallycuhuscript()
+                                    }
+                                },
+                                "PublicWeb Pa11y Test" : {
+                                    if (params.Build_Publicweb) {
+                                        pallypwscript()
+                                    }
+                                }
+                            )
                         }
                     }
-                    
                 }
             }
         }
+
         stage('Zap Tools Execution') {        
             steps {
                 script {
@@ -169,15 +170,23 @@ pipeline {
         stage('Sitespeed Execution') {        
             steps {
                 script {
-                    if (!params.Pa11y_Execution) {
-                        echo "Skipping Sitespeed Execution for Desktop"                
-                    }
-                    else {
-                        if (params.Build_MyTetraPak) {
-                            sitespeedcuhu()
+                    warnError(message: "Zap Tools Execution failed with error") {
+                        if (!params.Sitespeed_Run) {
+                            echo "Skipping Sitespeed Execution for Desktop"                
                         }
-                        if (params.Build_Publicweb) {
-                            sitespeedpw()                  
+                        else {
+                            parallel (
+                                "MyTetrapak SiteSpeed Test" : {
+                                    if (params.Build_MyTetraPak) {
+                                        sitespeedcuhu()
+                                    }
+                                },
+                                "PublicWeb SiteSpeed Test" : {
+                                    if (params.Build_Publicweb) {
+                                        sitespeedpw()                  
+                                    }
+                                }
+                            )
                         }
                     }
                 }
@@ -206,6 +215,7 @@ def buildandsonar() {
                 echo "Skipping Sonar execution for ${appname} module"
             } else {
                 sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sonarreport()
             }
         }
     }
@@ -238,13 +248,13 @@ def buildandsonarlaval() {
             sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
             if (!params.Sonar_Analysis) {
                     echo "Skipping Sonar execution for ${appname} module"
-                } else {
+            } else {
                     sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
             }
+
         }
     }
 }
-
 
 def devdeployment() {  
     if (params.Build_Commons)  {
@@ -343,17 +353,16 @@ def publishdeploy() {
     sh label: 'Installing New Package on publish', script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'  && sleep 60"
 }
 
-def karmatest() {
+def publishCoverageReport() {
     if (params.Build_MyTetraPak) {
         reportname = "Karma Report - MyTetrapak"
-        def karmapath_cuhu = "${env.WORKSPACE}/tetrapak-customerhub/ui.dev/src/coverage"
-        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r ${karmapath_cuhu} ${appname}"
+        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r tetrapak-customerhub/ui.dev/src/coverage customerhub"
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
     }
     if (params.Build_Publicweb) {
-        echo "Publising karma Test Report- Publicweb"
         reportname = "Karma Report - Publicweb"
-        def karmapath_pw = "${env.WORKSPACE}/tetrapak-publicweb/ui.dev/src/coverage"
-        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r ${karmapath_pw} ${appname}"
+        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r tetrapak-publicweb/ui.dev/src/coverage publicweb"
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
     }
 }
 
@@ -391,16 +400,15 @@ def sitespeedcuhu() {
 
 def sitespeedpw() {
     test_url_pw = "https://www-dev.tetrapak.com"
-    echo "Starting Sitespeed-Desktop Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_pw}" -b firefox --outputFolder sitespeed_desktop'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
+    //sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_pw}" -b firefox --outputFolder sitespeed_desktop'
+    sh label: "Starting Sitespeed-Firefox-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://www-dev.tetrapak.com' 
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
 
-    echo "Starting Sitespeed-Mobile Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_pw}" -b firefox --outputFolder sitespeed_mobile'
+    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_mobile https://www-dev.tetrapak.com'
+    //sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_pw}" -b firefox --outputFolder sitespeed_mobile'
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Mobile', reportTitles: ''])
 
-    echo "Starting Sitespeed-IPAD Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_pw}" -b firefox --outputFolder sitespeed_ipad'
+    sh label: "Starting Sitespeed-IPAD Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" -b firefox --outputFolder sitespeed_ipad https://www-dev.tetrapak.com'
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-IPad', reportTitles: ''])
 }                        
 
@@ -422,7 +430,7 @@ def pallypwscript() {
     sh 'mkdir -p pally-publicWeb'
     sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
-                                        
+                                      
 }
 
 def cacheflush() {
