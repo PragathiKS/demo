@@ -14,6 +14,5 @@
     <filter root="/apps/supplierportal/i18n">
         <exclude pattern="/apps/supplierportal/i18n(/.*)?"/>
     </filter>
-    <filter root="/etc/map/https" mode="update"/>
     <filter root="/etc/notification/email/supplierportal/supportrequestemail.html" mode="update" />
 </workspaceFilter>
