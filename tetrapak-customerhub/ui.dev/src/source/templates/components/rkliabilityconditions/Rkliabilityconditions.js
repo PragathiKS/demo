@@ -60,9 +60,22 @@ class Rkliabilityconditions {
     render.fn({
       template: 'rkliabilityconditionsButtons',
       target: '.js-tp-rk-liabilityconditions-buttons',
-      data: { i18nKeys: this.cache.i18nKeys, showPreferredLangPDF: ctiLangCode !== 'en', pdfvalue: this.cache.$pdfvalue }}, () => { 
+      data: { 
+        i18nKeys: this.cache.i18nKeys,
+        showPreferredLangPDF: ctiLangCode !== 'en' && !!this.cache.$pdfvalue[ctiLangCode],
+        pdfvalue: this.cache.$pdfvalue 
+      }}, () => { 
       this.cache.contentWrapper.removeClass('d-none');
       this.cache.$spinner.addClass('d-none');
+      const $pdfButtons = $('body').find('.liability-condition-pdf');
+      $pdfButtons.each((_, button) => {
+        const host = window.location.href.split('/')[0];
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = $(e.target).attr('href');      
+          window.open(`${host}/${href}`, '_blank');
+        });
+      });
     });
   }
   init() {
