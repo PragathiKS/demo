@@ -214,7 +214,7 @@ def buildandsonar() {
             if (!params.Sonar_Analysis) {
                 echo "Skipping Sonar execution for ${appname} module"
             } else {
-                sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sh "mvn sonar:sonar -Dsonar.issuesReport.html.enable=true -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
                 sonarreport()
             }
         }
@@ -443,8 +443,8 @@ def cacheflush() {
 
 def sonarreport() {
     echo "Publishing Sonar report"
-    sh 'sudo mkdir -p reports'
-    sh 'sudo chmod -R 777 reports'
+    sh 'mkdir -p reports'
+    sh 'chmod -R 777 reports'
     sh 'echo "<html> <br /> <p style="font-size:30px"> <a href="https://sonarcloud.io/organizations/tetrapak-smartsales/projects" target="_top">Sonarcloud Report</a> <br /> </p> </html>" > reports/sonarreport.html'
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'sonarreport.html', reportName: 'SonarCloud Report', reportTitles: ''])
 }
