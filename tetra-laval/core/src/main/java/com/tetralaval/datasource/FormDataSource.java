@@ -25,7 +25,7 @@ import com.adobe.granite.ui.components.ds.SimpleDataSource;
 import com.adobe.granite.ui.components.ds.ValueMapResource;
 import com.day.cq.commons.jcr.JcrConstants;
 import com.tetralaval.beans.Dropdown;
-import com.tetralaval.services.FormDatasourceConfigService;
+import com.tetralaval.services.FormService;
 
 @Component(service = Servlet.class, property = {
 	Constants.SERVICE_DESCRIPTION
@@ -41,13 +41,14 @@ public class FormDataSource extends SlingSafeMethodsServlet {
     private static final String VALUE = "value";
     private static final String ACTION_TYPE = "actionType";
     private static final String EMAIL_TEMPLATE = "emailTemplate";
+    private static final String CONTACTUS_CONTENTFRAGMENT = "contactDetails";
     private static final String DROP_DOWN_TYPE = "dropDownType";
     private static final String DATASOURCE = "datasource";
 
     private static Logger LOGGER = LoggerFactory.getLogger(FormDataSource.class);
 
     @Reference
-    private FormDatasourceConfigService formDialogDropDownService;
+    private FormService formService;
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
@@ -58,11 +59,13 @@ public class FormDataSource extends SlingSafeMethodsServlet {
 		    String.class);
 	    switch (dropDownType) {
 	    case ACTION_TYPE:
-		dropDownList = formDialogDropDownService.getActionTypes();
+		dropDownList = formService.getActionTypesAsDropdown();
 		break;
 	    case EMAIL_TEMPLATE:
-		dropDownList = formDialogDropDownService.getEmailTemplates();
-		break;	
+		dropDownList = formService.getEmailTemplatesAsDropdown();
+		break;
+	    case CONTACTUS_CONTENTFRAGMENT:
+		dropDownList = formService.getContactUsFragmentsAsDropdown(resourceResolver);
 	    default:
 		break;
 	    }

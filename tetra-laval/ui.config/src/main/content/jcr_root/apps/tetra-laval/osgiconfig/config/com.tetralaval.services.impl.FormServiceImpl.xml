@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:primaryType="sling:OsgiConfig"
+  	ignoreParameters="[:,_]"
+  	actionTypes="Mail:mail"
+    emailTemplates="Contact Us Mail Template:/etc/notification/email/tetralaval/contactus/email.html"
+    contactUsFragmentsPath="/content/dam/tetra-laval/content-fragments/contact-us"/>

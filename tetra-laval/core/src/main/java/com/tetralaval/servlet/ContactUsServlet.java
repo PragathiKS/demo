@@ -24,6 +24,7 @@ import com.adobe.acs.commons.email.EmailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetralaval.beans.ContactUsResponse;
 import com.tetralaval.models.FormContainer;
+import com.tetralaval.services.FormService;
 
 /**
  * The Class ContactUsServlet.
@@ -48,7 +49,8 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     /** The Constant CONTACT_US_MAIL_TEMPLATE_PATH. */
     private final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/tetralaval/contactus/email.html";
 
-    private String[] ignoreParametersStartingWith = new String[] { "_", ":" };
+    @Reference
+    private FormService formService;
 
     /** The xss API. */
     @Reference
@@ -69,7 +71,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    Map<String, String> emailParams = new HashMap<>();
 	    requestParams.forEach((key, value) -> {
 		LOGGER.debug("Key: {} ::: Value: {}", key, value);
-		if (!StringUtils.startsWithAny(key, ignoreParametersStartingWith)) {
+		if (!StringUtils.startsWithAny(key, formService.getIgnoreParameters())) {
 		    String newValue = "";
 		    if (value.length > 1) {
 			newValue = StringUtils.join(value, ",");

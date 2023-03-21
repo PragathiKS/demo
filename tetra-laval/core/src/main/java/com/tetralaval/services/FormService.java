@@ -1,0 +1,25 @@
+package com.tetralaval.services;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.sling.api.resource.ResourceResolver;
+
+import com.tetralaval.beans.Dropdown;
+
+public interface FormService {
+
+    String[] getIgnoreParameters();
+
+    Map<String, String> getEmailTo();
+
+    String[] getEmailTemplates();
+
+    String[] getActionTypes();
+    
+    List<Dropdown> getEmailTemplatesAsDropdown();
+    
+    List<Dropdown> getActionTypesAsDropdown();
+    
+    List<Dropdown> getContactUsFragmentsAsDropdown(ResourceResolver resourceResolver);
+}
