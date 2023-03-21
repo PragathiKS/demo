@@ -38,6 +38,7 @@
 
     &__selected-lang {
         @include margin-bottom($font-sm);
+        color: $color-congress-blue;
 
         &-label {
             @include padding($padding-xs);

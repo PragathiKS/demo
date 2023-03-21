@@ -67,6 +67,12 @@
           privileges:
           repGlob:
 
+        - path: /etc/mobile/groups/responsive
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
         - path: /content/cq:tags/tetrapak
           permission: allow
           actions: read
