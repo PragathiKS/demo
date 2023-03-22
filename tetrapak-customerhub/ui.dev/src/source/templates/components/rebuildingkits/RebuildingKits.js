@@ -660,7 +660,7 @@ class RebuildingKits {
       this.getAllAvailableFilterVals(RK_API_FILTER_KEYS, true);
       ajaxWrapper
         .getXhrObj({
-          url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}`,
+          url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}&sort=lineCode asc,rkGeneralNumber asc,position asc`,
           method: 'GET',
           contentType: 'application/json',
           dataType: 'json',
