@@ -313,12 +313,11 @@ class RebuildingKits {
   };
 
   renderNewPage = ({resetSkip}) => {
-    const {itemsPerPage, activeSortData, countryData, combinedFiltersObj} = this.cache;
+    const {itemsPerPage, activeSortData, combinedFiltersObj} = this.cache;
 
     const rkApi = this.cache.rkApi.data('rklist-api');
-    const activeCountry = countryData.filter(e => e.isChecked);
-    const countryCode = activeCountry.length ? activeCountry[0].countryCode: '';
     let apiUrlRequest = '';
+    const countryCode = this.getActiveCountryCode();
     const filtersQuery = _buildQueryUrl(combinedFiltersObj);
     const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
 
@@ -366,10 +365,6 @@ class RebuildingKits {
             ...item
           }));
           this.cache.meta = response.meta;
-          this.cache.countryData.splice(0, 1, {
-            ...this.cache.countryData[0],
-            isChecked: true
-          });
           const tableData = this.processTableData({
             summary:this.cache.tableData,
             i18nKeys:this.cache.i18nKeys,
@@ -665,7 +660,7 @@ class RebuildingKits {
       this.getAllAvailableFilterVals(RK_API_FILTER_KEYS, true);
       ajaxWrapper
         .getXhrObj({
-          url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}`,
+          url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}&sort=lineCode asc,rkGeneralNumber asc,position asc`,
           method: 'GET',
           contentType: 'application/json',
           dataType: 'json',
@@ -835,9 +830,9 @@ class RebuildingKits {
   getActiveCountryCode = () => {
     try {
       const { countryData } = this.cache;
-      const activeCountry = countryData.filter(e => e.isChecked);
-      if (activeCountry[0]) {
-        return activeCountry[0].countryCode;
+      const activeCountry = countryData.find(e => e.isChecked);
+      if (activeCountry) {
+        return activeCountry.countryCode;
       } else {
         throw Error('Couldn\'t get active country');
       }
@@ -906,17 +901,17 @@ class RebuildingKits {
       {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:4,isDisabled:true},
       {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:true,index:5,isDisabled:false},
       {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:6,isDisabled:true},
-      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:false,index:7,isDisabled:false},
+      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:true,index:7,isDisabled:false},
       {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:8,isDisabled:false},
       {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:9,isDisabled:false},
       {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:10,isDisabled:false},
-      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:true,index:11,isDisabled:false},
-      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:true,index:12,isDisabled:false},
+      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:11,isDisabled:false},
+      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:12,isDisabled:false},
       {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:13,isDisabled:false},
       {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:14,isDisabled:false},
       {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:15,isDisabled:false},
-      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:true,index:16,isDisabled:false},
-      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:true,index:17,isDisabled:false},
+      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:16,isDisabled:false},
+      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:17,isDisabled:false},
       {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:18,isDisabled:false}
     ];
 

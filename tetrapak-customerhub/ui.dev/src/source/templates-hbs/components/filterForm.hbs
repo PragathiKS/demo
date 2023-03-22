@@ -44,20 +44,30 @@
                         <div class="tp-my-equipment-filter-options">
                             {{#if isRadio}}
                                 {{#each formData}}
-                                    {{> atoms/radio/radio value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                            uniqueKey=option
-                                            name=@root.radioGroupName
-                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-radio"}}
+                                    {{> atoms/radio/radio 
+                                        value=option
+                                        text=optionDisplayText
+                                        check=isChecked
+                                        disabled=isDisabled
+                                        uniqueKey=option
+                                        name=@root.radioGroupName
+                                        autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                        jsMyEquipmentFilter="js-tp-my-equipment-filter-radio"
+                                    }}
                                 {{/each}}
                             {{else}}
                                 {{#each formData}}
-                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
-                                            uniqueKey=option
-                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                            jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"}}
+                                    {{> atoms/checkbox/checkbox 
+                                        value=option
+                                        text=optionDisplayText
+                                        check=isChecked
+                                        disabled=isDisabled
+                                        uniqueKey=option
+                                        autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                        jsMyEquipmentFilter="js-tp-my-equipment-filter-checkbox"
+                                    }}
                                 {{/each}}
                             {{/if}}
                         </div>
@@ -75,6 +85,12 @@
                     {{/if}}
                 </span>
             </button>
+            {{#if customiseTable}}
+                <button class="tpatom-btn tp-rk__set-default-button js-tp-rk__set-default-button" auto_locator="setDefaultOverlay">
+                    <i class="icon icon-Recycle"></i>
+                    <span class="tpatom-btn__text sly-text">{{i18n key=setDefaulFiltertCTA}}</span>
+                </button>
+            {{/if}}
             {{#unless singleButton}}
                 <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-button" auto_locator="removeAllOverlay">
                     <i class="icon icon-My_Euipment_Bin_X"></i>
