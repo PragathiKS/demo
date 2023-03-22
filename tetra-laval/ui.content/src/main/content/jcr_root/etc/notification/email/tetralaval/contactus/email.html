@@ -1,5 +1,5 @@
 From: noreply@communications.tetralaval.com
-Subject: ${subject}
+Subject: ${title} ${selectedCompany}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -50,12 +50,11 @@ Subject: ${subject}
     <div class="mail-wrapper"
         style="font-size: 14px;font-family: Verdana, Tahoma, sans-serif;line-height: 24px;color: #4A4A4A;">
         <div class="email-logo">
-            <img class="logo-size" src="https://${domainURL}${logo}" />
+            <img class="logo-size" src="${logo}" />
         </div>
-        <div style="font-size: 24px;font-weight: 500;line-height: 32px;padding-bottom: 16px;">Contact request</div>
+        <div style="font-size: 24px;font-weight: 500;line-height: 32px;padding-bottom: 16px;">${title}</div>
         <div style="padding-bottom: 24px">
-            This is a request generated from the contact form from <a href="https://${domainURL}">https://${domainURL}</a>. Below you will find the contact details
-            the customer filled in the form.
+           ${content}
         </div>
 
         <div style="padding-bottom: 24px;">

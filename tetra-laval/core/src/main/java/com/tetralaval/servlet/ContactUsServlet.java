@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.xss.XSSAPI;
@@ -21,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.adobe.acs.commons.email.EmailService;
+import com.adobe.cq.dam.cfm.ContentFragment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetralaval.beans.ContactUsResponse;
 import com.tetralaval.models.FormContainer;
@@ -65,6 +67,8 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     @Reference
     private XSSAPI xssAPI;
 
+    private ResourceResolver resourceResolver;
+
     /**
      * Do get.
      *
@@ -76,9 +80,14 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	LOGGER.debug("Insdie doPost");
 	ContactUsResponse contactUsResponse = new ContactUsResponse("500", "Server Error");
 	String type = STATUS_TYPE_MESSAGE;
+	String redirect = null;
+	String emailTemplatePath = CONTACT_US_MAIL_TEMPLATE_PATH;
+	InternetAddress to = null;
+	Map<String, String> emailParams = new HashMap<>();
 	try {
+	    resourceResolver = request.getResourceResolver();
 	    Map<String, String[]> requestParams = request.getParameterMap();
-	    Map<String, String> emailParams = new HashMap<>();
+
 	    requestParams.forEach((key, value) -> {
 		LOGGER.debug("Key: {} ::: Value: {}", key, value);
 		if (!StringUtils.startsWithAny(key, formService.getIgnoreParameters())) {
@@ -95,8 +104,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    // get details configured on Form Component.
 	    Resource formResource = request.getResource();
 	    LOGGER.debug("Form Resource: {}", formResource);
-	    String emailTemplatePath = CONTACT_US_MAIL_TEMPLATE_PATH;
-	    String to = "";
+
 	    if (null != formResource) {
 
 		FormContainer form = formResource.adaptTo(FormContainer.class);
@@ -104,24 +112,45 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 		    emailTemplatePath = form.getEmailTemplate();
 		    LOGGER.debug("Form Resource emailTemplatePath: {}", emailTemplatePath);
 		}
-		if (StringUtils.isNotBlank(form.getTo())) {
-		    to = form.getTo();
-		    LOGGER.debug("Form Resource To: {}", to);
-		}
 		if (form.getThankYouType().equals(THANKYOU_TYPE_REDIRECT)) {
 		    type = STATUS_TYPE_REDIRECT;
+		    redirect = request.getParameter(":redirect");
 		}
-		String subject = form.getSubject();
-		emailParams.put("Subject", subject);
-		LOGGER.debug("Form Resource Subject: {}", subject);
-		sendEmail(emailParams, new InternetAddress(to), emailTemplatePath);
-	    }
 
-	    String redirect = request.getParameter(":redirect");
+		/* get company details */
+		String company = request.getParameter(":company");
+		if (StringUtils.isBlank(company)) {
+		    throw new Exception("Company not provided");
+		} else {
+		    String resourcePath = formService.getContactUsFragmentsPath() + "/" + company;
+		    Resource resource = resourceResolver.getResource(resourcePath);
+		    if (null != resource) {
+			ContentFragment contentFragment = resource.adaptTo(ContentFragment.class);
+			emailParams.put("selectedCompany", contentFragment.getTitle());
+			if (null != contentFragment) {
+			    to = new InternetAddress(
+				    contentFragment.getElement("email").getValue().getValue(String.class));
+			    emailParams.put("title",
+				    contentFragment.getElement("emailTitle").getValue().getValue(String.class));
+			    emailParams.put("content",
+				    contentFragment.getElement("emailContent").getValue().getValue(String.class));
+			    emailParams.put("logo",
+				    contentFragment.getElement("logoPath").getValue().getValue(String.class));
+			}
+		    }
+		}
+	    }
 	    contactUsResponse = new ContactUsResponse("200", "OK", type, redirect);
-	    sendResponse(response, contactUsResponse);
+	    sendEmail(emailParams, to, emailTemplatePath);
 
 	} catch (final Exception e) {
+	    LOGGER.error("Exception :{}", e.getMessage(), e);
+	    contactUsResponse = new ContactUsResponse("500", "Error", type);
+	}
+
+	try {
+	    sendResponse(response, contactUsResponse);
+	} catch (IOException e) {
 	    LOGGER.error("Exception :{}", e.getMessage(), e);
 	}
 

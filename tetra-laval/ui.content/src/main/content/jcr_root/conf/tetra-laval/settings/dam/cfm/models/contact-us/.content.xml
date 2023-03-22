@@ -4,7 +4,7 @@
     allowedPaths="[/content/entities(/.*)?]"
     ranking="{Long}100">
     <jcr:content
-        cq:lastModified="{Date}2023-03-21T14:58:34.020+01:00"
+        cq:lastModified="{Date}2023-03-22T16:24:07.470+01:00"
         cq:lastModifiedBy="admin"
         cq:scaffolding="/conf/tetra-laval/settings/dam/cfm/models/contact-us/jcr:content/model"
         cq:templateType="/libs/settings/dam/cfm/model-types/fragment"
@@ -30,18 +30,18 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="cq/gui/components/authoring/dialog">
                 <content
-                    jcr:lastModified="{Date}2023-03-21T14:58:34.020+01:00"
+                    jcr:lastModified="{Date}2023-03-22T16:24:07.470+01:00"
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                     <items
                         jcr:primaryType="nt:unstructured"
-                        maxGeneratedOrder="21">
+                        maxGeneratedOrder="20">
                         <_x0031_679406809870
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldDescription="The Contact us Email will be sent out to this email address"
-                            fieldLabel="Email"
+                            fieldLabel="Email Address"
                             listOrder="1"
                             maxlength="255"
                             metaType="text-single"
@@ -55,6 +55,35 @@
                                 jcr:primaryType="nt:unstructured"
                                 customErrorMsg="Invalid Email Format"/>
                         </_x0031_679406809870>
+                        <_x0031_679407094632
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Title of the Email that will be sent out."
+                            fieldLabel="Email Title"
+                            listOrder="1"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="emailTitle"
+                            renderReadOnly="false"
+                            required="on"
+                            showEmptyInReadOnly="true"
+                            valueType="string">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                        </_x0031_679407094632>
+                        <_x0031_679497828079
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/cfm/admin/components/authoring/contenteditor/multieditor"
+                            cfm-element="Email Content"
+                            checked="false"
+                            default-mime-type="text/html"
+                            fieldDescription="Content of the email. The form fields will be appended to this text when the user submits data"
+                            listOrder="2"
+                            metaType="text-multi"
+                            name="emailContent"
+                            renderReadOnly="false"
+                            required="on"
+                            showEmptyInReadOnly="true"
+                            valueType="string/multiline"/>
                         <_x0031_679406709505
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -70,35 +99,6 @@
                             valueType="string">
                             <granite:data jcr:primaryType="nt:unstructured"/>
                         </_x0031_679406709505>
-                        <_x0031_679406852691
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="This Carrer Path will be added in the Contact Us email "
-                            fieldLabel="Careers Path"
-                            listOrder="1"
-                            maxlength="255"
-                            metaType="text-single"
-                            name="careersPath"
-                            renderReadOnly="false"
-                            required="on"
-                            showEmptyInReadOnly="true"
-                            valueType="string">
-                            <granite:data jcr:primaryType="nt:unstructured"/>
-                        </_x0031_679406852691>
-                        <_x0031_679407094632
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="This Domain will be used in the Contact Us email"
-                            fieldLabel="Domain"
-                            listOrder="21"
-                            maxlength="255"
-                            metaType="text-single"
-                            name="domain"
-                            renderReadOnly="false"
-                            showEmptyInReadOnly="true"
-                            valueType="string">
-                            <granite:data jcr:primaryType="nt:unstructured"/>
-                        </_x0031_679407094632>
                     </items>
                 </content>
             </cq:dialog>

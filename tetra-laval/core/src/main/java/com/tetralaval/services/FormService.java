@@ -17,6 +17,8 @@ public interface FormService {
 
     String[] getActionTypes();
     
+    String getContactUsFragmentsPath();
+    
     List<Dropdown> getEmailTemplatesAsDropdown();
     
     List<Dropdown> getActionTypesAsDropdown();
