@@ -34,7 +34,6 @@ class Rkliabilityconditions {
   getPDFButtons() {
     const $this = this;
     const ctiLangCode = storageUtil.getCookie('lang-code') || 'en';
-    logger.log(`getPdfbuttons: ${this.cache.pdfbButtonsApi}?preferredLanguage=${ctiLangCode}`);
     auth.getToken(({ data: authData }) => {
       ajaxWrapper.getXhrObj({
         url: `${this.cache.pdfButtonsApi}?preferredLanguage=${ctiLangCode}`,
@@ -69,11 +68,9 @@ class Rkliabilityconditions {
       this.cache.$spinner.addClass('d-none');
       const $pdfButtons = $('body').find('.liability-condition-pdf');
       $pdfButtons.each((_, button) => {
-        const host = window.location.href.split('/')[0];
         button.addEventListener('click', (e) => {
-          e.preventDefault();
-          const href = $(e.target).attr('href');      
-          window.open(`${host}/${href}`, '_blank');
+          e.preventDefault();   
+          window.open($(e.target).attr('href'), '_blank');
         });
       });
     });
