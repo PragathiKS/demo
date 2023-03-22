@@ -126,8 +126,8 @@
                   </sly>
                   <!--end image video component  -->
                   <h2 data-sly-test ="${tab.articleDate && data.displayDate}" class="pw-tablist__event-detail-block-time">${tab.articleDate @ context='html'}</h2>
-                  <sly data-sly-test="${tab.subTitle}">
-                    <p class="pw-tablist__event-detail-subtitle font-fixing js-tablist__event-detail-subtitle">${tab.subTitle @
+                  <sly data-sly-test="${!(tab.articleDate && data.displayDate)}">
+                    <p data-sly-test="${tab.subTitle}" class="pw-tablist__event-detail-subtitle font-fixing js-tablist__event-detail-subtitle">${tab.subTitle @
                       context='html'}</p>
                   </sly>
                   <h4 class="pw-tablist__event-detail-title js-tablist__event-detail-title d-none d-lg-block">
