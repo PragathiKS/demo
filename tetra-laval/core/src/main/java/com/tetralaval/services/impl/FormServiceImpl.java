@@ -125,4 +125,9 @@ public class FormServiceImpl implements FormService {
 	return contactUsFragments;
 
     }
+
+    @Override
+    public String getContactUsFragmentsPath() {
+	return contactUsFragmentsPath;
+    }
 }
