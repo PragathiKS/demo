@@ -141,7 +141,8 @@
         "source/templates/components/accordion/",
         "source/templates/components/leftnavigation/",
         "source/templates/components/languageselector/",
-        "source/templates/components/supportrequest/"
+        "source/templates/components/supportrequest/",
+        "source/templates/components/chatbotAnchor/"
       ]
     },
     "handlebars": {
