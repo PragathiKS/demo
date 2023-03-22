@@ -8,13 +8,7 @@
         tabindex="-1" role="dialog" aria-modal="true">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
             <div class="modal-content tp-modal-content">
-                <div class="modal-header pw-lang-selector__header" auto_locator="countrySelectorHeader">
-                    <h2 role="heading" class="pw-lang-selector__header__heading">Contact Tetra Laval S.A.</h2>
-                    <button type="button" auto_locator="languageSelectModal"
-                        class="tp-close-btn icon-Close_pw pw-lang-selector__header__close js-close-btn"
-                        aria-label="Contact form close button" title="Contact form close button"></button>
-                </div>
-
+				<input tyep="hidden" name=":company" value="${properties.company}"/>
                 <div class="modal-body">
                     <!-- Contact Form -->
                     <sly data-sly-test.formPath="${properties.formPath}" />

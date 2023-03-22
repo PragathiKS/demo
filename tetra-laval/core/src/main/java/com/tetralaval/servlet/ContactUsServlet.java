@@ -49,6 +49,15 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     /** The Constant CONTACT_US_MAIL_TEMPLATE_PATH. */
     private final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/tetralaval/contactus/email.html";
 
+    /** The Constant Status Type Message. */
+    private final String STATUS_TYPE_MESSAGE = "message";
+
+    /** The Constant Status Type Redirect. */
+    private final String STATUS_TYPE_REDIRECT = "redirect";
+
+    /** The Constant Thank You Type Message. */
+    private final String THANKYOU_TYPE_REDIRECT = "showThankYouPage";
+
     @Reference
     private FormService formService;
 
@@ -66,6 +75,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response) {
 	LOGGER.debug("Insdie doPost");
 	ContactUsResponse contactUsResponse = new ContactUsResponse("500", "Server Error");
+	String type = STATUS_TYPE_MESSAGE;
 	try {
 	    Map<String, String[]> requestParams = request.getParameterMap();
 	    Map<String, String> emailParams = new HashMap<>();
@@ -98,6 +108,9 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 		    to = form.getTo();
 		    LOGGER.debug("Form Resource To: {}", to);
 		}
+		if (form.getThankYouType().equals(THANKYOU_TYPE_REDIRECT)) {
+		    type = STATUS_TYPE_REDIRECT;
+		}
 		String subject = form.getSubject();
 		emailParams.put("Subject", subject);
 		LOGGER.debug("Form Resource Subject: {}", subject);
@@ -105,18 +118,8 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    }
 
 	    String redirect = request.getParameter(":redirect");
-	    LOGGER.debug("Redirect from Request: {}", redirect);
-	    if (StringUtils.isBlank(redirect)) {
-		redirect = request.getHeader("Referrer");
-		LOGGER.debug("Redirect from Referrer Header as Redirect is not provided: {}", redirect);
-	    }
-	    contactUsResponse = new ContactUsResponse("200", "OK");
+	    contactUsResponse = new ContactUsResponse("200", "OK", type, redirect);
 	    sendResponse(response, contactUsResponse);
-
-	    /*
-	     * redirect = redirect + "?status=200"; LOGGER.debug("Redirect....");
-	     * response.sendRedirect(redirect);
-	     */
 
 	} catch (final Exception e) {
 	    LOGGER.error("Exception :{}", e.getMessage(), e);

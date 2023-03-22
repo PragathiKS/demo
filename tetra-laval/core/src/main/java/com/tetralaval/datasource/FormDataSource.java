@@ -41,7 +41,7 @@ public class FormDataSource extends SlingSafeMethodsServlet {
     private static final String VALUE = "value";
     private static final String ACTION_TYPE = "actionType";
     private static final String EMAIL_TEMPLATE = "emailTemplate";
-    private static final String CONTACTUS_CONTENTFRAGMENT = "contactDetails";
+    private static final String COMPANY = "company";
     private static final String DROP_DOWN_TYPE = "dropDownType";
     private static final String DATASOURCE = "datasource";
 
@@ -64,7 +64,7 @@ public class FormDataSource extends SlingSafeMethodsServlet {
 	    case EMAIL_TEMPLATE:
 		dropDownList = formService.getEmailTemplatesAsDropdown();
 		break;
-	    case CONTACTUS_CONTENTFRAGMENT:
+	    case COMPANY:
 		dropDownList = formService.getContactUsFragmentsAsDropdown(resourceResolver);
 	    default:
 		break;

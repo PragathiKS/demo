@@ -1,5 +1,11 @@
 <sly data-sly-test="${wcmmode.edit}">
-	<p data-emptytext="configure ${component.title}"></p>
+<p data-emptytext="configure ${component.title}"></p>
 </sly>
-<sly data-sly-use.lib="title-template.html" data-sly-use.model="com.tetralaval.models.FormTitle"
-	data-sly-call="${lib.title_template @ data=model}" />
+<div data-sly-use.model="com.tetralaval.models.FormTitle">
+	<h1 role="heading" class="pw-lang-selector__header__heading"
+		data-sly-element="${model.headingLevel}">${model.title}</h1>
+	<button type="button" auto_locator="languageSelectModal"
+		class="tp-close-btn icon-Close_pw pw-lang-selector__header__close js-close-btn"
+		aria-label="Contact form close button"
+		title="Contact form close button"></button>
+</div>

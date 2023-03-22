@@ -19,17 +19,49 @@ public class ContactUsResponse {
     @JsonProperty("statusCode")
     private String statusCode;
 
+    @JsonProperty("type")
+    private String type;
+
+    @JsonProperty("redirectURL")
+    private String redirectURL;
+
     /**
      * Instantiates a new contact us response.
      *
-     * @param statusCode
-     *            the status code
-     * @param statusMessage
-     *            the status message
+     * @param statusCode    the status code
+     * @param statusMessage the status message
      */
     public ContactUsResponse(final String statusCode, final String statusMessage) {
-        this.statusCode = statusCode;
-        this.statusMessage = statusMessage;
+	this.statusCode = statusCode;
+	this.statusMessage = statusMessage;
+    }
+
+    /**
+     * Instantiates a new contact us response.
+     *
+     * @param statusCode    the status code
+     * @param statusMessage the status message
+     * @param type          the Type
+     * @param redirectURL   the Redirect URL
+     */
+    public ContactUsResponse(final String statusCode, final String statusMessage, String type, String redirectURL) {
+	this.statusCode = statusCode;
+	this.statusMessage = statusMessage;
+	this.type = type;
+	this.redirectURL = redirectURL;
+    }
+
+    /**
+     * Instantiates a new contact us response.
+     *
+     * @param statusCode    the status code
+     * @param statusMessage the status message
+     * @param type          the Type
+     */
+    public ContactUsResponse(final String statusCode, final String statusMessage, String type) {
+	this.statusCode = statusCode;
+	this.statusMessage = statusMessage;
+	this.type = type;
     }
 
     /**
@@ -39,18 +71,17 @@ public class ContactUsResponse {
      */
     @JsonProperty("statusMessage")
     public String getStatusMessage() {
-        return statusMessage;
+	return statusMessage;
     }
 
     /**
      * Sets the status message.
      *
-     * @param statusMessage
-     *            the new status message
+     * @param statusMessage the new status message
      */
     @JsonProperty("statusMessage")
     public void setStatusMessage(final String statusMessage) {
-        this.statusMessage = statusMessage;
+	this.statusMessage = statusMessage;
     }
 
     /**
@@ -60,18 +91,57 @@ public class ContactUsResponse {
      */
     @JsonProperty("statusCode")
     public String getStatusCode() {
-        return statusCode;
+	return statusCode;
     }
 
     /**
      * Sets the status code.
      *
-     * @param statusCode
-     *            the new status code
+     * @param statusCode the new status code
      */
     @JsonProperty("statusCode")
     public void setStatusCode(final String statusCode) {
-        this.statusCode = statusCode;
+	this.statusCode = statusCode;
+    }
+
+    /**
+     * Gets the Type
+     * 
+     * @return the type
+     */
+    @JsonProperty("type")
+    public String getType() {
+	return type;
+    }
+
+    /**
+     * Sets the Type: redirect/message
+     * 
+     * @param the Type
+     */
+    @JsonProperty("type")
+    public void setType(String type) {
+	this.type = type;
+    }
+
+    /**
+     * Gets the redirect URL
+     * 
+     * @return Redirect URL
+     */
+    @JsonProperty("redirectURL")
+    public String getRedirectURL() {
+	return redirectURL;
+    }
+
+    /**
+     * Sets the Redirect URL.
+     *
+     * @param the RedirectURL
+     */
+    @JsonProperty("redirectURL")
+    public void setRedirectURL(String redirectURL) {
+	this.redirectURL = redirectURL;
     }
 
 }

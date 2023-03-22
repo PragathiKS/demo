@@ -45,13 +45,13 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                                 deleteHint="{Boolean}true"
-                                                fieldDescription="Select the content fragment for the contact us details"
-                                                fieldLabel="Path to Contact Details content fragment"
-                                                name="./contactDetails">
+                                                fieldDescription="Select the content fragment for the contact us details Company"
+                                                fieldLabel="Path to Company content fragment"
+                                                name="./company">
                                                 <datasource
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="tetra-laval/components/content/form/datasource/formdata"
-                                                    dropDownType="contactDetails"/>
+                                                    dropDownType="company"/>
                                             </contactDetails>            
                                         </items>
                                     </column>
