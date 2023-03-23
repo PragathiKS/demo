@@ -1,7 +1,7 @@
 <sly data-sly-template.chatbot_template="${@data, flag}">
     <div data-sly-test="${!pageProperties.disableChatbot}">
         <div class="pw-chatbot-wrapper" data-module="Chatbot" id="Chatbot">
-          <a class="pw-chatbot js-pw-chatbot" title="${data.chatbotText}" href="${data.chatbotLink}">
+          <a class="pw-chatbot js-pw-chatbot" title="${data.chatbotText}" target="_blank" href="${data.chatbotLink}">
               <i class="icon-Chat tp-icon"></i>
           </a>
         </div>
