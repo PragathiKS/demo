@@ -266,7 +266,7 @@ class RebuildingKits {
 
           ajaxWrapper
             .getXhrObj({
-              url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}`,
+              url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}&sort=lineCode asc,rkGeneralNumber asc,position asc`,
               method: 'GET',
               contentType: 'application/json',
               dataType: 'json',
@@ -764,7 +764,7 @@ class RebuildingKits {
       const url = this.cache.downloadservletUrl;
       file.get({
         extension: 'csv',
-        url,
+        url: `${url}?countrycodes=${this.getActiveCountryCode()}`,
         method: ajaxMethods.GET
       });
     });
@@ -779,8 +779,8 @@ class RebuildingKits {
       } else {
         throw Error('Couldn\'t get active country');
       }
-    } catch (err) {
-      logger.error(err.message);
+    } catch {
+      logger?.error('Couldn\'t get active country');
     }
   }
 
@@ -1059,7 +1059,7 @@ class RebuildingKits {
     });
 
     // Redirect to RK Detail Page
-    this.root.on('click', '.tp-rk__table-summary__row',  (e) => {
+    this.root.on('click', '.tp-rk__table-summary__row:not(".tp-rk__table-summary__rowheading")',  (e) => {
       const clickLink = $(e.currentTarget);
       const equipmentNumber = clickLink.find('.tpmol-table__key-equipmentNumber').text();
       const rkNumber = clickLink.find('.tpmol-table__key-rkNumber').text();
