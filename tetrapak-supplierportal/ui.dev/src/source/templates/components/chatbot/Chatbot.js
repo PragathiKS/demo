@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-class ChatbotAnchor {
+class Chatbot {
   constructor({ el }) {
     this.root = $(el);
   }
@@ -28,4 +28,4 @@ class ChatbotAnchor {
   }
 }
 
-export default ChatbotAnchor;
+export default Chatbot;

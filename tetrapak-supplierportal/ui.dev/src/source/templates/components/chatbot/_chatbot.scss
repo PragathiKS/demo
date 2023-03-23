@@ -1,4 +1,4 @@
-.pw-chatbotAnchor-wrapper {
+.pw-chatbot-wrapper {
     @include right($margin-sm);
     @include bottom($margin-sm);
     position: fixed;
@@ -8,7 +8,7 @@
         @include right($margin-l);
         @include bottom($margin-l);
     }
-    .pw-chatbotAnchor {
+    .pw-chatbot {
         color: $color-white;
         background-color: $color-congress-blue;
         border-radius: 100%;
@@ -17,7 +17,7 @@
         transition: opacity 0.3s ease;
         width: 64px;
         height: 64px;
-        .icon-Envolopeup_pw {
+        .icon-Chat {
             &::before {
                 @include font-size($font-l);
                 @include padding(20px 0 0 20px);
