@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Rkliabilityconditions from './Rkliabilityconditions';
-import rkLiabilityConditonsData from './data/rkLiabilityConditions.json';
-import rkLiabilityConditonsTemplate from '../../../test-templates-hbs/rebuildingkitDetails.hbs';
+import rkLiabilityPDFLinksData from './data/rkLiabilityPDFLinks.json';
+import rkLiabilityPDFLinksTemplate from '../../../test-templates-hbs/rkLiabilityPDFLinks.hbs';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
@@ -13,7 +13,7 @@ describe('Rkliabilityconditions', function () {
     }
   };
   function setDom($this) {
-    $(document.body).empty().html(rkLiabilityConditonsTemplate());
+    $(document.body).empty().html(rkLiabilityPDFLinksTemplate());
     $this.rkliabilityConditions = new Rkliabilityconditions({
       el: document.body
     });
@@ -32,11 +32,11 @@ describe('Rkliabilityconditions', function () {
     setDom(this);
     this.initSpy = sinon.spy(this.rkliabilityConditions, 'init');
     this.bindEventsSpy = sinon.spy(this.rkliabilityConditions, 'bindEvents');
-    this.getPDFButtonsSpy = sinon.spy(this.rkliabilityConditions, 'getPDFButtons');
-    this.renderButtonsSpy = sinon.spy(this.rkliabilityConditions, 'renderButtons');
+    this.getPDFDocumentLinksSpy = sinon.spy(this.rkliabilityConditions, 'getPDFDocumentLinks');
+    this.renderPDFLinksSpy = sinon.spy(this.rkliabilityConditions, 'renderPDFLinks');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-    const apiResponse = {data :[{...rkLiabilityConditonsData }]};
+    const apiResponse = {data :[{...rkLiabilityPDFLinksData }]};
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(apiResponse));
     this.openStub = sinon.stub(window, 'open');
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
@@ -52,8 +52,8 @@ describe('Rkliabilityconditions', function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.bindEventsSpy.restore();
-    this.getPDFButtonsSpy.restore();
-    this.renderButtonsSpy.restore();
+    this.getPDFDocumentLinksSpy.restore();
+    this.renderPDFLinksSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -66,9 +66,9 @@ describe('Rkliabilityconditions', function () {
     done();
   });
 
-  it('should call and render buttons', function (done) {
-    expect(this.getPDFButtonsSpy.called).to.be.true;
-    expect(this.renderButtonsSpy.called).to.be.true;
+  it('should call and render pdf links', function (done) {
+    expect(this.getPDFDocumentLinksSpy.called).to.be.true;
+    expect(this.renderPDFLinksSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();
   });
