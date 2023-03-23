@@ -407,11 +407,11 @@ def sitespeedpw() {
     sh label: "Starting Sitespeed-Chrome-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://www-dev.tetrapak.com'
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Chrome', reportTitles: ''])
 
-    sh label: "Starting Sitespeed-IPhone6+ Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Apple iPhone 6 Plus"  --outputFolder sitespeed_iphone6Plus https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_iphone6Plus', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-iphone6Plus', reportTitles: ''])
+    sh label: "Starting Sitespeed-IPhone6 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "iPhone 6"  --outputFolder sitespeed_iphone6 https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-iphone6', reportTitles: ''])
 
-    sh label: "Starting Sitespeed-SamsungS3 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Samsung Galaxy S III"  --outputFolder sitespeed_samsungs3 https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_samsungs3', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-SamsungS3', reportTitles: ''])
+    sh label: "Starting Sitespeed-Nexus7 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Nexus 7"  --outputFolder sitespeed_Nexus7 https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-SamsungS3', reportTitles: ''])
 }                        
 
 def pallycuhuscript() {
