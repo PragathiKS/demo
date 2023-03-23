@@ -31,7 +31,7 @@ class Rkliabilityconditions {
      * $submitBtn.on('click', () => { ... });
      */
   }
-  getPDFButtons() {
+  getPDFDocumentLinks() {
     const $this = this;
     const ctiLangCode = storageUtil.getCookie('lang-code') || 'en';
     auth.getToken(({ data: authData }) => {
@@ -48,17 +48,17 @@ class Rkliabilityconditions {
         $this.cache.$spinner.addClass('d-none');
         $this.cache.$content.removeClass('d-none');
         $this.cache.$pdfvalue = res;
-        $this.renderButtons(ctiLangCode);
+        $this.renderPDFLinks(ctiLangCode);
       }).fail(() => {
         $this.cache.$content.removeClass('d-none');
         $this.cache.$spinner.addClass('d-none');
       });
     });
   }
-  renderButtons(ctiLangCode) {
+  renderPDFLinks(ctiLangCode) {
     render.fn({
-      template: 'rkliabilityconditionsButtons',
-      target: '.js-tp-rk-liabilityconditions-buttons',
+      template: 'rkliabilityPDFLinks',
+      target: '.js-tp-rk-liabilityconditions-pdfLinks',
       data: { 
         i18nKeys: this.cache.i18nKeys,
         showPreferredLangPDF: ctiLangCode !== 'en' && !!this.cache.$pdfvalue[ctiLangCode],
@@ -79,7 +79,7 @@ class Rkliabilityconditions {
     /* Mandatory method */
     this.initCache();
     this.bindEvents();
-    this.getPDFButtons();
+    this.getPDFDocumentLinks();
   }
 }
 
