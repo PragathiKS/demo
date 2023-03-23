@@ -386,32 +386,32 @@ def zaptest() {
 
 def sitespeedcuhu() {
     test_url_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
-    echo "Starting Sitespeed-Desktop Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_cuhu}" -b firefox --outputFolder sitespeed_desktop'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-Desktop', reportTitles: ''])
+    sh label: "Starting Sitespeed-Firefox-Desktop Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://mypages-dev.tetrapak.com/dashboard.html' 
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-Desktop', reportTitles: ''])
 
-    echo "Starting Sitespeed-Mobile Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_cuhu}" -b firefox --outputFolder sitespeed_mobile'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-Mobile', reportTitles: ''])
+    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://mypages-dev.tetrapak.com/dashboard.html'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-Chrome', reportTitles: ''])
 
-    echo "Starting Sitespeed-IPAD Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_cuhu}" -b firefox --outputFolder sitespeed_ipad'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-IPad', reportTitles: ''])
+    sh label: "Starting Sitespeed-IPhone6 Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "iPhone 6"  --outputFolder sitespeed_iphone6 https://mypages-dev.tetrapak.com/dashboard.html'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-iphone6', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-Nexus7 Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Nexus 7"  --outputFolder sitespeed_Nexus7 https://mypages-dev.tetrapak.com/dashboard.html'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-SamsungS3', reportTitles: ''])
 }
 
 def sitespeedpw() {
     test_url_pw = "https://www-dev.tetrapak.com"
     sh label: "Starting Sitespeed-Firefox-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://www-dev.tetrapak.com' 
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
 
     sh label: "Starting Sitespeed-Chrome-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Chrome', reportTitles: ''])
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Chrome', reportTitles: ''])
 
     sh label: "Starting Sitespeed-IPhone6 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "iPhone 6"  --outputFolder sitespeed_iphone6 https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-iphone6', reportTitles: ''])
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-iphone6', reportTitles: ''])
 
     sh label: "Starting Sitespeed-Nexus7 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Nexus 7"  --outputFolder sitespeed_Nexus7 https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-SamsungS3', reportTitles: ''])
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-SamsungS3', reportTitles: ''])
 }                        
 
 def pallycuhuscript() {
