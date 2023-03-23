@@ -147,6 +147,16 @@
             <artifactId>javax.annotation-api</artifactId>
         </dependency>
         <dependency>
+		    <groupId>com.adobe.acs</groupId>
+		    <artifactId>acs-aem-commons-bundle</artifactId>
+		    <version>4.8.6</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+ 			<artifactId>gson</artifactId>
+			<version>2.8.2</version>
+		</dependency>
+        <dependency>
             <groupId>biz.aQute.bnd</groupId>
             <artifactId>bndlib</artifactId>
         </dependency>

@@ -130,6 +130,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
             samlCookie.setDomain(SupplierPortalConstants.DOMAIN_NAME);
             response.addCookie(samlCookie);
         }
+
     }
 
     private static String setSAMLRequestPathCookie(HttpServletRequest request, HttpServletResponse response,

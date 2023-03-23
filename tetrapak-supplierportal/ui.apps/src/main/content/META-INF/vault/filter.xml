@@ -10,8 +10,10 @@
     <filter root="/apps/supplierportal/config.prod.publish" mode="replace"/>
     <filter root="/apps/supplierportal/clientlibs" mode="update"/>
     <filter root="/apps/supplierportal/config" mode="replace"/>
+    <filter root="/etc/notification/email/supplierportal" mode="update" />
     <filter root="/apps/supplierportal/i18n">
         <exclude pattern="/apps/supplierportal/i18n(/.*)?"/>
     </filter>
+    <filter root="/etc/notification/email/supplierportal/supportrequestemail.html" mode="update" />
     <filter root="/apps/msm/tetrapak-supplier-portal-blueprint" mode="update"/>
 </workspaceFilter>

@@ -141,6 +141,7 @@
         "source/templates/components/richtext/",
         "source/templates/components/accordion/",
         "source/templates/components/leftnavigation/",
+        "source/templates/components/supportrequest/",
         "source/templates/components/languageselector/"
       ]
     },
