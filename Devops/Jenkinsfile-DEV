@@ -170,9 +170,9 @@ pipeline {
         stage('Sitespeed Execution') {        
             steps {
                 script {
-                    warnError(message: "Zap Tools Execution failed with error") {
+                    warnError(message: "Sitespeed Execution failed with error") {
                         if (!params.Sitespeed_Run) {
-                            echo "Skipping Sitespeed Execution for Desktop"                
+                            echo "Skipping Sitespeed Execution"                
                         }
                         else {
                             parallel (
@@ -233,6 +233,7 @@ def buildandsonarsupplier() {
                     echo "Skipping Sonar execution for ${appname} module"
                 } else {
                     sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                    sonarreport()
                 }
             }
         }
@@ -247,11 +248,11 @@ def buildandsonarlaval() {
         {
             sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
             if (!params.Sonar_Analysis) {
-                    echo "Skipping Sonar execution for ${appname} module"
+                echo "Skipping Sonar execution for ${appname} module"
             } else {
-                    sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sonarreport()
             }
-
         }
     }
 }
@@ -400,16 +401,17 @@ def sitespeedcuhu() {
 
 def sitespeedpw() {
     test_url_pw = "https://www-dev.tetrapak.com"
-    //sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_pw}" -b firefox --outputFolder sitespeed_desktop'
     sh label: "Starting Sitespeed-Firefox-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://www-dev.tetrapak.com' 
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
 
-    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_mobile https://www-dev.tetrapak.com'
-    //sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_pw}" -b firefox --outputFolder sitespeed_mobile'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Mobile', reportTitles: ''])
+    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Chrome', reportTitles: ''])
 
-    sh label: "Starting Sitespeed-IPAD Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" -b firefox --outputFolder sitespeed_ipad https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-IPad', reportTitles: ''])
+    sh label: "Starting Sitespeed-IPhone6+ Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Apple iPhone 6 Plus"  --outputFolder sitespeed_iphone6Plus https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_iphone6Plus', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-iphone6Plus', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-SamsungS3 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Samsung Galaxy S III"  --outputFolder sitespeed_samsungs3 https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_samsungs3', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-SamsungS3', reportTitles: ''])
 }                        
 
 def pallycuhuscript() {
