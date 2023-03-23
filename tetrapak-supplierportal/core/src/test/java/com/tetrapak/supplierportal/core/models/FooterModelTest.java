@@ -62,9 +62,10 @@ public class FooterModelTest {
      *             the exception
      */
     @Test
-    public void testSimpleLoadAndGetters() throws Exception {
-        assertEquals("Label should be: 'Link text 2'","Link text 2", model.getFooterLinks().get(0).getLinkLabel());
-        assertEquals("Label should be: 'link'","link", model.getFooterLinks().get(0).getLinkPath());
+    public void simpleLoadAndGettersTest() throws Exception {
+        assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
+        assertEquals("link", model.getFooterLinks().get(0).getLinkPath());
+        assertEquals("true", model.getChangeLanguage());
         
     }
 }

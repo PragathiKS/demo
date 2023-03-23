@@ -3,6 +3,7 @@ package com.tetrapak.supplierportal.core.utils;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.supplierportal.core.services.CookieDataDomainScriptService;
+import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -23,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.http.Cookie;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -39,6 +41,8 @@ public final class GlobalUtil {
 
     private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
     private static final String NAVIGATION = "navigationconfiguration";
+
+    public static final String LANG_CODE = "lang-code";
 
     public GlobalUtil() {
     }
@@ -152,6 +156,25 @@ public final class GlobalUtil {
             }
         }
         return null;
+    }
+
+    /**
+     * Method to get selected language.
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
+     * @return string language code
+     */
+    public static String getSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        Cookie languageCookie = request.getCookie(LANG_CODE);
+        if (null != languageCookie) {
+            return languageCookie.getValue();
+        }
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        if (null != session && null != userPreferenceService) {
+            return userPreferenceService.getSavedPreferences(session.getUserID(), SupplierPortalConstants.LANGUGAGE_PREFERENCES);
+        }
+        return SupplierPortalConstants.DEFAULT_LOCALE;
     }
 
     /**

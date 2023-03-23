@@ -52,7 +52,12 @@
                                     </items>
                                 </field>
                             </footerLinks>
-                            
+                            <changeLanguage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/foundation/form/textfield"
+                                fieldDescription="Text for change Language Popup"
+                                fieldLabel="Language Change"
+                                name="./changeLanguage"/>
                         </items>
                     </general>
                 </items>

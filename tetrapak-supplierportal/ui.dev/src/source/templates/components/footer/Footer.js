@@ -1,13 +1,18 @@
 import $ from 'jquery';
-import { logger } from '../../../scripts/utils/logger';
-
 class Footer {
   constructor({ el }) {
     this.root = $(el);
   }
 
+  bindEvents() {
+    this.root.find('.js-footer__trigger-lang').on('click', (e) => {
+      e.preventDefault();
+      this.root.find('.js-lang-modal').trigger('showlanuagepreferencepopup');
+    });
+  }
+
   init() {
-    logger.log('Footer Init');
+    this.bindEvents();
   }
 }
 

@@ -1,0 +1,71 @@
+{
+    "meta": {
+      "count": 500,
+      "skip": 0,
+      "total": 1,
+      "version": "1"
+    },
+    "data": [
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "customerNumber": "92751",
+        "customerName": "Immergut GmbH & Co.KG1",
+        "location": "Schluechtern test",
+        "lineCode": "DEC-IMMERGUT  SCH-LIN B",
+        "lineName": "Immergut Schluechtern Line B testm",
+        "position": "0010",
+        "equipmentNumber": "9060000022",
+        "equipmentDesc": "TP A3/F-010V TBA1000B PT DIMC8 WAVE3",
+        "equipmentMaterial": " 648575-0100",
+        "equipmentMaterialDesc": "Filling Machine Tetra Pak A3/Flex.",
+        "equipmentStructure": "",
+        "equipmentType": "CE_FM",
+        "equipmentTypeDesc": "CE Filling Machines",
+        "rkNumber": "1284002-0781",
+        "rkDesc": "Pressure Jaw Right Base Unit",
+        "rkTypeCode": "B1",
+        "rkTypeDesc": "B1 Upgrade Improvement UK",
+        "rkHandling": "NORMAL FLOW",
+        "rkTime": "0.0",
+        "rkGeneralNumber": "3653559-0100",
+        "rkSubType": "",
+        "serialNumber": "21207/00109",
+        "implStatus": "Pending",
+        "implStatusGroup": "Pending",
+        "permanentVolumeConversion": false,
+        "implStatusDate": "",
+        "implDate": "",
+        "implDeadline": "",
+        "rebuildingKitStatus": "Released",
+        "serviceOrder": "",
+        "serviceOrderDesc": "",
+        "order": "Order one of multiple MSTKs",
+        "equipmentStatus": "PRNM",
+        "equipmentStatusDesc": "Produced New Machine",
+        "technicalBulletin": "N/A",
+        "releaseDateFirst": "9000-12-31",
+        "releaseDate": "",
+        "plannedDate": "",
+        "mechanicalSkills": "",
+        "automationSkills": "",
+        "electricalSkills": "",
+        "machineSystem": "TP A3/F",
+        "machineSystemDesc": "CE Tetra Pak A3/Flex",
+        "kpiExcl": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/rebuildingkits/9060000022?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

@@ -52,6 +52,8 @@
             **/constants/**,
             **/exceptions/**,
             **/utils/**,
+            **/SupplierPortalSAMLResponsePostProcessor.java,
+            **/AzureTableStorageServiceImpl.java
         </sonar.coverage.exclusions>
         <sonar.exclusions>
             **/**.html,

@@ -5,9 +5,11 @@ public final class SupplierPortalConstants {
 	/** The Constant DEFAULT_LOCALE. */
 	public static final String DEFAULT_LOCALE = "en";
 
-	public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global";
+	public static final String SUPPLIER_PATH = "/content/tetrapak/supplierportal/global/";
 
-	public static final String CONTENT_ROOT = SUPPLIER_PATH + "/en";
+	public static final String CONTENT_ROOT = SUPPLIER_PATH + "en";
+
+	public static final String DEFAULT_URL = "/dashboard";
 
 	public static final String SUPPORT_REQUEST_FORM_MAIL_TEMPLATE_PATH = "/etc/notification/email/supplierportal/supportrequestemail.html";
 	
@@ -122,16 +124,14 @@ public final class SupplierPortalConstants {
 
 	/** The Constant SUPPLIER_PORTAL. */
 	public static final String SUPPLIER_PORTAL = "supplierportal";
+    /** The Constant LANGUGAGE_PREFERENCES. */
+    public static final String LANGUGAGE_PREFERENCES = "languagePreference";
 
-	/** The Constant DOMAINSCRIPT. */
-	public static final String DOMAINSCRIPT = "domainScript";
+    /** The Constant RESPONSE_STATUS_FAILURE. */
+    public static final String RESPONSE_STATUS_FAILURE = "failure";
 
-	/**
-	 * Instantiates a new customer hub constants.
-	 */
-	private SupplierPortalConstants() {
-		throw new IllegalStateException("Utility class");
-	}
+    /** The Constant RESPONSE_STATUS_SUCCESS. */
+    public static final String RESPONSE_STATUS_SUCCESS = "success";
 
 	/**
 	 * The Constant Support Request Form
@@ -185,4 +185,13 @@ public final class SupplierPortalConstants {
 	/** The Constant for Email ID. */
 	public static final String CUSTOMER_EMAIL_ID = "emailId";
 
+    /** The Constant DOMAINSCRIPT. */
+    public static final String DOMAINSCRIPT = "domainScript";
+
+    /**
+     * Instantiates a new customer hub constants.
+     */
+    private SupplierPortalConstants() {
+        throw new IllegalStateException("Utility class");
+    }
 }

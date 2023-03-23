@@ -1,5 +1,9 @@
 package com.tetrapak.customerhub.core.constants;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * The CustomerHubConstants class.
  */
@@ -91,6 +95,9 @@ public final class CustomerHubConstants {
 
     /** The Constant ORDER_NUMBER. */
     public static final String ORDER_NUMBER = "orderNumber";
+
+    /** The Constant ORDER. */
+    public static final String ORDER = "order";
 
     /** Constant DAM_ASSETS_PROPERTY. */
     public static final String DAM_ASSETS_PROPERTY = "dam:Asset";
@@ -191,6 +198,9 @@ public final class CustomerHubConstants {
     /** The Constant EQUIPMENT_TYPE. */
     public static final String EQUIPMENT_TYPE = "equipmentType";
 
+    /** The Constant EQUIPMENT_NUMBER. */
+    public static final String EQUIPMENT_NUMBER = "equipmentNumber";
+
     /** The Constant MACHINE_SYSTEM. */
     public static final String MACHINE_SYSTEM = "machineSystem";
 
@@ -286,6 +296,9 @@ public final class CustomerHubConstants {
 
     /** The Constant LINE_NAME. */
     public static final String LINE_NAME = "lineName";
+
+    /** The Constant LINE_CODE. */
+    public static final String LINE_CODE = "lineCode";
 
     /** The Constant EQUIPMENT_TYPE_DESCRIPTION. */
     public static final String EQUIPMENT_TYPE_DESCRIPTION = "equipmentTypeDesc";
@@ -394,10 +407,10 @@ public final class CustomerHubConstants {
 
     /** The Constant LINES_LIST_API. */
     public static final String EQUIPMENT_LINESLIST_API = "myequipment-lineslist";
-    
+
     /** The Constant CUSTOMER_LIST_API. */
     public static final String EQUIPMENT_CUSTOMERLIST_API = "myequipment-customerlist";
-    
+
     /** The Constant TECHNICAL_PUBLICATIONS_API. */
     public static final String TECHNICAL_PUBLICATIONS_API = "technicalpublications";
 
@@ -671,9 +684,65 @@ public final class CustomerHubConstants {
     /** Path to asset's metatada. */
     public static final String DAM_METADATA_PATH = "/jcr:content/metadata";
     
+    /** The Constant CUSTOMERHUB. */
+    public static final String CUSTOMERHUB = "customerhub";
+    
+    /** The Constant DOMAINSCRIPT. */
+    public static final String DOMAINSCRIPT = "domainScript";
+
+    /** The constant DATA_ROOT_PATH. */
+    public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
+
+    /** The constant LANG_CODE. */
+    public static final String LANG_CODE = "langcode";
+
+    /** The constant LANG_DESC. */
+    public static final String LANG_DESC = "langdesc";
+
+    /** The constant LANG_DESC. */
+    public static final String LANG_CODE_REGULAR_EXP = "^[a-z]{2}([_])?([A-Za-z]{2})?$";
+
+    /** The constant PARAMETERS. */
+    public static final List<String> PARAMETERS = Collections.unmodifiableList(Arrays.asList("defaultEndpointsProtocol", "accountKey", "accountName", "tableName"));
+
+    /** The constant PARAMETER_VALUES. */
+    public static final List<String> PARAMETER_VALUES = Collections.unmodifiableList(Arrays.asList("https", "Fa6WBGXsJZ+9Hyt5ggAKQD4WJQ4j77foq4a8S2S+wr663sVxPO5AFrhOPEgbxsPt+WBYDyfH654CIlfncy0klg==",
+    		"ta01cfedsta01", "preferences"));
+
+    /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
+    public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
+
+    /** The Constant for REBUILDING_KITS **/
     /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
-    
+
+    /** The Constant for REBUILDING_KITS_STATUS **/
+    public static final String REBUILDING_KITS_STATUS = "rebuildingKitStatus";
+
+    /** The Constant for RK_RELEASE_DATE_FIRST **/
+    public static final String RK_RELEASE_DATE_FIRST = "releaseDateFirst";
+
+    /** The Constant for RK_MECHANICAL_SKILLS **/
+    public static final String RK_MECHANICAL_SKILLS = "mechanicalSkills";
+
+    /** The Constant for RK_AUTOMATIONS_KILLS **/
+    public static final String RK_AUTOMATIONS_KILLS = "automationSkills";
+
+    /** The Constant for RK_ELECTRICAL_SKILLS **/
+    public static final String RK_ELECTRICAL_SKILLS = "electricalSkills";
+
+    /** The Constant for RK_TIME **/
+    public static final String RK_TIME = "rkTime";
+
+    /** The Constant for KPI_EXCEL **/
+    public static final String KPI_EXCEL = "kpiExcl";
+
+    /** The Constant for RK_MACHINE_SYSTEM **/
+    public static final String RK_MACHINE_SYSTEM = "machineSystem";
+
+    /** The Constant for RK_MACHINE_SYSTEM_DESC **/
+    public static final String RK_MACHINE_SYSTEM_DESC = "machineSystemDesc";
+
     /** The Constant for RK_NUMBER **/
     public static final String RK_NUMBER = "rkNumber";
     
@@ -685,6 +754,9 @@ public final class CustomerHubConstants {
     
     /** The Constant for IMPL_DATE **/
     public static final String IMPL_DATE = "implDate";
+
+    /** The Constant for IMPL_DEADLINE **/
+    public static final String IMPL_DEADLINE = "implDeadline";
     
     /** The Constant for IMPL_STATUS_DATE **/
     public static final String IMPL_STATUS_DATE = "implStatusDate";
@@ -694,14 +766,26 @@ public final class CustomerHubConstants {
     
     /** The Constant for RK_STATUS **/
     public static final String RK_STATUS = "rkStatus";
+
+    /** The Constant for RK_SUBTYPE **/
+    public static final String RK_SUBTYPE = "rkSubType";
+
+    /** The Constant for RK_VALIDATION **/
+    public static final String RK_VALIDATION = "rkValidation";
+
+    /** The Constant for RK_NOCTITEXT **/
+    public static final String RK_NO_CTI_TEXT = "rkNoCtiText";
+
+    /** The Constant for RK_VALIDATION **/
+    public static final String RK_REQ_CTI_TEXT = "rkReqCtiText";
     
     /** The Constant for RK_HANDLING **/
     public static final String RK_HANDLING = "rkHandling";
+
+    /** The Constant for RK_TYPE_DESC **/
+    public static final String RK_TYPE_DESC = "rkTypeDesc";
     
-    /** The Constant for IMPL_DEADLINE **/
-    public static final String IMPL_DEADLINE = "implDeadline";
-    
-    /** The Constant for PLANNED_DATE **/
+     /** The Constant for PLANNED_DATE **/
     public static final String PLANNED_DATE = "plannedDate";
     
     /** The Constant for RELEASE_DATE **/
@@ -709,6 +793,9 @@ public final class CustomerHubConstants {
     
     /** The Constant for GENERAL_RKNUMBER **/
     public static final String GENERAL_RKNUMBER = "generalRkNumber";
+
+    /** The Constant for TECHNICAL_BULLETIN **/
+    public static final String TECHNICAL_BULLETIN = "technicalBulletin";
     
     /** The Constant for EXPORT_TO_CSV **/
     public static final String EXPORT_TO_CSV = "exportToCsv";
@@ -751,6 +838,9 @@ public final class CustomerHubConstants {
     
     /** The Constant for GENERAL_RKNUMBER_TOOL_TIP **/
     public static final String GENERAL_RKNUMBER_TOOL_TIP = "generalRkNumberToolTip";
+
+    /** The Constant for ORDER_TOOL_TIP **/
+    public static final String ORDER_TOOL_TIP = "orderToolTip";
     
     /** The Constant REBUILDINGKITS_LIST_API. */
     public static final String REBUILDINGKITS_LIST_API = "rebuildingkits-rebuildingkitslist";
@@ -772,6 +862,9 @@ public final class CustomerHubConstants {
     
     /** The Constant Equipment Material */
     public static final String EQUIPMENT_MATERIAL = "equipmentMaterial";
+
+    /** The Constant Equipment Material Description*/
+    public static final String EQUIPMENT_MATERIAL_DESC = "equipmentMaterialDesc";
     
     /** The Constant Status Equpment Type */
     public static final String STATU_EQUIPMENT_TYPE = "statusEquipmentType";
@@ -820,6 +913,32 @@ public final class CustomerHubConstants {
 
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
+    
+    /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
+    public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
+    
+    /** Anchor Link Target New Tab*/
+    public static final String REQUEST_NEW_CTI_TRANSLATION = "rkReqCtiNewTranslation";
+
+    /** Anchor Link Target New Tab*/
+    public static final String REQUEST_A_CTI_TRANSLATION = "rkReqCtiATranslation";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_REQUEST_THANKYOU_TEXT = "rkReqCtiThankyoutext";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_REQUEST_THANKYOU_MESSAGE = "rkReqCtiThankyoumessage";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_TRANSLATION_DROPDOWN_ERROR = "rkReqCtiDropdownError";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_REQUEST_TEXT = "rkRequestCTIText";
+
+    /** Anchor Link Target New Tab*/
+    public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
+
+
 
     /**
      * Instantiates a new customer hub constants.

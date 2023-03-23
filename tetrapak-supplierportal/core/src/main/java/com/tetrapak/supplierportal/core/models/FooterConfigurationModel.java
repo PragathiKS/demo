@@ -19,30 +19,33 @@ import com.tetrapak.supplierportal.core.multifield.FooterLinkModel;
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FooterConfigurationModel {
 
-    /**
-     * The request.
-     */
-    @Self
-    private Resource resource;
+	/** The request. */
+	@Self
+	private Resource resource;
 
-    /**
-     * The footer links.
-     */
-    @Inject
-    private List<FooterLinkModel> footerLinks;
+	/** The footer links. */
+	@Inject
+	private List<FooterLinkModel> footerLinks;
+	
+	@Inject
+	private String changeLanguage;
 
-    /**
-     * Gets the footer link.
-     *
-     * @return the footer link
-     */
-    public List<FooterLinkModel> getFooterLinks() {
-        final List<FooterLinkModel> lists = new ArrayList<>();
-        if (Objects.nonNull(footerLinks)) {
-            lists.addAll(footerLinks);
-        }
-        return lists;
+	/**
+	 * Gets the footer link.
+	 *
+	 * @return the footer link
+	 */
+	public List<FooterLinkModel> getFooterLinks() {
+		final List<FooterLinkModel> lists = new ArrayList<>();
+		if (Objects.nonNull(footerLinks)) {
+			lists.addAll(footerLinks);
+		}
+		return lists;
 
-    }
+	}
+	
+	 public String getChangeLanguage() {
+	        return changeLanguage;
+	    }
 
 }

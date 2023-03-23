@@ -1,0 +1,113 @@
+<h4 class="tp-rebuilding-details__details-row-title" auto_locator="subsectionTitle">{{i18n
+    key=i18nKeys.equipmentDetails}}</h4>
+{{#if ctiData}}
+<ul class="tp-rebuilding-details__cti-list section">
+  {{#each ctiData}}
+  <li>
+    <i class="icon icon-PDF"></i>
+    <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
+      {{langDesc}}
+      -
+      {{ctiNo}}</a>
+  </li>
+  {{/each}}
+</ul>
+{{/if}}
+{{#if noData}}
+<p><i class="icon icon-PDF"></i> {{i18n key=i18nKeys.rkNoCtiText}}</p>
+<a href="#" class="js-langcode">{{i18n key=i18nKeys.rkReqCtiText}}</a>
+{{else}}
+<a href="#" class="js-langcode">{{i18n key=i18nKeys.moreLanguage}}</a>
+{{/if}}
+<div id="rk-cti-language-modal" class="modal js-rk-cti-modal tp-modal fade" tabindex="-1" aria-hidden="true"
+  role="dialog">
+  <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+    <div class="modal-content tp-modal-content">
+      <div class="modal-header tpmol-modal-header">
+        <div class="js-language-header tp-language-header tp-rk-preferred-language__modal-header"
+          auto_locator="headlineOverlay">
+          {{#if noData}}
+            {{i18n key=i18nKeys.rkRequestCTIText}}
+          {{else}}
+            {{i18n key=i18nKeys.rkCTI}}
+          {{/if}}
+          </div>
+        <button type="button" auto_locator="closebtnOverlay"
+          class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+          <span class="sr-only">Close</span>
+        </button>
+      </div>
+      <div class="modal-body tp-modal-body tp-rk-cti-language__modal-body js-rk-cti">
+        <div class="tp-rebuilding-details__content">
+          {{#if noData}}
+          <!-- When no CTI available | Request CTI -->
+          <div class="tp-rebuilding-details__request-cti">
+            <p>{{i18n key=i18nKeys.rkReqWhatLanguageWantText}}</p>
+            <div class="tp-rebuilding-details__request-field">
+              {{> molecules/requestCtiDropdown/requestCtiDropdown
+              defaultValue=i18nKeys.rkSelectLanguage
+              options=reqLanguages
+              name="requestCtiLanguage"
+              wrapClasses="tp-rebuilding-details__request-cti"
+              }}
+              <div class="error-msg">{{i18n key=i18nKeys.ctiDropdownError}}</div>
+            </div>
+            <button type="button" class="tpatom-link tpatom-link--primary js-request-translation tp-request-translation"
+              title="Request Translation">
+              <span class="tpatom-link__text sly-text">{{i18n key=i18nKeys.rkRequestCTIText}}</span>
+            </button>
+          </div>
+          {{else}}
+          <!-- When CTI available -->
+          <ul class="tp-rebuilding-details__cti-list">
+            {{#each ctiData}}
+            <li>
+              <i class="icon icon-PDF"></i>
+              <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
+                {{#if_noteq langDesc ""}}{{langDesc}}{{/if_noteq}}
+                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}} - {{ctiNo}}
+              </a>
+            </li>
+            {{/each}}
+          </ul>
+          <ul class="tp-rebuilding-details__cti-list bottom">
+            {{#each ctiOther}}
+            <li>
+              <i class="icon icon-PDF"></i>
+              <a href="{{documentLink}}" target="_blank" class="tp-rebuilding-details__cti-file">
+                {{#if_noteq langDesc ""}}{{langDesc}}{{/if_noteq}}
+                {{#if_eq langDesc ""}}{{langCode}}{{/if_eq}} - {{ctiNo}}
+              </a>
+            </li>
+            {{/each}}
+          </ul>
+          <!-- Request More CTI -->
+          <div class="tp-rebuilding-details__request-cti">
+            <h3>{{i18n key=i18nKeys.rkReqCtiNewTranslation}}</h3>
+            <div class="tp-rebuilding-details__request-field">
+              {{> molecules/requestCtiDropdown/requestCtiDropdown
+              defaultValue=i18nKeys.rkSelectLanguage
+              options=reqLanguages
+              name="requestCtiLanguage"
+              wrapClasses="tp-rebuilding-details__request-cti"
+              }}
+              <div class="error-msg">{{i18n key=i18nKeys.ctiDropdownError}}</div>
+            </div>
+            <button type="button" class="tpatom-link tpatom-link--primary js-request-translation tp-request-translation"
+              title="Request Translation">
+              <span class="tpatom-link__text sly-text">{{i18n key=cuhu.myequipment.rkcti.requesttranslation}}</span>
+            </button>
+          </div>
+          {{/if}}
+        </div>
+        <div class="tp-rebuilding-details__success d-none">
+          <div class="tp-rebuilding-details__success-thankyou">
+            <i class="icon-Circle_filled_Tick tp-add-equipment__submit-title-icon"></i>
+            <p>{{i18n key=i18nKeys.rkReqCtiThankyoutext}}</p>
+          </div>
+          <p class="tp-rebuilding-details__success-description">{{i18n key=i18nKeys.rkReqCtiThankyoumessage}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ package com.tetrapak.supplierportal.core.authentication;
 
 import com.day.cq.commons.Externalizer;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.services.UserPreferenceService;
+import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import org.apache.commons.compress.utils.Charsets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.auth.core.spi.AuthenticationInfo;
@@ -47,9 +49,13 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static final String SAML_ATTRIBUTE_VALUE = "saml:AttributeValue";
     private static final String SAML_ATTRIBUTE = "saml:Attribute";
     private static final String SAML_ATTRIBUTE_STATEMENT = "saml:AttributeStatement";
+    private static final String SAML_SUBJECT = "saml:Subject";
     private static final String SAML_ASSERTION = "saml:Assertion";
     private static final String LOGOUT = "logout";
     private static final String TOKEN_NAME = "acctoken";
+    private static final String SAML_USER_ID = "saml:NameID";
+
+    @Reference private UserPreferenceService userPreferenceService;
 
     @Reference private SlingSettingsService slingSettingsService;
 
@@ -64,7 +70,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
             httpRequest = request;
             String pathInfo = httpRequest.getRequestURI();
             Set<String> runModes = slingSettingsService.getRunModes();
-            String base64DecodedResponse;
+            String base64DecodedResponse = null;
             if (runModes.contains(Externalizer.PUBLISH) && StringUtils.isNotEmpty(pathInfo) && pathInfo.contains(
                     SAML_LOGIN)) {
                 LOGGER.info("SAMLResponse Post Processor processing ...");
@@ -79,8 +85,10 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
                 }
                 setCustomerNameCookie(response, attrMap);
                 setAccesTokenCookie(response, attrMap);
+                setLangCodeCookie(request, response, attrMap);
                 if (processedURL.contains(EMPTY)) {
-                    response.setHeader(LOCATION_HEADER, SupplierPortalConstants.HTTPS + "://" + request.getServerName() + processedURL);
+                    response.setHeader(LOCATION_HEADER,
+                            SupplierPortalConstants.HTTPS + "://" + request.getServerName() + processedURL);
                 }
             }
         } catch (ParserConfigurationException parserConfiExep) {
@@ -130,7 +138,7 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         StringBuilder processedUrl = new StringBuilder();
         if (isValidURL(url)) {
             LOGGER.debug("request URI {}", url);
-            processedUrl.append(StringUtils.substringBetween(url, "/en", StringUtils.substringAfter(url, ".")))
+            processedUrl.append(StringUtils.substringBetween(url, "/global", StringUtils.substringAfter(url, ".")))
                     .append("html");
             String queryString = request.getQueryString();
             if (StringUtil.isNotBlank(queryString)) {
@@ -148,6 +156,25 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
     private static boolean isValidURL(String url) {
         return url.contains(SupplierPortalConstants.CONTENT_ROOT_PATH) && !url.contains(LOGOUT) && !url.contains(EMPTY)
                 && url.endsWith(SupplierPortalConstants.HTML_EXTENSION);
+    }
+
+    private void setLangCodeCookie(HttpServletRequest request, HttpServletResponse response,
+            Map<String, String> attrMap) {
+        String userId = attrMap.get(SAML_USER_ID);
+        LOGGER.debug("user ID: {}", userId);
+        final String langCode = userPreferenceService.getSavedPreferences(userId,
+                SupplierPortalConstants.LANGUGAGE_PREFERENCES);
+        if (null != userId && StringUtils.isNotEmpty(langCode)) {
+            LOGGER.debug("setting language cookie for the lang-code: {}", langCode);
+            setLanguageCookie(request, response, langCode);
+        }
+    }
+
+    private void setLanguageCookie(HttpServletRequest request, HttpServletResponse response, String langCode) {
+        Cookie cookie = new Cookie(GlobalUtil.LANG_CODE, langCode);
+        cookie.setPath("/");
+        cookie.setDomain(request.getServerName());
+        response.addCookie(cookie);
     }
 
     /**
@@ -199,7 +226,8 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
         if (maxChildNodeCount <= MAX_FIRSTLEVEL_CHILD_COUNT) {
             for (int childCount = 0; childCount < maxChildNodeCount; childCount++) {
                 Node subChildNode = childNodes.item(childCount);
-                if (SAML_ATTRIBUTE_STATEMENT.equalsIgnoreCase(subChildNode.getNodeName())) {
+                if (SAML_ATTRIBUTE_STATEMENT.equalsIgnoreCase(subChildNode.getNodeName())
+                        || SAML_SUBJECT.equalsIgnoreCase(subChildNode.getNodeName())) {
                     getNodes(samlAttributeMap, subChildNode);
                 }
             }
@@ -219,6 +247,9 @@ public class SupplierPortalSAMLResponsePostProcessor implements AuthenticationIn
                     NodeList attrValNodeList = childNode.getChildNodes();
                     int maxNodeCount = Math.min(attrValNodeList.getLength(), MAX_FIRSTLEVEL_CHILD_COUNT);
                     putSAMLAttributes(samlAttributeMap, attributeValue, attrValNodeList, maxNodeCount);
+                }
+                if (SAML_USER_ID.equalsIgnoreCase(childNode.getNodeName())) {
+                    samlAttributeMap.put(SAML_USER_ID, childNode.getTextContent());
                 }
             }
         }

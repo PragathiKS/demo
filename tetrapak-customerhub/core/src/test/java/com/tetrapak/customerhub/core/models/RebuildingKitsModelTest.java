@@ -88,6 +88,8 @@ public class RebuildingKitsModelTest {
 		assertEquals("cuhu.rebuildingkits.generalRkNumber",model.getGeneralRkNumberLabel());
 		assertEquals("cuhu.rebuildingkits.pvc",model.getPermanentVolumeConversionLabel());
 		assertEquals("cuhu.rebuildingkits.rebuildingkits",model.getRebuildingKitsLabel());
+		assertEquals("cuhu.rebuildingkits.order",model.getOrder());
+		assertEquals("cuhu.rebuildingkits.hideAndShowCta",model.getHideAndShowCta());
 	}
 	
 	/**
@@ -113,6 +115,7 @@ public class RebuildingKitsModelTest {
 		assertEquals("cuhu.rebuildingkits.plannedDateToolTip",model.getPlannedDateToolTip());
 		assertEquals("cuhu.rebuildingkits.releaseDateToolTip",model.getReleaseDateToolTip());
 		assertEquals("cuhu.rebuildingkits.generalRkNumToolTip",model.getGeneralRkNumberToolTip());
+		assertEquals("cuhu.rebuildingkits.orderToolTip",model.getOrderToolTip());
 	}
 	
 	/**

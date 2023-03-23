@@ -12,7 +12,7 @@
                 sling:resourceType="granite/ui/components/coral/foundation/tabs"
                 size="L">
                 <items jcr:primaryType="nt:unstructured">
-                    <content
+                    <generalTab
                         jcr:primaryType="nt:unstructured"
                         jcr:title="Rebuilding Kit Details configurations"
                         sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
@@ -148,10 +148,135 @@
                                         fieldLabel="Service Order Label (i18N key)"
                                         name="./serviceOrder"
                                         required="true"/>
+									<rkNoCtiText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="RK No CTI Label (i18N key)"
+                                        name="./rkNoCtiText"
+                                        required="true"/>
+                                    <rkReqCtiText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="RK Required CTI Label (i18N key)"
+                                        name="./rkReqCtiText"
+                                        required="true"/>
+                                    <rkReqCtiNewTranslation
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK Required CTI New Translation Label (i18N key)"
+                                            name="./rkReqCtiNewTranslation"
+                                            required="true"/>
+                                    <rkReqCtiATranslation
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK Required CTI Translation Label (i18N key)"
+                                            name="./rkReqCtiATranslation"
+                                            required="true"/>
+                                    <rkReqCtiThankyoutext
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK Required CTI Translation Thank You Text Label (i18N key)"
+                                            name="./rkReqCtiThankyoutext"
+                                            required="true"/>
+                                    <rkRequestCTIText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Request CTI Text Label (i18N key)"
+                                            name="./rkRequestCTIText"
+                                            required="true"/>
+                                    <rkReqWhatLanguageWantText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="What Language Do You Want (i18N key)"
+                                            name="./rkReqWhatLanguageWantText"
+                                            required="true"/>
+                                    <rkReqCtiThankyoumessage
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK Required CTI Translation Success Message Text (i18N key)"
+                                            name="./rkReqCtiThankyoumessage"
+                                            required="true"/>
+                                    <rkReqCtiDropdownError
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK Required CTI Translation Dropdown Error Message (i18N key)"
+                                            name="./rkReqCtiDropdownError"
+                                            required="true"/>
                                 </items>
                             </column>
                         </items>
-                    </content>
+                    </generalTab>
+                    <emailConfigurationTab
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Rebuilding Kit Email Text Configuration"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    maximized="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <subject
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Subject (i18N key)"
+                                            name="./rkctisubjecttext"/>
+                                    <salutation
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Salutation text (i18N key)"
+                                            name="./rkctisalutationtext"/>
+                                    <body
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Body text (i18N key)"
+                                            name="./rkctibodytext"/>
+                                    <userNameText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Username Label (i18N key)"
+                                            name="./rkctiUsernameText"
+                                            required="true"/>
+                                    <functionalLocation
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Functional Location Label (i18N key)"
+                                            name="./rkctifunctionalLocationtext"
+                                            required="true"/>
+                                    <mcon
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="MCON Label (i18N key)"
+                                            name="./rkctimcontext"
+                                            required="true"/>
+                                    <requestedlanguage
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Requested CTI Language Label (i18N key)"
+                                            name="./rkctirequestedlanguage"
+                                            required="true"/>
+                                    <rktbnumber
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK_TB_NUMBER Label (i18N key)"
+                                            name="./rktbnumbertext"
+                                            required="true"/>
+                                    <emailaddress
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Email Address Label (i18N key)"
+                                            name="./rkctiemailaddress"
+                                            required="true"/>
+                                    <commentText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Comment Text Label (i18N key)"
+                                            name="./rkcticommenttext"
+                                            required="true"/>
+                                </items>
+                            </column>
+                        </items>
+                    </emailConfigurationTab>
                 </items>
             </tabs>
         </items>

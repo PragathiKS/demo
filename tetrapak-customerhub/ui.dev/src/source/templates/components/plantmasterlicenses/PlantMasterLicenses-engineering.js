@@ -39,12 +39,10 @@ function _processEngLicensesDesc(data,pingUserGroup) {
  * Build obj containing licenses checkbox data
  */
 function _getLicenseCheckboxData(licensesDataArr) {
-  const licenseCheckboxesArr = licensesDataArr.map(license => {
-    return {
-      value: license.name,
-      name: license.name
-    };
-  });
+  const licenseCheckboxesArr = licensesDataArr.map(license => ({
+    value: license.name,
+    name: license.name
+  }));
 
   return licenseCheckboxesArr;
 }
@@ -186,7 +184,7 @@ class PlantMasterLicensesEngineering {
 
     ajaxWrapper
       .getXhrObj({
-        url: this.cache.submitApi + '?licenseType=engineering',
+        url: `${this.cache.submitApi  }?licenseType=engineering`,
         method: ajaxMethods.POST,
         cache: true,
         contentType: 'application/json; charset=utf-8',

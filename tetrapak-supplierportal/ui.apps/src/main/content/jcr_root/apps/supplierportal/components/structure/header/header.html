@@ -1,5 +1,6 @@
 <sly data-sly-use.headerModel="com.tetrapak.supplierportal.core.models.HeaderModel"
+     data-sly-use.langModel="com.tetrapak.supplierportal.core.models.LanguageSelectorModel"
      data-sly-use.lib="/apps/supplierportal/components/content/header/header-template.html"
      data-sly-use.cookie="/apps/supplierportal/components/structure/header/cookie.js"
-     data-sly-call="${lib.header_template @ data=headerModel, cookie=cookie}">
+     data-sly-call="${lib.header_template @ data=headerModel, langData=langModel, cookie=cookie}">
 </sly>
