@@ -13,4 +13,5 @@
     <filter root="/apps/supplierportal/i18n">
         <exclude pattern="/apps/supplierportal/i18n(/.*)?"/>
     </filter>
+    <filter root="/apps/msm/tetrapak-supplier-portal-blueprint" mode="update"/>
 </workspaceFilter>

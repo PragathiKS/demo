@@ -20,12 +20,168 @@
         - path: /content/tetrapak/supplierportal/global/en/dashboard
           permission: allow
           privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information/overview
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information/responsible-sourcing
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information/food-contact
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information/restricted-substances
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information/waste-framework-directive
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information/occupational-health-and-safety
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/supplier-information/information-and-cyber-security
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/frequently-asked-questions
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/error-pages
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/error-pages/500
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/en/error-pages/404
+          permission: allow
+          privileges: jcr:read
 
         - path: /content/tetrapak/supplierportal/global/en/logout
           permission: allow
           privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/dashboard
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information/overview
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information/responsible-sourcing
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information/food-contact
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information/restricted-substances
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information/waste-framework-directive
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information/occupational-health-and-safety
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/supplier-information/information-and-cyber-security
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/frequently-asked-questions
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/error-pages
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/error-pages/500
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/zh/error-pages/404
+          permission: allow
+          privileges: jcr:read
 
-        - path: /content/tetrapak/supplierportal/global/en/error
+        - path: /content/tetrapak/supplierportal/global/zh/logout
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/dashboard
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information/overview
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information/responsible-sourcing
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information/food-contact
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information/restricted-substances
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information/waste-framework-directive
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information/occupational-health-and-safety
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/supplier-information/information-and-cyber-security
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/frequently-asked-questions
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/error-pages
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/error-pages/500
+          permission: allow
+          privileges: jcr:read
+          
+        - path: /content/tetrapak/supplierportal/global/es/error-pages/404
+          permission: allow
+          privileges: jcr:read
+
+        - path: /content/tetrapak/supplierportal/global/es/logout
           permission: allow
           privileges: jcr:read
 
