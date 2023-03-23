@@ -1,4 +1,5 @@
 import {
+  RK_ICON,
   RK_COUNTRY_CODE,
   RK_LINE_CODE,
   RK_EQ_DESC,
@@ -66,8 +67,14 @@ export const _buildTableRows = (data, keys) => {
     row: []
   };
 
+  let icon = '';
+  if(data[RK_TYPE_CODE].startsWith('A')) {
+    icon = 'Mandatory_Kits';
+  } else if(data[RK_TYPE_CODE].startsWith('B')) {
+    icon = 'Trolley';
+  }
   keys.forEach((key, index) => {
-    const value = data[key];
+    const value = key === RK_ICON ? icon : data[key];
 
     if (key === RK_SERIAL_NUMBER) {
       const permanentVolumeConversion = data['permanentVolumeConversion'];
