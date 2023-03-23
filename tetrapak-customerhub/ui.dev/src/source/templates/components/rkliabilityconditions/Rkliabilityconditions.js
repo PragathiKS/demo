@@ -16,7 +16,7 @@ class Rkliabilityconditions {
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.configJson = this.root.find('.js-tp-rk-liability__config').text();
     this.cache.pdfButtonsApi = this.root.data('pdfbuttons-api');
-    this.cache.contentWrapper = this.root.find('.contentWrapper');
+    this.cache.contentWrapper = this.root.find('.tp-rk-liabilityConditions__content-wrapper');
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) { 
