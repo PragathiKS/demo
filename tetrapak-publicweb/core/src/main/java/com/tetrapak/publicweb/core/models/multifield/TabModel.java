@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models.multifield;
 
 import java.util.Objects;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
@@ -435,6 +436,11 @@ public class TabModel {
      */
     public void setThumbnailAltText(String thumbnailAltText) {
         this.thumbnailAltText = thumbnailAltText;
+    }
+
+    @PostConstruct
+    protected void init() {
+        articleDate = GlobalUtil.formatDate(articleDate);
     }
 
 }
