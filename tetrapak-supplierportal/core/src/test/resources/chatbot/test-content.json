@@ -22,8 +22,8 @@
 "jcr:createdBy": "admin",
 "jcr:lastModifiedBy": "admin",
 "changeLanguage": "true",
+"changeLanguage": "true",
 "chatbotText": "text",
-"chatbotLink": "link",
 "jcr:created": "Mon Nov 21 2022 15:58:38 GMT+0530",
 "jcr:lastModified": "Mon Nov 21 2022 15:58:59 GMT+0530",
 "sling:resourceType": "supplierportal/components/structure/footerconfiguration",
@@ -32,7 +32,7 @@
 "item0": {
 "jcr:primaryType": "nt:unstructured",
 "linkLabel": "Link text 2",
-"linkPath": "/content/tetrapak/publicweb"
+"linkPath": "link"
 }
 }
 }
