@@ -31,6 +31,14 @@
                                             jcr:primaryType="nt:unstructured"
                                             text="Grey"
                                             value="grayscale-lighter"/>
+                                    <corporateBlue
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Corporate Blue"
+                                            value="corporate-blue"/>
+                                    <brightBlue
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Bright Blue"
+                                            value="bright-blue"/>                
                                 </items>
                             </pwThemes>
                             <pwButtonThemes
