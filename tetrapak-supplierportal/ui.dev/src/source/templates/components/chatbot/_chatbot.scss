@@ -20,10 +20,10 @@
         .icon-Chat {
             &::before {
                 @include font-size($font-l);
-                @include padding(20px 0 0 20px);
-                font-size: 24px;
-                line-height: 24px;
-                height: 24px;
+                @include padding($font-m-md 0 0 $font-m-md);
+                font-size: $font-l;
+                line-height: $font-l;
+                height: $font-l;
             }
         }
         &:hover {
