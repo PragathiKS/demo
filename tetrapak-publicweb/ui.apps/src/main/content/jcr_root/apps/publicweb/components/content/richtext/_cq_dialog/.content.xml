@@ -138,6 +138,10 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/include"
                                 path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/topmargin"/>
+                            <pwTextColor
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/include"
+                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwTextColor"/>    
                         </items>
                     </column>
                 </items>

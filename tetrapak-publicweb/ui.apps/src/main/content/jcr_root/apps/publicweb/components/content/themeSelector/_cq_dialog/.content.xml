@@ -41,6 +41,23 @@
                                             value="bright-blue"/>                
                                 </items>
                             </pwThemes>
+							<pwTextColor
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Text Color"
+                                    name="./pwTextColor">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <darkgrey
+                                            jcr:primaryType="nt:unstructured"
+                                            selected="true"
+                                            text="Dark Grey (Default)"
+                                            value="text-darkgrey"/>
+                                    <white
+                                            jcr:primaryType="nt:unstructured"
+                                            text="White"
+                                            value="text-white"/>
+                                </items>
+                            </pwTextColor>
                             <pwButtonThemes
                                 cq:showOnCreate="{Boolean}true"
                                 jcr:primaryType="nt:unstructured"
