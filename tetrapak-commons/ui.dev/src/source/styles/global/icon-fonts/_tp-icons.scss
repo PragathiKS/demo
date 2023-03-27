@@ -5,10 +5,10 @@
 
 @font-face {
 	font-family:"tp-icons";
-	src:url("../../../assets/fonts/tp-icons.eot?723a71a049064a4e02c55a35943e2cff");
-	src:url("../../../assets/fonts/tp-icons.eot?723a71a049064a4e02c55a35943e2cff#iefix") format("embedded-opentype"),
-		url("../../../assets/fonts/tp-icons.woff?723a71a049064a4e02c55a35943e2cff") format("woff"),
-		url("../../../assets/fonts/tp-icons.ttf?723a71a049064a4e02c55a35943e2cff") format("truetype");
+	src:url("../../../assets/fonts/tp-icons.eot?85bc30d7384541ed624f7c74756840f6");
+	src:url("../../../assets/fonts/tp-icons.eot?85bc30d7384541ed624f7c74756840f6#iefix") format("embedded-opentype"),
+		url("../../../assets/fonts/tp-icons.woff?85bc30d7384541ed624f7c74756840f6") format("woff"),
+		url("../../../assets/fonts/tp-icons.ttf?85bc30d7384541ed624f7c74756840f6") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -623,31 +623,37 @@
 
 
 
-.icon-Truck:before {
+.icon-Trolley:before {
 	content:"\f163";
 }
 
 
 
-.icon-Twitter:before {
+.icon-Truck:before {
 	content:"\f164";
 }
 
 
 
-.icon-Wine_Spirit:before {
+.icon-Twitter:before {
 	content:"\f165";
 }
 
 
 
-.icon-Word:before {
+.icon-Wine_Spirit:before {
 	content:"\f166";
 }
 
 
 
-.icon-Youtube:before {
+.icon-Word:before {
 	content:"\f167";
+}
+
+
+
+.icon-Youtube:before {
+	content:"\f168";
 }
 

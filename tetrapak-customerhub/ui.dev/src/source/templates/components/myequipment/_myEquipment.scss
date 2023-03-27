@@ -152,18 +152,22 @@ $color-red: #ff0000;
         }
     }
 
-    &__table-summary__row:not(.tp-my-equipment__table-summary__rowheading) {
-        &:hover {
-            background-color: $color-wild-sand;
-            cursor: pointer;
+    &__table-summary__row {
+        &:not(.tp-my-equipment__table-summary__rowheading) {
+            &:hover {
+                background-color: $color-wild-sand;
+                cursor: pointer;
+            }
         }
     }
 
-    input[type='checkbox'] {
-        &:checked ~ .tpatom-checkbox__icon {
-            border: 1px solid $color-congress-blue;
-            &::before {
-                color: $color-congress-blue;
+    input {
+        &[type='checkbox'] {
+            &:checked ~ .tpatom-checkbox__icon {
+                border: 1px solid $color-congress-blue;
+                &::before {
+                    color: $color-congress-blue;
+                }
             }
         }
     }
@@ -217,7 +221,7 @@ $color-red: #ff0000;
         }
     }
 
-    &__filter-count, &__filter-count-err {
+    &__filter-count {
         @include margin-top($margin-sm);
         @include font-size($font-sm);
         @include line-height(20px, $font-sm);
@@ -225,7 +229,11 @@ $color-red: #ff0000;
     }
 
     &__filter-count-err {
+        @include margin-top($margin-sm);
+        @include font-size($font-sm);
+        @include line-height(20px, $font-sm);
         color: $color-red;
+        width: 100%;
     }
 
     .modal-footer {

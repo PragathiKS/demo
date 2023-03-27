@@ -98,7 +98,13 @@
           "applyFilter": "cuhu.rebuildingkits.applyFilter",
           "order": "cuhu.rebuildingkits.order",
 		  "orderToolTip": "cuhu.rebuildingkits.orderToolTip",
-		  "hideAndShowCta": "cuhu.rebuildingkits.hideAndShowCta"
+		  "hideAndShowCta": "cuhu.rebuildingkits.hideAndShowCta",
+          "fromDateText": "cuhu.rebuildingkits.dateFilter.fromDateText",
+          "toDateText": "cuhu.rebuildingkits.dateFilter.toDateText",
+          "invalidDateText": "cuhu.rebuildingkits.dateFilter.invalidDateText",
+          "pastDateErrorText": "cuhu.rebuildingkits.dateFilter.pastDateErrorText",
+          "dateLaterThanError": "cuhu.rebuildingkits.dateFilter.dateLaterThanError",
+          "dateBeforeThanError": "cuhu.rebuildingkits.dateFilter.dateBeforeThanError"
         }
       }
     }
