@@ -1,108 +1,109 @@
 {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Thu Apr 09 2020 01:29:23 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"hideContactFooterForm@Delete": "true",
-"jcr:createdBy": "admin",
-"jcr:title": "test4",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"pwLinkTheme": "hyperlink",
-"pwButtonTheme": "link",
-"jcr:created": "Thu Apr 09 2020 01:29:23 GMT+0530",
-"cq:lastModified": "Fri Apr 10 2020 01:27:57 GMT+0530",
-"hideInSearch@Delete": "true",
-"linkType": "button",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin",
-"root": {
-"jcr:primaryType": "nt:unstructured",
-"responsivegrid": {
-"jcr:primaryType": "nt:unstructured",
-"sling:resourceType": "wcm/foundation/components/responsivegrid",
-"tabslist": {
-"jcr:primaryType": "nt:unstructured",
-"jcr:createdBy": "admin",
-"readMoreText": "Read for here",
-"readMorePath": "/content/community/badging",
-"pwLinkTheme": "hyperlink",
-"anchorTitle": "anchor title",
-"jcr:lastModifiedBy": "admin",
-"anchorId": "anchorId",
-"pwButtonTheme": "secondary",
-"contentType": "semi-automatic",
-"jcr:created": "Thu Apr 09 2020 16:28:48 GMT+0530",
-"pwDisplay": "display-row",
-"pwTheme": "grayscale-white",
-"tags": [
-"properties:orientation/landscape",
-"properties:orientation/portrait"
-],
-"heading": "Some Heading",
-"maxTabs": "4",
-"jcr:lastModified": "Fri Apr 10 2020 01:27:57 GMT+0530",
-"readMoreTarget": "_blank",
-"sling:resourceType": "publicweb/components/content/tabslist",
-"pwPadding": "regular",
-"tabsManual": {
-"jcr:primaryType": "nt:unstructured",
-"item0": {
-"jcr:primaryType": "nt:unstructured",
-"targetBlank": "_blank",
-"subTitle": "Text Sub",
-"description": "Text Sub2",
-"fileReference": "/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
-"tabType": "imageText",
-"pwLinkTheme": "hyperlink",
-"alt": "Alt",
-"title": "Text Sub1",
-"linkText": "Click Here",
-"linkURL": "/content/commons-ux/helloearth",
-"videoSource": "damVideo"
-},
-"item1": {
-"jcr:primaryType": "nt:unstructured",
-"targetBlank": "_blank",
-"subTitle": "Sub Title1",
-"description": "Description Text1",
-"tabType": "videoText",
-"pwLinkTheme": "hyperlink",
-"thumbnailAltText": "post alt",
-"title": "Title1",
-"linkText": "Video Link",
-"linkURL": "/content/commons-ux/helloearth",
-"damVideoPath": "/content/dam/tetrapak/publicweb/videos/file_example_MOV_1280_1_4MB.mov",
-"videoSource": "damVideo",
-"thumbnailPath": "/content/dam/tetrapak/publicweb/ContentImage6.png"
-},
-"item2": {
-"jcr:primaryType": "nt:unstructured",
-"targetBlank": "_self",
-"subTitle": "Sub Title2",
-"description": "Description Text2",
-"tabType": "videoText",
-"pwLinkTheme": "download",
-"title": "Title2",
-"linkText": "VLink 2",
-"youtubeVideoID": "UEfCxCLtOwk",
-"linkURL": "/content/community/badging",
-"videoSource": "youtube"
-}
-},
-"tabsSemi": {
-"jcr:primaryType": "nt:unstructured",
-"item0": {
-"jcr:primaryType": "nt:unstructured",
-"pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions"
-},
-"item1": {
-"jcr:primaryType": "nt:unstructured",
-"pageURL": "/content/tetrapak/publicweb/lang-masters/en/home"
-}
-}
-}
-}
-}
-}
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Thu Apr 09 2020 01:29:23 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "hideContactFooterForm@Delete": "true",
+    "jcr:createdBy": "admin",
+    "jcr:title": "test4",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "pwLinkTheme": "hyperlink",
+    "pwButtonTheme": "link",
+    "jcr:created": "Thu Apr 09 2020 01:29:23 GMT+0530",
+    "cq:lastModified": "Fri Apr 10 2020 01:27:57 GMT+0530",
+    "hideInSearch@Delete": "true",
+    "linkType": "button",
+    "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+    "cq:lastModifiedBy": "admin",
+    "root": {
+      "jcr:primaryType": "nt:unstructured",
+      "responsivegrid": {
+        "jcr:primaryType": "nt:unstructured",
+        "sling:resourceType": "wcm/foundation/components/responsivegrid",
+        "tabslist": {
+          "jcr:primaryType": "nt:unstructured",
+          "jcr:createdBy": "admin",
+          "readMoreText": "Read for here",
+          "readMorePath": "/content/community/badging",
+          "pwLinkTheme": "hyperlink",
+          "anchorTitle": "anchor title",
+          "jcr:lastModifiedBy": "admin",
+          "anchorId": "anchorId",
+          "pwButtonTheme": "secondary",
+          "contentType": "semi-automatic",
+          "jcr:created": "Thu Apr 09 2020 16:28:48 GMT+0530",
+          "pwDisplay": "display-row",
+          "pwTheme": "grayscale-white",
+          "tags": [
+            "properties:orientation/landscape",
+            "properties:orientation/portrait"
+          ],
+          "heading": "Some Heading",
+          "maxTabs": "4",
+          "jcr:lastModified": "Fri Apr 10 2020 01:27:57 GMT+0530",
+          "readMoreTarget": "_blank",
+          "sling:resourceType": "publicweb/components/content/tabslist",
+          "pwPadding": "regular",
+          "displayDate" :  true,
+          "tabsManual": {
+            "jcr:primaryType": "nt:unstructured",
+            "item0": {
+              "jcr:primaryType": "nt:unstructured",
+              "targetBlank": "_blank",
+              "subTitle": "Text Sub",
+              "description": "Text Sub2",
+              "fileReference": "/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
+              "tabType": "imageText",
+              "pwLinkTheme": "hyperlink",
+              "alt": "Alt",
+              "title": "Text Sub1",
+              "linkText": "Click Here",
+              "linkURL": "/content/commons-ux/helloearth",
+              "videoSource": "damVideo"
+            },
+            "item1": {
+              "jcr:primaryType": "nt:unstructured",
+              "targetBlank": "_blank",
+              "subTitle": "Sub Title1",
+              "description": "Description Text1",
+              "tabType": "videoText",
+              "pwLinkTheme": "hyperlink",
+              "thumbnailAltText": "post alt",
+              "title": "Title1",
+              "linkText": "Video Link",
+              "linkURL": "/content/commons-ux/helloearth",
+              "damVideoPath": "/content/dam/tetrapak/publicweb/videos/file_example_MOV_1280_1_4MB.mov",
+              "videoSource": "damVideo",
+              "thumbnailPath": "/content/dam/tetrapak/publicweb/ContentImage6.png"
+            },
+            "item2": {
+              "jcr:primaryType": "nt:unstructured",
+              "targetBlank": "_self",
+              "subTitle": "Sub Title2",
+              "description": "Description Text2",
+              "tabType": "videoText",
+              "pwLinkTheme": "download",
+              "title": "Title2",
+              "linkText": "VLink 2",
+              "youtubeVideoID": "UEfCxCLtOwk",
+              "linkURL": "/content/community/badging",
+              "videoSource": "youtube"
+            }
+          },
+          "tabsSemi": {
+            "jcr:primaryType": "nt:unstructured",
+            "item0": {
+              "jcr:primaryType": "nt:unstructured",
+              "pageURL": "/content/tetrapak/publicweb/lang-masters/en/solutions"
+            },
+            "item1": {
+              "jcr:primaryType": "nt:unstructured",
+              "pageURL": "/content/tetrapak/publicweb/lang-masters/en/home"
+            }
+          }
+        }
+      }
+    }
+  }
 }
