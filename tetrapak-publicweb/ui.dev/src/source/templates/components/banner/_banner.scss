@@ -32,14 +32,8 @@
                 }
             }
         }
-        .banner-sibling {
-            display: none;
-            @media #{$desktop} {
-                display: inline-block;
-                background-color: $color-wild-sand;
-                position: absolute;
-                opacity: 0.9;
-            }
+        .banner-parent {
+            background-color: rgba($color-wild-sand, 0.9);
         }
     }
 }

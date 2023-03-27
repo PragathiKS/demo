@@ -1,0 +1,212 @@
+<h2 class="tp-support-request__title js-tp-support-request__title">{{i18n key=i18nKeys.title}}</h2>
+<p class="tp-support-request__subtitle">{{i18n key=i18nKeys.subtitle}}</p>
+<form class="tp-support-request__form" enctype="multipart/form-data">
+    <div class="row tp-support-request__section">
+        <div class="col-lg-11">
+            <h3>{{i18n key=i18nKeys.purposeContactHeading}}</h3>
+            <div class="js-tp-support-request__form-element tp-support-request__section-content tp-support-request__form-element">
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=i18nKeys.onboardingMaintanance
+                    name="purposeOfContact"
+                    id="onboardingMaintanance"
+                    value=i18nKeys.onboardingMaintanance
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                <p>{{i18n key=i18nKeys.onboardingMaintananceSubtitle}}</p>
+               </div>
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=i18nKeys.sourcingContracting
+                    name="purposeOfContact"
+                    id="sourcing&contacting"
+                    value=i18nKeys.sourcingContracting
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                 <p>{{i18n key=i18nKeys.sourcingContractingSubtitle}}</p>
+               </div>
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=i18nKeys.catalogues
+                    name="purposeOfContact"
+                    id="catalogues"
+                    value=i18nKeys.catalogues
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                <p>{{i18n key=i18nKeys.cataloguesSubtitle}}</p>
+               </div>
+               <div class="tp-support-request__radio-row">
+                {{> atoms/radioButton/radioButton
+                    labelText=i18nKeys.otherPurpose
+                    name="purposeOfContact"
+                    id="otherPurpose"
+                    value=i18nKeys.otherPurpose
+                    required="true"
+                    eleClasses="tp-support-request__radio-input"
+                    labelClasses="tp-support-request__radio-label"
+                }}
+                <p>{{i18n key=i18nKeys.otherPurposeSubtitle}}</p>
+               </div>
+            <div class="error-msg">{{i18n key=i18nKeys.purposeContactErrorMsg}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="row tp-support-request__section">
+        <div class="col-lg-11">
+            <h3>{{i18n key=i18nKeys.queryTitle}}</h3>
+            <p class="tp-support-request__details-subtitle">{{i18n key=i18nKeys.querySubtitle}}</p>
+            <div class="js-tp-support-request__form-element tp-support-request__form-element">
+                {{> atoms/textarea/textarea
+                        placeholder=i18nKeys.queryPlaceholder
+                        name="howHelp"
+                        required="true"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.queryErrorMsg}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 tp-support-request__drag-and-drop-wrapper">
+            <div class="tp-support-request__drag-and-drop js-tp-support-request__drag-and-drop">
+                {{> atoms/buttons/button/button
+                        modifier="transparent"
+                        jsClass="js-tp-support-request__drag-and-drop-button"
+                        className="tp-support-request__drag-and-drop-button"
+                        iconClass="icon-Document"
+                        text=i18nKeys.dragAndDropButtonLabel
+                }}
+                {{#if i18nKeys.fileFormatSubtitle}}
+                    <p class="tp-support-request__drag-and-drop-subtitle">
+                        {{i18n key=i18nKeys.fileFormatSubtitle}}
+                    </p>
+                {{/if}}
+                <div class="tp-support-request__file-error js-tp-support-request__file-error" hidden>
+                    {{i18n key=i18nKeys.fileErrorMsg}}
+                </div>
+                <div class="js-tp-support-request__drag-and-drop-files-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row tp-support-request__section">
+        <div class="col-lg-8">
+            <h3>{{i18n key=i18nKeys.detailsTitle}}</h3>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-disabled">
+                {{> atoms/input/input
+                        labelText=i18nKeys.nameLabel
+                        name="name"
+                        defaultValue=i18nKeys.userName
+                        disabled="true"
+                        eleClasses="tp-support-request__field-input-disabled"
+                        labelClasses="tp-support-request__field-label disabled"
+                }}
+                </div>
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-last tp-support-request__form-element-disabled">
+                {{> atoms/input/input
+                    type="email"
+                    labelText=i18nKeys.emailAddressLabel
+                    defaultValue=i18nKeys.userEmail
+                    disabled="true"
+                    name="emailAddress"
+                    eleClasses="tp-support-request__field-input-disabled"
+                    labelClasses="tp-support-request__field-label disabled"
+                }}
+                </div>
+            </div> 
+            <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                {{> atoms/input/input
+                    labelText=i18nKeys.companyLabel
+                    name="companyLegalName"
+                    required="true"
+                    eleClasses="tp-support-request__field-long-input"
+                    labelClasses="tp-support-request__field-label"
+                }}
+                <div class="error-msg">{{i18n key=i18nKeys.companyErrorMsg}}</div>
+            </div>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                            labelText=i18nKeys.countryLabel
+                            name="country"
+                            required="true"
+                            labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.countryErrorMsg}}</div>
+                </div>
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element tp-support-request__form-element-last">
+                    {{> atoms/input/input
+                        labelText=i18nKeys.cityLabel
+                        required="true"
+                        name="city"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.cityErrorMsg}}</div>
+                </div>
+            </div>  
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        labelText=i18nKeys.phoneLabel
+                        name="ownPhoneNumber"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.phoneErrorMsg}}</div>
+                </div>
+            </div>     
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-lg-8">
+            <h3 class="tp-support-request__heading-space">{{i18n key=i18nKeys.otherTitle}}</h3>
+            <p class="tp-support-request__details-subtitle">{{i18n key=i18nKeys.otherSubtitle}}</p>
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        labelText=i18nKeys.aribaNetworkLabel
+                        name="aribaNetworkId"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                </div>
+            </div>  
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        type="email"
+                        labelText=i18nKeys.aribaEmailLabel
+                        name="aribaAccountAdminEmail"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.aribaEmailErrorMsg}}</div>
+                </div>
+            </div> 
+            <div class="tp-support-request__form-element-row">
+                <div class="tp-support-request__details js-tp-support-request__form-element tp-support-request__form-element">
+                    {{> atoms/input/input
+                        type="email"
+                        labelText=i18nKeys.tpEmailLabel
+                        name="tpContactEmail"
+                        labelClasses="tp-support-request__field-label"
+                    }}
+                    <div class="error-msg">{{i18n key=i18nKeys.tpEmailErrorMsg}}</div>
+                </div>
+            </div>         
+        </div>
+    </div>
+    {{> atoms/buttons/button/button
+            buttonType="submit"
+            modifier="primary"
+            iconClass="icon-Chevron_Right"
+            text=i18nKeys.sendButtonLabel
+            className="tp-support-request__submit js-tp-support-request__submit"
+    }}
+    </div>
+</form>

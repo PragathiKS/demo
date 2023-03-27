@@ -21,13 +21,13 @@
         display: none;
     }
 
-    .tp-header__user{
+    .tp-header__user {
         @media #{$mobile} {
             text-indent: -9999px;
         }
 
 
-        &::before{
+        &::before {
             @media #{$mobile} {
                 text-indent: 0;
                 float: left;

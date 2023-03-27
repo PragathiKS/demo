@@ -19,4 +19,10 @@ describe('Footer', function () {
     expect(this.footer.init.called).to.be.true;
     done();
   });
+  it('should trigger "showlanuagepreferencepopup" event on click of language selection link', function (done) {
+    $('.js-footer__trigger-lang').on('click', () => {
+      done();
+    });
+    $('.js-footer__trigger-lang').trigger('click');
+  });
 });

@@ -1,0 +1,12 @@
+<div class="tp-rk__table custom-scrollbar-horizontal on">
+    {{#if noDataMessage}}
+        <h3>{{i18n key=noDataFound}}</h3>
+    {{else}}
+        {{> molecules/table-sort/table-sort baseClass="tp-rk__table-summary" jsClass="js-rk__table-summary"
+        list=summary headings=summaryHeadings}}
+    {{/if}}
+</div>
+{{#unless noDataMessage}}
+    {{> molecules/table-pagination/table-pagination jsClass="js-rk__table-summary"
+            paginationObj=paginationObj}}
+{{/unless}}

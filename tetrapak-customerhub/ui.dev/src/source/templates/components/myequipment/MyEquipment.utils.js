@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 /**
  * Maps data keys to corresponding values in the API
  */

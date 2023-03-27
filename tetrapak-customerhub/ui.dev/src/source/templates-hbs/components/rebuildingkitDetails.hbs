@@ -1,0 +1,95 @@
+<h1><span>{{rebuildingData.serialNumber}}</span>&nbsp;{{rebuildingData.equipmentDesc}}&nbsp;|&nbsp;{{rebuildingData.rkNumber}}&nbsp;{{rebuildingData.rkDesc}}
+</h1>
+<div class="row tp-rebuilding-details__info-card-row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12 tp-rebuilding-details__info-card-col">
+        <div class="tp-rebuilding-details__info-card js-rebuilding-details__info-card top">
+            <h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.rkAndEquipmentInformation}}</h3>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n key=i18nKeys.countryLocation}}
+                        </div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.countryName}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.location}}</div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n
+                            key=i18nKeys.functionalLocation}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.lineCode}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.lineName}}</div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n
+                            key=i18nKeys.equipmentMaterial}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentMaterial}}
+                        </div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">
+                            {{rebuildingData.equipmentMaterialDesc}}</div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n
+                            key=i18nKeys.statusEquipmentType}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentStatusDesc}}
+                        </div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">
+                            {{rebuildingData.equipmentTypeDesc}}</div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n
+                            key=i18nKeys.implementationStatusDate}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.implStatus}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.implStatusDate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="row tp-rebuilding-details__row">
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-one">{{i18n
+                            key=i18nKeys.equipmentStructure}}</div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentStructure}}
+                        </div>
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.implStatusDate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="tp-rebuilding-details__action-wrap">
+                    {{> atoms/buttons/button/button iconClass="icon-Edit" modifier="transparent"
+                    text=i18nKeys.updateEquipmentInformation baseClass="tp-equipment-details__btn
+                    tp-equipment-details__update" jsClass="js-equipment-details__update"}}
+                </div>
+                <div class="tp-rebuilding-details__note">
+                    <span>{{i18n key=i18nKeys.rkNote}}:</span>
+                    {{i18n key=i18nKeys.rkNoteValue}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{!-- <div class="tp-rebuilding-details__details-row">
+    <div class="tp-rebuilding-details__info-card js-rebuilding-details__info-card">
+        <h3 auto_locator="sectionTitle">Title</h3>
+        <h4 class="tp-rebuilding-details__details-row-title" auto_locator="subsectionTitle">{{i18n
+            key=i18nKeys.equipmentDetails}}</h4>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <i
+                    class="icon-Document tp-add-equipment__drag-and-drop-file-icon tp-add-equipment__drag-and-drop-file-icon--file"></i>
+                <p class="tp-add-equipment__drag-and-drop-file-name">Cross-Domain implementation.docx (0.03 MB)</p>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <i
+                    class="icon-Document tp-add-equipment__drag-and-drop-file-icon tp-add-equipment__drag-and-drop-file-icon--file"></i>
+                <p class="tp-add-equipment__drag-and-drop-file-name">Cross-Domain implementation.docx (0.03 MB)</p>
+            </div>
+        </div>
+    </div>
+</div> --}}

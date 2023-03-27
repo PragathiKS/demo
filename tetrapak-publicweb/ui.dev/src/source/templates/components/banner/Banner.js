@@ -75,12 +75,7 @@ class Banner {
     const { $itbLink } = this.cache;
     if (
       isDesktopMode()) {
-      const { $existingBanner, $siblingBanner, $sideSection, $sideSectionright, $pwBanner } = this.cache;
-      let bannerHeight = $existingBanner.outerHeight();
-      let bannerWidth = $existingBanner.outerWidth();
-
-      $siblingBanner.css('width', bannerWidth);
-      $siblingBanner.css('height', bannerHeight);
+      const { $sideSection, $sideSectionright, $pwBanner } = this.cache;
 
       if($sideSection.length || $sideSectionright.length) {
         $pwBanner.css({'max-width':window.screen.availWidth,'margin-left':'auto','margin-right':'auto'});
@@ -89,11 +84,6 @@ class Banner {
       this.setSideSection();
 
       $(window).on('resize', () => {
-        bannerHeight = $existingBanner.outerHeight();
-        bannerWidth = $existingBanner.outerWidth();
-        $siblingBanner.css('width', bannerWidth);
-        $siblingBanner.css('height', bannerHeight);
-
         this.setSideSection();
       });
     }

@@ -54,4 +54,8 @@
 
 /0042 { /type "deny"  /url "/content/tetrapak/customerhub/content-components/*" }
 /0043 { /type "allow"  /url "/content/tetrapak/customerhubtools/*" }
+/0044 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/*plantmasterlicenses*" }
+/0045 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/*plantmastertrainings*" }
+/0046 { /type "allow" /method "GET" /url "/content/tetrapak/customerhub/content-components/*/*.assets.json" } ## allow GETS to get keylines json
+/0047 { /type "allow" /method "POST" /url "*/jcr:content/root/responsivegrid/*rebuildingkitdetails*" }
 

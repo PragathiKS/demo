@@ -387,6 +387,21 @@ public class GlobalUtil {
         }
         return null;
     }
+    
+    /**
+     * Method to get additional selected language.
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
+     * @return string language code
+     */
+    public static String getAdditionalSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        if (null != session && null != userPreferenceService) {
+            return userPreferenceService.getSavedPreferences(session.getUserID(), CustomerHubConstants.ADDITIONAL_LANGUAGE_PREFERENCES);
+        }
+        return null;
+    }
 
     /**
      * This method prepares image bean from image resource.

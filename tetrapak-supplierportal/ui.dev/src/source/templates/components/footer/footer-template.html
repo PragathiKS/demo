@@ -1,17 +1,22 @@
-<sly data-sly-template.footer_template="${@ data, flag}">
+<sly data-sly-template.footer_template="${@ data, langData, flag}">
     <footer class="tp-pw-footer js-tp-pw-footer" data-module="Footer" id="footer">
         <div class="tp-pw-footer__container tp-container">
             <div class="d-md-block d-lg-flex">
-                <div class="col-lg-12 text-lg-center">
-                    <ul class="tp-pw-footer__navigation-list" data-sly-list.navigationItems="${data.footerLinks}">
+                <div class="col-lg-12 text-lg-center d-lg-flex justify-content-center">
+                    <ul class="tp-pw-footer__navigation-list" data-sly-list.navigationItem="${data.footerLinks}">
                         <li class="tp-pw-footer__navigation-list__item footer-analytics">
                             <a class="tp-pw-footer__navigation-list__link tp-pw-footer__link tp-pw-footer-data-analytics"
-                            href="${navigationItems.linkPath}">${navigationItems.linkLabel}</a>
+                            href="${navigationItem.linkPath}">${navigationItem.linkLabel}</a>
                         </li>
                     </ul>
+
+                    <a class="tp-pw-footer__link js-footer__trigger-lang" href="#">${data.changeLanguage}</a>
                 </div>
             </div>
         </div>
+
+        <sly data-sly-use.languageselector="/apps/supplierportal/components/content/languageselector/languageselector-template.html"
+            data-sly-call="${languageselector.languageselector_template @data=langData}" />
     </footer>
 </sly>
   

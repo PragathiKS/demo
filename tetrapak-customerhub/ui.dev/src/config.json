@@ -194,6 +194,12 @@
         "name": "footer",
         "enforce": true,
         "chunks": "all"
+      },
+      "rebuildingkitdetails": {
+        "testMultiple": true,
+        "name": "rebuildingkitdetails",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -255,6 +261,12 @@
       ],
       "footer": [
         "source/templates/components/footer/"
+      ],
+      "rebuildingkits": [
+        "source/templates/components/rebuildingkits/"
+      ],
+      "rebuildingkitdetails": [
+        "source/templates/components/rebuildingkitdetails/"
       ]
     },
     "handlebars": {

@@ -364,7 +364,7 @@ class AddEquipment {
         }).done(() => {
           const formFields = [];
           for(const data of formData.entries()) {
-            const $el = $('#' + data[0]);
+            const $el = $(`#${  data[0]}`);
             formFields.push({
               formFieldName: ($el.is('input') || $el.is('textarea')) ? $el.closest('.js-tp-add-equipment__form-element').find('.tp-add-equipment__field-label').text().trim() : $el.closest('.js-tp-add-equipment__form-element').find('.tpatom-dropdown__text').text().trim(),
               formFieldValue: data[1]

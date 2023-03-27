@@ -19,11 +19,10 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
+        parallelsAlwaysFailFast()
     }
 
     environment {
-        sonar_url = "https://sonarcloud.io"
-        login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
         build_id_number = ""
     }
 
@@ -57,6 +56,7 @@ pipeline {
                     else {
 					    dir('tetrapak-commons') {
 					        sh "npm install --prefix ui.dev/src"
+                            sh "npm rebuild node-sass"
 						}
 					}
                 }
@@ -67,13 +67,6 @@ pipeline {
                         buildandsonar()
                     }
                 }
-		        script {
-                    if (params.Build_Supplierportal) {
-                        appname = "supplierportal"
-                        buildandsonar()
-                    }
-                }
-
 
                 script {
                     if (params.Build_Publicweb) {
@@ -86,20 +79,23 @@ pipeline {
                         }
                     }
                 }
+
                 script {
                         if (params.Build_Tetralaval) {
                             appname = "tetra-laval"
                             buildandsonarlaval()
                         }
                 }
+
+                script {
+                    if (params.Build_Supplierportal) {
+                        appname = "supplierportal"
+                        buildandsonar()
+                    }
+                }
             }
         }
         stage('Author and Publisher Deployment') {
-            agent {
-                node {
-                    label 'cfe-deploy'
-                } 
-            }
             steps {
                 script {
                     author_url = "https://author1westeurope.stage65.tetrapak.adobecqms.net"
@@ -108,11 +104,6 @@ pipeline {
             }
         }
         stage('Stage Cache Clear') {
-            agent {
-                node {
-                    label 'cfe-deploy'
-                }
-            }
             steps {
                 script {
                     cacheflush()
@@ -129,41 +120,21 @@ pipeline {
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
             {
                 sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-${build_id_number}"
-                if (!params.Sonar_Analysis) {
-                    echo "Skipping Sonar execution for customerhub module"
-                } else {
-                    sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname} -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/** -Dbuildversion=${build_id_number}"
-                }
             }
         }
     }
     def buildandsonarlaval() {
         echo "Build ${appname}"
-        dir("tetrapak-${appname}") {
-        sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
-        sh "npm cache clean --force"
+        dir("${appname}") {
+            sh "rm -rf ui.frontend/node_modules && rm -rf ui.frontend/package-lock.json"
+            sh "npm cache clean --force"
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
             {
                 sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbaseline.skip=true -Dbuildversion=1.0.0-${build_id_number}"
-                if (!params.Sonar_Analysis) {
-                    echo "Skipping Sonar execution for customerhub module"
-                } else {
-                    sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname} -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/** -Dbuildversion=${build_id_number}"
-                }
             }
         }
     }
    
-
-	def sonarreport() {
-        echo "Publishing Sonar report"
-        sh 'sudo mkdir -p reports'
-        sh 'sudo chmod -R 777 reports'
-        sh 'echo "<html> <br /> <p style="font-size:30px"> <a href="https://sonarcloud.io/organizations/tetrapak-smartsales/projects" target="_top">Sonarcloud Report</a> <br /> </p> </html>" > reports/sonarreport.html'
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'sonarreport.html', reportName: 'SonarCloud Report', reportTitles: ''])
-    }
-
-
     def stagedeployment() {
         if (params.Build_Commons)    {
             packageName = "tetrapak-commons.complete"
@@ -215,8 +186,7 @@ pipeline {
                 "Publisher Supplierportal" : {
                     publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
                     publishdeploy()
-                        //},
-                        //"Publisher 2 MyTetrapak" : {
+
                     publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
                     publishdeploy()
                 }
@@ -234,7 +204,8 @@ pipeline {
                     },
                     "Publisher PublicWeb" : {                  
                         publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
-                        publishdeploy()                 
+                        publishdeploy() 
+
                         publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
                         publishdeploy()
                     }
@@ -247,7 +218,7 @@ pipeline {
                 prodartifactdownload()
                 parallel (
                     "Author Tetralaval" : {
-                        authordeploy()
+                        authordeploylaval()
                     },
                     "Publisher Tetralaval" : {
                         publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
@@ -272,42 +243,27 @@ pipeline {
     def authordeploy() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sapient-user', usernameVariable: 'username', passwordVariable: 'password']])
         {
-            echo "Uninstalling Old Package on author"
-            sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
-            sleep 60
-            echo "Deleting Old Package on author"
-            sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
-            sleep 60
-            echo "Uploading New Package on author"
-            sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-            sleep 60
-            echo "Installing New Package on author"
-            sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
-            sleep 60
+            sh label: 'Uninstalling Old Package on author', script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}' && sleep 60"
+            sh label: "Deleting Old Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}' && sleep 60"            
+            sh label: "Uploading New Package on author", script: "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose && sleep 60"
+            sh label: "Installing New Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}' && sleep 60"
         }
     }
 
     def publishdeploy() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sapient-user', usernameVariable: 'username', passwordVariable: 'password']])
-        {        
-            echo "Uninstalling Old Package on publish"
-            sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
-            sleep 60
-            echo "Deleting Old Package on publish"
-            sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
-            sleep 60
-            echo "Uploading New Package on publish"
-            sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-            sleep 60
-            echo "Installing New Package on publish"
-            sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
-            sleep 60
+        {
+            sh label: "Uninstalling Old Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}' && sleep 60"
+            sh label: "Deleting Old Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'  && sleep 60"
+            sh label: "Uploading New Package on publish", script: "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose  && sleep 60"
+            sh label: "Installing New Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'  && sleep 60"
         }
-    }     
+    }
+
     def cacheflush() {
         echo "Starting Stage Dispatcher Cache Clear"
         withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-            {
+        {
             sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
             sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
         }

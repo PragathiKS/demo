@@ -3,9 +3,14 @@ package com.tetrapak.supplierportal.core.utils;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
 import com.tetrapak.supplierportal.core.services.CookieDataDomainScriptService;
+import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.jackrabbit.api.security.user.Authorizable;
+import org.apache.jackrabbit.api.security.user.UserManager;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
 
 import org.json.JSONException;
@@ -17,7 +22,11 @@ import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -32,6 +41,8 @@ public final class GlobalUtil {
 
     private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
     private static final String NAVIGATION = "navigationconfiguration";
+
+    public static final String LANG_CODE = "lang-code";
 
     public GlobalUtil() {
     }
@@ -148,6 +159,25 @@ public final class GlobalUtil {
     }
 
     /**
+     * Method to get selected language.
+     *
+     * @param request               sling request
+     * @param userPreferenceService user preference service
+     * @return string language code
+     */
+    public static String getSelectedLanguage(SlingHttpServletRequest request, UserPreferenceService userPreferenceService) {
+        Cookie languageCookie = request.getCookie(LANG_CODE);
+        if (null != languageCookie) {
+            return languageCookie.getValue();
+        }
+        Session session = request.getResourceResolver().adaptTo(Session.class);
+        if (null != session && null != userPreferenceService) {
+            return userPreferenceService.getSavedPreferences(session.getUserID(), SupplierPortalConstants.LANGUGAGE_PREFERENCES);
+        }
+        return SupplierPortalConstants.DEFAULT_LOCALE;
+    }
+
+    /**
      * This method will fetch the OneTrust cookie script
      */
     public static String getDataDomainScript() {
@@ -182,4 +212,49 @@ public final class GlobalUtil {
         }
         return org.apache.commons.lang.StringUtils.EMPTY;
     }
+
+    /**
+     * Gets the customer email address.
+     *
+     * @param request the request
+     * @return the customer email address
+     */
+    public static String getCustomerEmailAddress(SlingHttpServletRequest request) {
+        String emailId = org.apache.commons.lang.StringUtils.EMPTY;
+        try {
+            ValueMap vMap = getUserResourceValueMap(request);
+            if (vMap.containsKey(SupplierPortalConstants.CUSTOMER_EMAIL_ID)) {
+                emailId = (String) vMap.get(SupplierPortalConstants.CUSTOMER_EMAIL_ID);
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException in getting email address in GlobalUtil", e);
+        }
+        return emailId;
+    }
+
+    /**
+     * Gets the customer resource value map.
+     *
+     * @param request the request
+     * @return the customer reso value map
+     */
+    private static ValueMap getUserResourceValueMap(SlingHttpServletRequest request) throws RepositoryException {
+        ValueMap valueMap = ValueMap.EMPTY;
+        ResourceResolver resourceResolver = request.getResourceResolver();
+        UserManager userManager = resourceResolver.adaptTo(UserManager.class);
+        Session session = resourceResolver.adaptTo(Session.class);
+        if (Objects.isNull(session) || Objects.isNull(userManager)) {
+            return valueMap;
+        }
+        Authorizable user;
+
+        user = userManager.getAuthorizable(session.getUserID());
+        Resource userResource = resourceResolver.getResource(user.getPath());
+        if (Objects.isNull(userResource)) {
+            return valueMap;
+        }
+        valueMap = userResource.getValueMap();
+        return valueMap;
+    }
+
 }

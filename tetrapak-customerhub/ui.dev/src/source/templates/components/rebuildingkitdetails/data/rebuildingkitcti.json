@@ -1,0 +1,155 @@
+{
+    "meta": {
+      "total": 28,
+      "version": "1"
+    },
+    "data": [
+      {
+        "id": "TP_2018_31_05",
+        "bullNo": "TP_2018_31_05",
+        "title": "MKC LS Pressure Roller",
+        "ctiDocuments": [
+          {
+            "langCode": "en",
+            "ctiNo": "TP_2018_31_05_CTI",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=en&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "sv",
+            "ctiNo": "TP_2018_31_05_CTI_02_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=sv&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "de",
+            "ctiNo": "TP_2018_31_05_CTI_03_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=de&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "fr",
+            "ctiNo": "TP_2018_31_05_CTI_04_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=fr&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "es",
+            "ctiNo": "TP_2018_31_05_CTI_05_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=es&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "it",
+            "ctiNo": "TP_2018_31_05_CTI_06_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=it&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "pt",
+            "ctiNo": "TP_2018_31_05_CTI_07_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=pt&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "da",
+            "ctiNo": "TP_2018_31_05_CTI_08_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=da&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "el",
+            "ctiNo": "TP_2018_31_05_CTI_09_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=el&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "fi",
+            "ctiNo": "TP_2018_31_05_CTI_11_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=fi&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "ru",
+            "ctiNo": "TP_2018_31_05_CTI_12_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=ru&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "lv",
+            "ctiNo": "TP_2018_31_05_CTI_13_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=lv&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "et",
+            "ctiNo": "TP_2018_31_05_CTI_14_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=et&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "lt",
+            "ctiNo": "TP_2018_31_05_CTI_15_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=lt&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "cs",
+            "ctiNo": "TP_2018_31_05_CTI_17_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=cs&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "pl",
+            "ctiNo": "TP_2018_31_05_CTI_18_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=pl&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "tr",
+            "ctiNo": "TP_2018_31_05_CTI_20_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=tr&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "ja",
+            "ctiNo": "TP_2018_31_05_CTI_24_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=ja&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "nl",
+            "ctiNo": "TP_2018_31_05_CTI_26_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=nl&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "nb",
+            "ctiNo": "TP_2018_31_05_CTI_27_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=nb&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "hr",
+            "ctiNo": "TP_2018_31_05_CTI_31_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=hr&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "sl",
+            "ctiNo": "TP_2018_31_05_CTI_32_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=sl&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "sk",
+            "ctiNo": "TP_2018_31_05_CTI_33_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=sk&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "ro",
+            "ctiNo": "TP_2018_31_05_CTI_35_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=ro&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "bg",
+            "ctiNo": "TP_2018_31_05_CTI_36_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=bg&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "uk",
+            "ctiNo": "TP_2018_31_05_CTI_40_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=uk&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "br-pt",
+            "ctiNo": "TP_2018_31_05_CTI_50_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=br-pt&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          },
+          {
+            "langCode": "hu",
+            "ctiNo": "TP_2018_31_05_CTI_52_V01",
+            "documentLink": "https://api-dev.tetrapak.com/technicalbulletins/TP_2018_31_04/cti?langcode=hu&apikey=KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ"
+          }
+        ]
+      }
+    ]
+  }

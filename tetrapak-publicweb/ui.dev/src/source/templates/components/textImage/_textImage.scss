@@ -156,7 +156,6 @@
 
         ul li,
         ol li {
-            @include padding-bottom(16px);
             &::before {
                 color: $color-tundora;
             }
