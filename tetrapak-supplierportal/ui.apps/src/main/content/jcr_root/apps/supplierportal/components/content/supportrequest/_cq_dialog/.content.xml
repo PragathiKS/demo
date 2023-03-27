@@ -24,48 +24,56 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Heading"
                                     name="./generalTitleLabel"
+                                    value="sp.requestform.title"
                                     required="true"/>
                             <generalSubtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Description"
                                     name="./generalSubtitleLabel"
+                                    value="sp.requestform.generalsubtitle"
                                     required="true"/>
                             <purposeOfContactLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Purpose of Contact (i18N key)"
                                     name="./purposeOfContactLabel"
+                                    value="sp.requestform.purpose.of.contact"
                                     required="true"/>
                             <purposeErrorMsgLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Purpose error message (i18N key)"
                                     name="./purposeErrorMsgLabel"
+                                    value="sp.requestform.purpose.error.message"
                                     required="true"/>
                             <queryTitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Query Title (i18N key)"
                                     name="./queryTitle"
+                                    value="sp.requestform.query.title"
                                     required="true"/>
                             <queryPlaceholder
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Query Subtitle Placeholder(i18N key)"
                                     name="./queryPlaceholder"
+                                    value="sp.requestform.query.placeholder"
                                     required="true"/>
                             <querySubtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Query Subtitle (i18N key)"
                                     name="./querySubtitle"
+                                    value="sp.requestform.query.subtitle"
                                     required="true"/>
                             <queryErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Query Error Message (i18N key)"
                                     name="./queryErrorMsgLabel"
+                                    value="sp.requestform.query.error.msg"
                                     required="true"/>
                         </items>
                     </column1>
@@ -80,48 +88,56 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="On Boarding Maintanance (i18N key)"
                                     name="./onboardingMaintanance"
+                                    value="sp.requestform.on.boarding.maintanance"
                                     required="true"/>
                             <onboardingMaintananceSubtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="On Boarding Maintanance Subtitle(i18N key)"
                                     name="./onboardingMaintananceSubtitle"
+                                    value="sp.requestform.on.boarding.maintanance.subtitle"
                                     required="true"/>
                             <sourcingContracting
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Sourcing Contracting (i18N key)"
                                     name="./sourcingContracting"
+                                    value="sp.requestform.sourcing.contracting"
                                     required="true"/>
                             <sourcingContractingSubtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Sourcing Contracting Subtitle (i18N key)"
                                     name="./sourcingContractingSubtitle"
+                                    value="sp.requestform.sourcing.contracting.subtitle"
                                     required="true"/>
                             <catalogues
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Catalogues (i18N key)"
                                     name="./catalogues"
+                                    value="sp.requestform.catalogues"
                                     required="true"/>
                             <cataloguesSubtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Catalogues Subtitle (i18N key)"
                                     name="./cataloguesSubtitle"
+                                    value="sp.requestform.catalogues.subtitle"
                                     required="true"/>
                             <otherPurpose
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Other purpose (i18N key)"
                                     name="./otherPurpose"
+                                    value="sp.requestform.other.purpose"
                                     required="true"/>
                             <otherPurposeSubtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Other purpose Subtitle (i18N key)"
                                     name="./otherPurposeSubtitle"
+                                    value="sp.requestform.other.purpose.subtitle"
                                     required="true"/>
                         </items>
                     </column2>
@@ -136,18 +152,21 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="File Upload error message (i18N key)"
                                     name="./fileErrorMsg"
+                                    value="sp.requestform.file.upload.error.msg"
                                     required="true"/>
                             <dragAndDropButtonLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Drag and drop - button label (i18N key)"
                                     name="./dragAndDropButtonLabel"
+                                    value="sp.requestform.dragdrop.button.label"
                                     required="true"/>
                             <dragAndDropRemoveFileLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Drag and drop - remove file label (i18N key)"
                                     name="./dragAndDropRemoveFileLabel"
+                                    value="sp.requestform.dragdrop.remove.file.label"
                                     required="true"/>
                         </items>
                     </column3>
@@ -162,66 +181,77 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Details title (i18N key)"
                                     name="./detailsTitle"
+                                    value="sp.requestform.details.title"
                                     required="true"/>
                             <nameLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Name Label (i18N key)"
                                     name="./nameLabel"
+                                    value="sp.requestform.name.label"
                                     required="true"/>
                             <emailLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Email Address label (i18N key)"
                                     name="./emailLabel"
+                                    value="sp.requestform.email.address.label"
                                     required="true"/>
                             <companyErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Company error message (i18N key)"
                                     name="./companyErrorMsg"
+                                    value="sp.requestform.company.error.msg"
                                     required="true"/>
                             <companyLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Company Label (i18N key)"
                                     name="./companyLabel"
+                                    value="sp.requestform.company.label"
                                     required="true"/>
                             <countryLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Country label (i18N key)"
                                     name="./countryLabel"
+                                    value="sp.requestform.country.label"
                                     required="true"/>
                             <countryErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Country error message (i18N key)"
                                     name="./countryErrorMsg"
+                                    value="sp.requestform.country.error.msg"
                                     required="true"/>
                             <cityLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="City Label (i18N key)"
                                     name="./cityLabel"
+                                    value="sp.requestform.city.label"
                                     required="true"/>
                             <cityErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="City error message (i18N key)"
                                     name="./cityErrorMsg"
+                                    value="sp.requestform.city.error.msg"
                                     required="true"/>
                             <phoneLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Phone Number Label (i18N key)"
                                     name="./phoneLabel"
+                                    value="sp.requestform.phone.number.label"
                                     required="true"/>
                             <phoneErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Phone error message (i18N key)"
                                     name="./phoneErrorMsg"
+                                    value="sp.requestform.phone.error.msg"
                                     required="true"/>
                         </items>
                     </column4>
@@ -236,48 +266,56 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Other title (i18N key)"
                                     name="./otherTitle"
+                                    value="sp.requestform.other.title"
                                     required="true"/>
                             <descLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Other description Label (i18N key)"
                                     name="./otherDescriptionLabel"
+                                    value="sp.requestform.other.description.label"
                                     required="true"/>
                             <aribaNetworkLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Ariba Network label (i18N key)"
                                     name="./aribaNetworkLabel"
+                                    value="sp.requestform.ariba.network.label"
                                     required="true"/>
                             <aribaEmailLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Ariba Email Label (i18N key)"
                                     name="./aribaEmailLabel"
+                                    value="sp.requestform.ariba.email.label"
                                     required="true"/>
                             <aribaEmailErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Ariba Email Error Label (i18N key)"
                                     name="./aribaEmailErrorMsg"
+                                    value="sp.requestform.ariba.email.error.label"
                                     required="true"/>
                             <tpEmailLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Tetrapak Email label (i18N key)"
                                     name="./tpEmailLabel"
+                                    value="sp.requestform.tetrapak.email.label"
                                     required="true"/>
                             <tpEmailErrorMsg
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Tetrapak Email Error label (i18N key)"
                                     name="./tpEmailErrorMsg"
+                                    value="sp.requestform.tetrapak.email.error.label"
                                     required="true"/>
                             <sendButtonLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Send button label (i18N key)"
                                     name="./SendButtonLabel"
+                                    value="sp.requestform.send.button.label"
                                     required="true"/>
                         </items>
                     </column5>
@@ -292,18 +330,21 @@
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Thankyou title (i18N key)"
                                     name="./thankyouTitleLabel"
+                                    value="sp.requestform.thankyou.title"
                                     required="true"/>
                             <thankyouSubtitle
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Thankyou subtitle (i18N key)"
                                     name="./thankyouSubtitleLabel"
+                                    value="sp.requestform.thankyou.subtitle"
                                     required="true"/>
                             <homeButtonLabel
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                     fieldLabel="Home button label (i18N key)"
                                     name="./homeButtonLabel"
+                                    value="sp.requestform.home.button.label"
                                     required="true"/>
                         </items>
                     </column6>
