@@ -286,6 +286,9 @@
                 }
             }
         }
+        &.gray {
+            background-color: rgba($color-wild-sand, 0.9);
+        }
         &.black {
             color: $color-tundora;
             background: $color-white;
