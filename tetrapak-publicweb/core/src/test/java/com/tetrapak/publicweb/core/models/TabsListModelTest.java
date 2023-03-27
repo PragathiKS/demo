@@ -185,6 +185,7 @@ public class TabsListModelTest {
 	assertEquals("anchorId", model.getAnchorId());
 	assertEquals("anchor title", model.getAnchorTitle());
 	assertEquals("badging", model.getAssetName());
+    assertEquals(true, model.getDisplayDate());
 	
 	assertEquals("Title", model.getTabs().get(1).getTitle());
 	assertEquals("Sub Title", model.getTabs().get(1).getSubTitle());
@@ -202,7 +203,8 @@ public class TabsListModelTest {
 	assertEquals("/content/dam/tetrapak/publicweb/ContentImage6.png", model.getTabs().get(2).getThumbnailPath());
 	assertEquals("https://www.youtube.com/embed/UEfCxCLtOwk?enablejsapi=1", model.getTabs().get(3).getYoutubeEmbedURL());
 
-	assertEquals("file_example_MOV_1280_1_4MB", model.getTabs().get(2).getVideoName());
+	assertEquals("file_example_MOV_1280_1_4MB", model.getTabs().get(2).getVideoName());    
+    assertEquals("2023-03-29", model.getTabs().get(1).getArticleDate());
     }
 
     /**
@@ -254,6 +256,7 @@ public class TabsListModelTest {
 	assertEquals("link text1", aggregatorList.get(0).getLinkText());
 	assertEquals("/content/tetrapak/publicweb/lang-masters/en/home", aggregatorList.get(0).getLinkPath());
 	assertEquals("link", aggregatorList.get(0).getPwButtonTheme());
+    assertEquals("2023-03-28", aggregatorList.get(0).getArticleDate());
     }
     
     /**
@@ -269,6 +272,7 @@ public class TabsListModelTest {
     request.setResource(context.resourceResolver().getResource(RESOURCE));
     resource = context.currentResource(RESOURCE);
     model = request.adaptTo(modelClass);
+    assertEquals(true, model.getDisplayDate());
 	assertEquals("Solutions", model.getTabs().get(0).getTitle());
 	assertEquals("Solution Desc", model.getTabs().get(0).getDescription());
 	assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
@@ -277,5 +281,7 @@ public class TabsListModelTest {
 	assertEquals("link text1", model.getTabs().get(0).getLinkText());
 	assertEquals("/content/tetrapak/publicweb/lang-masters/en/home.html", model.getTabs().get(0).getLinkURL());
 	assertEquals("link", model.getTabs().get(1).getPwButtonTheme());
+    assertEquals("2023-03-28", model.getTabs().get(0).getArticleDate());
+    assertEquals("2023-03-30", model.getTabs().get(1).getArticleDate());
     }
 }
