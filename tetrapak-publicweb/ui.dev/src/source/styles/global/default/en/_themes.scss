@@ -73,16 +73,6 @@ h4 {
     }
 }
 
-.pw-text-color {
-    $self: &;
-    &--text-darkgrey {
-        color: $color-text;
-    }
-    &--text-white {
-        color: $color-white;
-    }    
-}
-
 .pw-margin {
     &--zero {
         margin: 0;
