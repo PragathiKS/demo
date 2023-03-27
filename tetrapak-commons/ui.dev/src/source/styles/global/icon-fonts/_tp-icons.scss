@@ -5,10 +5,10 @@
 
 @font-face {
 	font-family:"tp-icons";
-	src:url("../../../assets/fonts/tp-icons.eot?c2e7f5dca29e7e2abe83a6175a099894");
-	src:url("../../../assets/fonts/tp-icons.eot?c2e7f5dca29e7e2abe83a6175a099894#iefix") format("embedded-opentype"),
-		url("../../../assets/fonts/tp-icons.woff?c2e7f5dca29e7e2abe83a6175a099894") format("woff"),
-		url("../../../assets/fonts/tp-icons.ttf?c2e7f5dca29e7e2abe83a6175a099894") format("truetype");
+	src:url("../../../assets/fonts/tp-icons.eot?6fe26d166ef44063a751a130049fe491");
+	src:url("../../../assets/fonts/tp-icons.eot?6fe26d166ef44063a751a130049fe491#iefix") format("embedded-opentype"),
+		url("../../../assets/fonts/tp-icons.woff?6fe26d166ef44063a751a130049fe491") format("woff"),
+		url("../../../assets/fonts/tp-icons.ttf?6fe26d166ef44063a751a130049fe491") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -450,11 +450,12 @@
 
 
 .icon-Maintenance:before {
-	content: '\f146';
+	content:"\f146";
 }
 
 
-.icon-Mandatory_Kits:before {
+
+.icon-Mandatory_Kit:before {
 	content:"\f147";
 }
 
@@ -623,7 +624,7 @@
 
 
 .icon-Training:before {
-	content: "\f163";
+	content:"\f163";
 }
 
 
