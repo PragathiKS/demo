@@ -35,12 +35,19 @@ import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static com.tetrapak.customerhub.core.servlets.RKLiabilityConditionsServlet.JSON_EXTENSION;
+import static com.tetrapak.customerhub.core.servlets.RKLiabilityConditionsServlet.PDF_LINKS_SELECTOR;
+
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Get RK Liability Conditions PDF Servlet",
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
         "sling.servlet.resourceTypes=" + "customerhub/components/content/rkliabilityconditions",
-        "sling.servlet.selectors=" + "getpdflinks", "sling.servlet.extensions=" + "json"
+        "sling.servlet.selectors=" + PDF_LINKS_SELECTOR, "sling.servlet.extensions=" + JSON_EXTENSION
 })
 public class RKLiabilityConditionsServlet extends SlingAllMethodsServlet {
+
+    public static final String PDF_LINKS_SELECTOR = "getpdflinks";
+
+    public static final String JSON_EXTENSION = "json";
 
     @Reference
     private RKLiabilityConditionsService rkLiabilityConditionsService;
