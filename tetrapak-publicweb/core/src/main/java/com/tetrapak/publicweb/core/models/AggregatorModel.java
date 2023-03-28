@@ -1,51 +1,58 @@
 package com.tetrapak.publicweb.core.models;
 
-import javax.inject.Named;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import javax.annotation.PostConstruct;
+import javax.inject.Named;
+
 /**
  * The Class AggregatorModel.
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class AggregatorModel {
+public class AggregatorModel {    
 
-    /**  The title. */
+    /** The title. */
     @Named(value = "jcr:title")
     @ValueMapValue
     private String title;
 
-    /**  The tags. */
+    /** The tags. */
     @ValueMapValue
     @Named(value = "cq:tags")
     private String[] tags;
 
-    /**  The description. */
+    /** The description. */
     @ValueMapValue
     @Named(value = "jcr:description")
     private String description;
 
-    /**  The imagePath. */
+    /** The imagePath. */
     @ValueMapValue
     private String imagePath;
 
-    /**  The altText. */
+    /** The altText. */
     @ValueMapValue
     private String altText;
 
-    /**  The linkText. */
+    /** The linkText. */
     @ValueMapValue
     private String linkText;
 
-    /**  The linkPath. */
+    /** The linkPath. */
     @ValueMapValue
     private String linkPath;
 
-    /**  The pwButtonTheme. */
+    /** The pwButtonTheme. */
     @ValueMapValue
     private String pwButtonTheme;
+
+    /** The articleDate. */
+    @ValueMapValue
+    private String articleDate;
 
     /**
      * Gets the title.
@@ -117,6 +124,20 @@ public class AggregatorModel {
      */
     public String getPwButtonTheme() {
         return pwButtonTheme;
+    }
+
+    /**
+     * Gets the article date.
+     *
+     * @return the article date
+     */
+    public String getArticleDate() {
+        return articleDate;
+    }
+
+    @PostConstruct
+    protected void init() {
+        articleDate = GlobalUtil.formatDate(articleDate);
     }
 
 }
