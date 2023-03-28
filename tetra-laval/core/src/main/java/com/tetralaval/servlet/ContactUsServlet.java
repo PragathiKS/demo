@@ -25,6 +25,7 @@ import com.adobe.acs.commons.email.EmailService;
 import com.adobe.cq.dam.cfm.ContentFragment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetralaval.beans.ContactUsResponse;
+import com.tetralaval.exceptions.TetraLavalException;
 import com.tetralaval.models.FormContainer;
 import com.tetralaval.services.FormService;
 
@@ -86,21 +87,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	Map<String, String> emailParams = new HashMap<>();
 	try {
 	    resourceResolver = request.getResourceResolver();
-	    Map<String, String[]> requestParams = request.getParameterMap();
-
-	    requestParams.forEach((key, value) -> {
-		LOGGER.debug("Key: {} ::: Value: {}", key, value);
-		if (!StringUtils.startsWithAny(key, formService.getIgnoreParameters())) {
-		    String newValue = "";
-		    if (value.length > 1) {
-			newValue = StringUtils.join(value, ",");
-		    } else {
-			newValue = value[0];
-		    }
-		    newValue = xssAPI.encodeForHTML(newValue);
-		    emailParams.put(key, newValue);
-		}
-	    });
+	    emailParams = processInputParameters(request);
 	    // get details configured on Form Component.
 	    Resource formResource = request.getResource();
 	    LOGGER.debug("Form Resource: {}", formResource);
@@ -120,7 +107,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 		/* get company details */
 		String company = request.getParameter(":company");
 		if (StringUtils.isBlank(company)) {
-		    throw new Exception("Company not provided");
+		    throw new TetraLavalException("Selected Company not provided");
 		} else {
 		    String resourcePath = formService.getContactUsFragmentsPath() + "/" + company;
 		    Resource resource = resourceResolver.getResource(resourcePath);
@@ -142,10 +129,12 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    }
 	    contactUsResponse = new ContactUsResponse("200", "OK", type, redirect);
 	    sendEmail(emailParams, to, emailTemplatePath);
+	} catch (TetraLavalException te) {
+	    contactUsResponse.setStatusMessage(te.getMessage());
 
 	} catch (final Exception e) {
-	    LOGGER.error("Exception :{}", e.getMessage(), e);
-	    contactUsResponse = new ContactUsResponse("500", "Error", type);
+	    LOGGER.error("Exception :{}", e);
+	    contactUsResponse.setStatusMessage("An error occured");
 	}
 
 	try {
@@ -154,6 +143,25 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    LOGGER.error("Exception :{}", e.getMessage(), e);
 	}
 
+    }
+
+    private Map<String, String> processInputParameters(final SlingHttpServletRequest request) {
+	Map<String, String> emailParams = new HashMap<>();
+	Map<String, String[]> requestParams = request.getParameterMap();
+	requestParams.forEach((key, value) -> {
+	    LOGGER.debug("Key: {} ::: Value: {}", key, value);
+	    if (!StringUtils.startsWithAny(key, formService.getIgnoreParameters())) {
+		String newValue = "";
+		if (value.length > 1) {
+		    newValue = StringUtils.join(value, ",");
+		} else {
+		    newValue = value[0];
+		}
+		newValue = xssAPI.encodeForHTML(newValue);
+		emailParams.put(key, newValue);
+	    }
+	});
+	return emailParams;
     }
 
     private void sendEmail(Map<String, String> emailParams, InternetAddress recipients, String templatePath) {

@@ -58,7 +58,7 @@
                         <_x0031_679407094632
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                            fieldDescription="Title of the Email that will be sent out."
+                            fieldDescription="Title of the Email that will be sent out. Note: Company name will be added dynamically based on end-user selection from Tab list component"
                             fieldLabel="Email Title"
                             listOrder="1"
                             maxlength="255"

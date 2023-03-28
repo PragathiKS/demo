@@ -46,7 +46,7 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                                 deleteHint="{Boolean}true"
                                                 fieldDescription="Select the content fragment for the contact us details Company"
-                                                fieldLabel="Path to Company content fragment"
+                                                fieldLabel="Company content fragment"
                                                 name="./company">
                                                 <datasource
                                                     jcr:primaryType="nt:unstructured"

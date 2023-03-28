@@ -1,10 +1,8 @@
 package com.tetralaval.services.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.resource.Resource;
@@ -27,7 +25,6 @@ public class FormServiceImpl implements FormService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormServiceImpl.class);
 
-    private Map<String, String> emailTo;
     private String[] ignoreParameters;
     private String[] emailTemplates;
     private String[] actionTypes;
@@ -36,11 +33,6 @@ public class FormServiceImpl implements FormService {
     @Override
     public String[] getIgnoreParameters() {
 	return ignoreParameters;
-    }
-
-    @Override
-    public Map<String, String> getEmailTo() {
-	return emailTo;
     }
 
     @Override
@@ -65,17 +57,6 @@ public class FormServiceImpl implements FormService {
 
     @Activate
     protected void activate(FormConfiguration config) {
-	emailTo = new HashMap<>();
-	String[] mappings = config.emailMapping();
-	for (String mapping : mappings) {
-	    try {
-		String[] map = StringUtils.split(mapping, ":");
-		emailTo.put(map[0], map[1]);
-	    } catch (Exception e) {
-		LOGGER.error("********** An error while reading Email. Please rectify ASAP **********", e);
-	    }
-	}
-	LOGGER.info("Email To Configuration: {}", emailTo);
 	ignoreParameters = config.ignoreParameters();
 	emailTemplates = config.emailTemplates();
 	actionTypes = config.actionTypes();

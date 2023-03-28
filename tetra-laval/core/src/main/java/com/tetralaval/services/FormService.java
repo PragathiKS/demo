@@ -11,8 +11,6 @@ public interface FormService {
 
     String[] getIgnoreParameters();
 
-    Map<String, String> getEmailTo();
-
     String[] getEmailTemplates();
 
     String[] getActionTypes();
