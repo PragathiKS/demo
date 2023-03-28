@@ -44,7 +44,7 @@ class LanguageSelector {
           storageUtil.setCookie('lang-code', 'en');
         }
       }
-      setCustomerLanguage(langCode, url) {
+      setCustomerLanguage(langCode) {
         ajaxWrapper.getXhrObj({
           url: LANGUAGE_PREFERENCE_SERVLET_URL,
           data: {
@@ -52,12 +52,27 @@ class LanguageSelector {
           }
         }).always(() => {
           storageUtil.setCookie('lang-code', langCode);
-          this.reloadPage(url);
+          this.newUrlReload(langCode);
         });
       }
-      reloadPage(url) {
-        window.location.href = url;
+
+      newUrlReload(langCode){
+        let listOfLangCodes = $('.js-lang-modal').data('lang-data'); 
+        let newUrl = window.location.href;
+        if(!listOfLangCodes){
+          window.location.reload();
+          return;
+        }
+        listOfLangCodes= listOfLangCodes ? listOfLangCodes.split(',') : [];
+        for (const languageCode of listOfLangCodes) {
+          if(window.location.href.indexOf(`/${languageCode}/`)!== -1) {
+            newUrl = window.location.href.replace(`/${languageCode}/`, `/${langCode}/`);
+            break;
+          }
+        }
+        window.location.replace(newUrl);
       }
+
       showPopup(isInit) {
         const { $modal, selectedLanguage } = this.cache;
         const langCookie = storageUtil.getCookie('lang-code');
@@ -71,6 +86,7 @@ class LanguageSelector {
           $modal.modal();
         }
       }
+
       init() {
         this.initCache();
         this.bindEvents();
