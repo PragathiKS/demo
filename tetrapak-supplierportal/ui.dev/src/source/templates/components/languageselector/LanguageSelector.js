@@ -59,7 +59,7 @@ class LanguageSelector {
       newUrlReload(langCode){
         let listOfLangCodes = $('.js-lang-modal').data('lang-data'); 
         let newUrl = window.location.href;
-        if(!listOfLangCodes){
+        if(!listOfLangCodes || !langCode){
           window.location.reload();
           return;
         }
