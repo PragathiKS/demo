@@ -263,6 +263,10 @@ function _getCtiDocuments() {
                 }
               });
             });
+            // sort language alphabetically
+            otherLang.sort(function(currentObj, compareWithObj) {
+              return currentObj['langDesc'].localeCompare(compareWithObj['langDesc']);
+            });
             $this.renderCtiDocuments(langAvailable, otherLang, reqLangList);
           }
         })
