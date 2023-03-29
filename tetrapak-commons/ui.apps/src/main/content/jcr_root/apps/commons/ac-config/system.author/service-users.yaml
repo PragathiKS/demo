@@ -12,18 +12,6 @@
           path: tetrapak
           isSystemUser: true
 
-    - tetrapak-gl-reader:
-
-        - name:
-          path: tetrapak
-          isSystemUser: true
-
-    - tetrapak-gl-reader:
-
-        - name:
-          path: tetrapak
-          isSystemUser: true
-
 - ace_config:
 
     - tetrapak-readusergroups-system-user:
