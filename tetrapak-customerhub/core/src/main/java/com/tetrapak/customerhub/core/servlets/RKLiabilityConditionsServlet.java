@@ -35,12 +35,25 @@ import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import static com.tetrapak.customerhub.core.servlets.RKLiabilityConditionsServlet.JSON_EXTENSION;
+import static com.tetrapak.customerhub.core.servlets.RKLiabilityConditionsServlet.PDF_LINKS_SELECTOR;
+
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Get RK Liability Conditions PDF Servlet",
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
         "sling.servlet.resourceTypes=" + "customerhub/components/content/rkliabilityconditions",
-        "sling.servlet.selectors=" + "getpdflinks", "sling.servlet.extensions=" + "json"
+        "sling.servlet.selectors=" + PDF_LINKS_SELECTOR, "sling.servlet.extensions=" + JSON_EXTENSION
 })
 public class RKLiabilityConditionsServlet extends SlingAllMethodsServlet {
+
+    public static final String PDF_LINKS_SELECTOR = "getpdflinks";
+
+    public static final String JSON_EXTENSION = "json";
+
+    public static final String PREFERRED_LANGUAGE_PARAM = "preferredLanguage";
+
+    public static final String ERROR_KEY = "error";
+
+    public static final String ERROR_MESSAGE = "Internal Server error";
 
     @Reference
     private RKLiabilityConditionsService rkLiabilityConditionsService;
@@ -48,12 +61,12 @@ public class RKLiabilityConditionsServlet extends SlingAllMethodsServlet {
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
-        String preferredLanguage = request.getParameter("preferredLanguage");
+        String preferredLanguage = request.getParameter(PREFERRED_LANGUAGE_PARAM);
         RKLiabilityConditionsPDF rkLiabilityConditionsPDF = rkLiabilityConditionsService.getPDFLinksJSON(request.getResourceResolver(),preferredLanguage);
 
         if(rkLiabilityConditionsPDF.getEnglishPDF()==null && rkLiabilityConditionsPDF.getPreferredLanguagePDF()==null){
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("error","Internal Server error");
+            jsonObject.addProperty(ERROR_KEY,ERROR_MESSAGE);
             response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
             response.setCharacterEncoding(StandardCharsets.UTF_8.name());
             response.getWriter().print(jsonObject.toString());
