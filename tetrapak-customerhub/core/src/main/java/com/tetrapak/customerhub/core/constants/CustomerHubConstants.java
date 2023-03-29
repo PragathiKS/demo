@@ -956,6 +956,14 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
 
+    public static final String RK_MANDATORY_KITS_TEXT = "rkMandatoryKitsText";
+
+    public static final String READ_GL_USER = "readGenericListsUser";
+
+    public static final String ENGLISH_LANGUAGE = "en";
+
+    public static final String RK_LIABILITY_CONDITIONS_TITLE = "Liability Conditions";
+
 
 
     /**
