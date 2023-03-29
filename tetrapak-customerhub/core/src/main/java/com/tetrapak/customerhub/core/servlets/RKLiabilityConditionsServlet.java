@@ -49,18 +49,24 @@ public class RKLiabilityConditionsServlet extends SlingAllMethodsServlet {
 
     public static final String JSON_EXTENSION = "json";
 
+    public static final String PREFERRED_LANGUAGE_PARAM = "preferredLanguage";
+
+    public static final String ERROR_KEY = "error";
+
+    public static final String ERROR_MESSAGE = "Internal Server error";
+
     @Reference
     private RKLiabilityConditionsService rkLiabilityConditionsService;
 
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse response)
             throws IOException {
-        String preferredLanguage = request.getParameter("preferredLanguage");
+        String preferredLanguage = request.getParameter(PREFERRED_LANGUAGE_PARAM);
         RKLiabilityConditionsPDF rkLiabilityConditionsPDF = rkLiabilityConditionsService.getPDFLinksJSON(request.getResourceResolver(),preferredLanguage);
 
         if(rkLiabilityConditionsPDF.getEnglishPDF()==null && rkLiabilityConditionsPDF.getPreferredLanguagePDF()==null){
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("error","Internal Server error");
+            jsonObject.addProperty(ERROR_KEY,ERROR_MESSAGE);
             response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
             response.setCharacterEncoding(StandardCharsets.UTF_8.name());
             response.getWriter().print(jsonObject.toString());
