@@ -1,4 +1,4 @@
-<sly data-sly-template.header_template="${@ data, langData}">
+<sly data-sly-template.header_template="${@ data, langData, cookie}">
     <header class="tp-header" data-module="Header">
         <span class="tp-header__burger-menu icon-Burger"></span>
         <sly data-sly-test.closeBtnText="${data.closeBtnText @i18n, locale=langData.locale}" />
