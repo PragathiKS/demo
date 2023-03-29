@@ -14,10 +14,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.tetrapak.customerhub.core.constants.CustomerHubConstants.DOT;
-import static com.tetrapak.customerhub.core.servlets.RKLiabilityConditionsServlet.JSON_EXTENSION;
-import static com.tetrapak.customerhub.core.servlets.RKLiabilityConditionsServlet.PDF_LINKS_SELECTOR;
-
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class RKLiabilityConditionsModel {
 
@@ -39,7 +35,7 @@ public class RKLiabilityConditionsModel {
 
     public String getApiPath() {
         ResourceResolver resolver = resource.getResourceResolver();
-        return resolver.map(resource.getPath()+DOT+PDF_LINKS_SELECTOR+DOT+JSON_EXTENSION);
+        return resolver.map(resource.getPath()+".getpdflinks.json");
     }
 
     public String getRkMandatoryKitsText() {

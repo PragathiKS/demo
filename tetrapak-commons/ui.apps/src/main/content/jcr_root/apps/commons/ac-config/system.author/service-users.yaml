@@ -4,6 +4,12 @@
 
         - name:
           path: tetrapak
+          isSystemUser: truex
+
+    - tetrapak-gl-reader:
+
+        - name:
+          path: tetrapak
           isSystemUser: true
 
     - tetrapak-gl-reader:

@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models.multifield;
 
 import java.util.Objects;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
@@ -82,6 +83,10 @@ public class TabModel {
     /** The pw button theme. */
     private String pwButtonTheme;
 
+    /** The article date. */
+     @ValueMapValue
+    private String articleDate;
+
     /** The alt. */
     @ValueMapValue
     private String alt;
@@ -155,6 +160,25 @@ public class TabModel {
      */
     public String getVideoSource() {
         return videoSource;
+    }
+
+     /**
+     * Gets the article date.
+     *
+     * @return the article date
+     */
+    public String getArticleDate() {
+        return articleDate;
+    }    
+
+     /**
+     * Sets the articleDate.
+     *
+     * @param articleDate
+     *            the articleDate
+     */
+    public void setArticleDate(String articleDate) {
+        this.articleDate = articleDate;
     }
 
     /**
@@ -412,6 +436,11 @@ public class TabModel {
      */
     public void setThumbnailAltText(String thumbnailAltText) {
         this.thumbnailAltText = thumbnailAltText;
+    }
+
+    @PostConstruct
+    protected void init() {
+        articleDate = GlobalUtil.formatDate(articleDate);
     }
 
 }

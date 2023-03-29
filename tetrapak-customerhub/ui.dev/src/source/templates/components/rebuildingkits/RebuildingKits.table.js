@@ -69,7 +69,7 @@ export const _buildTableRows = (data, keys) => {
 
   let icon = '';
   if(data[RK_TYPE_CODE].startsWith('A')) {
-    icon = 'Mandatory_Kits';
+    icon = 'Mandatory_Kit';
   } else if(data[RK_TYPE_CODE].startsWith('B')) {
     icon = 'Trolley';
   }

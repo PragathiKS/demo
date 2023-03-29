@@ -33,9 +33,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.tetrapak.customerhub.core.constants.CustomerHubConstants.ENGLISH_LANGUAGE;
-import static com.tetrapak.customerhub.core.constants.CustomerHubConstants.RK_LIABILITY_CONDITIONS_DEFAULT_TITLE;
-
 @Component(immediate = true, service = RKLiabilityConditionsService.class)
 @Designate(ocd = RKLiabilityConditionsConfig.class)
 public class RKLiabilityConditionsServiceImpl implements RKLiabilityConditionsService {
@@ -70,11 +67,11 @@ public class RKLiabilityConditionsServiceImpl implements RKLiabilityConditionsSe
                             if (pdfGL != null) {
                                 List<GenericList.Item> itemList = pdfGL.getItems();
                                 for (GenericList.Item item : itemList) {
-                                    if (item.getTitle().equals(preferredLanguage) && !preferredLanguage.equals(ENGLISH_LANGUAGE)) {
+                                    if (item.getTitle().equals(preferredLanguage) && !preferredLanguage.equals("en")) {
                                         PDFLink pdfLink = getPDFLinkFromAsset(item.getValue(), resourceResolver);
                                         rkLiabilityConditionsPDF.setPreferredLanguagePDF(pdfLink);
                                     }
-                                    if (item.getTitle().equals(ENGLISH_LANGUAGE)) {
+                                    if (item.getTitle().equals("en")) {
                                         PDFLink pdfLink = getPDFLinkFromAsset(item.getValue(), resourceResolver);
                                         rkLiabilityConditionsPDF.setEnglishPDF(pdfLink);
                                     }
@@ -109,7 +106,7 @@ public class RKLiabilityConditionsServiceImpl implements RKLiabilityConditionsSe
                 PDFLink pdfLink = new PDFLink();
                 pdfLink.setLink(pdfAsset.getPath());
                 if(StringUtils.isBlank(assetTitle)){
-                    pdfLink.setTitle(RK_LIABILITY_CONDITIONS_DEFAULT_TITLE);
+                    pdfLink.setTitle("Liability Conditions");
                 }else{
                     pdfLink.setTitle(assetTitle);
                 }

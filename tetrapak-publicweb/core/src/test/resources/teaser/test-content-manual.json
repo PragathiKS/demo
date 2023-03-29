@@ -15,7 +15,7 @@
 		"hideInSearch@Delete": "true",
 		"linkType": "button",
 		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-		"cq:lastModifiedBy": "admin",
+		"cq:lastModifiedBy": "admin",		
 		"root": {
 			"jcr:primaryType": "nt:unstructured",
 			"responsivegrid": {
@@ -28,21 +28,22 @@
 					"jcr:lastModifiedBy": "admin",
 					"anchorId": "anchorId",
 					"linkLabel": "View All",
-					"linkPath":"/content/tetrapak/publicweb/lang-masters/en/search",
+					"linkPath": "/content/tetrapak/publicweb/lang-masters/en/search",
 					"contentType": "manual",
 					"jcr:created": "Mon Apr 13 2020 10:49:59 GMT+0530",
 					"maxTeasers": "12",
 					"pwTheme": "grayscale-white",
 					"enableCarousel": "true",
 					"tags": [
-					"tetrapak:publicweb/product/type/product-a"
+						"tetrapak:publicweb/product/type/product-a"
 					],
 					"heading": "Heading",
 					"jcr:lastModified": "Mon Apr 13 2020 15:48:16 GMT+0530",
-					"sling:resourceType": "publicweb/components/content/teaser",
+					"sling:resourceType": "publicweb/components/content/teaser",	
+					"displayDate" :  "true",
 					"manualList": {
 						"jcr:primaryType": "nt:unstructured",
-						"item0": {						
+						"item0": {
 							"jcr:primaryType": "nt:unstructured",
 							"description": "Description",
 							"fileReference": "/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
@@ -52,7 +53,8 @@
 							"title": "Title",
 							"linkTarget": "_blank",
 							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions",
-							"linkText": "Link Text"
+							"linkText": "Link Text",
+							"articleDate": "2023-03-31T00:00:00.000+05:30"
 						},
 						"item1": {
 							"jcr:primaryType": "nt:unstructured",
@@ -64,7 +66,8 @@
 							"title": "Title",
 							"linkTarget": "_blank",
 							"linkPath": "/content/tetrapak/publicweb/lang-masters/en/solutions",
-							"linkText": "Link Text"
+							"linkText": "Link Text",
+							"articleDate": "2023-03-31T00:00:00.000+05:30"
 						}
 					},
 					"semiAutomaticList": {
@@ -90,14 +93,14 @@
 					"maxTeasers": "12",
 					"pwTheme": "grayscale-white",
 					"tags": [
-					"tetrapak:publicweb/product/type/product-a"
+						"tetrapak:publicweb/product/type/product-a"
 					],
 					"heading": "Heading",
 					"jcr:lastModified": "Mon Apr 13 2020 15:48:16 GMT+0530",
 					"sling:resourceType": "publicweb/components/content/teaser",
 					"manualList": {
 						"jcr:primaryType": "nt:unstructured",
-						"item0": {						
+						"item0": {
 							"jcr:primaryType": "nt:unstructured",
 							"description": "Description",
 							"fileReference": "/content/dam/we-retail/en/experiences/arctic-surfing-in-lofoten/northern-lights.jpg",
@@ -107,7 +110,8 @@
 							"title": "Title",
 							"linkTarget": "_blank",
 							"linkPath": "/content/dam/tetrapak/publicweb/gb/en/abc.pdf",
-							"linkText": "PDF"
+							"linkText": "PDF",
+							"articleDate": "2023-03-31T00:00:00.000+05:30"
 						}
 					}
 				}

@@ -4,4 +4,4 @@
     jcr:description="Support Request Form"
     jcr:primaryType="cq:Component"
     jcr:title="Support Request Form"
-    componentGroup="sp-content-components"/>
+    componentGroup="sp-form-content-components"/>

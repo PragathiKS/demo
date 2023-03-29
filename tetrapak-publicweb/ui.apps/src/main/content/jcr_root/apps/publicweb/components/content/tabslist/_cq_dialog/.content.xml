@@ -3,344 +3,361 @@
     jcr:primaryType="nt:unstructured"
     jcr:title="Tab List"
     sling:resourceType="cq/gui/components/authoring/dialog">
-    <content
-        jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+  <content
+      jcr:primaryType="nt:unstructured"
+      sling:resourceType="granite/ui/components/coral/foundation/tabs">
+    <items jcr:primaryType="nt:unstructured">
+      <tab
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Tab list"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
         <items jcr:primaryType="nt:unstructured">
-            <tab
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Tab list"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <heading
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Heading"
+                  name="./heading"/>
+              <displayDate
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                  fieldDescription="Check if you want to display date"
+                  fieldLabel="Do you want to display date ?"
+                  name="./displayDate"
+                  text="Display date ?"
+                  uncheckedValue="{Boolean}false"
+                  value="{Boolean}true"/>
+              <contentType
+                  granite:class="cq-dialog-dropdown-showhide tablist-contenttype"
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                  fieldLabel="Select settings"
+                  name="./contentType">
                 <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <heading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Heading"
-                                name="./heading"/>
-                            <contentType
-                                granite:class="cq-dialog-dropdown-showhide tablist-contenttype"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                fieldLabel="Select settings"
-                                name="./contentType">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <automatic
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Automatic"
-                                        value="automatic"/>
-                                    <semi-automatic
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Semi Automatic"
-                                        value="semi-automatic"/>
-                                    <manual
-                                        jcr:primaryType="nt:unstructured"
-                                        text="Manual"
-                                        value="manual"/>
-                                </items>
-                                <granite:data
-                                    jcr:primaryType="nt:unstructured"
-                                    cq-dialog-dropdown-showhide-target=".contentType-showhide-target"/>
-                            </contentType>
-                            <tablistcontainer
-                                granite:class="hide contentType-showhide-target"
+                  <automatic
+                      jcr:primaryType="nt:unstructured"
+                      text="Automatic"
+                      value="automatic"/>
+                  <semi-automatic
+                      jcr:primaryType="nt:unstructured"
+                      text="Semi Automatic"
+                      value="semi-automatic"/>
+                  <manual
+                      jcr:primaryType="nt:unstructured"
+                      text="Manual"
+                      value="manual"/>
+                </items>
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    cq-dialog-dropdown-showhide-target=".contentType-showhide-target"/>
+              </contentType>
+              <tablistcontainer
+                  granite:class="hide contentType-showhide-target"
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                  <container
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/container">
+                    <items jcr:primaryType="nt:unstructured">
+                      <list
+                          granite:class="pw-tablist-manual-multi"
+                          jcr:primaryType="nt:unstructured"
+                          jcr:title="tabsManual"
+                          sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                          composite="{Boolean}true"
+                          description="Click to add tab content manually"
+                          fieldLabel="Configure Tab content"
+                          pw-max-items="9">
+                        <field
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            name="./tabsManual">
+                          <items jcr:primaryType="nt:unstructured">
+                            <column
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <container
+                              <items jcr:primaryType="nt:unstructured">
+                                <tabLayout
+                                    granite:class="pw-tablist-multi"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Select Tab Layout"
+                                    name="./tabType">
+                                  <items jcr:primaryType="nt:unstructured">
+                                    <image
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Text &amp; Image"
+                                        value="imageText"/>
+                                    <video
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Text &amp; Video"
+                                        value="videoText"/>
+                                  </items>
+                                </tabLayout>
+                                <subtitle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Suggested to use characters less than recommended Limit: 35 chars considering translations"
+                                    fieldLabel="Subtitle"
+                                    name="./subTitle"/>
+                                <title
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Suggested to use characters less than recommended Limit: 40 chars considering translations"
+                                    fieldLabel="Title"
+                                    name="./title"/>
+                                <description
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                    fieldDescription="Suggested to use characters less than recommended Limit: 700 chars considering translations"
+                                    fieldLabel="Body text"
+                                    name="./description"/>
+                                <imagecontainer
+                                    granite:class="hide tabLayout-showhide-target"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                  <items jcr:primaryType="nt:unstructured">
+                                    <file
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldLabel="Image path"
+                                        fileNameParameter="./fileName"
+                                        fileReferenceParameter="./fileReference"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff]"
+                                        multiple="{Boolean}false"
+                                        name="./file"
+                                        title="Upload Image Asset"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <alt
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Image alt text"
+                                        name="./alt"/>
+                                  </items>
+                                  <granite:data
+                                      jcr:primaryType="nt:unstructured"
+                                      showhidetargetvalue="imageText"/>
+                                </imagecontainer>
+                                <videocontainer
+                                    granite:class="hide tabLayout-showhide-target"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                  <items jcr:primaryType="nt:unstructured">
+                                    <videoSource
+                                        granite:class="pw-vedio-showhide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription="Prefered video option is AEM DAM"
+                                        fieldLabel="Select Video Source"
+                                        name="./videoSource">
+                                      <items jcr:primaryType="nt:unstructured">
+                                        <damVideo
+                                            jcr:primaryType="nt:unstructured"
+                                            text="DAM Video"
+                                            value="damVideo"/>
+                                        <youtube
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Youtube"
+                                            value="youtube"/>
+                                      </items>
+                                    </videoSource>
+                                    <youtubeId
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                                        path="/apps/publicweb/components/content/video/cq:dialog/content/items/video/items/column/items/youtubeId"/>
+                                    <damVideoSource
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                                        path="/apps/publicweb/components/content/video/cq:dialog/content/items/video/items/column/items/damVideoSource"/>
+                                    <thumbnailalttext
+                                        granite:class="hide videoType-showhide-target"
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/container">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <list
-                                                granite:class="pw-tablist-manual-multi"
-                                                jcr:primaryType="nt:unstructured"
-                                                jcr:title="tabsManual"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                                composite="{Boolean}true"
-                                                description="Click to add tab content manually"
-                                                fieldLabel="Configure Tab content"
-                                                pw-max-items="9">
-                                                <field
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                                    name="./tabsManual">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <column
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                                            <items jcr:primaryType="nt:unstructured">
-                                                                <tabLayout
-                                                                    granite:class="pw-tablist-multi"
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                                    fieldLabel="Select Tab Layout"
-                                                                    name="./tabType">
-                                                                    <items jcr:primaryType="nt:unstructured">
-                                                                        <image
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            text="Text &amp; Image"
-                                                                            value="imageText"/>
-                                                                        <video
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            text="Text &amp; Video"
-                                                                            value="videoText"/>
-                                                                    </items>
-                                                                </tabLayout>
-                                                                <subtitle
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                    fieldDescription="Suggested to use characters less than recommended Limit: 35 chars considering translations"
-                                                                    fieldLabel="Subtitle"
-                                                                    name="./subTitle"/>
-                                                                <title
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                    fieldDescription="Suggested to use characters less than recommended Limit: 40 chars considering translations"
-                                                                    fieldLabel="Title"
-                                                                    name="./title"/>
-                                                                <description
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                                                    fieldDescription="Suggested to use characters less than recommended Limit: 700 chars considering translations"
-                                                                    fieldLabel="Body text"
-                                                                    name="./description"/>
-                                                                <imagecontainer
-                                                                    granite:class="hide tabLayout-showhide-target"
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
-                                                                    <items jcr:primaryType="nt:unstructured">
-                                                                        <file
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
-                                                                            allowUpload="{Boolean}false"
-                                                                            autoStart="{Boolean}false"
-                                                                            class="cq-droptarget"
-                                                                            fieldLabel="Image path"
-                                                                            fileNameParameter="./fileName"
-                                                                            fileReferenceParameter="./fileReference"
-                                                                            mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff]"
-                                                                            multiple="{Boolean}false"
-                                                                            name="./file"
-                                                                            title="Upload Image Asset"
-                                                                            uploadUrl="${suffix.path}"
-                                                                            useHTML5="{Boolean}true"/>
-                                                                        <alt
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                            fieldLabel="Image alt text"
-                                                                            name="./alt"/>
-                                                                    </items>
-                                                                    <granite:data
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        showhidetargetvalue="imageText"/>
-                                                                </imagecontainer>
-                                                                <videocontainer
-                                                                    granite:class="hide tabLayout-showhide-target"
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
-                                                                    <items jcr:primaryType="nt:unstructured">
-                                                                        <videoSource
-                                                                            granite:class="pw-vedio-showhide"
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                                            fieldDescription="Prefered video option is AEM DAM"
-                                                                            fieldLabel="Select Video Source"
-                                                                            name="./videoSource">
-                                                                            <items jcr:primaryType="nt:unstructured">
-                                                                                <damVideo
-                                                                                    jcr:primaryType="nt:unstructured"
-                                                                                    text="DAM Video"
-                                                                                    value="damVideo"/>
-                                                                                <youtube
-                                                                                    jcr:primaryType="nt:unstructured"
-                                                                                    text="Youtube"
-                                                                                    value="youtube"/>
-                                                                            </items>
-                                                                        </videoSource>
-                                                                        <youtubeId
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                                            path="/apps/publicweb/components/content/video/cq:dialog/content/items/video/items/column/items/youtubeId"/>
-                                                                        <damVideoSource
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                                            path="/apps/publicweb/components/content/video/cq:dialog/content/items/video/items/column/items/damVideoSource"/>
-                                                                        <thumbnailalttext
-                                                                            granite:class="hide videoType-showhide-target"
-                                                                            jcr:primaryType="nt:unstructured"
-                                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                                                            <items jcr:primaryType="nt:unstructured">
-                                                                                <alttext
-                                                                                    jcr:primaryType="nt:unstructured"
-                                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                                    fieldLabel="Poster image alt text"
-                                                                                    name="./thumbnailAltText"/>
-                                                                            </items>
-                                                                            <granite:data
-                                                                                jcr:primaryType="nt:unstructured"
-                                                                                showhidetargetvalue="damVideo"/>
-                                                                        </thumbnailalttext>
-                                                                    </items>
-                                                                    <granite:data
-                                                                        jcr:primaryType="nt:unstructured"
-                                                                        showhidetargetvalue="videoText"/>
-                                                                </videocontainer>
-                                                                <linkText
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                                    fieldDescription="Link text"
-                                                                    fieldLabel="Link label"
-                                                                    name="./linkText"/>
-                                                                <linkUrl
-                                                                    jcr:primaryType="nt:unstructured"
-                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                                                    fieldDescription="Link to destination path"
-                                                                    fieldLabel="Link path"
-                                                                    name="./linkURL"
-                                                                    rootPath="/content"/>
-                                                            </items>
-                                                        </column>
-                                                    </items>
-                                                </field>
-                                            </list>
-                                            <pwButtonThemes
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
-                                        </items>
-                                    </container>
-                                </items>
-                                <granite:data
-                                    jcr:primaryType="nt:unstructured"
-                                    showhidetargetvalue="manual"/>
-                            </tablistcontainer>
-                            <tabpathcontainer
-                                granite:class="hide contentType-showhide-target"
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
-                                    <tabpaths
-                                        jcr:primaryType="nt:unstructured"
-										granite:class="pw-tablist-semi-multi"
-                                        jcr:title="tabsSemi"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                        composite="{Boolean}true"
-                                        fieldDescription="Add page paths to automatically populate values (Maximum Limit: 9 tabs)"
-                                        fieldLabel="Select pages"
-                                        pw-max-items="9">
-                                        <field
+                                      <items jcr:primaryType="nt:unstructured">
+                                        <alttext
                                             jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container"
-                                            name="./tabsSemi">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <column
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
-                                                    <items jcr:primaryType="nt:unstructured">
-                                                        <pageUrl
-                                                            jcr:primaryType="nt:unstructured"
-                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                            fieldDescription="Select internal pages to display metadata information from linked pages"
-                                                            fieldLabel="Page URL"
-                                                            name="./pageURL"
-															validation="pw.semiauto"
-                                                            rootPath="/content/tetrapak/publicweb"/>
-                                                    </items>
-                                                </column>
-                                            </items>
-                                        </field>
-                                    </tabpaths>
-                                </items>
-                                <granite:data
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Poster image alt text"
+                                            name="./thumbnailAltText"/>
+                                      </items>
+                                      <granite:data
+                                          jcr:primaryType="nt:unstructured"
+                                          showhidetargetvalue="damVideo"/>
+                                    </thumbnailalttext>
+                                  </items>
+                                  <granite:data
+                                      jcr:primaryType="nt:unstructured"
+                                      showhidetargetvalue="videoText"/>
+                                </videocontainer>
+                                <linkText
                                     jcr:primaryType="nt:unstructured"
-                                    showhidetargetvalue="semi-automatic"/>
-                            </tabpathcontainer>
-                            <tabautocontainer
-                                granite:class="hide contentType-showhide-target"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Link text"
+                                    fieldLabel="Link label"
+                                    name="./linkText"/>
+                                <linkUrl
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldDescription="Link to destination path"
+                                    fieldLabel="Link path"
+                                    name="./linkURL"
+                                    rootPath="/content"/>
+                                <articledate
+                                    granite:class="pw-datepicker"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                    fieldLabel="Article Date"
+                                    name="./articleDate"
+                                    type="date">
+                                </articledate>
+                              </items>
+                            </column>
+                          </items>
+                        </field>
+                      </list>
+                      <pwButtonThemes
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/include"
+                          path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwButtonThemes"/>
+                    </items>
+                  </container>
+                </items>
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    showhidetargetvalue="manual"/>
+              </tablistcontainer>
+              <tabpathcontainer
+                  granite:class="hide contentType-showhide-target"
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                  <tabpaths
+                      jcr:primaryType="nt:unstructured"
+  granite:class="pw-tablist-semi-multi"
+                      jcr:title="tabsSemi"
+                      sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                      composite="{Boolean}true"
+                      fieldDescription="Add page paths to automatically populate values (Maximum Limit: 9 tabs)"
+                      fieldLabel="Select pages"
+                      pw-max-items="9">
+                    <field
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        name="./tabsSemi">
+                      <items jcr:primaryType="nt:unstructured">
+                        <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                          <items jcr:primaryType="nt:unstructured">
+                            <pageUrl
                                 jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/container">
-                                <items jcr:primaryType="nt:unstructured">
-									<logicaloperator
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldDescription="Select internal pages to display metadata information from linked pages"
+                                fieldLabel="Page URL"
+                                name="./pageURL"
+  validation="pw.semiauto"
+                                rootPath="/content/tetrapak/publicweb"/>
+                          </items>
+                        </column>
+                      </items>
+                    </field>
+                  </tabpaths>
+                </items>
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    showhidetargetvalue="semi-automatic"/>
+              </tabpathcontainer>
+              <tabautocontainer
+                  granite:class="hide contentType-showhide-target"
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                  <logicaloperator
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                         fieldLabel="Tag filter"
                                         name="./logicalOperator">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <and
-                                                jcr:primaryType="nt:unstructured"
-                                                selected="true"
-                                                text="AND"
-                                                value="and"/>
-                                            <or
-                                                jcr:primaryType="nt:unstructured"
-                                                text="OR"
-                                                value="or"/>
-                                        </items>
-                                    </logicaloperator>
-                                    <tags
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="cq/gui/components/common/tagspicker"
-                                        fieldDescription="Content displayed based on Tag selected and Tag filter."
-                                        fieldLabel="Tags"
-                                        name="./tags"
-                                        rootPath="/content/cq:tags"/>
-                                    <maxtabs
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
-                                        fieldDescription="Enter the maximum number of tabs to be shown: min-1; max-9"
-                                        fieldLabel="Maximum number of tabs to be shown"
-                                        max="9"
-                                        min="1"
-                                        name="./maxTabs"/>
-                                </items>
-                                <granite:data
-                                    jcr:primaryType="nt:unstructured"
-                                    showhidetargetvalue="automatic"/>
-                            </tabautocontainer>
-                            <readMoreText
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Read more text"
-                                name="./readMoreText"/>
-                            <readMorePath
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                fieldDescription="Link to destination path"
-                                fieldLabel="Read more path"
-                                name="./readMorePath"
-                                rootPath="/content"/>
-                        </items>
-                    </column>
+                    <items jcr:primaryType="nt:unstructured">
+                      <and
+                          jcr:primaryType="nt:unstructured"
+                          selected="true"
+                          text="AND"
+                          value="and"/>
+                      <or
+                          jcr:primaryType="nt:unstructured"
+                          text="OR"
+                          value="or"/>
+                    </items>
+                  </logicaloperator>
+                  <tags
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="cq/gui/components/common/tagspicker"
+                      fieldDescription="Content displayed based on Tag selected and Tag filter."
+                      fieldLabel="Tags"
+                      name="./tags"
+                      rootPath="/content/cq:tags"/>
+                  <maxtabs
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                      fieldDescription="Enter the maximum number of tabs to be shown: min-1; max-9"
+                      fieldLabel="Maximum number of tabs to be shown"
+                      max="9"
+                      min="1"
+                      name="./maxTabs"/>
                 </items>
-            </tab>
-            <anchor
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/include"
-                path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
-            <design
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Design"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <pwThemes
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
-                            <display
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/display"/>
-                        </items>
-                    </column>
-                </items>
-            </design>
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    showhidetargetvalue="automatic"/>
+              </tabautocontainer>
+              <readMoreText
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Read more text"
+                  name="./readMoreText"/>
+              <readMorePath
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                  fieldDescription="Link to destination path"
+                  fieldLabel="Read more path"
+                  name="./readMorePath"
+                  rootPath="/content"/>
+            </items>
+          </column>
         </items>
-    </content>
+      </tab>
+      <anchor
+          jcr:primaryType="nt:unstructured"
+          sling:resourceType="granite/ui/components/coral/foundation/include"
+          path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
+      <design
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Design"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <pwThemes
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/include"
+                  path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
+              <display
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/include"
+                  path="/apps/publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/display"/>
+            </items>
+          </column>
+        </items>
+      </design>
+    </items>
+  </content>
 </jcr:root>
