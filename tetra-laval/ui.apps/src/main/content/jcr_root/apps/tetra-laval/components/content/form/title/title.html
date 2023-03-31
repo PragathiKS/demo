@@ -1,7 +1,7 @@
 <sly data-sly-test="${wcmmode.edit}">
 <p data-emptytext="configure ${component.title}"></p>
 </sly>
-<div data-sly-use.model="com.tetralaval.models.FormTitle">
+<div class="modal-header" data-sly-use.model="com.tetralaval.models.FormTitle">
 	<h1 role="heading" class="pw-lang-selector__header__heading"
 		data-sly-element="${model.headingLevel}">${model.title}</h1>
 	<button type="button" auto_locator="languageSelectModal"

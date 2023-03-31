@@ -52,19 +52,16 @@
     /* Modal */
     .modal {
         &-header {
-            @include padding($padding-md);
-            @include padding-bottom($padding-zero);
+            @include padding($padding-sm $padding-zero $padding-md $padding-zero);
             align-items: center;
             border: 0 none;
 
             @media #{$mobile-large} {
-                @include padding($padding-l);
-                @include padding-bottom($padding-zero);
+                @include padding($padding-md $padding-zero $padding-l $padding-zero);
             }
 
             @media #{$desktop} {
-                @include padding($padding-xxxl);
-                @include padding-bottom($padding-zero);
+                @include padding($padding-xl $padding-zero $padding-l $padding-zero);
             }
 
             h2 {
