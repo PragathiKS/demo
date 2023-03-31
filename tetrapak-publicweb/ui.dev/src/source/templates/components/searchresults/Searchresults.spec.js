@@ -130,11 +130,11 @@ describe('Searchresults', function () {
       done();
     });
   
-    // it('Should Update object when filter is changed', function (done) {
-    //   $('.js-pw-search-results-filter-check').trigger('change');
-    //   expect(this.searchresults.cache.searchParams['contentType']['news']).to.equal('News');
-    //   done();
-    // });
+    it('Should Update object when filter is changed', function (done) {
+      $('.js-pw-search-results-filter-check').trigger('change');
+      expect(this.searchresults.cache.searchParams['contentType']['news']).to.equal('News');
+      done();
+    });
 
     it('Should Update object when filter is removed', function (done) {
       $('.js-filter-remove').trigger('click');
