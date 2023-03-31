@@ -85,6 +85,10 @@ public class TabsListModel {
     @ValueMapValue
     private String anchorTitle;
 
+    /** The enable display date. */
+    @ValueMapValue
+    private Boolean displayDate;   
+
     /** The tab List Manual. */
     @Inject
     @Named(value = "tabsManual")
@@ -173,6 +177,7 @@ public class TabsListModel {
 	    tabBean.setLinkURL(LinkUtils.sanitizeLink(aggregator.getLinkPath(), request));
 	    tabBean.setPwButtonTheme(aggregator.getPwButtonTheme());
 	    tabBean.setTabType(TAB_LAYOUT_IMAGE);
+        tabBean.setArticleDate(aggregator.getArticleDate());                                    
 	    tabs.add(tabBean);
 	}
     }
@@ -241,6 +246,16 @@ public class TabsListModel {
     public String getAnchorTitle() {
 	return anchorTitle;
     }
+
+    /**
+     * Gets the display date.
+     *
+     * @return the display date
+     */
+    public Boolean getDisplayDate() {
+        return displayDate;
+    }
+    /**
 
     /**
      * Gets the asset name.

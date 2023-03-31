@@ -54,7 +54,8 @@ import {
   RK_PROPERTY_KEYS,
   RK_API_FILTER_KEYS,
   RK_PLANNED_DATE,
-  RK_I18N_PLANNED_DATE
+  RK_I18N_PLANNED_DATE,
+  RK_ICON
 } from './constants';
 import { renderDatePicker } from '../datepicker';
 
@@ -211,7 +212,7 @@ class RebuildingKits {
           hidden: false
         },
         () => {
-          this.hideShowColums();
+          this.hideShowColumns();
           $(function () {
             $('[data-toggle="tooltip"]').tooltip();
           });
@@ -220,7 +221,7 @@ class RebuildingKits {
     }
   };
 
-  hideShowColums = () => {
+  hideShowColumns = () => {
     const { customisableTableHeaders } = this.cache;
     for(const i in customisableTableHeaders){
       if(!customisableTableHeaders[i].isChecked){
@@ -894,25 +895,26 @@ class RebuildingKits {
     const {$modal,i18nKeys,$rkCustomizeTableAction, $mobileHeadersActions } = this.cache;
 
     this.cache.customisableTableHeaders = [
-      {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:0,isDisabled:false},
-      {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:1,isDisabled:false},
-      {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:2,isDisabled:false},
-      {key:RK_MACHINE_SYSTEM,option:RK_MACHINE_SYSTEM,optionDisplayText:this.cache.i18nKeys[RK_I18N_MACHINE_SYSTEM],isChecked:false,index:3,isDisabled:false},
-      {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:4,isDisabled:true},
-      {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:true,index:5,isDisabled:false},
-      {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:6,isDisabled:true},
-      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:true,index:7,isDisabled:false},
-      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:8,isDisabled:false},
-      {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:9,isDisabled:false},
-      {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:10,isDisabled:false},
-      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:11,isDisabled:false},
-      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:12,isDisabled:false},
-      {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:13,isDisabled:false},
-      {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:14,isDisabled:false},
-      {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:15,isDisabled:false},
-      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:16,isDisabled:false},
-      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:17,isDisabled:false},
-      {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:18,isDisabled:false}
+      {key:RK_ICON,index:0,isChecked: true},
+      {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:1,isDisabled:false},
+      {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:2,isDisabled:false},
+      {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:3,isDisabled:false},
+      {key:RK_MACHINE_SYSTEM,option:RK_MACHINE_SYSTEM,optionDisplayText:this.cache.i18nKeys[RK_I18N_MACHINE_SYSTEM],isChecked:false,index:4,isDisabled:false},
+      {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:5,isDisabled:true},
+      {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:false,index:6,isDisabled:false},
+      {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:7,isDisabled:true},
+      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:true,index:8,isDisabled:false},
+      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:9,isDisabled:false},
+      {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:10,isDisabled:false},
+      {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:11,isDisabled:false},
+      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:12,isDisabled:false},
+      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:13,isDisabled:false},
+      {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:14,isDisabled:false},
+      {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:15,isDisabled:false},
+      {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:16,isDisabled:false},
+      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:17,isDisabled:false},
+      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:18,isDisabled:false},
+      {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:19,isDisabled:false}
     ];
 
     const getNOfOptions = (keyCode) => {

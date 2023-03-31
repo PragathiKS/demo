@@ -65,6 +65,22 @@ h4 {
     &--grayscale-lighter {
         background-color: $color-wild-sand;
     }
+    &--corporate-blue {
+        background-color: $color-corporate-blue;
+    }
+    &--bright-blue {
+        background-color: $color-bright-blue;
+    }
+}
+
+.pw-text-color {
+    $self: &;
+    &--text-darkgrey {
+        color: $color-tundora;
+    }
+    &--text-white {
+        color: $color-white;
+    }    
 }
 
 .pw-margin {

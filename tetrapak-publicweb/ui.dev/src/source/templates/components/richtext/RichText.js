@@ -37,12 +37,9 @@ class RichText {
     };
     
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224) {
-      window.open(getUrl($this), '_blank');
-    } else {
-      window.open(getUrl($this),'_self');
-    }
- 
+    const url = getUrl($this);
+    const isNewTab = e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224 || isExternal(url);
+    window.open(url, isNewTab ? '_blank' : '_self');
   };
 
   init() {

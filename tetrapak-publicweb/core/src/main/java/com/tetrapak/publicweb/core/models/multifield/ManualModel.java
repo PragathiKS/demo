@@ -1,11 +1,14 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+import javax.annotation.PostConstruct;
 
 /**
  * The Class ManualModel.
@@ -47,6 +50,10 @@ public class ManualModel {
     
     /** The asset name. */
     private String assetName;
+
+     /** The article date. */
+     @ValueMapValue
+    private String articleDate;
     
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
@@ -183,6 +190,25 @@ public class ManualModel {
     public void setPwButtonTheme(String pwButtonTheme) {
         this.pwButtonTheme = pwButtonTheme;
     }
+
+    /**
+     * Gets the article date.
+     *
+     * @return the article date
+     */
+    public String getArticleDate() {
+        return articleDate;
+    }    
+
+     /**
+     * Sets the articleDate.
+     *
+     * @param articleDate
+     *            the articleDate
+     */
+    public void setArticleDate(String articleDate) {
+        this.articleDate = articleDate;
+    }
     
     /**
      * Gets the asset name.
@@ -195,6 +221,11 @@ public class ManualModel {
             assetName = StringUtils.substringAfterLast(linkPath, FORWARD_SLASH);
         }
         return assetName;
+    }
+
+    @PostConstruct
+    protected void init() {
+        articleDate = GlobalUtil.formatDate(articleDate);
     }
 
 }

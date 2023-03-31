@@ -44,7 +44,8 @@
           "topSpacing": "topmargins",
           "jcr:lastModified": "Tue Mar 31 2020 12:21:13 GMT+0530",
           "sling:resourceType": "publicweb/components/content/richtext",
-          "textIsRich": "true"
+          "textIsRich": "true",
+		  "pwTextColor": "text-white"
         }
       }
     }

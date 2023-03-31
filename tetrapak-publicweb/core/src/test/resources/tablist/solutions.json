@@ -1,52 +1,53 @@
 {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Solutions",
-"jcr:description": "Solution Desc",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "c33bdd3e-b66e-49d0-b487-82b264d22b1d",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"pwLinkTheme": "download",
-"altText": "alt",
-"imagePath": "/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
-"hideContactAnchorLink": "true",
-"jcr:predecessors": [
-"b703820f-fb00-4113-b93c-3130fa7cef6f"
-],
-"pwButtonTheme": "link",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
-"cq:lastReplicated": "Mon Mar 30 2020 04:29:22 GMT+0000",
-"cq:lastModified": "Thu Apr 09 2020 18:50:57 GMT+0530",
-"jcr:baseVersion": "b703820f-fb00-4113-b93c-3130fa7cef6f",
-"jcr:isCheckedOut": true,
-"linkTarget": "_self",
-"cq:tags": [
-"properties:orientation/portrait",
-"properties:orientation/landscape"
-],
-"jcr:uuid": "72fda38f-2f8f-4973-a1b6-d44895822310",
-"linkPath": "/content/tetrapak/publicweb/lang-masters/en/home",
-"linkText": "link text1",
-"linkTarget": "_blank",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-},
-"turn-ingredients-into-products": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530"
-},
-"teaser-demo": {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530"
-}
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "Solutions",
+    "jcr:description": "Solution Desc",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "c33bdd3e-b66e-49d0-b487-82b264d22b1d",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "cq:lastReplicatedBy": "admin",
+    "pwLinkTheme": "download",
+    "altText": "alt",
+    "imagePath": "/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
+    "hideContactAnchorLink": "true",
+    "jcr:predecessors": [
+      "b703820f-fb00-4113-b93c-3130fa7cef6f"
+    ],
+    "pwButtonTheme": "link",
+    "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530",
+    "cq:lastReplicated": "Mon Mar 30 2020 04:29:22 GMT+0000",
+    "cq:lastModified": "Thu Apr 09 2020 18:50:57 GMT+0530",
+    "jcr:baseVersion": "b703820f-fb00-4113-b93c-3130fa7cef6f",
+    "jcr:isCheckedOut": true,
+    "linkTarget": "_self",
+    "cq:tags": [
+      "properties:orientation/portrait",
+      "properties:orientation/landscape"
+    ],
+    "jcr:uuid": "72fda38f-2f8f-4973-a1b6-d44895822310",
+    "linkPath": "/content/tetrapak/publicweb/lang-masters/en/home",
+    "linkText": "link text1",
+    "linkTarget": "_blank",
+    "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+    "cq:lastModifiedBy": "admin",
+    "articleDate": "2023-03-28T00:00:00.000+05:30"
+  },
+  "turn-ingredients-into-products": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530"
+  },
+  "teaser-demo": {
+    "jcr:primaryType": "cq:Page",
+    "jcr:createdBy": "admin",
+    "jcr:created": "Mon Mar 23 2020 23:54:15 GMT+0530"
+  }
 }
