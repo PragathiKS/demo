@@ -48,9 +48,9 @@
                                             <disablechatbot
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                fieldDescription="disable chatbot on this page"
+                                                fieldDescription="Hide chatbot on this page"
                                                 name="./disableChatbot"
-                                                text="Disable Chatbot"
+                                                text="Hide Chatbot"
                                                 uncheckedValue="{Boolean}false"
                                                 value="{Boolean}true">
                                                 <granite:data
