@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 import $ from 'jquery';
 import { saveAs } from 'file-saver';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
@@ -516,34 +517,46 @@ class Searchresults {
     const pageNumber = $this.data('pageNumber');
     this.cache.searchParams.page = pageNumber;
     this.pushIntoUrl();
+    this.search();
+    this.cache.activePage = pageNumber;
+    this.renderPagination();
     $('html, body').animate({
       scrollTop: 0
     }, 500);
-    this.search();
   }
 
   renderPagination = () => {
     const currentPage = this.cache.searchParams.page && parseInt(this.cache.searchParams.page,10);
     const totalPages = this.cache.totalPages;
-    //const paginationText = this.cache.$pagination.data('paginationText');
-    // const paginationData = {
-    //   paginationText,
-    //   currentPageNumber: currentPage,
-    //   total: totalPages,
-    //   prevDisabled: currentPage <= 1 ? true : false,
-    //   prevPage: currentPage - 1,
-    //   nextPage: currentPage + 1,
-    //   nextDisabled: currentPage >= totalPages ? true : false
-    // };
+    const paginationText = this.cache.$pagination.data('paginationText');   
+    const paginationData = {
+      paginationText,
+      currentPageNumber: currentPage,
+      total: totalPages,
+      prevDisabled: currentPage <= 1 ? true : false,
+      prevPage: currentPage - 1,
+      nextPage: currentPage + 1,
+      nextDisabled: currentPage >= totalPages ? true : false
+    };
 
     const paginationObj = paginate(totalPages, this.cache.activePage, this.cache.itemsPerPage, 3);
 
-    if (currentPage <= totalPages) {
-      render.fn({
-        template: 'pagination',
-        data: paginationObj,
-        target: this.cache.$pagination
-      });
+    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
+      if (currentPage <= totalPages) {
+        render.fn({
+          template: 'tablePagination',
+          data: paginationObj,
+          target: this.cache.$pagination
+        });
+      }
+    } else {
+      if (currentPage <= totalPages) {
+        render.fn({
+          template: 'searchPagination',
+          data: paginationData,
+          target: this.cache.$pagination
+        });
+      }
     }
   }
   
