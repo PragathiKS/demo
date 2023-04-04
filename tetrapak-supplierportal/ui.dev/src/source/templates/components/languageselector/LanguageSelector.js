@@ -34,7 +34,9 @@ class LanguageSelector {
             $this.setCustomerLanguage($(this).data('langcode'), $(this).data('link'));
           })
           .on('showlanuagepreferencepopup', function () {
-            $this.showPopup();
+            if(storageUtil.getCookie('wcmmode') !== 'edit'){
+              $this.showPopup();
+            }
           });
       }
       closeModalHandler() {
