@@ -56,10 +56,10 @@
         {{#if_noteq rebuildingData.automationSkills ""}}
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="row tp-rebuilding-details__details-line">
-                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell tp-rk-details-rk_validation-title"
                     auto_locator="subsectionTitle">{{i18n key=i18nKeys.rkValidation}}</div>
-                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
-                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell tp-rk-details-rk_validation"
+                    auto_locator="subsectionTitle">{{rebuildingData.rkValidation}}</div>
                 <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
                     auto_locator="subsectionTitle">{{rebuildingData.automationSkills}}</div>
             </div>
@@ -69,10 +69,10 @@
         {{#if_noteq rebuildingData.electricalSkills ""}}
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="row tp-rebuilding-details__details-line">
-                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell tp-rk-details-rk_validation-title"
                     auto_locator="subsectionTitle">{{i18n key=i18nKeys.rkValidation}}</div>
-                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
-                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell tp-rk-details-rk_validation"
+                    auto_locator="subsectionTitle">{{rebuildingData.rkValidation}}</div>
                 <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
                     auto_locator="subsectionTitle">{{rebuildingData.electricalSkills}}</div>
             </div>
@@ -82,15 +82,33 @@
         {{#if_noteq rebuildingData.mechanicalSkills ""}}
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="row tp-rebuilding-details__details-line">
-                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell tp-rk-details-rk_validation-title"
                     auto_locator="subsectionTitle">{{i18n key=i18nKeys.rkValidation}}</div>
-                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
-                    auto_locator="subsectionTitle"></div>
+                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell tp-rk-details-rk_validation"
+                    auto_locator="subsectionTitle">{{rebuildingData.rkValidation}}</div>
                 <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
                     auto_locator="subsectionTitle">{{rebuildingData.mechanicalSkills}}</div>
             </div>
         </div>
         {{/if_noteq}}
+        {{#if_eq rebuildingData.automationSkills ""}}
+            {{#if_eq rebuildingData.electricalSkills ""}}
+                {{#if_eq rebuildingData.mechanicalSkills ""}}
+                    {{#if_noteq rebuildingData.rkValidation ""}}
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            <div class="row tp-rebuilding-details__details-line">
+                                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                                    auto_locator="subsectionTitle">{{i18n key=i18nKeys.rkValidation}}</div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                                    auto_locator="subsectionTitle">{{rebuildingData.rkValidation}}</div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 tp-rebuilding-details__details-cell"
+                                    auto_locator="subsectionTitle"></div>
+                            </div>
+                        </div>
+                    {{/if_noteq}}
+                {{/if_eq}}
+            {{/if_eq}}
+        {{/if_eq}}
     </div>
 </div>
 <div class="tp-rebuilding-details__details-row">

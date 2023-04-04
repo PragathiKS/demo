@@ -332,6 +332,7 @@ function _getRebuildingKitDetails() {
         $this.renderRebuildingKitDetails();
         this.getCtiDocuments();
         $this.renderRebuildingKitDetailsBottom();
+        $this.updateRkValidationRows();
       })
       .fail((e) => {
         logger.error(e);
@@ -439,6 +440,19 @@ class Rebuildingkitdetails {
   }
   renderRebuildingKitDetailsBottom() {
     return _renderRebuildingKitDetailsBottom.apply(this, arguments);
+  }
+  updateRkValidationRows() {
+    //Clear values for duplicate rows
+    $('.tp-rk-details-rk_validation-title').each(function(index) {
+      if(index !== 0) {
+        $(this).text('');
+      } 
+    });
+    $('.tp-rk-details-rk_validation').each(function(index) {
+      if(index !== 0) {
+        $(this).text('');
+      } 
+    });
   }
   requestCtiLanguage() {
     return _requestCtiLanguage.apply(this, arguments);
