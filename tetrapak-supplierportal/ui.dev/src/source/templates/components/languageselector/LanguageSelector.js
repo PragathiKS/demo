@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { storageUtil, isAuthorMode } from '../../../scripts/common/common';
+import { storageUtil } from '../../../scripts/common/common';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
@@ -21,7 +21,6 @@ class LanguageSelector {
       }
       bindEvents() {
         const $this = this;
-        const { $modal } = $this.cache;
         this.root.on('click', '.js-close-btn', function () {
           $this.root.modal('hide');
           $this.closeModalHandler();
@@ -35,7 +34,7 @@ class LanguageSelector {
             $this.setCustomerLanguage($(this).data('langcode'), $(this).data('link'));
           })
           .on('showlanuagepreferencepopup', function () {
-            $modal.modal();
+            $this.showPopup();
           });
       }
       closeModalHandler() {
@@ -73,24 +72,20 @@ class LanguageSelector {
         window.location.replace(newUrl);
       }
 
-      showPopup(isInit) {
-        const { $modal, selectedLanguage } = this.cache;
-        const langCookie = storageUtil.getCookie('lang-code');
-        if (selectedLanguage && langCookie !== selectedLanguage) {
-          storageUtil.setCookie('lang-code', selectedLanguage);
-        }
-        if (!this.cache.selectedLanguage && !langCookie && !isAuthorMode()) {
-          if (isInit) {
-            $body.addClass('tp-no-backdrop');
-          }
-          $modal.modal();
-        }
+      showPopup() {
+        const { $modal } = this.cache;
+        $body.addClass('tp-no-backdrop');
+        $modal.modal();
+      }
+
+      setDefaultLangCode(){
+        storageUtil.setCookie('lang-code', this.cache.selectedLanguage || 'en');
       }
 
       init() {
         this.initCache();
         this.bindEvents();
-        this.showPopup(true);
+        this.setDefaultLangCode();
       }
 }
 
