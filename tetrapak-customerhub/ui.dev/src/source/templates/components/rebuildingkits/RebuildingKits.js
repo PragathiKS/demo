@@ -54,8 +54,10 @@ import {
   RK_PROPERTY_KEYS,
   RK_API_FILTER_KEYS,
   RK_PLANNED_DATE,
-  RK_I18N_PLANNED_DATE
+  RK_I18N_PLANNED_DATE,
+  RK_ICON
 } from './constants';
+import { renderDatePicker } from '../datepicker';
 
 class RebuildingKits {
   constructor({ el }) {
@@ -210,7 +212,7 @@ class RebuildingKits {
           hidden: false
         },
         () => {
-          this.hideShowColums();
+          this.hideShowColumns();
           $(function () {
             $('[data-toggle="tooltip"]').tooltip();
           });
@@ -219,7 +221,7 @@ class RebuildingKits {
     }
   };
 
-  hideShowColums = () => {
+  hideShowColumns = () => {
     const { customisableTableHeaders } = this.cache;
     for(const i in customisableTableHeaders){
       if(!customisableTableHeaders[i].isChecked){
@@ -311,12 +313,12 @@ class RebuildingKits {
     });
   };
 
-  renderNewPage = ({resetSkip, analyticsAction}) => {
-    const {itemsPerPage, activeSortData, countryData, combinedFiltersObj} = this.cache;
+  renderNewPage = ({resetSkip}) => {
+    const {itemsPerPage, activeSortData, combinedFiltersObj} = this.cache;
+
     const rkApi = this.cache.rkApi.data('rklist-api');
-    const activeCountry = countryData.filter(e => e.isChecked);
-    const countryCode = activeCountry.length ? activeCountry[0].countryCode: '';
     let apiUrlRequest = '';
+    const countryCode = this.getActiveCountryCode();
     const filtersQuery = _buildQueryUrl(combinedFiltersObj);
     const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
 
@@ -344,7 +346,7 @@ class RebuildingKits {
       apiUrlRequest += `&sort=${sortingParam}`;
     }
 
-    auth.getToken(({ data: authData }) => {
+    auth.getToken(({ data: authData, analyticsAction }) => {
       ajaxWrapper
         .getXhrObj({
           url: apiUrlRequest,
@@ -364,10 +366,6 @@ class RebuildingKits {
             ...item
           }));
           this.cache.meta = response.meta;
-          this.cache.countryData.splice(0, 1, {
-            ...this.cache.countryData[0],
-            isChecked: true
-          });
           const tableData = this.processTableData({
             summary:this.cache.tableData,
             i18nKeys:this.cache.i18nKeys,
@@ -427,6 +425,7 @@ class RebuildingKits {
         isRadio: formDetail.isRadio === true ? true : false,
         radioGroupName: formDetail.radioGroupName,
         isTextInput: formDetail.isTextInput,
+        isDatePicker: formDetail.isDatePicker,
         autoLocatorModal: `${formDetail.activeForm}Overlay`,
         autoLocatorInput: `${formDetail.activeForm}InputBox`,
         autoLocatorCheckbox: `${formDetail.activeForm}FilterCheckboxOverlay`,
@@ -435,8 +434,32 @@ class RebuildingKits {
       target: '.tp-rk__filter-form',
       hidden: false
     });
+
+    if (['implDeadline', 'plannedDate', 'releaseDate'].includes(formDetail.activeForm)) {
+      renderDatePicker({
+        el: $('.js-dp'),
+        type: 'range',
+        onCorrectValue: this.handleDatePickerChange,
+        onIncorrectValue: this.handleDatePickerChange,
+        onEmptyValue: this.handleDatePickerChange,
+        startDate: data.startDate,
+        endDate: data.endDate
+      });
+    }
+
     this.cache.activeFilterForm = formDetail.activeForm;
     this.cache.$activeFilterBtn = $filterBtn;
+  }
+
+  handleDatePickerChange= (dateFrom, dateTo) => {
+    const isDateFromValid = dateFrom instanceof Date;
+    const isDateToValid = dateTo instanceof Date;
+
+    if (isDateFromValid && isDateToValid) {
+      this.enableFilterApplyBtn();
+    } else {
+      this.disableFilterApplyBtn();
+    }
   }
 
   applyFilter = (options) => {
@@ -444,6 +467,10 @@ class RebuildingKits {
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
     const $filtersRadio = this.root.find('.js-tp-my-equipment-filter-radio');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
+    const $dateFromInput = this.root.find('.js-dp-input-from');
+    const $dateToInput = this.root.find('.js-dp-input-to');
+    const dateFromValue = $dateFromInput.val();
+    const dateToValue = $dateToInput.val();
 
     let filterCount = 0;
     let filterData = [];
@@ -505,20 +532,26 @@ class RebuildingKits {
         break;
       }
       case 'implDeadline': {
-        this.cache.combinedFiltersObj['implDeadline'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        this.cache.combinedFiltersObj['impldeadlinestart'] = dateFromValue;
+        this.cache.combinedFiltersObj['impldeadlineend'] = dateToValue;
+
+        filterCount = dateFromValue && dateToValue ? 1 : 0;
         label = i18nKeys['implDeadline'];
         break;
       }
       case 'plannedDate': {
-        this.cache.combinedFiltersObj['plannedDate'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        this.cache.combinedFiltersObj['planneddatestart'] = dateFromValue;
+        this.cache.combinedFiltersObj['planneddateend'] = dateToValue;
+
+        filterCount = dateFromValue && dateToValue ? 1 : 0;
         label = i18nKeys['plannedDate'];
         break;
       }
       case 'releaseDate': {
-        this.cache.combinedFiltersObj['releaseDate'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        this.cache.combinedFiltersObj['releasedatestart'] = dateFromValue;
+        this.cache.combinedFiltersObj['releasedateend'] = dateToValue;
+
+        filterCount = dateFromValue && dateToValue ? 1 : 0;
         label = i18nKeys['releaseDate'];
         break;
       }
@@ -549,9 +582,28 @@ class RebuildingKits {
     }
 
     if (options && options.removeFilter) {
-      if (this.cache.combinedFiltersObj[activeFilterForm]) {
-        delete this.cache.combinedFiltersObj[activeFilterForm];
+      switch (activeFilterForm) {
+        case 'implDeadline': {
+          this.deleteFilterValue('impldeadlinestart');
+          this.deleteFilterValue('impldeadlineend');
+          break;
+        }
+        case 'plannedDate': {
+          this.deleteFilterValue('planneddatestart');
+          this.deleteFilterValue('planneddateend');
+          break;
+        }
+        case 'releaseDate': {
+          this.deleteFilterValue('releasedatestart');
+          this.deleteFilterValue('releasedateend');
+          break;
+        }
+        default: {
+          this.deleteFilterValue(activeFilterForm);
+          break;
+        }
       }
+
       filterCount = null;
     }
 
@@ -593,6 +645,12 @@ class RebuildingKits {
     }
   }
 
+  deleteFilterValue = (key) => {
+    if (this.cache.combinedFiltersObj[key]) {
+      delete this.cache.combinedFiltersObj[key];
+    }
+  }
+
   renderNewCountry = (label, analyticsAction) => {
     const { $countryFilterLabel, itemsPerPage } = this.cache;
     const rkApi = this.cache.rkApi.data('rklist-api');
@@ -603,7 +661,7 @@ class RebuildingKits {
       this.getAllAvailableFilterVals(RK_API_FILTER_KEYS, true);
       ajaxWrapper
         .getXhrObj({
-          url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}`,
+          url: `${rkApi}?skip=0&count=${itemsPerPage}&countrycodes=${this.getActiveCountryCode()}&sort=lineCode asc,rkGeneralNumber asc,position asc`,
           method: 'GET',
           contentType: 'application/json',
           dataType: 'json',
@@ -773,9 +831,9 @@ class RebuildingKits {
   getActiveCountryCode = () => {
     try {
       const { countryData } = this.cache;
-      const activeCountry = countryData.filter(e => e.isChecked);
-      if (activeCountry[0]) {
-        return activeCountry[0].countryCode;
+      const activeCountry = countryData.find(e => e.isChecked);
+      if (activeCountry) {
+        return activeCountry.countryCode;
       } else {
         throw Error('Couldn\'t get active country');
       }
@@ -824,32 +882,39 @@ class RebuildingKits {
     this.renderNewPage({'resetSkip': true, analyticsAction});
   }
 
+  enableFilterApplyBtn = () => {
+    $('.js-apply-filter-button').prop('disabled', false);
+  }
 
+  disableFilterApplyBtn = () => {
+    $('.js-apply-filter-button').prop('disabled', true);
+  }
 
   bindEvents = () => {
     const $this = this;
     const {$modal,i18nKeys,$rkCustomizeTableAction, $mobileHeadersActions } = this.cache;
 
     this.cache.customisableTableHeaders = [
-      {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:0,isDisabled:false},
-      {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:1,isDisabled:false},
-      {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:2,isDisabled:false},
-      {key:RK_MACHINE_SYSTEM,option:RK_MACHINE_SYSTEM,optionDisplayText:this.cache.i18nKeys[RK_I18N_MACHINE_SYSTEM],isChecked:false,index:3,isDisabled:false},
-      {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:4,isDisabled:true},
-      {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:true,index:5,isDisabled:false},
-      {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:6,isDisabled:true},
-      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:false,index:7,isDisabled:false},
-      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:8,isDisabled:false},
-      {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:9,isDisabled:false},
-      {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:10,isDisabled:false},
-      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:true,index:11,isDisabled:false},
-      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:true,index:12,isDisabled:false},
-      {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:13,isDisabled:false},
-      {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:14,isDisabled:false},
-      {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:15,isDisabled:false},
-      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:true,index:16,isDisabled:false},
-      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:true,index:17,isDisabled:false},
-      {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:18,isDisabled:false}
+      {key:RK_ICON,index:0,isChecked: true},
+      {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:1,isDisabled:false},
+      {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:2,isDisabled:false},
+      {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:3,isDisabled:false},
+      {key:RK_MACHINE_SYSTEM,option:RK_MACHINE_SYSTEM,optionDisplayText:this.cache.i18nKeys[RK_I18N_MACHINE_SYSTEM],isChecked:false,index:4,isDisabled:false},
+      {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:5,isDisabled:true},
+      {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:false,index:6,isDisabled:false},
+      {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:7,isDisabled:true},
+      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:true,index:8,isDisabled:false},
+      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:9,isDisabled:false},
+      {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:10,isDisabled:false},
+      {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:11,isDisabled:false},
+      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:12,isDisabled:false},
+      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:13,isDisabled:false},
+      {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:14,isDisabled:false},
+      {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:15,isDisabled:false},
+      {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:16,isDisabled:false},
+      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:17,isDisabled:false},
+      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:18,isDisabled:false},
+      {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:19,isDisabled:false}
     ];
 
     const getNOfOptions = (keyCode) => {
@@ -859,6 +924,11 @@ class RebuildingKits {
       }
       return 10;
     };
+
+    $modal.on('shown.bs.modal', () => {
+      const $datePickerInput = $('.js-dp-input-from');
+      $datePickerInput.length && $datePickerInput.trigger('focus');
+    });
 
     this.cache.$countryFilterLabel.on('click', () => {
       const formDetail = { activeForm:'country',header:i18nKeys['country'], singleButton: true, isRadio: true, radioGroupName: 'countryRadio' };
@@ -944,22 +1014,31 @@ class RebuildingKits {
     });
 
     this.cache.$implDeadlineFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'implDeadline',header:i18nKeys['implDeadline'], isTextInput: true};
-      const currValue = this.cache.combinedFiltersObj['implDeadline'] ? this.cache.combinedFiltersObj['implDeadline'] : '';
+      const formDetail = {activeForm:'implDeadline',header:i18nKeys['implDeadline'],isDatePicker: true};
+      const currValue = {
+        startDate: this.cache.combinedFiltersObj['impldeadlinestart'] || '',
+        endDate: this.cache.combinedFiltersObj['impldeadlineend'] || ''
+      };
       this.renderFilterForm(currValue, formDetail, this.cache.$implDeadlineFilterLabel);
       $modal.modal();
     });
 
     this.cache.$plannedDateFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'plannedDate',header:i18nKeys['plannedDate'], isTextInput: true};
-      const currValue = this.cache.combinedFiltersObj['plannedDate'] ? this.cache.combinedFiltersObj['plannedDate'] : '';
+      const formDetail = {activeForm:'plannedDate',header:i18nKeys['plannedDate'],isDatePicker: true};
+      const currValue = {
+        startDate: this.cache.combinedFiltersObj['planneddatestart'] || '',
+        endDate: this.cache.combinedFiltersObj['planneddateend'] || ''
+      };
       this.renderFilterForm(currValue, formDetail, this.cache.$plannedDateFilterLabel);
       $modal.modal();
     });
 
     this.cache.$releaseDateFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'releaseDate',header:i18nKeys['releaseDate'], isTextInput: true};
-      const currValue = this.cache.combinedFiltersObj['releaseDate'] ? this.cache.combinedFiltersObj['releaseDate'] : '';
+      const formDetail = {activeForm:'releaseDate',header:i18nKeys['releaseDate'],isDatePicker: true};
+      const currValue = {
+        startDate: this.cache.combinedFiltersObj['releasedatestart'] || '',
+        endDate: this.cache.combinedFiltersObj['releasedateend'] || ''
+      };
       this.renderFilterForm(currValue, formDetail, this.cache.$releaseDateFilterLabel);
       $modal.modal();
     });

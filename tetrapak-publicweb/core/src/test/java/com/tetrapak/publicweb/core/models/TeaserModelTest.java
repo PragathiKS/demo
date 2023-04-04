@@ -161,6 +161,7 @@ public class TeaserModelTest {
         assertEquals("true", model.getEnableCarousel());
         assertEquals("anchorId", model.getAnchorId());
         assertEquals("Anchor title", model.getAnchorTitle());
+        assertEquals(true, model.getDisplayDate());
 
         assertEquals("Title", model.getTeaserList().get(1).getTitle());
         assertEquals("Description", model.getTeaserList().get(1).getDescription());
@@ -171,6 +172,7 @@ public class TeaserModelTest {
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html",
                 model.getTeaserList().get(1).getLinkPath());
         assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
+        assertEquals("2023-03-31", model.getTeaserList().get(1).getArticleDate());
     }
 
     /**
@@ -203,6 +205,9 @@ public class TeaserModelTest {
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
+
+        assertEquals(true, model.getDisplayDate());
+
         assertEquals("Solutions", model.getTeaserList().get(0).getTitle());
         assertEquals("Solution Desc", model.getTeaserList().get(0).getDescription());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg",
@@ -212,6 +217,7 @@ public class TeaserModelTest {
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/home.html",
                 model.getTeaserList().get(0).getLinkPath());
         assertEquals("link", model.getTeaserList().get(1).getPwButtonTheme());
+        assertEquals("2023-03-30", model.getTeaserList().get(0).getArticleDate());
     }
 
     /**
@@ -248,6 +254,7 @@ public class TeaserModelTest {
         assertEquals("link text1", aggregatorList.get(0).getLinkText());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/home", aggregatorList.get(0).getLinkPath());
         assertEquals("link", aggregatorList.get(0).getPwButtonTheme());
+        assertEquals("2023-03-30", aggregatorList.get(0).getArticleDate());
     }
 
 }

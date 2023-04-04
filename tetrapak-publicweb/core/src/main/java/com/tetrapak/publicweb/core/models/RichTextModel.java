@@ -36,6 +36,10 @@ public class RichTextModel {
     /** The top spacing. */
     @ValueMapValue
     private String topSpacing;
+    
+    /** The pw text color. */
+    @ValueMapValue
+    private String pwTextColor;
 
     /**
      * Gets the anchor id.
@@ -90,5 +94,14 @@ public class RichTextModel {
     public String getTopSpacing() {
         return topSpacing;
     }
+
+    /**
+     * Gets the pw text color.
+     *
+     * @return the pw text color
+     */
+	public String getPwTextColor() {
+		return pwTextColor;
+	}
 
 }

@@ -45,6 +45,7 @@
           "readMoreTarget": "_blank",
           "sling:resourceType": "publicweb/components/content/tabslist",
           "pwPadding": "regular",
+          "displayDate": "true",
           "tabsManual": {
             "jcr:primaryType": "nt:unstructured",
             "item0": {
@@ -59,7 +60,8 @@
               "title": "Text Sub1",
               "linkText": "Click Here",
               "linkURL": "/content/commons-ux/helloearth",
-              "videoSource": "damVideo"
+              "videoSource": "damVideo",
+              "articleDate": "2023-03-28T00:00:00.000+05:30"
             },
             "item1": {
               "jcr:primaryType": "nt:unstructured",
@@ -73,7 +75,8 @@
               "title": "Title",
               "linkText": "Click Here",
               "linkURL": "/content/commons-ux/helloearth",
-              "videoSource": "damVideo"
+              "videoSource": "damVideo",
+              "articleDate": "2023-03-29T00:00:00.000+05:30"
             },
             "item2": {
               "jcr:primaryType": "nt:unstructured",
@@ -88,7 +91,8 @@
               "linkURL": "/content/commons-ux/helloearth",
               "damVideoPath": "/content/dam/tetrapak/publicweb/videos/file_example_MOV_1280_1_4MB.mov",
               "videoSource": "damVideo",
-              "thumbnailPath": "/content/dam/tetrapak/publicweb/ContentImage6.png"
+              "thumbnailPath": "/content/dam/tetrapak/publicweb/ContentImage6.png",
+              "articleDate": "2023-03-30T00:00:00.000+05:30"
             },
             "item3": {
               "jcr:primaryType": "nt:unstructured",
@@ -101,7 +105,8 @@
               "linkText": "VLink 2",
               "youtubeVideoID": "UEfCxCLtOwk",
               "linkURL": "/content/community/badging",
-              "videoSource": "youtube"
+              "videoSource": "youtube",
+              "articleDate": "2023-03-31T00:00:00.000+05:30"
             }
           },
           "tabsSemi": {

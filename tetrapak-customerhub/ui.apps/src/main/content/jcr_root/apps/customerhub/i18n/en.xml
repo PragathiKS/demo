@@ -1926,5 +1926,28 @@
             jcr:primaryType="sling:MessageEntry"
             sling:key="cuhu.rebuildingkits.rkSelectLanguage"
             sling:message="Select Language"/>
-
+    <cuhu.rebuildingkits.dateFilter.fromDateText
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.dateFilter.fromDateText"
+            sling:message="From"/>
+    <cuhu.rebuildingkits.dateFilter.toDateText
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.dateFilter.toDateText"
+            sling:message="To"/>
+    <cuhu.rebuildingkits.dateFilter.invalidDateText
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.dateFilter.invalidDateText"
+            sling:message="Invalid date"/>
+    <cuhu.rebuildingkits.dateFilter.pastDateErrorText
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.dateFilter.pastDateErrorText"
+            sling:message="You can not select dates in the past"/>
+    <cuhu.rebuildingkits.dateFilter.dateLaterThanError
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.dateFilter.dateLaterThanError"
+            sling:message="Date must be same or later than"/>
+    <cuhu.rebuildingkits.dateFilter.dateBeforeThanError
+            jcr:primaryType="sling:MessageEntry"
+            sling:key="cuhu.rebuildingkits.dateFilter.dateBeforeThanError"
+            sling:message="Date must be same or before"/>
 </jcr:root>
