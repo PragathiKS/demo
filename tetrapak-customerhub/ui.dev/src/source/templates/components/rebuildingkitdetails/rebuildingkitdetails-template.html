@@ -4,6 +4,8 @@
         data-preferred-language-api="${lang.saveAdditionalPrefLangServletUrl}"
         data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
         data-rebuilding-details-api="${data.rebuildingKitDetailsApi}"
+        data-rebuilding-impl-statuslist-api="${data.rebuildingKitImplStatusListApi}"
+        data-rebuilding-report-api="${data.mappedResourcePath}.update.json"
         data-request-cti-api="${data.emailApiUrl}"
         data-cti-api="${data.technicalBulletinApi}"
         data-module="Rebuildingkitdetails">
@@ -26,7 +28,7 @@
                         </div>
                         <div class='modal-body tp-modal-body tp-rk-preferred-language__modal-body'>
                             <ul>
-                                <sly data-sly-list.language="${lang.listOfLanguages}">
+                                <sly data-sly-list.language="${lang.listOfLanguages }">
                                     <li>
                                         <sly data-sly-use.radio="/apps/customerhub/components/atoms/radio/radio-template.html"
                                             data-sly-call="${radio.radio_template @ data=language, activeLang=selectedLanguage, langList=lang.listOfLanguages}" />
@@ -64,4 +66,5 @@
             <sly data-sly-use.loading="/apps/customerhub/components/atoms/loader/loader-template.html"
                 data-sly-call="${loading.loader_template}" />
         </div>
+        <div id="rk-report-modal" class="modal js-update-modal tp-rk-report-modal tp-modal fade" tabindex="-1" aria-hidden="true" role="dialog"></div>
     </div>
