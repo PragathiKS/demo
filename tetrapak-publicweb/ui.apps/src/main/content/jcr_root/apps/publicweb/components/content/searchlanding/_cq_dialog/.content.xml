@@ -40,6 +40,10 @@
 											jcr:primaryType="nt:unstructured"
 											text="Cases And Articles"
 											value="cases"/>
+										<option3
+											jcr:primaryType="nt:unstructured"
+											text="News Archive"
+											value="news"/>	
 									</items>
 							</type>
                         </items>
