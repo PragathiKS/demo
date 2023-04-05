@@ -5,14 +5,16 @@ import { logger } from 'tpPublic/scripts/utils/logger';
 class FormContainer {
   cache = {};
   resetForm(isForm) {
-    const { $form, $formThankYou, $heading, $headingText } = this.cache;
+    const { $form, $formThankYou, $thankYouText, $heading, $headingText } = this.cache;
     if (isForm) {
       $heading.show().text($headingText);
+      $heading.removeClass('text-center');
       $form.show();
       $formThankYou.hide();
     }
     if (!isForm) {
-      $heading.text('');
+      $heading.addClass('text-center');
+      $heading.text($thankYouText);
       $form.hide();
       $formThankYou.show();
     }
@@ -51,10 +53,11 @@ class FormContainer {
   }
 
   initCache() {
-    this.cache.$heading = $('.pw-lang-selector__header__heading');
+    this.cache.$heading = $('.pw-modal-header__heading');
     this.cache.$headingText = this.cache.$heading.text();
     this.cache.$form = $('.tl-contactForm').find('.cmp-form');
     this.cache.$formThankYou = $('.tl-contactForm__thankyou');
+    this.cache.$thankYouText = $('.tl-contactForm__thankyou-heading').text();
     this.cache.$contactBtn = $('.js-tpatom-btn__tl-contactUs');
     this.cache.$modal = $('.js-tp-contact__modal');
     this.cache.$closeBtn = $('.js-close-btn');

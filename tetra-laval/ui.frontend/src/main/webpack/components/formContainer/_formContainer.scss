@@ -3,6 +3,10 @@
         &__thankyou {
             display: none;
             text-align: center;
+
+            &-heading {
+                display: none;
+            }
         }
     }
     .cmp-form {
@@ -75,6 +79,10 @@
                     @include line-height($font-d-xl, $font-xl);
                     font-weight: 700;
                 }
+            }
+
+            .pw-modal-header__heading {
+                width: 100%;
             }
         }
         &-body {

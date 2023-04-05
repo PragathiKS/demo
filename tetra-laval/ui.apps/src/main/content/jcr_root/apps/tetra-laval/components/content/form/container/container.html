@@ -20,15 +20,7 @@
 </div>
 <div class="tl-contactForm__thankyou"
      data-sly-test="${model.thankYouType=='showThankYouMessage'}">
-     <!-- <div class="modal-header">
-          <h2 role="heading" class="pw-lang-selector__header__heading"
-               data-sly-element="${model.headingLevel}">${model.thankYouTitle}</h2>
-          <button type="button" auto_locator="languageSelectModal"
-               class="tp-close-btn icon-Close_pw pw-lang-selector__header__close js-close-btn"
-               aria-label="Contact form close button"
-               title="Contact form close button"></button>
-     </div> -->
-     <h2>${model.thankYouTitle}</h2>
+     <h2 class="tl-contactForm__thankyou-heading">${model.thankYouTitle}</h2>
      <p>${model.thankYouMessage}</p>
      <div class="tl-contactForm__button">
           <button type="button" class="tpatom-btn tpatom-btn--primary js-close-btn" aria-label="Contact form close button" title="Contact form close button">
