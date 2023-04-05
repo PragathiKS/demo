@@ -1,3 +1,20 @@
+.pw-search-result-head {
+    .pw-search-title {
+        color: $color-tundora;
+        font-size: $font-xxl;
+        line-height: $padding-xxxl;
+        font-weight: 700;
+    }
+    .pw-search-description {
+        color: $color-tundora;
+        font-size: $font-baseline;
+        line-height: $spacing-big;
+        font-weight: 400;
+    }
+    .margin-auto {
+        margin: auto;
+    }
+}
 .pw-search-results {
     @include margin-bottom($margin-l);
 
@@ -211,6 +228,11 @@
                 }
             }
         }
+        .left-wrapper-filter {
+            &.display-none {
+                display: none;
+            }
+        }
     }
 
     &__results {
@@ -341,6 +363,15 @@
             &__title-link {
                 color: $color-congress-blue;
             }
+        }
+    }
+}
+
+.pw-search-landing-container {
+    .pw-container {
+        margin-top: 0;
+        .pw-search-results {
+            padding-top: 0;
         }
     }
 }

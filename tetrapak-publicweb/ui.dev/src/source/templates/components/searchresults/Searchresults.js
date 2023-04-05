@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 import $ from 'jquery';
 import { saveAs } from 'file-saver';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
@@ -6,6 +7,80 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { getI18n, parseQueryString } from '../../../scripts/common/common';
 
+/**
+ * Returns an obj containing pagination data, based on totalItems, currentPage, pageSize, maxPages
+ */
+function paginate(totalItems, currentPage, pageSize, maxPages) {
+  // calculate total pages
+  const totalPages = Math.ceil(totalItems / pageSize);
+  // ensure current page isn't out of range
+  if (currentPage < 1) {
+    currentPage = 1;
+  } else if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
+
+  let startPage, endPage;
+  if (totalPages <= maxPages) {
+    // total pages less than max so show all pages
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // total pages more than max so calculate start and end pages
+    const maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
+    const maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
+    if (currentPage <= maxPagesBeforeCurrentPage) {
+      // current page near the start
+      startPage = 1;
+      endPage = maxPages;
+    } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+      // current page near the end
+      startPage = totalPages - maxPages + 1;
+      endPage = totalPages;
+    } else {
+      // current page somewhere in the middle
+      startPage = currentPage - maxPagesBeforeCurrentPage;
+      endPage = currentPage + maxPagesAfterCurrentPage;
+    }
+  }
+
+  // calculate start and end item indexes
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+
+  // create an array of pages
+  const allPages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+
+  const pagesHbsArr = [];
+  allPages.forEach(page => {
+    const pageObj = {
+      isPage: true,
+      isSelected: page === currentPage,
+      pageNumber: page,
+      skip: (page - 1) * pageSize
+    };
+    pagesHbsArr.push(pageObj);
+  });
+
+  return {
+    totalItems: totalItems,
+    currentPage: currentPage,
+    pageSize: pageSize,
+    totalPages: totalPages,
+    startPage: startPage,
+    endPage: endPage,
+    startIndex: startIndex,
+    endIndex: endIndex,
+    prevDisabled: currentPage === 1,
+    nextDisabled: currentPage === totalPages,
+    prevPage: currentPage - 1,
+    nextPage: currentPage + 1,
+    prevSkip: (currentPage - 2) * pageSize,
+    nextSkip: currentPage * pageSize,
+    lastSkip: (totalPages - 1) * pageSize,
+    pages: pagesHbsArr
+  };
+}
 class Searchresults {
   constructor({ el }) {
     this.root = $(el);
@@ -35,9 +110,19 @@ class Searchresults {
     this.cache.resultSearchTermText = this.cache.$searchResultsTitle.data('resultSearchTerm');
 
     this.cache.$pagination = $('.js-pagination', this.root);
+    this.cache.$searchLandingList1 = $('.pw-search-result-head');
     this.cache.searchParams = { 'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
     this.cache.totalPages = 0;
     this.cache.totalResultCount = 0;
+    this.cache.searchLandingType = $('.pw-search-result-head').data('type');
+    this.cache.searchLandingServletPath = $('.pw-search-result-head').data('servlet');
+    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
+      $('.left-wrapper-filter').addClass('display-none');
+    } else {
+      $('.left-wrapper-filter').removeClass('display-none');
+    }
+    this.cache.activePage = 1;
+    this.cache.itemsPerPage = 10;
   }
 
   bindEvents() {
@@ -175,6 +260,10 @@ class Searchresults {
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
+      if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases'){
+        queryParams = `${queryParams}&contenyType=${this.cache.searchLandingType}`;
+        this.cache.servletPath = this.cache.searchLandingServletPath;
+      }
       ajaxWrapper.getXhrObj({
         url: this.cache.servletPath,
         method: ajaxMethods.GET,
@@ -428,10 +517,12 @@ class Searchresults {
     const pageNumber = $this.data('pageNumber');
     this.cache.searchParams.page = pageNumber;
     this.pushIntoUrl();
+    this.search();
+    this.cache.activePage = pageNumber;
+    this.renderPagination();
     $('html, body').animate({
       scrollTop: 0
     }, 500);
-    this.search();
   }
 
   renderPagination = () => {
@@ -447,14 +538,32 @@ class Searchresults {
       nextPage: currentPage + 1,
       nextDisabled: currentPage >= totalPages ? true : false
     };
-    if (currentPage <= totalPages) {
-      render.fn({
-        template: 'searchPagination',
-        data: paginationData,
-        target: this.cache.$pagination
-      });
+
+    const paginationObj = paginate(totalPages, this.cache.activePage, this.cache.itemsPerPage, 3);
+
+    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
+      if (currentPage <= totalPages) {
+        render.fn({
+          template: 'tablePagination',
+          data: paginationObj,
+          target: this.cache.$pagination
+        });
+      }
+    } else {
+      if (currentPage <= totalPages) {
+        render.fn({
+          template: 'searchPagination',
+          data: paginationData,
+          target: this.cache.$pagination
+        });
+      }
     }
   }
+  
 }
 
+
 export default Searchresults;
+
+
+
