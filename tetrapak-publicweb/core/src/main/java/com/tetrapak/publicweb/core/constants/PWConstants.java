@@ -499,6 +499,36 @@ public final class PWConstants {
     /**Country Name Property */
     public static final String PROP_COUNTRY_NAME = "countryName";
 
+    /** The Constant TYPE. */
+    public static final String TYPE = "type";
+    
+    /** The Constant PAGE. */
+    public static final String PAGE = "page";
+    
+    /** The Constant CMD. */
+    public static final String CMD = "cmd";
+    
+    /** The Constant CMD_ROLLOUT. */
+    public static final String CMD_ROLLOUT = "rollout";
+    
+    /** The Constant CHARSET. */
+    public static final String CHARSET = "_charset_";
+    
+    /** The Constant UTF_8. */
+    public static final String UTF_8 = "utf-8";
+    
+    /** The Constant RESET. */
+    public static final String RESET = "reset";
+    
+    /** The Constant MSM_TARGET_PATH. */
+    public static final String MSM_TARGET_PATH = "msm:targetPath";
+    
+    /** The Constant POST. */
+    public static final String POST = "POST";
+    
+    /** The Constant WCM_COMMAND_ENDPOINT. */
+    public static final String WCM_COMMAND_ENDPOINT = "/bin/wcmcommand";
+
     /**
      * Instantiates a new PW constants.
      */
