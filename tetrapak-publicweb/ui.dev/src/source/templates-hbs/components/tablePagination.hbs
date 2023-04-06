@@ -7,7 +7,7 @@
                 disabled=prevDisabled
                 data-page-number=1
                 data-skip=0
-                preIconClass="icon-Right_new icon-left"
+                preIconClass="icon-Chevron_Right_pw icon-Chevron_Right_pw icon-left"
                 hideText=false
                 text="cuhu.pagination.first"}}
         {{> atoms/buttons/button/button
@@ -17,8 +17,8 @@
                 disabled=prevDisabled
                 data-page-number=prevPage
                 data-skip=prevSkip
-                iconClass="icon-Right_new icon-left"
-                hideText=false
+                preIconClass="icon-Chevron_Right_pw icon-left"
+                hideText=true
                 text="cuhu.pagination.prev"}}
         {{#each pages}}
             {{#if isPage}}
@@ -50,8 +50,8 @@
                 disabled=nextDisabled
                 data-page-number=nextPage
                 data-skip=nextSkip
-                iconClass="icon-Right_new"
-                hideText=false
+                iconClass="icon-Chevron_Right_pw"
+                hideText=true
                 text="cuhu.pagination.next"}}
         {{> atoms/buttons/button/button
                 modifier="pagination"
@@ -60,7 +60,7 @@
                 disabled=nextDisabled
                 data-page-number=totalPages
                 data-skip=lastSkip
-                iconClass="icon-Right_new"
+                iconClass="icon-Chevron_Right_pw"
                 hideText=false
                 text="cuhu.pagination.last"}}
     </div>
