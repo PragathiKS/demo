@@ -200,6 +200,9 @@
             @media #{$desktop} {
                 @include padding-left($padding-l);
             }
+            &.padding-none {
+                padding: 0;
+            }
         }
 
         .tpatom-checkbox {
