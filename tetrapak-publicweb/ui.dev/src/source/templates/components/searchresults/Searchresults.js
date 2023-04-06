@@ -116,7 +116,8 @@ class Searchresults {
     this.cache.totalResultCount = 0;
     this.cache.searchLandingType = $('.pw-search-result-head').data('type');
     this.cache.searchLandingServletPath = $('.pw-search-result-head').data('servlet');
-    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
+    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases' || 
+    this.cache.searchLandingType === 'news'){
       $('.left-wrapper-filter').addClass('display-none');
     } else {
       $('.left-wrapper-filter').removeClass('display-none');
@@ -260,7 +261,8 @@ class Searchresults {
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
-      if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases'){
+      if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' || 
+      this.cache.searchLandingType === 'news'){
         queryParams = `${queryParams}&contenyType=${this.cache.searchLandingType}`;
         this.cache.servletPath = this.cache.searchLandingServletPath;
       }
@@ -541,7 +543,8 @@ class Searchresults {
 
     const paginationObj = paginate(totalPages, this.cache.activePage, this.cache.itemsPerPage, 3);
 
-    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases'){
+    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases' ||
+      this.cache.searchLandingType === 'news'){
       if (currentPage <= totalPages) {
         render.fn({
           template: 'tablePagination',
