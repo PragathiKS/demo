@@ -116,11 +116,13 @@ class Searchresults {
     this.cache.totalResultCount = 0;
     this.cache.searchLandingType = $('.pw-search-result-head').data('type');
     this.cache.searchLandingServletPath = $('.pw-search-result-head').data('servlet');
-    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases' || 
+    if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
     this.cache.searchLandingType === 'news'){
       $('.left-wrapper-filter').addClass('display-none');
+      $('.pw-search-results__filters__theme').addClass('padding-none');
     } else {
       $('.left-wrapper-filter').removeClass('display-none');
+      $('.pw-search-results__filters__theme').removeClass('padding-none');
     }
     this.cache.activePage = 1;
     this.cache.itemsPerPage = 10;
@@ -543,7 +545,7 @@ class Searchresults {
 
     const paginationObj = paginate(totalPages, this.cache.activePage, this.cache.itemsPerPage, 3);
 
-    if(this.cache.searchLandingType === 'event' || this.cache.searchLandingType === 'cases' ||
+    if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
       this.cache.searchLandingType === 'news'){
       if (currentPage <= totalPages) {
         render.fn({
