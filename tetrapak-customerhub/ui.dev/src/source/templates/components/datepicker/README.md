@@ -88,7 +88,7 @@ startDate | `Date object | string` | `""` | Initital date to be selected.
 endDate | `Date object | string` | `""` | Initital end date to be selected in the `range` type component.
 minDate | `Date object` | Date 100 years before today | Will restrict possible dates for both input elements and dropdowns.
 maxDate | `Date object` | Date 100 years after today | Will restrict possible dates for both input elements and dropdowns.
-monthNames | `String[]` | `["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Okt","Nov","Dec"]` | This option is used for displaying month names on the dropdown.
+monthNames | `String[]` | `["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]` | This option is used for displaying month names on the dropdown.
 dayNames | `String[]` | `["Su","Mo","Tu","We","Th","Fr","Sa"]` | This option is used for displaying day names in the table header.
 inputFromLabel | `String` | `"From"` | This option is used for displaying input's label. In a default DatePicker it's the only visible input.
 inputToLabel | `String` | `"To"` | This option is used for displaying input's label. It only affects a `range` type component.
