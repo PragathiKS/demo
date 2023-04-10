@@ -1,3 +1,4 @@
+export const RK_ICON = 'icon';
 export const RK_COUNTRY_CODE = 'countryCode';
 export const RK_LINE_CODE = 'lineCode';
 export const RK_EQ_DESC = 'equipmentDesc';
@@ -20,6 +21,7 @@ export const RK_ORDER = 'order';
 export const RK_EQUIPMENT_NUMBER = 'equipmentNumber';
 
 export const RK_PROPERTY_KEYS = [
+  RK_ICON,
   RK_COUNTRY_CODE,
   RK_LINE_CODE,
   RK_EQ_DESC,

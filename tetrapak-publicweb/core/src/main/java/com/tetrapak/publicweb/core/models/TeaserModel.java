@@ -84,6 +84,10 @@ public class TeaserModel {
     @ValueMapValue
     private String enableCarousel;
 
+    /** The enable display date. */
+    @ValueMapValue
+    private Boolean displayDate;   
+
     /** The manual list. */
     @Inject
     @Via("resource")
@@ -177,7 +181,8 @@ public class TeaserModel {
             teaser.setAlt(aggregator.getAltText());
             teaser.setLinkText(aggregator.getLinkText());
             teaser.setLinkPath(LinkUtils.sanitizeLink(aggregator.getLinkPath(), request));
-            teaser.setPwButtonTheme(aggregator.getPwButtonTheme());
+            teaser.setPwButtonTheme(aggregator.getPwButtonTheme());            
+            teaser.setArticleDate(aggregator.getArticleDate());                                        
             teaserList.add(teaser);
         }
     }
@@ -244,6 +249,16 @@ public class TeaserModel {
     public String getEnableCarousel() {
         return enableCarousel;
     }
+
+      /**
+     * Gets the display date.
+     *
+     * @return the display date
+     */
+    public Boolean getDisplayDate() {
+        return displayDate;
+    }
+
 
     /**
      * Gets the teaser list.

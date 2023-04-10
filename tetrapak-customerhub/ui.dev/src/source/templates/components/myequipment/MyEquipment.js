@@ -146,6 +146,7 @@ class MyEquipment {
       'lines': []
     };
     this.cache.downloadservletUrl = this.root.find('#downloadExcelServletUrl').val();
+    this.cache.defaultSortParams = 'functionallocation%20asc,position%20asc,serialnumber%20asc';
   }
 
   bindEvents() {
@@ -926,6 +927,8 @@ class MyEquipment {
       }
 
       apiUrlRequest += `&sort=${sortingParam}`;
+    } else {
+      apiUrlRequest += `&sort=${this.cache.defaultSortParams}`;
     }
 
     auth.getToken(({ data: authData }) => {
@@ -999,7 +1002,7 @@ class MyEquipment {
 
           ajaxWrapper
             .getXhrObj({
-              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}`,
+              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}&sort=${this.cache.defaultSortParams}`,
               method: 'GET',
               contentType: 'application/json',
               dataType: 'json',
@@ -1022,6 +1025,7 @@ class MyEquipment {
               this.renderPaginationTableData(tableData);
               this.renderSearchCount();
               this.mapTableColumn();
+              this.showHideAllFilters();
             }).fail(() => {
               this.cache.$content.removeClass('d-none');
               this.cache.$spinner.addClass('d-none');

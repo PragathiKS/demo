@@ -1,6 +1,9 @@
 package com.tetrapak.publicweb.core.services;
 
+import java.io.IOException;
+
 import javax.jcr.RepositoryException;
+import javax.servlet.ServletException;
 
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -34,6 +37,6 @@ public interface CreateLiveCopyService {
      * @throws PersistenceException 
      */
     public void createLiveCopy(ResourceResolver resourceResolver, String srcPath, RolloutManager rolloutManager,
-            LiveRelationshipManager liveRelManager, String language, boolean isDeep, boolean flowComingFromLBScheduler) throws PersistenceException, WCMException, RepositoryException;
+            LiveRelationshipManager liveRelManager, String language, boolean isDeep, boolean flowComingFromLBScheduler) throws PersistenceException, WCMException, RepositoryException, IOException, ServletException;
 
 }

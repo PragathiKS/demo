@@ -1,40 +1,41 @@
 {
-"jcr:primaryType": "cq:Page",
-"jcr:createdBy": "admin",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"jcr:content": {
-"jcr:primaryType": "cq:PageContent",
-"jcr:mixinTypes": [
-"mix:versionable"
-],
-"jcr:createdBy": "admin",
-"jcr:title": "Home Page",
-"cq:lastReplicationAction": "Activate",
-"jcr:versionHistory": "b4c97315-2425-4f34-a864-27d1dda9187c",
-"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-"cq:lastReplicatedBy": "admin",
-"pwLinkTheme": "download",
-"altText": "alt",
-"imagePath": "/content/dam/tetrapak/publicweb/logo_tetra_pak_white1.svg",
-"jcr:predecessors": [
-"bd6ff37b-c54e-44c9-a694-63d5a91c23b9"
-],
-"pwButtonTheme": "link",
-"jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
-"cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
-"cq:lastModified": "Thu Apr 09 2020 18:00:58 GMT+0530",
-"jcr:baseVersion": "bd6ff37b-c54e-44c9-a694-63d5a91c23b9",
-"jcr:isCheckedOut": true,
-"hideInNav": "true",
-"linkTarget": "_self",
-"cq:tags": [
-"properties:orientation/portrait",
-"properties:orientation/landscape"
-],
-"jcr:uuid": "bbfcb71c-d1c5-4e02-b59f-e5a8a74b9dec",
-"linkPath": "/content/tetrapak/publicweb/lang-masters/es/home",
-"linkText": "link text2",
-"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-"cq:lastModifiedBy": "admin"
-}
+  "jcr:primaryType": "cq:Page",
+  "jcr:createdBy": "admin",
+  "jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
+  "jcr:content": {
+    "jcr:primaryType": "cq:PageContent",
+    "jcr:mixinTypes": [
+      "mix:versionable"
+    ],
+    "jcr:createdBy": "admin",
+    "jcr:title": "Home Page",
+    "cq:lastReplicationAction": "Activate",
+    "jcr:versionHistory": "b4c97315-2425-4f34-a864-27d1dda9187c",
+    "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+    "cq:lastReplicatedBy": "admin",
+    "pwLinkTheme": "download",
+    "altText": "alt",
+    "imagePath": "/content/dam/tetrapak/publicweb/logo_tetra_pak_white1.svg",
+    "jcr:predecessors": [
+      "bd6ff37b-c54e-44c9-a694-63d5a91c23b9"
+    ],
+    "pwButtonTheme": "link",
+    "jcr:created": "Wed Mar 25 2020 09:55:52 GMT+0530",
+    "cq:lastReplicated": "Wed Mar 25 2020 10:14:26 GMT+0000",
+    "cq:lastModified": "Thu Apr 09 2020 18:00:58 GMT+0530",
+    "jcr:baseVersion": "bd6ff37b-c54e-44c9-a694-63d5a91c23b9",
+    "jcr:isCheckedOut": true,
+    "hideInNav": "true",
+    "linkTarget": "_self",
+    "cq:tags": [
+      "properties:orientation/portrait",
+      "properties:orientation/landscape"
+    ],
+    "jcr:uuid": "bbfcb71c-d1c5-4e02-b59f-e5a8a74b9dec",
+    "linkPath": "/content/tetrapak/publicweb/lang-masters/es/home",
+    "linkText": "link text2",
+    "sling:resourceType": "publicweb/components/structure/pages/landingpage",
+    "cq:lastModifiedBy": "admin",
+    "articleDate": "2023-03-30T00:00:00.000+05:30"
+  }
 }
