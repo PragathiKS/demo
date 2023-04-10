@@ -95,7 +95,7 @@ class DatePicker {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
       inputFromLabel: inputFromLabel || $(el).attr('data-from-label') || DEFAULT_INPUT_FROM_LABEL,
-      inputToLabel: inputToLabel || $(el).attr('data-from-label') || DEFAULT_INPUT_TO_LABEL,
+      inputToLabel: inputToLabel || $(el).attr('data-to-label') || DEFAULT_INPUT_TO_LABEL,
       inputErrorLabel: inputErrorLabel || $(el).attr('data-error-label') || DEFAULT_INPUT_ERROR_LABEL,
       isRangeType: type === RANGE_TYPE,
 
