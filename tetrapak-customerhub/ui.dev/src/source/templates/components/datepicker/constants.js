@@ -20,7 +20,7 @@ export const DEFAULT_MONTH_NAMES = [
   'Jul',
   'Aug',
   'Sep',
-  'Okt',
+  'Oct',
   'Nov',
   'Dec'
 ];
