@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.mail.internet.InternetAddress;
 import javax.servlet.Servlet;
 
 import org.apache.commons.lang.StringUtils;
@@ -14,6 +13,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.apache.sling.event.jobs.JobManager;
 import org.apache.sling.xss.XSSAPI;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
@@ -25,6 +25,7 @@ import com.adobe.acs.commons.email.EmailService;
 import com.adobe.cq.dam.cfm.ContentFragment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetralaval.beans.ContactUsResponse;
+import com.tetralaval.constants.TLConstants;
 import com.tetralaval.exceptions.TetraLavalException;
 import com.tetralaval.models.FormContainer;
 import com.tetralaval.services.FormService;
@@ -50,16 +51,16 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     private EmailService emailService;
 
     /** The Constant CONTACT_US_MAIL_TEMPLATE_PATH. */
-    private final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/tetralaval/contactus/email.html";
+    private static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/tetralaval/contactus/email.html";
 
     /** The Constant Status Type Message. */
-    private final String STATUS_TYPE_MESSAGE = "message";
+    private static final String STATUS_TYPE_MESSAGE = "message";
 
     /** The Constant Status Type Redirect. */
-    private final String STATUS_TYPE_REDIRECT = "redirect";
+    private static final String STATUS_TYPE_REDIRECT = "redirect";
 
     /** The Constant Thank You Type Message. */
-    private final String THANKYOU_TYPE_REDIRECT = "showThankYouPage";
+    private static final String THANKYOU_TYPE_REDIRECT = "showThankYouPage";
 
     @Reference
     private FormService formService;
@@ -68,7 +69,9 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     @Reference
     private XSSAPI xssAPI;
 
-    private ResourceResolver resourceResolver;
+    /** The job mgr. */
+    @Reference
+    private JobManager jobMgr;
 
     /**
      * Do get.
@@ -83,10 +86,10 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	String type = STATUS_TYPE_MESSAGE;
 	String redirect = null;
 	String emailTemplatePath = CONTACT_US_MAIL_TEMPLATE_PATH;
-	InternetAddress to = null;
+	String[] to = null;
 	Map<String, String> emailParams = new HashMap<>();
 	try {
-	    resourceResolver = request.getResourceResolver();
+	    ResourceResolver resourceResolver = request.getResourceResolver();
 	    emailParams = processInputParameters(request);
 	    // get details configured on Form Component.
 	    Resource formResource = request.getResource();
@@ -109,22 +112,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 		if (StringUtils.isBlank(company)) {
 		    throw new TetraLavalException("Selected Company not provided");
 		} else {
-		    String resourcePath = formService.getContactUsFragmentsPath() + "/" + company;
-		    Resource resource = resourceResolver.getResource(resourcePath);
-		    if (null != resource) {
-			ContentFragment contentFragment = resource.adaptTo(ContentFragment.class);
-			emailParams.put("selectedCompany", contentFragment.getTitle());
-			if (null != contentFragment) {
-			    to = new InternetAddress(
-				    contentFragment.getElement("email").getValue().getValue(String.class));
-			    emailParams.put("title",
-				    contentFragment.getElement("emailTitle").getValue().getValue(String.class));
-			    emailParams.put("content",
-				    contentFragment.getElement("emailContent").getValue().getValue(String.class));
-			    emailParams.put("logo",
-				    contentFragment.getElement("logoPath").getValue().getValue(String.class));
-			}
-		    }
+		    to = processContentFragment(to, emailParams, resourceResolver, company);
 		}
 	    }
 	    contactUsResponse = new ContactUsResponse("200", "OK", type, redirect);
@@ -143,6 +131,34 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	    LOGGER.error("Exception :{}", e.getMessage(), e);
 	}
 
+    }
+
+    private String[] processContentFragment(String[] to, Map<String, String> emailParams,
+	    ResourceResolver resourceResolver, String company) {
+	String resourcePath = formService.getContactUsFragmentsPath() + "/" + company;
+	Resource resource = resourceResolver.getResource(resourcePath);
+	if (null != resource) {
+	    ContentFragment contentFragment = resource.adaptTo(ContentFragment.class);
+	    if (null != contentFragment) {
+		emailParams.put("selectedCompany", contentFragment.getTitle());
+		to = contentFragment.hasElement("email")
+			? contentFragment.getElement("email").getValue().getValue(String[].class)
+			: null;
+		String title = contentFragment.hasElement("emailTitle")
+			? contentFragment.getElement("emailTitle").getValue().getValue(String.class)
+			: null;
+		emailParams.put("title", title);
+		String content = contentFragment.hasElement("emailContent")
+			? contentFragment.getElement("emailContent").getValue().getValue(String.class)
+			: null;
+		emailParams.put("content", content);
+		String logoPath = contentFragment.hasElement("logoPath")
+			? contentFragment.getElement("logoPath").getValue().getValue(String.class)
+			: null;
+		emailParams.put("logo", logoPath);
+	    }
+	}
+	return to;
     }
 
     private Map<String, String> processInputParameters(final SlingHttpServletRequest request) {
@@ -164,8 +180,17 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	return emailParams;
     }
 
-    private void sendEmail(Map<String, String> emailParams, InternetAddress recipients, String templatePath) {
-	emailService.sendEmail(templatePath, emailParams, recipients);
+    private void sendEmail(Map<String, String> emailParams, String[] recipients, String templatePath) {
+	final Map<String, Object> properties = new HashMap<>();
+	properties.put("templatePath", templatePath);
+	properties.put("emailParams", emailParams);
+	properties.put("receipients", recipients);
+	if (jobMgr != null) {
+	    LOGGER.debug("Staring JOB: {}", TLConstants.CONTACTUS_EMAIL_JOB);
+	    jobMgr.addJob(TLConstants.CONTACTUS_EMAIL_JOB, properties);
+	} else {
+	    LOGGER.error("JobManager Reference null");
+	}
 
     }
 

@@ -66,6 +66,7 @@ public class FormDataSource extends SlingSafeMethodsServlet {
 		break;
 	    case COMPANY:
 		dropDownList = formService.getContactUsFragmentsAsDropdown(resourceResolver);
+		break;
 	    default:
 		break;
 	    }

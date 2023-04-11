@@ -67,6 +67,9 @@ public final class TLConstants {
 
     /** The Constant TEXT_PROPERTY. */
     public static final String TEXT_PROPERTY = "text";
+    
+    /** The Constant for Contact Us Email Job. */
+    public static final String CONTACTUS_EMAIL_JOB = "com/tetralaval/contactus/email";
 
     /**
      * Instantiates a new TL constants.

@@ -65,13 +65,13 @@ public class FormServiceImpl implements FormService {
     }
 
     private List<Dropdown> getConfig(String[] actionTypesConfig) {
-	List<Dropdown> actionTypes = new ArrayList<>();
+	List<Dropdown> types = new ArrayList<>();
 	try {
 	    for (String actionType : actionTypesConfig) {
 		LOGGER.debug("Action Type: {}", actionType);
 		String[] values = StringUtils.split(actionType, ":");
 		if (values.length == 2) {
-		    actionTypes.add(new Dropdown(StringUtils.trim(values[0]), StringUtils.trim(values[1])));
+		    types.add(new Dropdown(StringUtils.trim(values[0]), StringUtils.trim(values[1])));
 		} else {
 		    LOGGER.debug("No ':' available in string to split: {}", actionType);
 		}
@@ -80,7 +80,7 @@ public class FormServiceImpl implements FormService {
 	} catch (Exception e) {
 	    LOGGER.error("Error while reading Form Datasource Configuration", e);
 	}
-	return actionTypes;
+	return types;
     }
 
     @Override
