@@ -192,7 +192,7 @@ class Searchresults {
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
       if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' || 
       this.cache.searchLandingType === 'news'){
-        queryParams = `${queryParams}&contenyType=${this.cache.searchLandingType}`;
+        // queryParams = `${queryParams}&contenyType=${this.cache.searchLandingType}`;
         this.cache.servletPath = this.cache.searchLandingServletPath;
       }
       ajaxWrapper.getXhrObj({
@@ -386,8 +386,18 @@ class Searchresults {
   extractQueryParams = () => {
     const params = parseQueryString();
     params['searchTerm'] = params['searchTerm'] && decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim() || '';
+    if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
+    this.cache.searchLandingType === 'news'){
+      params['searchTerm'] = this.cache.searchLandingType;
+      params['contentType'] = this.cache.searchLandingType;
+    }
     this.cache.$searchInput.val(params['searchTerm']);
-    this.cache.queryParams = window.location.search;
+
+    const urlParams = new URLSearchParams();
+    Object.keys(params).forEach(key => {
+      urlParams.append(key, params[key]);
+    });
+    this.cache.queryParams = window.location.search || `?${urlParams}`;
     Object.keys(params).map(key => {
       if ((key === 'contentType' || key === 'theme')) {
         if (params[key].indexOf(',') > -1) {
