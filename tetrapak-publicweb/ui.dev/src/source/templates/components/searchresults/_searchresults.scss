@@ -370,15 +370,6 @@
     }
 }
 
-.pw-search-landing-container {
-    .pw-container {
-        margin-top: 0;
-        .pw-search-results {
-            padding-top: 0;
-        }
-    }
-}
-
 .tp-tbl-pagination {
     @include margin-top($margin-md);
 

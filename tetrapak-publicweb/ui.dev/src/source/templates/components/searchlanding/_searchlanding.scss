@@ -1,7 +1,7 @@
 .pw-search-result-head {
     .result-title {
         color: $color-tundora;
-        font-size: $font-xx;
+        font-size: $font-xxl;
         font-weight: 700;
         line-height: $padding-xxxl;
 
@@ -11,5 +11,14 @@
         font-size: $font-baseline;
         font-weight: 400;
         line-height: $font-l;
+    }
+}
+
+.pw-search-landing-container {
+    .pw-container {
+        margin-top: $margin-zero;
+        .pw-search-results {
+            padding-top: $padding-zero;
+        }
     }
 }
