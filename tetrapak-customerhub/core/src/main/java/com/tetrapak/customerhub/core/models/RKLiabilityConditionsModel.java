@@ -35,7 +35,7 @@ public class RKLiabilityConditionsModel {
 
     public String getApiPath() {
         ResourceResolver resolver = resource.getResourceResolver();
-        return resolver.map(resource.getPath()+".getpdflinks.json");
+        return resource.getPath()+".getpdflinks.json";
     }
 
     public String getRkMandatoryKitsText() {
