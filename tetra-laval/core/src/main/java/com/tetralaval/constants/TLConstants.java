@@ -71,6 +71,9 @@ public final class TLConstants {
     /** The Constant for Contact Us Email Job. */
     public static final String CONTACTUS_EMAIL_JOB = "com/tetralaval/contactus/email";
 
+    /** The Constant CONTACT_US_MAIL_TEMPLATE_PATH. */
+    public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/tetralaval/contactus/email.html";
+    
     /**
      * Instantiates a new TL constants.
      */
