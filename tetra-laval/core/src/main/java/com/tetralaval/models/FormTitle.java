@@ -15,11 +15,11 @@ public class FormTitle {
     private String title;
 
     public String getHeadingLevel() {
-	return headingLevel;
+        return headingLevel;
     }
 
     public String getTitle() {
-	return title;
+        return title;
     }
 
 }

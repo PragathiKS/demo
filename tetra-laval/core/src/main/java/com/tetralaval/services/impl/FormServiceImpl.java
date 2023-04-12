@@ -23,6 +23,7 @@ import com.tetralaval.services.FormService;
 @Designate(ocd = FormConfiguration.class)
 public class FormServiceImpl implements FormService {
 
+    public static final int LENGTH = 2;
     private static final Logger LOGGER = LoggerFactory.getLogger(FormServiceImpl.class);
 
     private String[] ignoreParameters;
@@ -32,83 +33,83 @@ public class FormServiceImpl implements FormService {
 
     @Override
     public String[] getIgnoreParameters() {
-	return ignoreParameters;
+        return ignoreParameters;
     }
 
     @Override
     public String[] getEmailTemplates() {
-	return emailTemplates;
+        return emailTemplates;
     }
 
     @Override
     public String[] getActionTypes() {
-	return actionTypes;
+        return actionTypes;
     }
 
     @Override
     public List<Dropdown> getEmailTemplatesAsDropdown() {
-	return getConfig(emailTemplates);
+        return getConfig(emailTemplates);
     }
 
     @Override
     public List<Dropdown> getActionTypesAsDropdown() {
-	return getConfig(actionTypes);
+        return getConfig(actionTypes);
     }
 
     @Activate
     protected void activate(FormConfiguration config) {
-	ignoreParameters = config.ignoreParameters();
-	emailTemplates = config.emailTemplates();
-	actionTypes = config.actionTypes();
-	contactUsFragmentsPath = config.contactUsFragmentsPath();
+        ignoreParameters = config.ignoreParameters();
+        emailTemplates = config.emailTemplates();
+        actionTypes = config.actionTypes();
+        contactUsFragmentsPath = config.contactUsFragmentsPath();
 
     }
 
     private List<Dropdown> getConfig(String[] actionTypesConfig) {
-	List<Dropdown> types = new ArrayList<>();
-	try {
-	    for (String actionType : actionTypesConfig) {
-		LOGGER.debug("Action Type: {}", actionType);
-		String[] values = StringUtils.split(actionType, ":");
-		if (values.length == 2) {
-		    types.add(new Dropdown(StringUtils.trim(values[0]), StringUtils.trim(values[1])));
-		} else {
-		    LOGGER.debug("No ':' available in string to split: {}", actionType);
-		}
+        List<Dropdown> types = new ArrayList<>();
+        try {
+            for (String actionType : actionTypesConfig) {
+                LOGGER.debug("Action Type: {}", actionType);
+                String[] values = StringUtils.split(actionType, ":");
+                if (values.length == LENGTH) {
+                    types.add(new Dropdown(StringUtils.trim(values[0]), StringUtils.trim(values[1])));
+                } else {
+                    LOGGER.debug("No ':' available in string to split: {}", actionType);
+                }
 
-	    }
-	} catch (Exception e) {
-	    LOGGER.error("Error while reading Form Datasource Configuration", e);
-	}
-	return types;
+            }
+        } catch (Exception e) {
+            LOGGER.error("Error while reading Form Datasource Configuration", e);
+        }
+        return types;
     }
 
     @Override
     public List<Dropdown> getContactUsFragmentsAsDropdown(ResourceResolver resourceResolver) {
-	List<Dropdown> contactUsFragments = new ArrayList<>();
-	Resource contactUsRoot = resourceResolver.getResource(contactUsFragmentsPath);
-	LOGGER.debug("contactUsRoot: {}", contactUsRoot);
-	if (null != contactUsRoot && contactUsRoot.hasChildren()) {
-	    Iterator<Resource> contactUsIterator = contactUsRoot.listChildren();
-	    while (contactUsIterator.hasNext()) {
-		Resource child = contactUsIterator.next();
-		LOGGER.debug("Content fragment path: {}", child.getPath());
-		ContentFragment contentFragment = child.adaptTo(ContentFragment.class);
-		if (null != contentFragment) {
-		    String label = contentFragment.getTitle();
-		    String name = contentFragment.getName();
-		    LOGGER.debug("Content fragment Name and Title: {} and {}", name, label);
-		    contactUsFragments.add(new Dropdown(label, name));
-		}
-	    }
+        List<Dropdown> contactUsFragments = new ArrayList<>();
+        Resource contactUsRoot = resourceResolver.getResource(contactUsFragmentsPath);
+        LOGGER.debug("contactUsRoot: {}", contactUsRoot);
+        if (null != contactUsRoot && contactUsRoot.hasChildren()) {
+            Iterator<Resource> contactUsIterator = contactUsRoot.listChildren();
+            while (contactUsIterator.hasNext()) {
+                Resource child = contactUsIterator.next();
+                LOGGER.debug("Content fragment path: {}", child.getPath());
+                ContentFragment contentFragment = child.adaptTo(ContentFragment.class);
+                if (null != contentFragment) {
+                    String label = contentFragment.getTitle();
+                    String name = contentFragment.getName();
+                    LOGGER.debug("Content fragment Name and Title: {} and {}", name, label);
+                    contactUsFragments.add(new Dropdown(label, name));
+                }
+            }
 
-	}
-	return contactUsFragments;
+        }
+        return contactUsFragments;
 
     }
 
     @Override
     public String getContactUsFragmentsPath() {
-	return contactUsFragmentsPath;
+        return contactUsFragmentsPath;
     }
 }
