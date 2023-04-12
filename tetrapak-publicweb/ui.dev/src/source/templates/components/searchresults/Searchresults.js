@@ -384,7 +384,7 @@ class Searchresults {
 
   extractQueryParams = () => {
     const params = parseQueryString();
-    params['searchTerm'] = params['searchTerm'] && decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim() || '';
+    params['searchTerm'] = (params['searchTerm'] && decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim()) || '';
     if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
     this.cache.searchLandingType === 'news'){
       params['searchTerm'] = this.cache.searchLandingType;
@@ -469,6 +469,7 @@ class Searchresults {
   renderPagination = () => {
     const currentPage = this.cache.searchParams.page && parseInt(this.cache.searchParams.page,10);
     const totalPages = this.cache.totalPages;
+    const totalResults = this.cache.totalResultCount;
     const paginationText = this.cache.$pagination.data('paginationText');
     const paginationData = {
       paginationText,
@@ -480,7 +481,7 @@ class Searchresults {
       nextDisabled: currentPage >= totalPages ? true : false
     };
 
-    const paginationObj = _paginate(totalPages, this.cache.activePage, this.cache.itemsPerPage, 3);
+    const paginationObj = _paginate(totalResults, this.cache.activePage, this.cache.itemsPerPage, 3);
 
     if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
       this.cache.searchLandingType === 'news'){
