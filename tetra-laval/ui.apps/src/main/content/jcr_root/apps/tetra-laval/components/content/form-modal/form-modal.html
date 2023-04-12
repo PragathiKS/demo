@@ -1,5 +1,6 @@
 <div class="tl-contactus">
-    <button data-sly-test="${properties.linkLabel}" type="button" class="tpatom-btn tpatom-btn--primary js-tpatom-btn__tl-contactUs">
+    <button data-sly-test="${properties.linkLabel}" type="button" class="tpatom-btn tpatom-btn--primary js-tpatom-btn__tl-contactUs" 
+    		data-companyvalue="${properties.company}" data-companykey=":company">
         <span class="tp-next-btn__text">${properties.linkLabel}</span>
         <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
     </button>
@@ -8,7 +9,6 @@
         tabindex="-1" role="dialog" aria-modal="true">
         <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
             <div class="modal-content tp-modal-content">
-				<input type="hidden" name=":company" value="${properties.company}"/>
                 <div class="modal-body">
                     <!-- Contact Form -->
                     <sly data-sly-test.formPath="${properties.formPath}" />
