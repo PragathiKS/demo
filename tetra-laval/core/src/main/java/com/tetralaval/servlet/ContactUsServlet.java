@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.Servlet;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -82,7 +83,8 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse response) {
 	LOGGER.debug("Insdie doPost");
-	ContactUsResponse contactUsResponse = new ContactUsResponse("500", "Server Error");
+	ContactUsResponse contactUsResponse = null;
+	int statusCode = HttpServletResponse.SC_OK;
 	String type = STATUS_TYPE_MESSAGE;
 	String redirect = null;
 	String emailTemplatePath = CONTACT_US_MAIL_TEMPLATE_PATH;
@@ -110,25 +112,25 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 		/* get company details */
 		String company = request.getParameter(":company");
 		if (StringUtils.isBlank(company)) {
+		    statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		    throw new TetraLavalException("Selected Company not provided");
 		} else {
 		    to = processContentFragment(to, emailParams, resourceResolver, company);
 		}
 	    }
-	    contactUsResponse = new ContactUsResponse("200", "OK", type, redirect);
+	    contactUsResponse = new ContactUsResponse(statusCode, "OK", type, redirect);
 	    sendEmail(emailParams, to, emailTemplatePath);
 	} catch (TetraLavalException te) {
-	    contactUsResponse.setStatusMessage(te.getMessage());
-
+	    contactUsResponse = new ContactUsResponse(statusCode, te.getMessage());
 	} catch (final Exception e) {
 	    LOGGER.error("Exception :{}", e);
-	    contactUsResponse.setStatusMessage("An error occured");
+	    contactUsResponse = new ContactUsResponse(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Server Error");
 	}
 
 	try {
 	    sendResponse(response, contactUsResponse);
-	} catch (IOException e) {
-	    LOGGER.error("Exception :{}", e.getMessage(), e);
+	} catch (Exception e) {
+	    LOGGER.error("Exception:", e);
 	}
 
     }
@@ -186,7 +188,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
 	properties.put("emailParams", emailParams);
 	properties.put("receipients", recipients);
 	if (jobMgr != null) {
-	    LOGGER.debug("Staring JOB: {}", TLConstants.CONTACTUS_EMAIL_JOB);
+	    LOGGER.debug("Starting JOB: {}", TLConstants.CONTACTUS_EMAIL_JOB);
 	    jobMgr.addJob(TLConstants.CONTACTUS_EMAIL_JOB, properties);
 	} else {
 	    LOGGER.error("JobManager Reference null");
@@ -204,6 +206,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
     private void sendResponse(final SlingHttpServletResponse resp, final ContactUsResponse contactUsResponse)
 	    throws IOException {
 	final ObjectMapper mapper = new ObjectMapper();
+	resp.setStatus(contactUsResponse.getStatusCode());
 	resp.setContentType("text/html; charset=UTF-8");
 	resp.setCharacterEncoding("UTF-8");
 	resp.getWriter().write(mapper.writeValueAsString(contactUsResponse));

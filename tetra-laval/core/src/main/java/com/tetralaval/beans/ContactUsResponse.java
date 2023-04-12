@@ -17,7 +17,7 @@ public class ContactUsResponse {
 
     /** The status code. */
     @JsonProperty("statusCode")
-    private String statusCode;
+    private int statusCode;
 
     @JsonProperty("type")
     private String type;
@@ -31,7 +31,7 @@ public class ContactUsResponse {
      * @param statusCode    the status code
      * @param statusMessage the status message
      */
-    public ContactUsResponse(final String statusCode, final String statusMessage) {
+    public ContactUsResponse(final int statusCode, final String statusMessage) {
 	this.statusCode = statusCode;
 	this.statusMessage = statusMessage;
     }
@@ -44,7 +44,7 @@ public class ContactUsResponse {
      * @param type          the Type
      * @param redirectURL   the Redirect URL
      */
-    public ContactUsResponse(final String statusCode, final String statusMessage, String type, String redirectURL) {
+    public ContactUsResponse(final int statusCode, final String statusMessage, String type, String redirectURL) {
 	this.statusCode = statusCode;
 	this.statusMessage = statusMessage;
 	this.type = type;
@@ -58,7 +58,7 @@ public class ContactUsResponse {
      * @param statusMessage the status message
      * @param type          the Type
      */
-    public ContactUsResponse(final String statusCode, final String statusMessage, String type) {
+    public ContactUsResponse(final int statusCode, final String statusMessage, String type) {
 	this.statusCode = statusCode;
 	this.statusMessage = statusMessage;
 	this.type = type;
@@ -90,7 +90,7 @@ public class ContactUsResponse {
      * @return the status code
      */
     @JsonProperty("statusCode")
-    public String getStatusCode() {
+    public int getStatusCode() {
 	return statusCode;
     }
 
@@ -100,7 +100,7 @@ public class ContactUsResponse {
      * @param statusCode the new status code
      */
     @JsonProperty("statusCode")
-    public void setStatusCode(final String statusCode) {
+    public void setStatusCode(final int statusCode) {
 	this.statusCode = statusCode;
     }
 
