@@ -7,6 +7,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { getI18n, parseQueryString } from '../../../scripts/common/common';
 import { _paginate } from '../../../scripts/utils/paginateData';
+import { ACTIVE_PAGE, ITEM_PER_PAGE } from '../../../scripts/utils/constants';
 
 class Searchresults {
   constructor({ el }) {
@@ -51,8 +52,8 @@ class Searchresults {
       $('.left-wrapper-filter').removeClass('display-none');
       $('.pw-search-results__filters__theme').removeClass('padding-none');
     }
-    this.cache.activePage = 1;
-    this.cache.itemsPerPage = 10;
+    this.cache.activePage = ACTIVE_PAGE;
+    this.cache.itemsPerPage = ITEM_PER_PAGE;
   }
 
   bindEvents() {
