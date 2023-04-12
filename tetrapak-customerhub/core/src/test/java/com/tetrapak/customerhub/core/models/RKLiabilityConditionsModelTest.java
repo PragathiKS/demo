@@ -41,7 +41,7 @@ public class RKLiabilityConditionsModelTest {
     public void testModel() throws AccessControlException, InvalidTagFormatException {
 
         assertEquals("cuhu.rkliabilityconditions.mandatorykits", model.getRkMandatoryKitsText());
-        assertEquals("/content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits/_jcr_content/root/responsivegrid/rkliabilitycondition.getpdflinks.json", model.getApiPath());
+        assertEquals("/content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits/jcr:content/root/responsivegrid/rkliabilitycondition.getpdflinks.json", model.getApiPath());
         assertEquals(I18N_KEYS, model.getI18nKeys());
     }
 
