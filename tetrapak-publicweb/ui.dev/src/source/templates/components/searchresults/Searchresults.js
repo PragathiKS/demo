@@ -192,7 +192,6 @@ class Searchresults {
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
       if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' || 
       this.cache.searchLandingType === 'news'){
-        // queryParams = `${queryParams}&contenyType=${this.cache.searchLandingType}`;
         this.cache.servletPath = this.cache.searchLandingServletPath;
       }
       ajaxWrapper.getXhrObj({
@@ -394,15 +393,15 @@ class Searchresults {
     this.cache.$searchInput.val(params['searchTerm']);
 
     const urlParams = new URLSearchParams();
-    Object.keys(params).forEach(key => {
+    Object.keys(params).forEach((key) => {
+      if (!key) {
+        return;
+      }
       urlParams.append(key, params[key]);
-    });
-    this.cache.queryParams = window.location.search || `?${urlParams}`;
-    Object.keys(params).map(key => {
-      if ((key === 'contentType' || key === 'theme')) {
+      if (key === 'contentType' || key === 'theme') {
         if (params[key].indexOf(',') > -1) {
           const extractParams = params[key].split(',');
-          extractParams.forEach(el => {
+          extractParams.forEach((el) => {
             this.cache.searchParams[key][el] = $(`#${el}`).val();
             $(`#${el}`).prop('checked', true);
           });
@@ -415,6 +414,7 @@ class Searchresults {
         this.cache.searchParams[key] = params[key];
       }
     });
+    this.cache.queryParams = window.location.search || `?${urlParams}`;
     this.renderFilterTags();
   }
 
