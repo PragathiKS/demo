@@ -1,0 +1,65 @@
+<div class="d-none tp-filtered-table__content">
+    <div class="tp-filtered-table__header-wrapper">
+        <h2 class="tp-filtered-table__heading js-filtered-table__heading">
+            {{i18n key=rebuildingKits}}
+        </h2>
+        
+        <!-- Actions -->
+        <div class="tp-filtered-table__header-action-wrapper">
+            <div class="tp-filtered-table__header-mobile">
+                <button class="tp-next-btn js-mobile-header-actions">
+                <i class="icon icon-Three_Dot">
+                </i>
+                </button>
+            </div>
+            <div class="tp-filtered-table__header-actions">
+                <div class="tp-filtered-table__header-actionicons">
+                    <div class="tp-filtered-table__action-button second js-filtered-table__customise-table-action">
+                        <i class="icon icon-Hide action-icon"></i>
+                        <span class="tpatom-btn__text tp-filtered-table__header-action-text">
+                            {{i18n key=customizeTable}}
+                        </span>
+                    </div>
+                    <button
+                        class="tpatom-btn tp-button-link js-export-btn tpatom-btn--primary tp-filtered-table__action-button"
+                    >
+                        <i class="icon icon-Excel action-icon"></i>
+                        <span class="tpatom-btn__text sly-text">
+                            {{i18n key=exportToCsv}}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>            
+
+    <div class="tp-filtered-table__filter-wrapper">
+        <div class="tp-filtered-table__filter-chips"></div>
+        <div>
+            <button data-show-label="{{i18n key=showallfilters}}" data-hide-label="{{i18n key=hideallfilters}}" class="tpatom-btn tp-filtered-table__show-hide-button js-tp-filtered-table__show-hide-all-button" auto_locator="hideFilter">
+                <i class="icon icon-Filter"></i>
+                <span class="tpatom-btn__text sly-text">{{i18n key=hideallfilters}}</span>
+            </button>
+            <button class="tpatom-btn tp-filtered-table__remove-button js-tp-filtered-table__remove-all-button" auto_locator="removeFilter" hidden>
+                <i class="icon icon-My_Euipment_Bin_X"></i>
+                <span class="tpatom-btn__text sly-text">
+                    {{i18n key=removeallfilters}}
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="tp-filtered-table__search-count"></div>
+    
+    <div id="filtered-table-filter-modal" class="modal js-filter-modal tp-modal fade tp-filtered-table__filter-form"
+        tabindex="-1" aria-hidden="true" role="dialog">
+    </div>
+    
+    <div class="tp-filtered-table__table_wrapper"></div>
+    <div class="tp-filtered-table__flex-container">
+        <div class="tp-filtered-table__pagination-container" id="pagination-container"></div>
+        <div class="tp-filtered-table__serial-desc">
+            <span class="tp-filtered-table__astrick">*</span>
+            {{i18n key=permanentVolumeConversion}}
+        </div>
+    </div>
+</div>
