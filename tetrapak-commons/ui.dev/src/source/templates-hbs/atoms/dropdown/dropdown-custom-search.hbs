@@ -1,0 +1,49 @@
+<div class="tpatom-dropdown {{#if className}} {{className}}{{/if}}">
+{{#if labelText}}<span class="tpatom-dropdown__text js-dropdown__text{{#if labelClasses}} {{labelClasses}}{{/if}}" id="tpatom-dropdown-{{name}}">{{i18n key=labelText}}</span>{{/if}}
+    <div class="dropdown js-custom-dropdown">
+        <button
+            class="btn dropdown-toggle dropdown-btn  text-left js-dropdown-btn{{#if jsClass}} {{jsClass}}{{/if}}"
+            type="button"
+            id="{{name}}"
+            data-key="{{#if defaultKey}}{{defaultKey}}{{else}}{{options.[0].key}}{{/if}}"
+            data-toggle="dropdown"
+            data-display="static"
+            aria-haspopup="true"
+            aria-expanded="false"
+            {{#if labelText}}
+                aria-labelledby="tpatom-dropdown-{{name}}"
+            {{/if}}>
+            {{#if defaultValue}}
+               <span>{{i18n key=defaultValue}}</span>
+            {{else}}
+                <span>{{i18n key=options.[0].desc}}</span>
+            {{/if}}
+        </button>
+        <i class="tpatom-dropdown__icon icon-Arrow_Down"></i>
+        <div class="dropdown-menu">
+            
+                <div class="tp-financial-statement__date-range-container clearfix">
+                        {{> atoms/input/input placeholder="Search text" name="search-text" wrapClasses="tp-financial-statement__date-range-wrapper float-left" eleClasses="tp-financial-statement__date-range-input js-financial-statement__date-range-input" }}
+                        {{> atoms/buttons/button/button modifier="datepicker" iconClass="icon-Search_blue_pw" baseClass="test" className="float-left" jsClass="js-financial-statement__date-range" }}
+                </div>
+
+            {{!-- {{> atoms/input/input name="search-text" placeholder="Search text" labelClasses="width-100" }}
+            <i class="icon-Search_blue_pw"></i> --}}
+			
+              
+        <ul aria-labelledby="{{name}}" role="menu">
+            {{#each options}}
+                <li role="presentation">
+                    <a href="#" role="menuitem" class="dropdown-item js-custom-dropdown-li {{#if ../liClassName}} {{../liClassName}}{{/if}}" data-key="{{this.key}}" {{#if this.translation}}data-translated="{{this.translation}}"{{/if}}>
+                        {{#if this.translation}}
+                            {{i18n key=this.desc}}
+                        {{else}}
+                            {{this.desc}}
+                        {{/if}}
+                    </a>
+                </li>
+            {{/each}}
+        </ul>
+         </div>
+    </div>
+</div>
