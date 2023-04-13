@@ -1,5 +1,5 @@
 <sly data-sly-template.languageselector_template="${@ data, flag}">
-    <div class="modal tp-modal tp-lang-selector js-lang-modal fade" id="lang-modal" data-module="LanguageSelector" tabindex="-1" role="dialog">
+    <div class="modal tp-modal tp-lang-selector js-lang-modal fade" id="lang-modal" data-lang-data="${data.listOfLanguages}" data-module="LanguageSelector" tabindex="-1" role="dialog">
        <input type="hidden" id="selectedLanguage" name="selectedLanguage" value="${data.selectedLanguage}" />
        <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
            <div class="modal-content tp-modal-content">
