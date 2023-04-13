@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'bootstrap';
-import { storageUtil, isAuthorMode } from '../../../scripts/common/common';
+import { storageUtil } from '../../../scripts/common/common';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { LANGUAGE_PREFERENCE_SERVLET_URL } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
@@ -21,7 +21,6 @@ class LanguageSelector {
       }
       bindEvents() {
         const $this = this;
-        const { $modal } = $this.cache;
         this.root.on('click', '.js-close-btn', function () {
           $this.root.modal('hide');
           $this.closeModalHandler();
@@ -35,7 +34,9 @@ class LanguageSelector {
             $this.setCustomerLanguage($(this).data('langcode'), $(this).data('link'));
           })
           .on('showlanuagepreferencepopup', function () {
-            $modal.modal();
+            if(storageUtil.getCookie('wcmmode') !== 'edit'){
+              $this.showPopup();
+            }
           });
       }
       closeModalHandler() {
@@ -44,7 +45,7 @@ class LanguageSelector {
           storageUtil.setCookie('lang-code', 'en');
         }
       }
-      setCustomerLanguage(langCode, url) {
+      setCustomerLanguage(langCode) {
         ajaxWrapper.getXhrObj({
           url: LANGUAGE_PREFERENCE_SERVLET_URL,
           data: {
@@ -52,29 +53,41 @@ class LanguageSelector {
           }
         }).always(() => {
           storageUtil.setCookie('lang-code', langCode);
-          this.reloadPage(url);
+          this.newUrlReload(langCode);
         });
       }
-      reloadPage(url) {
-        window.location.href = url;
-      }
-      showPopup(isInit) {
-        const { $modal, selectedLanguage } = this.cache;
-        const langCookie = storageUtil.getCookie('lang-code');
-        if (selectedLanguage && langCookie !== selectedLanguage) {
-          storageUtil.setCookie('lang-code', selectedLanguage);
+
+      newUrlReload(langCode){
+        let listOfLangCodes = $('.js-lang-modal').data('lang-data'); 
+        let newUrl = window.location.href;
+        if(!listOfLangCodes || !langCode){
+          window.location.reload();
+          return;
         }
-        if (!this.cache.selectedLanguage && !langCookie && !isAuthorMode()) {
-          if (isInit) {
-            $body.addClass('tp-no-backdrop');
+        listOfLangCodes= listOfLangCodes ? listOfLangCodes.split(',') : [];
+        for (const languageCode of listOfLangCodes) {
+          if(window.location.href.indexOf(`/${languageCode}/`)!== -1) {
+            newUrl = window.location.href.replace(`/${languageCode}/`, `/${langCode}/`);
+            break;
           }
-          $modal.modal();
         }
+        window.location.replace(newUrl);
       }
+
+      showPopup() {
+        const { $modal } = this.cache;
+        $body.addClass('tp-no-backdrop');
+        $modal.modal();
+      }
+
+      setDefaultLangCode(){
+        storageUtil.setCookie('lang-code', this.cache.selectedLanguage || 'en');
+      }
+
       init() {
         this.initCache();
         this.bindEvents();
-        this.showPopup(true);
+        this.setDefaultLangCode();
       }
 }
 

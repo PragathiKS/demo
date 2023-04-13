@@ -5,7 +5,7 @@
         cq:templateType="/conf/supplierportal/settings/wcm/template-types/empty-page"
         jcr:description="This template is used to create supplier portal contact form pages under language page"
         jcr:primaryType="cq:PageContent"
-        jcr:title="Contact Form"
+        jcr:title="Form Template"
         shortTitle="form"
         status="enabled"/>
 </jcr:root>
