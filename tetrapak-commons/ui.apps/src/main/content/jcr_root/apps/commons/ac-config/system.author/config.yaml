@@ -617,6 +617,12 @@
           privileges:
           repGlob:
 
+        - path: /apps/cq/core/content/nav/globallink-adaptor
+          permission: deny
+          actions: read
+          privileges:
+          repGlob:
+
     - fragment-siteadmin:
 
         - path: /libs/wcm/core/content/siteadmin
