@@ -1,8 +1,10 @@
 package com.tetrapak.publicweb.core.workflow;
 
+import java.io.IOException;
 import java.util.Objects;
 
 import javax.jcr.RepositoryException;
+import javax.servlet.ServletException;
 
 import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -76,7 +78,7 @@ public class RolloutActivateSites implements WorkflowProcess {
 	            LOGGER.info("language : {}",language);
 	            createLiveCopyService.createLiveCopy(resolver, payload, rolloutManager, liveRelManager, language,false, false);
 	        }
-        }catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
+        }catch (RepositoryException | WCMException | IOException | UnsupportedOperationException | ServletException e) {
             LOGGER.error("An error occurred while creating live copy", e);
         }
     }

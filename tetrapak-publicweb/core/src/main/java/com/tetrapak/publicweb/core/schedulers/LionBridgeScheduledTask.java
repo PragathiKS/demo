@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.schedulers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
@@ -16,9 +17,9 @@ import java.util.stream.Collectors;
 
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
+import javax.servlet.ServletException;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
@@ -170,7 +171,7 @@ public class LionBridgeScheduledTask implements Runnable {
     		        	}
     		            deleteResourcesList.add(lbNode);
     		            pagesProcessed.add(translatedPagePath);
-    		        }catch (RepositoryException | WCMException | PersistenceException | UnsupportedOperationException e) {
+    		        }catch (RepositoryException | WCMException | IOException | UnsupportedOperationException | ServletException e) {
     		            LOGGER.error("An error occurred while creating live copy", e);
     		        }
     	          }

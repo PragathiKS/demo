@@ -1,26 +1,34 @@
 package com.tetrapak.publicweb.core.utils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.jcr.RangeIterator;
 import javax.jcr.Session;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.engine.SlingRequestProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.contentsync.handler.util.RequestResponseFactory;
 import com.day.cq.replication.ReplicationActionType;
 import com.day.cq.replication.ReplicationException;
 import com.day.cq.replication.Replicator;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMException;
+import com.day.cq.wcm.api.commands.WCMCommand;
 import com.day.cq.wcm.msm.api.LiveRelationship;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 import com.day.cq.wcm.msm.api.RolloutConfig;
-import com.day.cq.wcm.msm.api.RolloutManager;
-import com.day.cq.wcm.msm.api.RolloutManager.RolloutParams;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.config.CreateLiveCopyServiceConfig;
 
@@ -50,19 +58,27 @@ public final class CreateLiveCopyServiceUtil {
      *            the blueprint page
      * @param isDeep
      *            the is deep
+     * @param rolloutConfigs 
      * @throws WCMException
      *             the WCM exception
+     * @throws IOException 
+     * @throws ServletException 
      */
-    public static void rolloutLiveCopies(RolloutManager rolloutManager, final Page blueprintPage, boolean isDeep)
-            throws WCMException {
+    public static void rolloutLiveCopies(final Page blueprintPage, final RequestResponseFactory requestResponseFactory, 
+    		final SlingRequestProcessor requestProcessor, final ResourceResolver resolver, final String livecopyPath)
+            throws IOException, ServletException {
         LOGGER.debug("inside rolloutLiveCopies method");
-        final RolloutParams rolloutParams = new RolloutParams();
-        LOGGER.debug("isDeep : {}", isDeep);
-        rolloutParams.isDeep = isDeep;
-        rolloutParams.master = blueprintPage;
-        rolloutParams.reset = false;
-        rolloutParams.trigger = RolloutManager.Trigger.ROLLOUT;
-        rolloutManager.rollout(rolloutParams);
+        Map<String, Object> params = new HashMap<>();
+        params.put(PWConstants.TYPE, PWConstants.PAGE);
+        params.put(PWConstants.CMD, PWConstants.CMD_ROLLOUT);
+        params.put(WCMCommand.PATH_PARAM, blueprintPage.getPath());
+        params.put(PWConstants.CHARSET, PWConstants.UTF_8);
+        params.put(PWConstants.RESET, false);
+        params.put(PWConstants.MSM_TARGET_PATH, livecopyPath);
+        HttpServletRequest req = requestResponseFactory.createRequest(PWConstants.POST, PWConstants.WCM_COMMAND_ENDPOINT, params);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        HttpServletResponse response = requestResponseFactory.createResponse(out);
+        requestProcessor.processRequest(req, response, resolver);
     }
     
     /**
