@@ -1,0 +1,33 @@
+## This ruleset forces https in the end users browser
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
+RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ https://%{HTTP_HOST}$1 [R=301,L]
+
+
+## This ruleset is use for lang-masters based dispatcher URL redirection
+RewriteCond   %{HTTP_HOST}  '${BRAND_URL}'
+RewriteCond   %{REQUEST_URI} ^/
+RewriteRule   "^/$"  "/content/design-system/global/en/home.html" [PT,L]
+RewriteRule   "^/sitemap.xml$" "/content/design-system/global/en.sitemap.xml" [PT,L]
+#RewriteRule   "^/robots.txt"  "/content/dam/tetrapak/publicweb/robots.txt" [PT]
+RewriteRule   "^/(.*).html$" "/content/design-system/global/en/error/403.html" [PT,L]
+#########
+RewriteCond %{REQUEST_URI} !^/bin/designsystem/*
+#RewriteCond %{REQUEST_URI} !^/content/design-system/global/en/error/403*
+RewriteCond %{REQUEST_URI} !^/content/design-system/global/en/my-account/saml_login
+RewriteCond %{REQUEST_URI} !^/libs/granite
+RewriteCond %{REQUEST_URI} !^/content/design-system/global/en/my-account/saml_logout
+RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
+RewriteCond   %{HTTP_HOST}  '${BRAND_URL}'
+RewriteRule   "^/(.*)$"  "/content/design-system/global/en/$1.html" [PT,L]
+
+
+<LocationMatch "/content/design-system/global/en*">
+ErrorDocument 404 "/design-system/error/404"
+ErrorDocument 500 "/design-system/error/500"
+ErrorDocument 403 "/design-system/error/403"
+</LocationMatch>
