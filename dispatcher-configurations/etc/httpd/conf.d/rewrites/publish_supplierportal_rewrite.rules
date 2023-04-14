@@ -1,0 +1,81 @@
+## This ruleset forces https in the end users browser
+## This ruleset forces https in the end users browser
+# ruleset forces https in the end users browser
+## This ruleset forces https in the end users browser
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
+RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ https://%{HTTP_HOST}$1 [R=301,L]
+
+RewriteCond   %{REQUEST_URI} "^/en/(.*).html$"
+RewriteCond %{HTTP_COOKIE} lang-code=(zh|es)
+RewriteCond %{ENV:REDIRECT_STATUS} !=302
+RewriteRule ^/(.*)/(.*)$ https://%{SERVER_NAME}/%1/$2 [NS,L,R=302]
+
+RewriteCond   %{REQUEST_URI} "^/zh/(.*).html$"
+RewriteCond %{HTTP_COOKIE} lang-code=(en|es)
+RewriteCond %{ENV:REDIRECT_STATUS} !=302
+RewriteRule ^/(.*)/(.*)$ https://%{SERVER_NAME}/%1/$2 [NS,L,R=302]
+
+RewriteCond   %{REQUEST_URI} "^/es/(.*).html$"
+RewriteCond %{HTTP_COOKIE} lang-code=(en|zh)
+RewriteCond %{ENV:REDIRECT_STATUS} !=302
+RewriteRule ^/(.*)/(.*)$ https://%{SERVER_NAME}/%1/$2 [NS,L,R=302]
+
+
+RewriteCond   %{HTTP_HOST}  '${SUPPLIER_URL}'
+RewriteCond %{REQUEST_URI} "^/$"
+RewriteCond %{HTTP_COOKIE} lang-code=([^;]+) [NC]
+RewriteRule "^(.*)$" https://%{SERVER_NAME}/%1/dashboard.html [L,R=302]
+
+
+RewriteCond   %{HTTP_HOST}  '${SUPPLIER_URL}'
+RewriteCond   %{REQUEST_URI} ^/
+RewriteRule   "^/$" "/content/tetrapak/supplierportal/global/en/dashboard.html"[PT,L]
+
+
+RewriteRule   "^/robots.txt"  "/content/dam/supplierportal/robots.txt" [PT]
+RewriteRule   "^/sitemap.xml" "/content/tetrapak/supplierportal/en.sitemap.xml"[PT,L]
+
+
+RewriteCond   %{HTTP_HOST}  '${SUPPLIER_URL}'
+RewriteCond   %{REQUEST_URI} !^/content/tetrapak/supplierportal/saml_login$
+RewriteCond   %{REQUEST_URI} !^/content/tetrapak/supplierportal/saml_logout$
+RewriteCond   %{REQUEST_URI} !^/bin/supplierportal/deleteCookies$
+RewriteCond   %{REQUEST_URI} !^/bin/supplierportal/permissioncheck$
+RewriteCond   %{REQUEST_URI} !(.*).nocache*
+RewriteCond   %{REQUEST_URI} !^/.*/jcr:content.*$
+RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpe                                                                             g|mp4|json|css|ico|woff|woff2|ttf|svg|tif|ppt|pptx|xml)$"
+RewriteCond  %{REQUEST_URI} !^/bin/supplierportal/saveLanguagePreference$
+
+RewriteRule   "^/en/(.*)$" "/content/tetrapak/supplierportal/global/en/$1.html" [PT,L]
+RewriteRule   "^/zh/(.*)$" "/content/tetrapak/supplierportal/global/zh/$1.html" [PT,L]
+RewriteRule   "^/es/(.*)$" "/content/tetrapak/supplierportal/global/es/$1.html" [PT,L]
+
+
+<LocationMatch "/content/tetrapak/supplierportal/global/en(.*)">
+ErrorDocument 404 "/content/tetrapak/supplierportal/global/en/error-pages/404.html"
+ErrorDocument 500 "/content/tetrapak/supplierportal/global/en/error-pages/500.html"
+ErrorDocument 403 "/content/tetrapak/supplierportal/global/en/error-pages/403.html"
+ErrorDocument 400 "/content/tetrapak/supplierportal/global/en/error-pages/400.html"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/supplierportal/global/zh(.*)">
+ErrorDocument 404 "/content/tetrapak/supplierportal/global/zh/error-pages/404.html"
+ErrorDocument 500 "/content/tetrapak/supplierportal/global/zh/error-pages/500.html"
+ErrorDocument 403 "/content/tetrapak/supplierportal/global/zh/error-pages/403.html"
+ErrorDocument 400 "/content/tetrapak/supplierportal/global/zh/error-pages/400.html"
+</LocationMatch>
+
+<LocationMatch "/content/tetrapak/supplierportal/global/es(.*)">
+ErrorDocument 404 "/content/tetrapak/supplierportal/global/es/error-pages/404.html"
+ErrorDocument 500 "/content/tetrapak/supplierportal/global/es/error-pages/500.html"
+ErrorDocument 403 "/content/tetrapak/supplierportal/global/es/error-pages/403.html"
+ErrorDocument 400 "/content/tetrapak/supplierportal/global/es/error-pages/400.html"
+</LocationMatch>
+
+

@@ -1,0 +1,24 @@
+## This ruleset forces https in the end users browser
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{REQUEST_URI} !^/dispatcher/invalidate.cache
+RewriteRule (.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ https://%{HTTP_HOST}$1 [R=301,L]
+
+RewriteCond   %{HTTP_HOST}  '${ONLINEHELP_URL}'
+RewriteCond   %{REQUEST_URI} ^/
+RewriteRule   "^/robots.txt"  "/content/dam/online-help/robots.txt" [PT]
+RewriteRule   "^/$" "/content/online-help/publicweb/gb/en/home.html" [PT,L]
+RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|ttf|svg|tif|ppt|pptx|xml)$"
+RewriteCond   %{HTTP_HOST}  '${ONLINEHELP_URL}'
+RewriteRule   "^/(.*)$" "/content/online-help/publicweb/gb/en/$1.html" [PT,L]
+
+<LocationMatch "/content/online-help/publicweb/gb/en*">
+ErrorDocument 404 "/error/404"
+ErrorDocument 500 "/error/500"
+</LocationMatch>
+
+
+

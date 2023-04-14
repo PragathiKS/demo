@@ -1,0 +1,14 @@
+## the globbing pattern to be compared against the url
+## example: *             -> everything
+##        : /foo/bar.*    -> only the /foo/bar documents
+##        : /foo/bar/*    -> all pages below /foo/bar
+##        : /foo/bar[./]* -> all pages below and /foo/bar itself
+##        : *.html        -> all .html files
+
+## All custom rules for Tetrapak will start from 1001
+
+## Disable caching of ACS Commons MCP process cached list of processes
+/1001 {
+        /glob "/apps/acs-commons/content/manage-controlled-processes/jcr:content.list.json"
+        /type "deny"
+}

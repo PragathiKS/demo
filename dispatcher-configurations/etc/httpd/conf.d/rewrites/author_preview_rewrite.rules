@@ -1,0 +1,17 @@
+<If "%{QUERY_STRING} =~ /preview/">
+                RequestHeader Set Authorization "Basic cHctcHJldmlldy11c2VyOmEyIXR5QGY3JlEkUw=="
+                RequestHeader Set preview "true"
+</If>
+<If "%{HTTP:Referer} =~ /(.*)(preview)(.*)/">
+    Header set matched true
+    RequestHeader set Authorization "Basic cHctcHJldmlldy11c2VyOmEyIXR5QGY3JlEkUw=="
+</If>
+
+RewriteCond %{HTTP_HOST}  'author-tetrapak-stage65.adobecqms.net'
+RewriteCond %{QUERY_STRING} ^preview=([^&]+) [NC,OR]
+RewriteCond %{QUERY_STRING} &preview=([^&]+) [NC]
+RewriteRule /(.*)$ /$1?wcmmode=disabled [QSA]
+
+RewriteCond %{HTTP_COOKIE} !^.*login-token.*$ [NC]
+RewriteRule (.*)pw-icons.woff$ $1pw-icons.woff?preview=
+
