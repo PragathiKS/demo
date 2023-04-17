@@ -56,3 +56,5 @@
 
 /0046 { /type "allow" /method "GET" /url "/content/tetrapak/customerhub/content-components/*/*.assets.json" } ## allow GETS to get keylines json
 /0047 { /type "allow" /method "POST" /url "*/jcr:content/root/responsivegrid/*rebuildingkitdetails*" }
+/0048 { /type "allow" /method "GET" /url "*/root/responsivegrid/*.getpdflinks.json" } ## SMAR-32073
+
