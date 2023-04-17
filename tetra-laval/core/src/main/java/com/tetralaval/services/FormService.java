@@ -14,12 +14,12 @@ public interface FormService {
     String[] getEmailTemplates();
 
     String[] getActionTypes();
-    
+
     String getContactUsFragmentsPath();
-    
+
     List<Dropdown> getEmailTemplatesAsDropdown();
-    
+
     List<Dropdown> getActionTypesAsDropdown();
-    
+
     List<Dropdown> getContactUsFragmentsAsDropdown(ResourceResolver resourceResolver);
 }

@@ -16,7 +16,7 @@ public class FormContainer {
 
     @ValueMapValue
     private String emailTemplate;
-    
+
     @ValueMapValue
     private String redirectUrl;
 
@@ -36,35 +36,35 @@ public class FormContainer {
     private String to;
 
     public String getActionType() {
-	return actionType;
+        return actionType;
     }
 
     public String getCssClass() {
-	return cssClass;
+        return cssClass;
     }
 
     public String getEmailTemplate() {
-	return emailTemplate;
+        return emailTemplate;
     }
 
     public String getRedirectUrl() {
-	return redirectUrl;
+        return redirectUrl;
     }
 
     public String getSubject() {
-	return subject;
+        return subject;
     }
 
     public String getThankYouMessage() {
-	return thankYouMessage;
+        return thankYouMessage;
     }
 
     public String getThankYouTitle() {
-	return thankYouTitle;
+        return thankYouTitle;
     }
 
     public String getThankYouType() {
-	return thankYouType;
+        return thankYouType;
     }
 
     public String getTo() {

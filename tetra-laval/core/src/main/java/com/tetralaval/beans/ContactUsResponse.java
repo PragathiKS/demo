@@ -8,14 +8,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * The Class ContactUsResponse.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "statusMessage", "statusCode" })
+@JsonPropertyOrder({"statusMessage", "statusCode"})
 public class ContactUsResponse {
 
-    /** The status message. */
+    /**
+     * The status message.
+     */
     @JsonProperty("statusMessage")
     private String statusMessage;
 
-    /** The status code. */
+    /**
+     * The status code.
+     */
     @JsonProperty("statusCode")
     private int statusCode;
 
@@ -32,8 +36,8 @@ public class ContactUsResponse {
      * @param statusMessage the status message
      */
     public ContactUsResponse(final int statusCode, final String statusMessage) {
-	this.statusCode = statusCode;
-	this.statusMessage = statusMessage;
+        this.statusCode = statusCode;
+        this.statusMessage = statusMessage;
     }
 
     /**
@@ -45,10 +49,10 @@ public class ContactUsResponse {
      * @param redirectURL   the Redirect URL
      */
     public ContactUsResponse(final int statusCode, final String statusMessage, String type, String redirectURL) {
-	this.statusCode = statusCode;
-	this.statusMessage = statusMessage;
-	this.type = type;
-	this.redirectURL = redirectURL;
+        this.statusCode = statusCode;
+        this.statusMessage = statusMessage;
+        this.type = type;
+        this.redirectURL = redirectURL;
     }
 
     /**
@@ -59,9 +63,9 @@ public class ContactUsResponse {
      * @param type          the Type
      */
     public ContactUsResponse(final int statusCode, final String statusMessage, String type) {
-	this.statusCode = statusCode;
-	this.statusMessage = statusMessage;
-	this.type = type;
+        this.statusCode = statusCode;
+        this.statusMessage = statusMessage;
+        this.type = type;
     }
 
     /**
@@ -71,7 +75,7 @@ public class ContactUsResponse {
      */
     @JsonProperty("statusMessage")
     public String getStatusMessage() {
-	return statusMessage;
+        return statusMessage;
     }
 
     /**
@@ -81,7 +85,7 @@ public class ContactUsResponse {
      */
     @JsonProperty("statusMessage")
     public void setStatusMessage(final String statusMessage) {
-	this.statusMessage = statusMessage;
+        this.statusMessage = statusMessage;
     }
 
     /**
@@ -91,7 +95,7 @@ public class ContactUsResponse {
      */
     @JsonProperty("statusCode")
     public int getStatusCode() {
-	return statusCode;
+        return statusCode;
     }
 
     /**
@@ -101,37 +105,37 @@ public class ContactUsResponse {
      */
     @JsonProperty("statusCode")
     public void setStatusCode(final int statusCode) {
-	this.statusCode = statusCode;
+        this.statusCode = statusCode;
     }
 
     /**
      * Gets the Type
-     * 
+     *
      * @return the type
      */
     @JsonProperty("type")
     public String getType() {
-	return type;
+        return type;
     }
 
     /**
      * Sets the Type: redirect/message
-     * 
+     *
      * @param the Type
      */
     @JsonProperty("type")
     public void setType(String type) {
-	this.type = type;
+        this.type = type;
     }
 
     /**
      * Gets the redirect URL
-     * 
+     *
      * @return Redirect URL
      */
     @JsonProperty("redirectURL")
     public String getRedirectURL() {
-	return redirectURL;
+        return redirectURL;
     }
 
     /**
@@ -141,7 +145,7 @@ public class ContactUsResponse {
      */
     @JsonProperty("redirectURL")
     public void setRedirectURL(String redirectURL) {
-	this.redirectURL = redirectURL;
+        this.redirectURL = redirectURL;
     }
 
 }
