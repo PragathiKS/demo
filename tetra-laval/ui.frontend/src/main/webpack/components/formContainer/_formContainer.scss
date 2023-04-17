@@ -8,6 +8,13 @@
                 display: none;
             }
         }
+
+        &__error {
+            @include padding-top($spacing-big-half);
+            @include font-size($font-sm);
+            @include line-height($font-normal, $font-sm);
+            color: $color-red;
+        }
     }
     .cmp-form {
         &-text {
