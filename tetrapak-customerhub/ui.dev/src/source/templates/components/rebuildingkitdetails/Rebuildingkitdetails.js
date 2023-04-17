@@ -4,6 +4,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
+import { storageUtil } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
 /**
@@ -272,6 +273,7 @@ function _submitCTIemail(dataObj) {
           $ctiDocContainer.addClass('d-none');
           $reqCtiSuccess.removeClass('d-none');
           $spinner.addClass('d-none');
+          storageUtil.setCookie('ctiLangCode', dataObj.rkCTIdetails.requestedCTILanguage || 'en');
         }
       })
       .fail((e) => {
@@ -292,7 +294,7 @@ function _getCtiDocuments() {
   const $this = this;
   const { apiCTI } = $this.cache;
   const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
-  // const rkRelease = 'TT3_2020_01_01';
+  //const rkRelease = 'TT3_2020_01_01';
   if (rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
@@ -357,6 +359,10 @@ function _getCtiDocuments() {
                   reqLangList.push(newObj);
                 }
               });
+            });
+            // sort language alphabetically
+            otherLang.sort(function(currentObj, compareWithObj) {
+              return currentObj['langDesc'].localeCompare(compareWithObj['langDesc']);
             });
             $this.renderCtiDocuments(langAvailable, otherLang, reqLangList);
           }

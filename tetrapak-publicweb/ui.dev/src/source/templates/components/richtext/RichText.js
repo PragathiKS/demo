@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import { isExternal } from '../../../scripts/utils/updateLink';
+import { getUrl, isExternal } from '../../../scripts/utils/updateLink';
 class RichText {
   constructor({ el }) {
     this.root = $(el);
@@ -37,13 +37,9 @@ class RichText {
     };
     
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
-    if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
-      window.open($this.attr('href'), '_blank');
-    }
-    else {
-      window.open($this.attr('href'),'_self');
-    }
- 
+    const url = getUrl($this);
+    const isNewTab = e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224 || isExternal(url);
+    window.open(url, isNewTab ? '_blank' : '_self');
   };
 
   init() {

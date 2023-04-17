@@ -1,5 +1,6 @@
-https://tetrapak-dev65.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/home.html
-https://tetrapak-dev65.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/solutions
-https://tetrapak-dev65.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/insights
-https://tetrapak-dev65.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/sustainability
-https://tetrapak-dev65.adobecqms.net/content/tetrapak/publicweb/lang-masters/en/about-tetra-pak
+https://www-dev.tetrapak.com/
+https://www-dev.tetrapak.com/solutions
+https://www-dev.tetrapak.com/insights
+https://www-dev.tetrapak.com/sustainability
+https://www-dev.tetrapak.com/about-tetra-pak
+https://www-dev.tetrapak.com/innovation

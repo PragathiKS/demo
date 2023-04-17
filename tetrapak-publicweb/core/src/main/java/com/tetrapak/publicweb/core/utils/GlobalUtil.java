@@ -1,8 +1,8 @@
 package com.tetrapak.publicweb.core.utils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -12,6 +12,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.osgi.framework.BundleContext;
@@ -34,7 +35,7 @@ import com.tetrapak.publicweb.core.services.DynamicMediaService;
 public final class GlobalUtil {
 
     /** The Constant LOG. */
-    private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GlobalUtil.class);    
 
     /**
      * Instantiates a new global util.
@@ -299,5 +300,28 @@ public final class GlobalUtil {
             isChina = Boolean.TRUE;
         }
         return isChina;
+    }
+
+     /**
+     * Set proper format date
+     * @param dateString
+     * @return
+     */
+     public static String formatDate(String dateString) {
+        if (dateString != null && dateString.length() > 0 && dateString.contains("T")) {
+            final String parsedDate = dateString.substring(0, dateString.indexOf("T"));
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            Date d = null;
+            if (parsedDate.length() > 0) {
+                try {
+                    d = formatter.parse(parsedDate);
+                } catch (final Exception e) {
+                    LOG.error("Error occurred while parsing date: {} ", e.getMessage(), e);
+                }
+            }
+            formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            return formatter.format(d);
+        }
+        return StringUtils.EMPTY;
     }
 }

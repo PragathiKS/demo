@@ -1,0 +1,39 @@
+.pw-chatbot-wrapper {
+    @include right($margin-sm);
+    @include bottom($margin-sm);
+    position: fixed;
+    z-index: 2;
+
+    @media #{$desktop} {
+        @include right($margin-l);
+        @include bottom($margin-l);
+    }
+    .pw-chatbot {
+        color: $color-white;
+        background-color: $color-congress-blue;
+        border-radius: 100%;
+        opacity: 1;
+        pointer-events: visible;
+        transition: opacity 0.3s ease;
+        width: 64px;
+        height: 64px;
+        .icon-Chat {
+            &::before {
+                @include font-size($font-l);
+                @include padding($font-m-md 0 0 $font-m-md);
+                font-size: $font-l;
+                line-height: $font-l;
+                height: $font-l;
+            }
+        }
+        &:hover {
+            color: $color-mercury;
+        }
+
+        &.fade-out {
+            cursor: default;
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}
