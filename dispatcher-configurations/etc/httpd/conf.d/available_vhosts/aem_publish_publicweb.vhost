@@ -115,7 +115,8 @@ PassEnv DISP_ID
                                 Header set Content-Disposition "inline"
                         </FilesMatch>
 			<LocationMatch "(.)+\.(PDF|pdf)$">
-                                 Header set Content-Disposition "inline"
+                                Header set Content-Disposition "inline"
+                                Header set X-Robots-Tag "noindex, nofollow, nosnippet" ## SMAR-31833
                         </LocationMatch>
                         <LocationMatch ".*/content/dam/tetrapak/publicweb/robots.txt">
                                 Header set Content-Disposition "inline"
