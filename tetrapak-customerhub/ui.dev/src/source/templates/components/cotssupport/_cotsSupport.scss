@@ -45,8 +45,8 @@
         label {
             @include line-height($font-l, $font-baseline);
             @include margin-top($margin-md);
-            font-weight: 500;
             color: $color-text;
+            font-weight: 500;
         }
 
         .tpatom-radio-button {
@@ -63,7 +63,7 @@
             }
 
             .tpatom-input-box__input {
-                border: 1px solid $color-alert;                
+                border: 1px solid $color-alert;
             }
         }
         .error-msg {

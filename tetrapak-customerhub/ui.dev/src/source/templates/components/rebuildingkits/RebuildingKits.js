@@ -56,6 +56,7 @@ import {
   RK_PLANNED_DATE,
   RK_I18N_PLANNED_DATE
 } from './constants';
+import { renderDatePicker } from '../datepicker';
 
 class RebuildingKits {
   constructor({ el }) {
@@ -311,7 +312,7 @@ class RebuildingKits {
     });
   };
 
-  renderNewPage = ({resetSkip, analyticsAction}) => {
+  renderNewPage = ({resetSkip}) => {
     const {itemsPerPage, activeSortData, combinedFiltersObj} = this.cache;
 
     const rkApi = this.cache.rkApi.data('rklist-api');
@@ -344,7 +345,7 @@ class RebuildingKits {
       apiUrlRequest += `&sort=${sortingParam}`;
     }
 
-    auth.getToken(({ data: authData }) => {
+    auth.getToken(({ data: authData, analyticsAction }) => {
       ajaxWrapper
         .getXhrObj({
           url: apiUrlRequest,
@@ -423,6 +424,7 @@ class RebuildingKits {
         isRadio: formDetail.isRadio === true ? true : false,
         radioGroupName: formDetail.radioGroupName,
         isTextInput: formDetail.isTextInput,
+        isDatePicker: formDetail.isDatePicker,
         autoLocatorModal: `${formDetail.activeForm}Overlay`,
         autoLocatorInput: `${formDetail.activeForm}InputBox`,
         autoLocatorCheckbox: `${formDetail.activeForm}FilterCheckboxOverlay`,
@@ -431,8 +433,32 @@ class RebuildingKits {
       target: '.tp-rk__filter-form',
       hidden: false
     });
+
+    if (['implDeadline', 'plannedDate', 'releaseDate'].includes(formDetail.activeForm)) {
+      renderDatePicker({
+        el: $('.js-dp'),
+        type: 'range',
+        onCorrectValue: this.handleDatePickerChange,
+        onIncorrectValue: this.handleDatePickerChange,
+        onEmptyValue: this.handleDatePickerChange,
+        startDate: data.startDate,
+        endDate: data.endDate
+      });
+    }
+
     this.cache.activeFilterForm = formDetail.activeForm;
     this.cache.$activeFilterBtn = $filterBtn;
+  }
+
+  handleDatePickerChange= (dateFrom, dateTo) => {
+    const isDateFromValid = dateFrom instanceof Date;
+    const isDateToValid = dateTo instanceof Date;
+
+    if (isDateFromValid && isDateToValid) {
+      this.enableFilterApplyBtn();
+    } else {
+      this.disableFilterApplyBtn();
+    }
   }
 
   applyFilter = (options) => {
@@ -440,6 +466,10 @@ class RebuildingKits {
     const $filtersCheckbox = this.root.find('.js-tp-my-equipment-filter-checkbox:not(.js-tp-my-equipment-filter-group-checkbox)');
     const $filtersRadio = this.root.find('.js-tp-my-equipment-filter-radio');
     const $freeTextFilterInput = this.root.find('.js-tp-my-equipment-filter-input');
+    const $dateFromInput = this.root.find('.js-dp-input-from');
+    const $dateToInput = this.root.find('.js-dp-input-to');
+    const dateFromValue = $dateFromInput.val();
+    const dateToValue = $dateToInput.val();
 
     let filterCount = 0;
     let filterData = [];
@@ -501,20 +531,26 @@ class RebuildingKits {
         break;
       }
       case 'implDeadline': {
-        this.cache.combinedFiltersObj['implDeadline'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        this.cache.combinedFiltersObj['impldeadlinestart'] = dateFromValue;
+        this.cache.combinedFiltersObj['impldeadlineend'] = dateToValue;
+
+        filterCount = dateFromValue && dateToValue ? 1 : 0;
         label = i18nKeys['implDeadline'];
         break;
       }
       case 'plannedDate': {
-        this.cache.combinedFiltersObj['plannedDate'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        this.cache.combinedFiltersObj['planneddatestart'] = dateFromValue;
+        this.cache.combinedFiltersObj['planneddateend'] = dateToValue;
+
+        filterCount = dateFromValue && dateToValue ? 1 : 0;
         label = i18nKeys['plannedDate'];
         break;
       }
       case 'releaseDate': {
-        this.cache.combinedFiltersObj['releaseDate'] = $freeTextFilterInput.val();
-        filterCount = $freeTextFilterInput.val() !== '' ? 1 : 0;
+        this.cache.combinedFiltersObj['releasedatestart'] = dateFromValue;
+        this.cache.combinedFiltersObj['releasedateend'] = dateToValue;
+
+        filterCount = dateFromValue && dateToValue ? 1 : 0;
         label = i18nKeys['releaseDate'];
         break;
       }
@@ -545,9 +581,28 @@ class RebuildingKits {
     }
 
     if (options && options.removeFilter) {
-      if (this.cache.combinedFiltersObj[activeFilterForm]) {
-        delete this.cache.combinedFiltersObj[activeFilterForm];
+      switch (activeFilterForm) {
+        case 'implDeadline': {
+          this.deleteFilterValue('impldeadlinestart');
+          this.deleteFilterValue('impldeadlineend');
+          break;
+        }
+        case 'plannedDate': {
+          this.deleteFilterValue('planneddatestart');
+          this.deleteFilterValue('planneddateend');
+          break;
+        }
+        case 'releaseDate': {
+          this.deleteFilterValue('releasedatestart');
+          this.deleteFilterValue('releasedateend');
+          break;
+        }
+        default: {
+          this.deleteFilterValue(activeFilterForm);
+          break;
+        }
       }
+
       filterCount = null;
     }
 
@@ -586,6 +641,12 @@ class RebuildingKits {
         this.toggleRemoveAllFilters(true);
         break;
       }
+    }
+  }
+
+  deleteFilterValue = (key) => {
+    if (this.cache.combinedFiltersObj[key]) {
+      delete this.cache.combinedFiltersObj[key];
     }
   }
 
@@ -820,7 +881,13 @@ class RebuildingKits {
     this.renderNewPage({'resetSkip': true, analyticsAction});
   }
 
+  enableFilterApplyBtn = () => {
+    $('.js-apply-filter-button').prop('disabled', false);
+  }
 
+  disableFilterApplyBtn = () => {
+    $('.js-apply-filter-button').prop('disabled', true);
+  }
 
   bindEvents = () => {
     const $this = this;
@@ -855,6 +922,11 @@ class RebuildingKits {
       }
       return 10;
     };
+
+    $modal.on('shown.bs.modal', () => {
+      const $datePickerInput = $('.js-dp-input-from');
+      $datePickerInput.length && $datePickerInput.trigger('focus');
+    });
 
     this.cache.$countryFilterLabel.on('click', () => {
       const formDetail = { activeForm:'country',header:i18nKeys['country'], singleButton: true, isRadio: true, radioGroupName: 'countryRadio' };
@@ -940,22 +1012,31 @@ class RebuildingKits {
     });
 
     this.cache.$implDeadlineFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'implDeadline',header:i18nKeys['implDeadline'], isTextInput: true};
-      const currValue = this.cache.combinedFiltersObj['implDeadline'] ? this.cache.combinedFiltersObj['implDeadline'] : '';
+      const formDetail = {activeForm:'implDeadline',header:i18nKeys['implDeadline'],isDatePicker: true};
+      const currValue = {
+        startDate: this.cache.combinedFiltersObj['impldeadlinestart'] || '',
+        endDate: this.cache.combinedFiltersObj['impldeadlineend'] || ''
+      };
       this.renderFilterForm(currValue, formDetail, this.cache.$implDeadlineFilterLabel);
       $modal.modal();
     });
 
     this.cache.$plannedDateFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'plannedDate',header:i18nKeys['plannedDate'], isTextInput: true};
-      const currValue = this.cache.combinedFiltersObj['plannedDate'] ? this.cache.combinedFiltersObj['plannedDate'] : '';
+      const formDetail = {activeForm:'plannedDate',header:i18nKeys['plannedDate'],isDatePicker: true};
+      const currValue = {
+        startDate: this.cache.combinedFiltersObj['planneddatestart'] || '',
+        endDate: this.cache.combinedFiltersObj['planneddateend'] || ''
+      };
       this.renderFilterForm(currValue, formDetail, this.cache.$plannedDateFilterLabel);
       $modal.modal();
     });
 
     this.cache.$releaseDateFilterLabel.on('click', () => {
-      const formDetail = {activeForm:'releaseDate',header:i18nKeys['releaseDate'], isTextInput: true};
-      const currValue = this.cache.combinedFiltersObj['releaseDate'] ? this.cache.combinedFiltersObj['releaseDate'] : '';
+      const formDetail = {activeForm:'releaseDate',header:i18nKeys['releaseDate'],isDatePicker: true};
+      const currValue = {
+        startDate: this.cache.combinedFiltersObj['releasedatestart'] || '',
+        endDate: this.cache.combinedFiltersObj['releasedateend'] || ''
+      };
       this.renderFilterForm(currValue, formDetail, this.cache.$releaseDateFilterLabel);
       $modal.modal();
     });

@@ -19,8 +19,8 @@
     &__title {
         @include line-height($font-xxl, $font-l);
         @include margin-bottom($margin-l);
-        font-size: $font-xl;
         font-weight: 400;
+        font-size: $font-xl;
 
         &__bold {
             @include margin-right($margin-sm);
@@ -54,10 +54,10 @@
     &__info-card {
         @include padding($padding-l);
         display: flex;
-        background-color: $color-wild-sand;
-        border-radius: $border-radius;
         height: 100%;
         flex-direction: column;
+        border-radius: $border-radius;
+        background-color: $color-wild-sand;
 
         @media #{mobile} {
             @include padding($padding-md);
@@ -86,8 +86,8 @@
     &__info-line {
         @include margin-bottom($margin-md);
         display: flex;
-        align-items: center;
         font-weight: 500;
+        align-items: center;
 
         &--error {
             border: 1px solid $color-alert;
@@ -114,9 +114,9 @@
     &__form-element {
         @include margin-bottom($margin-md);
         display: flex;
-        align-items: center;
-        font-weight: 500;
         position: relative;
+        font-weight: 500;
+        align-items: center;
 
         @media #{$mobile} {
             display: block;
@@ -249,16 +249,16 @@
             @include font-size($font-normal);
             @include margin-right($margin-xs);
             display: inline-block;
-            margin-left: 0;
             transform: translateY(2px);
+            margin-left: 0;
         }
     }
 
     &__conf-title {
         @include margin-bottom($margin-md);
         display: flex;
-        align-items: center;
         font-weight: 700;
+        align-items: center;
 
         i {
             @include font-size($font-xxl);
@@ -392,8 +392,8 @@
             color: $color-black;
         }
         &__modal-body {
-            max-height: 350px;
             overflow-y: scroll;
+            max-height: 350px;
 
             li {
                 @include margin-top($margin-l);
