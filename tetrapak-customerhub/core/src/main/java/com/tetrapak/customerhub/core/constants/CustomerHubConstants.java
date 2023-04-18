@@ -835,6 +835,24 @@ public final class CustomerHubConstants {
     
     /** The Constant for RELEASE_DATE_TOOL_TIP **/
     public static final String RELEASE_DATE_TOOL_TIP = "releaseDateToolTip";
+
+    /** The Constant for RELEASE_DATE_TOOL_TIP **/
+    public static final String FROM_DATE_TEXT = "fromDateText";
+
+    /** The Constant for RELEASE_DATE_TOOL_TIP **/
+    public static final String TO_DATE_TEXT = "toDateText";
+
+    /** The Constant for RELEASE_DATE_TOOL_TIP **/
+    public static final String INVALID_DATE_TEXT = "invalidDateText";
+
+    /** The Constant for RELEASE_DATE_TOOL_TIP **/
+    public static final String PAST_ERROR_TEXT = "pastDateErrorText";
+
+    /** The Constant for RELEASE_DATE_TOOL_TIP **/
+    public static final String DATE_LATER_THAN_ERROR = "dateLaterThanError";
+
+    /** The Constant for RELEASE_DATE_TOOL_TIP **/
+    public static final String DATE_BEFORE_THAN_ERROR = "dateBeforeThanError";
     
     /** The Constant for GENERAL_RKNUMBER_TOOL_TIP **/
     public static final String GENERAL_RKNUMBER_TOOL_TIP = "generalRkNumberToolTip";
