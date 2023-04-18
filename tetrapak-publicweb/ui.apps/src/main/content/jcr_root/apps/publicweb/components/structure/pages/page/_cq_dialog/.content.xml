@@ -102,7 +102,7 @@
                                                 <granite:rendercondition
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType = "commons/renderconditions/allowgroups"
-                                                    allowedGroups="[administrators]"/>
+                                                    allowedGroups="[administrators,pw-global-super-users]"/>
                                             </hideinnav>
                                             <charset
                                                 jcr:primaryType="nt:unstructured"
