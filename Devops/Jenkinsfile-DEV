@@ -481,14 +481,14 @@ def notifyBuildStatus() {
             color = "ff0000"
             break
         case "UNSTABLE":
-            message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings"
+            message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings."
             facts =  [[name: "Build Version", template: "1.0.0-DEV${build_id_number}-SNAPSHOT"],
                         [name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
                         [name: "Workspace", template: "${env.WORKSPACE}"]]
             color = "ffcc00"
             break
         default:
-            message = "Not Built or Aborted"
+            message = "${currentBuild.fullDisplayName} - Not Built or Aborted."
             facts = []
             color = "b3b3b3"
             break
