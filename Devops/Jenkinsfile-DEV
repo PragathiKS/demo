@@ -489,7 +489,7 @@ def notifyBuildStatus() {
             break
         default:
             message = "Not Built or Aborted"
-            facts = [[]]
+            facts = []
             color = "b3b3b3"
             break
         }
