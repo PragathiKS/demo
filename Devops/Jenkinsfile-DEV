@@ -204,7 +204,9 @@ pipeline {
     post {
         always {
             //sendNotifications(currentBuild.currentResult)
-            notifyBuildStatus()
+            script {
+                notifyBuildStatus()
+            }
         }
     }
 }
