@@ -203,7 +203,8 @@ pipeline {
 //Post notification in MS Teams
     post {
         always {
-            sendNotifications(currentBuild.currentResult)
+            //sendNotifications(currentBuild.currentResult)
+            notifyBuildStatus()
         }
     }
 }
@@ -462,4 +463,37 @@ def devartifactdownloadlaval() {
         sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
         echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
     }
+}
+
+def notifyBuildStatus() {
+    switch (currentBuild.result) {
+        case "SUCCESS":
+            message = "${currentBuild.fullDisplayName} - build and deploy status - **SUCCESS**."
+            facts = [[name: "Build Version", template: "1.0.0-DEV${build_id_number}-SNAPSHOT"],
+                        [name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"]]
+            color = "33cc33"
+            break
+        case "FAILURE":
+            message = "${currentBuild.fullDisplayName} failed with ERROR !!"
+            facts = [[name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ff0000"
+            break
+        case "UNSTABLE":
+            message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings"
+            facts =  [[name: "Build Version", template: "1.0.0-DEV${build_id_number}-SNAPSHOT"],
+                        [name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
+                        [name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ffcc00"
+            break
+        default:
+            message = "Not Built or Aborted"
+            facts = [[]]
+            color = "b3b3b3"
+            break
+        }
+    facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
+    office365ConnectorSend webhookUrl: "${env.MS_TEAMS_HOOK_URL}",
+            message: message,
+            factDefinitions: facts
+            color: color
 }
