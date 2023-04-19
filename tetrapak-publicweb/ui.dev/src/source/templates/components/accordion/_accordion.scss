@@ -30,6 +30,16 @@
         }
     }
 
+    &__description {
+        @include font-size($font-sm);
+        @include line-height($font-l, $font-m-xl);
+        @media #{$desktop} {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-xl);
+            font-weight: 400;
+        }
+    }
+
     &__event {
         @include line-height($font-l, $font-baseline);
         display: block;
