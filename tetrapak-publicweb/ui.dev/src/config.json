@@ -170,7 +170,8 @@
         "source/templates/components/pagination/",
         "source/templates/components/socialsidebar/",
         "source/templates/components/stories/",
-        "source/templates/components/searchlanding/"
+        "source/templates/components/searchlanding/",
+        "source/templates/components/accordion/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"

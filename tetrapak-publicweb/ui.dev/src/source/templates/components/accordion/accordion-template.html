@@ -1,0 +1,27 @@
+<sly data-sly-template.accordion_template="${@data, flag}">
+    <div class="tp-card tp-accordion clearfix row" data-module="Accordion" id="accordion_${resource.path.hashCode}">
+      <div class="col-lg-9">
+        <h2 class="tp-accordion__heading"> ${data.heading}</h2>
+        <div class="tp-accordion__events accordion">
+          <sly data-sly-list.tab="${data.questionList}">      
+            <sly data-sly-test="${tab.questionNo}">
+              <button type="button" class="tp-accordion__event js-accordion__event collapsed" 
+                data-toggle="collapse" data-target="#collapse_${tabList.index}_${resource.path.hashCode}" data-index="${tabList.index}" 
+                aria-expanded="${tabList.index == 0 ? 'true' : 'false'}" aria-controls="collapse_${tabList.index}">
+                <div class="tp-accordion__event-title">${tab.questionNo @i18n,locale=data.locale}</div>
+                <i class="icon icon-Chevron_Down"></i>
+              </button>
+            
+              <div data-parent="#accordion_${resource.path.hashCode}" id="collapse_${tabList.index}_${resource.path.hashCode}" 
+                class="tp-accordion-detail-wrapper collapse">
+                <div class="tp-accordion-detail" data-link-parent-title="${tab.questionNo @i18n,locale=data.locale}">
+                  <div class="tp-accordion__event-detail-description">${tab.questionDetail @ context='html'}</div>
+                </div>
+              </div>
+            </sly>
+          </sly>
+        </div>
+      </div>
+    </div>
+  
+  </sly>
