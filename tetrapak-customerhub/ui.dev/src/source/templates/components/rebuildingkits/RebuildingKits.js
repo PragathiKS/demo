@@ -562,14 +562,7 @@ class RebuildingKits {
       }
 
       case 'customise-table':{
-        filterData = this.cache.customisableTableHeaders;
-        $filtersCheckbox.each(function(index) {
-          if ($(this).is(':checked')) {
-            filterData[index].isChecked = true;
-          } else {
-            filterData[index].isChecked = false;
-          }
-        });
+        this.onCustomizeTableColumn($filtersCheckbox, options);
         break;
       }
 
@@ -642,6 +635,24 @@ class RebuildingKits {
         break;
       }
     }
+  }
+
+  onCustomizeTableColumn = ($filtersCheckbox, options) => {
+    let filterData = [];
+    filterData = this.cache.customisableTableHeaders;
+    if (options && options.removeFilter) {
+      // reset default
+      $filtersCheckbox.each(function(index) {
+        $(this).prop('checked', filterData[index].isChecked);
+      });
+    }
+    $filtersCheckbox.each(function(index) {
+      if ($(this).is(':checked')) {
+        filterData[index].isChecked = true;
+      } else {
+        filterData[index].isChecked = false;
+      }
+    });
   }
 
   deleteFilterValue = (key) => {
@@ -889,10 +900,7 @@ class RebuildingKits {
     $('.js-apply-filter-button').prop('disabled', true);
   }
 
-  bindEvents = () => {
-    const $this = this;
-    const {$modal,i18nKeys,$rkCustomizeTableAction, $mobileHeadersActions } = this.cache;
-
+  setDefaultTableHeaders = () => {
     this.cache.customisableTableHeaders = [
       {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:0,isDisabled:false},
       {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:1,isDisabled:false},
@@ -914,7 +922,12 @@ class RebuildingKits {
       {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:17,isDisabled:false},
       {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:18,isDisabled:false}
     ];
+  }
 
+  bindEvents = () => {
+    const $this = this;
+    const {$modal,i18nKeys,$rkCustomizeTableAction, $mobileHeadersActions } = this.cache;
+    this.setDefaultTableHeaders();
     const getNOfOptions = (keyCode) => {
       const data = this.cache.filterModalData[keyCode];
       if (data) {
@@ -1092,6 +1105,11 @@ class RebuildingKits {
       $('.tp-rk__header-actions').removeClass('show');
       $modal.modal();
       _customizeTableBtnAnalytics($rkCustomizeTableAction);
+    });
+
+    this.root.on('click', '.js-tp-rk__set-default-button',  () => {
+      this.setDefaultTableHeaders();
+      this.applyFilter({removeFilter:true});
     });
 
     $mobileHeadersActions.on('click', () => {
