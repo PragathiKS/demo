@@ -956,6 +956,9 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
 
+    /** One Trust Token Servlet Url */
+    public static final String ONETRUST_TOKEN_SERVLET_URL= ".onetrustcookietoken.json";
+    
 
 
     /**
