@@ -4,7 +4,7 @@ import { render } from '../../../scripts/utils/render';
 // import auth from '../../../scripts/utils/auth';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import { storageUtil } from '../../../scripts/common/common';
+import { hasOwn, storageUtil } from '../../../scripts/common/common';
 
 class Rkliabilityconditions {
   constructor({ el }) {
@@ -47,22 +47,24 @@ class Rkliabilityconditions {
     }).done(( res ) => {
       $this.cache.$spinner.addClass('d-none');
       $this.cache.$content.removeClass('d-none');
-      $this.cache.$pdfvalue = res;
-      $this.renderPDFLinks(ctiLangCode);
+      // if(!hasOwn(res,'preferred-language-pdf')) {
+      //   pdfvalue = {...res, 'preferred-language-pdf': {...res['english-pdf'] } };
+      // }
+      $this.renderPDFLinks(ctiLangCode, res);
     }).fail(() => {
       $this.cache.$content.removeClass('d-none');
       $this.cache.$spinner.addClass('d-none');
     });
     // });
   }
-  renderPDFLinks(ctiLangCode) {
+  renderPDFLinks(ctiLangCode, pdfvalue) {
     render.fn({
       template: 'rkliabilityPDFLinks',
       target: '.js-tp-rk-liabilityconditions-pdfLinks',
       data: { 
         i18nKeys: this.cache.i18nKeys,
-        showPreferredLangPDF: ctiLangCode !== 'en' && !!this.cache.$pdfvalue[ctiLangCode],
-        pdfvalue: this.cache.$pdfvalue 
+        showPreferredLangPDF: ctiLangCode !== 'en' && hasOwn(pdfvalue,'preferred-language-pdf'),
+        pdfvalue 
       }}, () => { 
       this.cache.contentWrapper.removeClass('d-none');
       this.cache.$spinner.addClass('d-none');
