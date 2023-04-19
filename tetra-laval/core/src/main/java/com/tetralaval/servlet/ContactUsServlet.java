@@ -122,6 +122,7 @@ public class ContactUsServlet extends SlingAllMethodsServlet {
                 if (form.getThankYouType().equals(THANKYOU_TYPE_REDIRECT)) {
                     type = STATUS_TYPE_REDIRECT;
                     redirect = request.getParameter(":redirect");
+                    redirect = resourceResolver.map(redirect);
                 }
 
                 /* get company details */

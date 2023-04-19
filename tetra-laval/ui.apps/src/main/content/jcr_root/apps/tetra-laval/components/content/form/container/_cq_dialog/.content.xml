@@ -82,6 +82,7 @@
 		                                                fieldDescription="Leave empty to redisplay the form after submission"
 		                                                fieldLabel="Thank You Page"
 		                                                name="./redirectUrl"
+		                                                required="{Boolean}true"
 		                                                rootPath="/content"/>
                                         		</items>
                                        		</type1>
@@ -95,12 +96,14 @@
 						                                jcr:primaryType="nt:unstructured"
 						                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
 						                                name="./thankYouTitle"
-						                                fieldLabel="Thank You Title"/>
+						                                fieldLabel="Thank You Title"
+						                                required="{Boolean}true"/>
 						                            <thankYouMessage
 						                                jcr:primaryType="nt:unstructured"
 						                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
 						                                name="./thankYouMessage"
-						                                fieldLabel="Thank You Message"/>  
+						                                fieldLabel="Thank You Message"
+						                                required="{Boolean}true"/>  
 						                         </items>
 					                         </type2>     
 				                         </items>    
