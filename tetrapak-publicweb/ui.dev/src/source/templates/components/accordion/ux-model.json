@@ -1,21 +1,22 @@
 {
-    "heading": "FAQ Questions",
-    "questionList": [
+    "heading": "Headings goes here",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lectus quis sem lacinia nonummy. Proin mollis lorem non dolor.",
+    "accordionList": [
         {
-            "questionNo": "Look at your customers’ questions",
-            "questionDetail": "<p>Image tools used to insert an image to the Rich Text Editor and click on the image to easily customize the image using quick toolbar. The quick toolbar has the following items Replace – can replace the image with some other image. Align – Align the image with left, right and justify. Image captions</p> "
-        },
-       {
-            "questionNo": "Look at Google and Quora",
-            "questionDetail": "<p>Rich Text Editor allows inserting images from online sources </p>\r\n<p><b>Get started Quick Toolbar to click on the image</b></p>"
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
         },
         {
-            "questionNo": "Write questions from the point of view of your customer",
-            "questionDetail": "<p>Rich Text Editor allows inserting images from online sources </p>\r\n<p><b>Get started Quick Toolbar to click on the image</b></p>"
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
         },
         {
-            "questionNo": "Show some personality in your answers",
-            "questionDetail": "<p>Rich Text Editor allows inserting images from online sources </p>\r\n<p><b>Get started Quick Toolbar to click on the image</b></p>"
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
+        },
+        {
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
         }
     ]
 }
