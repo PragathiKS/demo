@@ -1,4 +1,4 @@
-<template data-sly-template.head="${ @ page }"
+<template data-sly-template.head="${ @ page, pageHeadModel }"
           data-sly-use.headlibRenderer="headlibs.html"
           data-sly-use.headResources="head.resources.html">
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <sly data-sly-use.headerGlobalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil"></sly>
     <sly data-sly-test="${headerGlobalUtil.isPublish && headerGlobalUtil.dataDomainScript}">
-    	<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${headerGlobalUtil.dataDomainScript}" ></script>
+    	<script src="https://cdn.cookielaw.org/consent/${headerGlobalUtil.dataDomainScript}/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${headerGlobalUtil.dataDomainScript}" ></script>
         <script type="text/javascript">
           function OptanonWrapper() { }
       </script>

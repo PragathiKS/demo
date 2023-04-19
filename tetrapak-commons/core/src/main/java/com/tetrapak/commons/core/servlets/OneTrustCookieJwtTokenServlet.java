@@ -37,7 +37,8 @@ import java.util.UUID;
         property = {Constants.SERVICE_DESCRIPTION + "=One Trust Cookie Jwt Token Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
                 "sling.servlet.selectors=" + "onetrustcookietoken", "sling.servlet.extensions=" + "json",
-                "sling.servlet.resourceTypes=" + "publicweb/components/structure/pages/page"})
+                "sling.servlet.resourceTypes=" + "publicweb/components/structure/pages/page",
+                "sling.servlet.resourceTypes=" + "customerhub/components/structure/page"})
 @Designate(ocd = OneTrustCookieJwtTokenServlet.Config.class)
 public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
 
