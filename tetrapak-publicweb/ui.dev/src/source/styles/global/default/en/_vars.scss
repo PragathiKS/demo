@@ -88,7 +88,9 @@ $padding-xxs: 2px;
 $padding-xs: 4px;
 $padding-sm: 8px;
 $padding-md: 16px;
+$padding-twenty: 20px;
 $padding-l: 24px;
+$padding-twenty-eight: 28px;
 $padding-xl: 32px;
 $padding-xxl: 40px;
 $padding-xxxl: 48px;
@@ -132,4 +134,15 @@ $header-height-mobile: 62;
 $section-menu-height-mobile: 56;
 
 // sticky-view-height
-$sticky-view-height: $header-height-mobile + $section-menu-height-mobile
+$sticky-view-height: $header-height-mobile + $section-menu-height-mobile;
+
+// font weights
+$thin-weight:100;
+$xthin-weight:200;
+$light-weight:300;
+$normal-weight:400;
+$medium-weight:500;
+$semibold-weight:600;
+$bold-weight:700;
+$xbold-weight:800;
+$black-weight:900;
