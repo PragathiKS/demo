@@ -11,7 +11,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 
-import com.tetrapak.publicweb.core.multifield.AccordionListModel;
+import com.tetrapak.publicweb.core.models.multifield.AccordionListModel;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AccordionModel {

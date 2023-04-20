@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.multifield;
+package com.tetrapak.publicweb.core.models.multifield;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
