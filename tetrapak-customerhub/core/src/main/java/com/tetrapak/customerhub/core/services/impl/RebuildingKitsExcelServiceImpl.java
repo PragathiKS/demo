@@ -207,7 +207,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 
 	private String formatRKDesc(String rkDesc) {
 		if (Objects.isNull(rkDesc)) {
-			return org.apache.commons.lang.StringUtils.EMPTY;
+			return StringUtils.EMPTY;
 		}
 		return StringEscapeUtils.unescapeCsv(rkDesc);
 	}
