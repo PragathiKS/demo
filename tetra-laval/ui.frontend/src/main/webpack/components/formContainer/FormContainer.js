@@ -46,13 +46,21 @@ class FormContainer {
       })
         .done(function (res) {
           form[0].reset();
-          $this.resetForm(false);
-          logger?.log(res);
+          const resStatus = JSON.parse(res);
+          if(resStatus.statusCode === 200) {
+            if(resStatus.type === 'redirect') {
+              $modal.modal('hide');
+              $this.resetForm();
+              window.open(resStatus.redirectURL, '_blank');
+            } else {
+              $this.resetForm(false);
+            }
+          }
         })
         .fail(function (res) {
-          const errResponse = JSON.parse(res.responseText);
+          const resStatus = JSON.parse(res.responseText);
           $errorMessage.removeClass('d-none');
-          $errorMessage.text(errResponse.statusMessage);
+          $errorMessage.text(resStatus.statusMessage);
           logger?.error(res);
         });
     });
