@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Form Container"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="https://www.adobe.com/go/aem_cmp_form_container_v2">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <actionType
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                deleteHint="{Boolean}true"
+                                                fieldDescription="Indicates the action to be taken on form submission"
+                                                fieldLabel="Action Type"
+                                                name="./actionType">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="tetra-laval/components/content/form/datasource/formdata"
+                                                    dropDownType="actionType"/>
+                                            </actionType>
+                                            <emailTemplate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                deleteHint="{Boolean}true"
+                                                fieldDescription="Indicates the email Template to be used when sending the email"
+                                                fieldLabel="Email Template"
+                                                name="./emailTemplate">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="tetra-laval/components/content/form/datasource/formdata"
+                                                    dropDownType="emailTemplate"/>
+                                            </emailTemplate> 
+                                            <thankYouType
+						                        jcr:primaryType="nt:unstructured"
+						                        sling:resourceType="granite/ui/components/foundation/form/select"
+						                        class="cq-dialog-dropdown-showhide"
+						                        cq-dialog-dropdown-showhide-target=".thankyou-options-showhide-target"
+						                        fieldLabel="Thank You Type"
+						                        name="./thankYouType">
+						                        <items jcr:primaryType="nt:unstructured">
+						                            <option1
+						                                jcr:primaryType="nt:unstructured"
+						                                text="Redirect to Thank You Page"
+						                                value="showThankYouPage"/>
+						                            <option2
+						                                jcr:primaryType="nt:unstructured"
+						                                text="Display Thank You Message"
+						                                value="showThankYouMessage"/>
+						                        </items>
+						                    </thankYouType>
+                                            <type1
+						                        jcr:primaryType="nt:unstructured"
+						                        sling:resourceType="granite/ui/components/foundation/container"
+						                        class="hide thankyou-options-showhide-target"
+						                        showhidetargetvalue="showThankYouPage">
+						                        <items jcr:primaryType="nt:unstructured">    
+		                                            <redirectUrl
+		                                                jcr:primaryType="nt:unstructured"
+		                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+		                                                fieldDescription="Leave empty to redisplay the form after submission"
+		                                                fieldLabel="Thank You Page"
+		                                                name="./redirectUrl"
+		                                                required="{Boolean}true"
+		                                                rootPath="/content"/>
+                                        		</items>
+                                       		</type1>
+                                       		<type2
+						                        jcr:primaryType="nt:unstructured"
+						                        sling:resourceType="granite/ui/components/foundation/container"
+						                        class="hide thankyou-options-showhide-target foundation-layout-util-vmargin"
+						                        showhidetargetvalue="showThankYouMessage">
+						                        <items jcr:primaryType="nt:unstructured">
+						                        	<thankYouTitle
+						                                jcr:primaryType="nt:unstructured"
+						                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+						                                name="./thankYouTitle"
+						                                fieldLabel="Thank You Title"
+						                                required="{Boolean}true"/>
+						                            <thankYouMessage
+						                                jcr:primaryType="nt:unstructured"
+						                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+						                                name="./thankYouMessage"
+						                                fieldLabel="Thank You Message"
+						                                required="{Boolean}true"/>  
+						                         </items>
+					                         </type2>     
+				                         </items>    
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <display
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Display"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <style
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldDescription="Indicates the style to be applied to the form"
+                                                fieldLabel="Style"
+                                                name="./cssClass">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <default
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Default"
+                                                        value="tl-contactus-form"/>
+                                                </items>
+                                            </style>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </display>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

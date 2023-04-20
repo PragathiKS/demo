@@ -1,0 +1,115 @@
+.tl-contact-modal {
+    .tl-contactForm {
+        &__thankyou {
+            display: none;
+            text-align: center;
+
+            &-heading {
+                display: none;
+            }
+        }
+
+        &__error {
+            @include padding-top($spacing-big-half);
+            @include font-size($font-sm);
+            @include line-height($font-normal, $font-sm);
+            color: $color-red;
+        }
+    }
+    .cmp-form {
+        &-text {
+            @include padding-bottom($padding-sm);
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            font-size: 14px;
+            line-height: 24px;
+
+            label {
+                display: block;
+            }
+
+            input,
+            textarea {
+                @include padding($padding-sm $padding-md);
+                display: block;
+                width: 100%;
+            }
+
+            textarea {
+                resize: none;
+            }
+        }
+
+        &-button {
+            @include margin-top($margin-md);
+            @include padding($padding-sm $padding-md $padding-sm $padding-md);
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+
+            background-color: $color-congress-blue;
+            color: $color-white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 250ms ease;
+            font-weight: 400;
+            letter-spacing: normal;
+
+            &:hover {
+                background-color: $color-sky-blue;
+            }
+        }
+    }
+
+    /* Modal */
+    .modal {
+        &-header {
+            @include padding($padding-sm $padding-zero $padding-md $padding-zero);
+            align-items: center;
+            border: 0 none;
+
+            @media #{$mobile-large} {
+                @include padding($padding-md $padding-zero $padding-l $padding-zero);
+            }
+
+            @media #{$desktop} {
+                @include padding($padding-xl $padding-zero $padding-l $padding-zero);
+            }
+
+            h2 {
+                @include margin-bottom($margin-zero);
+                @include font-size($font-l);
+                @include line-height($font-xl, $font-l);
+                font-weight: 400;
+
+                @media #{$desktop} {
+                    @include font-size($font-xl);
+                    @include line-height($font-d-xl, $font-xl);
+                    font-weight: 700;
+                }
+            }
+
+            .pw-modal-header__heading {
+                width: 100%;
+            }
+        }
+        &-body {
+            @include padding($padding-md);
+            background: $color-white;
+            max-width: 90vw;
+
+            @media #{$mobile-large} {
+                @include padding($padding-l);
+                @include padding-top($padding-md);
+            }
+
+            @media #{$desktop} {
+                @include padding($padding-xxxl);
+                @include padding-top($padding-md);
+            }
+            
+            .container {
+                @include padding($padding-zero);
+            }
+        }
+    }
+}
