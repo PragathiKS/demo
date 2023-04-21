@@ -1,7 +1,6 @@
 <sly data-sly-template.accordion_template="${@data, flag}">
   <div class="pw-container" data-module="Accordion">
     <div class="tp-accordion pw-padding--regular pw-margin--regular pw-theme--grayscale-white" id="accordion_${resource.path.hashCode}">
-      <div class="col-lg-9">
         <h2 class="tp-accordion__heading" data-sly-test="${data.heading}"> ${data.heading}</h2>
         <p class="tp-accordion__description" data-sly-test="${data.description}"> ${data.description}</p>
         <div class="tp-accordion__events accordion">
@@ -23,8 +22,6 @@
             </sly>
           </sly>
         </div>
-      </div>
     </div>
   </div>
-  
-  </sly>
+</sly>
