@@ -26,7 +26,7 @@ public class AccordionListModel {
      *
      * @return the heading.
      */
-    public String getHeading() {
+    public String getAccordionHeading() {
         return accordionHeading;
     }
 
