@@ -34,6 +34,9 @@ public class AccordionModel {
     @Inject
     private String description;
 
+    /**
+     * Accordion List.
+     */
     @Inject
     private List<AccordionListModel> accordionList;
 
