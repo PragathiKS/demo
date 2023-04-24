@@ -21,8 +21,6 @@
             @include padding-bottom($padding-sm);
             @include font-size($font-baseline);
             @include line-height($font-l, $font-baseline);
-            font-size: 14px;
-            line-height: 24px;
 
             label {
                 display: block;
