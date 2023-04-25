@@ -75,7 +75,6 @@
   
           // Url for the request
           cuoneTrustValue = window.cuoneTrustValue + "?UserID=" + cookieValue;
-          // if (isCookieExist === false || localStorage.getItem("jwttokenset") === null) {
           fetch(cuoneTrustValue)
             .then((response) => {
               return response.json();
@@ -92,12 +91,6 @@
             .catch(function (error) {
               console.log(error);
             });
-          // } else {
-            // var userid = localStorage.getItem("uidValueset");
-            // var jwt = localStorage.getItem("jwttokenset");
-            // OneTrust.dataSubjectParams.id = userid;
-            // OneTrust.dataSubjectParams.token = jwt;
-          // }
         })();
   
         //# sourceURL=cookieDebug.js
