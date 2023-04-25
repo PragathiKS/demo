@@ -1,0 +1,157 @@
+@Library('jenkins-pipeline-library') _
+
+pipeline {
+    agent {
+        node {
+            label 'cfe-deploy'
+        }
+    }
+    
+    triggers {
+        cron('H 1 * * 1-5')
+    }
+    
+    parameters {
+        
+        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Test_Publicweb'
+        booleanParam defaultValue: true, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Test_MyTetraPak'
+	    // booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
+	    // booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
+        // booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
+        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
+        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
+        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Sitespeed Test', name: 'Sitespeed_Run'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+
+    stages {
+        stage('Pa11y Execution') {      
+            when { expression { return params.Pa11y_Execution } }      
+            steps {
+                script {
+                    warnError(message: "Pa11y Execution failed with error") {
+                        parallel (
+                            "MyTetrapak Pa11y Test" : {
+                                if (params.Test_MyTetraPak) {
+                                    pallycuhuscript()
+                                }
+                            },
+                            "PublicWeb Pa11y Test" : {
+                                if (params.Test_Publicweb) {
+                                    pallypwscript()
+                                }
+                            }
+                        )
+                    }
+                }
+            }
+        }
+
+        stage('Sitespeed Execution') {      
+            when { expression { return params.Sitespeed_Run } }  
+            steps {
+                script {
+                    warnError(message: "Sitespeed Execution failed with error") {
+                        parallel (
+                            "MyTetrapak SiteSpeed Test" : {
+                                if (params.Test_MyTetraPak) {
+                                    sitespeedcuhu()
+                                }
+                            },
+                            "PublicWeb SiteSpeed Test" : {
+                                if (params.Test_Publicweb) {
+                                    sitespeedpw()                  
+                                }
+                            }
+                        )
+                    }
+                }
+            } 
+        }
+
+        stage('Zap Tools Execution') {        
+            steps {
+                script {
+                    if (params.ZAP_Run) {
+                        warnError(message: "Zap Tools Execution failed with error") {
+                            zaptest()
+                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "zap-${appname}", reportFiles: 'zap.html', reportName: "ZAPReport-${appname}", reportTitles: '']) 
+                        }           					
+                    }
+                }
+            } 
+        }
+    }
+}
+
+def zaptest() {
+    def test_url_pally_zap_pw = "https://www-dev.tetrapak.com/"
+    echo "Starting Zap Test Run- ${appname}"
+    sh 'sudo docker ps -a'
+    sh 'if docker ps | grep zap; then echo "ZAP is running, initiating stop and remove" && sudo docker stop zap && sudo docker rm zap ; else echo "stopped"; fi'
+    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+    sleep 30
+    echo "Starting ZAP test Run on ${appname} Urls"
+    sh "docker exec  zap zap-cli spider ${test_url_pally_zap_pw}"
+    sh 'docker exec  zap zap-cli report -f html -o zap.html'
+    sh "mkdir -p zap-${appname}"
+    sh "docker cp zap:zap/zap.html zap-${appname}"
+    sh 'sudo docker stop zap'
+    sh 'sudo docker rm zap'
+}
+
+
+def sitespeedcuhu() {
+    test_url_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
+    sh label: "Starting Sitespeed-Firefox-Desktop Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://mypages-dev.tetrapak.com/dashboard.html' 
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-Desktop', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://mypages-dev.tetrapak.com/dashboard.html'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-Chrome', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-IPhone6 Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "iPhone 6"  --outputFolder sitespeed_iphone6 https://mypages-dev.tetrapak.com/dashboard.html'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-iphone6', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-Nexus7 Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Nexus 7"  --outputFolder sitespeed_Nexus7 https://mypages-dev.tetrapak.com/dashboard.html'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-SamsungS3', reportTitles: ''])
+}
+
+def sitespeedpw() {
+    test_url_pw = "https://www-dev.tetrapak.com"
+    sh label: "Starting Sitespeed-Firefox-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://www-dev.tetrapak.com' 
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Chrome', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-IPhone6 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "iPhone 6"  --outputFolder sitespeed_iphone6 https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-iphone6', reportTitles: ''])
+
+    sh label: "Starting Sitespeed-Nexus7 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Nexus 7"  --outputFolder sitespeed_Nexus7 https://www-dev.tetrapak.com'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-SamsungS3', reportTitles: ''])
+}                        
+
+def pallycuhuscript() {
+    echo "Starting pa11y test Run on CustomerHub Urls"
+    reportname = "Pa11y Report - CustomerHub"
+    sh 'chmod 777 Devops/PallyReportCuhu.sh'
+    sh 'sh -x Devops/PallyReportCuhu.sh'
+    sh 'mkdir -p pally-customerHub'
+    sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport-MyTetraPak', reportTitles: ''])
+}
+
+def pallypwscript() {
+    echo "Starting pa11y test Run on PublicWeb Urls"
+    reportname = "Pa11y Report - publicweb"
+    sh 'chmod 777 Devops/PallyReportPubWeb.sh'
+    sh 'sh -x Devops/PallyReportPubWeb.sh'
+    sh 'mkdir -p pally-publicWeb'
+    sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
+                                      
+}
