@@ -50,12 +50,16 @@ public class MediaLinkModelTest {
     @Test
     public void testValue() {
         assertEquals("Heading", model.getHeading());
+        assertEquals("headingDesc", model.getHeadingDesc());
         assertEquals("mediaLink01", model.getAnchorId());
         assertEquals("Anchor  title", model.getAnchorTitle());
         assertEquals("grayscale-white", model.getPwTheme());
         assertEquals("title 1", model.getColumnOneTitle());
+        assertEquals("columnOneDesc", model.getColumnOneDesc());
         assertEquals("title 2", model.getColumnTwoTitle());
+        assertEquals("columnTwoDesc", model.getColumnTwoDesc());
         assertEquals("title 3", model.getColumnThreeTitle());
+        assertEquals("columnThreeDesc", model.getColumnThreeDesc());
         assertEquals("Link Label 3", model.getColumnThreeList().get(0).getLinkLabel());
         assertEquals("Link Label 2", model.getColumnTwoList().get(0).getLinkLabel());
         assertEquals("Link Label 1", model.getColumnOneList().get(0).getLinkLabel());
@@ -65,5 +69,8 @@ public class MediaLinkModelTest {
                 model.getColumnTwoList().get(0).getLinkUrl());
         assertEquals("/content/tetrapak/publicweb/lang-master/en/solution.html",
                 model.getColumnThreeList().get(0).getLinkUrl());
+        assertEquals("linkDesc", model.getColumnOneList().get(0).getLinkDesc());
+        assertEquals("linkDesc", model.getColumnTwoList().get(0).getLinkDesc());
+        assertEquals("linkDesc", model.getColumnThreeList().get(0).getLinkDesc());
     }
 }
