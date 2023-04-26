@@ -996,6 +996,9 @@ public final class CustomerHubConstants {
 
     /** Comments Placeholder */
     public static final String COMMENTS_PLACEHOLDER = "commentsPlaceholder";
+    
+    /** One Trust Token Servlet Url */
+    public static final String ONETRUST_TOKEN_SERVLET_URL= ".onetrustcookietoken.json";
 
 
     /**

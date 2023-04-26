@@ -20,6 +20,10 @@ public final class CommonsConstants {
     public static final String USER_GROUP_READ_SERVICE = "readUserGroupsService";
 
     public static final String ADMIN_USER = "admin";
+    
+    public static final String CUSTOMER_HUB = "customerhub";
+    
+    public static final String SHA_256 = "SHA-256";
 
     /**
      * Instantiates a new Commons constants.
