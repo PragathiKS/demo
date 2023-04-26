@@ -16,8 +16,7 @@ import com.tetralaval.constants.TLConstants;
  * Sling job to send email.
  */
 @Component(immediate = true, service = JobConsumer.class, property = {
-        JobConsumer.PROPERTY_TOPICS + "=" + TLConstants.CONTACTUS_EMAIL_JOB
-})
+	JobConsumer.PROPERTY_TOPICS + "=" + TLConstants.CONTACTUS_EMAIL_JOB })
 public class ContactUsEmailJob implements JobConsumer {
 
     /**
@@ -39,17 +38,18 @@ public class ContactUsEmailJob implements JobConsumer {
      */
     @Override
     public JobResult process(final Job job) {
-        JobResult result = JobResult.FAILED;
-        LOGGER.debug("Start - ContactUsEmailJob");
-        try {
-            emailService.sendEmail(job.getProperty("templatePath").toString(),
-                    (Map<String, String>) job.getProperty("emailParams"), (String[]) job.getProperty("receipients"));
-            result = JobResult.OK;
-        } catch (Exception e) {
-            LOGGER.error("An error occured with sending email", e);
-        }
-        LOGGER.debug("End - ContactUsEmailJob with result {}", result);
-        return result;
+	JobResult result = JobResult.FAILED;
+	LOGGER.debug("Start - ContactUsEmailJob");
+	try {
+	    emailService.sendEmail(job.getProperty(TLConstants.JOB_TEMPLATE_PATH).toString(),
+		    (Map<String, String>) job.getProperty(TLConstants.JOB_EMAIL_PARAMS),
+		    (String[]) job.getProperty(TLConstants.JOB_RECIPIENTS));
+	    result = JobResult.OK;
+	} catch (Exception e) {
+	    LOGGER.error("An error occured with sending email", e);
+	}
+	LOGGER.debug("End - ContactUsEmailJob with result {}", result);
+	return result;
 
     }
 }

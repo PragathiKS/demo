@@ -12,9 +12,6 @@ public class FormContainer {
     private String actionType;
 
     @ValueMapValue
-    private String cssClass;
-
-    @ValueMapValue
     private String emailTemplate;
 
     @ValueMapValue
@@ -37,10 +34,6 @@ public class FormContainer {
 
     public String getActionType() {
         return actionType;
-    }
-
-    public String getCssClass() {
-        return cssClass;
     }
 
     public String getEmailTemplate() {

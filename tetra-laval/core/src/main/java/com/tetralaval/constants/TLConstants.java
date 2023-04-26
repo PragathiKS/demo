@@ -67,23 +67,38 @@ public final class TLConstants {
 
     /** The Constant TEXT_PROPERTY. */
     public static final String TEXT_PROPERTY = "text";
-    
+
     /** The Constant DOMAINSCRIPT */
-    public static final String DOMAINSCRIPT ="domainScript";
-    
+    public static final String DOMAINSCRIPT = "domainScript";
+
     /** The Constant for Contact Us Email Job. */
     public static final String CONTACTUS_EMAIL_JOB = "com/tetralaval/contactus/email";
 
     /** The Constant CONTACT_US_MAIL_TEMPLATE_PATH. */
     public static final String CONTACT_US_MAIL_TEMPLATE_PATH = "/etc/notification/email/tetralaval/contactus/email.html";
-    
+
+    /** The Constant UTF_8. */
+    public static final String UTF_8 = "UTF-8";
+
+    /** The Constant HTML_CONTENT_TYPE. */
+    public static final String HTML_CONTENT_TYPE = "text/html; charset=UTF-8";
+
+    /** The Constant for recipients in Contact Us Email Job. */
+    public static final String JOB_RECIPIENTS = "recipients";
+
+    /** The Constant for emailParams in Contact Us Email Job. */
+    public static final String JOB_EMAIL_PARAMS = "emailParams";
+
+    /** The Constant for email template path in Contact Us Email Job. */
+    public static final String JOB_TEMPLATE_PATH = "templatePath";
+
     /**
      * Instantiates a new TL constants.
      */
     private TLConstants() {
-        /*
-         * adding a private constructor to hide the implicit one
-         */
+	/*
+	 * adding a private constructor to hide the implicit one
+	 */
     }
 
 }
