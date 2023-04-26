@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 import $ from 'jquery';
 import { saveAs } from 'file-saver';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
@@ -5,6 +6,8 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { getI18n, parseQueryString } from '../../../scripts/common/common';
+import { _paginate } from '../../../scripts/utils/paginateData';
+import { ACTIVE_PAGE, ITEM_PER_PAGE } from '../../../scripts/utils/constants';
 
 class Searchresults {
   constructor({ el }) {
@@ -35,9 +38,22 @@ class Searchresults {
     this.cache.resultSearchTermText = this.cache.$searchResultsTitle.data('resultSearchTerm');
 
     this.cache.$pagination = $('.js-pagination', this.root);
+    this.cache.$searchLandingList1 = $('.pw-search-result-head');
     this.cache.searchParams = { 'searchTerm': '', 'contentType': {}, 'theme': {}, 'page': 1 };
     this.cache.totalPages = 0;
     this.cache.totalResultCount = 0;
+    this.cache.searchLandingType = $('.pw-search-result-head').data('type');
+    this.cache.searchLandingServletPath = $('.pw-search-result-head').data('servlet');
+    if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
+    this.cache.searchLandingType === 'news'){
+      $('.left-wrapper-filter').addClass('display-none');
+      $('.pw-search-results__filters__theme').addClass('padding-none');
+    } else {
+      $('.left-wrapper-filter').removeClass('display-none');
+      $('.pw-search-results__filters__theme').removeClass('padding-none');
+    }
+    this.cache.activePage = ACTIVE_PAGE;
+    this.cache.itemsPerPage = ITEM_PER_PAGE;
   }
 
   bindEvents() {
@@ -175,6 +191,10 @@ class Searchresults {
       this.cache.$filterChecks.attr('disabled', true);
       let queryParams = this.cache.queryParams;
       queryParams = queryParams.charAt(0) === '?' ? queryParams.slice(1, queryParams.length + 1) : queryParams;
+      if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' || 
+      this.cache.searchLandingType === 'news'){
+        this.cache.servletPath = this.cache.searchLandingServletPath;
+      }
       ajaxWrapper.getXhrObj({
         url: this.cache.servletPath,
         method: ajaxMethods.GET,
@@ -365,14 +385,24 @@ class Searchresults {
 
   extractQueryParams = () => {
     const params = parseQueryString();
-    params['searchTerm'] = params['searchTerm'] && decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim() || '';
+    params['searchTerm'] = (params['searchTerm'] && decodeURIComponent(params['searchTerm']) && decodeURIComponent(params['searchTerm']).trim()) || '';
+    if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
+    this.cache.searchLandingType === 'news'){
+      params['searchTerm'] = this.cache.searchLandingType;
+      params['contentType'] = this.cache.searchLandingType;
+    }
     this.cache.$searchInput.val(params['searchTerm']);
-    this.cache.queryParams = window.location.search;
-    Object.keys(params).map(key => {
-      if ((key === 'contentType' || key === 'theme')) {
+
+    const urlParams = new URLSearchParams();
+    Object.keys(params).forEach((key) => {
+      if (!key) {
+        return;
+      }
+      urlParams.append(key, params[key]);
+      if (key === 'contentType' || key === 'theme') {
         if (params[key].indexOf(',') > -1) {
           const extractParams = params[key].split(',');
-          extractParams.forEach(el => {
+          extractParams.forEach((el) => {
             this.cache.searchParams[key][el] = $(`#${el}`).val();
             $(`#${el}`).prop('checked', true);
           });
@@ -385,6 +415,7 @@ class Searchresults {
         this.cache.searchParams[key] = params[key];
       }
     });
+    this.cache.queryParams = window.location.search || `?${urlParams}`;
     this.renderFilterTags();
   }
 
@@ -428,15 +459,18 @@ class Searchresults {
     const pageNumber = $this.data('pageNumber');
     this.cache.searchParams.page = pageNumber;
     this.pushIntoUrl();
+    this.search();
+    this.cache.activePage = pageNumber;
+    this.renderPagination();
     $('html, body').animate({
       scrollTop: 0
     }, 500);
-    this.search();
   }
 
   renderPagination = () => {
     const currentPage = this.cache.searchParams.page && parseInt(this.cache.searchParams.page,10);
     const totalPages = this.cache.totalPages;
+    const totalResults = this.cache.totalResultCount;
     const paginationText = this.cache.$pagination.data('paginationText');
     const paginationData = {
       paginationText,
@@ -447,14 +481,33 @@ class Searchresults {
       nextPage: currentPage + 1,
       nextDisabled: currentPage >= totalPages ? true : false
     };
-    if (currentPage <= totalPages) {
-      render.fn({
-        template: 'searchPagination',
-        data: paginationData,
-        target: this.cache.$pagination
-      });
+
+    const paginationObj = _paginate(totalResults, this.cache.activePage, this.cache.itemsPerPage, 3);
+
+    if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
+      this.cache.searchLandingType === 'news'){
+      if (currentPage <= totalPages) {
+        render.fn({
+          template: 'tablePagination',
+          data: paginationObj,
+          target: this.cache.$pagination
+        });
+      }
+    } else {
+      if (currentPage <= totalPages) {
+        render.fn({
+          template: 'searchPagination',
+          data: paginationData,
+          target: this.cache.$pagination
+        });
+      }
     }
   }
+  
 }
 
+
 export default Searchresults;
+
+
+

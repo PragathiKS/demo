@@ -26,6 +26,11 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
+        office365ConnectorWebhooks([[
+            name: 'Office 365',
+            startNotification: true,
+            url: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1"
+        ]])
     }
 
     environment {
@@ -198,7 +203,10 @@ pipeline {
 //Post notification in MS Teams
     post {
         always {
-            sendNotifications(currentBuild.currentResult)
+            //sendNotifications(currentBuild.currentResult)
+            script {
+                notifyBuildStatus()
+            }
         }
     }
 }
@@ -457,4 +465,37 @@ def devartifactdownloadlaval() {
         sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
         echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
     }
+}
+
+def notifyBuildStatus() {
+    switch (currentBuild.result) {
+        case "SUCCESS":
+            message = "${currentBuild.fullDisplayName} - build and deploy status - **SUCCESS**."
+            facts = [[name: "Build Version", template: "1.0.0-DEV${build_id_number}-SNAPSHOT"],
+                        [name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"]]
+            color = "33cc33"
+            break
+        case "FAILURE":
+            message = "${currentBuild.fullDisplayName} failed with ERROR !!"
+            facts = [[name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ff0000"
+            break
+        case "UNSTABLE":
+            message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings."
+            facts =  [[name: "Build Version", template: "1.0.0-DEV${build_id_number}-SNAPSHOT"],
+                        [name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
+                        [name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ffcc00"
+            break
+        default:
+            message = "${currentBuild.fullDisplayName} - Not Built or Aborted."
+            facts = []
+            color = "b3b3b3"
+            break
+        }
+    facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
+    office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
+            message: message,
+            factDefinitions: facts
+            color: color
 }

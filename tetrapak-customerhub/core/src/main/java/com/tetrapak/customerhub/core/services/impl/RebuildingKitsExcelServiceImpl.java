@@ -4,6 +4,8 @@ import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.RebuildingKitsExcelService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -165,7 +167,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineCode()));
 		rbkPropertiesList.add(tidyCSVOutput(formatPosition(rbk.getPosition())));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkNumber()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkDesc()));
+		rbkPropertiesList.add(formatRKDesc(rbk.getRkDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getSerialNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatus()));
@@ -174,7 +176,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatusDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDeadline()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatus()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatusDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStructure()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getServiceOrder()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getOrder()));
@@ -192,7 +194,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkHandling()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentMaterial()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentMaterialDesc()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentType()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentTypeDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getCountryName()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineName()));
@@ -201,6 +203,13 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getKpiExcl()));
 		return rbkPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.TAB))
 				.concat(CustomerHubConstants.NEWLINE);
+	}
+
+	private String formatRKDesc(String rkDesc) {
+		if (Objects.isNull(rkDesc)) {
+			return StringUtils.EMPTY;
+		}
+		return StringEscapeUtils.unescapeCsv(rkDesc);
 	}
 
 	private String tidyCSVOutput(String field) {

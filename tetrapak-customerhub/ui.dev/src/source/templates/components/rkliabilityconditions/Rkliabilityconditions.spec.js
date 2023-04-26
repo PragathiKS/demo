@@ -4,7 +4,7 @@ import rkLiabilityPDFLinksData from './data/rkLiabilityPDFLinks.json';
 import rkLiabilityPDFLinksTemplate from '../../../test-templates-hbs/rkLiabilityPDFLinks.hbs';
 import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import auth from '../../../scripts/utils/auth';
+// import auth from '../../../scripts/utils/auth';
 
 describe('Rkliabilityconditions', function () {
   const jqRef = {
@@ -37,15 +37,15 @@ describe('Rkliabilityconditions', function () {
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     const apiResponse = {data :[{...rkLiabilityPDFLinksData }]};
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(apiResponse));
+    this.ajaxStub.returns(ajaxResponse(apiResponse));
     this.openStub = sinon.stub(window, 'open');
-    this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
-      data: {
-        access_token: 'eyJleHAiOjE2NzkzODkyMzAsImlhdCI6MTY3OTM4ODYzMH0.fD4ORA2N9_lh9tRWiRDBB69X05YbPUCpQalTuPAdGOc',
-        expires_in: '43199',
-        token_type: 'BearerToken'
-      }
-    });
+    // this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
+    //   data: {
+    //     access_token: 'eyJleHAiOjE2NzkzODkyMzAsImlhdCI6MTY3OTM4ODYzMH0.fD4ORA2N9_lh9tRWiRDBB69X05YbPUCpQalTuPAdGOc',
+    //     expires_in: '43199',
+    //     token_type: 'BearerToken'
+    //   }
+    // });
     this.rkliabilityConditions.init();
   });
   after(function () {
@@ -57,7 +57,7 @@ describe('Rkliabilityconditions', function () {
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
-    this.tokenStub.restore();
+    // this.tokenStub.restore();
   });
 
   it('should initialize', function (done) {
