@@ -131,9 +131,9 @@ def sitespeedpw(Map map) {
             def prescript_args = "--preScript sitespeed-pw-cookie_consent.mjs --browsertime.test.url \"${root_url}\""
             def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
             parallel (
-                    def reportName = "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop"
-                    def reportDir = "sitespeed_ff_${map.env}"
                     "PublicWeb-SiteSpeed-${map.env}-Firefox-Desktop" : {
+                        def reportName = "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop"
+                        def reportDir = "sitespeed_ff_${map.env}"
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io -b firefox --headless true\
                             --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}.txt" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
