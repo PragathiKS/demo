@@ -129,7 +129,7 @@ def sitespeedpw(Map map) {
             def root_url = "https://www-${map.env}.tetrapak.com"
             def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
             def prescript_args = "--preScript sitespeed-pw-cookie_consent.mjs --browsertime.test.url \"${root_url}\""
-            def volume_args = "-v \"$(pwd)\":/sitespeed.io"
+            def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
             parallel (
                     def reportName = "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop"
                     def reportDir = "sitespeed_ff_${map.env}"
