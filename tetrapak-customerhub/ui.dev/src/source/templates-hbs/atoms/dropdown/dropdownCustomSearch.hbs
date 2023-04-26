@@ -1,0 +1,21 @@
+<div class="tpatom-dropdown {{#if className}} {{className}}{{/if}}">
+{{#if labelText}}<span class="tpatom-dropdown__text js-dropdown__text{{#if labelClasses}} {{labelClasses}}{{/if}}" id="tpatom-dropdown-{{name}}">{{i18n key=labelText}}</span>{{/if}}
+    <div class="dropdown js-custom-dropdown">
+         {{> atoms/dropdown/dropdown-custom-button this}}  
+        <div class="dropdown-menu">                           
+             <div class="tpatom-dropdown__search-text-container clearfix">   
+                               
+                    {{> atoms/input/input name="search-text" placeholder=placeholderForCustomerSearchText            
+                    eleClasses=searchTextJsClass    
+                    iconClass ="icon-Search"   
+                    }} 
+              
+            </div>
+
+            <div class="tpatom-dropdown-custom-item custom-scrollbar-vertical"> 
+                 {{> atoms/dropdown/dropdownCustomSearchOptions this.customerData
+                    }} 
+            </div>
+         </div>
+    </div>
+</div>
