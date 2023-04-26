@@ -664,16 +664,7 @@ class FinancialStatement {
         if (isIOS()) {
           self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['reset', resetLinkText]);
         }
-      })
-      .on('click', '.js-financial-statement__reset', this, function (e) {
-        const self = e.data;
-        const resetLinkText = $(this).text();
-        const type = 'reset';
-        self.resetFilters(resetLinkText, type);
-        if (isIOS()) {
-          self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['reset', resetLinkText]);
-        }
-      })
+      })     
       .on('input', '.js-financial-statement__date-range-input', this, this.validateDateRange);
     this.root.parents('.js-financials').on(EVT_FINANCIAL_FILEDOWNLOAD, this, this.downloadPdfExcel);
   }
