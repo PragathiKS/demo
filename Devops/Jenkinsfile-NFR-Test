@@ -17,9 +17,8 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Test_MyTetraPak'
 	    // booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
 	    // booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
-        // booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Sitespeed Test', name: 'Sitespeed_Run'
     }
 
@@ -60,7 +59,7 @@ pipeline {
                         parallel (
                             "MyTetrapak SiteSpeed Test" : {
                                 if (params.Test_MyTetraPak) {
-                                    sitespeedcuhu()
+                                    sitespeedCuHu(env: 'dev')
                                 }
                             },
                             "PublicWeb SiteSpeed Test" : {
@@ -105,21 +104,61 @@ def zaptest() {
     sh 'sudo docker rm zap'
 }
 
+def sitespeedCuHu(Map map) {
+    def url_list_file_nm = (map.env != stage) ? "cuhu_urls_${map.env}.txt" : "sitespeed-mtp-stage-test.mjs"
+    def root_url = "'https://mypages-${map.env}.tetrapak.com'"
+    def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
+    def prescript_args = "--preScript sitespeed-mtp-login.mjs --browsertime.test.url '${root_url}'"
+    def postscript_arg = "--postScript sitespeed-mtp-logout.mjs"
+    def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
+    sh "cp Devops/PallyUrlsCuhu.txt Devops/sitespeed/${url_list_file_nm}"
+    dir('Devops') {
+        dir('sitespeed') {
+            sh "sed -i \"s/dev/${map.env}/g\" ${url_list_file_nm}"
+            parallel (
+                    "CustomerHub-SiteSpeed-${map.env}-Firefox-Desktop" : {
+                        def reportName = "Sitespeed-CustomerHub-${map.env}-FireFox-Desktop"
+                        def reportDir = "sitespeed_ff_${map.env}"
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
+                            --outputFolder ${reportDir} ${prescript_args} ${postscript_arg} ${sustainable_args} ${url_list_file_nm}" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName, reportTitles: reportName])
+                    },
+                    "CustomerHub-SiteSpeed-${map.env}-Chrome-Desktop" : {
+                        def reportName = "Sitespeed-CustomerHub-${map.env}-Chrome-Desktop"
+                        def reportDir = "sitespeed_chrome_${map.env}"
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
+                            --outputFolder ${reportDir} ${prescript_args} ${postscript_arg}  ${sustainable_args} ${url_list_file_nm}" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName , reportTitles: reportName])
+                    },
+                    "CustomerHub-SiteSpeed-${map.env}-IPhone6" : {
+                        def reportName = "Sitespeed-CustomerHub-${map.env}-IPhone6"
+                        def reportDir = "sitespeed_iphone6_${map.env}"
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
+                            -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
+                            --outputFolder ${reportDir} ${prescript_args} ${postscript_arg} ${url_list_file_nm}" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName , reportTitles: reportName])
+                    },
+                    "CustomerHub-SiteSpeed-${map.env}-Nexus7" : {
+                        def reportName = "Sitespeed-CustomerHub-${map.env}-Nexus7"
+                        def reportDir = "sitespeed_Nexus7_${map.env}"
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
+                            -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
+                            --outputFolder ${reportDir} ${prescript_args} ${postscript_arg}  ${sustainable_args} ${url_list_file_nm}" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName , reportTitles: reportName])
+                    }
+            )
+        }
+    }
+} 
 
-def sitespeedcuhu() {
-    test_url_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
-    sh label: "Starting Sitespeed-Firefox-Desktop Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://mypages-dev.tetrapak.com/dashboard.html' 
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-Desktop', reportTitles: ''])
-
-    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://mypages-dev.tetrapak.com/dashboard.html'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-Chrome', reportTitles: ''])
-
-    sh label: "Starting Sitespeed-IPhone6 Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "iPhone 6"  --outputFolder sitespeed_iphone6 https://mypages-dev.tetrapak.com/dashboard.html'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-iphone6', reportTitles: ''])
-
-    sh label: "Starting Sitespeed-Nexus7 Test Run for MyTetrapak", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Nexus 7"  --outputFolder sitespeed_Nexus7 https://mypages-dev.tetrapak.com/dashboard.html'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-SamsungS3', reportTitles: ''])
-}
 
 def sitespeedpw(Map map) {
     def url_list_file_nm = "pw_urls_${map.env}.txt"
@@ -155,7 +194,7 @@ def sitespeedpw(Map map) {
                         def reportDir = "sitespeed_iphone6_${map.env}"
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
-                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
+                            --outputFolder ${reportDir} ${prescript_args} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
