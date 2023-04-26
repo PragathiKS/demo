@@ -122,9 +122,9 @@ def sitespeedcuhu() {
 
 def sitespeedpw(Map map) {
     def url_list_file_nm = "pw_urls_${map.env}.txt"
-    def root_url = "https://www-${map.env}.tetrapak.com"
+    def root_url = "'https://www-${map.env}.tetrapak.com'"
     def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
-    def prescript_args = "--preScript sitespeed-pw-cookie_consent.mjs --browsertime.test.url \"${root_url}\""
+    def prescript_args = "--preScript sitespeed-pw-cookie_consent.mjs --browsertime.test.url ${root_url}"
     def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
     sh "cp Devops/PallyUrlsPublicWeb.txt Devops/sitespeed/${url_list_file_nm}"
     dir('Devops') {
@@ -135,7 +135,7 @@ def sitespeedpw(Map map) {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop"
                         def reportDir = "sitespeed_ff_${map.env}"
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io -b firefox --headless true\
-                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}.txt" 
+                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName, reportTitles: reportName])
