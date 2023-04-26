@@ -7,9 +7,9 @@ pipeline {
         }
     }
     
-    triggers {
-        cron('H 1 * * 1-5')
-    }
+    // triggers {
+    //     cron('H 1 * * 1-5')
+    // }
     
     parameters {
         
@@ -64,7 +64,7 @@ pipeline {
                             },
                             "PublicWeb SiteSpeed Test" : {
                                 if (params.Test_Publicweb) {
-                                    sitespeedpw()                  
+                                    sitespeedpw(env: 'dev')                  
                                 }
                             }
                         )
@@ -120,19 +120,58 @@ def sitespeedcuhu() {
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetrapak-SamsungS3', reportTitles: ''])
 }
 
-def sitespeedpw() {
-    test_url_pw = "https://www-dev.tetrapak.com"
-    sh label: "Starting Sitespeed-Firefox-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b firefox --outputFolder sitespeed_ff https://www-dev.tetrapak.com' 
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_ff', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
-
-    sh label: "Starting Sitespeed-Chrome-Desktop Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --outputFolder sitespeed_chrome https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_chrome', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Chrome', reportTitles: ''])
-
-    sh label: "Starting Sitespeed-IPhone6 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "iPhone 6"  --outputFolder sitespeed_iphone6 https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_iphone6', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-iphone6', reportTitles: ''])
-
-    sh label: "Starting Sitespeed-Nexus7 Test Run for publicweb", script: 'docker run --rm -v "$(pwd)/sitespeed":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Nexus 7"  --outputFolder sitespeed_Nexus7 https://www-dev.tetrapak.com'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed/sitespeed_Nexus7', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-SamsungS3', reportTitles: ''])
+def sitespeedpw(Map map) {
+    dir('Devops') {
+        dir('sitespeed') {
+            def url_list_file_nm = "pw_urls_${map.env}.txt"
+            sh "cp Devops/PallyUrlsPublicWeb.txt Devops/sitespeed/${url_list_file_nm}"
+            sh "sed -i 's/dev/${map.env}/g' sitespeed/${url_list_file_nm}"
+            def root_url = "https://www-${map.env}.tetrapak.com"
+            def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
+            def prescript_args = "--preScript sitespeed-pw-cookie_consent.mjs --browsertime.test.url \"${root_url}\""
+            def volume_args = "-v \"$(pwd)\":/sitespeed.io"
+            parallel (
+                    def reportName = "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop"
+                    def reportDir = "sitespeed_ff_${map.env}"
+                    "PublicWeb-SiteSpeed-${map.env}-Firefox-Desktop" : {
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io -b firefox --headless true\
+                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}.txt" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName, reportTitles: reportName])
+                    },
+                    "PublicWeb-SiteSpeed-${map.env}-Chrome-Desktop" : {
+                        def reportName = "Sitespeed-PublicWeb-${map.env}-Chrome-Desktop"
+                        def reportDir = "sitespeed_chrome_${map.env}"
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io -b chrome --headless true\
+                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName , reportTitles: reportName])
+                    },
+                    "PublicWeb-SiteSpeed-${map.env}-IPhone6" : {
+                        def reportName = "Sitespeed-PublicWeb-${map.env}-IPhone6"
+                        def reportDir = "sitespeed_iphone6_${map.env}"
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io\
+                            -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
+                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName , reportTitles: reportName])
+                    },
+                    "PublicWeb-SiteSpeed-${map.env}-Nexus7" : {
+                        def reportName = "Sitespeed-PublicWeb-${map.env}-Nexus7"
+                        def reportDir = "sitespeed_Nexus7_${map.env}"
+                        sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io\
+                            -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
+                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
+                                    reportDir: reportDir, reportFiles: 'index.html',
+                                    reportName: reportName , reportTitles: reportName])
+                    }
+            )
+        }
+    }
 }                        
 
 def pallycuhuscript() {
