@@ -161,6 +161,10 @@ public class RebuildingKitsModel {
 	@ValueMapValue
 	private String hideAndShowCta;
 
+	/** The Set Default Filter Cta.*/
+	@ValueMapValue
+	private String setDefaultFilterCTA;
+
 	/** The country tool tip. */
 	@ValueMapValue
 	private String countryToolTip;
@@ -616,6 +620,15 @@ public class RebuildingKitsModel {
 	}
 
 	/**
+	 * Gets the set default filter label.
+	 *
+	 * @return the setDefaultFilterCTA
+	 */
+	public String getSetDefaultFilterCTA() {
+		return setDefaultFilterCTA;
+	}
+
+	/**
 	 * Gets the country tool tip.
 	 *
 	 * @return the country tool tip
@@ -985,6 +998,7 @@ public class RebuildingKitsModel {
 		i18KeyMap.put(CustomerHubConstants.FILTERS_OF, getFiltersOf());
 		i18KeyMap.put(CustomerHubConstants.FILTERS_SELECTED, getFiltersSelected());
 		i18KeyMap.put(CustomerHubConstants.HIDE_AND_SHOW_CTA, getHideAndShowCta());
+		i18KeyMap.put(CustomerHubConstants.SET_DEFAULT_FILTER_CTA, getSetDefaultFilterCTA());
 		i18KeyMap.put(CustomerHubConstants.API_ERROR_CODES, GlobalUtil.getApiErrorCodes(resource));
 		i18KeyMap.put(CustomerHubConstants.COUNTRY_TOOL_TIP, getCountryToolTip());
 		i18KeyMap.put(CustomerHubConstants.FUNCTIONAL_LOCATION_TOOL_TIP, getFunctionalLocationToolTip());

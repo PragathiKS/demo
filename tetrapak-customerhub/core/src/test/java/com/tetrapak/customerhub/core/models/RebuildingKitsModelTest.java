@@ -90,6 +90,7 @@ public class RebuildingKitsModelTest {
 		assertEquals("cuhu.rebuildingkits.rebuildingkits",model.getRebuildingKitsLabel());
 		assertEquals("cuhu.rebuildingkits.order",model.getOrder());
 		assertEquals("cuhu.rebuildingkits.hideAndShowCta",model.getHideAndShowCta());
+		assertEquals("cuhu.rebuildingkits.setDefaultFilterCTA",model.getSetDefaultFilterCTA());
 		assertEquals("cuhu.rebuildingkits.dateFilter.fromDateText",model.getFromDateText());
 		assertEquals("cuhu.rebuildingkits.dateFilter.toDateText",model.getToDateText());
 		assertEquals("cuhu.rebuildingkits.dateFilter.invalidDateText",model.getInvalidDateText());
