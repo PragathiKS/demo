@@ -113,9 +113,9 @@ def sitespeedCuHu(Map map) {
         dir('sitespeed') {
             def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
             parallel (
-                    "CustomerHub-SiteSpeed-${map.env}-Firefox-Desktop" : {
+                    "Sitespeed-CustomerHub-${map.env}-FireFox-Desktop" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-FireFox-Desktop"
-                        def reportDir = "sitespeed_ff_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
                             ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
                             --outputFolder ${reportDir} ${sustainable_args} ${multi_arg}  ${url_list_file_nm}" 
@@ -123,9 +123,9 @@ def sitespeedCuHu(Map map) {
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName, reportTitles: reportName])
                     },
-                    "CustomerHub-SiteSpeed-${map.env}-Chrome-Desktop" : {
+                    "Sitespeed-CustomerHub-${map.env}-Chrome-Desktop" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-Chrome-Desktop"
-                        def reportDir = "sitespeed_chrome_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
                             ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
                             --outputFolder ${reportDir} ${sustainable_args} ${multi_arg} ${url_list_file_nm}" 
@@ -133,9 +133,9 @@ def sitespeedCuHu(Map map) {
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
                     },
-                    "CustomerHub-SiteSpeed-${map.env}-IPhone6" : {
+                    "Sitespeed-CustomerHub-${map.env}-IPhone6" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-IPhone6"
-                        def reportDir = "sitespeed_iphone6_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
                             ${prescript_args} ${prescript_credential_arg} ${postscript_arg}\
@@ -144,9 +144,9 @@ def sitespeedCuHu(Map map) {
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
                     },
-                    "CustomerHub-SiteSpeed-${map.env}-Nexus7" : {
+                    "Sitespeed-CustomerHub-${map.env}-Nexus7" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-Nexus7"
-                        def reportDir = "sitespeed_Nexus7_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
                             ${prescript_args} ${prescript_credential_arg}  ${postscript_arg}\
@@ -172,27 +172,27 @@ def sitespeedpw(Map map) {
         dir('sitespeed') {
             sh "sed -i \"s/dev/${map.env}/g\" ${url_list_file_nm}"
             parallel (
-                    "PublicWeb-SiteSpeed-${map.env}-Firefox-Desktop" : {
+                    "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop" : {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop"
-                        def reportDir = "sitespeed_ff_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
                             --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName, reportTitles: reportName])
                     },
-                    "PublicWeb-SiteSpeed-${map.env}-Chrome-Desktop" : {
+                    "Sitespeed-PublicWeb-${map.env}-Chrome-Desktop" : {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-Chrome-Desktop"
-                        def reportDir = "sitespeed_chrome_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
                             --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
                     },
-                    "PublicWeb-SiteSpeed-${map.env}-IPhone6" : {
+                    "Sitespeed-PublicWeb-${map.env}-IPhone6" : {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-IPhone6"
-                        def reportDir = "sitespeed_iphone6_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
                             --outputFolder ${reportDir} ${prescript_args} ${url_list_file_nm}" 
@@ -200,9 +200,9 @@ def sitespeedpw(Map map) {
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
                     },
-                    "PublicWeb-SiteSpeed-${map.env}-Nexus7" : {
+                    "Sitespeed-PublicWeb-${map.env}-Nexus7" : {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-Nexus7"
-                        def reportDir = "sitespeed_Nexus7_${map.env}"
+                        def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
                             --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
