@@ -104,6 +104,7 @@ def sitespeedCuHu(Map map) {
     def prescript_args = "--preScript sitespeed-mtp-login.mjs --browsertime.test.env '${map.env}'"
     def prescript_credential_arg = "--browsertime.uname '${map.uname}' --browsertime.upass '${map.upass}' "
     def postscript_arg = "--postScript sitespeed-mtp-logout.mjs"
+    def multi_arg = (map.env != 'stage') ? "" : "--multi"
     if (map.env != 'stage') {
         sh "cp Devops/PallyUrlsCuhu.txt Devops/sitespeed/${url_list_file_nm}"
         sh "sed -i \"s/dev/${map.env}/g\" Devops/sitespeed/${url_list_file_nm}"
@@ -117,7 +118,7 @@ def sitespeedCuHu(Map map) {
                         def reportDir = "sitespeed_ff_${map.env}"
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
                             ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
-                            --outputFolder ${reportDir} ${sustainable_args} --multi ${url_list_file_nm}" 
+                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg}  ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName, reportTitles: reportName])
@@ -127,7 +128,7 @@ def sitespeedCuHu(Map map) {
                         def reportDir = "sitespeed_chrome_${map.env}"
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
                             ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
-                            --outputFolder ${reportDir} ${sustainable_args} --multi ${url_list_file_nm}" 
+                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
@@ -138,7 +139,7 @@ def sitespeedCuHu(Map map) {
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
                             ${prescript_args} ${prescript_credential_arg} ${postscript_arg}\
-                            --outputFolder ${reportDir} --multi ${url_list_file_nm}" 
+                            --outputFolder ${reportDir} ${multi_arg} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
@@ -148,8 +149,8 @@ def sitespeedCuHu(Map map) {
                         def reportDir = "sitespeed_Nexus7_${map.env}"
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
-                            ${prescript_args}   ${prescript_credential_arg}  ${postscript_arg}\
-                            --outputFolder ${reportDir} ${sustainable_args} --multi ${url_list_file_nm}" 
+                            ${prescript_args} ${prescript_credential_arg}  ${postscript_arg}\
+                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])

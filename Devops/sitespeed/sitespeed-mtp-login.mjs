@@ -1,6 +1,6 @@
 export default async function (context, commands) {
     const env = context.options.test.env;
-    const root_url = `'https://mypages-${env}.tetrapak.com'`; 
+    const root_url = `https://mypages-${env}.tetrapak.com`; 
     try {
       await commands.navigate(root_url);
       await commands.addText.byId(context.options.uname, "username");
@@ -13,5 +13,6 @@ export default async function (context, commands) {
         await commands.click.bySelectorAndWait('.tp-cookie-consent__btn', 1000);
       }
     } catch (e) {
+      throw e
     }
   };
