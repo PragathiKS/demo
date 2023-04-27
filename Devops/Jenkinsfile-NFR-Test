@@ -150,7 +150,7 @@ def sitespeedCuHu(Map map) {
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
                             ${prescript_args} ${prescript_credential_arg}  ${postscript_arg}\
-                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg} ${url_list_file_nm}" 
+                            --outputFolder ${reportDir} ${multi_arg} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
@@ -204,7 +204,7 @@ def sitespeedpw(Map map) {
                         def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
-                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
+                            --outputFolder ${reportDir} ${prescript_args} ${url_list_file_nm}" 
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
                                     reportDir: reportDir, reportFiles: 'index.html',
                                     reportName: reportName , reportTitles: reportName])
