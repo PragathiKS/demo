@@ -204,7 +204,7 @@ function _setSelectedCustomer(key, noReset) {
 function _filterCustomerBySearchText() {
   
   const $this = this;
-  const searchText=$('.js-financial-statement__dropdown-custom-search-text').val();  
+  const searchText=$(this.cache.customSearchText).val();  
  
   const customerDataAfterSearch = $this.cache.data.customerData.filter((el) => el.customerNumber.toLowerCase().includes(searchText.toLowerCase()) || el.customerName.toLowerCase().includes(searchText.toLowerCase()) ||  el.info.city.toLowerCase().includes(searchText.toLowerCase()));  
   
@@ -560,6 +560,7 @@ class FinancialStatement {
   cache = {};
   initCache() {
     this.cache.configJson = this.root.find('.js-financial-statement__config').text();
+    this.cache.customSearchText='.js-financial-statement__dropdown-custom-search-text';
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.servletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
@@ -638,7 +639,7 @@ class FinancialStatement {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).data('key'), noReset);
       })
-      .on('keyup','.js-financial-statement__dropdown-custom-search-text', function (e) {        
+      .on('keyup',this.cache.customSearchText, function (e) {        
         if(e.which !== 13){//Enter key pressed
           $this.filterCustomerBySearchText();
         }
