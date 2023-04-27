@@ -100,18 +100,17 @@ def zaptest() {
 
 def sitespeedCuHu(Map map) {
     def url_list_file_nm = (map.env != 'stage') ? "cuhu_urls_${map.env}.txt" : "sitespeed-mtp-stage-test.mjs"
-    def root_url = "'https://mypages-${map.env}.tetrapak.com'"
     def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
     def prescript_args = "--preScript sitespeed-mtp-login.mjs --browsertime.test.env '${map.env}'"
     def prescript_credential_arg = "--browsertime.uname '${map.uname}' --browsertime.upass '${map.upass}' "
     def postscript_arg = "--postScript sitespeed-mtp-logout.mjs"
-    def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
     if (map.env != 'stage') {
         sh "cp Devops/PallyUrlsCuhu.txt Devops/sitespeed/${url_list_file_nm}"
         sh "sed -i \"s/dev/${map.env}/g\" Devops/sitespeed/${url_list_file_nm}"
     }
     dir('Devops') {
         dir('sitespeed') {
+            def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
             parallel (
                     "CustomerHub-SiteSpeed-${map.env}-Firefox-Desktop" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-FireFox-Desktop"
