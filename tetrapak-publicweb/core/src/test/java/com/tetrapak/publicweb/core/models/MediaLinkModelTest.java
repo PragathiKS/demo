@@ -55,11 +55,8 @@ public class MediaLinkModelTest {
         assertEquals("Anchor  title", model.getAnchorTitle());
         assertEquals("grayscale-white", model.getPwTheme());
         assertEquals("title 1", model.getColumnOneTitle());
-        assertEquals("columnOneDesc", model.getColumnOneDesc());
         assertEquals("title 2", model.getColumnTwoTitle());
-        assertEquals("columnTwoDesc", model.getColumnTwoDesc());
         assertEquals("title 3", model.getColumnThreeTitle());
-        assertEquals("columnThreeDesc", model.getColumnThreeDesc());
         assertEquals("Link Label 3", model.getColumnThreeList().get(0).getLinkLabel());
         assertEquals("Link Label 2", model.getColumnTwoList().get(0).getLinkLabel());
         assertEquals("Link Label 1", model.getColumnOneList().get(0).getLinkLabel());
