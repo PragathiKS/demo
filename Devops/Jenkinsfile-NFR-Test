@@ -54,23 +54,30 @@ pipeline {
             when { expression { return params.Sitespeed_Run } }
             steps {
                 script {
-                    warnError(message: "Sitespeed Execution failed with error") {
-                        sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
-                        if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                            if (params.Test_MyTetraPak) {
+                    
+                    sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
+                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Sitespeed CuHu DEV - failed with error") {
                                 sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
-                            if (params.Test_Publicweb) {
-                                sitespeedpw(env: 'dev')                  
-                            }
                         }
-                        if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                            if (params.Test_MyTetraPak) {
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Sitespeed PubWeb DEV - failed with error") {
+                               sitespeedpw(env: 'dev')  
+                            }                
+                        }
+                    }
+                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Sitespeed CuHu QA - failed with error") {
                                 sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
-                            if (params.Test_Publicweb) {
-                                sitespeedpw(env: 'qa')                  
-                            }
+                        }
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Sitespeed PubWeb QA - failed with error") {
+                               sitespeedpw(env: 'qa')  
+                            }                 
                         }
                     }
                 }

@@ -5,8 +5,9 @@ export default async function (context, commands) {
       await commands.navigate(root_url);
       await commands.addText.byId(context.options.uname, "username");
       await commands.addText.byId(context.options.upass, "password");
-      await commands.click.byIdAndWait('signInButton', 2000);
+      await commands.click.byIdAndWait('signInButton', 3000);
       if(env == 'dev' || env == 'qa') {
+        await commands.wait.byId('onetrust-accept-btn-handler', 3000)
         await commands.click.byIdAndWait('onetrust-accept-btn-handler', 1000);
       } else  {
         await commands.wait.bySelector('.tp-cookie-consent__btn', 2000);
