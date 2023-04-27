@@ -14,7 +14,7 @@
     }
 
     .tpatom-input-box{
-        padding: 10px;
+        @include padding($padding-sm);
     }
 
     .dropdown.show {
