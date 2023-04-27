@@ -12,7 +12,7 @@ pipeline {
     // }
     
     parameters {
-        
+        choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Test_Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Test_MyTetraPak'
 	    // booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
@@ -56,11 +56,21 @@ pipeline {
                 script {
                     warnError(message: "Sitespeed Execution failed with error") {
                         sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
-                        if (params.Test_MyTetraPak) {
-                            sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                        if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                            if (params.Test_MyTetraPak) {
+                                sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                            if (params.Test_Publicweb) {
+                                sitespeedpw(env: 'dev')                  
+                            }
                         }
-                        if (params.Test_Publicweb) {
-                            sitespeedpw(env: 'dev')                  
+                        if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                            if (params.Test_MyTetraPak) {
+                                sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                            if (params.Test_Publicweb) {
+                                sitespeedpw(env: 'qa')                  
+                            }
                         }
                     }
                 }
