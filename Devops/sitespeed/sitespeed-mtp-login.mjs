@@ -14,6 +14,5 @@ export default async function (context, commands) {
         await commands.click.bySelectorAndWait('.tp-cookie-consent__btn', 1000);
       }
     } catch (e) {
-      throw e
     }
   };
