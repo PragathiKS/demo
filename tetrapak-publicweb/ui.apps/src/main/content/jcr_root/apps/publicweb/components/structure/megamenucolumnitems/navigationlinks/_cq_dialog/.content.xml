@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Navigation Links"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+  <content
+      jcr:primaryType="nt:unstructured"
+      sling:resourceType="granite/ui/components/coral/foundation/tabs">
+    <items jcr:primaryType="nt:unstructured">
+      <navigationlinks
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Navigation Links"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <links
+                  jcr:primaryType="nt:unstructured"
+                  jcr:title="List"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                  composite="{Boolean}true"
+                  fieldLabel="Configure links">
+                <field
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                    name="./columnTwoList">
+                  <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                      <items jcr:primaryType="nt:unstructured">
+                        <linkLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Link text"
+                            fieldLabel="Link label"
+                            name="./linkLabel"/>
+                        <linkUrl
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                            fieldDescription="Link to destination path"
+                            fieldLabel="Link Url"
+                            name="./linkUrl"
+                            rootPath="/content/tetrapak/publicweb"/>
+                        <linkDescription
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                            fieldDescription="Link description"
+                            fieldLabel="Link Description"
+                            name="./linkDescription"/>
+                      </items>
+                    </column>
+                  </items>
+                </field>
+              </links>
+            </items>
+          </column>
+        </items>
+      </navigationlinks>
+    </items>
+  </content>
+</jcr:root>
