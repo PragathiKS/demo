@@ -24,6 +24,7 @@ describe('FinancialStatement', function () {
     $(document.body).empty().html(financialStatementTemplate());
     this.financialstatement = new FinancialStatement({ el: $('.js-financial-statement') });
     this.initSpy = sinon.spy(this.financialstatement, 'init');
+    this.filterCustomerSpy=sinon.spy(this.financialstatement, 'filterCustomerBySearchText');
     this.setSelectedCustomerSpy = sinon.spy(this.financialstatement, 'setSelectedCustomer');
     this.statusSpy = sinon.spy(this.financialstatement, 'setDateFilter');
     this.renderFiltersSpy = sinon.spy(this.financialstatement, 'renderFilters');
@@ -54,6 +55,7 @@ describe('FinancialStatement', function () {
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
+    this.filterCustomerSpy.restore();
     this.setSelectedCustomerSpy.restore();
     this.statusSpy.restore();
     this.renderFiltersSpy.restore();
@@ -84,6 +86,12 @@ describe('FinancialStatement', function () {
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse(financialStatementData));
     expect(render.fn.called).to.be.true;
+    done();
+  });
+
+  it('should filter customer on  keyup', function (done) {
+    $('.js-financial-statement__dropdown-custom-search-text').trigger('keyup');
+    expect(this.filterCustomerSpy.called).to.be.true;
     done();
   });
 
