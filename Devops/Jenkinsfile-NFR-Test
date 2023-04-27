@@ -57,7 +57,7 @@ pipeline {
                     warnError(message: "Sitespeed Execution failed with error") {
                         sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
                         if (params.Test_MyTetraPak) {
-                            sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck$")
+                            sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                         }
                         if (params.Test_Publicweb) {
                             sitespeedpw(env: 'dev')                  
