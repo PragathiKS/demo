@@ -174,6 +174,10 @@ public class RebuildingKits {
     @SerializedName("kpiExcl")
     @Expose
     private String kpiExcl;
+    
+    @SerializedName("rkGeneralNumber")
+    @Expose
+    private String rkGeneralNumber;
 
     public String getCountryCode() {
         return countryCode;
@@ -503,4 +507,12 @@ public class RebuildingKits {
     public void setKpiExcl(String kpiExcl) {
         this.kpiExcl = kpiExcl;
     }
+
+	public String getRkGeneralNumber() {
+		return rkGeneralNumber;
+	}
+
+	public void setRkGeneralNumber(String rkGeneralNumber) {
+		this.rkGeneralNumber = rkGeneralNumber;
+	}
 }

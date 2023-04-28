@@ -28,6 +28,7 @@ public class MockRebuildingKitsApiServiceImpl implements RebuildingKitsApiServic
 		paramRequest.setRkDesc("Pressure Jaw Right Base Unit");
 		paramRequest.setSerialNumber("5454544");
 		paramRequest.setEquipmentDesc("Equipment Description");
+		paramRequest.setRkGeneralNumber("2616315-0100");
 		paramRequest.setImplStatus("");
 		paramRequest.setPermanentVolumeConversion("");
 		paramRequest.setImplStatusDate("");
