@@ -126,6 +126,11 @@
             width: 100%;
         }
     }
+    &__width20 {
+        @media #{$tablet}{
+            flex: 0 0 20%;
+        }
+    }
 
     &__seeAllLink {
         @include margin(0);
