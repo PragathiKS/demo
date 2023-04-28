@@ -27,6 +27,16 @@
                         components="[group:Tetra Laval : Content]">
                         <jcr:content jcr:primaryType="nt:unstructured"/>
                     </policy_1581165968127900>
+                    <policy_2184972331909699
+                        jcr:description="Policy for the Form experience fragment components for Tetra Laval project."
+                        jcr:lastModified="{Date}2021-07-06T08:52:26.452+02:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Tetra Laval Form Experience Fragment"
+                        sling:resourceType="wcm/core/components/policy/policy"
+                        components="group:Tetra Laval : Form">
+                        <jcr:content jcr:primaryType="nt:unstructured"/>
+                    </policy_2184972331909699>
                 </responsivegrid>
             </components>
         </foundation>
