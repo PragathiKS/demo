@@ -88,9 +88,9 @@
                   <maxTeasers
                       jcr:primaryType="nt:unstructured"
                       sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
-                      fieldDescription="Enter the maximum number of teasers to be shown: min-1; max-12"
+                      fieldDescription="Enter the maximum number of teasers to be shown: min-1; max-30"
                       fieldLabel="Maximum number of teasers to be shown"
-                      max="12"
+                      max="30"
                       min="1"
                       name="./maxTeasers"/>
                 </items>
@@ -112,7 +112,7 @@
                       composite="{Boolean}true"
                       fieldDescription="Add page paths to automatically populate values"
                       fieldLabel="Select pages"
-                      pw-max-items="12">
+                      pw-max-items="30">
                     <field
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
@@ -152,7 +152,7 @@
                       sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                       composite="{Boolean}true"
                       fieldLabel="&#x9;&#xa;Configure Teaser"
-                      pw-max-items="12">
+                      pw-max-items="30">
                     <field
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
