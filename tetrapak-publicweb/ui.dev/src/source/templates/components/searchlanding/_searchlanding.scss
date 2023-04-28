@@ -1,9 +1,11 @@
 .pw-search-result-head {
+    padding-bottom: $padding-l;
     .result-title {
         color: $color-tundora;
         font-size: $font-xxl;
         font-weight: 700;
         line-height: $padding-xxxl;
+        margin-bottom: $margin-l;
 
     }
     .result-description {
