@@ -661,6 +661,8 @@
                      "excelPdfDownloadErrorText": "cuhu.financial.Error",
                      "fileDownloadErrorText": "cuhu.financial.Error",
                      "noCustomerErrorText": "cuhu.financial.noCustomerError",
+                     "placeholderForCustomerSearchText": "cuhu.financial.placeholderForCustomerSearchText",
+                     "noDataFoundForCustomerSearch": "cuhu.financial.noDataFoundForCustomerSearch",
                      "apiErrorCodes": {
                         "jcr:primaryType": "nt:unstructured",
                         "item0": {
