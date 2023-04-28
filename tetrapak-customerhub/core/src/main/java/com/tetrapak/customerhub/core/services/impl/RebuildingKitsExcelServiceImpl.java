@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		csvHeaderMapping.add(CustomerHubConstants.RK_DESC);
 		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_DESC_CSVHEADER);
+		csvHeaderMapping.add(CustomerHubConstants.GENERAL_RKNUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.IMPL_STATUS);
 		csvHeaderMapping.add(CustomerHubConstants.PERMANENT_VOLUME_CONV);
 		csvHeaderMapping.add(CustomerHubConstants.IMPL_STATUS_DATE);
@@ -110,7 +112,8 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 				LOGGER.debug("Rebuilding Kits List CSV File Column heading : {}", columnHeading);
 			}
 			csvFileContent.append(CustomerHubConstants.NEWLINE);
-			for (RebuildingKits rbk : rebuildingKits) {
+			List<RebuildingKits> sortedRebuildingKits = sortRebuildingKitsRecordsinCSV(rebuildingKits);
+			for (RebuildingKits rbk : sortedRebuildingKits) {
 				csvFileContent.append(convertToCSVRow(rbk));
 			}
 			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_16LE));
@@ -170,6 +173,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(formatRKDesc(rbk.getRkDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getSerialNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkGeneralNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatus()));
 		rbkPropertiesList
 				.add(tidyCSVOutput(formatPermanentVolumeConversion(rbk.getPermanentVolumeConversion())));
@@ -242,5 +246,19 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	private String getCurrentDate() {
 		DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		return dtfDate.format(LocalDate.now());
+	}
+	
+	/**
+	 * This method sorts the CSV rows.
+	 *
+	 * @param List<Equipments> Unsorted Rebuilding Kits list
+	 * @return List<Equipments> Sorted Rebuilding Kits list
+	 */
+	private List<RebuildingKits> sortRebuildingKitsRecordsinCSV(List<RebuildingKits> unsortedRebuildingKits) {
+		Comparator<RebuildingKits> cumulativeComparison = Comparator
+				.comparing(RebuildingKits::getLineCode)
+				.thenComparing(RebuildingKits::getRkGeneralNumber)
+				.thenComparing(RebuildingKits::getPosition);
+		return unsortedRebuildingKits.stream().sorted(cumulativeComparison).collect(Collectors.toList());
 	}
 }
