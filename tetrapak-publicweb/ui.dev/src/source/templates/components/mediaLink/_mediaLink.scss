@@ -30,6 +30,12 @@
                 font-weight: 700;
             }
         }
+        p {
+            @include margin-top($margin-l);
+            @include font-size($font-baseline);
+            @include line-height($font-md, $font-baseline);
+            font-weight: 400;
+        }
     }
 
     &__subheading {
@@ -67,13 +73,19 @@
             }
         }
     }
+    &__wrapper {
+        border-bottom: 1px solid $color-mercury;
+        p {
+            @include margin-top(-$margin-sm);
+            @include margin-bottom($margin-md);
+        }
+    }
     &__link.tpatom-link--transparent {
         @include min-height(56px);
         @include line-height(24px, 14px);
         @include font-size(14px);
         display: flex;
         justify-content: space-between;
-        border-bottom: 1px solid $color-mercury;
         span {
             @include margin($margin-md);
             @media #{$desktop} {
