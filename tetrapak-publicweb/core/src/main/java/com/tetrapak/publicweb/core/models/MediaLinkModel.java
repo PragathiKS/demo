@@ -49,26 +49,14 @@ public class MediaLinkModel {
     /** The column one title. */
     @ValueMapValue
     private String columnOneTitle;
-    
-    /** The column one description. */
-    @ValueMapValue
-    private String columnOneDesc;
 
     /** The column two title. */
     @ValueMapValue
     private String columnTwoTitle;
-
-    /** The column two Desc. */
-    @ValueMapValue
-    private String columnTwoDesc;
     
     /** The column three title. */
     @ValueMapValue
     private String columnThreeTitle;
-    
-    /** The column one title. */
-    @ValueMapValue
-    private String columnThreeDesc;
 
     /** The column one list. */
     @Inject
@@ -101,33 +89,6 @@ public class MediaLinkModel {
      */
     public String getHeadingDesc() {
 		return headingDesc;
-	}
-
-    /**
-     * Gets the columnOneDesc
-     * 
-     * @return columnOneDesc
-     */
-	public String getColumnOneDesc() {
-		return columnOneDesc;
-	}
-
-	/**
-     * Gets the columnTwoDesc
-     * 
-     * @return columnTwoDesc
-     */
-	public String getColumnTwoDesc() {
-		return columnTwoDesc;
-	}
-
-	/**
-     * Gets the columnThreeDesc
-     * 
-     * @return columnThreeDesc
-     */
-	public String getColumnThreeDesc() {
-		return columnThreeDesc;
 	}
 	
     /**
