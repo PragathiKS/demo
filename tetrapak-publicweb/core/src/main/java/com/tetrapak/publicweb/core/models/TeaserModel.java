@@ -44,6 +44,10 @@ public class TeaserModel {
     @ValueMapValue
     private String heading;
 
+    /** The number Of Columns. */
+    @ValueMapValue
+    private String numberOfColumns;
+
     /** The content type. */
     @ValueMapValue
     private String contentType;
@@ -194,6 +198,15 @@ public class TeaserModel {
      */
     public String getHeading() {
         return heading;
+    }
+
+    /**
+     * Gets the number of columns.
+     *
+     * @return the number of columns.
+     */
+    public String getNumberOfColumns() {
+        return numberOfColumns;
     }
 
     /**

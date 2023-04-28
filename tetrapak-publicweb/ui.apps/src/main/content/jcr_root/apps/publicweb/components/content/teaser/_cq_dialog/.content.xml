@@ -21,15 +21,36 @@
                   sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                   fieldLabel="Heading"
                   name="./heading"/>
+              <numberOfColumns
+                                             granite:class="cq-dialog-dropdown-disable-enable"
+                                             jcr:primaryType="nt:unstructured"
+                                             sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                             fieldLabel="Select number of columns"
+                                             name="./numberOfColumns">
+                <items jcr:primaryType="nt:unstructured">
+                  <threeColumn
+                      jcr:primaryType="nt:unstructured"
+                      text="3"
+                      value="3"/>
+                  <fourColumn
+                      jcr:primaryType="nt:unstructured"
+                      text="4"
+                      value="4"/>
+                  <fiveColumn
+                      jcr:primaryType="nt:unstructured"
+                      text="5"
+                      value="5"/>                 
+                </items>
+              </numberOfColumns>
               <displayDate
-                              jcr:primaryType="nt:unstructured"
-                              sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                              fieldDescription="Check if you want to display date"
-                              fieldLabel="Do you want to display date ?"
-                              name="./displayDate"
-                              text="Display date ?"
-                              uncheckedValue="{Boolean}false"
-                              value="{Boolean}true"/>
+                             jcr:primaryType="nt:unstructured"
+                             sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                             fieldDescription="Check if you want to display date"
+                             fieldLabel="Do you want to display date ?"
+                             name="./displayDate"
+                             text="Display date ?"
+                             uncheckedValue="{Boolean}false"
+                             value="{Boolean}true"/>
               <contentType
                   granite:class="cq-dialog-dropdown-showhide"
                   jcr:primaryType="nt:unstructured"
