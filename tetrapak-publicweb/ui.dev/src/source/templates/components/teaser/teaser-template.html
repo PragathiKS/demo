@@ -19,11 +19,12 @@
         </sly>
 
         <sly data-sly-test.columnNumbers="${data.numberOfColumns}"/>
+        <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
         <sly data-sly-test.showCarousal="${(data.enableCarousel && teaserSize > 3) ? 'true':'false'}"/>
         <div data-paren-link-title="${data.heading}" class="${showCarousal == 'true' ? 'owl-carousel' : ''} tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}" auto_locator="carouselTeaser" >
           <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
           <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'secondary' ? 'CTA' : 'Text Hyperlink'}" />
-            <div class="carousal-wrapper col-md-12 ${teaserSize > 2 && columnNumbers == '3' ? 'col-lg-4':''} ${teaserSize > 2 && columnNumbers == '4' ? 'col-lg-3' : ''} ${teaserSize > 2 && columnNumbers == '5' ? 'tp-teaser__width20' : ''} ${teaserSize == 2 ? 'col-lg-6':''} ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11) ? '' : 'rightbar' } ${child.linkText ? 'teaserMargin' : 'teaserMarginL'}" auto_locator="teaserPODs">
+            <div class="carousal-wrapper col-md-12 ${teaserSize > 2 && columnNumbers == '3' ? 'col-lg-4':''} ${teaserSize > 2 && columnNumbers == '4' ? 'col-lg-3' : ''} ${teaserSize > 2 && columnNumbers == '5' ? 'tp-teaser__width20' : ''} ${teaserSize == 2 ? 'col-lg-6':''} ${child.linkText ? 'teaserMargin' : 'teaserMarginL'}" auto_locator="teaserPODs">
             <a data-sly-test="${child.linkPath && child.linkPath!='#' && child.fileReference}"
               href="${child.linkPath}"
               class="js-teaser-analytics teaser-image-link"
