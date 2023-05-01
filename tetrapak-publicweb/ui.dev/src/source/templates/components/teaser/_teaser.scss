@@ -127,7 +127,7 @@
         }
     }
     &__width20 {
-        @media #{$tablet}{
+        @media #{$tablet} {
             flex: 0 0 20%;
         }
     }
