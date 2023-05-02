@@ -32,8 +32,8 @@ pipeline {
                 script {
                     dir('Devops') {
                         dir('pa11y') {
-                            sh "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
-                            sh "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
+                            sh label: "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
+                            sh label: "Clean node modules", script: "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
                             sh label: "initiate node project", script: "npm install"
                         }
                     }
