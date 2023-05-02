@@ -31,7 +31,8 @@ pipeline {
             steps {
                 script {
                     echo "Set up Dependencies"
-                    sh label: "Set node v@20.0.0", script: 'nvm use 20.0.0'
+                    // sh label: "install nvm", script: ""
+                    // sh label: "Set node v@20.0.0", script: 'nvm use 20.0.0'
                     dir('Devops') {
                         dir('pa11y') {
                             sh label: "initiate node project", script: "npm install"
