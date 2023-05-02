@@ -32,11 +32,13 @@ pipeline {
                 script {
                     echo "Set up Dependencies"
                     sh label: "Install nvm v0.39.3", script: "wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash"
-                    sh label: "Use nvm 20.0.0", script: "nvm use 20.0.0"
+                    sh "export NVM_DIR=\"$([ -z \"${XDG_CONFIG_HOME-}\" ] && printf %s \"${HOME}/.nvm\" || printf %s \"${XDG_CONFIG_HOME}/nvm\")\"[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\" && nvm use 20.0.0"
+                    
                     dir('Devops') {
                         dir('pa11y') {
-                            sh label: "initiate node project", script: "npm install"
                             sh "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
+                            sh "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
+                            sh label: "initiate node project", script: "npm install"
                         }
                     }
                 }
