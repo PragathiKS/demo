@@ -45,7 +45,7 @@
             }
         }
         @media #{$mobile} {
-            margin: 0 -8px;
+            margin: 0 -$margin-sm;
         }
         h5 {
             @include font-size($font-baseline);
@@ -128,7 +128,7 @@
             width: 100%;
         }
     }
-    &__width20 {
+    &__width {
         @media #{$tablet} {
             flex: 0 0 20%;
         }
@@ -214,6 +214,7 @@
             }
             .carousal-wrapper {
                 border: 0 solid $color-mercury;
+                padding-right: 0;
             }
             .active {
                 .carousal-wrapper {
@@ -226,12 +227,10 @@
     }
     @media #{$mobile} {
         .small-screen {
-           padding: 0 8px;
+           padding: 0 $margin-sm;
         }
         .description, .link {
-            @media #{$mobile} {
-                display: none;
-            }
+            display: none;
         }
     }
 }
