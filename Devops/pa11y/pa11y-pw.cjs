@@ -45,7 +45,12 @@ async function testPW(env, url_list_file_nm) {
         for await (const line of rl) {
             const result = await pa11y(line, mtp_opt);
             const report = await htmlReporter.results(result);
-            const path = line.substring(line.lastIndexOf('/') + 1);
+            var path = line.substring(line.lastIndexOf('/') + 1);
+            console.log(path);
+            if(path == null || path == '' || path.startsWith('www')) {
+                path = "Home";
+            }
+            path = `${path}.html`;
             const file_path = `${__dirname}/pw/${env}/${path}`;
             fs.writeFile(file_path, report, (err) => {
                 if (err) throw err;

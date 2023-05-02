@@ -1,7 +1,7 @@
 "use strict"
 
 const testMTP = require("./pa11y-mtp.cjs");
-const testPW = require("./pally-pw.cjs");
+const testPW = require("./pa11y-pw.cjs");
 
 if (process.argv[2] == 'mtp') {
     const env = process.argv[3];
