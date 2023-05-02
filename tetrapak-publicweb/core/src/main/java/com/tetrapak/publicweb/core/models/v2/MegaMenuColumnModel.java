@@ -21,15 +21,22 @@ public class MegaMenuColumnModel {
 
     private List<Resource> items;
 
+    @ValueMapValue
+    private String bgColor;
+
     @PostConstruct
     protected void init(){
         items = new ArrayList<>();
-        if(resource!=null){
+        if(resource!=null) {
             Iterator<org.apache.sling.api.resource.Resource> children = resource.listChildren();
-            while(children.hasNext()){
+            while (children.hasNext()) {
                 items.add(children.next());
             }
         }
+    }
+
+    public String getBgColor() {
+        return bgColor;
     }
 
     public List<Resource> getItems() {
