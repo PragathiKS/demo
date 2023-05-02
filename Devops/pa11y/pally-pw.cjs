@@ -8,7 +8,7 @@ const htmlReporter = require("pa11y/lib/reporters/html");
 
 async function testPW(env, url_list_file_nm) {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: 'new',
         ignoreHTTPSErrors: true
     });
     const page = await browser.newPage();

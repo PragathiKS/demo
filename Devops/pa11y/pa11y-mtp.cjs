@@ -12,7 +12,7 @@ async function testMTP(env, userid, passwd, url_list_file_nm) {
     appEnv = (env == 'qa') ? "MyTetraPakTest" : appEnv;
     appEnv = (env == 'stage') ? "MyTetraPakStage" : appEnv;
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: 'new',
         ignoreHTTPSErrors: true
     });
     const page = await browser.newPage();
