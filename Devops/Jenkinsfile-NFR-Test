@@ -30,9 +30,6 @@ pipeline {
             when { expression { return params.Pa11y_Execution } }      
             steps {
                 script {
-                    echo "Set up Dependencies"
-                    sh "/home/jenkinsadmin/.nvm/nvm use 20.0.0"
-                    
                     dir('Devops') {
                         dir('pa11y') {
                             sh "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
