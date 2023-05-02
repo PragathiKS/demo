@@ -44,7 +44,9 @@
                 @include margin-right($margin-zero);
             }
         }
-
+        @media #{$mobile} {
+            margin: 0 -8px;
+        }
         h5 {
             @include font-size($font-baseline);
             @include line-height($font-l, $font-baseline);
@@ -212,8 +214,6 @@
             }
             .carousal-wrapper {
                 border: 0 solid $color-mercury;
-                padding-right: 0;
-
             }
             .active {
                 .carousal-wrapper {
@@ -221,6 +221,16 @@
                     padding-left: 0;
                     padding-right: 15px;
                 }
+            }
+        }
+    }
+    @media #{$mobile} {
+        .small-screen {
+           padding: 0 8px;
+        }
+        .description, .link {
+            @media #{$mobile} {
+                display: none;
             }
         }
     }
