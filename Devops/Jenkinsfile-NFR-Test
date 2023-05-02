@@ -31,8 +31,6 @@ pipeline {
             steps {
                 script {
                     echo "Set up Dependencies"
-                    // sh label: "install nvm", script: ""
-                    // sh label: "Set node v@20.0.0", script: 'nvm use 20.0.0'
                     dir('Devops') {
                         dir('pa11y') {
                             sh label: "initiate node project", script: "npm install"
@@ -250,6 +248,7 @@ def sitespeedpw(Map map) {
 def pa11yCuHu(Map map) {
     dir('Devops') {
         dir('pa11y') {
+            sh "sudo mkdir -p mtp/${map.env}"
             def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
             sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm}"
         }
@@ -259,6 +258,7 @@ def pa11yCuHu(Map map) {
 def pa11yPw(Map map) {
     dir('Devops') {
         dir('pa11y') {
+            sh "sudo mkdir -p pw/${map.env}"
             def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
             sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm}"
         }

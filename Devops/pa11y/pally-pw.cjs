@@ -35,7 +35,6 @@ async function testPW(env, url_list_file_nm) {
             runners: ['htmlcs', 'axe'],
             standard: 'WCAG2AAA'
         };
-        fs.mkdirSync(`pw/${env}`, { recursive: true })
         // Read urls from the file
         const fileStream = fs.createReadStream(url_list_file_nm);
         const rl = readline.createInterface({
@@ -47,7 +46,7 @@ async function testPW(env, url_list_file_nm) {
             const result = await pa11y(line, mtp_opt);
             const report = await htmlReporter.results(result);
             const path = line.substring(line.lastIndexOf('/') + 1);
-            const file_path = `pw/${env}/${path}`;
+            const file_path = `${__dirname}/pw/${env}/${path}`;
             fs.writeFile(file_path, report, (err) => {
                 if (err) throw err;
             });
