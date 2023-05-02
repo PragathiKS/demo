@@ -26,9 +26,13 @@ async function testMTP(env, userid, passwd, url_list_file_nm) {
         await page.$eval('#username', (el, value) => el.value = value, userid);
         await page.$eval('#password', (el, value) => el.value = value, passwd);
         await page.click('#signInButton');
-        await page.waitForSelector('#onetrust-accept-btn-handler', { visible: true });
-        await page.waitForTimeout(7000)
-        await page.click('#onetrust-accept-btn-handler');
+        try {
+            await page.waitForSelector('#onetrust-accept-btn-handler', { visible: true });
+            await page.waitForTimeout(7000)
+            await page.click('#onetrust-accept-btn-handler');
+        } catch(err) {
+        }
+        
         
         // Pa11y Options
         const mtp_opt =  {
