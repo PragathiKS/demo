@@ -15,7 +15,7 @@ async function testPW(env, url_list_file_nm) {
     
     try {
         await page.setViewport({width: 1366, height: 768});
-
+        await page.setCacheEnabled(false);
         // accept cookie banner
         await page.goto(`https://www-${env}.tetrapak.com`, { waitUntil: 'networkidle2' });
         await page.waitForSelector('#onetrust-accept-btn-handler', { visible: true });

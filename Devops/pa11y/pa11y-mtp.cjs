@@ -18,9 +18,9 @@ async function testMTP(env, userid, passwd, url_list_file_nm) {
     const page = await browser.newPage();
     
     try {
-        
-        // Log in and accept cookie banner
+        await page.setCacheEnabled(false);
         await page.setViewport({width: 1366, height: 768});
+        // Log in and accept cookie banner
         await page.goto(`https://ssodev.tetrapak.com/idp/startSSO.ping?PartnerSpId=${appEnv}`, { waitUntil: 'networkidle2' });
         await page.waitForSelector('#signInButton');
         await page.$eval('#username', (el, value) => el.value = value, userid);

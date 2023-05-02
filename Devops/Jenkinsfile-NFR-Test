@@ -15,9 +15,9 @@ pipeline {
         choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Test_Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Test_MyTetraPak'
-        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
-        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
+        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Sitespeed Test', name: 'Sitespeed_Run'
+        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
     }
 
     options {
