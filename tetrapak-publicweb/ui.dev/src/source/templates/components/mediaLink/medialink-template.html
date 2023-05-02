@@ -1,66 +1,84 @@
 <sly data-sly-template.medialink_template="${@data, flag}">
-    <sly data-sly-test.mediaLinkSubHeadingClass="${(data.columnOneTitle || data.columnTwoTitle || data.columnThreeTitle) ? 'medialink__subheading' : ''}" />
+    <sly
+        data-sly-test.mediaLinkSubHeadingClass="${(data.columnOneTitle || data.columnTwoTitle || data.columnThreeTitle) ? 'medialink__subheading' : ''}" />
     <div class="pw-container" id="${data.anchorId}" title="${data.anchorTitle}">
         <div class="medialink pw-theme--${data.pwTheme}" data-module="MediaLink">
             <div data-sly-test="${data.heading}" class="medialink__heading">
                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                     data-sly-call="${heading.heading_h3_template @ headingText=data.heading, variant='regular'}" />
+                <p>${data.headingDesc}</p>
             </div>
-            <div  data-sly-test="${(data.columnOneList || data.columnTwoList || data.columnThreeList)}"
+            <div data-sly-test="${(data.columnOneList || data.columnTwoList || data.columnThreeList)}"
                 class="medialink__subheadingwrap">
                 <div class="row medialink__linkListRow">
                     <div data-sly-test="${(data.columnOneList && data.columnOneList.size>0) || data.columnOneTitle }"
                         class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle) ? 'col-lg-4' : 'col-lg-6' } col-sm-12 medialink__linklist">
                         <div data-sly-test="${data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle }"
                             class="${mediaLinkSubHeadingClass} ${data.columnOneTitle ? '' : 'noMobile'}">
-                            <sly data-sly-test="${data.columnOneTitle}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                            <sly data-sly-test="${data.columnOneTitle}"
+                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnOneTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnOneList}">
-                            <a href="${child.linkUrl}"
-                                class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}" data-asset-name="${child.assetName}"
-                                data-section-name="${data.columnOneTitle || data.heading}"
-                                data-link-section="Related links and downloads_Text Hyperlink"
-                                data-link-name="${child.linkLabel}">
-                                <span class="tpatom-link__text sly-text">${child.linkLabel @ context='html'}</span><i class="icon icon-link"></i>
-                            </a>
+                            <div class="medialink__wrapper">
+                                <a href="${child.linkUrl}"
+                                    class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                                    title="${child.linkLabel}" data-asset-name="${child.assetName}"
+                                    data-section-name="${data.columnOneTitle || data.heading}"
+                                    data-link-section="Related links and downloads_Text Hyperlink"
+                                    data-link-name="${child.linkLabel}">
+                                    <span class="tpatom-link__text sly-text">${child.linkLabel @
+                                        context='html'}</span><i class="icon icon-link"></i>
+                                </a>
+
+                                <p>${child.linkDesc}</p>
+                            </div>
                         </div>
                     </div>
-                    <div data-sly-test="${(data.columnTwoList && data.columnTwoList.size>0) ||data.columnTwoTitle}" class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle)  ? 'col-lg-4' : 'col-lg-6' }  col-sm-12 medialink__linklist ${data.columnTwoTitle ? '' : 'noMobileHeader'}">
+                    <div data-sly-test="${(data.columnTwoList && data.columnTwoList.size>0) ||data.columnTwoTitle}"
+                        class="${((data.columnThreeList && data.columnThreeList.size > 0) || data.columnThreeTitle)  ? 'col-lg-4' : 'col-lg-6' }  col-sm-12 medialink__linklist ${data.columnTwoTitle ? '' : 'noMobileHeader'}">
                         <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }"
                             class="${mediaLinkSubHeadingClass}  ${data.columnTwoTitle ? '' : 'noMobile'}">
-                            <sly data-sly-test="${data.columnTwoTitle}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                            <sly data-sly-test="${data.columnTwoTitle}"
+                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnTwoTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnTwoList}">
-                            <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
-                                class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}"
-                                data-asset-name="${child.assetName}"
-                                data-link-section="Related links and downloads_Text Hyperlink"
-                                data-section-name="${data.columnTwoTitle || data.heading}"
-                                data-link-name="${child.linkLabel}">
-                                <span class="tpatom-link__text sly-text">${child.linkLabel @ context='html'}</span><i class="icon icon-link"></i>
-                            </a>
+                            <div class="medialink__wrapper">
+                                <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                                    class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                                    title="${child.linkLabel}" data-asset-name="${child.assetName}"
+                                    data-link-section="Related links and downloads_Text Hyperlink"
+                                    data-section-name="${data.columnTwoTitle || data.heading}"
+                                    data-link-name="${child.linkLabel}">
+                                    <span class="tpatom-link__text sly-text">${child.linkLabel @
+                                        context='html'}</span><i class="icon icon-link"></i>
+                                </a>
+                                <p>${child.linkDesc @ context='html'}</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4  col-sm-12 medialink__linklist ${data.columnThreeTitle ? '' : 'noMobileHeader'}" data-sly-test="${(data.columnThreeList && data.columnThreeList.size>0) || data.columnThreeTitle   }">
+                    <div class="col-lg-4  col-sm-12 medialink__linklist ${data.columnThreeTitle ? '' : 'noMobileHeader'}"
+                        data-sly-test="${(data.columnThreeList && data.columnThreeList.size>0) || data.columnThreeTitle   }">
                         <div data-sly-test="${(data.columnThreeTitle || data.columnTwoTitle || data.columnOneTitle) }"
                             class="${mediaLinkSubHeadingClass}  ${data.columnThreeTitle ? '' : 'noMobile'}">
-                            <sly data-sly-test="${data.columnThreeTitle}" data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
+                            <sly data-sly-test="${data.columnThreeTitle}"
+                                data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
                                 data-sly-call="${heading.heading_h4_template @ headingText=data.columnThreeTitle, variant='regular'}" />
                         </div>
                         <div data-sly-list.child="${data.columnThreeList}">
-                            <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
-                                class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                title="${child.linkLabel}"
-                                data-link-section="Related links and downloads_Text Hyperlink"
-                                data-section-name="${data.columnThreeTitle || data.heading}"
-                                data-asset-name="${child.assetName}"
-                                data-link-name="${child.linkLabel}">
-                                <span class="tpatom-link__text sly-text">${child.linkLabel @ context='html'}</span><i class="icon icon-link"></i>
-                            </a>
+                            <div class="medialink__wrapper">
+                                <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                                    class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                                    title="${child.linkLabel}"
+                                    data-link-section="Related links and downloads_Text Hyperlink"
+                                    data-section-name="${data.columnThreeTitle || data.heading}"
+                                    data-asset-name="${child.assetName}" data-link-name="${child.linkLabel}">
+                                    <span class="tpatom-link__text sly-text">${child.linkLabel @
+                                        context='html'}</span><i class="icon icon-link"></i>
+                                </a>
+                                <p>${child.linkDesc @ context='html'}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
