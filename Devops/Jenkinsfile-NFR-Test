@@ -15,8 +15,6 @@ pipeline {
         choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Test_Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Test_MyTetraPak'
-	    // booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
-	    // booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
         booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Sitespeed Test', name: 'Sitespeed_Run'
@@ -32,19 +30,38 @@ pipeline {
             when { expression { return params.Pa11y_Execution } }      
             steps {
                 script {
-                    warnError(message: "Pa11y Execution failed with error") {
-                        parallel (
-                            "MyTetrapak Pa11y Test" : {
-                                if (params.Test_MyTetraPak) {
-                                    pallycuhuscript()
-                                }
-                            },
-                            "PublicWeb Pa11y Test" : {
-                                if (params.Test_Publicweb) {
-                                    pallypwscript()
-                                }
+                    echo "Set up Dependencies"
+                    sh label: "Set node v@20.0.0", script: 'nvm use 20.0.0'
+                    dir('Devops') {
+                        dir('pa11y') {
+                            sh label: "initiate node project", script: "npm install"
+                        }
+                    }
+                }
+                script {
+                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                pa11yCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
-                        )
+                        }
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                               pa11yPw(env: 'dev')
+                            }                
+                        }
+                    }
+                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                pa11yCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                        }
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                               pa11yPw(env: 'qa')
+                            }                
+                        }
                     }
                 }
             }
@@ -54,7 +71,6 @@ pipeline {
             when { expression { return params.Sitespeed_Run } }
             steps {
                 script {
-                    
                     sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
                     if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
                         if (params.Test_MyTetraPak) {
@@ -76,7 +92,7 @@ pipeline {
                         }
                         if (params.Test_Publicweb) {
                             warnError(message: "Sitespeed PubWeb QA - failed with error") {
-                               sitespeedpw(env: 'qa')  
+                                sitespeedpw(env: 'qa')  
                             }                 
                         }
                     }
@@ -177,7 +193,6 @@ def sitespeedCuHu(Map map) {
     }
 } 
 
-
 def sitespeedpw(Map map) {
     def url_list_file_nm = "pw_urls_${map.env}.txt"
     def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
@@ -230,6 +245,24 @@ def sitespeedpw(Map map) {
         }
     }
 }                        
+
+def pa11yCuHu(Map map) {
+    dir('Devops') {
+        dir('pa11y') {
+            def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
+            sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm}"
+        }
+    }
+}
+
+def pa11yPw(Map map) {
+    dir('Devops') {
+        dir('pa11y') {
+            def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
+            sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm}"
+        }
+    }
+}
 
 def pallycuhuscript() {
     echo "Starting pa11y test Run on CustomerHub Urls"
