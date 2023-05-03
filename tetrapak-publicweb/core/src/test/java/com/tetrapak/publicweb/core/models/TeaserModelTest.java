@@ -155,6 +155,7 @@ public class TeaserModelTest {
         model = request.adaptTo(modelClass);
 
         assertEquals("Heading", model.getHeading());
+        assertEquals("4", model.getNumberOfColumns());        
         assertEquals("View All", model.getLinkLabel());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/search.html", model.getLinkPath());
         assertEquals("grayscale-white", model.getPwTheme());
@@ -207,6 +208,7 @@ public class TeaserModelTest {
         model = request.adaptTo(modelClass);
 
         assertEquals(true, model.getDisplayDate());
+        assertEquals("4", model.getNumberOfColumns());   
 
         assertEquals("Solutions", model.getTeaserList().get(0).getTitle());
         assertEquals("Solution Desc", model.getTeaserList().get(0).getDescription());
