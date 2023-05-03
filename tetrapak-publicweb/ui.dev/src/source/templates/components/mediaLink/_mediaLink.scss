@@ -76,8 +76,12 @@
     &__wrapper {
         border-bottom: 1px solid $color-mercury;
         p {
-            @include margin-top(-$margin-sm);
-            @include margin-bottom($margin-md);
+            display: none;
+            @media #{$desktop} {
+                @include margin-top(-$margin-sm);
+                @include margin-bottom($margin-md);
+                display: block;
+            }
         }
     }
     &__link.tpatom-link--transparent {
