@@ -25,7 +25,8 @@
                                              granite:class="cq-dialog-dropdown-disable-enable"
                                              jcr:primaryType="nt:unstructured"
                                              sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                             fieldLabel="Select number of columns"
+                                             fieldLabel="Number of columns"
+                                             fieldDescription="Select number of columns to be shown in teaser"
                                              name="./numberOfColumns">
                 <items jcr:primaryType="nt:unstructured">
                   <threeColumn
