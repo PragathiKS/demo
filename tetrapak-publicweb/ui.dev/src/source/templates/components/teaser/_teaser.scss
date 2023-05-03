@@ -227,9 +227,10 @@
     }
     @media #{$mobile} {
         .small-screen {
-           padding: 0 $margin-sm;
+            padding: 0 $margin-sm;
         }
-        .description, .link {
+        .description,
+        .link {
             display: none;
         }
     }
