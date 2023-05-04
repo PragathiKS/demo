@@ -1,6 +1,5 @@
-package com.tetrapak.publicweb.core.models.v2;
+package com.tetrapak.publicweb.core.models;
 
-import com.tetrapak.publicweb.core.models.v2.MegaMenuConfigurationModel;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
@@ -9,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class MegaMenuConfigurationModelTest {
+public class MegaMenuColumnModelTest {
 
     @Rule
     public AemContext context = new AemContext();
@@ -20,9 +19,9 @@ public class MegaMenuConfigurationModelTest {
     private static final String TEST_CONTENT_ROOT = "/content/experience-fragments/publicweb/en/solutions-mega-menu/master";
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfigv2";
+    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfig/col1";
 
-    private MegaMenuConfigurationModel model;
+    private MegaMenuColumnModel model;
 
     /** The resource. */
     private Resource resource;
@@ -30,7 +29,7 @@ public class MegaMenuConfigurationModelTest {
     @Before
     public void setUp() throws Exception {
 
-        final Class<com.tetrapak.publicweb.core.models.v2.MegaMenuConfigurationModel> modelClass = com.tetrapak.publicweb.core.models.v2.MegaMenuConfigurationModel.class;
+        final Class<com.tetrapak.publicweb.core.models.MegaMenuColumnModel> modelClass = com.tetrapak.publicweb.core.models.MegaMenuColumnModel.class;
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
@@ -40,7 +39,8 @@ public class MegaMenuConfigurationModelTest {
 
     @Test
     public void testGettersAndSetters() {
-        assertEquals(3, model.getNumberOfColumns());
+        assertEquals("white", model.getBgColor());
+        assertEquals(2, model.getItems().size());
     }
 
 }

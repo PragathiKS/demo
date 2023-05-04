@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.models.v2;
+package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Model(
-        adaptables = { org.apache.sling.api.resource.Resource.class },
+        adaptables = { Resource.class },
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MegaMenuColumnModel {
 
@@ -28,7 +28,7 @@ public class MegaMenuColumnModel {
     protected void init(){
         items = new ArrayList<>();
         if(resource!=null) {
-            Iterator<org.apache.sling.api.resource.Resource> children = resource.listChildren();
+            Iterator<Resource> children = resource.listChildren();
             while (children.hasNext()) {
                 items.add(children.next());
             }

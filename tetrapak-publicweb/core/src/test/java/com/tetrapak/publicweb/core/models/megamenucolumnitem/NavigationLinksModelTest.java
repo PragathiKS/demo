@@ -19,7 +19,7 @@ public class NavigationLinksModelTest {
     private static final String TEST_CONTENT_ROOT = "/content/experience-fragments/publicweb/en/solutions-mega-menu/master";
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfigv2/col1/navigationlinks";
+    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfig/col1/navigationlinks";
 
     private NavigationLinksModel model;
 

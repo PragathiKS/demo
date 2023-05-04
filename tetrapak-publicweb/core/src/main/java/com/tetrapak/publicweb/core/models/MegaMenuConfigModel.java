@@ -1,10 +1,9 @@
-package com.tetrapak.publicweb.core.models.v2;
+package com.tetrapak.publicweb.core.models;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-
 
 /**
  * The Class MegaMenuSolutionModel.
@@ -12,7 +11,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 @Model(
         adaptables = { Resource.class },
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class MegaMenuConfigurationModel {
+public class MegaMenuConfigModel {
 
     @ValueMapValue
     private int numberOfColumns;

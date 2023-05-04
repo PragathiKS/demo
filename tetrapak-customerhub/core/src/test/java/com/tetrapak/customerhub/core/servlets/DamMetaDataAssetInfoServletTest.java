@@ -61,7 +61,7 @@ public class DamMetaDataAssetInfoServletTest {
     public void doGet(){
     	damMetaDataAssetInfoServlet.doGet(context.request(), context.response());
         assertEquals(
-                "{\"customerhub\":[{\"assetSize\":\"0.88 MB\",\"assetPath\":\"/content/dam/tetrapak/customerhub/Cap_GCLP_English.pdf\",\"assetTitle\":\"Cap policy pdf\"}]}",
+                "{\"customerhub\":[{\"assetSize\":\"0,88 MB\",\"assetPath\":\"/content/dam/tetrapak/customerhub/Cap_GCLP_English.pdf\",\"assetTitle\":\"Cap policy pdf\"}]}",
                 context.response().getOutputAsString());
     }
     
