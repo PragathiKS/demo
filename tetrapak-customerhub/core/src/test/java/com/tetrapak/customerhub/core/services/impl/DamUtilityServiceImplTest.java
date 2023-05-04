@@ -82,7 +82,7 @@ public class DamUtilityServiceImplTest {
     public void testGetAssetsFromDam() throws JsonProcessingException, ValueFormatException, PathNotFoundException, RepositoryException, JSONException {
         Assert.assertEquals(
                 context.getService(DamUtilityService.class).getAssetsFromDam(resolver),
-                "{\"customerhub\":[{\"assetSize\":\"0,88 MB\",\"assetPath\":\"/content/dam/tetrapak/customerhub/Cap_GCLP_English.pdf\",\"assetTitle\":\"Cap policy pdf\"}]}");
+                "{\"customerhub\":[{\"assetSize\":\"0.88 MB\",\"assetPath\":\"/content/dam/tetrapak/customerhub/Cap_GCLP_English.pdf\",\"assetTitle\":\"Cap policy pdf\"}]}");
     }
 
 
