@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
     jcr:primaryType="nt:unstructured"
     jcr:title="Mega Menu Configurations"
     sling:resourceType="cq/gui/components/authoring/dialog">
@@ -7,235 +7,44 @@
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/coral/foundation/tabs">
         <items jcr:primaryType="nt:unstructured">
-            <endToEndSolutionSection
+            <columns
                 jcr:primaryType="nt:unstructured"
-                jcr:title="End To End Solution Section"
+                jcr:title="Columns"
                 sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                 <items jcr:primaryType="nt:unstructured">
                     <column
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-                            <topSectionSubtitle
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Section title"
-                                name="./topSectionSubtitle"/>
-                            <solution
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldDescription="Maximum 4"
-                                fieldLabel="End to end solution section"
-                                pw-max-items="4">
-                                <field
+                            <numberofcolumns
+                                    granite:class="cq-dialog-dropdown-disable-enable"
                                     jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./endToEndSolutionSection">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Select number of columns"
+                                    name="./numberOfColumns">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <singlecolumn
                                             jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <fileReference
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                    fieldLabel="Image path"
-                                                    path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
-                                                <note
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/note"
-                                                    note="Edit option for Image is not applicable for Tetra Pak"/>
-                                                <alt
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                    path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
-                                                <title
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Suggested to use characters less than recommended Limit: 28 chars considering translations"
-                                                    fieldLabel="Title"
-                                                    name="./title"/>
-                                                <description
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                                    fieldDescription="Suggested to use characters less than recommended Limit: 133 chars considering translations"
-                                                    fieldLabel="Body text"
-                                                    name="./description"/>
-                                                <path
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                    fieldLabel="Section path"
-                                                    name="./path"
-                                                    rootPath="/content/tetrapak/publicweb"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
-                            </solution>
+                                            text="Single Column"
+                                            value="1"/>
+                                    <twocolumn
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Two Column"
+                                            value="2"/>
+                                    <threecolumn
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Three Column"
+                                            value="3"/>
+                                    <fourcolumn
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Four Column"
+                                            value="4"/>
+                                </items>
+                            </numberofcolumns>
                         </items>
                     </column>
                 </items>
-            </endToEndSolutionSection>
-            <linkSection
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Link Section"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <links
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldDescription="Recommendation to add upto 7 links"
-                                fieldLabel="Link section">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./linkSection">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <linkText
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Link text"
-                                                    fieldLabel="Link label"
-                                                    name="./linkText"/>
-                                                <linkUrl
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                    fieldDescription="Link to destination path"
-                                                    fieldLabel="Link path"
-                                                    name="./linkUrl"
-                                                    rootPath="/content/tetrapak/publicweb"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
-                            </links>
-                        </items>
-                    </column>
-                </items>
-            </linkSection>
-            <foodCategorySection
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Food Category Section"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <bottomSectionSubtitle
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Section title"
-                                name="./bottomSectionSubtitle"/>
-                            <foodCategory
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldDescription="Maximum 12"
-                                fieldLabel="Food category section"
-                                pw-max-items="12">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./foodCategorySection">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <fileReference
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                    fieldLabel="Image path"
-                                                    path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
-                                                <note
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="cq/gui/components/authoring/dialog/note"
-                                                    note="Edit option for Image is not applicable for Tetra Pak"/>
-                                                <alt
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/include"
-                                                    path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
-                                                <title
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Suggested to use characters less than recommended Limit: 28 chars considering translations"
-                                                    fieldLabel="Title"
-                                                    name="./title"/>
-                                                <path
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                    fieldLabel="Section path"
-                                                    name="./path"
-                                                    rootPath="/content/tetrapak/publicweb"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
-                            </foodCategory>
-                            <hideFoodCategory
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                name="./hideFoodCategories"
-                                text="Hide food categories"
-                                uncheckedValue="false"
-                                value="true"/>
-                        </items>
-                    </column>
-                </items>
-            </foodCategorySection>
-            <pseduoCategorySection
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Pseudo Category Section"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <pseduoCategory
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldLabel="Pseudo category section">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./pseudoCategoryBean">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <key
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Key"
-                                                    name="./pseudoCategoryKey"/>
-                                                <value
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldLabel="Value"
-                                                    name="./pseudoCategoryValue"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
-                            </pseduoCategory>
-                        </items>
-                    </column>
-                </items>
-            </pseduoCategorySection>
+            </columns>
         </items>
     </content>
 </jcr:root>

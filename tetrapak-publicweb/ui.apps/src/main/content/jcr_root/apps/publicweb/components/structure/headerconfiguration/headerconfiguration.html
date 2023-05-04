@@ -1,13 +1,23 @@
 <sly data-sly-test="${wcmmode.edit}">
     <p data-emptytext="configure ${component.title}"
        class="cq-placeholder"></p>
-	   <sly data-sly-use.HeaderConfig="com.tetrapak.publicweb.core.models.HeaderConfigurationModel">
-	   Logo Image Path: ${HeaderConfig.logoImagePath}</br>
-       Logo Link : ${HeaderConfig.logoLink} <br/>
-       Logo Alt :  ${HeaderConfig.logoAlt} <br/>
-       Login Label : ${HeaderConfig.loginLabel} <br/>
-       Login Link : ${HeaderConfig.loginLink} <br/>
-       Contact Us Alt Text : ${HeaderConfig.contactText} <br/>
-       Contact Us Link : ${HeaderConfig.contactLink} <br/>
-	   </sly>
+    <sly data-sly-use.headerConfig="com.tetrapak.publicweb.core.models.HeaderConfigurationModel">
+        Logo Image Path: ${headerConfig.logoImagePath}</br>
+        Logo Link : ${headerConfig.logoLink} <br/>
+        Logo Alt :  ${headerConfig.logoAlt} <br/>
+        Login Label : ${headerConfig.loginLabel} <br/>
+        Login Link : ${headerConfig.loginLink} <br/>
+        Secondary Navigation Links : <br/>
+        <sly data-sly-list.links="${headerConfig.secondaryNavigationLinks}">
+            Link label: ${links.linkText}<br/>
+            Link path: ${links.linkUrl}<br/>
+        </sly>
+        <sly data-sly-list.mainLinks="${headerConfig.mainNavigationLinks}">
+            Main Navigation Links : <br/>
+            Link label: ${mainLinks.linkText}<br/>
+            Mega Menu URL: ${mainLinks.megaMenuPath}<br/>
+            Link path: ${mainLinks.linkUrl}<br/>
+        </sly>
+
+    </sly>
 </sly>

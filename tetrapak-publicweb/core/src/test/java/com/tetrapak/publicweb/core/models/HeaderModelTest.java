@@ -113,16 +113,9 @@ public class HeaderModelTest {
         assertEquals("Header", "Logo ", model.getLogoAlt());
         assertEquals("Header", "http://www.google.com", model.getLoginLink());
         assertEquals("Header", "Login Label", model.getLoginLabel());
-        assertEquals("Header", "/content/tetrapak/publicweb/global/en.html", model.getContactUsLink());
-        assertEquals("Header", "Contact Us Label", model.getContactUsAltText());
         assertEquals("Header", "/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
-        assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/check.html",
-                model.getMegaMenuLinksList().get(0).getLinkPath());
-        assertEquals("Header", "check", model.getMegaMenuLinksList().get(0).getLinkText());
         assertNotNull("Header", model.getMegaMenuConfigurationModel());
-        assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/solutions.html", model.getSolutionPage());
         assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/search.html", model.getSearchPage());
-        assertEquals("Header", "Solutions", model.getSolutionPageTitle());
         assertEquals("Header", true, model.getMarketList().getMarkets().get(2).equals(marketBean));
         assertEquals("Header", "Belgium", model.getMarketList().getMarkets().get(2).getMarketName());
         assertEquals("Header", "Belgique", model.getMarketList().getMarkets().get(2).getCountryName());

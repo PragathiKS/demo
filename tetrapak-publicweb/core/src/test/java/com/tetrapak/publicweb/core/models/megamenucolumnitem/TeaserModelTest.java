@@ -19,7 +19,7 @@ public class TeaserModelTest {
     private static final String TEST_CONTENT_ROOT = "/content/experience-fragments/publicweb/en/solutions-mega-menu/master";
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfigv2/col3/teaser";
+    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfig/col3/teaser";
 
     private TeaserModel model;
 

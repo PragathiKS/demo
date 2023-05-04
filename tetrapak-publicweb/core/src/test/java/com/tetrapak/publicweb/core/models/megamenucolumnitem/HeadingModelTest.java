@@ -1,6 +1,5 @@
 package com.tetrapak.publicweb.core.models.megamenucolumnitem;
 
-import com.tetrapak.publicweb.core.models.v2.MegaMenuColumnModel;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
@@ -20,7 +19,7 @@ public class HeadingModelTest {
     private static final String TEST_CONTENT_ROOT = "/content/experience-fragments/publicweb/en/solutions-mega-menu/master";
 
     /** The Constant RESOURCE. */
-    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfigv2/col1/heading";
+    private static final String RESOURCE_PATH = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/megamenuconfig/col1/heading";
 
     private HeadingModel model;
 

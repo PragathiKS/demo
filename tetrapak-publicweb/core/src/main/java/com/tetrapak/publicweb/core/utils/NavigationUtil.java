@@ -28,56 +28,6 @@ public final class NavigationUtil {
     }
 
     /**
-     * Fetch solution page path.
-     *
-     * @param request
-     *            the request
-     * @return the string
-     */
-    public static String fetchSolutionPagePath(final SlingHttpServletRequest request) {
-        String solutionPagePath = StringUtils.EMPTY;
-        final String rootPath = LinkUtils.getRootPath(request.getPathInfo());
-        final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
-        final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
-        if (Objects.nonNull(headerConfigurationResource)) {
-            final HeaderConfigurationModel configurationModel = headerConfigurationResource
-                    .adaptTo(HeaderConfigurationModel.class);
-            if (Objects.nonNull(configurationModel)) {
-                solutionPagePath = configurationModel.getSolutionPage();
-            }
-        }
-        return solutionPagePath;
-    }
-
-    /**
-     * Gets the solution page title.
-     *
-     * @param request
-     *            the request
-     * @param solutionPage
-     *            the solution page
-     * @return the solution page title
-     */
-    public static String getSolutionPageTitle(final SlingHttpServletRequest request, final String solutionPage) {
-        String solutionPageTitle = StringUtils.EMPTY;
-        final ResourceResolver resourceResolver = request.getResourceResolver();
-        final String solutionPagePath = resourceResolver.resolve(solutionPage).getPath();
-        final String solutionPageJcrContentPath = getSolutionPageWithoutExtension(solutionPagePath) + PWConstants.SLASH
-                + JcrConstants.JCR_CONTENT;
-        final Resource solutionPageResource = resourceResolver.getResource(solutionPageJcrContentPath);
-        if (Objects.nonNull(solutionPageResource)) {
-            final ValueMap properties = solutionPageResource.adaptTo(ValueMap.class);
-            final String navTitle = properties.get(NameConstants.PN_NAV_TITLE, StringUtils.EMPTY);
-            if (StringUtils.isNotBlank(navTitle)) {
-                solutionPageTitle = navTitle;
-            } else {
-                solutionPageTitle = properties.get(JcrConstants.JCR_TITLE, StringUtils.EMPTY);
-            }
-        }
-        return solutionPageTitle;
-    }
-
-    /**
      * Gets the solution page without extension.
      *
      * @param path

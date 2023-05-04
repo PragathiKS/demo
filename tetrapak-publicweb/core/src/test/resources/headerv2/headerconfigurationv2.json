@@ -20,7 +20,7 @@
       "responsivegrid": {
         "jcr:primaryType": "nt:unstructured",
         "sling:resourceType": "wcm/foundation/components/responsivegrid",
-        "headerconfigurationv2": {
+        "headerconfiguration": {
           "jcr:primaryType":"nt:unstructured",
           "jcr:createdBy":"admin",
           "loginLabel":"My Tetra Pak",
@@ -30,7 +30,7 @@
           "searchPage":"/content/tetrapak/publicweb/lang-masters/en/search",
           "logoImagePath":"/content/dam/tetrapak/publicweb/global/header/header.png",
           "logoAlt":"Logo",
-          "sling:resourceType":"publicweb/components/structure/headerconfigurationv2",
+          "sling:resourceType":"publicweb/components/structure/headerconfiguration",
           "logoLink":"/content/tetrapak/publicweb/lang-masters/en/home",
           "secondaryNavigationLinks":{
             "jcr:primaryType":"nt:unstructured",
