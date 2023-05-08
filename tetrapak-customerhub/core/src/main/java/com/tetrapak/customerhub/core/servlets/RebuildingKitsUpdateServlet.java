@@ -64,8 +64,9 @@ public class RebuildingKitsUpdateServlet extends SlingAllMethodsServlet {
         if (bean != null && bean.isValid() && StringUtils.isNotEmpty(token)) {
             jsonObject = rebuildingKitsApiService.updateImplementationStatus(token,GlobalUtil.getCustomerEmailAddress(request),bean);
             if (jsonObject != null) {
-                if(jsonObject.has(CustomerHubConstants.STATUS) && jsonObject.get(CustomerHubConstants.STATUS).getAsInt()!=HttpStatus.SC_CREATED && jsonObject.get(CustomerHubConstants.STATUS).getAsInt()!=HttpStatus.SC_OK){
+                if(jsonObject.has(CustomerHubConstants.STATUS) && jsonObject.get(CustomerHubConstants.STATUS).getAsInt()!=HttpStatus.SC_CREATED){
                     jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", jsonObject.get(CustomerHubConstants.STATUS).getAsInt());
+                    response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
                     HttpUtil.writeJsonResponse(response, jsonObject);
                     return;
                 }
@@ -73,10 +74,12 @@ public class RebuildingKitsUpdateServlet extends SlingAllMethodsServlet {
             } else {
                 jsonObject = new JsonObject();
                 jsonObject = HttpUtil.setJsonResponse(jsonObject, "request error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+                response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
                 HttpUtil.writeJsonResponse(response, jsonObject);
             }
         } else {
             jsonObject = HttpUtil.setJsonResponse(jsonObject, "bad request", HttpStatus.SC_BAD_REQUEST);
+            response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
             HttpUtil.writeJsonResponse(response, jsonObject);
         }
     }
