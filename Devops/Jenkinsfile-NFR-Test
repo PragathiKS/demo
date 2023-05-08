@@ -13,11 +13,11 @@ pipeline {
     
     parameters {
         choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Public Web Module', name: 'Test_Publicweb'
-        booleanParam defaultValue: true, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Test_MyTetraPak'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Accessibility Test', name: 'Pa11y_Execution'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with Sitespeed Test', name: 'Sitespeed_Run'
-        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with ZAP Test', name: 'ZAP_Run'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test Public Web Module', name: 'Test_Publicweb'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test My Tetra Pak Module', name: 'Test_MyTetraPak'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test Accessibility with Pa11y', name: 'Pa11y_Execution'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test with Sitespeed', name: 'Sitespeed_Run'
+        booleanParam defaultValue: false, description: 'Please check in case you want to test with ZAP Test', name: 'ZAP_Run'
     }
 
     options {
@@ -101,14 +101,21 @@ pipeline {
             } 
         }
 
-        stage('Zap Tools Execution') {        
+        stage('Zap Tools Execution') {   
+            when { expression { return params.ZAP_Run } }     
             steps {
                 script {
-                    if (params.ZAP_Run) {
-                        warnError(message: "Zap Tools Execution failed with error") {
-                            zaptest()
-                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "zap-${appname}", reportFiles: 'zap.html', reportName: "ZAPReport-${appname}", reportTitles: '']) 
-                        }           					
+                    if (params.Test_Publicweb) {
+                        if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                            warnError(message: "Zap Tools Execution failed with error") {
+                                zaptestpw(env: 'dev') 
+                            }    
+                        }
+                        if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                            zaptestpw(env: 'qa')
+                        } 
+                    } else {
+                        echo "ZAP Test for Other apps are not supported yet."
                     }
                 }
             } 
@@ -116,20 +123,25 @@ pipeline {
     }
 }
 
-def zaptest() {
-    def test_url_pally_zap_pw = "https://www-dev.tetrapak.com/"
-    echo "Starting Zap Test Run- ${appname}"
-    sh 'sudo docker ps -a'
-    sh 'if docker ps | grep zap; then echo "ZAP is running, initiating stop and remove" && sudo docker stop zap && sudo docker rm zap ; else echo "stopped"; fi'
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
-    sleep 30
-    echo "Starting ZAP test Run on ${appname} Urls"
-    sh "docker exec  zap zap-cli spider ${test_url_pally_zap_pw}"
-    sh 'docker exec  zap zap-cli report -f html -o zap.html'
-    sh "mkdir -p zap-${appname}"
-    sh "docker cp zap:zap/zap.html zap-${appname}"
-    sh 'sudo docker stop zap'
-    sh 'sudo docker rm zap'
+def zaptestpw(Map map) {
+    try {
+        def test_url_pw = "https://www-${map.env}.tetrapak.com"
+        sh 'sudo docker ps -a'
+        sh label: "ZAP is running, initiating stop and remove", script: 'if docker ps | grep zap; then sudo docker stop zap && sudo docker rm zap ; fi'
+        sh label: "Starting Zap Docker", script: 'docker run -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
+
+        sh label:"Starting ZAP test Run on publicweb Urls", script: "docker exec zap zap-cli spider ${test_url_pw}"
+        sh 'docker exec zap zap-cli report -f html -o zap.html'
+        sh "mkdir -p zap/publicweb/${map.env} && chmod 777 zap"
+        sh "docker cp zap:zap/zap.html zap/publicweb/${map.env}"
+    }
+    catch(Exception e) {
+        throw e
+    } 
+    finally {
+        sh 'sudo docker stop zap'
+        sh 'sudo docker rm zap'
+    }
 }
 
 def sitespeedCuHu(Map map) {
@@ -250,7 +262,7 @@ def sitespeedpw(Map map) {
 def pa11yCuHu(Map map) {
     dir('Devops') {
         dir('pa11y') {
-            sh "sudo mkdir -p mtp/${map.env} && sudo chmod 777 mtp/${map.env}"
+            sh "sudo mkdir -p mtp/${map.env} && sudo chmod 777  "
             def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
             sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm}"
         }
