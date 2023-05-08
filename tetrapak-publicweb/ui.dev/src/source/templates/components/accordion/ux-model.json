@@ -1,0 +1,22 @@
+{
+    "heading": "Headings goes here",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis lectus quis sem lacinia nonummy. Proin mollis lorem non dolor.",
+    "accordionList": [
+        {
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
+        },
+        {
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
+        },
+        {
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
+        },
+        {
+            "accordionHeading": "Look at your customers’ questions",
+            "accordionDetails": "details"
+        }
+    ]
+}

@@ -65,7 +65,7 @@ module.exports = {
       ...libsBaseConfig,
       name: 'clientlib-site',
       categories: ['tetra-laval.site'],
-      dependencies: ['tetra-laval.dependencies'],
+      dependencies: ['tetra-laval.dependencies','granite.csrf.standalone'],
       assets: {
         js: {
           cwd: 'clientlib-site',

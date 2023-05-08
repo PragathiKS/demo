@@ -58,6 +58,8 @@
                     selectStatusLabel="cuhu.financial.Status"
                     setDates="cuhu.financial.setDate"
                     statementOfAccount="cuhu.financial.Staetementaccount"
+                    placeholderForCustomerSearchText="cuhu.financial.placeholderForCustomerSearchText"
+                    noDataFoundForCustomerSearch="cuhu.financial.noDataFoundForCustomerSearch"
                     summaryHeadingI18n="cuhu.financial.Summary"/>
             </responsivegrid>
         </root>

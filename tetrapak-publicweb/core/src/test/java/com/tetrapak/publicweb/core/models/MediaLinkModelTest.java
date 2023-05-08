@@ -50,6 +50,7 @@ public class MediaLinkModelTest {
     @Test
     public void testValue() {
         assertEquals("Heading", model.getHeading());
+        assertEquals("headingDesc", model.getHeadingDesc());
         assertEquals("mediaLink01", model.getAnchorId());
         assertEquals("Anchor  title", model.getAnchorTitle());
         assertEquals("grayscale-white", model.getPwTheme());
@@ -65,5 +66,8 @@ public class MediaLinkModelTest {
                 model.getColumnTwoList().get(0).getLinkUrl());
         assertEquals("/content/tetrapak/publicweb/lang-master/en/solution.html",
                 model.getColumnThreeList().get(0).getLinkUrl());
+        assertEquals("linkDesc", model.getColumnOneList().get(0).getLinkDesc());
+        assertEquals("linkDesc", model.getColumnTwoList().get(0).getLinkDesc());
+        assertEquals("linkDesc", model.getColumnThreeList().get(0).getLinkDesc());
     }
 }

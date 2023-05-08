@@ -19,17 +19,22 @@
 			"anchorId": "mediaLink01",
 			"jcr:created": "Mon Apr 20 2020 16:29:12 GMT+0530",
 			"columnThreeTitle": "title 3",
+			"columnThreeDesc": "columnThreeDesc",
 			"pwTheme": "grayscale-white",
 			"heading": "Heading",
+			"headingDesc": "headingDesc",
 			"columnTwoTitle": "title 2",
+			"columnTwoDesc": "columnTwoDesc",
 			"jcr:lastModified": "Mon Apr 20 2020 18:16:31 GMT+0530",
 			"columnOneTitle": "title 1",
+			"columnOneDesc": "columnOneDesc",
 			"sling:resourceType": "publicweb/components/content/mediaLink",
 			"columnOneList": {
 				"jcr:primaryType": "nt:unstructured",
 				"item0": {
 					"jcr:primaryType": "nt:unstructured",
 					"linkLabel": "Link Label 1",
+					"linkDesc": "linkDesc",
 					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/test"
 				}
 			},
@@ -38,6 +43,7 @@
 				"item0": {
 					"jcr:primaryType": "nt:unstructured",
 					"linkLabel": "Link Label 2",
+					"linkDesc": "linkDesc",
 					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/home"
 				}
 			},
@@ -46,6 +52,7 @@
 				"item0": {
 					"jcr:primaryType": "nt:unstructured",
 					"linkLabel": "Link Label 3",
+					"linkDesc": "linkDesc",
 					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/solution"
 				}
 			}

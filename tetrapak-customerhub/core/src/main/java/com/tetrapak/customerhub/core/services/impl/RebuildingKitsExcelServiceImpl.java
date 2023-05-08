@@ -4,6 +4,8 @@ import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.RebuildingKitsExcelService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -16,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -45,6 +48,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		csvHeaderMapping.add(CustomerHubConstants.RK_DESC);
 		csvHeaderMapping.add(CustomerHubConstants.SERIAL_NUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.EQUIPMENT_DESC_CSVHEADER);
+		csvHeaderMapping.add(CustomerHubConstants.GENERAL_RKNUMBER);
 		csvHeaderMapping.add(CustomerHubConstants.IMPL_STATUS);
 		csvHeaderMapping.add(CustomerHubConstants.PERMANENT_VOLUME_CONV);
 		csvHeaderMapping.add(CustomerHubConstants.IMPL_STATUS_DATE);
@@ -108,7 +112,8 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 				LOGGER.debug("Rebuilding Kits List CSV File Column heading : {}", columnHeading);
 			}
 			csvFileContent.append(CustomerHubConstants.NEWLINE);
-			for (RebuildingKits rbk : rebuildingKits) {
+			List<RebuildingKits> sortedRebuildingKits = sortRebuildingKitsRecordsinCSV(rebuildingKits);
+			for (RebuildingKits rbk : sortedRebuildingKits) {
 				csvFileContent.append(convertToCSVRow(rbk));
 			}
 			csvFileOutputStream.write(csvFileContent.toString().getBytes(StandardCharsets.UTF_16LE));
@@ -165,16 +170,17 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineCode()));
 		rbkPropertiesList.add(tidyCSVOutput(formatPosition(rbk.getPosition())));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkNumber()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkDesc()));
+		rbkPropertiesList.add(formatRKDesc(rbk.getRkDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getSerialNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentDesc()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkGeneralNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatus()));
 		rbkPropertiesList
 				.add(tidyCSVOutput(formatPermanentVolumeConversion(rbk.getPermanentVolumeConversion())));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplStatusDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDate()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getImplDeadline()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatus()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStatusDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentStructure()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getServiceOrder()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getOrder()));
@@ -192,7 +198,7 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getRkHandling()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentMaterial()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentMaterialDesc()));
-		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentType()));
+		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentTypeDesc()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getEquipmentNumber()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getCountryName()));
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getLineName()));
@@ -201,6 +207,13 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 		rbkPropertiesList.add(tidyCSVOutput(rbk.getKpiExcl()));
 		return rbkPropertiesList.stream().collect(Collectors.joining(CustomerHubConstants.TAB))
 				.concat(CustomerHubConstants.NEWLINE);
+	}
+
+	private String formatRKDesc(String rkDesc) {
+		if (Objects.isNull(rkDesc)) {
+			return StringUtils.EMPTY;
+		}
+		return StringEscapeUtils.unescapeCsv(rkDesc);
 	}
 
 	private String tidyCSVOutput(String field) {
@@ -233,5 +246,19 @@ public class RebuildingKitsExcelServiceImpl implements RebuildingKitsExcelServic
 	private String getCurrentDate() {
 		DateTimeFormatter dtfDate = DateTimeFormatter.ofPattern(DATE_PATTERN);
 		return dtfDate.format(LocalDate.now());
+	}
+	
+	/**
+	 * This method sorts the CSV rows.
+	 *
+	 * @param List<Equipments> Unsorted Rebuilding Kits list
+	 * @return List<Equipments> Sorted Rebuilding Kits list
+	 */
+	private List<RebuildingKits> sortRebuildingKitsRecordsinCSV(List<RebuildingKits> unsortedRebuildingKits) {
+		Comparator<RebuildingKits> cumulativeComparison = Comparator
+				.comparing(RebuildingKits::getLineCode)
+				.thenComparing(RebuildingKits::getRkGeneralNumber)
+				.thenComparing(RebuildingKits::getPosition);
+		return unsortedRebuildingKits.stream().sorted(cumulativeComparison).collect(Collectors.toList());
 	}
 }

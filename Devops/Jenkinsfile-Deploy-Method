@@ -1,3 +1,5 @@
+@Library('jenkins-pipeline-library') _
+
 pipeline {
     agent {
        node {
@@ -7,47 +9,51 @@ pipeline {
 
     parameters {
         choice(name: 'Environment', choices: ['QA65', 'SUP65', 'DEV65'], description: 'Select the environment')
-        booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
-        booleanParam defaultValue: true, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
-        booleanParam defaultValue: true, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
-	booleanParam defaultValue: true, description: 'Please check in case you want to build Tetralaval Module', name: 'DeployTetraLaval'
-	booleanParam defaultValue: true, description: 'Please check in case you want to build Supplierportal Module', name: 'DeploySupplierportal'
-
-        string(name: 'Snapshot_Commons', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
-        string(name: 'Snapshot_MyTetrapak', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
-        string(name: 'Snapshot_PublicWeb', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
-        string(name: 'Snapshot_TetraLaval', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
-     string(name: 'Snapshot_Supplierportal', defaultValue: 'SnapshotVersion', description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+        booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
+        string(name: 'Snapshot_Commons', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+        
+        booleanParam defaultValue: false, description: 'Please check in case you want to build MyTetraPak Module', name: 'DeployMyTetrapak'
+        string(name: 'Snapshot_MyTetrapak', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+        
+        booleanParam defaultValue: false, description: 'Plese check in case you want to build Public Web Module', name: 'DeployPublicWeb'
+        string(name: 'Snapshot_PublicWeb', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+	    
+        booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'DeployTetraLaval'
+        string(name: 'Snapshot_TetraLaval', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+	    
+        booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'DeploySupplierportal'
+        string(name: 'Snapshot_Supplierportal', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
     }
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
+        parallelsAlwaysFailFast()
+        office365ConnectorWebhooks([[
+            name: 'Office 365',
+            startNotification: true,
+            url: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1"
+        ]])
     }
 
-
     stages {
-//        stage('Pre-check for deployment') {
-  //          steps {
-    //            script {
-//				precheck()
- //                    }
-//}
-//}
+        stage('Pre-check for deployment') {
+           steps {
+               script {
+				    precheck()
+                }
+            }
+        }
 
         stage('Author and Publisher Deployment') {
             steps {
                 script {                
                     if (params.Environment == "SUP65") {
-
                         author_url = "https://author1westeurope.sup65.tetrapak.adobecqms.net"
                         publish_url = "https://publish1westeurope.sup65.tetrapak.adobecqms.net" 
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
                         {
                             supdeployment()
-                            echo "$username"
-                            echo "$password"
-                            
                         }
                     }
                     if (params.Environment == "DEV65") {
@@ -57,48 +63,38 @@ pipeline {
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcreddev', usernameVariable: 'username', passwordVariable: 'password']])
                         {
                             devdeployment()
-                            echo "$username"
-                            echo "$password"
-                            
                         }
                     }
                     if (params.Environment == "QA65") {
-
                         author_url = "https://author1westeurope.test65.tetrapak.adobecqms.net"
                         publish_url = "https://publish1westeurope.test65.tetrapak.adobecqms.net"
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username', passwordVariable: 'password']])
                         {
                             devdeployment()
-                            echo "$username"
-                            echo "$password"
-                            
                         }
                     }
-                    if (params.Environment == "STAGE65") {
-                        
-                                author_url = "https://author1westeurope.stage65.tetrapak.adobecqms.net"
-                                username = "sapient-user"
-                                password = "*?qbpgyd+hNKR6E%mQmle[XK"                                 
-                        //withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredstage', usernameVariable: 'username', passwordVariable: 'password']])
-                        //{                           
-                                stagedeployment65()
-                            
-                        //}
+                    if (params.Environment == "STAGE65") {                          
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sapient-user', usernameVariable: 'username', passwordVariable: 'password']])
+                        {                           
+                            stagedeployment65()
+                        }
                     }					
                 }
             }
         }
-	stage('QA Cache Clear') {
-            agent {
-                node {
-                label 'cfe-deploy'
-            }
-            }
+
+        stage('Cache Clear') {
             steps {
                 script {
                     cacheflush()
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            sendNotifications(currentBuild.currentResult)
         }
     }
 }
@@ -126,7 +122,6 @@ pipeline {
     }
 */
     def devdeployment() {
-                
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
                 repoName = "tetrapak"
@@ -149,10 +144,10 @@ pipeline {
                 devartifactdownload()
                 parallel (  
                     "Author MyTetrapak" : {                                  
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher MyTetrapak" : {                                    
-                publishdeploy() 
+                        publishdeploy() 
                     }
                 )                           
         }
@@ -163,10 +158,10 @@ pipeline {
                 devartifactdownload()
                 parallel (    
                     "Author PublicWeb" : {                                    
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher PublicWeb" : {                     
-                publishdeploy()  
+                        publishdeploy()  
                     }
                 )
             }             
@@ -177,10 +172,10 @@ pipeline {
                 devartifactdownload()
                 parallel (
                     "Author TetraLaval" : {
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher Tetralaval" : {
-                publishdeploy()
+                        publishdeploy()
                     }
                 )
         }
@@ -192,18 +187,20 @@ pipeline {
                 devartifactdownload()
                 parallel (
                     "Author Supplierportal" : {
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher Supplierportal" : {
-                publishdeploy()
+                        publishdeploy()
                     }
                 )
         }
 
-        }
+    }
     
     def stagedeployment65() {
-
+        author_url = "https://author1westeurope.stage65.tetrapak.adobecqms.net"
+        def publish_urls = ["https://publish1westeurope.stage65.tetrapak.adobecqms.net", 
+                            "https://publish2westeurope.stage65.tetrapak.adobecqms.net"]
         if (params.DeployCommons)    {
                 packageName = "tetrapak-commons.complete"
                 repoName = "tetrapak"
@@ -212,15 +209,13 @@ pipeline {
                 devartifactdownload()                
                 parallel (
                     "Author Commons" : {                                    
-                authordeploy()
+                        authordeploy()
                     },
-                    "Publisher Commons" : {                  
-                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
-                    //},
-                    //"Publisher 2 Commons" : {                
-                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
+                    "Publisher Commons" : {  
+                        for(url in publish_urls) {
+                           publish_url = url
+                           publishdeploy()
+                        }                
                     }
                 )
 
@@ -233,15 +228,13 @@ pipeline {
                 devartifactdownload()                   
                 parallel (
                     "Author MyTetrapak" : {                               
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher MyTetrapak" : {                      
-                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
-                    //},
-                    //"Publisher 2 MyTetrapak" : {                      
-                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()                           
+                        for(url in publish_urls) {
+                           publish_url = url
+                           publishdeploy()
+                        }                            
                     }
                 )
         }
@@ -253,15 +246,13 @@ pipeline {
                 devartifactdownload()
                 parallel (
                     "Author PublicWeb" : {                               
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher PublicWeb" : {                  
-                publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
-                    //},
-                    //"Publisher 2 PublicWeb" : {                  
-                publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
-                publishdeploy()
+                        for(url in publish_urls) {
+                           publish_url = url
+                           publishdeploy()
+                        } 
                     }
                 )                
             } 
@@ -291,10 +282,10 @@ pipeline {
                 devartifactdownload()
                 parallel (  
                     "Author MyTetrapak" : {                                  
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher MyTetrapak" : {                                    
-                publishdeploy() 
+                        publishdeploy() 
                     }
                 )                           
         }
@@ -305,10 +296,10 @@ pipeline {
                 devartifactdownload()
                 parallel (    
                     "Author PublicWeb" : {                                    
-                authordeploy()
+                        authordeploy()
                     },
                     "Publisher PublicWeb" : {                     
-                publishdeploy()  
+                        publishdeploy()  
                     }
                 )
             }             
@@ -316,53 +307,49 @@ pipeline {
         }
 
     def authordeploy() {
-                
-                echo "Uninstalling Old Commons Package on author for Commons"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
-                sleep 60
-                echo "Deleting Old Commons Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
-                sleep 60
-                echo "Uploading New Commons Package on author"
-                sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                sleep 60
-                echo "Installing New Commons Package on author"
-                sh "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
-                sleep 60
-
+        sh label: "Uninstalling Old Commons Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}' && sleep 60"
+        sh label: "Deleting Old Commons Package on author", script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}' && sleep 60"
+        sh label: "Uploading New Commons Package on author", script: "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=upload' --verbose && sleep 60" 
+        sh label: "Installing New Commons Package on author" , script: "curl -k -u ${username}:${password} -F force=true '${author_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}' && sleep 60"
     }
 
     def publishdeploy() {
-                
-               echo "Uninstalling Old Commons Package on publish for Commons"
-               sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}'"
-               sleep 60
-               echo "Deleting Old Commons Package on publish"
-               sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}'"
-                sleep 60
-                echo "Uploading New Commons Package on publish"
-                sh "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose"
-                sleep 60
-                echo "Installing New Commons Package on publish"
-                sh "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'"
-                sleep 60
-
+        sh label: "Uninstalling Old Commons Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=uninst&name=${packageName}&group=${repoName}' && sleep 60"
+        sh label: "Deleting Old Commons Package on publish", script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=rm&name=${packageName}&group=${repoName}' && sleep 60" 
+        sh label: "Uploading New Commons Package on publish" , script: "curl -k -u ${username}:${password} -F name=${packageName} -F file=@${packageName}-${fileName}.zip -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=upload' --verbose && sleep 60"
+        sh label: "Installing New Commons Package on publish" , script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}' && sleep 60"
     }
-    def cacheflush() {
-                echo "Starting Dev Dispatcher Cache Clear"
-                withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                {
-                sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+
+    def cacheflush() { 
+            withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+            {
+                if (params.Environment == "SUP65") {
+                   sh label: "Starting SUP65 Dispatcher Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.97.72 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'     
                 }
+                if (params.Environment == "DEV65") {
+                    sh label: "Starting DEV65 Dispatcher Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'  
+                }
+                if (params.Environment == "QA65") {
+                    sh label: "Starting QA65 Dispatcher Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'  
+                }
+                if (params.Environment == "STAGE65") {                      
+                    sh label: "Starting STAGE65 Dispatcher 1 Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"' 
+                    sh label: "Starting STAGE65 Dispatcher 2 Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'  
+                }
+            }
     }
 
-   // def precheck() {
-
-     //   if ((params.DeployCommons && ${Snapshot_Commons}="") || (params.DeployMyTetrapak && ${Snapshot_MyTetrapak}="") || (params.DeployPublicWeb && ${Snapshot_PublicWeb}=""))
-
-//				{
-//				echo "Please fill Snapshot Version field"
-//				currentBuild.result = 'Failure'
-//				error "Failed...Exiting now...."
-//                }
-//				}
+   def precheck() {
+        if (!params.DeployCommons && !params.DeployMyTetrapak && !params.DeployPublicWeb && !params.DeploySupplierportal && !params.DeployTetraLaval) {
+            echo "Please Select atleast one project"
+			currentBuild.result = 'Failure'
+			error "Deployment failed due to incorrect parameter selection."
+        }
+        if ((params.DeployCommons && !params.Snapshot_Commons?.trim()) || (params.DeployMyTetrapak && !params.Snapshot_MyTetrapak?.trim()) ||
+              (params.DeployPublicWeb && !params.Snapshot_PublicWeb?.trim()) || (params.DeployTetraLaval && !params.Snapshot_TetraLaval?.trim()) ||
+              (params.DeploySupplierportal && !params.Snapshot_Supplierportal?.trim())) {
+				echo "Please enter corresponding SnapshotVersion field"
+				currentBuild.result = 'Failure'
+				error "Deployment failed due to Missing Snapshot Version"
+        }
+    }

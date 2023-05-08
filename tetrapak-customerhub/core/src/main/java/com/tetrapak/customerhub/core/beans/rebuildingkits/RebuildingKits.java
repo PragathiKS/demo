@@ -67,7 +67,10 @@ public class RebuildingKits {
     @SerializedName("equipmentStatus")
     @Expose
     private String equipmentStatus;
-
+    
+    @SerializedName("equipmentStatusDesc")
+    @Expose
+    private String equipmentStatusDesc;
 
     @SerializedName("equipmentStructure")
     @Expose
@@ -142,6 +145,10 @@ public class RebuildingKits {
     @SerializedName("equipmentType")
     @Expose
     private String equipmentType;
+    
+    @SerializedName("equipmentTypeDesc")
+    @Expose
+    private String equipmentTypeDesc;
 
     @SerializedName("equipmentNumber")
     @Expose
@@ -167,6 +174,10 @@ public class RebuildingKits {
     @SerializedName("kpiExcl")
     @Expose
     private String kpiExcl;
+    
+    @SerializedName("rkGeneralNumber")
+    @Expose
+    private String rkGeneralNumber;
 
     public String getCountryCode() {
         return countryCode;
@@ -219,6 +230,14 @@ public class RebuildingKits {
     public String getEquipmentStatus() {
         return equipmentStatus;
     }
+    
+    public String getEquipmentStatusDesc() {
+        return equipmentStatusDesc;
+    }
+    
+    public void setEquipmentStatusDesc(String equipmentStatusDesc) {
+        this.equipmentStatusDesc = equipmentStatusDesc;
+    }
 
     public void setEquipmentStatus(String equipmentStatus) {
         this.equipmentStatus = equipmentStatus;
@@ -229,10 +248,18 @@ public class RebuildingKits {
         return equipmentType;
     }
 
+    public void setEquipmentTypeDesc(String equipmentTypeDesc) {
+        this.equipmentTypeDesc = equipmentTypeDesc;
+    }
+
+    public String getEquipmentTypeDesc() {
+        return equipmentTypeDesc;
+    }
+
     public void setEquipmentType(String equipmentType) {
         this.equipmentType = equipmentType;
     }
-
+    
     public String getSerialNumber() {
         return serialNumber;
     }
@@ -480,4 +507,12 @@ public class RebuildingKits {
     public void setKpiExcl(String kpiExcl) {
         this.kpiExcl = kpiExcl;
     }
+
+	public String getRkGeneralNumber() {
+		return rkGeneralNumber;
+	}
+
+	public void setRkGeneralNumber(String rkGeneralNumber) {
+		this.rkGeneralNumber = rkGeneralNumber;
+	}
 }
