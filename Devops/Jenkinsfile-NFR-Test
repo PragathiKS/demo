@@ -250,7 +250,7 @@ def sitespeedpw(Map map) {
 def pa11yCuHu(Map map) {
     dir('Devops') {
         dir('pa11y') {
-            sh "sudo mkdir -p mtp/${map.env}"
+            sh "sudo mkdir -p mtp/${map.env} && sudo chmod 777 mtp/${map.env}"
             def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
             sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm}"
         }
@@ -260,30 +260,9 @@ def pa11yCuHu(Map map) {
 def pa11yPw(Map map) {
     dir('Devops') {
         dir('pa11y') {
-            sh "sudo mkdir -p pw/${map.env}"
+            sh "sudo mkdir -p pw/${map.env} && sudo chmod 777 pw/${map.env}"    
             def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
             sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm}"
         }
     }
-}
-
-def pallycuhuscript() {
-    echo "Starting pa11y test Run on CustomerHub Urls"
-    reportname = "Pa11y Report - CustomerHub"
-    sh 'chmod 777 Devops/PallyReportCuhu.sh'
-    sh 'sh -x Devops/PallyReportCuhu.sh'
-    sh 'mkdir -p pally-customerHub'
-    sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport-MyTetraPak', reportTitles: ''])
-}
-
-def pallypwscript() {
-    echo "Starting pa11y test Run on PublicWeb Urls"
-    reportname = "Pa11y Report - publicweb"
-    sh 'chmod 777 Devops/PallyReportPubWeb.sh'
-    sh 'sh -x Devops/PallyReportPubWeb.sh'
-    sh 'mkdir -p pally-publicWeb'
-    sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
-                                      
 }

@@ -46,7 +46,6 @@ async function testPW(env, url_list_file_nm) {
             const result = await pa11y(line, mtp_opt);
             const report = await htmlReporter.results(result);
             var path = line.substring(line.lastIndexOf('/') + 1);
-            console.log(path);
             if(path == null || path == '' || path.startsWith('www')) {
                 path = "Home";
             }
