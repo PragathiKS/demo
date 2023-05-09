@@ -141,7 +141,7 @@ pipeline {
                             sh label: "Copy MTP Pa11y reports", script: "cp -a Devops/pa11y/mtp/. NFR-Reports/pa11y"
                         }
                     }
-                    zip zipFile :"NFR-Reports.zip" archive: true dir: "NFR-Reports" overwrite: true
+                    zip zipFile:"NFR-Reports.zip", dir: "NFR-Reports", archive: true, overwrite: true
                 }
             }
         }
