@@ -58,4 +58,4 @@
 /0047 { /type "allow" /method "POST" /url "*/jcr:content/root/responsivegrid/*rebuildingkitdetails*" }
 /0048 { /type "allow" /method "GET" /url "*/root/responsivegrid/*.getpdflinks.json" } ## SMAR-32073
 
-/0049 { /type "allow" /mathod "POST" /url "*/root/responsivegrid/rebuildingkitdetails.update.json" } ##SMAR-32507
+/0049 { /type "allow" /method "POST" /url "*/root/responsivegrid/rebuildingkitdetails.update.json" } ##SMAR-32507
