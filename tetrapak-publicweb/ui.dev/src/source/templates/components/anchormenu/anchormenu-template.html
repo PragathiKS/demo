@@ -1,0 +1,13 @@
+<sly data-sly-template.anchormenu_template="${@data, flag}">
+    <div class="pw-anchor-menu tp-container" data-module="AnchorMenu">
+        <div class="pw-anchor-menu__regular">
+      <ul class="pw-anchor-menu-list">
+        <sly data-sly-list.anchorItem="${data.anchorDetailList}">
+          <li class="pw-anchor-menu-content">
+            <a data-link-section='${anchorItem.anchorId}' data-link-name="${anchorItem.anchorTitle}" href="#${anchorItem.anchorId}">${anchorItem.anchorTitle}</a>
+          </li>
+        </sly>
+      </ul>
+    </div>
+  </div>
+</sly>

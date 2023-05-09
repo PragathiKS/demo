@@ -1,0 +1,63 @@
+.pw-anchor-menu {
+    @include padding(0 $padding-xxxl);
+    background-color: $color-white;
+    &.tp-container {
+        @include padding(0);
+        @include margin($margin-l $margin-xl);
+        @media #{$desktop} {
+            @include margin($margin-l $margin-xl $margin-zero $margin-xl);
+            @include margin-bottom(-$margin-md);
+        }
+    }
+    &__regular {
+        @media #{$desktop} {
+            @include padding($padding-l $padding-l);
+            @include margin($margin-zero);
+        }
+    }
+
+    .pw-anchor-menu-list > .pw-anchor-menu-content {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-l);
+        color: $color-tundora;
+        font-weight: 500;
+    }
+
+    .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+
+    @media #{$desktop} {
+        display: flex;
+        justify-content: left;
+        &.tp-container {
+            @include max-width($body-max-width);
+            @include padding(0);
+            @include margin($margin-l auto $margin-zero auto);
+        }
+        .pw-anchor-menu-list {
+            @include padding(0);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            & a {
+                color: $color-tundora;
+            }
+        }
+
+        .pw-anchor-menu-list > .pw-anchor-menu-content {
+            @include padding($padding-sm $padding-l);
+            &:last-child {
+                border-right: 0;
+            }
+            &:hover {
+                a {
+                    color: $color-sky-blue;
+                }
+            }
+        }
+    }
+}
