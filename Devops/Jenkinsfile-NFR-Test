@@ -127,7 +127,7 @@ def zaptestpw(Map map) {
     try {
         def test_url_pw = "https://www-${map.env}.tetrapak.com"
         sh 'sudo rm -rf zap_test && sudo mkdir zap_test && sudo chmod 777 zap_test'
-        sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v $(pwd)/zap_test:/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 2 -r zap_report.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"   
+        sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v \"\$(pwd)/zap_test\":/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 2 -r zap_report.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"   
     }
     catch(Exception e) {
         throw e
