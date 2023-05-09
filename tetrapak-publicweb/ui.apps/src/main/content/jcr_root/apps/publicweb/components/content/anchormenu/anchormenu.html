@@ -1,0 +1,8 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+</sly>
+
+<sly data-sly-use.model="com.tetrapak.publicweb.core.models.AnchorMenuModel" 
+		data-sly-use.lib="anchormenu-template.html"
+         data-sly-call="${lib.anchormenu_template @ data=model}" />

@@ -1,0 +1,24 @@
+{
+    "anchorDetailList": [
+      {
+        "anchorId":"Title01",
+        "anchorTitle": "Introduction"
+      },
+       {
+        "anchorId":"home02",
+        "anchorTitle": "Features"
+      },
+      {
+        "anchorId":"Title03",
+        "anchorTitle": "Options"
+      },
+      {
+        "anchorId":"home04",
+        "anchorTitle": "Package Type"
+      },
+      {
+        "anchorId":"home05",
+        "anchorTitle": "Cases"
+      }
+    ] 
+}  
