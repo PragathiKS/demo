@@ -26,7 +26,11 @@ const isInternalUrl = url => {
     'https://www-dev.tetralaval.com/',
     'https://www-qa.tetralaval.com/',
     'https://www-stage.tetralaval.com/',
-    'https://www.tetralaval.com/'
+    'https://www.tetralaval.com/',
+    'https://editor-guide-dev.tetrapak.com/',
+    'https://editor-guide-qa.tetrapak.com/',
+    'https://editor-guide-stage.tetrapak.com/',
+    'https://editor-guide.tetrapak.com/'
   ];
 
   for (var i = 0; i < setOfInternalUrl.length; i++) {
