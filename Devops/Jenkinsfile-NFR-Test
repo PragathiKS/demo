@@ -106,6 +106,7 @@ pipeline {
                     when { expression { return params.ZAP_Run } }     
                     steps {
                         script {
+                            sh 'sudo rm -rf Devops/zap 2> /dev/null && sudo mkdir -p Devops/zap && sudo chmod 777 Devops/zap'
                             if (params.Test_Publicweb) {
                                 if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
                                     warnError(message: "Zap Tools Execution failed with error") {
@@ -128,9 +129,10 @@ pipeline {
 
 def zaptestpw(Map map) {
     try {
-        def test_url_pw = "https://www-${map.env}.tetrapak.com"
-        sh 'sudo rm -rf zap_test 2> /dev/null && sudo mkdir zap_test && sudo chmod 777 zap_test'
-        sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v \"\$(pwd)/zap_test\":/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 2 -r zap_report.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"   
+        dir("Devops/zap") {
+            def test_url_pw = "https://www-${map.env}.tetrapak.com"
+            sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v \"\$(pwd)/zap_test\":/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 2 -r zap_report_pw_${map.env}.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"
+        }
     }
     catch(Exception e) {
         throw e
