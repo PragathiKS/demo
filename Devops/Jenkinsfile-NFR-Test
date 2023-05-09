@@ -27,100 +27,121 @@ pipeline {
     }
 
     stages {
-        stage("Perform Tests") {
-            parallel {
-                stage('Pa11y Execution') {      
-                    when { expression { return params.Pa11y_Execution } }      
-                    steps {
-                        script {
-                            dir('Devops') {
-                                dir('pa11y') {
-                                    sh label: "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
-                                    sh label: "Clean node modules", script: "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
-                                    sh label: "initiate node project", script: "npm install"
-                                }
-                            }
+      
+        stage('Pa11y Execution') {      
+            when { expression { return params.Pa11y_Execution } }      
+            steps {
+                script {
+                    dir('Devops') {
+                        dir('pa11y') {
+                            sh label: "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
+                            sh label: "Clean node modules", script: "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
+                            sh label: "initiate node project", script: "npm install"
                         }
-                        script {
-                            if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                                if (params.Test_MyTetraPak) {
-                                    warnError(message: "Pa11y CuHu DEV - failed with error") {
-                                        pa11yCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
-                                    }
-                                }
-                                if (params.Test_Publicweb) {
-                                    warnError(message: "Pa11y PubWeb DEV - failed with error") {
-                                    pa11yPw(env: 'dev')
-                                    }                
-                                }
-                            }
-                            if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                                if (params.Test_MyTetraPak) {
-                                    warnError(message: "Pa11y CuHu DEV - failed with error") {
-                                        pa11yCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
-                                    }
-                                }
-                                if (params.Test_Publicweb) {
-                                    warnError(message: "Pa11y PubWeb DEV - failed with error") {
-                                    pa11yPw(env: 'qa')
-                                    }                
-                                }
-                            }
-                        }
-
                     }
                 }
-                stage('Sitespeed Execution') {      
-                    when { expression { return params.Sitespeed_Run } }
-                    steps {
-                        script {
-                            sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
-                            if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                                if (params.Test_MyTetraPak) {
-                                    warnError(message: "Sitespeed CuHu DEV - failed with error") {
-                                        sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
-                                    }
-                                }
-                                if (params.Test_Publicweb) {
-                                    warnError(message: "Sitespeed PubWeb DEV - failed with error") {
-                                    sitespeedpw(env: 'dev')  
-                                    }                
-                                }
-                            }
-                            if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                                if (params.Test_MyTetraPak) {
-                                    warnError(message: "Sitespeed CuHu QA - failed with error") {
-                                        sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
-                                    }
-                                }
-                                if (params.Test_Publicweb) {
-                                    warnError(message: "Sitespeed PubWeb QA - failed with error") {
-                                        sitespeedpw(env: 'qa')  
-                                    }                 
-                                }
+                script {
+                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                pa11yCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
                         }
-                    } 
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                            pa11yPw(env: 'dev')
+                            }                
+                        }
+                    }
+                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                pa11yCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                        }
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                            pa11yPw(env: 'qa')
+                            }                
+                        }
+                    }
                 }
-                stage('Zap Tools Execution') {   
-                    when { expression { return params.ZAP_Run } }     
-                    steps {
-                        script {
-                            sh 'sudo rm -rf Devops/zap 2> /dev/null && sudo mkdir -p Devops/zap && sudo chmod 777 Devops/zap'
-                            if (params.Test_Publicweb) {
-                                if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                                    warnError(message: "Zap Tools Execution failed with error") {
-                                        zaptestpw(env: 'dev') 
-                                    }    
-                                }
-                                if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                                    zaptestpw(env: 'qa')
-                                } 
-                            } else {
-                                echo "ZAP Test for Other apps are not supported yet."
+
+            }
+        }
+        stage('Sitespeed Execution') {      
+            when { expression { return params.Sitespeed_Run } }
+            steps {
+                script {
+                    sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
+                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Sitespeed CuHu DEV - failed with error") {
+                                sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
                         }
-                    } 
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Sitespeed PubWeb DEV - failed with error") {
+                            sitespeedpw(env: 'dev')  
+                            }                
+                        }
+                    }
+                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                        if (params.Test_MyTetraPak) {
+                            warnError(message: "Sitespeed CuHu QA - failed with error") {
+                                sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                        }
+                        if (params.Test_Publicweb) {
+                            warnError(message: "Sitespeed PubWeb QA - failed with error") {
+                                sitespeedpw(env: 'qa')  
+                            }                 
+                        }
+                    }
+                }
+            } 
+        }
+        stage('Zap Tools Execution') {   
+            when { expression { return params.ZAP_Run } }     
+            steps {
+                script {
+                    sh 'sudo rm -rf Devops/zap 2> /dev/null && sudo mkdir -p Devops/zap && sudo chmod 777 Devops/zap'
+                    if (params.Test_Publicweb) {
+                        if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                            warnError(message: "Zap Tools Execution failed with error") {
+                                zaptestpw(env: 'dev') 
+                            }    
+                        }
+                        if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                            zaptestpw(env: 'qa')
+                        } 
+                    } else {
+                        echo "ZAP Test for Other apps are not supported yet."
+                    }
+                }
+            } 
+        }
+            
+        stage("Publish Report") {
+            steps {
+                script {
+                    sh "sudo rm -rf NFR-Reports 2> /dev/null && sudo mkdir NFR-Reports && chmod 777 NFR-Reports"
+                    if (params.ZAP_Run) {
+                        sh label: "Copy ZAP Report", script: "mkdir -p  NFR-Reports/zap && cp -a Devops/zap/. NFR-Reports/zap/"
+                    }
+                    if(params.Sitespeed_Run) {
+                        sh label: "Copy Sitespeed Report", script: "mkdir -p  NFR-Reports/sitespeed && cp -a Devops/sitespeed/Sitespeed-* NFR-Reports/sitespeed/"
+                    }
+                    if(params.Pa11y_Execution) {
+                        sh label: "Copy Pa11y Report", script: "mkdir -p  NFR-Reports/pa11y"
+                        if (params.Test_Publicweb) {
+                            sh label: "Copy PW Sitespeed reports", script: "cp -a Devops/pa11y/pw/. NFR-Reports/pa11y"
+                        }
+                        if(params.Test_MyTetraPak) {
+                            sh label: "Copy MTP Sitespeed reports", script: "cp -a Devops/pa11y/mtp/. NFR-Reports/pa11y"
+                        }
+                    }
+                    zip zipFile :"NFR-Reports.zip" archive: true dir: "NFR-Reports" overwrite: true
                 }
             }
         }
@@ -163,20 +184,14 @@ def sitespeedCuHu(Map map) {
                         def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
                             ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
-                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg}  ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName, reportTitles: reportName])
+                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg}  ${url_list_file_nm}"
                     },
                     "Sitespeed-CustomerHub-${map.env}-Chrome-Desktop" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-Chrome-Desktop"
                         def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
                             ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
-                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg} ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName , reportTitles: reportName])
+                            --outputFolder ${reportDir} ${sustainable_args} ${multi_arg} ${url_list_file_nm}"
                     },
                     "Sitespeed-CustomerHub-${map.env}-IPhone6" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-IPhone6"
@@ -185,9 +200,6 @@ def sitespeedCuHu(Map map) {
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
                             ${prescript_args} ${prescript_credential_arg} ${postscript_arg}\
                             --outputFolder ${reportDir} ${multi_arg} ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName , reportTitles: reportName])
                     },
                     "Sitespeed-CustomerHub-${map.env}-Nexus7" : {
                         def reportName = "Sitespeed-CustomerHub-${map.env}-Nexus7"
@@ -196,9 +208,6 @@ def sitespeedCuHu(Map map) {
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
                             ${prescript_args} ${prescript_credential_arg}  ${postscript_arg}\
                             --outputFolder ${reportDir} ${multi_arg} ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName , reportTitles: reportName])
                     }
             )
         }
@@ -220,18 +229,12 @@ def sitespeedpw(Map map) {
                         def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
                             --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName, reportTitles: reportName])
                     },
                     "Sitespeed-PublicWeb-${map.env}-Chrome-Desktop" : {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-Chrome-Desktop"
                         def reportDir = reportName
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
-                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName , reportTitles: reportName])
+                            --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}"
                     },
                     "Sitespeed-PublicWeb-${map.env}-IPhone6" : {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-IPhone6"
@@ -239,9 +242,6 @@ def sitespeedpw(Map map) {
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
                             --outputFolder ${reportDir} ${prescript_args} ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName , reportTitles: reportName])
                     },
                     "Sitespeed-PublicWeb-${map.env}-Nexus7" : {
                         def reportName = "Sitespeed-PublicWeb-${map.env}-Nexus7"
@@ -249,9 +249,6 @@ def sitespeedpw(Map map) {
                         sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
                             -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
                             --outputFolder ${reportDir} ${prescript_args} ${url_list_file_nm}" 
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true,
-                                    reportDir: reportDir, reportFiles: 'index.html',
-                                    reportName: reportName , reportTitles: reportName])
                     }
             )
         }
