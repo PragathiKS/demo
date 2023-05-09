@@ -17,108 +17,111 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to test My Tetra Pak Module', name: 'Test_MyTetraPak'
         booleanParam defaultValue: true, description: 'Please check in case you want to test Accessibility with Pa11y', name: 'Pa11y_Execution'
         booleanParam defaultValue: true, description: 'Please check in case you want to test with Sitespeed', name: 'Sitespeed_Run'
-        booleanParam defaultValue: false, description: 'Please check in case you want to test with ZAP Test', name: 'ZAP_Run'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test with ZAP', name: 'ZAP_Run'
     }
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
+        parallelsAlwaysFailFast()
     }
 
     stages {
-        stage('Pa11y Execution') {      
-            when { expression { return params.Pa11y_Execution } }      
-            steps {
-                script {
-                    dir('Devops') {
-                        dir('pa11y') {
-                            sh label: "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
-                            sh label: "Clean node modules", script: "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
-                            sh label: "initiate node project", script: "npm install"
-                        }
-                    }
-                }
-                script {
-                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
-                            warnError(message: "Pa11y CuHu DEV - failed with error") {
-                                pa11yCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+        stage("Perform Tests") {
+            parallel {
+                stage('Pa11y Execution') {      
+                    when { expression { return params.Pa11y_Execution } }      
+                    steps {
+                        script {
+                            dir('Devops') {
+                                dir('pa11y') {
+                                    sh label: "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
+                                    sh label: "Clean node modules", script: "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
+                                    sh label: "initiate node project", script: "npm install"
+                                }
                             }
                         }
-                        if (params.Test_Publicweb) {
-                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
-                               pa11yPw(env: 'dev')
-                            }                
-                        }
-                    }
-                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
-                            warnError(message: "Pa11y CuHu DEV - failed with error") {
-                                pa11yCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                        script {
+                            if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                                if (params.Test_MyTetraPak) {
+                                    warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                        pa11yCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                                    }
+                                }
+                                if (params.Test_Publicweb) {
+                                    warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                                    pa11yPw(env: 'dev')
+                                    }                
+                                }
+                            }
+                            if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                                if (params.Test_MyTetraPak) {
+                                    warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                        pa11yCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                                    }
+                                }
+                                if (params.Test_Publicweb) {
+                                    warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                                    pa11yPw(env: 'qa')
+                                    }                
+                                }
                             }
                         }
-                        if (params.Test_Publicweb) {
-                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
-                               pa11yPw(env: 'qa')
-                            }                
-                        }
-                    }
-                }
 
+                    }
+                }
+                stage('Sitespeed Execution') {      
+                    when { expression { return params.Sitespeed_Run } }
+                    steps {
+                        script {
+                            sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
+                            if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                                if (params.Test_MyTetraPak) {
+                                    warnError(message: "Sitespeed CuHu DEV - failed with error") {
+                                        sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                                    }
+                                }
+                                if (params.Test_Publicweb) {
+                                    warnError(message: "Sitespeed PubWeb DEV - failed with error") {
+                                    sitespeedpw(env: 'dev')  
+                                    }                
+                                }
+                            }
+                            if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                                if (params.Test_MyTetraPak) {
+                                    warnError(message: "Sitespeed CuHu QA - failed with error") {
+                                        sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                                    }
+                                }
+                                if (params.Test_Publicweb) {
+                                    warnError(message: "Sitespeed PubWeb QA - failed with error") {
+                                        sitespeedpw(env: 'qa')  
+                                    }                 
+                                }
+                            }
+                        }
+                    } 
+                }
+                stage('Zap Tools Execution') {   
+                    when { expression { return params.ZAP_Run } }     
+                    steps {
+                        script {
+                            if (params.Test_Publicweb) {
+                                if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                                    warnError(message: "Zap Tools Execution failed with error") {
+                                        zaptestpw(env: 'dev') 
+                                    }    
+                                }
+                                if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                                    zaptestpw(env: 'qa')
+                                } 
+                            } else {
+                                echo "ZAP Test for Other apps are not supported yet."
+                            }
+                        }
+                    } 
+                }
             }
-        }
-
-        stage('Sitespeed Execution') {      
-            when { expression { return params.Sitespeed_Run } }
-            steps {
-                script {
-                    sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
-                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
-                            warnError(message: "Sitespeed CuHu DEV - failed with error") {
-                                sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
-                            }
-                        }
-                        if (params.Test_Publicweb) {
-                            warnError(message: "Sitespeed PubWeb DEV - failed with error") {
-                               sitespeedpw(env: 'dev')  
-                            }                
-                        }
-                    }
-                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
-                            warnError(message: "Sitespeed CuHu QA - failed with error") {
-                                sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
-                            }
-                        }
-                        if (params.Test_Publicweb) {
-                            warnError(message: "Sitespeed PubWeb QA - failed with error") {
-                                sitespeedpw(env: 'qa')  
-                            }                 
-                        }
-                    }
-                }
-            } 
-        }
-
-        stage('Zap Tools Execution') {   
-            when { expression { return params.ZAP_Run } }     
-            steps {
-                script {
-                    if (params.Test_Publicweb) {
-                        if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                            warnError(message: "Zap Tools Execution failed with error") {
-                                zaptestpw(env: 'dev') 
-                            }    
-                        }
-                        if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                            zaptestpw(env: 'qa')
-                        } 
-                    } else {
-                        echo "ZAP Test for Other apps are not supported yet."
-                    }
-                }
-            } 
         }
     }
 }
@@ -126,7 +129,7 @@ pipeline {
 def zaptestpw(Map map) {
     try {
         def test_url_pw = "https://www-${map.env}.tetrapak.com"
-        sh 'sudo rm -rf zap_test && sudo mkdir zap_test && sudo chmod 777 zap_test'
+        sh 'sudo rm -rf zap_test 2> /dev/null && sudo mkdir zap_test && sudo chmod 777 zap_test'
         sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v \"\$(pwd)/zap_test\":/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 2 -r zap_report.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"   
     }
     catch(Exception e) {
