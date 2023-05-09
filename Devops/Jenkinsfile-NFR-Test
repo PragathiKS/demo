@@ -126,8 +126,6 @@ pipeline {
 def zaptestpw(Map map) {
     try {
         def test_url_pw = "https://www-${map.env}.tetrapak.com"
-        sh 'sudo docker ps -a'
-        sh label: "ZAP is running, initiating stop and remove", script: 'if docker ps | grep zap; then sudo docker stop zap && sudo docker rm zap ; fi'
         sh label: "Starting Zap Docker", script: 'docker run -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
 
         sh label:"Starting ZAP test Run on publicweb Urls", script: "docker exec zap zap-cli spider ${test_url_pw}"
