@@ -133,12 +133,12 @@ pipeline {
                         sh label: "Copy Sitespeed Report", script: "mkdir -p  NFR-Reports/sitespeed && cp -a Devops/sitespeed/Sitespeed-* NFR-Reports/sitespeed/"
                     }
                     if(params.Pa11y_Execution) {
-                        sh label: "Copy Pa11y Report", script: "mkdir -p  NFR-Reports/pa11y"
+                        sh "mkdir -p  NFR-Reports/pa11y"
                         if (params.Test_Publicweb) {
-                            sh label: "Copy PW Sitespeed reports", script: "cp -a Devops/pa11y/pw/. NFR-Reports/pa11y"
+                            sh label: "Copy PW Pa11y reports", script: "cp -a Devops/pa11y/pw/. NFR-Reports/pa11y"
                         }
                         if(params.Test_MyTetraPak) {
-                            sh label: "Copy MTP Sitespeed reports", script: "cp -a Devops/pa11y/mtp/. NFR-Reports/pa11y"
+                            sh label: "Copy MTP Pa11y reports", script: "cp -a Devops/pa11y/mtp/. NFR-Reports/pa11y"
                         }
                     }
                     zip zipFile :"NFR-Reports.zip" archive: true dir: "NFR-Reports" overwrite: true
