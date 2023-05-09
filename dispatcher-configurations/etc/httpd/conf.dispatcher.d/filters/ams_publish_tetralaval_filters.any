@@ -68,4 +68,4 @@
 /0063 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.pardotsoftconversion.json" }
 /0064 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.pardotsubscription.json" }
 
-
+/0065 { /type "allow" /method "GET" /url "/*/root/responsivegrid/*.mail.html" } ## SMAR-32634
