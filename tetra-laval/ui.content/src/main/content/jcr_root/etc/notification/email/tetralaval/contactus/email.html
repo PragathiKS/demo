@@ -1,0 +1,87 @@
+From: noreply@communications.tetralaval.com
+Subject: ${title} ${selectedCompany}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Email Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .email-logo {
+            text-align: center;
+            width: 100%;
+            padding-bottom: 24px;
+        }
+
+        .mail-wrapper {
+            padding: 24px;
+        }
+
+        .logo-size {
+            width: 138px;
+            height: 21px;
+        }
+
+        @media screen and (min-device-width: 1024px) {
+            .field {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .mail-wrapper {
+                padding: 48px;
+            }
+
+            .email-logo {
+                padding-bottom: 48px;
+            }
+
+            .logo-size {
+                width: 158px;
+                height: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mail-wrapper"
+        style="font-size: 14px;font-family: Verdana, Tahoma, sans-serif;line-height: 24px;color: #4A4A4A;">
+        <div class="email-logo">
+            <img class="logo-size" src="${logo}" />
+        </div>
+        <div style="font-size: 24px;font-weight: 500;line-height: 32px;padding-bottom: 16px;">${title}</div>
+        <div style="padding-bottom: 24px">
+           ${content}
+        </div>
+
+        <div style="padding-bottom: 24px;">
+            <div style="font-size: 18px;line-height: 24px;padding-bottom: 16px;">Contact details</div>
+            <div class="field">
+                <div style="font-weight: 900;min-width: 180px;">First name</div>
+                <div>${firstname}</div>
+            </div>
+            <div class="field">
+                <div style="font-weight: 900;min-width: 180px;">Last name</div>
+                <div>${lastname}</div>
+            </div>
+            <div class="field">
+                <div style="font-weight: 900;min-width: 180px;">E-mail</div>
+                <div>${email}</div>
+            </div>
+			<div class="field">
+                <div style="font-weight: 900;min-width: 180px;">Company</div>
+                <div>${company}</div>
+            </div>
+        </div>
+
+        <div style="font-weight: 900;min-width: 180px;padding-bottom: 16px;">Comment</div>
+        <div>
+            ${comment}
+        </div>
+    </div>
+</body>
+
+</html>

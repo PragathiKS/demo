@@ -215,6 +215,12 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Hide And Show Cta Label (i18N key)"
                                 name="./hideAndShowCta"
+                                required="true"/>
+                            <setDefaultFilterCTA
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Set Default Filter Cta Label (i18N key)"
+                                name="./setDefaultFilterCTA"
                                 required="true"/>		
                         </items>
                     </column1>

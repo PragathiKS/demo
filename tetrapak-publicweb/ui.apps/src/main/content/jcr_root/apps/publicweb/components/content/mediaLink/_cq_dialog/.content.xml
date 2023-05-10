@@ -21,6 +21,11 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Heading"
                                 name="./heading"/>
+                            <headingDesc
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Heading Description"
+                                name="./headingDesc"/>
                         </items>
                     </column>
                 </items>
@@ -67,6 +72,12 @@
                                                     fieldLabel="Link path"
                                                     name="./linkUrl"
                                                     rootPath="/content"/>
+                                                <linkDesc
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Description of Link"
+                                                    fieldLabel="Link Description"
+                                                    name="./linkDesc"/>
                                             </items>
                                         </column>
                                     </items>
@@ -118,6 +129,12 @@
                                                     fieldLabel="Link Url"
                                                     name="./linkUrl"
                                                     rootPath="/content"/>
+                                                <linkDesc
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Description of Link"
+                                                    fieldLabel="Link Description"
+                                                    name="./linkDesc"/>
                                             </items>
                                         </column>
                                     </items>
@@ -169,6 +186,12 @@
                                                     fieldLabel="Link Url"
                                                     name="./linkUrl"
                                                     rootPath="/content"/>
+                                                <linkDesc
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Description of Link"
+                                                    fieldLabel="Link Description"
+                                                    name="./linkDesc"/>
                                             </items>
                                         </column>
                                     </items>

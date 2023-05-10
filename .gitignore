@@ -8,5 +8,6 @@
 .DS_Store
 *.iml
 .vs/
-Devops/pa11y/node_modules
+Devops/pa11y/node_modules/
 Devops/pa11y/package-lock.json
+/tetrapak-publicweb/.vs

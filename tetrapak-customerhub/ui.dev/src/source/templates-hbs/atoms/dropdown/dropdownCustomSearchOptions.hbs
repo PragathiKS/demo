@@ -1,0 +1,22 @@
+ 
+{{#if noDataMessage}}
+      <ul aria-labelledby="{{name}}" role="menu" class="js-dropdown-itemlist-empty"></ul>
+           <li role="presentation" class="no-data-found">             
+                       {{i18n key=noDataFound}}                      
+            </li> 
+    </ul>       
+{{else}}
+    <ul aria-labelledby="{{name}}" role="menu" class="tpatom-dropdown-itemlist js-dropdown-itemlist custom-scrollbar-content">
+         {{#each this}}
+            <li role="presentation">
+                <a href="#" role="menuitem" class="dropdown-item js-custom-dropdown-li {{#if ../liClassName}} {{../liClassName}}{{/if}}" data-key="{{this.key}}" {{#if this.translation}}data-translated="{{this.translation}}"{{/if}}>
+                    {{#if this.translation}}
+                        {{i18n key=this.desc}}
+                    {{else}}
+                        {{this.desc}}
+                    {{/if}}
+                </a>
+            </li>
+            {{/each}}
+     </ul>
+{{/if}}          

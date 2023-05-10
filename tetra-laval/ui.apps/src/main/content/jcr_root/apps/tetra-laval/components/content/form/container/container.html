@@ -1,0 +1,32 @@
+<div class="tl-contactForm">
+     <form data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container"
+          data-sly-use.grid="com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid"
+          data-sly-use.model="com.tetralaval.models.FormContainer"
+          method="${container.method}" action="${resource.path}.${model.actionType}.html"
+          id="${container.id}" name="${container.name}" enctype="${container.enctype}"
+          class="cmp-form tl-contactus-form ${grid.cssClass}">
+          <input type="hidden" name=":formstart" value="${resource.path}" />
+          <input type="hidden" name="_charset_" value="utf-8" />
+          <input
+               data-sly-test.isRedirect="${model.redirectUrl && model.thankYouType=='showThankYouPage'}"
+               type="hidden" name=":redirect"
+               value="${model.redirectUrl @ extension='html'}" />
+          <sly data-sly-repeat.paragraph="${grid.paragraphs}"
+               data-sly-resource="${paragraph.path @ resourceType=paragraph.resourceType, decorationTagName=(wcmmode.disabled ? '' : 'div'), cssClassName=paragraph.cssClass}">
+          </sly>
+          <sly data-sly-resource="${resource.path @ resourceType=container.resourceTypeForDropArea, appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+               data-sly-test="${wcmmode.edit || wcmmode.preview}"></sly>
+          <div class="tl-contactForm__error d-none"></div>
+     </form>
+</div>
+<div class="tl-contactForm__thankyou"
+     data-sly-test="${model.thankYouType=='showThankYouMessage'}">
+     <h2 class="tl-contactForm__thankyou-heading">${model.thankYouTitle}</h2>
+     <p>${model.thankYouMessage}</p>
+     <div class="tl-contactForm__button">
+          <button type="button" class="tpatom-btn tpatom-btn--primary js-close-btn" aria-label="Contact form close button" title="Contact form close button">
+               <span class="tp-next-btn__text">Close</span>
+               <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+          </button>
+     </div>
+</div>
