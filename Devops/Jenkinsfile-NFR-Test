@@ -25,7 +25,9 @@ pipeline {
         disableConcurrentBuilds()
         parallelsAlwaysFailFast()
     }
-
+    environment {
+        archive_name = ""
+    }
     stages {
       
         stage('Pa11y Execution') {      
@@ -124,29 +126,41 @@ pipeline {
             } 
         }
             
-        stage("Publish Report") {
+        stage("Publish Report to artifacts") {
             steps {
                 script {
                     sh "rm -rf reports 2> /dev/null && mkdir reports"
                     if (params.ZAP_Run) {
-                        sh label: "Copy ZAP Report", script: "mkdir -p  reports/zap && cp -a Devops/zap/. reports/zap/"
+                        sh label: "Copy ZAP Report", script: "mkdir -p  reports/zap && cp -a Devops/zap/. reports/zap/ 2> /dev/null"
                     }
                     if(params.Sitespeed_Run) {
-                        sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/Sitespeed-* reports"
+                        sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/Sitespeed-* reports 2> /dev/null"
                     }
                     if(params.Pa11y_Execution) {
                         sh "mkdir -p  reports/pa11y"
                         if (params.Test_Publicweb) {
                             sh "mkdir -p  reports/pa11y/pw"
-                            sh label: "Copy PW Pa11y reports", script: "cp -a Devops/pa11y/pw/. reports/pa11y/pw/"
+                            sh label: "Copy PW Pa11y reports", script: "cp -a Devops/pa11y/pw/. reports/pa11y/pw/ 2> /dev/null"
                         }
                         if(params.Test_MyTetraPak) {
                             sh "mkdir -p  reports/pa11y/mtp"
-                            sh label: "Copy MTP Pa11y reports", script: "cp -a Devops/pa11y/mtp/. reports/pa11y/mtp/"
+                            sh label: "Copy MTP Pa11y reports", script: "cp -a Devops/pa11y/mtp/. reports/pa11y/mtp/ 2> /dev/null"
                         }
                     }
-                    zip zipFile:"reports.zip", dir: "reports", archive: true, overwrite: true
+                    def now = new Date()
+                    def formattedDate
+                    def formattedDate = now.format("yyyyMMdd")
+                    archive_name = "reports_${formattedDate}.zip"
+                    zip zipFile:archive_name, dir: "reports", archive: true, overwrite: true
                 }
+            }
+        }
+    }
+    //Post notification in MS Teams
+    post {
+        always {
+            script {
+                notifyTestStatus()
             }
         }
     }
@@ -270,4 +284,42 @@ def pa11yPw(Map map) {
         def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
         sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm}"
     }
+}
+
+def notifyTestStatus() {
+    switch (currentBuild.result) {
+        def color = "b3b3b3"
+        case "SUCCESS":
+            message = "${currentBuild.fullDisplayName} - Test completion Status - **SUCCESS**."
+            facts = [[name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
+                     [name: "Workspace", template: "${env.WORKSPACE}"],
+                     [name: "Test Report Artifact", template: "${currentBuild.absoluteUrl}/artifact/${archive_name}"]]
+            color = "33cc33"
+            echo "${currentBuild.absoluteUrl}/artifact/${archive_name}"
+            break
+        case "FAILURE":
+            message = "${currentBuild.fullDisplayName} failed with ERROR !!"
+            facts = [[name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ff0000"
+            break
+        case "UNSTABLE":
+            message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings."
+            facts =  [[name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
+                      [name: "Workspace", template: "${env.WORKSPACE}"],
+                      [name: "Test Report Artifact", template: "${currentBuild.absoluteUrl}/artifact/${archive_name}"]
+                    ]
+            color = "ffcc00"
+            break
+        default:
+            message = "${currentBuild.fullDisplayName} - Not Built or Aborted."
+            facts = []
+            color = "b3b3b3"
+            break
+        }
+    facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
+
+    // office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
+    //         message: message,
+    //         factDefinitions: facts
+    //         color: color
 }
