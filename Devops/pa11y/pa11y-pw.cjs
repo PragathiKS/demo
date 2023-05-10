@@ -6,7 +6,7 @@ const fs = require('fs');
 const readline = require('readline');
 const htmlReporter = require("pa11y/lib/reporters/html");
 
-async function testPW(env, url_list_file_nm) {
+async function testPW(env, url_list_file_nm, out_dir) {
     const browser = await puppeteer.launch({
         headless: 'new',
         ignoreHTTPSErrors: true
@@ -50,7 +50,7 @@ async function testPW(env, url_list_file_nm) {
                 path = "Home";
             }
             path = `${path}.html`;
-            const file_path = `${__dirname}/pw/${env}/${path}`;
+            const file_path = `${__dirname}/${out_dir}/${path}`;
             fs.writeFile(file_path, report, (err) => {
                 if (err) throw err;
             });

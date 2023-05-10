@@ -7,7 +7,7 @@ const readline = require('readline');
 const htmlReporter = require("pa11y/lib/reporters/html");
 
 
-async function testMTP(env, userid, passwd, url_list_file_nm) {
+async function testMTP(env, userid, passwd, url_list_file_nm, out_dir) {
     var appEnv = "MyTetraPakDev";
     appEnv = (env == 'qa') ? "MyTetraPakTest" : appEnv;
     appEnv = (env == 'stage') ? "MyTetraPakStage" : appEnv;
@@ -60,7 +60,7 @@ async function testMTP(env, userid, passwd, url_list_file_nm) {
             const result = await pa11y(line, mtp_opt);
             const report = await htmlReporter.results(result);
             const path = line.substring(line.lastIndexOf('/') + 1);
-            const file_path = `${__dirname}/mtp/${env}/${path}`;
+            const file_path = `${__dirname}/${out_dir}/${path}`;
             fs.writeFile(file_path, report, (err) => {
                 if (err) throw err;
             });
