@@ -132,25 +132,22 @@ pipeline {
                     sh "rm -rf reports 2> /dev/null && mkdir reports"
                     if (params.ZAP_Run) {
                         sh label: "Copy ZAP Report", script: "mkdir -p  reports/zap && cp -a Devops/zap/. reports/zap/ 2> /dev/null"
+                        sh label: "Clean ZAP working dir", script: "sudo rm -rf Devops/zap 2> /dev/null"
                     }
                     if(params.Sitespeed_Run) {
-                        sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/Sitespeed-* reports 2> /dev/null"
+                        sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/Sitespeed-* reports/sitespeed 2> /dev/null"
+                        sh label: "Clean Sitespeed working dir", script: "sudo rm -rf Devops/sitespeed/Sitespeed-* 2> /dev/null"
                     }
                     if(params.Pa11y_Execution) {
                         sh "mkdir -p  reports/pa11y"
-                        if (params.Test_Publicweb) {
-                            sh "mkdir -p  reports/pa11y/pw"
-                            sh label: "Copy PW Pa11y reports", script: "cp -a Devops/pa11y/pw/. reports/pa11y/pw/ 2> /dev/null"
-                        }
-                        if(params.Test_MyTetraPak) {
-                            sh "mkdir -p  reports/pa11y/mtp"
-                            sh label: "Copy MTP Pa11y reports", script: "cp -a Devops/pa11y/mtp/. reports/pa11y/mtp/ 2> /dev/null"
-                        }
+                        sh label: "Copy Pa11y reports", script: "cp -a Devops/pa11y/report/. reports/pa11y/pw/ 2> /dev/null"
+                        sh label: "Clean Pa11y reports dir", script: "sudo rm -rf Devops/pa11y/report 2> /dev/null"
                     }
                     def now = new Date()
                     def formattedDate = now.format("yyyyMMdd")
                     archive_name = "reports_${formattedDate}.zip"
-                    zip zipFile:archive_name, dir: "reports", archive: true, overwrite: true
+                    zip zipFile: archive_name, dir: "reports", archive: true, overwrite: true
+                    sh label: "Clean Reports Dir", script: "sudo rm -rf reports 2> /dev/null"
                 }
             }
         }
@@ -270,18 +267,19 @@ def sitespeedpw(Map map) {
 
 def pa11yCuHu(Map map) {
     dir('Devops/pa11y') {
-        sh "sudo mkdir -p mtp/${map.env} && sudo chmod 777 mtp/${map.env}"
+        def output_dir = "report/mtp/${map.env}"
+        sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
-        sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm}"
-        
+        sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm} '${output_dir}'"
     }
 }
 
 def pa11yPw(Map map) {
     dir('Devops/pa11y') {
-        sh "sudo mkdir -p pw/${map.env} && sudo chmod 777 pw/${map.env}"    
+        def output_dir = "report/pw/${map.env}"
+        sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
-        sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm}"
+        sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm} '${output_dir}'"
     }
 }
 
@@ -293,7 +291,7 @@ def notifyTestStatus() {
             message = "${currentBuild.fullDisplayName} - Test completion Status - **SUCCESS**."
             facts = [[name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
                      [name: "Workspace", template: "${env.WORKSPACE}"],
-                     [name: "Test Report Artifact", template: "${currentBuild.absoluteUrl}/artifact/${archive_name}"]]
+                     [name: "Test Report", template: "${currentBuild.absoluteUrl}artifact/${archive_name}"]]
             color = "33cc33"
             echo "${currentBuild.absoluteUrl}/artifact/${archive_name}"
             break
@@ -306,7 +304,7 @@ def notifyTestStatus() {
             message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings."
             facts =  [[name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
                       [name: "Workspace", template: "${env.WORKSPACE}"],
-                      [name: "Test Report Artifact", template: "${currentBuild.absoluteUrl}/artifact/${archive_name}"]
+                      [name: "Test Report", template: "${currentBuild.absoluteUrl}artifact/${archive_name}"]
                     ]
             color = "ffcc00"
             break
@@ -317,8 +315,6 @@ def notifyTestStatus() {
             break
         }
     facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
-    echo "${color}"
-    echo "${message}"
     // office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
     //         message: message,
     //         factDefinitions: facts
