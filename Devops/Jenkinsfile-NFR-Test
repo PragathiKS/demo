@@ -287,8 +287,9 @@ def pa11yPw(Map map) {
 }
 
 def notifyTestStatus() {
+    def color = "b3b3b3"
+    def message = "${currentBuild.fullDisplayName} - Not Built or Aborted."
     switch (currentBuild.result) {
-        def color = "b3b3b3"
         case "SUCCESS":
             message = "${currentBuild.fullDisplayName} - Test completion Status - **SUCCESS**."
             facts = [[name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
@@ -317,7 +318,8 @@ def notifyTestStatus() {
             break
         }
     facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
-
+    echo "${color}"
+    echo "${message}"
     // office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
     //         message: message,
     //         factDefinitions: facts
