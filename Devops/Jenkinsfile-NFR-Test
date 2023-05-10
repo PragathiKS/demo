@@ -113,7 +113,9 @@ pipeline {
                             }    
                         }
                         if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                            zaptestpw(env: 'qa')
+                             warnError(message: "Zap Tools Execution failed with error") {
+                                zaptestpw(env: 'qa')
+                             }
                         } 
                     } else {
                         echo "ZAP Test for Other apps are not supported yet."
