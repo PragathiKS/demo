@@ -7,9 +7,9 @@ pipeline {
         }
     }
     
-    // triggers {
-    //     cron('H 1 * * 1-5')
-    // }
+    triggers {
+        cron('H H(21-23) * * 3,7')
+    }
     
     parameters {
         choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
@@ -21,7 +21,7 @@ pipeline {
     }
 
     options {
-        buildDiscarder(logRotator(numToKeepStr: '30'))
+        buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
         parallelsAlwaysFailFast()
     }
@@ -140,7 +140,7 @@ pipeline {
                     }
                     if(params.Pa11y_Execution) {
                         sh "mkdir -p  reports/pa11y"
-                        sh label: "Copy Pa11y reports", script: "cp -a Devops/pa11y/report/. reports/pa11y/pw/ 2> /dev/null"
+                        sh label: "Copy Pa11y reports", script: "cp -a Devops/pa11y/report/. reports/pa11y 2> /dev/null"
                         sh label: "Clean Pa11y reports dir", script: "sudo rm -rf Devops/pa11y/report 2> /dev/null"
                     }
                     def now = new Date()
@@ -285,7 +285,7 @@ def pa11yPw(Map map) {
 
 def notifyTestStatus() {
     def color = "b3b3b3"
-    def message = "${currentBuild.fullDisplayName} - Not Built or Aborted."
+    def message = ""
     switch (currentBuild.result) {
         case "SUCCESS":
             message = "${currentBuild.fullDisplayName} - Test completion Status - **SUCCESS**."
@@ -315,8 +315,8 @@ def notifyTestStatus() {
             break
         }
     facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
-    // office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
-    //         message: message,
-    //         factDefinitions: facts
-    //         color: color
+    office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
+            message: message,
+            factDefinitions: facts
+            color: color
 }
