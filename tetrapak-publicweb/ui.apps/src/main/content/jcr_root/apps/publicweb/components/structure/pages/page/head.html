@@ -1,6 +1,6 @@
 <template data-sly-template.head="${ @ page, digitalDataModel,pageHeadModel}"
-          data-sly-use.headlibRenderer="headlibs.html" data-sly-use.headResources="head.resources.html"
-          data-sly-use.thumbnailConfigModel="com.tetrapak.publicweb.core.models.ThumbnailConfigModel">
+  data-sly-use.headlibRenderer="headlibs.html" data-sly-use.headResources="head.resources.html"
+  data-sly-use.thumbnailConfigModel="com.tetrapak.publicweb.core.models.ThumbnailConfigModel">
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>
@@ -19,12 +19,12 @@
 
   <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}" />
   <meta data-sly-test.description="${properties['jcr:description']}" name="description"
-        content="${description @ context='scriptComment'}" />
+    content="${description @ context='scriptComment'}" />
   <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="robots" data-sly-test.indexVal="${properties.noIndex ? 'noindex' : 'index'}"
-        data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}"
-        content="${indexVal}, ${followVal}" />
+    data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}"
+    content="${indexVal}, ${followVal}" />
   <!--/* Start of SEO canonical and href functionality */-->
   <sly data-sly-test="${indexVal != 'noindex' && followVal != 'nofollow' && digitalDataModel.isPublisher}">
     <sly data-sly-test="${digitalDataModel.canonicalURL}">
@@ -39,20 +39,20 @@
   <!--/* End of SEO canonical and href functionality */-->
 
   <meta data-sly-test="${properties['jcr:title']}" property="og:title"
-        content="${properties['jcr:title'] @ context='scriptComment'}" />
+    content="${properties['jcr:title'] @ context='scriptComment'}" />
   <meta data-sly-test="${properties['jcr:description']}" property="og:description"
-        content="${properties['jcr:description'] @ context='scriptComment'}" />
+    content="${properties['jcr:description'] @ context='scriptComment'}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="${digitalDataModel.currentPageURL}" />
   <meta data-sly-test="${properties['jcr:description']}" name="twitter:description"
-        content="${properties['jcr:description'] @ context='scriptComment'}" />
+    content="${properties['jcr:description'] @ context='scriptComment'}" />
   <meta data-sly-test="${properties['jcr:title']}" name="twitter:title"
-        content="${properties['jcr:title'] @ context='scriptComment'}" />
+    content="${properties['jcr:title'] @ context='scriptComment'}" />
   <meta name="twitter:site" content="@tetrapak" />
   <meta name="twitter:card" content="summary" />
 
   <sly data-sly-test="${thumbnailConfigModel.valid}"
-       data-sly-use.dynamicMetaImage="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=thumbnailConfigModel.openGraphImagePath, componentName='thumbnailConfig'}">
+    data-sly-use.dynamicMetaImage="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=thumbnailConfigModel.openGraphImagePath, componentName='thumbnailConfig'}">
     <meta property="og:image" content="${dynamicMetaImage.desktopUrl}" />
     <meta name="twitter:image" content="${dynamicMetaImage.desktopUrl}" />
   </sly>
@@ -61,7 +61,7 @@
       var pwoneTrustValue = '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
     </script>
   </sly>
-
+  
   <sly data-sly-test="${digitalDataModel.isPublisher}">
     <!-- <script>
       var OneTrust = {
@@ -148,8 +148,8 @@
   </sly>
   <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
     <script src="https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript}/otSDKStub.js"
-            data-document-language="true" type="text/javascript" charset="UTF-8"
-            data-domain-script="${digitalDataModel.dataDomainScript}" defer></script>
+      data-document-language="true" type="text/javascript" charset="UTF-8"
+      data-domain-script="${digitalDataModel.dataDomainScript}" defer></script>
     <script type="text/javascript" defer>
       function OptanonWrapper() { }
     </script>
@@ -175,5 +175,5 @@
                               clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
   <sly data-sly-test.appResourcesPath=${page.appResourcesPath}
-       data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
+    data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
 </template>
