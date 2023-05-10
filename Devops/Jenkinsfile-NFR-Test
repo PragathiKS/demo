@@ -148,7 +148,6 @@ pipeline {
                         }
                     }
                     def now = new Date()
-                    def formattedDate
                     def formattedDate = now.format("yyyyMMdd")
                     archive_name = "reports_${formattedDate}.zip"
                     zip zipFile:archive_name, dir: "reports", archive: true, overwrite: true
