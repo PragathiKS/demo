@@ -84,7 +84,7 @@ pipeline {
                         }
                         if (params.Test_Publicweb) {
                             warnError(message: "Sitespeed PubWeb DEV - failed with error") {
-                            sitespeedpw(env: 'dev')  
+                                sitespeedpw(env: 'dev')  
                             }                
                         }
                     }
@@ -156,8 +156,7 @@ pipeline {
     post {
         always {
             script {
-                echo "Done"
-                //notifyTestStatus()
+                notifyTestStatus()
             }
         }
     }
