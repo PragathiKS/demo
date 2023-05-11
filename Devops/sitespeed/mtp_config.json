@@ -1,0 +1,26 @@
+{
+    "browsertime": {
+        "browser": "chrome",
+        "viewPort": "1280x720",
+        "axe": {
+            "enable": true
+        },
+        "iterations": 5,
+        "preScript": "sitespeed-mtp-login.mjs",
+        "headless": true,
+        "firefox": {
+            "acceptInsecureCerts": true
+        },
+        "env": "@env",
+        "username": "@uname",
+        "password": "@pass"
+      },
+      "sustainable": {
+        "enable": true,
+        "model": "swd"
+      },
+      "filmstrip": {
+        "showAll": true
+      },
+      "cacheClearRaw": true
+}

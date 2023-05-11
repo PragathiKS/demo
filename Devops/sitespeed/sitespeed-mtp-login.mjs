@@ -1,10 +1,10 @@
 export default async function (context, commands) {
-    const env = context.options.test.env;
+    const env = context.options.env;
     const root_url = `https://mypages-${env}.tetrapak.com`; 
     try {
       await commands.navigate(root_url);
-      await commands.addText.byId(context.options.uname, "username");
-      await commands.addText.byId(context.options.upass, "password");
+      await commands.addText.byId(context.options.username, "username");
+      await commands.addText.byId(context.options.password, "password");
       await commands.click.byIdAndWait('signInButton', 3000);
       if(env == 'dev' || env == 'qa') {
         await commands.wait.byId('onetrust-accept-btn-handler', 3000)

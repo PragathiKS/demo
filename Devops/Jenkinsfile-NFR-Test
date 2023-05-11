@@ -135,8 +135,8 @@ pipeline {
                         sh label: "Clean ZAP working dir", script: "sudo rm -rf Devops/zap 2> /dev/null"
                     }
                     if(params.Sitespeed_Run) {
-                        sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/Sitespeed-* reports/sitespeed 2> /dev/null"
-                        sh label: "Clean Sitespeed working dir", script: "sudo rm -rf Devops/sitespeed/Sitespeed-* 2> /dev/null"
+                        sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/reports/. reports/sitespeed 2> /dev/null"
+                        sh label: "Clean Sitespeed working dir", script: "sudo rm -rf Devops/sitespeed/reports 2> /dev/null"
                     }
                     if(params.Pa11y_Execution) {
                         sh "mkdir -p  reports/pa11y"
@@ -156,7 +156,7 @@ pipeline {
     post {
         always {
             script {
-                notifyTestStatus()
+                //notifyTestStatus()
             }
         }
     }
@@ -177,93 +177,62 @@ def zaptestpw(Map map) {
         sh 'sudo docker rm zap'
     }
 }
-
 def sitespeedCuHu(Map map) {
-    def url_list_file_nm = (map.env != 'stage') ? "cuhu_urls_${map.env}.txt" : "sitespeed-mtp-stage-test.mjs"
-    def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
-    def prescript_args = "--preScript sitespeed-mtp-login.mjs --browsertime.test.env '${map.env}'"
-    def prescript_credential_arg = "--browsertime.uname '${map.uname}' --browsertime.upass '${map.upass}' "
-    def postscript_arg = "--postScript sitespeed-mtp-logout.mjs"
-    def multi_arg = (map.env != 'stage') ? "" : "--multi"
-    if (map.env != 'stage') {
-        sh "cp Devops/PallyUrlsCuhu.txt Devops/sitespeed/${url_list_file_nm}"
-        sh "sed -i \"s/dev/${map.env}/g\" Devops/sitespeed/${url_list_file_nm}"
-    }
+    def report_dir = "reports/mtp/${map.env}"
+    def config = "mtp_config_${map.env}.json"
+    def url_list = "sitespeed-mtp-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
-        def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
-        parallel (
-            "Sitespeed-CustomerHub-${map.env}-FireFox-Desktop" : {
-                def reportName = "Sitespeed-CustomerHub-${map.env}-FireFox-Desktop"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
-                    ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
-                    --outputFolder ${reportDir} ${sustainable_args} ${multi_arg}  ${url_list_file_nm}"
-            },
-            "Sitespeed-CustomerHub-${map.env}-Chrome-Desktop" : {
-                def reportName = "Sitespeed-CustomerHub-${map.env}-Chrome-Desktop"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
-                    ${prescript_args}  ${prescript_credential_arg} ${postscript_arg}\
-                    --outputFolder ${reportDir} ${sustainable_args} ${multi_arg} ${url_list_file_nm}"
-            },
-            "Sitespeed-CustomerHub-${map.env}-IPhone6" : {
-                def reportName = "Sitespeed-CustomerHub-${map.env}-IPhone6"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
-                    -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
-                    ${prescript_args} ${prescript_credential_arg} ${postscript_arg}\
-                    --outputFolder ${reportDir} ${multi_arg} ${url_list_file_nm}" 
-            },
-            "Sitespeed-CustomerHub-${map.env}-Nexus7" : {
-                def reportName = "Sitespeed-CustomerHub-${map.env}-Nexus7"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
-                    -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
-                    ${prescript_args} ${prescript_credential_arg}  ${postscript_arg}\
-                    --outputFolder ${reportDir} ${multi_arg} ${url_list_file_nm}" 
-            }
-        )
+        sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
+        sh "Prepare config file", script: "sudo cp -f mtp_config.json ${config} &&\
+                                            sed -i \"s/@env/${map.env}/g\" ${config} &&\
+                                            sed -i \"s/@uname/${map.uname}/g\" ${config} &&\
+                                            sed -i \"s/@upass/${map.upass}/g\" ${config}"
     }
-} 
+    sitespeed(config: config, report_dir: report_dir, urls_list: url_list)
+}
 
 def sitespeedpw(Map map) {
-    def url_list_file_nm = "pw_urls_${map.env}.txt"
-    def sustainable_args = "--sustainable.enable true --sustainable.model 'swd'"
-    def prescript_args = "--preScript sitespeed-pw-cookie_consent.mjs --browsertime.test.env '${map.env}'"
-    sh "cp Devops/PallyUrlsPublicWeb.txt Devops/sitespeed/${url_list_file_nm}"
+    def report_dir = "reports/pw/${map.env}"
+    def config = "pw_config_${map.env}.json"
+    def url_list = "sitespeed-pw-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
-        sh "sed -i \"s/dev/${map.env}/g\" ${url_list_file_nm}"
+        sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
+        sh "Prepare config file", script: "sudo cp -f mtp_config.json ${config} && sed -i \"s/@env/${map.env}/g\" ${config}"
+    }
+    sitespeed(config: config, report_dir: report_dir, urls_list: url_list)
+}
+
+def sitespeed(Map map) {
+    dir('Devops/sitespeed') {
         def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
+        def config_arg = "--config ${map.config}"
         parallel (
-            "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop" : {
-                def reportName = "Sitespeed-PublicWeb-${map.env}-FireFox-Desktop"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox --headless true\
-                    --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}" 
+            "firefox-desktop" : {
+                def reportDir = "${map.report_dir}/firefox-desktop"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox ${config_arg}\
+                    --outputFolder ${reportDir} ${map.urls_list}"
             },
-            "Sitespeed-PublicWeb-${map.env}-Chrome-Desktop" : {
-                def reportName = "Sitespeed-PublicWeb-${map.env}-Chrome-Desktop"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b chrome --headless true\
-                    --outputFolder ${reportDir} ${prescript_args}  ${sustainable_args} ${url_list_file_nm}"
+            "chrome-desktop" : {
+                def reportDir = "${map.report_dir}/chrome-desktop"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 ${config_arg}\
+                    --outputFolder ${reportDir} ${map.urls_list}"
             },
-            "Sitespeed-PublicWeb-${map.env}-IPhone6" : {
-                def reportName = "Sitespeed-PublicWeb-${map.env}-IPhone6"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
-                    -b chrome --browsertime.chrome.mobileEmulation.deviceName 'iPhone 6' --headless true\
-                    --outputFolder ${reportDir} ${prescript_args} ${url_list_file_nm}" 
+            "iOS-iPhone12Pro" : {
+                def reportDir = "${map.report_dir}/iPhone12Pro"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 ${config_arg}\
+                    --browsertime.chrome.mobileEmulation.deviceName 'iPhone 12 Pro'  --browsertime.viewPort '390x844'\
+                    --outputFolder ${reportDir} ${map.urls_list}" 
             },
-            "Sitespeed-PublicWeb-${map.env}-Nexus7" : {
-                def reportName = "Sitespeed-PublicWeb-${map.env}-Nexus7"
-                def reportDir = reportName
-                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0\
-                    -b chrome --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --headless true\
-                    --outputFolder ${reportDir} ${prescript_args} ${url_list_file_nm}" 
+            "android-Nexus7" : {
+                def reportDir = "${map.report_dir}/Nexus7"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 ${config_arg}\
+                    --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --browsertime.viewPort '600x960'\
+                    --outputFolder ${reportDir} ${map.urls_list}" 
             }
         )
     }
-}                        
+}
+
 
 def pa11yCuHu(Map map) {
     dir('Devops/pa11y') {
