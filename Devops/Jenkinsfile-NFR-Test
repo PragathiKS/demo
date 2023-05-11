@@ -187,7 +187,7 @@ def sitespeedCuHu(Map map) {
         sh label: "Prepare mtp config file", script: "sudo cp -f mtp_config.json ${config} &&\
                                             sed -i \"s/@env/${map.env}/g\" ${config} &&\
                                             sed -i \"s/@uname/${map.uname}/g\" ${config} &&\
-                                            sed -i \"s/@upass/${map.upass}/g\" ${config}"
+                                            sed -i \"s/@passwd/${map.upass}/g\" ${config}"
     }
     sitespeed(config: config, report_dir: report_dir, urls_list: url_list)
 }
