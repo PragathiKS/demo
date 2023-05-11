@@ -15,8 +15,8 @@ pipeline {
         choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to test Public Web Module', name: 'Test_Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to test My Tetra Pak Module', name: 'Test_MyTetraPak'
-        booleanParam defaultValue: true, description: 'Please check in case you want to test Accessibility with Pa11y', name: 'Pa11y_Execution'
-        booleanParam defaultValue: true, description: 'Please check in case you want to test with Sitespeed', name: 'Sitespeed_Run'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test Accessibility with Pa11y', name: 'Pa11y_Check'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test with Sitespeed', name: 'Sitespeed_Check'
         booleanParam defaultValue: true, description: 'Please check in case you want to test with ZAP', name: 'ZAP_Run'
     }
 
@@ -31,7 +31,7 @@ pipeline {
     stages {
       
         stage('Pa11y Execution') {      
-            when { expression { return params.Pa11y_Execution } }      
+            when { expression { return params.Pa11y_Check } }      
             steps {
                 script {
                     dir('Devops') {
@@ -72,7 +72,7 @@ pipeline {
             }
         }
         stage('Sitespeed Execution') {      
-            when { expression { return params.Sitespeed_Run } }
+            when { expression { return params.Sitespeed_Check } }
             steps {
                 script {
                     sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
@@ -134,11 +134,11 @@ pipeline {
                         sh label: "Copy ZAP Report", script: "mkdir -p  reports/zap && cp -a Devops/zap/. reports/zap/ 2> /dev/null"
                         sh label: "Clean ZAP working dir", script: "sudo rm -rf Devops/zap 2> /dev/null"
                     }
-                    if(params.Sitespeed_Run) {
+                    if(params.Sitespeed_Check) {
                         sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/reports/. reports/sitespeed 2> /dev/null"
                         sh label: "Clean Sitespeed working dir", script: "sudo rm -rf Devops/sitespeed/reports 2> /dev/null"
                     }
-                    if(params.Pa11y_Execution) {
+                    if(params.Pa11y_Check) {
                         sh "mkdir -p  reports/pa11y"
                         sh label: "Copy Pa11y reports", script: "cp -a Devops/pa11y/report/. reports/pa11y 2> /dev/null"
                         sh label: "Clean Pa11y reports dir", script: "sudo rm -rf Devops/pa11y/report 2> /dev/null"
@@ -156,6 +156,7 @@ pipeline {
     post {
         always {
             script {
+                echo "Done"
                 //notifyTestStatus()
             }
         }
