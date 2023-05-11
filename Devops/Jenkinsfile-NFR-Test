@@ -184,7 +184,7 @@ def sitespeedCuHu(Map map) {
     def url_list = "sitespeed-mtp-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
         sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
-        sh "Prepare config file", script: "sudo cp -f mtp_config.json ${config} &&\
+        sh label: "Prepare mtp config file", script: "sudo cp -f mtp_config.json ${config} &&\
                                             sed -i \"s/@env/${map.env}/g\" ${config} &&\
                                             sed -i \"s/@uname/${map.uname}/g\" ${config} &&\
                                             sed -i \"s/@upass/${map.upass}/g\" ${config}"
@@ -198,7 +198,7 @@ def sitespeedpw(Map map) {
     def url_list = "sitespeed-pw-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
         sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
-        sh "Prepare config file", script: "sudo cp -f mtp_config.json ${config} && sed -i \"s/@env/${map.env}/g\" ${config}"
+        sh label: "Prepare pw config file", script: "sudo cp -f mtp_config.json ${config} && sed -i \"s/@env/${map.env}/g\" ${config}"
     }
     sitespeed(config: config, report_dir: report_dir, urls_list: url_list)
 }
