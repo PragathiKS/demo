@@ -55,7 +55,7 @@ public class AccordionModelTest {
     @Test
     public void testSimpleLoadAndGetters() throws Exception {
     	assertEquals("Heading of the accordion component", model.getHeading());
-        assertEquals("Accordion list - Heading 2", model.getAccordionList().get(1).getAccordionHeading());
+        assertEquals("Description of the accordion component", model.getDescription());
      
     }
 }
