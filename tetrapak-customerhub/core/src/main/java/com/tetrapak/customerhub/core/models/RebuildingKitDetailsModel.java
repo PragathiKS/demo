@@ -870,7 +870,6 @@ public class RebuildingKitDetailsModel {
     }
 
     public String getMappedResourcePath() {
-        ResourceResolver resolver = resource.getResourceResolver();
-        return resolver.map(resource.getPath());
+        return resource.getPath();
     }
 }
