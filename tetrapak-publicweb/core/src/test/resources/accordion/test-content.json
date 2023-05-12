@@ -28,24 +28,13 @@
         "accordion": {
           "jcr:primaryType": "nt:unstructured",
           "jcr:createdBy": "admin",
-          "description": "Accordion Description",
+          "description": "Description of the accordion component",
           "jcr:lastModifiedBy": "admin",
           "jcr:created": "Tue Apr 18 2023 12:39:13 GMT+0530",
           "heading": "Heading of the accordion component",
           "jcr:lastModified": "Mon Apr 24 2023 13:48:41 GMT+0530",
           "sling:resourceType": "publicweb/components/content/accordion",
-          "textIsRich": [ "true", "true" ],
-          "accordionList": {
-            "jcr:primaryType": "nt:unstructured",
-            "item0": {
-              "jcr:primaryType": "nt:unstructured",
-              "accordionHeading": "Accordion list - Heading 1"
-            },
-            "item1": {
-              "jcr:primaryType": "nt:unstructured",
-              "accordionHeading": "Accordion list - Heading 2"
-            }
-          }
+          "textIsRich": [ "true", "true" ]
         }
       }
     }
