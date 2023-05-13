@@ -29,41 +29,39 @@ pipeline {
     environment {
         archive_name = ""
         test_custom_url = false
-        test_env = params.Test_Env
-        test_pw = params.Test_Publicweb
-        test_mtp = params.Test_MyTetraPak
+        test_env = "ALL"
+        test_pw = false
+        test_mtp = false
     }
     stages {
-        stage {
-            when {
-                beforeOptions true 
-                allOf {
-                    expression { params.Test_URL != null }
-                    expression { params.Test_URL != '' }
-                }
-            }
+        stage("Set environment vars") {
             steps {
                 script {
-                    test_custom_url = true
-                    if (params.Test_URL.contains('mypages-dev')) {
-                        test_env = 'DEV'
-                        test_pw = false
-                        test_mtp = true
-                    }
-                    if (params.Test_URL.contains('www-dev')) {
-                        test_env = 'DEV'
-                        test_pw = true
-                        test_mtp = false
-                    }
-                    if (params.Test_URL.contains('mypages-qa')) {
-                        test_env = 'QA'
-                        test_pw = false
-                        test_mtp = true
-                    }
-                    if (params.Test_URL.contains('www-qa')) {
-                        test_env = 'QA'
-                        test_pw = true
-                        test_mtp = false
+                    test_env = params.Test_Env
+                    test_pw = params.Test_Publicweb
+                    test_mtp = params.Test_MyTetraPak
+                    if(params.Test_URL != null && params.Test_URL != '') {
+                        test_custom_url = true
+                        if (params.Test_URL.contains('mypages-dev')) {
+                            test_env = 'DEV'
+                            test_pw = false
+                            test_mtp = true
+                        }
+                        if (params.Test_URL.contains('www-dev')) {
+                            test_env = 'DEV'
+                            test_pw = true
+                            test_mtp = false
+                        }
+                        if (params.Test_URL.contains('mypages-qa')) {
+                            test_env = 'QA'
+                            test_pw = false
+                            test_mtp = true
+                        }
+                        if (params.Test_URL.contains('www-qa')) {
+                            test_env = 'QA'
+                            test_pw = true
+                            test_mtp = false
+                        }
                     }
                 }
             }
