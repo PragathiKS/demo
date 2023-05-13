@@ -15,6 +15,7 @@ pipeline {
         choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to test Public Web Module', name: 'Test_Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to test My Tetra Pak Module', name: 'Test_MyTetraPak'
+        string (description: "'Enter tetrapak url (Dev/QA). **** This will override all parameters above. ****'", name: 'Test_URL', trim: true)
         booleanParam defaultValue: true, description: 'Please check in case you want to test Accessibility with Pa11y', name: 'Pa11y_Check'
         booleanParam defaultValue: true, description: 'Please check in case you want to test with Sitespeed', name: 'Sitespeed_Check'
         booleanParam defaultValue: true, description: 'Please check in case you want to test with ZAP', name: 'ZAP_Run'
@@ -27,9 +28,46 @@ pipeline {
     }
     environment {
         archive_name = ""
+        test_custom_url = false
+        test_env = params.Test_Env
+        test_pw = params.Test_Publicweb
+        test_mtp = params.Test_MyTetraPak
     }
     stages {
-      
+        stage {
+            when {
+                beforeOptions true 
+                allOf {
+                    expression { params.Test_URL != null }
+                    expression { params.Test_URL != '' }
+                }
+            }
+            steps {
+                script {
+                    test_custom_url = true
+                    if (params.Test_URL.contains('mypages-dev')) {
+                        test_env = 'DEV'
+                        test_pw = false
+                        test_mtp = true
+                    }
+                    if (params.Test_URL.contains('www-dev')) {
+                        test_env = 'DEV'
+                        test_pw = true
+                        test_mtp = false
+                    }
+                    if (params.Test_URL.contains('mypages-qa')) {
+                        test_env = 'QA'
+                        test_pw = false
+                        test_mtp = true
+                    }
+                    if (params.Test_URL.contains('www-qa')) {
+                        test_env = 'QA'
+                        test_pw = true
+                        test_mtp = false
+                    }
+                }
+            }
+        }
         stage('Pa11y Execution') {      
             when { expression { return params.Pa11y_Check } }      
             steps {
@@ -43,32 +81,31 @@ pipeline {
                     }
                 }
                 script {
-                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
+                    if (test_env == 'DEV' || test_env == 'ALL') {
+                        if (test_mtp) {
                             warnError(message: "Pa11y CuHu DEV - failed with error") {
                                 pa11yCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
                         }
-                        if (params.Test_Publicweb) {
+                        if (test_pw) {
                             warnError(message: "Pa11y PubWeb DEV - failed with error") {
-                            pa11yPw(env: 'dev')
+                                pa11yPw(env: 'dev')
                             }                
                         }
                     }
-                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
+                    if (test_env == 'QA' || test_env == 'ALL') {
+                        if (test_mtp) {
                             warnError(message: "Pa11y CuHu DEV - failed with error") {
                                 pa11yCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
                         }
-                        if (params.Test_Publicweb) {
+                        if (test_pw) {
                             warnError(message: "Pa11y PubWeb DEV - failed with error") {
-                            pa11yPw(env: 'qa')
+                                pa11yPw(env: 'qa')
                             }                
                         }
                     }
                 }
-
             }
         }
         stage('Sitespeed Execution') {      
@@ -76,25 +113,25 @@ pipeline {
             steps {
                 script {
                     sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
-                    if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
+                    if (test_env == 'DEV' || test_env == 'ALL') {
+                        if (test_mtp) {
                             warnError(message: "Sitespeed CuHu DEV - failed with error") {
                                 sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
                         }
-                        if (params.Test_Publicweb) {
+                        if (test_pw) {
                             warnError(message: "Sitespeed PubWeb DEV - failed with error") {
                                 sitespeedpw(env: 'dev')  
                             }                
                         }
                     }
-                    if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
-                        if (params.Test_MyTetraPak) {
+                    if (test_env == 'QA' || test_env == 'ALL') {
+                        if (test_mtp) {
                             warnError(message: "Sitespeed CuHu QA - failed with error") {
                                 sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
                             }
                         }
-                        if (params.Test_Publicweb) {
+                        if (test_pw) {
                             warnError(message: "Sitespeed PubWeb QA - failed with error") {
                                 sitespeedpw(env: 'qa')  
                             }                 
@@ -182,6 +219,10 @@ def sitespeedCuHu(Map map) {
     def config = "mtp_config_${map.env}.json"
     def url_list = "sitespeed-mtp-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
+        if(params.Test_URL != null && params.Test_URL != '') {
+            writeFile file: "mtp_url.txt", text:  params.Test_URL
+            url_list = "mtp_url.txt"
+        }
         sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
         sh label: "Prepare mtp config file", script: "sudo cp -f mtp_config.json ${config} &&\
                                             sed -i \"s/@env/${map.env}/g\" ${config} &&\
@@ -196,6 +237,10 @@ def sitespeedpw(Map map) {
     def config = "pw_config_${map.env}.json"
     def url_list = "sitespeed-pw-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
+        if(params.Test_URL != null && params.Test_URL != '') {
+            writeFile file: "pw_url.txt", text:  params.Test_URL
+            url_list = "pw_url.txt"
+        }
         sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
         sh label: "Prepare pw config file", script: "sudo cp -f mtp_config.json ${config} && sed -i \"s/@env/${map.env}/g\" ${config}"
     }
@@ -239,6 +284,10 @@ def pa11yCuHu(Map map) {
         def output_dir = "report/mtp/${map.env}"
         sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
+        if(params.Test_URL != null && params.Test_URL != '') {
+            writeFile file: "mtp_url.txt", text:  params.Test_URL
+            url_list_file_nm = "mtp_url.txt"
+        }
         sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm} '${output_dir}'"
     }
 }
@@ -248,6 +297,10 @@ def pa11yPw(Map map) {
         def output_dir = "report/pw/${map.env}"
         sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
+        if(params.Test_URL != null && params.Test_URL != '') {
+            writeFile file: "pw_url.txt", text: params.Test_URL
+            url_list_file_nm = "pw_url.txt"
+        }
         sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm} '${output_dir}'"
     }
 }
