@@ -15,7 +15,7 @@ pipeline {
         choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
         booleanParam defaultValue: true, description: 'Please check in case you want to test Public Web Module', name: 'Test_Publicweb'
         booleanParam defaultValue: true, description: 'Please check in case you want to test My Tetra Pak Module', name: 'Test_MyTetraPak'
-        string (description: "'Enter tetrapak url (Dev/QA). **** This will override all parameters above. ****'", name: 'Test_URL', trim: true)
+        string (description: "'Enter MyTP / tetrapak url (Dev/QA). **** This will override all parameters above. ****'", name: 'Test_URL', trim: true)
         booleanParam defaultValue: true, description: 'Please check in case you want to test Accessibility with Pa11y', name: 'Pa11y_Check'
         booleanParam defaultValue: true, description: 'Please check in case you want to test with Sitespeed', name: 'Sitespeed_Check'
         booleanParam defaultValue: true, description: 'Please check in case you want to test with ZAP', name: 'ZAP_Run'
@@ -143,13 +143,13 @@ pipeline {
             steps {
                 script {
                     sh 'sudo rm -rf Devops/zap 2> /dev/null && sudo mkdir -p Devops/zap && sudo chmod 777 Devops/zap'
-                    if (params.Test_Publicweb) {
-                        if (params.Test_Env == 'DEV' || params.Test_Env == 'ALL') {
+                    if (test_pw) {
+                        if (test_env == 'DEV' || test_env == 'ALL') {
                             warnError(message: "Zap Tools Execution failed with error") {
                                 zaptestpw(env: 'dev') 
                             }    
                         }
-                        if (params.Test_Env == 'QA' || params.Test_Env == 'ALL') {
+                        if (test_env == 'QA' || test_env == 'ALL') {
                              warnError(message: "Zap Tools Execution failed with error") {
                                 zaptestpw(env: 'qa')
                              }
@@ -201,6 +201,9 @@ def zaptestpw(Map map) {
     try {
         dir("Devops/zap") {
             def test_url_pw = "https://www-${map.env}.tetrapak.com"
+            if(test_custom_url) {
+                test_url_pw = params.Test_URL
+            }
             sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v \"\$(pwd)\":/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 1 -r zap_report_pw_${map.env}.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"
         }
     }
@@ -217,7 +220,7 @@ def sitespeedCuHu(Map map) {
     def config = "mtp_config_${map.env}.json"
     def url_list = "sitespeed-mtp-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
-        if(params.Test_URL != null && params.Test_URL != '') {
+        if(test_custom_url) {
             writeFile file: "mtp_url.txt", text:  params.Test_URL
             url_list = "mtp_url.txt"
         }
@@ -235,7 +238,7 @@ def sitespeedpw(Map map) {
     def config = "pw_config_${map.env}.json"
     def url_list = "sitespeed-pw-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
-        if(params.Test_URL != null && params.Test_URL != '') {
+        if(test_custom_url) {
             writeFile file: "pw_url.txt", text:  params.Test_URL
             url_list = "pw_url.txt"
         }
@@ -282,11 +285,11 @@ def pa11yCuHu(Map map) {
         def output_dir = "report/mtp/${map.env}"
         sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
-        if(params.Test_URL != null && params.Test_URL != '') {
+        if(test_custom_url) {
             writeFile file: "mtp_url.txt", text:  params.Test_URL
             url_list_file_nm = "mtp_url.txt"
         }
-        sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} ${map.upass} ${url_list_file_nm} '${output_dir}'"
+        sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} '${map.upass}' '${url_list_file_nm}' '${output_dir}'"
     }
 }
 
@@ -295,11 +298,11 @@ def pa11yPw(Map map) {
         def output_dir = "report/pw/${map.env}"
         sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
-        if(params.Test_URL != null && params.Test_URL != '') {
+        if(test_custom_url) {
             writeFile file: "pw_url.txt", text: params.Test_URL
             url_list_file_nm = "pw_url.txt"
         }
-        sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} ${url_list_file_nm} '${output_dir}'"
+        sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} '${url_list_file_nm}' '${output_dir}'"
     }
 }
 
