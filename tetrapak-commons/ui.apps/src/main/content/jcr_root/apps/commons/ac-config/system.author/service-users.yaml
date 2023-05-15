@@ -6,6 +6,12 @@
           path: tetrapak
           isSystemUser: true
 
+    - tetrapak-gl-reader:
+
+        - name:
+          path: tetrapak
+          isSystemUser: true
+
 - ace_config:
 
     - tetrapak-readusergroups-system-user:
@@ -18,4 +24,11 @@
         - path: /home/users
           permission: allow
           actions: read, acl_read
+          privileges:
+
+    - tetrapak-gl-reader:
+
+        - path: /etc/acs-commons/lists
+          permission: allow
+          actions: read
           privileges:

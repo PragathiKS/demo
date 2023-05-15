@@ -667,7 +667,8 @@ public final class CustomerHubConstants {
     public static final String VALUE = "Value";
 
     /** The Constant VALUE. */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+    public static final String CONTENT_ROOT_PATH
+            = "/content/tetrapak/customerhub/global";
 
     /** The Constant HOME_PAGE_REL_PATH. */
     public static final String HOME_PAGE_REL_PATH = "dashboard";
@@ -689,6 +690,9 @@ public final class CustomerHubConstants {
     
     /** The Constant DOMAINSCRIPT. */
     public static final String DOMAINSCRIPT = "domainScript";
+
+    /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
+    public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
 
     /** The constant DATA_ROOT_PATH. */
     public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
@@ -712,7 +716,6 @@ public final class CustomerHubConstants {
     /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
     public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
 
-    /** The Constant for REBUILDING_KITS **/
     /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
 
@@ -931,10 +934,7 @@ public final class CustomerHubConstants {
 
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
-    
-    /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
-    public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
-    
+
     /** Anchor Link Target New Tab*/
     public static final String REQUEST_NEW_CTI_TRANSLATION = "rkReqCtiNewTranslation";
 
@@ -955,6 +955,17 @@ public final class CustomerHubConstants {
 
     /** Anchor Link Target New Tab*/
     public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
+
+    /** One Trust Token Servlet Url */
+    public static final String ONETRUST_TOKEN_SERVLET_URL= ".onetrustcookietoken.json";
+
+    public static final String RK_MANDATORY_KITS_TEXT = "rkMandatoryKitsText";
+
+    public static final String READ_GL_USER = "readGenericListsUser";
+
+    public static final String ENGLISH_LANGUAGE = "en";
+
+    public static final String RK_LIABILITY_CONDITIONS_TITLE = "Liability Conditions";
 
 
 
