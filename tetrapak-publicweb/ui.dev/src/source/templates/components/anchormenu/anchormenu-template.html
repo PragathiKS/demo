@@ -1,6 +1,6 @@
 <sly data-sly-template.anchormenu_template="${@data, flag}">
     <div class="pw-anchor-menu tp-container" data-module="AnchorMenu">
-        <div class="pw-anchor-menu__regular">
+      <div class="pw-anchor-menu__regular">
       <ul class="pw-anchor-menu-list">
         <sly data-sly-list.anchorItem="${data.anchorDetailList}">
           <li class="pw-anchor-menu-content">
@@ -8,6 +8,9 @@
           </li>
         </sly>
       </ul>
-    </div>
+      </div>
+      <div class="pw-progress-indicator-container">
+        <span class="pw-anchor-menu-progress-indicator"></span>
+      </div>
   </div>
 </sly>
