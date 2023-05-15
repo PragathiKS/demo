@@ -40,7 +40,7 @@ pipeline {
                     test_env = params.Test_Env
                     test_pw = params.Test_Publicweb
                     test_mtp = params.Test_MyTetraPak
-                    if(params.Test_URL != null && params.Test_URL != '') {
+                    if(params.Test_URL != null || params.Test_URL != '') {
                         test_custom_url = true
                         if (params.Test_URL.contains('mypages-dev')) {
                             test_env = 'DEV'
