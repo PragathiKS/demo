@@ -28,20 +28,18 @@ pipeline {
     }
     environment {
         archive_name = ""
-        test_custom_url = false
         test_env = "ALL"
         test_pw = false
         test_mtp = false
     }
     stages {
-        stage("Set environment vars") {
+        stage("Set environment Vars") {
             steps {
                 script {
                     test_env = params.Test_Env
                     test_pw = params.Test_Publicweb
                     test_mtp = params.Test_MyTetraPak
-                    if(params.Test_URL != null || params.Test_URL != '') {
-                        test_custom_url = true
+                    if(params.Test_URL?.trim()) {
                         if (params.Test_URL.contains('mypages-dev')) {
                             test_env = 'DEV'
                             test_pw = false
@@ -201,7 +199,7 @@ def zaptestpw(Map map) {
     try {
         dir("Devops/zap") {
             def test_url_pw = "https://www-${map.env}.tetrapak.com"
-            if(test_custom_url) {
+            if(params.Test_URL?.trim()) {
                 test_url_pw = params.Test_URL
             }
             sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v \"\$(pwd)\":/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 1 -r zap_report_pw_${map.env}.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"
@@ -220,7 +218,7 @@ def sitespeedCuHu(Map map) {
     def config = "mtp_config_${map.env}.json"
     def url_list = "sitespeed-mtp-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
-        if(test_custom_url) {
+        if(params.Test_URL?.trim()) {
             writeFile file: "mtp_url.txt", text:  params.Test_URL
             url_list = "mtp_url.txt"
         }
@@ -238,7 +236,7 @@ def sitespeedpw(Map map) {
     def config = "pw_config_${map.env}.json"
     def url_list = "sitespeed-pw-${map.env}-urls.txt"
     dir('Devops/sitespeed') {
-        if(test_custom_url) {
+        if(params.Test_URL?.trim()) {
             writeFile file: "pw_url.txt", text:  params.Test_URL
             url_list = "pw_url.txt"
         }
@@ -285,7 +283,7 @@ def pa11yCuHu(Map map) {
         def output_dir = "report/mtp/${map.env}"
         sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
-        if(test_custom_url) {
+        if(params.Test_URL?.trim()) {
             writeFile file: "mtp_url.txt", text:  params.Test_URL
             url_list_file_nm = "mtp_url.txt"
         }
@@ -298,7 +296,7 @@ def pa11yPw(Map map) {
         def output_dir = "report/pw/${map.env}"
         sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
         def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
-        if(test_custom_url) {
+        if(params.Test_URL?.trim()) {
             writeFile file: "pw_url.txt", text: params.Test_URL
             url_list_file_nm = "pw_url.txt"
         }
