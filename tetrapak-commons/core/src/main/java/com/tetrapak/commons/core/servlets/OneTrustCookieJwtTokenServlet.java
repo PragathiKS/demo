@@ -20,12 +20,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.fusionauth.jwt.Signer;
 
+import javax.jcr.Session;
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -37,7 +41,8 @@ import java.util.UUID;
         property = {Constants.SERVICE_DESCRIPTION + "=One Trust Cookie Jwt Token Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
                 "sling.servlet.selectors=" + "onetrustcookietoken", "sling.servlet.extensions=" + "json",
-                "sling.servlet.resourceTypes=" + "publicweb/components/structure/pages/page"})
+                "sling.servlet.resourceTypes=" + "publicweb/components/structure/pages/page",
+                "sling.servlet.resourceTypes=" + "customerhub/components/structure/page"})
 @Designate(ocd = OneTrustCookieJwtTokenServlet.Config.class)
 public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
 
@@ -85,24 +90,37 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
         PrintWriter writer = response.getWriter();
         response.setContentType(CommonsConstants.APPLICATION_JSON);
         JsonObject jsonResponse = new JsonObject();
-        if (Files.exists(Paths.get(this.oneTrustPrivateKeyPath))) {
-            Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get(this.oneTrustPrivateKeyPath))));
-            String uniqueUserId;
-            if (StringUtils.isEmpty(Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString()) ||
-                     null == request.getRequestParameter(CommonsConstants.USER_ID) ||
-                    Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString().length() < 36 ) {
-                uniqueUserId = String.valueOf(UUID.randomUUID());
-            } else {
-                uniqueUserId = Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString();
+        try {
+            if (Files.exists(Paths.get(this.oneTrustPrivateKeyPath))) {
+                Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get(this.oneTrustPrivateKeyPath))));
+                String uniqueUserId;
+                if(request.getRequestPathInfo().toString().contains(CommonsConstants.CUSTOMER_HUB)) {
+                	Session session = request.getResourceResolver().adaptTo(Session.class);
+                	MessageDigest digest = MessageDigest.getInstance(CommonsConstants.SHA_256);
+                	byte[] encodedhash = digest.digest(session.getUserID().toLowerCase().getBytes(StandardCharsets.UTF_8));
+                	uniqueUserId = bytesToHex(encodedhash).toLowerCase();
+                } else {
+    	            if (StringUtils.isEmpty(Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString()) ||
+    	                     null == request.getRequestParameter(CommonsConstants.USER_ID) ||
+    	                    Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString().length() < 36 ) {
+    	                uniqueUserId = String.valueOf(UUID.randomUUID());
+    	            } else {
+    	                uniqueUserId = Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString();
+    	            }
+                }
+    	            JWT jwt = new JWT().setSubject(String.valueOf(uniqueUserId));
+    	            final String encodedJWT = JWT.getEncoder().encode(jwt, signer);
+    	            LOGGER.debug("encodedJWT {} ", encodedJWT);
+    	            jsonResponse.addProperty("uid", uniqueUserId);
+    	            jsonResponse.addProperty("jwt", encodedJWT);
+             } else {
+                LOGGER.debug("Configured One Trust Private key Path {}  does not exists", this.oneTrustPrivateKeyPath);
+                jsonResponse.addProperty("uid", StringUtils.EMPTY);
+                jsonResponse.addProperty("jwt", StringUtils.EMPTY);
             }
-            JWT jwt = new JWT().setSubject(String.valueOf(uniqueUserId));
-            final String encodedJWT = JWT.getEncoder().encode(jwt, signer);
-            LOGGER.debug("encodedJWT {} ", encodedJWT);
-            jsonResponse.addProperty("uid", uniqueUserId);
-            jsonResponse.addProperty("jwt", encodedJWT);
-        } else {
-            LOGGER.debug("Configured One Trust Private key Path {}  does not exists", this.oneTrustPrivateKeyPath);
-            jsonResponse.addProperty("uid", StringUtils.EMPTY);
+        } catch (NoSuchAlgorithmException e) {
+        	LOGGER.error("Unable to get instance of SHA256: {}", e.getMessage());
+        	jsonResponse.addProperty("uid", StringUtils.EMPTY);
             jsonResponse.addProperty("jwt", StringUtils.EMPTY);
         }
         response.setStatus(HttpServletResponse.SC_OK);
@@ -120,5 +138,17 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
     protected void activate(final Config config) {
         LOGGER.debug("OneTrust Cookie JWT token Servlet activated");
         this.oneTrustPrivateKeyPath = config.oneTrustPrivatekeyPath();
+    }
+    
+    private static String bytesToHex(byte[] hash) {
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if(hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 }

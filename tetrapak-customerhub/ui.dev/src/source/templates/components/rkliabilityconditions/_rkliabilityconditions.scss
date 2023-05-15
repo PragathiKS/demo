@@ -1,0 +1,40 @@
+.tp-rk-liabilityConditions__content {
+    font-weight: 500;
+    line-height: $font-l;
+    p {
+        color: $color-congress-blue;
+    }
+    a {
+        line-height: $font-l;
+        font-weight: 500;
+    }
+
+    @media #{$mobile} {
+        a {
+            display: block;
+        }
+        p {
+            margin-top: $margin-sm;
+            margin-bottom: $margin-md;
+        }
+        .icon {
+            &::before {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media #{$desktop} {
+    .tp-rk-liabilityConditions__content {
+        display: flex;
+        justify-content: space-between;
+        div {
+            display: flex;
+            flex-direction: row;
+        }
+        i {
+            margin-right: $margin-sm;
+        }
+    }
+}

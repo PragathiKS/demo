@@ -71,9 +71,6 @@ PassEnv DISP_ID
                 ReWriteEngine   on
                 LogLevel warn rewrite:info
                 ##Global rewrite include
-		Include /etc/httpd/conf.d/rewrites/publish_publicweb_aem_rewrite.rules
-                Include /etc/httpd/conf.d/rewrites/publish_publicweb_country_rewrite.rules
-                Include /etc/httpd/conf.d/rewrites/publish_publicweb_sharepoint_rewrite.rules
                 Include /etc/httpd/conf.d/rewrites/base_rewrite.rules
                                         ##Publish  rewrite include
                 Include /etc/httpd/conf.d/rewrites/publish_publicweb_rewrite.rules
