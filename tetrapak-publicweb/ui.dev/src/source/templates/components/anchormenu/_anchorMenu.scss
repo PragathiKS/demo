@@ -4,10 +4,12 @@
     &.tp-container {
         @include padding(0);
         @include margin($margin-l $margin-xl);
+        @include position-sticky;
         @media #{$desktop} {
             @include margin($margin-l $margin-xl $margin-zero $margin-xl);
             @include margin-bottom(-$margin-md);
         }
+        z-index: $zindex-anchor-menu;
     }
     &__regular {
         @media #{$desktop} {
@@ -24,19 +26,13 @@
         font-weight: 500;
     }
 
-    .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
-
     @media #{$desktop} {
         display: flex;
         justify-content: left;
         &.tp-container {
-            @include max-width($body-max-width);
             @include padding(0);
             @include margin($margin-l auto $margin-zero auto);
+            max-width: 100%;
         }
         .pw-anchor-menu-list {
             @include padding(0);
@@ -45,6 +41,9 @@
             flex-wrap: wrap;
             & a {
                 color: $color-tundora;
+                &.active {
+                    color: $color-congress-blue;
+                }
             }
         }
 
@@ -53,11 +52,25 @@
             &:last-child {
                 border-right: 0;
             }
-            &:hover {
-                a {
-                    color: $color-sky-blue;
-                }
-            }
         }
     }
+    .pw-progress-indicator-container {
+        position: absolute;
+        bottom: $padding-zero;
+        padding-bottom: 25px;
+    }
+    .pw-anchor-menu-progress-indicator {
+        display: block;
+        background-color: $color-congress-blue;
+        height: $anchor-menu-indicator-height;
+        transition: width, margin-left 0.5s ease 0s;
+    }
+}
+.sticky-anchor-menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: $zindex-anchor-menu;
+    padding: $padding-zero;
+    border-bottom: 1px solid $color-mercury;
 }
