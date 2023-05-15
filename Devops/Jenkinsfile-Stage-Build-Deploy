@@ -20,6 +20,11 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
         parallelsAlwaysFailFast()
+        office365ConnectorWebhooks([[
+            name: 'Office 365',
+            startNotification: true,
+            url: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1"
+        ]])
     }
 
     environment {
@@ -109,6 +114,12 @@ pipeline {
                     cacheflush()
                 }
             }
+        }
+    }
+    
+    post {
+        always {
+            sendNotifications(currentBuild.currentResult)
         }
     }
 }
@@ -218,7 +229,7 @@ pipeline {
                 prodartifactdownload()
                 parallel (
                     "Author Tetralaval" : {
-                        authordeploy()
+                        authordeploylaval()
                     },
                     "Publisher Tetralaval" : {
                         publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
