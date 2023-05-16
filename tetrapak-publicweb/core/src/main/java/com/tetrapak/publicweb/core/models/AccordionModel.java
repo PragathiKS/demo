@@ -13,20 +13,12 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.models.annotations.via.ResourceSuperType;
 
-@Model(adaptables = SlingHttpServletRequest.class,
-        adapters = Accordion.class,
-        resourceType = "publicweb/components/content/accordion",
-        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class,defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 
 public class AccordionModel implements Accordion {
 
     @Self @Via(type = ResourceSuperType.class)
     private Accordion accordion;
-
-    @NotNull @Override
-    public List<ListItem> getItems() {
-        return accordion.getItems();
-    }
 
     /**
      * The request.
@@ -65,5 +57,9 @@ public class AccordionModel implements Accordion {
         return description;
     }
 
+    @NotNull @Override
+    public List<ListItem> getItems() {
+        return accordion.getItems();
+    }
 
 }

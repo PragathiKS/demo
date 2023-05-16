@@ -1,40 +1,65 @@
 {
   "jcr:primaryType": "cq:Page",
   "jcr:createdBy": "admin",
-  "jcr:created": "Tue Apr 18 2023 12:38:38 GMT+0530",
+  "jcr:created": "Mon May 08 2023 15:14:52 GMT+0530",
   "jcr:content": {
     "jcr:primaryType": "cq:PageContent",
     "jcr:createdBy": "admin",
     "mobileOverviewLabel": "Overview",
-    "jcr:title": "Accordion",
+    "jcr:title": "New Accordion",
     "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
     "altText": "thumbnail image alt text",
     "imagePath": "/content/dam/tetrapak/783px-Test-Logo.svg.png",
     "pwButtonTheme": "link",
-    "jcr:created": "Tue Apr 18 2023 12:38:38 GMT+0530",
-    "cq:lastModified": "Mon Apr 24 2023 13:48:41 GMT+0530",
+    "jcr:created": "Mon May 08 2023 15:14:52 GMT+0530",
+    "cq:lastModified": "Fri May 12 2023 15:34:46 GMT+0530",
     "titleSuffix": "Tetra Pak",
     "hideInSearch@Delete": "true",
     "linkPath": "/content/dam/wknd-events/wknd-events.jpg",
     "linkText": "this is link text of thumbnail",
     "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
     "cq:lastModifiedBy": "admin",
-    "root": {
+    "accordion": {
       "jcr:primaryType": "nt:unstructured",
-      "sling:resourceType": "wcm/foundation/components/responsivegrid",
-      "responsivegrid": {
+      "jcr:createdBy": "admin",
+      "description": "Description of the accordion component",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:created": "Thu May 11 2023 12:53:14 GMT+0530",
+      "heading": "Heading of the accordion component",
+      "jcr:lastModified": "Fri May 12 2023 15:33:59 GMT+0530",
+      "singleExpansion": "false",
+      "sling:resourceType": "publicweb/components/content/accordion",
+      "item_1683797247242": {
         "jcr:primaryType": "nt:unstructured",
-        "sling:resourceType": "wcm/foundation/components/responsivegrid",
-        "accordion": {
+        "logicalOperator": "and",
+        "numberOfColumns": "3",
+        "cq:panelTitle": "Teaser Component",
+        "jcr:lastModifiedBy": "admin",
+        "contentType": "automatic",
+        "pwTheme": "grayscale-white",
+        "tags": [ "tetrapak:packaging/package-type/tetra-brik" ],
+        "jcr:lastModified": "Thu May 11 2023 14:58:04 GMT+0530",
+        "sling:resourceType": "publicweb/components/content/teaser",
+        "displayDate": "false"
+      },
+      "item_1684124494552": {
+        "jcr:primaryType": "nt:unstructured",
+        "cq:panelTitle": "2",
+        "jcr:lastModifiedBy": "admin",
+        "pwTheme": "grayscale-white",
+        "headingDesc": "This is media and link description",
+        "heading": "This is media and link heading ",
+        "jcr:lastModified": "Mon May 15 2023 09:53:32 GMT+0530",
+        "columnOneTitle": "Link 1",
+        "sling:resourceType": "publicweb/components/content/mediaLink",
+        "columnOneList": {
           "jcr:primaryType": "nt:unstructured",
-          "jcr:createdBy": "admin",
-          "description": "Description of the accordion component",
-          "jcr:lastModifiedBy": "admin",
-          "jcr:created": "Tue Apr 18 2023 12:39:13 GMT+0530",
-          "heading": "Heading of the accordion component",
-          "jcr:lastModified": "Mon Apr 24 2023 13:48:41 GMT+0530",
-          "sling:resourceType": "publicweb/components/content/accordion",
-          "textIsRich": [ "true", "true" ]
+          "item0": {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link 1 label",
+            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home/test-page",
+            "linkDesc": "This is link description"
+          }
         }
       }
     }
