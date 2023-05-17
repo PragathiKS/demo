@@ -1,0 +1,99 @@
+{
+    "columns": [
+        {
+            "type": "primary",
+            "header": "Heading goes here",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida",
+            "links": [
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                }
+            ]
+        },
+        {
+            "links": [
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "icon": "icon-Close_pw",
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                }
+            ]
+        },
+        {
+            "links": [
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                },
+                {
+                    "linkText": "Heading goes here"
+                }
+            ]
+        },
+        {
+            "type": "image",
+            "imgUrl": "https://weknowyourdreams.com/images/cow/cow-06.jpg",
+            "header": "Heading goes here",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida"
+        }
+    ]
+}

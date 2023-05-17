@@ -171,7 +171,10 @@
         "source/templates/components/socialsidebar/",
         "source/templates/components/stories/",
         "source/templates/components/searchlanding/",
-        "source/templates/components/accordion/"
+        "source/templates/components/accordion/",
+        "source/templates/components/anchorv2/",
+        "source/templates/components/headerv2/",
+        "source/templates/components/megamenuconfigurationv2/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
