@@ -1,0 +1,25 @@
+<sly data-sly-template.megamenuconfigurationv2_template="${@data, flag}">
+    <div class="tp-pw-megamenuv2" data-module="MegaMenuConfigurationV2">
+        <sly data-sly-list.column="${data.columns}">
+            <sly data-sly-test.isPrimaryType="${column.type == 'primary'}" />
+            <sly data-sly-test.isImageType="${column.type == 'image'}" />
+            <sly data.sly-test.inlineBg="${'background-image: url({0})' @ format=column.imgUrl}" />
+            <div class="tp-pw-megamenuv2-column--${column.type || 'default'}" style="${column.imgUrl ? inlineBg : ''}">
+                <div data-sly-test="${(isPrimaryType || isImageType)}" class="tp-pw-megamenuv2-column__header-wrapper">
+                    <h3 data-sly-test="${column.header}">
+                        ${column.header}
+                    </h3>
+                    <p data-sly-test="${column.description}">
+                        ${column.description}
+                    </p>
+                </div>
+                <sly data-sly-list.link="${column.links}">
+                    <a href="${link.linkUrl}" target="_blank">
+                        <i data.sly-test="${link.icon}" class="${link.icon}"></i>
+                        ${link.linkText}
+                    </a>
+                </sly>
+            </div>
+        </sly>
+    </div>
+</sly>
