@@ -61,6 +61,7 @@ RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpe
 RewriteRule   "^/en-ir/(.*)$" "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
 
 RewriteRule   "^/ru$"   https://${PUBLICWEB_URL} [R=301,L]
+RewriteRule   "^/ru/(.*)$" https://${PUBLICWEB_URL}/$1   [R=301,L]
 
 RewriteRule   "^/maghreb/(.*).html$" "/content/tetrapak/publicweb/maghreb/fr/error/404.html" [PT,L]
 RewriteRule   "^/maghreb$" "/content/tetrapak/publicweb/maghreb/fr/home.html" [PT,L]

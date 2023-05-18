@@ -1,0 +1,14 @@
+{
+  "name": "pa11y-test",
+  "version": "1.0.0",
+  "description": "Test Accessibility with Pa11y",
+  "main": "index.cjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Supratim Patra",
+  "license": "ISC",
+  "dependencies": {
+    "pa11y": "^6.2.3"
+  }
+}
