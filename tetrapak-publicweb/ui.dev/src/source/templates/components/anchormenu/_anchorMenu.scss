@@ -16,6 +16,13 @@
             @include padding($padding-l $padding-l);
             @include margin($margin-zero);
         }
+        &.show-secondary .secondary {
+            display: block;
+        }
+    }
+
+    .hiddenItem {
+        display: none;
     }
 
     .pw-anchor-menu-list > .pw-anchor-menu-content {
@@ -26,6 +33,52 @@
         font-weight: 500;
     }
 
+    .pw-anchor-menu-list {
+        > li {
+            flex-grow: 1;
+        }
+        .more {
+            > button span {
+                display: inline-block;
+                color: $color-tundora;
+                font-size: 24px;
+            }
+        }
+    }
+
+    .secondary {
+        border: 1px solid $color-mercury;
+        display: none;
+        position: absolute;
+        max-width: 100%;
+        min-width: 10em;
+        top: 70%;
+        animation: nav-secondary 0.2s;
+        background-color: $color-white;
+        box-shadow: 0 4px 16px $shadow;
+        border-radius: 4px;
+        padding: 18px 24px;
+        li {
+            text-align: center;
+        }
+
+        a,
+        button {
+            padding: 0.6em;
+        }
+    }
+
+    // keyframes
+    @keyframes nav-secondary {
+        0% {
+            opacity: 0;
+            transform: translateY(-1em);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
     @media #{$desktop} {
         display: flex;
         justify-content: left;
