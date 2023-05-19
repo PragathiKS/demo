@@ -1,0 +1,343 @@
+@Library('jenkins-pipeline-library') _
+
+pipeline {
+    agent {
+        node {
+            label 'cfe-deploy'
+        }
+    }
+    
+    triggers {
+        cron('H H(21-23) * * 3,7')
+    }
+    
+    parameters {
+        choice(name: 'Test_Env', choices: ['ALL', 'QA','DEV'], description: 'Select the environment')
+        booleanParam defaultValue: true, description: 'Please check in case you want to test Public Web Module', name: 'Test_Publicweb'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test My Tetra Pak Module', name: 'Test_MyTetraPak'
+        string (description: "'Enter MyTP / tetrapak url (Dev/QA). **** This will override all parameters above. ****'", name: 'Test_URL', trim: true)
+        booleanParam defaultValue: true, description: 'Please check in case you want to test Accessibility with Pa11y', name: 'Pa11y_Check'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test with Sitespeed', name: 'Sitespeed_Check'
+        booleanParam defaultValue: true, description: 'Please check in case you want to test with ZAP', name: 'ZAP_Run'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+        parallelsAlwaysFailFast()
+    }
+    environment {
+        archive_name = ""
+        test_env = "ALL"
+        test_pw = false
+        test_mtp = false
+    }
+    stages {
+        stage("Set environment Vars") {
+            steps {
+                script {
+                    test_env = params.Test_Env
+                    test_pw = params.Test_Publicweb
+                    test_mtp = params.Test_MyTetraPak
+                    if(params.Test_URL?.trim()) {
+                        if (params.Test_URL.contains('mypages-dev')) {
+                            test_env = 'DEV'
+                            test_pw = false
+                            test_mtp = true
+                        }
+                        if (params.Test_URL.contains('www-dev')) {
+                            test_env = 'DEV'
+                            test_pw = true
+                            test_mtp = false
+                        }
+                        if (params.Test_URL.contains('mypages-qa')) {
+                            test_env = 'QA'
+                            test_pw = false
+                            test_mtp = true
+                        }
+                        if (params.Test_URL.contains('www-qa')) {
+                            test_env = 'QA'
+                            test_pw = true
+                            test_mtp = false
+                        }
+                    }
+                }
+            }
+        }
+        stage('Pa11y Execution') {      
+            when { expression { return params.Pa11y_Check } }      
+            steps {
+                script {
+                    dir('Devops') {
+                        dir('pa11y') {
+                            sh label: "Clean old reports", script: "sudo rm -rf mtp 2> /dev/null && sudo rm -rf pw  2> /dev/null"
+                            sh label: "Clean node modules", script: "sudo rm -rf node_modules 2> /dev/null && sudo rm -f package-lock.json  2> /dev/null "
+                            sh label: "initiate node project", script: "npm install"
+                        }
+                    }
+                }
+                script {
+                    if (test_env == 'DEV' || test_env == 'ALL') {
+                        if (test_mtp) {
+                            warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                pa11yCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                        }
+                        if (test_pw) {
+                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                                pa11yPw(env: 'dev')
+                            }                
+                        }
+                    }
+                    if (test_env == 'QA' || test_env == 'ALL') {
+                        if (test_mtp) {
+                            warnError(message: "Pa11y CuHu DEV - failed with error") {
+                                pa11yCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                        }
+                        if (test_pw) {
+                            warnError(message: "Pa11y PubWeb DEV - failed with error") {
+                                pa11yPw(env: 'qa')
+                            }                
+                        }
+                    }
+                }
+            }
+        }
+        stage('Sitespeed Execution') {      
+            when { expression { return params.Sitespeed_Check } }
+            steps {
+                script {
+                    sh label: "Preload Site-speed image", script: 'docker pull sitespeedio/sitespeed.io:27.3.0'
+                    if (test_env == 'DEV' || test_env == 'ALL') {
+                        if (test_mtp) {
+                            warnError(message: "Sitespeed CuHu DEV - failed with error") {
+                                sitespeedCuHu(env: 'dev', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                        }
+                        if (test_pw) {
+                            warnError(message: "Sitespeed PubWeb DEV - failed with error") {
+                                sitespeedpw(env: 'dev')  
+                            }                
+                        }
+                    }
+                    if (test_env == 'QA' || test_env == 'ALL') {
+                        if (test_mtp) {
+                            warnError(message: "Sitespeed CuHu QA - failed with error") {
+                                sitespeedCuHu(env: 'qa', uname: 'aemext099', upass: "T3traP@kr0ck\$")
+                            }
+                        }
+                        if (test_pw) {
+                            warnError(message: "Sitespeed PubWeb QA - failed with error") {
+                                sitespeedpw(env: 'qa')  
+                            }                 
+                        }
+                    }
+                }
+            } 
+        }
+        stage('Zap Tools Execution') {   
+            when { expression { return params.ZAP_Run } }     
+            steps {
+                script {
+                    sh 'sudo rm -rf Devops/zap 2> /dev/null && sudo mkdir -p Devops/zap && sudo chmod 777 Devops/zap'
+                    if (test_pw) {
+                        if (test_env == 'DEV' || test_env == 'ALL') {
+                            warnError(message: "Zap Tools Execution failed with error") {
+                                zaptestpw(env: 'dev') 
+                            }    
+                        }
+                        if (test_env == 'QA' || test_env == 'ALL') {
+                             warnError(message: "Zap Tools Execution failed with error") {
+                                zaptestpw(env: 'qa')
+                             }
+                        } 
+                    } else {
+                        echo "ZAP Test for Other apps are not supported yet."
+                    }
+                }
+            } 
+        }
+            
+        stage("Publish Report to artifacts") {
+            steps {
+                script {
+                    sh "rm -rf reports 2> /dev/null && mkdir reports"
+                    if (params.ZAP_Run) {
+                        sh label: "Copy ZAP Report", script: "mkdir -p  reports/zap && cp -a Devops/zap/. reports/zap/ 2> /dev/null"
+                        sh label: "Clean ZAP working dir", script: "sudo rm -rf Devops/zap 2> /dev/null"
+                    }
+                    if(params.Sitespeed_Check) {
+                        sh label: "Copy Sitespeed Report", script: "mkdir -p  reports/sitespeed && cp -a Devops/sitespeed/reports/. reports/sitespeed 2> /dev/null"
+                        sh label: "Clean Sitespeed working dir", script: "sudo rm -rf Devops/sitespeed/reports 2> /dev/null"
+                    }
+                    if(params.Pa11y_Check) {
+                        sh "mkdir -p  reports/pa11y"
+                        sh label: "Copy Pa11y reports", script: "cp -a Devops/pa11y/report/. reports/pa11y 2> /dev/null"
+                        sh label: "Clean Pa11y reports dir", script: "sudo rm -rf Devops/pa11y/report 2> /dev/null"
+                    }
+                    def now = new Date()
+                    def formattedDate = now.format("yyyyMMdd")
+                    archive_name = "reports_${formattedDate}.zip"
+                    zip zipFile: archive_name, dir: "reports", archive: true, overwrite: true
+                    sh label: "Clean Reports Dir", script: "sudo rm -rf reports 2> /dev/null"
+                }
+            }
+        }
+    }
+    //Post notification in MS Teams
+    post {
+        always {
+            script {
+                notifyTestStatus()
+            }
+        }
+    }
+}
+
+def zaptestpw(Map map) {
+    try {
+        dir("Devops/zap") {
+            def test_url_pw = "https://www-${map.env}.tetrapak.com"
+            if(params.Test_URL?.trim()) {
+                test_url_pw = params.Test_URL
+            }
+            sh label: "Starting Zap Docker", script: "docker run --name zap -p 8080:8080 -u zap -v \"\$(pwd)\":/zap/wrk/:rw -t owasp/zap2docker-stable:2.12.0 zap-full-scan.py -d -t '${test_url_pw}' -g gen.conf -m 1 -r zap_report_pw_${map.env}.html -P 8080 -I -z '-config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true -config globalexcludeurl.url_list.url.regex=\".+(?<!([.]xml))\$\"'"
+        }
+    }
+    catch(Exception e) {
+        throw e
+    } 
+    finally {
+        sh 'sudo docker stop zap'
+        sh 'sudo docker rm zap'
+    }
+}
+def sitespeedCuHu(Map map) {
+    def report_dir = "reports/mtp/${map.env}"
+    def config = "mtp_config_${map.env}.json"
+    def url_list = "sitespeed-mtp-${map.env}-urls.txt"
+    dir('Devops/sitespeed') {
+        if(params.Test_URL?.trim()) {
+            writeFile file: "mtp_url.txt", text:  params.Test_URL
+            url_list = "mtp_url.txt"
+        }
+        sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
+        sh label: "Prepare mtp config file", script: "sudo cp -f mtp_config.json ${config} &&\
+                                            sed -i \"s/@env/${map.env}/g\" ${config} &&\
+                                            sed -i \"s/@uname/${map.uname}/g\" ${config} &&\
+                                            sed -i \"s/@passwd/${map.upass}/g\" ${config}"
+    }
+    sitespeed(config: config, report_dir: report_dir, urls_list: url_list)
+}
+
+def sitespeedpw(Map map) {
+    def report_dir = "reports/pw/${map.env}"
+    def config = "pw_config_${map.env}.json"
+    def url_list = "sitespeed-pw-${map.env}-urls.txt"
+    dir('Devops/sitespeed') {
+        if(params.Test_URL?.trim()) {
+            writeFile file: "pw_url.txt", text:  params.Test_URL
+            url_list = "pw_url.txt"
+        }
+        sh label: "Create Report Dir structure", script: "sudo mkdir -p '${report_dir}' && sudo chmod 777 '${report_dir}'"
+        sh label: "Prepare pw config file", script: "sudo cp -f mtp_config.json ${config} && sed -i \"s/@env/${map.env}/g\" ${config}"
+    }
+    sitespeed(config: config, report_dir: report_dir, urls_list: url_list)
+}
+
+def sitespeed(Map map) {
+    dir('Devops/sitespeed') {
+        def volume_args = "-v \"\$(pwd)\":/sitespeed.io"
+        def config_arg = "--config ${map.config}"
+        parallel (
+            "firefox-desktop" : {
+                def reportDir = "${map.report_dir}/firefox-desktop"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 -b firefox ${config_arg}\
+                    --outputFolder ${reportDir} ${map.urls_list}"
+            },
+            "chrome-desktop" : {
+                def reportDir = "${map.report_dir}/chrome-desktop"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 ${config_arg}\
+                    --outputFolder ${reportDir} ${map.urls_list}"
+            },
+            "iOS-iPhone12Pro" : {
+                def reportDir = "${map.report_dir}/iPhone12Pro"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 ${config_arg}\
+                    --browsertime.chrome.mobileEmulation.deviceName 'iPhone 12 Pro'  --browsertime.viewPort '390x844'\
+                    --outputFolder ${reportDir} ${map.urls_list}" 
+            },
+            "android-Nexus7" : {
+                def reportDir = "${map.report_dir}/Nexus7"
+                sh  "docker run --rm ${volume_args} sitespeedio/sitespeed.io:27.3.0 ${config_arg}\
+                    --browsertime.chrome.mobileEmulation.deviceName 'Nexus 7' --browsertime.viewPort '600x960'\
+                    --outputFolder ${reportDir} ${map.urls_list}" 
+            }
+        )
+    }
+}
+
+
+def pa11yCuHu(Map map) {
+    dir('Devops/pa11y') {
+        def output_dir = "report/mtp/${map.env}"
+        sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
+        def url_list_file_nm = "pa11y-mtp-${map.env}-urls.txt"
+        if(params.Test_URL?.trim()) {
+            writeFile file: "mtp_url.txt", text:  params.Test_URL
+            url_list_file_nm = "mtp_url.txt"
+        }
+        sh label: "Run pa11y test", script: "node index.cjs 'mtp' ${map.env} ${map.uname} '${map.upass}' '${url_list_file_nm}' '${output_dir}'"
+    }
+}
+
+def pa11yPw(Map map) {
+    dir('Devops/pa11y') {
+        def output_dir = "report/pw/${map.env}"
+        sh "sudo mkdir -p '${output_dir}' && sudo chmod 777 '${output_dir}'"
+        def url_list_file_nm = "pa11y-pw-${map.env}-urls.txt"
+        if(params.Test_URL?.trim()) {
+            writeFile file: "pw_url.txt", text: params.Test_URL
+            url_list_file_nm = "pw_url.txt"
+        }
+        sh label: "Run pa11y test", script: "node index.cjs 'pw' ${map.env} '${url_list_file_nm}' '${output_dir}'"
+    }
+}
+
+def notifyTestStatus() {
+    def color = "b3b3b3"
+    def message = ""
+    switch (currentBuild.result) {
+        case "SUCCESS":
+            message = "${currentBuild.fullDisplayName} - Test completion Status - **SUCCESS**."
+            facts = [[name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
+                     [name: "Workspace", template: "${env.WORKSPACE}"],
+                     [name: "Test Report", template: "${currentBuild.absoluteUrl}artifact/${archive_name}"]]
+            color = "33cc33"
+            echo "${currentBuild.absoluteUrl}/artifact/${archive_name}"
+            break
+        case "FAILURE":
+            message = "${currentBuild.fullDisplayName} failed with ERROR !!"
+            facts = [[name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ff0000"
+            break
+        case "UNSTABLE":
+            message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings."
+            facts =  [[name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
+                      [name: "Workspace", template: "${env.WORKSPACE}"],
+                      [name: "Test Report", template: "${currentBuild.absoluteUrl}artifact/${archive_name}"]
+                    ]
+            color = "ffcc00"
+            break
+        default:
+            message = "${currentBuild.fullDisplayName} - Not Built or Aborted."
+            facts = []
+            color = "b3b3b3"
+            break
+        }
+    facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
+    office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
+            message: message,
+            factDefinitions: facts
+            color: color
+}
