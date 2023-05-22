@@ -1,9 +1,10 @@
-$submenu-shadow-color: #0000001a;
+$submenu-shadow-color: #000000;
 
 @mixin hyperlink-base {
-    cursor: pointer;
     color: $color-congress-blue;
+    cursor: pointer;
     transform: color .2s;
+
     &:hover {
         color: $color-bright-blue;
     }
@@ -15,41 +16,43 @@ $submenu-shadow-color: #0000001a;
     font-size: $font-size;
     font-weight: 500;
     text-rendering: optimizeLegibility;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+    // -webkit-text-size-adjust: 100%;
+    // -moz-text-size-adjust: 100%;
+    // -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
     text-decoration: none;
 }
 
 @mixin hyperlink-icon {
-    @include hyperlink-base; 
+    @include hyperlink-base;
+
     &.active {
         color: $color-bright-blue;
     }
 }
 
 @mixin dropdown($top, $right) {
-    position: absolute;
-    top: $top;
-    right: $right;
-    background-color: $color-white;
-    z-index: calc($z-index-section-menu + 10px);
-    min-width: 129px;
+    border: 1px solid $color-mercury;
     display: flex;
+    background-color: $color-white;
+    box-sizing: border-box;
+    box-shadow: 0 4px 16px $submenu-shadow-color;
+    border-radius: 4px;
+    min-width: 129px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 28px 21px;
-    border: 1px solid $color-mercury;
-    box-sizing: border-box;
-    box-shadow: 0 4px 16px $submenu-shadow-color;
-    border-radius: 4px;
+    position: absolute;
+    top: $top;
+    right: $right;
+    z-index: calc($z-index-section-menu + 10px);
 
     a {
         display: flex;
         width: 100%;
         margin-bottom: 8px;
+
         &:last-of-type {
             margin-bottom: 0;
         }
@@ -62,38 +65,44 @@ $submenu-shadow-color: #0000001a;
     justify-content: center;
     align-items: center;
     width: 100%;
+
     a {
         text-rendering: optimizeLegibility;
         text-size-adjust: 100%;
-        font-weight: 500;    
+        font-weight: 500;
     }
+
     .tp-pw-headerv2-mobile-secondary-navigation-menu {
         @media #{$desktop} {
             display: none;
         }
-        width: 100%;
         display: flex;
+        width: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         a {
+            display: flex;
             padding: $spacing-small;
             border-bottom: 1px solid $color-mercury;
             box-sizing: border-box;
             width: 100%;
-            display: flex;
             justify-content: center;
             align-items: center;
             background-color: $color-white;
+
             &.secondary {
                 background-color: transparent;
                 border-bottom: 0;
             }
         }
+
         &__link {
             @include margin-left($margin-md);
             color: $color-congress-blue;
             font-weight: bold;
+
             .login-link {
                 @media #{$desktop} {
                     @include line-height($font-normal, $font-xs);
@@ -103,13 +112,16 @@ $submenu-shadow-color: #0000001a;
 
             span {
                 display: none;
+
                 @media #{$desktop} {
                     display: inline;
                 }
+
                 @media #{$i-pad} {
                     display: none;
                 }
             }
+
             .mytp-text {
                 @media #{$desktop} {
                     @include line-height($font-normal, $font-xs);
@@ -124,26 +136,31 @@ $submenu-shadow-color: #0000001a;
 
             &:not(:first-child) {
                 display: none;
+
                 @media #{$desktop} {
                     display: inline;
                 }
+
                 @media #{$i-pad} {
                     display: none;
                 }
             }
         }
     }
+
     nav {
         width: 100%;
         background-color: $color-white;
+
         .tp-pw-headerv2-first-row {
-            width: 100%;
             display: flex;
+            width: 100%;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid $color-mercury;
             box-sizing: border-box;
             padding: $padding-l 0 $padding-l 24px;
+
             .tp-pw-headerv2-logo {
                 img {
                     height: 80px;
@@ -152,41 +169,50 @@ $submenu-shadow-color: #0000001a;
                     margin-left: 30px;
                 }
             }
+
             .tp-pw-headerv2-secondary-navigation {
                 @media #{$mobile} {
                     display: none;
                 }
+
                 a {
                     @include hyperlink($font-sm, $spacing-small);
+
                     &:last-of-type {
                         margin-right: $padding-xxxl;
                     }
                 }
             }
+
             .tp-pw-headerv2-mobile-secondary-navigation {
                 display: none;
+
                 @media #{$mobile} {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
+
                 i {
                     @include hyperlink-icon;
                     margin-right: $padding-xxxl;
                 }
             }
         }
+
         .tp-pw-headerv2-second-row {
+            @include padding($spacing-small 0 $spacing-small 0);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: $spacing-small 0 $spacing-small 0;
             @media #{$mobile} {
                 display: none;
             }
+
             .tp-pw-headerv2-main-navigation {
                 display: flex;
                 padding-right: $spacing-big;
+
                 a {
                     @include hyperlink($font-baseline, $margin-xxxl);
                     white-space: nowrap;
@@ -194,18 +220,22 @@ $submenu-shadow-color: #0000001a;
                 }
             }
         }
+
         .tp-pw-headerv2-submenu-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-left: $spacing-big;
+
             @media #{$mobile} {
                 display: none;
             }
+
             i {
                 @include hyperlink-icon;
                 font-weight: bold;
             }
+
             .tp-pw-headerv2-submenu {
                 @include dropdown(116px, auto);
             }
