@@ -4,7 +4,7 @@
             <sly data-sly-test.isPrimaryType="${column.type == 'primary'}" />
             <sly data-sly-test.isImageType="${column.type == 'image'}" />
             <sly data.sly-test.inlineBg="${'background-image: url({0})' @ format=column.imgUrl}" />
-            <div class="tp-pw-megamenuv2-column--${column.type || 'default'}" style="${column.imgUrl ? inlineBg : ''}">
+            <div class="tp-pw-megamenuv2-column--${column.type || 'default'}"><!-- style="${column.imgUrl ? inlineBg : ''}" -->
                 <div data-sly-test="${(isPrimaryType || isImageType)}" class="tp-pw-megamenuv2-column__header-wrapper">
                     <h3 data-sly-test="${column.header}">
                         ${column.header}
