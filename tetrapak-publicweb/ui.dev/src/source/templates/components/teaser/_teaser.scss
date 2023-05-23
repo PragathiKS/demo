@@ -25,6 +25,10 @@
             }
         }
     }
+    &__description {
+        @include padding-left($padding-l);
+        @include margin-bottom($margin-l);
+    }
     &__link {
         @include margin-left($margin-md);
         @include margin-bottom($margin-md);

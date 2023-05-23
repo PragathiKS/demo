@@ -5,7 +5,10 @@
           <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
               data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
         </div>
-
+        <div data-sly-test="${data.description}"class="tp-teaser__description">
+          <p>${data.description}</p>
+        </div>
+        
         <sly data-sly-test.webUrl="${data.webUrl}">
            <a data-link-section="Teaser_Text Hyperlink"
               data-paren-link-title="${data.heading}"
