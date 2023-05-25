@@ -12,9 +12,11 @@ class AnchorMenu {
     this.cache.$anchorMenu = document.getElementsByClassName('pw-anchor-menu');
     this.cache.$progressIndicator = this.root.find('.pw-anchor-menu-progress-indicator');
     this.cache.$anchorMenuContent = this.root.find('.pw-anchor-menu-content');
+    this.cache.$anchorMenuContainer = document.querySelector('.pw-anchor-menu__regular');
     this.cache.$offsetTop = this.cache.$anchorMenu[0].offsetTop;
-    this.cache.$maxPrimaryLinks = 7;
+    this.cache.$maxPrimaryLinks = 5;
     this.cache.$isAnchorMenuClicked = false;
+    this.cache.$currentIndex = 0;
 
     //Default selection
     if (this.cache.$progressIndicator && this.cache.$anchorMenuContent) {
@@ -22,9 +24,9 @@ class AnchorMenu {
       this.cache.$progressIndicator.css('margin-left',`${this.cache.$anchorMenuContent[0].children[0].offsetLeft}px`);
       this.setAnchorMenuSelection(0);
     }
-
+    this.getMaxNumberOfPrimaryLinks();
     if (document.querySelector('.pw-anchor-menu__regular')) {
-      const container = document.querySelector('.pw-anchor-menu__regular');
+      const container = this.cache.$anchorMenuContainer;
       const primary = container.querySelector('.pw-anchor-menu-list');
       const primaryItems = container.querySelectorAll('.pw-anchor-menu-list > li:not(.more)');
       const allItems = container.querySelectorAll('li');
@@ -44,31 +46,34 @@ class AnchorMenu {
         const moreBtn = moreLi.querySelector('button');
         moreBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          container.classList.toggle('show-secondary');
-          moreBtn.setAttribute('aria-expanded', container.classList.contains('show-secondary'));
-        });
-        const hiddenItems = [];
-        primaryItems.forEach((item, i) => {
-          if(i > this.cache.$maxPrimaryLinks - 1) {
-            item.classList.add('hiddenItem');
-            hiddenItems.push(i);
-          }
+          this.onMoreButtonClick(container, moreBtn, secondary);
         });
 
-        // toggle the visibility of More button and items in Secondary
-        if(!hiddenItems.length) {
-          moreLi.classList.add('hiddenItem');
-          container.classList.remove('show-secondary');
-          moreBtn.setAttribute('aria-expanded', false);
-        } else {
-          secondaryItems.forEach((item, i) => {
-            if(!hiddenItems.includes(i)) {
+        const onWindowResize = () => {
+          const hiddenItems = [];
+          primaryItems.forEach((item) => {
+            item.classList.remove('hiddenItem');
+          });
+          secondaryItems.forEach((item) => {
+            item.classList.remove('hiddenItem');
+          });
+
+          primaryItems.forEach((item, i) => {
+            if(i > this.cache.$maxPrimaryLinks - 1) {
               item.classList.add('hiddenItem');
-            } else {
-              item.children[0].addEventListener('click', this.scrollToSection, false);
+              hiddenItems.push(i);
             }
           });
-        }
+          // toggle the visibility of More button and items in Secondary
+          this.toggleVisibilityOfItems(hiddenItems, moreLi, moreBtn, secondaryItems);
+        };
+        onWindowResize();
+        window.addEventListener('resize', () => {
+          this.resetOverflowMenu();
+          this.getMaxNumberOfPrimaryLinks();
+          this.setAnchorMenuSelection(this.cache.$currentIndex);
+          onWindowResize();
+        });
 
         document.addEventListener('click', (e) => {
           let el = e.target;
@@ -81,11 +86,53 @@ class AnchorMenu {
           container.classList.remove('show-secondary');
           moreBtn.setAttribute('aria-expanded', false);
         });
+
         //Find child after creation of secondary anchor menus
         this.cache.$secondaryAnchorMenuContent = this.root.find('.secondary')[0].children;
       }
     }
   }
+
+  toggleVisibilityOfItems(hiddenItems, moreLi, moreBtn, secondaryItems) {
+    const { $anchorMenuContainer } = this.cache;
+    if(!hiddenItems.length) {
+      moreLi.classList.add('hiddenItem');
+      $anchorMenuContainer.classList.remove('show-secondary');
+      moreBtn.setAttribute('aria-expanded', false);
+    } else {
+      secondaryItems.forEach((item, i) => {
+        if(!hiddenItems.includes(i)) {
+          item.classList.add('hiddenItem');
+        } else {
+          item.children[0].addEventListener('click', this.scrollToSection, false);
+        }
+      });
+    }
+  }
+
+  onMoreButtonClick(container, moreBtn, secondary) {
+    container.classList.toggle('show-secondary');
+    moreBtn.setAttribute('aria-expanded', container.classList.contains('show-secondary'));
+    //Set center position for secondary list
+    secondary.style.left = `${moreBtn.offsetLeft - (secondary.offsetWidth/2)}px`;
+  }
+
+  getMaxNumberOfPrimaryLinks() {
+    if(window.outerWidth > 1023 && window.outerWidth < 1280 ) {
+      this.cache.$maxPrimaryLinks = 5;
+    } else {
+      this.cache.$maxPrimaryLinks = 7;
+    }
+  }
+
+  resetOverflowMenu() {
+    const { $anchorMenuContainer } = this.cache;
+    if ($anchorMenuContainer && $anchorMenuContainer.classList.contains('show-secondary')) {
+      $anchorMenuContainer.classList.remove('show-secondary');
+      $anchorMenuContainer.setAttribute('aria-expanded', false);
+    }
+  }
+
   bindEvents() {
     const { $anchorLink, $anchorMenu } = this.cache;
     $anchorLink.on('click', this.scrollToSection);
@@ -116,6 +163,7 @@ class AnchorMenu {
       }
     }
   }
+
   scrollToSection = e => {
     e.preventDefault();
     const $this = $(e.target);
@@ -139,10 +187,13 @@ class AnchorMenu {
     //end of analytics call
     location.hash = anchorId;
 
+    this.resetOverflowMenu();
+
     //Set selection
     this.cache.$isAnchorMenuClicked = true;
+    this.cache.$currentIndex = currentIndex;
     this.setAnchorMenuSelection(currentIndex);
-    scrollToElement(()=>{
+    scrollToElement(() => {
       this.cache.$isAnchorMenuClicked = false;
     },`#${anchorId}`);
   };
