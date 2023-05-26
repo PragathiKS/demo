@@ -189,9 +189,15 @@
         "enforce": true,
         "chunks": "all"
       },
-      "footer": {
+      "technicalpublications": {
         "testMultiple": true,
-        "name": "footer",
+        "name": "technicalpublications",
+        "enforce": true,
+        "chunks": "all"
+      },
+      "rebuildingkits": {
+        "testMultiple": true,
+        "name": "rebuildingkits",
         "enforce": true,
         "chunks": "all"
       },
@@ -216,10 +222,11 @@
         "source/templates/components/tabslist/",
         "source/templates/components/textvideo/",
         "source/templates/components/inactivitydialog/",
-        "source/templates/components/breadcrumb/",
         "source/templates/components/teaser/",
         "source/templates/components/mediaLink/",
-        "source/templates/components/banner/"
+        "source/templates/components/breadcrumb/",
+        "source/templates/components/banner/",
+        "source/templates/components/rkliabilityconditions/"
       ],
       "dashboard": [
         "source/templates/components/contactcard/",
@@ -259,8 +266,8 @@
       "plantmasterlicenses": [
         "source/templates/components/plantmasterlicenses/"
       ],
-      "footer": [
-        "source/templates/components/footer/"
+      "technicalpublications": [
+        "source/templates/components/technicalpublications/"
       ],
       "rebuildingkits": [
         "source/templates/components/rebuildingkits/"

@@ -17,9 +17,9 @@ import javax.servlet.ServletException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.ModifiableValueMap;
-import org.apache.sling.api.resource.PersistenceException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.engine.SlingRequestProcessor;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
@@ -28,6 +28,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.day.cq.contentsync.handler.util.RequestResponseFactory;
 import com.day.cq.replication.Replicator;
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
@@ -58,6 +59,14 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
     /** The replicator. */
     @Reference
     private Replicator replicator;
+    
+    /** Service to create HTTP Servlet requests and responses */
+    @Reference
+    private RequestResponseFactory requestResponseFactory;
+
+    /** Service to process requests through Sling */
+    @Reference
+    private SlingRequestProcessor requestProcessor;
 
     /** The path to replicate. */
     List<String> pathToReplicate;
@@ -91,22 +100,19 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      *            the is deep
      * @throws RepositoryException 
      * @throws WCMException 
-     * @throws PersistenceException 
+     * @throws ServletException 
+     * @throws IOException 
      */
     @Override
     public void createLiveCopy(ResourceResolver resolver, String payload, RolloutManager rolloutManager,
-            LiveRelationshipManager liveRelManager, String language, boolean isDeep, boolean flowComingFromLBScheduler) throws PersistenceException, WCMException, RepositoryException {
+            LiveRelationshipManager liveRelManager, String language, boolean isDeep, boolean flowComingFromLBScheduler) throws WCMException, RepositoryException, IOException, ServletException {
             if (config.enableConfig()) {
                 pathToReplicate = new ArrayList<>();
                 LOGGER.info("payload : {}", payload);
-                PageManager pageManager = resolver.adaptTo(PageManager.class);
-                final Page blueprintPage = pageManager.getPage(payload);
                 String rootPath = LinkUtils.getRootPath(payload);
                 LOGGER.debug("rootPath : {}", rootPath);
                 String page = payload.replace(rootPath, StringUtils.EMPTY);
                 checkAndCreateLiveCopies(resolver, payload, language, page, isDeep, flowComingFromLBScheduler);
-                CreateLiveCopyServiceUtil.rolloutLiveCopies(rolloutManager, blueprintPage, isDeep);
-
                 CreateLiveCopyServiceUtil.replicatePaths(resolver, pathToReplicate, replicator);
             }
     }
@@ -136,15 +142,14 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
      * @throws WCMException
      *             the WCM exception
      * @throws RepositoryException
-     * @throws PersistenceException
      * @throws LockException
      * @throws ConstraintViolationException
      * @throws VersionException
      * @throws NoSuchNodeTypeException
      */
     private Boolean checkAndCreateLiveCopies(ResourceResolver resolver, String payload, String language,
-            String page, Boolean isDeep, Boolean flowComingFromLBScheduler)
-            throws WCMException, RepositoryException, PersistenceException {
+            String page, Boolean isDeep, boolean flowComingFromLBScheduler)
+            throws WCMException, RepositoryException, IOException, ServletException {
         Boolean isLiveCopyExists = true;
         PageManager pageManager = resolver.adaptTo(PageManager.class);
         final Page blueprintPage = pageManager.getPage(payload);
@@ -185,6 +190,7 @@ public class CreateLiveCopyServiceImpl implements CreateLiveCopyService {
                     resolver.commit();
                 }
             }
+            CreateLiveCopyServiceUtil.rolloutLiveCopies(blueprintPage, requestResponseFactory, requestProcessor, resolver, pagePath);
             pathToReplicate.add(pagePath);
         }
         return isLiveCopyExists;

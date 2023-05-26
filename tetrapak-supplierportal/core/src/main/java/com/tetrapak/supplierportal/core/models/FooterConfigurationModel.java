@@ -29,6 +29,13 @@ public class FooterConfigurationModel {
 	
 	@Inject
 	private String changeLanguage;
+	
+	@Inject
+	private String chatbotText;
+	
+	@Inject
+	private String chatbotLink;
+	
 
 	/**
 	 * Gets the footer link.
@@ -48,4 +55,10 @@ public class FooterConfigurationModel {
 	        return changeLanguage;
 	    }
 
+	 public String getChatbotText() {
+	        return chatbotText;
+	    }
+	 public String getChatbotLink() {
+	        return chatbotLink;
+	    }
 }

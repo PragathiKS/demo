@@ -132,7 +132,6 @@
       "common": [
         "source/scripts/common/",
         "source/scripts/utils/",
-        "source/templates/components/helloearth/",
         "source/templates/components/header/",
         "source/templates/components/footer/",
         "source/templates/components/teaser/",
@@ -141,8 +140,9 @@
         "source/templates/components/richtext/",
         "source/templates/components/accordion/",
         "source/templates/components/leftnavigation/",
+        "source/templates/components/languageselector/",
         "source/templates/components/supportrequest/",
-        "source/templates/components/languageselector/"
+        "source/templates/components/chatbot/"
       ]
     },
     "handlebars": {

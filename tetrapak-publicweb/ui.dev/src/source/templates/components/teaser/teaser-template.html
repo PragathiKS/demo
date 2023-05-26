@@ -52,7 +52,8 @@
                 <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
               </sly>
             </span>
-            <h4 data-sly-test = "${child.title}" class="tilte ${child.fileReference ? 'noTopPad' : ''}">${child.title @ context='html'}</h4>
+            <p data-sly-test = "${child.articleDate && data.displayDate}" class="block-time ${child.fileReference ? 'noTopPad' : ''}">${child.articleDate @ context='html'}</p>
+            <h4 data-sly-test = "${child.title}" class="tilte ${child.fileReference ? 'noTopPad' : ''}" auto_locator="podTitle">${child.title @ context='html'}</h4>
 
             <p  data-sly-test = "${child.description}" class="description">${child.description @ context='html'}</p>
 

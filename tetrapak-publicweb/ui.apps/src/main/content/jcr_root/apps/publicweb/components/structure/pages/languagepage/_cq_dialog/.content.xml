@@ -233,6 +233,38 @@
                                             </redirectVanityURL>
                                         </items>
                                     </vanityurl>
+									<metarobots
+                                        cq:showOnCreate="{Boolean}false"
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Meta Robots"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <noIndex
+                                                cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./noIndex"
+                                                renderReadOnly="true"
+                                                text="No Index/ Hide in Sitemap"
+                                                value="true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="noIndex"/>
+                                            </noIndex>
+                                            <noFollow
+                                                cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./noFollow"
+                                                renderReadOnly="true"
+                                                text="No Follow"
+                                                value="nofollow">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="noFollow"/>
+                                            </noFollow>
+                                        </items>
+                                    </metarobots>
                                 </items>
                             </column>
                         </items>

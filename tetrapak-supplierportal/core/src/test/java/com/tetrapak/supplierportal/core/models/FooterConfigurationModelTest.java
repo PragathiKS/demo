@@ -58,6 +58,8 @@ public class FooterConfigurationModelTest {
         assertEquals("Link text 2", model.getFooterLinks().get(0).getLinkLabel());
         assertEquals("/content/tetrapak/publicweb", model.getFooterLinks().get(0).getLinkPath());
         assertEquals("true", model.getChangeLanguage());
+        assertEquals("text", model.getChatbotText());
+        assertEquals("link", model.getChatbotLink());
         
     }
 }

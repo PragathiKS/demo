@@ -133,7 +133,6 @@ describe("RebuildingKits", function () {
     $(".tp-rk__rkHandling-filter").trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk.applyFilter.called).to.be.true;
-    
 
     $(".tp-rk__implDeadline-filter").trigger("click");
     $(".js-apply-filter-button").trigger("click");
