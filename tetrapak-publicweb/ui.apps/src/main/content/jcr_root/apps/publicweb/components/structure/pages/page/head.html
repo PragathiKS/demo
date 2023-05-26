@@ -59,15 +59,6 @@
   </sly>
   
   <sly data-sly-test="${digitalDataModel.isPublisher}">
-    <!-- <script>
-      var OneTrust = {
-        dataSubjectParams: {
-          id: '',
-          isAnonymous: false,
-          token: ''
-        }
-      }
-    </script> -->
     <script type="text/javascript" defer>
       var OneTrust = {
         dataSubjectParams: {
@@ -138,8 +129,6 @@
           OneTrust.dataSubjectParams.token = jwt;
         }
       })();
-
-      //# sourceURL=cookieDebug.js
     </script>
   </sly>
   <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
