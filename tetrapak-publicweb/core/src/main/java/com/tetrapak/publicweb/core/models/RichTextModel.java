@@ -41,6 +41,9 @@ public class RichTextModel {
     @ValueMapValue
     private String pwTextColor;
 
+    @ValueMapValue
+    private String pwTextAlignment;
+
     /**
      * Gets the anchor id.
      *
@@ -104,4 +107,7 @@ public class RichTextModel {
 		return pwTextColor;
 	}
 
+    public String getPwTextAlignment() {
+        return pwTextAlignment;
+    }
 }
