@@ -124,12 +124,24 @@
                                         fieldLabel="RK Status Label (i18N key)"
                                         name="./rkStatus"
                                         required="true"/>
+									<rkSubType
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="RK SubType (i18N key)"
+                                        name="./rkSubType"
+                                        required="true"/>	
                                     <rkhandling
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="RK Handling Label (i18N key)"
                                         name="./rkHandling"
                                         required="true"/>
+									<rkValidation
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="RK Validation (i18N key)"
+                                        name="./rkValidation"
+                                        required="true"/>	
                                     <planninginformation
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -189,6 +201,60 @@
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldLabel="What Language Do You Want (i18N key)"
                                             name="./rkReqWhatLanguageWantText"
+                                            required="true"/>
+                                    <rKModalReportHeading
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Report Modal Heading (i18N key)"
+                                            name="./rKModalReportHeading"
+                                            required="true"/>
+                                    <dropdownPlaceholder
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Dropdown placeholder (i18N key)"
+                                            name="./dropdownPlaceholder"
+                                            required="true"/>
+                                    <statusLabel
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Implementation Status Label (i18N key)"
+                                            name="./statusLabel"
+                                            required="true"/>
+                                    <dateLabel
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Date Label (i18N key)"
+                                            name="./dateLabel"
+                                            required="true"/>
+                                    <commentsLabel
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Comments Label (i18N key)"
+                                            name="./commentsLabel"
+                                            required="true"/>
+                                    <commentsPlaceholder
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Comments Placeholder (i18N key)"
+                                            name="./commentsPlaceholder"
+                                            required="true"/>
+                                    <makeUpdate
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Make Update (i18N key)"
+                                            name="./makeUpdate"
+                                            required="true"/>
+                                    <rkReportThankyoutitle
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK Report Translation Thank You Title (i18N key)"
+                                            name="./rkReportThankyoutitle"
+                                            required="true"/>
+                                    <rkReportThankyoudesc
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="RK Report Translation Thank You Description (i18N key)"
+                                            name="./rkReportThankyoudesc"
                                             required="true"/>
                                     <rkReqCtiThankyoumessage
                                             jcr:primaryType="nt:unstructured"

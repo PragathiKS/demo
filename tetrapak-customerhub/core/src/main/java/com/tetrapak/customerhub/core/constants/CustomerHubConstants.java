@@ -716,6 +716,15 @@ public final class CustomerHubConstants {
     /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
     public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
 
+    /** The Constant Rebuildingkits modal report header . */
+    public static final String RK_MODAL_REPORT_HEADING = "rKModalReportHeading";
+
+    /** REBUIlDING_KITS REPORT THANK_YOU TITLE */
+    public static final String RK_REPORT_THANKYOU_TITLE = "rkReportThankyoutitle";
+
+    /** REBUILDING_KITS REPORT THANK_YOU DESCRIPTION */
+    public static final String RK_REPORT_THANKYOU_DESC = "rkReportThankyoudesc";
+
     /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
 
@@ -897,7 +906,10 @@ public final class CustomerHubConstants {
     public static final String EQUIPMENT_STRUCTURE = "equipmentStructure";
     
     /** The Constant Report Implementation Status */
-    public static final String REPOST_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+    public static final String REPORT_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+
+    /** The Constant Make Update */
+    public static final String MAKE_UPDATE = "makeUpdate";
     
     /** The Constant RK Note */
     public static final String RK_NOTE = "rkNote";
@@ -928,6 +940,9 @@ public final class CustomerHubConstants {
     
     /** The Constant Rebuilding Kit Details API. */
     public static final String RK_DETAILS_API = "rebuildingkits-rebuildingkitdetails";
+
+    /** The Constant Rebuilding Kit Implementation Status_List API. */
+    public static final String RK_IMPL_STATUSLIST_API = "rebuildingkits-implstatuslist";
     
     /** The Technical Bulleting API. */
     public static final String TECHNICAL_BULLETIN_API = "technicalbulletins";
@@ -967,6 +982,20 @@ public final class CustomerHubConstants {
 
     public static final String RK_LIABILITY_CONDITIONS_TITLE = "Liability Conditions";
 
+    /** Dropdown Placeholder */
+    public static final String DROPDOWN_PLACEHOLDER = "dropdownPlaceholder";
+
+    /** Status Label */
+    public static final String STATUS_LABEL = "statusLabel";
+
+    /** Date Label */
+    public static final String DATE_LABEL = "dateLabel";
+
+    /** Comments Label */
+    public static final String COMMENTS_LABEL = "commentsLabel";
+
+    /** Comments Placeholder */
+    public static final String COMMENTS_PLACEHOLDER = "commentsPlaceholder";
 
 
     /**
