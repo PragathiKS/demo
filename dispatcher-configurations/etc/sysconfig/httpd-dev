@@ -126,3 +126,7 @@ ENV_TYPE='dev'
 RUNMODE='sites'
 #RUNMODE='author'
 #RUNMODE='preview'
+
+PUBWEB_MKT_LNG_LIST='(de|en-ca|en-cz|en-fi|en-gb|en-gr|en-hr|en-hu|en-id|en-ie|en-in|en-kr|en-lv|en-my|en-nl|en-no|en-ph|en-pk|en-pl|en-ro|en-rs|en-sa|en-sg|en-sk|en-th|en-tw|en-us|en-vn|en-za|es-ar|es-cl|es-co|es-ec|es-es|es-mx|es-pe|es-py|es-ve|es|fr-be|fr-ca|fr-ch|fr-fr|it-it|ja-jp|pt-br|pt-pt|ru|sv-se|tr-tr|zh-cn|en-ua)'
+PUBWEB_LNG_LIST='de|en|es|fr|it|ja|pt|ru|sv|tr|zh'
+PUBWEB_MKT_LIST='ar|be|br|ca|ch|cl|cn|co|cz|ec|es|fi|fr|gb|gr|hr|hu|id|ie|in|it|jp|kr|lv|mx|my|nl|no|pe|ph|pk|pl|pt|py|ro|rs|sa|se|sg|sk|th|tr|tw|ua|us|ve|vn|za'
