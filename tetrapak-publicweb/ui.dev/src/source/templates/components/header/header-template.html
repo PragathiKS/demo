@@ -8,7 +8,8 @@
           class="tp-pw-header__logo-placeholder ipad-logo col-sm-6 col-lg-3 d-flex justify-content-lg-start justify-content-sm-center">
             <a class="js-tp-pw-header-logo-digital-data pw-header-logo" data-sly-test="${data.logoLink}" href="${data.logoLink}"
               target="${data.logoLinkTarget}" data-sly-unwrap="${!data.logoLink}">
-              <img src="${data.logoImagePath}" alt="${data.logoAlt}" />
+              <sly data-sly-test.logoAltWithCountyTitle="${'{0} {1}' @ format=[data.logoAlt, data.countryTitle]}" />
+              <img src="${data.logoImagePath}" alt="${data.countryTitle? logoAltWithCountyTitle : data.logoAlt}" />
             </a>
         </div>
         <div class="tp-pw-header__main-navigation col-6">

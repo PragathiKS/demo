@@ -495,6 +495,9 @@ public final class PWConstants {
     
     /** The Constant TEXT_VIDEO. */
     public static final String TEXT_VIDEO = "textVideo";
+    
+    /**Country Name Property */
+    public static final String PROP_COUNTRY_NAME = "countryName";
 
     /** The Constant TYPE. */
     public static final String TYPE = "type";
