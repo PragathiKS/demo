@@ -65,7 +65,8 @@ import com.tetrapak.publicweb.core.utils.SearchMapHelper;
         service = Servlet.class,
         property = { Constants.SERVICE_DESCRIPTION + "=Tetra Pak - Public Web Search service",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-                "sling.servlet.resourceTypes=" + "publicweb/components/content/searchresults" })
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/searchresults",
+                "sling.servlet.resourceTypes=" + "publicweb/components/content/searchlanding" })
 @Designate(ocd = SiteSearchServlet.Config.class)
 public class SiteSearchServlet extends SlingSafeMethodsServlet {
 

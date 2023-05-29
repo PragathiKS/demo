@@ -1,3 +1,20 @@
+.pw-search-result-head {
+    .pw-search-title {
+        color: $color-tundora;
+        font-size: $font-xxl;
+        line-height: $padding-xxxl;
+        font-weight: 700;
+    }
+    .pw-search-description {
+        color: $color-tundora;
+        font-size: $font-baseline;
+        line-height: $spacing-big;
+        font-weight: 400;
+    }
+    .margin-auto {
+        margin: auto;
+    }
+}
 .pw-search-results {
     @include margin-bottom($margin-l);
 
@@ -183,6 +200,9 @@
             @media #{$desktop} {
                 @include padding-left($padding-l);
             }
+            &.padding-none {
+                padding: 0;
+            }
         }
 
         .tpatom-checkbox {
@@ -209,6 +229,11 @@
                 &:nth-child(even) {
                     @include padding-left(12px);
                 }
+            }
+        }
+        .left-wrapper-filter {
+            &.display-none {
+                display: none;
             }
         }
     }
@@ -341,6 +366,58 @@
             &__title-link {
                 color: $color-congress-blue;
             }
+        }
+    }
+}
+
+.tp-tbl-pagination {
+    @include margin-top($margin-md);
+
+    @media #{$desktop} {
+        @include margin-top($margin-l);
+    }
+    .icon {
+        &::before {
+            @include width($font-xxs);
+        }
+
+        &.icon-left {
+            &::before {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &__first {
+        @include margin-right($margin-l);
+
+        .tpatom-btn__text {
+            @include margin-left($margin-sm);
+        }
+    }
+
+    &__last {
+        @include margin-left($margin-l);
+
+        .tpatom-btn__text {
+            @include margin-right($margin-sm);
+        }
+    }
+
+    .tpatom-btn--pagination {
+        &:hover {
+            &:not([disabled]) {
+                color: $color-sky-blue;
+                font-weight: normal;
+
+                .icon {
+                    color: $color-sky-blue;
+                }
+            }
+        }
+
+        &.active {
+            pointer-events: none;
         }
     }
 }
