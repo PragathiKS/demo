@@ -2,7 +2,7 @@
     position: relative;
 
     &__text {
-        @include line-height(24px, $font-baseline);
+        @include line-height($font-l, $font-baseline);
         display: inline-block;
         margin-bottom: 0;
         color: $color-mine-shaft;
@@ -13,8 +13,9 @@
         }
     }
 
-    .tpatom-input-box{
-        @include padding($padding-sm);
+    &-custom-item {
+        overflow-y: auto;
+        max-height: 460px;
     }
 
     .dropdown.show {
@@ -26,7 +27,7 @@
 
     .dropdown-btn {
         @include padding($padding-sm $padding-l $padding-sm $padding-sm);
-        @include line-height(22px, $font-baseline);
+        @include line-height($font-l-sm, $font-baseline);
         @include border-xs($color-boulder);
         white-space: normal;
         width: 100%;
@@ -43,7 +44,7 @@
 
     .dropdown-item {
         @include padding($padding-sm);
-        @include line-height(24px, $font-baseline);
+        @include line-height($font-l, $font-baseline);
         white-space: normal;
 
         &:hover {
@@ -61,7 +62,7 @@
         @include border-xs($color-boulder);
         @include border-radius($border-radius);
         @include padding($padding-sm);
-        @include line-height(22px, $font-baseline);
+        @include line-height($font-l-sm, $font-baseline);
         width: 100%;
         background-color: $color-white;
         color: $color-tundora
@@ -79,5 +80,15 @@
             @include margin-top(-2px);
             transform: translateY(-50%) rotate(180deg);
         }
-    }
+    }    
+}
+
+.icon-Search{
+    @include padding-right($padding-sm);       
+}
+
+.no-data-found{
+    @include padding($padding-sm);
+    @include line-height($font-l, $font-baseline);
+    white-space: normal;
 }
