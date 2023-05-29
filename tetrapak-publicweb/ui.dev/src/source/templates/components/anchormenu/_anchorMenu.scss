@@ -34,10 +34,19 @@
     }
 
     .pw-anchor-menu-list {
+        & a {
+            color: $color-tundora;
+            &.active {
+                color: $color-congress-blue;
+            }
+        }
         > li {
             flex-grow: 1;
         }
         .more {
+            @media #{$mobile} {
+                display: none;
+            }
             > button span {
                 display: inline-block;
                 color: $color-tundora;
@@ -92,12 +101,6 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            & a {
-                color: $color-tundora;
-                &.active {
-                    color: $color-congress-blue;
-                }
-            }
         }
 
         .pw-anchor-menu-list > .pw-anchor-menu-content {
@@ -111,12 +114,18 @@
         position: absolute;
         bottom: $padding-zero;
         padding-bottom: 25px;
+        @media #{$mobile} {
+            display: none;
+        }
     }
     .pw-anchor-menu-progress-indicator {
         display: block;
         background-color: $color-congress-blue;
         height: $anchor-menu-indicator-height;
         transition: width, margin-left 0.5s ease 0s;
+        @media #{$mobile} {
+            display: none;
+        }
     }
 }
 .sticky-anchor-menu {
