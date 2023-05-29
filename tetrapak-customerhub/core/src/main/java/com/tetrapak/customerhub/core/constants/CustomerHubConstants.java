@@ -372,6 +372,9 @@ public final class CustomerHubConstants {
     /** The Constant HIDE_AND_SHOW_CTA. */
     public static final String HIDE_AND_SHOW_CTA = "hideAndShowCta";
 
+    /** The Constant SET_DEFAULT_FILTER_CTA. */
+    public static final String SET_DEFAULT_FILTER_CTA = "setDefaultFilterCTA";
+
     /** The Constant NO_DATA_FOUND. */
     public static final String NO_DATA_FOUND = "noDataFound";
 
