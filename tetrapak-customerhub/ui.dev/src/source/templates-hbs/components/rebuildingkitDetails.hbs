@@ -4,6 +4,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-12 tp-rebuilding-details__info-card-col">
         <div class="tp-rebuilding-details__info-card js-rebuilding-details__info-card top">
             <h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.rkAndEquipmentInformation}}</h3>
+            {{#if isNotConfirmed}}
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-xs-12">
                     <div class="row tp-rebuilding-details__row">
@@ -61,16 +62,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="tp-rebuilding-details__action-wrap">
+                <div class="col-lg-12 col-md-12 col-xs-12 tp-rebuilding-details__action-wrap">
                     {{> atoms/buttons/button/button iconClass="icon-Edit" modifier="transparent"
-                    text=i18nKeys.updateEquipmentInformation baseClass="tp-equipment-details__btn
-                    tp-equipment-details__update" jsClass="js-equipment-details__update"}}
+                    text=i18nKeys.reportImplementationStatus baseClass="tp-rebuilding-details__btn
+                    tp-rebuilding-details__update" jsClass="js-rebuilding-details__update"}}
                 </div>
                 <div class="tp-rebuilding-details__note">
                     <span>{{i18n key=i18nKeys.rkNote}}:</span>
                     {{i18n key=i18nKeys.rkNoteValue}}
                 </div>
             </div>
+            {{else}}
+            <!-- Thank you page starts -->
+                <p class="tp-rebuilding-details__conf-title">
+                    <i class="icon icon-Circle_filled_Tick"></i>{{i18n key=i18nKeys.rkReportThankyoutitle}}
+                </p>
+                <p>
+                    {{i18n key=i18nKeys.rkReportThankyoudesc}}
+                </p>
+            <!-- Thank you page ends -->
+            {{/if}}
         </div>
     </div>
 </div>

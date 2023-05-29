@@ -13,6 +13,10 @@
         }
     }
 
+    .tpatom-input-box{
+        @include padding($padding-sm);
+    }
+
     .dropdown.show {
         .btn {
             @include border-radius($border-radius $border-radius 0 0);

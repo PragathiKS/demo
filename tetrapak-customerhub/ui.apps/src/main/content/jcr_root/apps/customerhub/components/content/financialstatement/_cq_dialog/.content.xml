@@ -205,6 +205,20 @@
                                             fieldLabel="No Customer Error Close i18n Key"
                                             name="./noCustomerErrorText"
                                             required="true"/>
+                                    <placeholderForCustomerSearchText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldDescription="Enter Placeholder For Customer Search Text i18 Key"
+                                            fieldLabel="Placeholder For Customer Search Text"
+                                            name="./placeholderForCustomerSearchText"
+                                            required="true"/>
+                                   <noDataFoundForCustomerSearch
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldDescription="Enter No Customer Found i18 Key"
+                                            fieldLabel="No Customer Found i18n Key"
+                                            name="./noDataFoundForCustomerSearch"
+                                            required="true"/>
                                 </items>
                             </column>
                         </items>

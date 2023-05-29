@@ -6,6 +6,8 @@ export const PARSE_ERROR = 'Block data could not be parsed';
 export const TEMPLATE_MISSING = 'Target template is missing';
 export const INVALID_URL = 'URL is invalid';
 export const NO_OF_EVENTS_PER_PAGE = 12;
+export const ACTIVE_PAGE = 1;
+export const ITEM_PER_PAGE = 10;
 export const ajaxMethods = {
   GET: 'GET',
   POST: 'POST',

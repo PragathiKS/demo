@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>
     ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ?
-    inheritedPageProperties.titleSuffix : 'Tetra Pak'} ${pageHeadModel.pageTitleCountrySuffix}
+    inheritedPageProperties.titleSuffix : 'Tetra Pak'}
   </title>
   <link rel="icon" type="image/png" href="/content/dam/tetrapak/publicweb/favicon.png">
   <script>
@@ -150,10 +150,6 @@
   <!--/* script for DEV and QA */-->
   <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
     <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
-  </sly>
-  <sly data-sly-test="${pageHeadModel.baiduMapkey}">
-    <script src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}" type="text/plain"
-      class="optanon-category-4" defer></script>
   </sly>
 
   <sly data-sly-include="customheaderlibs.html"></sly>

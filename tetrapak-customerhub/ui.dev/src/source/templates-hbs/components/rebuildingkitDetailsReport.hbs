@@ -1,0 +1,49 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
+    <div class="modal-content tp-rk-report__modal-content tp-modal-content tp-rk-report__modal-content">
+        <div class="modal-header tpmol-modal-header tp-rk-report__modal-header">
+            <h3 class="tp-rk-report__modal-heading">{{i18n key=i18nKeys.rKModalReportHeading}}</h3>
+            <button type="button" auto_locator="closebtnOverlay"
+                    class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+            <div class='modal-body tp-modal-body tp-rk-report__modal-body'>
+                <form>
+                    <div>
+                        {{> atoms/dropdown/dropdown
+                            defaultValue=i18nKeys.dropdownPlaceholder
+                            options=statuses
+                            name="status"
+                            labelText=i18nKeys.statusLabel
+                            wrapClasses="tp-rebuildingkit__field-wrapper"
+                        }}
+                    </div>
+                    <div>
+                        {{> atoms/input/input
+                            labelText=i18nKeys.dateLabel
+                            name="date"
+                            labelClasses="tp-rebuildingkit__field-label"
+                            required="true"
+                        }}
+                    </div>
+                    <div>
+                        {{> atoms/textarea/textarea
+                            placeholder=i18nKeys.commentsPlaceholder
+                            labelText=i18nKeys.commentsLabel
+                            name="comments"
+                            labelClasses="tp-rebuildingkit__field-label"
+                            eleClasses="tp-rk-field-textarea"
+                        }}
+                    </div>
+                    {{> atoms/buttons/button/button 
+                        text=i18nKeys.makeUpdate 
+                        buttonType="submit" 
+                        modifier="primary" 
+                        baseClass="tp-rk-make-update" 
+                        jsClass="js-rk-make-update"
+                    }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

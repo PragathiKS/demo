@@ -22,7 +22,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MediaLinkModel {
 
-    /** The request. */
+	/** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -30,6 +30,10 @@ public class MediaLinkModel {
     @ValueMapValue
     private String heading;
 
+    /** The heading Description. */
+    @ValueMapValue
+    private String headingDesc;
+    
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -49,7 +53,7 @@ public class MediaLinkModel {
     /** The column two title. */
     @ValueMapValue
     private String columnTwoTitle;
-
+    
     /** The column three title. */
     @ValueMapValue
     private String columnThreeTitle;
@@ -78,6 +82,15 @@ public class MediaLinkModel {
         return heading;
     }
 
+    /**
+     * Gets the headingDesc
+     * 
+     * @return headingDesc
+     */
+    public String getHeadingDesc() {
+		return headingDesc;
+	}
+	
     /**
      * Gets the anchor id.
      *

@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.mock;
 
+import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.beans.rebuildingkits.ImplementationStatusUpdateBean;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import java.util.ArrayList;
@@ -17,6 +19,11 @@ public class MockRebuildingKitsApiServiceImpl implements RebuildingKitsApiServic
 		return 750;
 	}
 
+	@Override
+	public JsonObject updateImplementationStatus(String token, String emailId, ImplementationStatusUpdateBean bean) {
+		return null;
+	}
+
 	public List<RebuildingKits> getMockRebuildingKitsList() {
 		RebuildingKits paramRequest = new RebuildingKits();
 		paramRequest.setCountryCode("DE");
@@ -28,6 +35,7 @@ public class MockRebuildingKitsApiServiceImpl implements RebuildingKitsApiServic
 		paramRequest.setRkDesc("Pressure Jaw Right Base Unit");
 		paramRequest.setSerialNumber("5454544");
 		paramRequest.setEquipmentDesc("Equipment Description");
+		paramRequest.setRkGeneralNumber("2616315-0100");
 		paramRequest.setImplStatus("");
 		paramRequest.setPermanentVolumeConversion("");
 		paramRequest.setImplStatusDate("");

@@ -23,6 +23,10 @@ public class LinkModel {
     /** The Link url. */
     @ValueMapValue
     private String linkUrl;
+    
+    /** The Link Desc. */
+    @ValueMapValue
+    private String linkDesc;
 
     /** The asset name. */
     private String assetName;
@@ -47,6 +51,25 @@ public class LinkModel {
      */
     public void setLinkLabel(String linkLabel) {
         this.linkLabel = linkLabel;
+    }
+    
+    /**
+     * Gets the link Desc.
+     *
+     * @return the link Desc
+     */
+    public String getLinkDesc() {
+        return linkDesc;
+    }
+
+    /**
+     * Sets the link Desc.
+     *
+     * @param linkDesc
+     *            the new link Desc
+     */
+    public void setLinkDesc(String linkDesc) {
+        this.linkDesc = linkDesc;
     }
 
     /**
