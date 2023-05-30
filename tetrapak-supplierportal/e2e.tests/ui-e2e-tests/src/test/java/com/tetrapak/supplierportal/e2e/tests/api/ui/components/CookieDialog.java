@@ -13,13 +13,13 @@ public class CookieDialog {
 
     public CookieDialog(Page page) {
         this.page = page;
-        cookiesDescription = page.locator("#onetrust-policy-text");
-        cookieConsentButton = page.locator("#onetrust-accept-btn-handler");
+        cookiesDescription = page.locator("div[aria-label=\"cookieconsent\"]");
+        cookieConsentButton = page.locator("div[aria-label=\"cookieconsent\"] .cc-compliance a");
     }
 
     public void closeCookieConsentDialog() {
         assertThat(cookiesDescription).isVisible();
-        assertThat(cookiesDescription).containsText("you agree to the storing of cookies");
+        assertThat(cookiesDescription).containsText("We are using cookies. By continuing");
         assertThat(cookieConsentButton).isVisible();
 
         cookieConsentButton.click();

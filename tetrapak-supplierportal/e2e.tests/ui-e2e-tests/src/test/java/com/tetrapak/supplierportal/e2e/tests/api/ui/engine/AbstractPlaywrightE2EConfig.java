@@ -21,7 +21,7 @@ public abstract class AbstractPlaywrightE2EConfig {
     @BeforeAll static void setUpClass() {
         playwright = Playwright.create();
         BrowserType browserType = playwright.webkit();
-        browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(true));
+        browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 
     @BeforeEach void setup() {
