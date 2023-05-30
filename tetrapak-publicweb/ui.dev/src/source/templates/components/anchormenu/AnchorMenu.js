@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { scrollToElement } from '../../../scripts/common/common';
+import { isDesktop1024Mode, scrollToElement } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class AnchorMenu {
@@ -10,6 +10,7 @@ class AnchorMenu {
   initCache() {
     this.cache.$anchorLink = this.root.find('a');
     this.cache.$anchorMenu = document.getElementsByClassName('pw-anchor-menu');
+    this.cache.$anchorMenuTitle = document.getElementById('pw-anchor-menu-title');
     this.cache.$progressIndicator = this.root.find('.pw-anchor-menu-progress-indicator');
     this.cache.$anchorMenuContent = this.root.find('.pw-anchor-menu-content');
     this.cache.$anchorMenuContainer = document.querySelector('.pw-anchor-menu__regular');
@@ -25,7 +26,7 @@ class AnchorMenu {
       this.setAnchorMenuSelection(0);
     }
     this.getMaxNumberOfPrimaryLinks();
-    if (document.querySelector('.pw-anchor-menu__regular')) {
+    if (document.querySelector('.pw-anchor-menu__regular') && isDesktop1024Mode()) {
       const container = this.cache.$anchorMenuContainer;
       const primary = container.querySelector('.pw-anchor-menu-list');
       const primaryItems = container.querySelectorAll('.pw-anchor-menu-list > li:not(.more)');
@@ -199,17 +200,20 @@ class AnchorMenu {
   };
 
   setAnchorMenuSelection(currentIndex) {
-    const { $progressIndicator, $anchorMenuContent, $maxPrimaryLinks, $secondaryAnchorMenuContent } = this.cache;
+    const { $progressIndicator, $anchorMenuContent, $maxPrimaryLinks, $secondaryAnchorMenuContent, $anchorMenuTitle } = this.cache;
+    if ($anchorMenuTitle) {
+      $anchorMenuTitle.textContent = $anchorMenuContent[currentIndex].innerText;
+    }
     //Progress indicator
     $progressIndicator.css('margin-left', `${$anchorMenuContent[currentIndex].children[0].offsetLeft}px`);
     $progressIndicator.css('width', `${$anchorMenuContent[currentIndex].children[0].offsetWidth}px`);
     for(let index=0; index<$anchorMenuContent.length; index++) {
       //Reset active state
       $anchorMenuContent[index].children[0].classList.remove('active');
-      if ($secondaryAnchorMenuContent) {
+      if ($secondaryAnchorMenuContent && isDesktop1024Mode()) {
         $secondaryAnchorMenuContent[index].children[0].classList.remove('active');
       }
-      if (currentIndex >= $maxPrimaryLinks && currentIndex === index) {
+      if (currentIndex >= $maxPrimaryLinks && currentIndex === index && isDesktop1024Mode()) {
         $secondaryAnchorMenuContent[index].children[0].classList.add('active');
       } else if (currentIndex === index) {
         $anchorMenuContent[index].children[0].classList.add('active');
