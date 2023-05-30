@@ -58,13 +58,9 @@ class PlantMasterLicenses {
         this.$siteLicensesTab.removeClass('d-none');
       }
 
-      if(showSiteLicenseTab === true) {
-        this.$siteLicensesTab.removeClass('d-none');
-      }
-
     }).fail((e) => {
       logger.error(e);
-    });
+    });    
   }
 }
 

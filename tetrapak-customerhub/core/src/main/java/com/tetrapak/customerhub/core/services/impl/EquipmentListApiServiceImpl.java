@@ -176,10 +176,7 @@ public class EquipmentListApiServiceImpl implements EquipmentListApiService {
 				+ countryCode + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
 				+ CustomerHubConstants.SKIP + CustomerHubConstants.EQUALS_CHAR + skip + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS_CHAR + getNoOfRecordsCount() + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.EQUIPMENT_API_SORT + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.CUSTOMER
-				+ CustomerHubConstants.COMMA + CustomerHubConstants.LOCATION + CustomerHubConstants.COMMA + CustomerHubConstants.FUNCTIONAL_LOCATION
-				+ CustomerHubConstants.COMMA + CustomerHubConstants.POSITION;
+				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS_CHAR + getNoOfRecordsCount();
 		return HttpUtil.executeHttp(token, url);
 	}
 }

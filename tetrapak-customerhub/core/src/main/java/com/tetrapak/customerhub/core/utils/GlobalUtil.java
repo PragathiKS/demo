@@ -47,15 +47,6 @@ import java.util.Set;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -64,9 +55,7 @@ import java.util.Set;
  */
 public class GlobalUtil {
 
-    /**
-     * The Constant LOGGER.
-     */
+    /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalUtil.class);
 
     /**

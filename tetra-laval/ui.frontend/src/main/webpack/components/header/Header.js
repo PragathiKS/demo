@@ -46,6 +46,7 @@ class Header {
     this.cache.$headerLogo.on('click', this.logoTrackAnalytics);
     this.cache.$contactBtn.on('click', this.contactBtnTrackAnalytics);
     this.cache.$firstLevelNavigation.on('click', this.firstLevelNavigationTrackAnalytics);
+    this.cache.$secondLevelNavigation.on('click', this.secondLevelNavigationTrackAnalytics);
     this.cache.$megaMenu.on('mouseover', () => {
       this.cache.$overlay.removeClass('d-none');
     });
@@ -100,6 +101,29 @@ class Header {
     }
   }
 
+  secondLevelNavigationTrackAnalytics = e => {
+    e.preventDefault();
+
+    const $target = $(e.target);
+    const $navItem = $target.closest('.tp_pw-header__nav-item').find('> a');
+    const $parentHeader = $target.parent().find('> .tp_pw-header__mega-menu-header');
+    const linkType = $target.attr('target') === '_blank' ? 'external' : 'internal';
+    const linkName = $target.text();
+
+    trackAnalytics({
+      navigationLinkName: `${$navItem.text()}:${$parentHeader.text()}:${linkName}`,
+      navigationSection: ($parentHeader.length ? $parentHeader : $navItem).text()
+    }, 'navigation', 'navigationClick', undefined, false, {
+      eventType: 'navigationClick',
+      event: 'Navigation'
+    }, {
+      linkType, linkName,
+      linkSection: 'hyperlink click',
+      linkParentTitle: ''
+    });
+    this.sendRedirect(e, $target, linkType);
+  }
+
   sendRedirect(e, $obj, linkType) {
     setTimeout(function() {
       if (linkType === 'internal') {
@@ -122,6 +146,7 @@ class Header {
     this.cache.$searchBarCloseIcon = this.root.find('.search-bar-close');
     this.cache.$contactBtn = this.root.find(`.js-tp_pw-header__nav-options-envelope`);
     this.cache.$firstLevelNavigation = this.root.find('.tp_pw-header__nav-item');
+    this.cache.$secondLevelNavigation = this.root.find('.tp_pw-header__mega-menu-link');
     this.cache.$megaMenu = this.root.find('.tp_pw-header__mega-menu');
     this.cache.$overlay = this.root.find('.pw-overlay');
 

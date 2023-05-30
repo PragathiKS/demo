@@ -4,6 +4,7 @@
 	jcr:primaryType="sling:OsgiConfig"
 	enableConfig="true"
 	getRolloutConfigs="[/libs/msm/wcm/rolloutconfigs/default,/libs/msm/wcm/rolloutconfigs/activate,/libs/msm/wcm/rolloutconfigs/deactivate]"
+	getRussianLiveCopyBasePaths="[/content/tetrapak/publicweb/ru/ru]"
 	getGermanLiveCopyBasePaths="[/content/tetrapak/publicweb/de/de]"
 	getFrenchLiveCopyBasePaths="[/content/tetrapak/publicweb/be/fr,/content/tetrapak/publicweb/ca/fr,/content/tetrapak/publicweb/fr/fr,/content/tetrapak/publicweb/maghreb/fr,/content/tetrapak/publicweb/ch/fr]"
 	getItalianLiveCopyBasePaths="[/content/tetrapak/publicweb/it/it]"

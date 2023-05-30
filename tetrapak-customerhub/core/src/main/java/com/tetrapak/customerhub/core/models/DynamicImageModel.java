@@ -258,16 +258,16 @@ public class DynamicImageModel {
 	 *
 	 * @return the cropping from mobile
 	 */
-	private String getCroppingFromMobile() {
-		final Resource imageResource = request.getResourceResolver().getResource(imagePath + CustomerHubConstants.DAM_METADATA_PATH);
-		if (null == imageResource) {
-			return StringUtils.EMPTY;
-		}
-		final ValueMap vMap = imageResource.getValueMap();
-		final Long height = (Long) vMap.get("tiff:ImageLength");
-		final Long width = (Long) vMap.get("tiff:ImageWidth");
-		return getCropParameterForScene7(height, width);
-	}
+    private String getCroppingFromMobile() {
+        final Resource imageResource = request.getResourceResolver().getResource(imagePath + CustomerHubConstants.DAM_METADATA_PATH);
+        if (null == imageResource) {
+            return StringUtils.EMPTY;
+        }
+        final ValueMap vMap = imageResource.getValueMap();
+        final Long height = (Long) vMap.get("tiff:ImageLength");
+        final Long width = (Long) vMap.get("tiff:ImageWidth");
+        return getCropParameterForScene7(height, width);
+    }
 
 	/**
 	 * Gets the crop parameter for scene 7.

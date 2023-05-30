@@ -255,30 +255,30 @@ public class FinancialResultsExcelServiceImpl implements FinancialResultsExcelSe
             int counter = 0;
             String[] tags = new String[]{};
             while (itr.hasNext()) {
-                Record financialRecord = itr.next();
+                Record record = itr.next();
                 data[counter][0] = addTagToContent(StringUtils.EMPTY, new String[]{
                         ExcelUtil.NO_BORDER_TAG
                 });
-                data[counter][1] = addTagToContent(financialRecord.getDocumentNumber(), tags);
-                data[counter][2] = addTagToContent(documentTypeMap.get(financialRecord.getDocumentType()), tags);
-                data[counter][3] = addTagToContent(statusTypeMap.get(financialRecord.getInvoiceStatus()), tags);
-                data[counter][4] = addTagToContent(financialRecord.getInvoiceReference(), tags);
-                data[counter][5] = addTagToContent(financialRecord.getPoNumber(), tags);
-                data[counter][6] = addTagToContent(financialRecord.getDocDate(), tags);
-                data[counter][7] = addTagToContent(financialRecord.getDueDate(), tags);
-                data[counter][8] = addTagToContent(financialRecord.getClearedDate(), tags);
-                data[counter][9] = addTagToContent(financialRecord.getCurrency(), tags);
-                data[counter][10] = addTagToContent(financialRecord.getDueDays(), tags);
-                data[counter][11] = addTagToContent(financialRecord.getRemAmount(), new String[]{
+                data[counter][1] = addTagToContent(record.getDocumentNumber(), tags);
+                data[counter][2] = addTagToContent(documentTypeMap.get(record.getDocumentType()), tags);
+                data[counter][3] = addTagToContent(statusTypeMap.get(record.getInvoiceStatus()), tags);
+                data[counter][4] = addTagToContent(record.getInvoiceReference(), tags);
+                data[counter][5] = addTagToContent(record.getPoNumber(), tags);
+                data[counter][6] = addTagToContent(record.getDocDate(), tags);
+                data[counter][7] = addTagToContent(record.getDueDate(), tags);
+                data[counter][8] = addTagToContent(record.getClearedDate(), tags);
+                data[counter][9] = addTagToContent(record.getCurrency(), tags);
+                data[counter][10] = addTagToContent(record.getDueDays(), tags);
+                data[counter][11] = addTagToContent(record.getRemAmount(), new String[]{
                         ExcelUtil.RIGHT_ALIGN_TAG
                 });
-                data[counter][12] = addTagToContent(financialRecord.getSalesOffice(), tags);
-                data[counter][13] = addTagToContent(financialRecord.getCompanyCode(), tags);
-                data[counter][14] = addTagToContent(financialRecord.getOrgAmount(), new String[]{
+                data[counter][12] = addTagToContent(record.getSalesOffice(), tags);
+                data[counter][13] = addTagToContent(record.getCompanyCode(), tags);
+                data[counter][14] = addTagToContent(record.getOrgAmount(), new String[]{
                         ExcelUtil.RIGHT_ALIGN_TAG
                 });
                 if (showLocalData) {
-                    data[counter][15] = addTagToContent(financialRecord.getSalesLocalData(), tags);
+                    data[counter][15] = addTagToContent(record.getSalesLocalData(), tags);
                 }
                 counter++;
             }

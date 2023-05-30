@@ -7,6 +7,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
 import javax.annotation.PostConstruct;
 
 /**
@@ -52,14 +53,13 @@ public class LinkModel {
 
     @PostConstruct
     protected void init() {
-	if (StringUtils.isNotEmpty(linkUrl)) {
-	    linkType = LinkUtil.checkLinkType(linkUrl);
-	    if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
-		assetName = LinkUtil.getAssetName(linkUrl);
-	    }
-	}
+        if (StringUtils.isNotEmpty(linkUrl)) {
+            linkType = LinkUtil.checkLinkType(linkUrl);
+            if (StringUtils.equals(linkType, CustomerHubConstants.DOWNLOAD_LINK)) {
+                assetName = LinkUtil.getAssetName(linkUrl);
+            }
+        }
     }
-
 
     /**
      * Gets the asset name.
@@ -67,7 +67,7 @@ public class LinkModel {
      * @return the asset name
      */
     public String getAssetName() {
-	    return assetName;
+        return assetName;
     }
 
     /**
@@ -89,6 +89,15 @@ public class LinkModel {
     }
 
     /**
+     * Sets the linkUrl.
+     *
+     * @param linkUrl the new linkUrl
+     */
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
+    }
+
+    /**
      * Gets the link type.
      *
      * @return the link type
@@ -98,22 +107,11 @@ public class LinkModel {
     }
 
     /**
-     * Sets the linkUrl.
-     *
-     * @param linkUrl
-     *            the new linkUrl
-     */
-    public void setLinkUrl(String linkUrl) {
-        this.linkUrl = linkUrl;
-    }
-
-    /**
      * Sets the link type.
      *
      * @param linkType the new link type
      */
     public void setLinkType(String linkType) {
-	    this.linkType = linkType;
-
+        this.linkType = linkType;
     }
 }

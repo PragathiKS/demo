@@ -39,19 +39,17 @@ class Teaser {
   /**
    * carousalInitialization of Teaser
   */
-  carousalInitialization = () => {
-    const widthOnResize = window.innerWidth;
-    this.cache.option['stagePaddingRight'] = widthOnResize > 1023 ? 0 : 62;
-    this.cache.$owl.owlCarousel(this.cache.option);
-  }
+   carousalInitialization = () => {
+     const widthOnResize = window.innerWidth;
+     this.cache.option['stagePaddingRight'] = widthOnResize > 1023 ? 0 : 62;
+     this.cache.$owl.owlCarousel(this.cache.option);
+   }
   /**
    * After Initialization of Teaser navigation
   */
   onInitialized = () => {
     this.cache.$owlPrev = this.root.find('.owl-prev');
     this.cache.$owlNext = this.root.find('.owl-next');
-    $(this.cache.$owlPrev).attr('auto_locator', 'leftNav');
-    $(this.cache.$owlNext).attr('auto_locator', 'rightNav');
     this.trackArrowAnalytics();
     this.cache.$teaserLink = this.root.find('.js-teaser-analytics');
     this.cache.$teaserLink.off().on('click', this.trackAnalytics);

@@ -42,7 +42,7 @@ public class FooterConfigurationModelTest {
         Class<FooterConfigurationModel> modelClass = FooterConfigurationModel.class;
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-        context.addModelsForClasses(modelClass);
+        context.addModelsForClasses(modelClass);        
         resource = context.currentResource(RESOURCE);
         model = resource.adaptTo(modelClass);
     }

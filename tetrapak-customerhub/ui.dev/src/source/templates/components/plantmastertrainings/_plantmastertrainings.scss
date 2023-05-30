@@ -40,7 +40,7 @@
     }
 
     &__nav {
-        @include margin-top($margin-l);
+		@include margin-top($margin-l);
         @include margin-bottom($margin-l);
         overflow-y: hidden;
         overflow-x: auto;

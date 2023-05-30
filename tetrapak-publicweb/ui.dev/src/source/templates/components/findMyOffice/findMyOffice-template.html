@@ -1,6 +1,6 @@
 <sly data-sly-template.findMyOffice_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice" auto_locator="fmoOrganism">
-    <div class="hidden-element js-google-api js-baidu-map-api js-i18-value" data-google-api-key="${data.googleApiKey}" data-baidu-map-key="${data.baiduMapKey}"
+    <div class="hidden-element js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
       data-google-api-servlet="${data.servletPath}">${"pw.findMyOffice.goToLocalSite" @i18n}</div>
     <div class="hidden-element js-hidden-element">${"pw.findMyOffice.viewLargerMap" @i18n}</div>
     <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">

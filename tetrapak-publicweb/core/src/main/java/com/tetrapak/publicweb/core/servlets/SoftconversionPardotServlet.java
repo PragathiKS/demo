@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
  * The Class Business Inquiry Form Submit Request Servlet.
@@ -53,7 +54,11 @@ public class SoftconversionPardotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {           
-            submitCustomFormData(request);
+            if (GlobalUtil.isChinaDataFlow(request)) {
+                submitCustomFormData(request);
+            } else {
+                pardotService.submitPardotPostRespose(request.getParameterMap());
+            }           
             // send response
             sendResponse(resp);
 

@@ -39,7 +39,7 @@ public final class SearchMapHelper {
 
     /** The Constant GROUP_PROPERTY. */
     private static final String GROUP_PROPERTY = "_group.1_property";
-    
+
     /**
      * Instantiates a new resource util.
      */
@@ -198,7 +198,7 @@ public final class SearchMapHelper {
         }
         return index;
     }
-    
+
     /**
      * Gets the structure list.
      *

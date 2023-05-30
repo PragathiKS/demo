@@ -25,12 +25,7 @@
   <meta data-sly-test="${properties['jcr:title']}" name="twitter:title" content="${properties['jcr:title'] @ context='scriptComment'}"/>
   <meta name="twitter:site" content="@tetralaval"/>
   <meta name="twitter:card" content="summary" />
-  <sly data-sly-test="${adobeAnalytics.isPublisher && adobeAnalytics.dataDomainScript}">
-      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${adobeAnalytics.dataDomainScript}" ></script>
-      <script type="text/javascript">
-        function OptanonWrapper() { }
-      </script>
-    </sly>
+
   <script data-sly-test="${adobeAnalytics.development}" src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
   <script data-sly-test="${adobeAnalytics.production}" src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
 

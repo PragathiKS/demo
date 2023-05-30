@@ -37,7 +37,7 @@ public class ContactsModel {
      */
     @PostConstruct
     protected void init() {
-    	Map<String, Object> i18KeyMap = new HashMap<>();
+        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
         i18KeyMap.put("siteFilterHeading", getSiteFilterHeading());
         i18KeyMap.put("noContactMsg", getNoContactMsg());
         i18KeyMap.put("errorMsg", getErrorMsg());

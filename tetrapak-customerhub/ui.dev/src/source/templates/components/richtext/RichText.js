@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { isExternal } from '../../../scripts/utils/updateLink';

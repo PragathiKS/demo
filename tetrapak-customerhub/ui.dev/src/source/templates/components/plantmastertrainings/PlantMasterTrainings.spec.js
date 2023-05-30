@@ -91,6 +91,7 @@ describe('PlantMasterTrainings', function () {
     expect(this.getUserGroupSpy.called).to.be.true;
     done();
   });
+
   it('should call and render trainings data', function (done) {
     this.ajaxStub.restore();
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');

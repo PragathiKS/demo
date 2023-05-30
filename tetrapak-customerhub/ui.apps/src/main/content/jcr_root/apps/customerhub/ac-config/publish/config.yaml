@@ -204,11 +204,7 @@
         - path: /content/tetrapak/customerhub/global/en/ordering/packaging-material
           permission: allow
           actions: read
-          privileges:
-          
-        - path: /content/tetrapak/customerhub/global/en/ordering/packaging-material2
-          permission: allow
-          privileges: jcr:read         
+          privileges:         
 
     - cuhu_parts:
         - path: /content/tetrapak/customerhub/global/en/ordering
@@ -230,10 +226,6 @@
           permission: allow
           actions: read
           privileges:
-          
-        - path: /content/tetrapak/customerhub/global/en/ordering/parts2
-          permission: allow
-          privileges: jcr:read
 
     - cuhu_marketplace:
         - path: /content/tetrapak/customerhub/global/en/ordering

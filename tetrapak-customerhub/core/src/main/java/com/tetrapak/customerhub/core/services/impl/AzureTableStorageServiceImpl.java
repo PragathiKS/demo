@@ -52,13 +52,15 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
      * @throws AzureRuntimeException Custom exception to wrap the Azure
      *                               RuntimeException that can be thrown during the
      *                               normal operation of the Java Virtual Machine.
+     * @throws IOException           Signals that an I/O exception of some sort has
+     *                               occurred
      * @throws URISyntaxException    Checked exception thrown to indicate that a
      *                               string could not be parsed as aURI reference
      * @throws InvalidKeyException   This is the exception for invalid Keys (invalid
      *                               encoding, wrong length, uninitialized, etc).
      */
     private CloudTableClient getTableClientReference()
-    		throws URISyntaxException, InvalidKeyException, AzureRuntimeException {
+            throws IOException, URISyntaxException, InvalidKeyException, AzureRuntimeException {
         CloudStorageAccount storageAccount;
 
         try {
@@ -76,7 +78,7 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
             LOGGER.error("\nA run-time exception occurred while getting client reference.");
             throw new AzureRuntimeException("An exception occurred while getting client reference", e);
         }
-        LOGGER.debug("getTableClientReference: {}",storageAccount.toString(false));
+        LOGGER.debug("getTableClientReference: " + storageAccount.toString(false));
         return storageAccount.createCloudTableClient();
     }
 
@@ -114,7 +116,7 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
         // Create a new table
         CloudTable table = this.getTableClientReference().getTableReference(tableName);
         try {
-        	if (!table.createIfNotExists()) {
+            if (table.createIfNotExists() == false) {
                 throw new AzureRuntimeException("Table already exists!",
                         new IllegalStateException(String.format("Table with name \"%s\" already exists.", tableName)));
             }
@@ -231,7 +233,7 @@ public class AzureTableStorageServiceImpl implements AzureTableStorageService {
                 LOGGER.debug("Deleted the entity with the userID: {}", userId);
                 return true;
             } else {
-            	LOGGER.warn("Could not find row with userID: {}",userId);
+                LOGGER.warn("Could not find row with userID: " + userId);
             }
         } else {
             LOGGER.warn("Please provide a valid userID to delete the userData!");

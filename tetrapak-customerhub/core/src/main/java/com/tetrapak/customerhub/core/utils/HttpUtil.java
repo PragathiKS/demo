@@ -248,12 +248,12 @@ public final class HttpUtil {
         }
         return jsonResponse;
     }
-    
+
     /**
-     * 
+     *
      * This method is a variation of getJsonObject provided in the same file. This method does not parse the API
      * response into JSON Object; instead it returns the response AS IS in the form of a string.
-     * 
+     *
      * @param token Authorisation TOken
      * @param url HTTP End-point URL
      * @return Map Map containing HTTP call response and HTTP call status code
@@ -276,7 +276,7 @@ public final class HttpUtil {
             }
             responseMap.put(CustomerHubConstants.RESULT, responseString);
             responseMap.put(CustomerHubConstants.STATUS, String.valueOf(httpResponse.getStatusLine().getStatusCode()));
-            
+
         } catch (IOException e) {
             LOGGER.error("Error while making HTTP call for the URL {}", url, e);
         }

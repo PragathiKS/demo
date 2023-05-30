@@ -12,7 +12,7 @@
     <div class="row no-gutters" data-sly-test="${'pw.form.businessenq.scopeOfRequest' @i18n}">
       <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.scopeOfRequest', variant='small', auto_locator='scopeOfRequest'}" />
+          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.scopeOfRequest', variant='small'}" />
       </div>
     </div>
 
@@ -20,15 +20,15 @@
       <div class="col-sm-12 formfield form-group" auto_locator="businessEnquiryRightContainerStep1">
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingEquipment',  required=true, label='pw.form.businessenq.processing.scope.equipment', name='businessAreaInterestProcessingSupport', locale= 'en', value='Equipment', auto_locator='requestListOption'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingEquipment',  required=true, label='pw.form.businessenq.processing.scope.equipment', name='businessAreaInterestProcessingSupport', locale= 'en', value='Equipment'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingLine',  required=true, label='pw.form.businessenq.processing.scope.line', name='businessAreaInterestProcessingSupport', locale= 'en', value='Line', auto_locator='requestListOption'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingLine',  required=true, label='pw.form.businessenq.processing.scope.line', name='businessAreaInterestProcessingSupport', locale= 'en', value='Line'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingDontknow',  required=true, label='pw.form.businessenq.processing.scope.dontknow', name='businessAreaInterestProcessingSupport', locale= 'en', value='Don’t know', auto_locator='requestListOption'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiProcessingDontknow',  required=true, label='pw.form.businessenq.processing.scope.dontknow', name='businessAreaInterestProcessingSupport', locale= 'en', value='Don’t know'}">
         </sly>
 
         <div>
@@ -42,13 +42,13 @@
     <div class="row no-gutters" data-sly-test="${'pw.form.businessenq.processing.foodCategory' @i18n}">
       <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.processing.foodCategory', variant='small', auto_locator='foodCategory'}" />
+          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.processing.foodCategory', variant='small'}" />
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
-        <ul auto_locator="foodCategoryListOptions">
+        <ul>
           <li>
             <sly
               data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"

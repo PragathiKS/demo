@@ -38,7 +38,7 @@
                                     <brightBlue
                                             jcr:primaryType="nt:unstructured"
                                             text="Bright Blue"
-                                            value="bright-blue"/>                
+                                            value="bright-blue"/>
                                 </items>
                             </pwThemes>
 							<pwTextColor

@@ -226,6 +226,7 @@ class Softconversion {
 
       const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
       const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
+      const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
       const countryCookie= storageUtil.getCookie('countryValue');
       const apiPayload =  {};
       apiPayload.email = storageUtil.getCookie('visitor-mail');
@@ -234,12 +235,12 @@ class Softconversion {
       apiPayload.site = this.root.find(`#site_country_${this.cache.$componentName}`).val();
       apiPayload.pardot_extra_field = '';
       if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+        apiPayload.pardotUrl = chinapardotUrl;
         apiPayload.route_country = 'China';
       }
       else {
-        apiPayload.route_country = apiPayload.country;
+        apiPayload.pardotUrl = pardotUrl;
       }
-      apiPayload.pardotUrl = pardotUrl;
       apiPayload.pageurl = this.getPageURL();
       Object.keys(this.cache.requestPayload).forEach(key => {
         if(key === 'utm_campaign') {
@@ -270,7 +271,8 @@ class Softconversion {
 
   submitForm = () => {
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
-    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url')?.replace(/^https?:\/\//, '');
+    const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
+    const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
     const apiPayload =  {};
 
     const userType = parseInt(storageUtil.getCookie('userType'), 10);
@@ -318,12 +320,13 @@ class Softconversion {
     apiPayload.site = this.cache.requestPayload[`site_country_${this.cache.$componentName}`];
     apiPayload.pardot_extra_field = this.cache.requestPayload[`pardot_extra_field_${this.cache.$componentName}`];
     if(apiPayload.country === 'China' || apiPayload.site ==='cn' || countryCookie ==='China' ) {
+      apiPayload.pardotUrl = chinapardotUrl;
       apiPayload.route_country = 'China';
     }
     else {
-      apiPayload.route_country = 'Global';
+      apiPayload.pardotUrl = pardotUrl;
     }
-    apiPayload.pardotUrl = pardotUrl;
+
     apiPayload.pageurl = this.getPageURL();
     Object.keys(this.cache.requestPayload).forEach(key => {
       if(key === 'utm_campaign') {

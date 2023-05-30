@@ -39,6 +39,7 @@
         @include margin-bottom($margin-l);
         padding: 0;
     }
+    
     &__details {
         &__details.row {
             @media #{$desktop} {

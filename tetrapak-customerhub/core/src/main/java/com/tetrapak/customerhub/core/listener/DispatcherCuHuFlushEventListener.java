@@ -38,7 +38,7 @@ import java.util.Set;
 public class DispatcherCuHuFlushEventListener implements EventListener {
 
     private CuhuDispatcherFlushConfig dispatcherFlushConfig;
-    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherCuHuFlushEventListener.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventListener.class);
 
     @Reference
     private DispatcherFlushService dispatcherFlush;
@@ -114,7 +114,7 @@ public class DispatcherCuHuFlushEventListener implements EventListener {
                 }
 
             } catch (RepositoryException e) {
-            	LOGGER.error("RepositoryException in DispatcherFlushEventListener", e);
+                LOGGER.error("RepositoryException in DispatcherFlushEventListener {}", e);
             }
         }
     }

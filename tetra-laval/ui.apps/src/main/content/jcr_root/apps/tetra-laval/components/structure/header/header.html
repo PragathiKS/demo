@@ -13,7 +13,7 @@
                     <sly data-sly-test.hasFirstLevel="${navigationItem.children}"/>
                     <li class="tp_pw-header__mobile-nav-menu-item ${hasFirstLevel ? 'tp_pw-header__mobile-nav-menu-mega' : ''}">
                         <a href="${navigationItem.link}" data-sly-test="${!hasFirstLevel}"
-                           class="tp_pw-header__link js-tp_pw-header__nav-first-lvl">${navigationItem.label}</a>
+                           class="tp_pw-header__link">${navigationItem.label}</a>
                         <sly data-sly-test="${hasFirstLevel}">
                             <input class="mega-menu-btn" type="checkbox" id="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" aria-label="second menu"/>
                             <label for="mobile-navigation-next-lvl-menu-btn_${navigationItemList.count}" class="d-flex justify-content-between">
@@ -35,7 +35,7 @@
                                             </li>
                                             <sly data-sly-list.subItem="${subnavigationItem.children}">
                                                 <li>
-                                                    <a href="${subItem.link}" class="tp_pw-header__link js-tp_pw-header__nav-sub-lvl">${subItem.label}</a>
+                                                    <a href="${subItem.link}" class="tp_pw-header__link">${subItem.label}</a>
                                                 </li>
                                             </sly>
                                         </ul>
@@ -54,7 +54,7 @@
             <ul class="tp_pw-header__nav" data-sly-list.navigationItem="${headerConfig.navigationModelList}">
                 <sly data-sly-test.hasFirstLevel="${navigationItem.children}"/>
                 <li class="tp_pw-header__nav-item ${hasFirstLevel ? 'tp_pw-header__mega-menu' : ''}">
-                    <a href="${navigationItem.link}" class="js-tp_pw-header__nav-first-lvl">${navigationItem.label}</a>
+                    <a href="${navigationItem.link}">${navigationItem.label}</a>
                     <sly data-sly-test="${hasFirstLevel}">
                         <span>${navigationIem.label}</span>
                         <div class="tp_pw-header__mega-menu-content">
@@ -63,11 +63,11 @@
                                     <sly data-sly-test.hasSecondLevel="${subnavigationItem.children}"/>
                                     <div class="col-3" data-sly-test="${subnavigationItemList.index < 4}">
                                         <a data-sly-test="${!hasSecondLevel}" href="${subnavigationItem.link}"
-                                           class="tp_pw-header__mega-menu-link js-tp_pw-header__nav-sub-lvl">${subnavigationItem.label}</a>
+                                           class="tp_pw-header__mega-menu-link">${subnavigationItem.label}</a>
                                         <sly data-sly-test="${hasSecondLevel}">
                                             <h4 class="tp_pw-header__mega-menu-header">${subnavigationItem.label}</h4>
                                             <sly data-sly-list.subItem="${subnavigationItem.children}">
-                                                <a href="${subItem.link}" class="tp_pw-header__mega-menu-link js-tp_pw-header__nav-sub-lvl">${subItem.label}</a>
+                                                <a href="${subItem.link}" class="tp_pw-header__mega-menu-link">${subItem.label}</a>
                                             </sly>
                                         </sly>
                                     </div>

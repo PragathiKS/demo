@@ -132,7 +132,7 @@ public class PlantMasterEngineeringTrainingsModel {
 
     public String getTitle() {
         return title;
-    }    
+    }
 
     public String getAvailableTrainings() {
         return availableTrainings;

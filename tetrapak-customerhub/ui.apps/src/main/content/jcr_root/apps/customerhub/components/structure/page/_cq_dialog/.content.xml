@@ -175,7 +175,7 @@
 										    name="./errorPages"
 										    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
 										    rootPath="/content/tetrapak/customerhub"/>
-									<whiteBackground
+                                    <whiteBackground
                                         cq:showOnCreate="{Boolean}true"
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"

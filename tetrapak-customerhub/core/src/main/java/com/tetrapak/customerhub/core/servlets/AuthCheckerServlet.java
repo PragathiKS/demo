@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Auth Checker Servlet performs the authentication and authorization of the user
@@ -47,10 +46,10 @@ public class AuthCheckerServlet extends SlingSafeMethodsServlet {
         try {
             session.checkPermission(uri, Session.ACTION_READ);
             LOGGER.info("auth checker says OK");
-            response.setStatus(HttpServletResponse.SC_OK);
+            response.setStatus(SlingHttpServletResponse.SC_OK);
         } catch (RepositoryException e) {
             LOGGER.info("auth checker says READ access DENIED! ", e);
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            response.setStatus(SlingHttpServletResponse.SC_FORBIDDEN);
         }
     }
 }

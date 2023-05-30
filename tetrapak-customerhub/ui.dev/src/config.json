@@ -206,12 +206,6 @@
         "name": "rebuildingkitdetails",
         "enforce": true,
         "chunks": "all"
-      },
-      "datepicker": {
-        "testMultiple": true,
-        "name": "datepicker",
-        "enforce": true,
-        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -280,9 +274,6 @@
       ],
       "rebuildingkitdetails": [
         "source/templates/components/rebuildingkitdetails/"
-      ],
-      "datepicker": [
-        "source/templates/components/datepicker/"
       ]
     },
     "handlebars": {

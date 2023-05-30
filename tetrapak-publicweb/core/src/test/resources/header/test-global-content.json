@@ -1,191 +1,121 @@
 {
-	"jcr:primaryType": "cq:Page",
-	"jcr:createdBy": "sapient-user",
-	"jcr:created": "Wed May 20 2020 12:23:43 GMT+0000",
-	"jcr:content": {
-		"jcr:primaryType": "cq:PageContent",
-		"jcr:mixinTypes": [
-			"mix:versionable"
-		],
-		"hideContactFooterForm@Delete": "true",
-		"jcr:createdBy": "sapient-user",
-		"jcr:title": "Tetra Pak Global",
-		"cq:lastReplicationAction": "Activate",
-		"jcr:versionHistory": "8dd25ade-08af-4b4e-a835-071f93bfc2a0",
-		"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-		"cq:lastReplicatedBy": "admin",
-		"pwLinkTheme": "hyperlink",
-		"jcr:predecessors": [
-			"fc9244d7-f0ef-4319-8ce3-c62a8a039f89"
-		],
-		"disableEnvelope": "false",
-		"pwButtonTheme": "link",
-		"jcr:created": "Wed May 20 2020 12:23:43 GMT+0000",
-		"cq:lastReplicated": "Thu May 21 2020 08:09:33 GMT+0000",
-		"cq:lastModified": "Thu May 21 2020 12:14:57 GMT+0000",
-		"jcr:baseVersion": "fc9244d7-f0ef-4319-8ce3-c62a8a039f89",
-		"jcr:isCheckedOut": true,
-		"hideInSearch@Delete": "true",
-		"linkTarget": "_self",
-		"jcr:uuid": "40197f90-0e5b-45e0-8741-94fa18913d55",
-		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-		"cq:lastModifiedBy": "sapient-user"
-	},
-	"en": {
-		"jcr:primaryType": "cq:Page",
-		"jcr:createdBy": "sapient-user",
-		"jcr:created": "Wed May 20 2020 12:36:51 GMT+0000",
-		"jcr:content": {
-			"jcr:primaryType": "cq:PageContent",
-			"jcr:mixinTypes": [
-				"mix:versionable",
-				"cq:LiveRelationship",
-				"cq:LiveSync"
-			],
-			"jcr:createdBy": "sapient-user",
-			"socialMedia": [
-				"facebook",
-				"pinterest"
-			],
-			"jcr:title": "English",
-			"cq:lastReplicationAction": "Activate",
-			"jcr:versionHistory": "877bc800-5795-4fdd-90fa-ec0160344732",
-			"cq:template": "/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
-			"cq:lastReplicatedBy": "admin",
-			"cq:lastRolledout": "Wed May 20 2020 12:36:51 GMT+0000",
-			"jcr:predecessors": [
-				"6a6a2d43-8734-4880-98ae-cf4bad526e2c"
-			],
-			"jcr:created": "Wed May 20 2020 12:36:51 GMT+0000",
-			"cq:lastReplicated": "Thu May 21 2020 08:09:33 GMT+0000",
-			"cq:lastModified": "Wed May 20 2020 12:36:51 GMT+0000",
-			"jcr:baseVersion": "6a6a2d43-8734-4880-98ae-cf4bad526e2c",
-			"jcr:isCheckedOut": true,
-			"jcr:uuid": "80f3e41f-404a-42f6-90d7-c76cd1dd2b94",
-			"sling:resourceType": "publicweb/components/structure/pages/languagepage",
-			"cq:allowedTemplates": [
-				"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
-				"/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
-				"/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
-			],
-			"errorPages": "/content/tetrapak/publicweb/gb/en/error",
-			"cq:lastRolledoutBy": "sapient-user",
-			"cq:lastModifiedBy": "sapient-user",
-			"root": {
-				"jcr:primaryType": "nt:unstructured",
-				"sling:resourceType": "wcm/foundation/components/responsivegrid",
-				"responsivegrid": {
-					"jcr:primaryType": "nt:unstructured",
-					"sling:resourceType": "wcm/foundation/components/responsivegrid",
-					"headerconfiguration": {
-						"jcr:primaryType": "nt:unstructured",
-						"jcr:createdBy": "admin",
-						"loginLabel": "Login Label",
-						"loginLink": "http://www.google.com",
-						"jcr:lastModifiedBy": "admin",
-						"jcr:created": "Tue Mar 24 2020 12:35:55 GMT+0530",
-						"contactLink": "/content/tetrapak/publicweb/global/en",
-						"contactText": "Contact Us Label",
-						"logoLinkTarget": "_blank",
-						"logoAlt": "Logo ",
-						"jcr:lastModified": "Tue Mar 24 2020 19:30:14 GMT+0530",
-						"sling:resourceType": "publicweb/components/structure/headerconfiguration",
-						"contactLinkTarget": "_blank",
-						"logoLink": "/content/tetrapak/publicweb/global/en",
-						"logoImagePath": "/content/dam/tetrapak/publicweb/global/header/header.png",
-						"solutionPage": "/content/tetrapak/publicweb/language-masters/en/solutions",
-						"marketTitle": "Choose Your Market",
-						"searchPage": "/content/tetrapak/publicweb/language-masters/en/search"
-					},
-					"megamenuconfig": {
-						"jcr:primaryType": "nt:unstructured",
-						"jcr:createdBy": "admin",
-						"jcr:lastModifiedBy": "admin",
-						"bottomSectionSubtitle": "Food categories",
-						"bottomSectionUrl": "/content/tetrapak/publicweb/language-masters/en/food",
-						"jcr:created": "Thu Apr 23 2020 19:16:30 GMT+0530",
-						"topSectionSubtitle": "Tetra pak end to end solution",
-						"topSectionUrl": "/content/tetrapak/publicweb/language-masters/en/solutions",
-						"hideFoodCategories": "true",
-						"jcr:lastModified": "Sat Apr 25 2020 00:07:56 GMT+0530",
-						"sling:resourceType": "publicweb/components/structure/megamenuconfig",
-						"endToEndSolutionSection": {
-							"jcr:primaryType": "nt:unstructured",
-							"item0": {
-								"jcr:primaryType": "nt:unstructured",
-								"description": "Lorem ipsum",
-								"fileReference": "/content/dam/tetrapak/processing.jpg",
-								"alt": "Processing",
-								"path": "/content/tetrapak/publicweb/lang-masters/en",
-								"title": "Processing"
-							}
-						},
-						"linkSection": {
-							"jcr:primaryType": "nt:unstructured",
-							"item0": {
-								"jcr:primaryType": "nt:unstructured",
-								"linkUrl": "/content/tetrapak/publicweb/language-masters/en/aseptic",
-								"linkText": "Aseptic solutions"
-							}
-						},
-						"foodCategorySection": {
-							"jcr:primaryType": "nt:unstructured",
-							"item0": {
-								"jcr:primaryType": "nt:unstructured",
-								"fileReference": "/content/dam/tetrapak/cheese.jpg",
-								"alt": "Cheese",
-								"path": "/content/tetrapak/publicweb/lang-masters/en/food-categories/cheese",
-								"title": "Cheese"
-							}
-						}
-					}
-				}
-			}
-		},
-		"home": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:36:51 GMT+0000"
-		},
-		"solutions": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:36:53 GMT+0000"
-		},
-		"insights": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:37:00 GMT+0000"
-		},
-		"sustainability": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:37:00 GMT+0000"
-		},
-		"about-tetra-pak": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:37:01 GMT+0000"
-		},
-		"search": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:37:01 GMT+0000"
-		},
-		"contact-us": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:37:01 GMT+0000"
-		},
-		"error": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:37:01 GMT+0000"
-		},
-		"quality-assurance": {
-			"jcr:primaryType": "cq:Page",
-			"jcr:createdBy": "sapient-user",
-			"jcr:created": "Wed May 20 2020 12:37:02 GMT+0000"
-		}
-	}
-}
+      "jcr:primaryType":"cq:Page",
+      "jcr:createdBy":"sapient-user",
+      "jcr:created":"Wed May 20 2020 12:23:43 GMT+0000",
+      "jcr:content":{
+         "jcr:primaryType":"cq:PageContent",
+         "jcr:mixinTypes":[
+            "mix:versionable"
+         ],
+         "hideContactFooterForm@Delete":"true",
+         "jcr:createdBy":"sapient-user",
+         "jcr:title":"Tetra Pak Global",
+         "cq:lastReplicationAction":"Activate",
+         "jcr:versionHistory":"8dd25ade-08af-4b4e-a835-071f93bfc2a0",
+         "cq:template":"/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+         "cq:lastReplicatedBy":"admin",
+         "pwLinkTheme":"hyperlink",
+         "jcr:predecessors":[
+            "fc9244d7-f0ef-4319-8ce3-c62a8a039f89"
+         ],
+         "disableEnvelope":"false",
+         "pwButtonTheme":"link",
+         "jcr:created":"Wed May 20 2020 12:23:43 GMT+0000",
+         "cq:lastReplicated":"Thu May 21 2020 08:09:33 GMT+0000",
+         "cq:lastModified":"Thu May 21 2020 12:14:57 GMT+0000",
+         "jcr:baseVersion":"fc9244d7-f0ef-4319-8ce3-c62a8a039f89",
+         "jcr:isCheckedOut":true,
+         "hideInSearch@Delete":"true",
+         "linkTarget":"_self",
+         "jcr:uuid":"40197f90-0e5b-45e0-8741-94fa18913d55",
+         "sling:resourceType":"publicweb/components/structure/pages/landingpage",
+         "cq:lastModifiedBy":"sapient-user"
+      },
+      "en":{
+         "jcr:primaryType":"cq:Page",
+         "jcr:createdBy":"sapient-user",
+         "jcr:created":"Wed May 20 2020 12:36:51 GMT+0000",
+         "jcr:content":{
+            "jcr:primaryType":"cq:PageContent",
+            "jcr:mixinTypes":[
+               "mix:versionable",
+               "cq:LiveRelationship",
+               "cq:LiveSync"
+            ],
+            "jcr:createdBy":"sapient-user",
+            "socialMedia":[
+               "facebook",
+               "pinterest"
+            ],
+            "jcr:title":"English",
+            "cq:lastReplicationAction":"Activate",
+            "jcr:versionHistory":"877bc800-5795-4fdd-90fa-ec0160344732",
+            "cq:template":"/conf/publicweb/settings/wcm/templates/public-web-language-level-page",
+            "cq:lastReplicatedBy":"admin",
+            "cq:lastRolledout":"Wed May 20 2020 12:36:51 GMT+0000",
+            "jcr:predecessors":[
+               "6a6a2d43-8734-4880-98ae-cf4bad526e2c"
+            ],
+            "jcr:created":"Wed May 20 2020 12:36:51 GMT+0000",
+            "cq:lastReplicated":"Thu May 21 2020 08:09:33 GMT+0000",
+            "cq:lastModified":"Wed May 20 2020 12:36:51 GMT+0000",
+            "jcr:baseVersion":"6a6a2d43-8734-4880-98ae-cf4bad526e2c",
+            "jcr:isCheckedOut":true,
+            "jcr:uuid":"80f3e41f-404a-42f6-90d7-c76cd1dd2b94",
+            "sling:resourceType":"publicweb/components/structure/pages/languagepage",
+            "cq:allowedTemplates":[
+               "/conf/publicweb/settings/wcm/templates/public-web-landing-page",
+               "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
+               "/conf/publicweb/settings/wcm/templates/public-web-external-redirect-page"
+            ],
+            "errorPages":"/content/tetrapak/publicweb/gb/en/error",
+            "cq:lastRolledoutBy":"sapient-user",
+            "cq:lastModifiedBy":"sapient-user"
+         },
+         "home":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:36:51 GMT+0000"
+         },
+         "solutions":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:36:53 GMT+0000"
+         },
+         "insights":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:37:00 GMT+0000"
+         },
+         "sustainability":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:37:00 GMT+0000"
+         },
+         "about-tetra-pak":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:37:01 GMT+0000"
+         },
+         "search":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:37:01 GMT+0000"
+         },
+         "contact-us":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:37:01 GMT+0000"
+         },
+         "error":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:37:01 GMT+0000"
+         },
+         "quality-assurance":{
+            "jcr:primaryType":"cq:Page",
+            "jcr:createdBy":"sapient-user",
+            "jcr:created":"Wed May 20 2020 12:37:02 GMT+0000"
+         }
+      }
+   }

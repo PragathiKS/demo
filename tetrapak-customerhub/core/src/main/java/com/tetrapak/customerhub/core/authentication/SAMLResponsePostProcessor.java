@@ -68,9 +68,9 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
                 LOGGER.info("SAMLResponse Post Processor processing ...");
                 String responseSAMLMessage = httpRequest.getParameter("SAMLResponse");
                 if (StringUtils.isNotEmpty(responseSAMLMessage)) {
-                	LOGGER.debug("responseSAMLMessage: {}",responseSAMLMessage);
+                    LOGGER.debug("responseSAMLMessage:" + responseSAMLMessage);
                     base64DecodedResponse = decodeStr(responseSAMLMessage);
-                    LOGGER.debug("base64DecodedResponse: {}", base64DecodedResponse);
+                    LOGGER.debug("base64DecodedResponse:" + base64DecodedResponse);
                     attrMap = parseSAMLResponse(base64DecodedResponse);
                 } else {
                     LOGGER.debug("SAMLResponse parameter is empty of null!");
@@ -297,7 +297,7 @@ public class SAMLResponsePostProcessor implements AuthenticationInfoPostProcesso
         Node currentNode = attributeValueNodeList.item(attributeValueCount);
         if ("saml:AttributeValue".equalsIgnoreCase(currentNode.getNodeName())) {
             samlAttributeMap.put(attributeValue, currentNode.getTextContent());
-            LOGGER.debug("SAML Assertions {} : {}",attributeValue,currentNode.getTextContent());
+            LOGGER.debug("SAML Assertions" + attributeValue + " : " + currentNode.getTextContent());
         }
     }
 

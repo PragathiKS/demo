@@ -143,7 +143,7 @@ public class OrderDetailsModel {
      */
     @PostConstruct
     protected void init() {
-    	Map<String, Object> i18KeyMap = new HashMap<>();
+        Map<String, Object> i18KeyMap = new HashMap<String, Object>();
         i18KeyMap.put("backToOrderHistory", getBackToOrderHistory());
         i18KeyMap.put("orderNo", getOrderNo());
         i18KeyMap.put("customerNameLabel", getCustomerNameLabel());

@@ -31,7 +31,7 @@
                     <div class="pw-banner__content__media" data-sly-test="${model.linkPath != '#'}">
                         <input type="hidden" class="componentName-banner" name="componentName"/>
                         <a class="tpatom-link ${model.buttonColor} js-banner-analytics" href="${model.linkPath}"
-                           data-link-banner-title="${model.title}" data-link-name="${model.linkLabel}"
+                           data-link-banner-title="${bannerData.title}" data-link-name="${model.linkLabel}"
                            data-anchor-type="${dataLinkSectionCTAText}" data-link-section="Hero Image"
                            data-link-type="${model.linkType}">${model.linkLabel @context='html'}
                         </a>

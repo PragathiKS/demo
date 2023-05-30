@@ -9,15 +9,4 @@
     <filter root="/conf/global/settings/dam/adminui-extension/metadataschema/publicweb"/>
     <filter root="/oak:index/productIdPropertyIndex" mode="merge"/>
     <!-- <filter root="/content/tetrapak/public-web" mode="merge"/> -->
-    <filter root="/var/workflow/models/dam/public-web" mode="update"/>
-    <filter root="/conf/global/settings/workflow/models/dam/public-web" mode="update"/>
-    <filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_create" mode="update"/>
-	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_create_(post-6.3)" mode="update"/>
-	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_mod" mode="update"/>
-	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_mod_(post-6.3)" mode="update"/>
-	<filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_mod_reupload" mode="update"/>
-	<filter root="/conf/global/settings/workflow/launcher/config/update_asset_create" mode="update"/>
-	<filter root="/conf/global/settings/workflow/launcher/config/update_asset_create_without_DM" mode="update"/>
-	<filter root="/conf/global/settings/workflow/launcher/config/update_asset_mod_without_DM" mode="update"/>
-    <filter root="/conf/global/settings/workflow/launcher/config/dm_encode_video_create" mode="update"/>
 </workspaceFilter>

@@ -23,7 +23,6 @@ public class SiteLicenseModelTest {
     private PlantMasterLicensesModel plantMasterLicensesModel = null;
     private static final String RESOURCE_JSON = "plantMasterLicensesComponent.json";
     private static final String RESOURCE_PATH = "/content/tetrapak/customerhub/global/en/automation-digital/licenses/jcr:content/root/responsivegrid/plantmasterlicenses";
-    private static final String GROUP_SERVLET_PATH = "/content/tetrapak/customerhub/global/en/automation-digital/licenses/jcr:content/root/responsivegrid/plantmasterlicenses.plantmaster.json";
 
     @Mock
     private CotsSupportEmailConfiguration AIPEmailConfiguration;
@@ -47,7 +46,6 @@ public class SiteLicenseModelTest {
         when(apigeeService.getApiMappings()).thenReturn(new String[]{"aip-product-details:productinformation/categories/{id}/products"});
         aemContext.registerService(AIPCategoryService.class, aipCategoryService);
         plantMasterLicensesModel = aemContext.request().adaptTo(PlantMasterLicensesModel.class);
-        plantMasterLicensesModel.setUserNameValue();
         siteLicenseModel = plantMasterLicensesModel.getSiteLicenseModel();
     }
 
@@ -86,17 +84,13 @@ public class SiteLicenseModelTest {
     @Test
     public void testPlantMasterLicenseModelProps(){
         assertEquals("Unexpected value","",plantMasterLicensesModel.getEmailAddressValue());
-        assertEquals("Unexpected value","emailaddresslabel",plantMasterLicensesModel.getEmailaddress());
+        assertEquals("Unexpected value","",plantMasterLicensesModel.getEmailAddressValue());
         assertEquals("Unexpected value","/content/tetrapak/customerhub/global/en/automation-digital/licenses/_jcr_content/root/responsivegrid/plantmasterlicenses.email.html",plantMasterLicensesModel.getEmailApiUrl());
         assertEquals("Unexpected value","",plantMasterLicensesModel.getSiteLicenseApiUrl());
         assertEquals("Unexpected value","",plantMasterLicensesModel.getEngineeringLicenseApiUrl());
         assertEquals("Unexpected value",true,plantMasterLicensesModel.isPublishEnvironment());
         assertNotNull("i18 map cannot be null", plantMasterLicensesModel.getI18nKeysMap());
         assertEquals("Unexpected value","heading",plantMasterLicensesModel.getHeading());
-        assertNotNull("Unexpected value",plantMasterLicensesModel.getI18nKeys());
-        assertEquals("Unexpected value",GROUP_SERVLET_PATH,plantMasterLicensesModel.getGroupServletUrl());
-        assertEquals("Unexpected value","usernamelabel",plantMasterLicensesModel.getUsername());
-        assertEquals("Unexpected value","",plantMasterLicensesModel.getUserNameValue());
     }
 
 }

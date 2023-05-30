@@ -3,8 +3,6 @@
   "jcr:createdBy": "admin",
   "sling:resourceType": "customerhub/components/content/plantmasterlicenses",
   "heading": "heading",
-  "username": "usernamelabel",
-  "emailaddress": "emailaddresslabel",
   "engineeringLicense": {
     "jcr:primaryType": "nt:unstructured",
     "users":"Users",

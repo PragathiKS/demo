@@ -8,8 +8,8 @@ describe('Header', function () {
     $(document.body).empty().html(headerTemplate());
     this.header = new Header({ el: document.body });
     this.leftNavigation = new LeftNavigation({ el: document.body });
-    this.initSpy = sinon.spy(this.header, 'init');
-    this.initLeftNavigationSpy = sinon.spy(this.leftNavigation, 'init');
+    this.initSpy = sinon.spy(this.leftNavigation, 'init');
+    this.initHeaderSpy = sinon.spy(this.header, 'init');
     this.openSideNavSpy = sinon.spy(this.leftNavigation, 'openSideNav');
     this.closeSideNavSpy = sinon.spy(this.leftNavigation, 'closeSideNav');
     this.leftNavigation.init();
@@ -19,16 +19,15 @@ describe('Header', function () {
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
-    this.initLeftNavigationSpy.restore();
+    this.initHeaderSpy.restore();
     this.openSideNavSpy.restore();
     this.closeSideNavSpy.restore();
   });
-
-  it('should initialize LeftNavigation', function (done) {
+  it('should initialize', function (done) {
     expect(this.leftNavigation.init.called).to.be.true;
     done();
   });
-  it('should initialize', function (done) {
+  it('should initialize header', function (done) {
     expect(this.header.init.called).to.be.true;
     done();
   });

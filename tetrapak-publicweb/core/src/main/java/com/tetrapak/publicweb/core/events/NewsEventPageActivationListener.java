@@ -108,6 +108,8 @@ public class NewsEventPageActivationListener implements EventHandler {
      *            the path
      * @param resource
      *            the resource
+     * @param valueMap
+     *            the value map
      * @throws PersistenceException
      *             the persistence exception
      * @throws JSONException 
@@ -120,16 +122,18 @@ public class NewsEventPageActivationListener implements EventHandler {
             NewsEventBean bean = getNewsEventBean(valueMap, path, resourceResolver);
             addPageLinks(bean, path, resourceResolver);
             List<String> emailAddresses = pardotService.getSubscriberMailAddresses(bean.getLocale(),bean.getInterestAreas());
-            if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
-                String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
-                if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
-                    updatePageActivationProperty(resource);
+			if (Objects.nonNull(emailAddresses) && !emailAddresses.isEmpty()) {
+				String status = mailService.sendSubscriptionEmail(bean, emailAddresses, resourceResolver);
+				if (status.equalsIgnoreCase(PWConstants.STATUS_SUCCESS)) {
+					updatePageActivationProperty(resource);
 				} else {
 					LOGGER.error("Mail sending is fail hence not updating the property on page path {} ", path);
 				}
 			} else {
 				updatePageActivationProperty(resource);
 			}
+
+			
         }
     }
 

@@ -12,13 +12,13 @@
     <div class="row no-gutters" data-sly-test="${'pw.form.businessenq.specificAreaOfInterest' @i18n}">
       <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.specificAreaOfInterest', variant='small', auto_locator='specificArea'}" />
+          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.specificAreaOfInterest', variant='small'}" />
       </div>
     </div>
 
     <div class="row">
       <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
-        <div id="Services" auto_locator="servicesAreaList">
+        <div id="Services">
           <sly
             data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
             data-sly-call="${radioField.radiofieldinput_template @ id='boaiServicesAutomation',  required=true, label='pw.form.businessenq.services.automation', name='businessAreaInterestServices', locale= 'en', value='Automation'}">
@@ -67,7 +67,7 @@
 
         <input type="hidden" name="businessAreaInterestServicesEqTitle" class="form-control"
           id="businessAreaInterestServicesEqTitle" data-analyticsField="Specific area of interest" required>
-        <div class="errorMsg" auto-locator="errorSpecificArea">${'pw.form.errormsg.businessareofinterest' @i18n}
+        <div class="errorMsg">${'pw.form.errormsg.businessareofinterest' @i18n}
         </div>
       </div>
     </div>

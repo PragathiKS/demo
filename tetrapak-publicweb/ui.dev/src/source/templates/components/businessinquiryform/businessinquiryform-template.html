@@ -5,7 +5,7 @@
         id="pw-befUs" auto_locator="businessEnquiryStepsWrapper">
         <div class="tab-content">
           <form class="pw-form pw-form-businessEnquiry" accept-charset="UTF-8" data-bef-api-servlet="${data.apiUrl}"
-            data-bef-countryCode="${data.siteCountry}" data-bef-langCode="${data.siteLanguage}" data-bef-pardotURL="${data.befPardotURL}" autocomplete="off">
+            data-bef-countryCode="${data.siteCountry}" data-bef-langCode="${data.siteLanguage}" data-bef-pardotURL="${data.befPardotURL}" data-china-bef-pardotURL="${data.befChinaPardotURL}" autocomplete="off">
             <!--step1 start -->
             <input type="text" name="pardot_extra_field" id="pardot_extra_field_bef" class="d-none"
             tabindex="-1" title="pardot business enquiry inpuut field" />
@@ -45,7 +45,7 @@
                       <div class="col-lg-10">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact'], auto_locator='purpose' }">
+                          data-sly-call="${progressBar.progressbar_template  @ activeStep=1, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact']}">
                         </sly>
                       </div>
                     </div>
@@ -53,20 +53,20 @@
                     <div class="row">
                       <div class="col-sm-12" data-sly-test="${'pw.form.heading.purposeofcontact' @i18n}" auto_locator="businessEnquiryContainerHeadingTextStep1">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.purposeofcontact', variant='small', auto_locator='purposeOfContact'}" />
+                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.purposeofcontact', variant='small'}" />
                       </div>
                       <div class="col-sm-12 formfield" auto_locator="businessEnquiryListContainerStep1">
                         <sly
                           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                          data-sly-call="${radioField.radiofieldinput_template @ id='requestAQuote',  required=true, label='pw.form.businessenq.requestaquote', name='purposeOfContactOptionsInBusinessEq', locale= 'en', value='Request for Quote', auto_locator='ContactDropdown'}">
+                          data-sly-call="${radioField.radiofieldinput_template @ id='requestAQuote',  required=true, label='pw.form.businessenq.requestaquote', name='purposeOfContactOptionsInBusinessEq', locale= 'en', value='Request for Quote'}">
                         </sly>
                         <sly
                           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                          data-sly-call="${radioField.radiofieldinput_template @ id='requestAProductInfo',  required=true, label='pw.form.businessenq.requestforproductinfo', name='purposeOfContactOptionsInBusinessEq', locale= 'en', value='Request for Information', labelClass='mb-0', auto_locator='ContactDropdown'}">
+                          data-sly-call="${radioField.radiofieldinput_template @ id='requestAProductInfo',  required=true, label='pw.form.businessenq.requestforproductinfo', name='purposeOfContactOptionsInBusinessEq', locale= 'en', value='Request for Information', labelClass='mb-0'}">
                         </sly>
                         <input type="hidden" name="purposeOfContactInBusinessEqTitle" class="form-control"
                           id="purposeOfContactInBusinessEqTitle" data-analyticsField="Purpose of contact" required>
-                        <div class="errorMsg purposeOfBusinessContactError" auto_locator="errorPurposeOfContact">${'pw.form.errormsg.selectOneOption' @i18n }
+                        <div class="errorMsg purposeOfBusinessContactError">${'pw.form.errormsg.selectOneOption' @i18n }
                         </div>
                       </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="row businessArea">
                       <div class="col-sm-12 pw-form--heading" data-sly-test="${'pw.form.heading.businessarea' @i18n}" auto_locator="businessEnquiryContainerHeadingTextStep2">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.businessarea', variant='small', auto_locator='businessArea'}" />
+                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.businessarea', variant='small'}" />
                       </div>
                       <div class="col-sm-12 pw-form--sub_heading">
                         ${'pw.form.businessenq.selectOneOrMoreBusinessArea' @i18n}
@@ -83,21 +83,21 @@
 
                       <div class="col-sm-12 formfield">
                         <div class="checkbox-field">
-                          <label class="checkbox-label" for="baoiPackaging" auto_locator="areaOfInterest">
+                          <label class="checkbox-label" for="baoiPackaging">
                             <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiPackaging" name="purposeOfContactOptionsInInterestArea" value="Packaging" data-baoi="${'pw.form.businessenq.packaging' @i18n}">
                               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                               ${'pw.form.businessenq.packaging' @i18n}
                           </label>
                         </div>
                         <div class="checkbox-field" id="processingCheckboxDiv" data-processing-msg-placeholder-text="${'pw.form.businessenq.processing.messageBoxPlaceHolderText' @i18n}">
-                          <label class="checkbox-label" for="baoiProcessing" auto_locator="areaOfInterest">
+                          <label class="checkbox-label" for="baoiProcessing">
                             <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiProcessing" name="purposeOfContactOptionsInInterestArea" value="Processing" data-baoi="${'pw.form.businessenq.processing' @i18n}">
                               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                               ${'pw.form.businessenq.processing' @i18n}
                           </label>
                         </div>
                         <div class="checkbox-field mb-0">
-                          <label class="checkbox-label" for="baoiServices" auto_locator="areaOfInterest">
+                          <label class="checkbox-label" for="baoiServices">
                             <input type="checkbox" class="form-control js-pw-search-results-filter-check tpatom-checkbox__input float-left" id="baoiServices" name="purposeOfContactOptionsInInterestArea" value="Services" data-baoi="${'pw.form.businessenq.services' @i18n}">
                               <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
                               ${'pw.form.businessenq.services' @i18n}
@@ -106,7 +106,7 @@
 
                         <input type="hidden" name="purposeOfInterestAreaEqTitle" class="form-control"
                           id="purposeOfInterestAreaEqTitle" data-analyticsField="Business area of interest" required>
-                        <div class="errorMsg purposeOfBusinessIntersetError" auto_locator="errorBusinessArea">
+                        <div class="errorMsg purposeOfBusinessIntersetError">
                           ${'pw.form.errormsg.businessareofinterest' @i18n}
                         </div>
                       </div>
@@ -114,7 +114,7 @@
 
                     <div class="row no-gutters button-group">
                       <sly data-sly-use.nextButton="/apps/publicweb/components/atoms/tabbutton/tabbutton-template.html"
-                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-2',icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep1', customClasses='step1Btn', auto_locator='nextTab'}" />
+                        data-sly-call="${nextButton.tabbutton_template @ btnText='pw.form.button.next', btnTarget='#bef-step-2',icon_classes='icon-Arrow_Right_pw', autoLocator='businessFormNextButtonStep1', customClasses='step1Btn'}" />
                     </div>
                   </div>
                 </div>
@@ -122,7 +122,7 @@
             </div>
             <!--step1 end-->
 
-            <!--step 2 - Specific Interest Area Packaging - start -->
+            <!--step 1 - Specific Interest Are - Packaging start -->
             <div class="bef-tab-pane specificIntAreaPackaging" data-stepNumber="1" data-stepName="specificIntAreaPackaging" role="tabpanel" id="businessInquiry_packaging">
               <div class="row no-gutters">
                 <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep1">
@@ -138,7 +138,7 @@
                     <div class="row no-gutters" data-sly-test="${'pw.form.heading.summary' @i18n}">
                       <div class="col-sm-12">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small', auto_locator='specificArea'}" />
+                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.heading.summary', variant='small'}" />
                       </div>
                     </div>
                     <div class="row no-gutters summary">
@@ -156,9 +156,9 @@
                 </div>
               </div>
             </div>
-            <!--step 2 Specific Interest Area Packaging - end -->
+            <!--step 1 Specific Interest Are - Packaging end -->
 
-            <!--step 2 - Specific Interest Area Processing - start -->
+            <!--step 1 - Specific Interest Are - Processing start -->
             <div class="bef-tab-pane specificIntAreaProcessing" data-stepNumber="1" data-stepName="specificIntAreaProcessing"
               role="tabpanel" id="businessInquiry_processing">
               <div class="row no-gutters">
@@ -193,9 +193,9 @@
                 </div>
               </div>
             </div>
-            <!--step 2 Specific Interest Area Processing - end -->
+            <!--step 1 Specific Interest Are - Processing end -->
 
-            <!--step 2 - Specific Interest Area Services - start -->
+            <!--step 1 - Specific Interest Are - Services start -->
             <div class="bef-tab-pane specificIntAreaServices" data-stepNumber="1" data-stepName="specificIntAreaServices" role="tabpanel" id="businessInquiry_services">
               <div class="row no-gutters">
                 <div class="col-lg-6 separator" auto_locator="businessEnquiryLeftContainerStep1">
@@ -229,9 +229,9 @@
                 </div>
               </div>
             </div>
-            <!--step 2 Specific Interest Area Services - end -->
+            <!--step 1 Specific Interest Are - Services end -->
 
-            <!--step 3 - Request Fields start -->
+            <!--step 2 - Request Fields start -->
             <div class="bef-tab-pane" data-stepNumber="2" data-stepName="request" role="tabpanel"
               auto_locator="businessEnquiryListContainerStep2" id="bef-step-2">
               <div class="row no-gutters">
@@ -278,7 +278,7 @@
                       <div class="col-lg-10">
                         <sly
                           data-sly-use.progressBar="/apps/publicweb/components/molecules/progressbar/progressbar-template.html"
-                          data-sly-call="${progressBar.progressbar_template @ activeStep=2, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact'], auto_locator='requestTab'}">
+                          data-sly-call="${progressBar.progressbar_template @ activeStep=2, totalStep=[1,2,3], stepTitles=['pw.form.businessenq.stepTitles.purpose', 'pw.form.businessenq.stepTitles.request', 'pw.form.businessenq.stepTitles.contact']}">
                         </sly>
                       </div>
                     </div>
@@ -286,28 +286,28 @@
                     <div class="row">
                       <div class="col-sm-12" data-sly-test="${'pw.form.businessenq.bestDescriptionText' @i18n}" auto_locator="businessEnquiryContainerHeadingTextStep1">
                         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.bestDescriptionText', variant='small', auto_locator='requestHeading'}" />
+                          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.bestDescriptionText', variant='small'}" />
                       </div>
                       <div class="col-sm-12" auto_locator="businessEnquiryRightContainerStep2">
                         <div class="form-group formfield">
                           <sly
                             data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                            data-sly-call="${radioField.radiofieldinput_template @ id='reqBEDevelopment', required=true, label='pw.form.businessenq.projectInDevelopmentText', name='businessEnquiryNeed', locale= 'en', value='Have a project in development with a budget assigned', auto_locator='requestDropdown'}">
+                            data-sly-call="${radioField.radiofieldinput_template @ id='reqBEDevelopment', required=true, label='pw.form.businessenq.projectInDevelopmentText', name='businessEnquiryNeed', locale= 'en', value='Have a project in development with a budget assigned'}">
                           </sly>
                           <sly
                             data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-                            data-sly-call="${radioField.radiofieldinput_template @ id='reqBESolution', required=true, label='pw.form.businessenq.lookingForAlternativeText', name='businessEnquiryNeed', locale= 'en', value='Looking for new alternatives or a new solution provider', labelClass='mb-0', auto_locator='requestDropdown'}">
+                            data-sly-call="${radioField.radiofieldinput_template @ id='reqBESolution', required=true, label='pw.form.businessenq.lookingForAlternativeText', name='businessEnquiryNeed', locale= 'en', value='Looking for new alternatives or a new solution provider', labelClass='mb-0'}">
                           </sly>
                           <input type="hidden" name="businessEnquiryNeedEqTitle" class="form-control"
                             id="businessEnquiryNeedEqTitle" data-analyticsField="${'pw.form.businessenq.bestDescriptionText' @i18n}" required>
-                          <div class="errorMsg" auto-locator="requestError">${'pw.form.errormsg.selectOneOption' @i18n}
+                          <div class="errorMsg">${'pw.form.errormsg.selectOneOption' @i18n}
                           </div>
                         </div>
 
                         <div class="role-field-wrapper formfield col-sm-12 col-lg-6">
                           <div class="formfield role-field country form-group"
                             data-role-name-label="${'pw.form.label.yourRole' @i18n}">
-                            <label class="non-title-field" for="country" auto-locator="roleDropdown">
+                            <label class="non-title-field" for="country">
                               ${'pw.form.label.yourRole' @i18n}
                             </label>
                             <div class="pw-form__dropdown dropdown text-left">
@@ -328,17 +328,17 @@
                               </sly>
                               <input type="hidden" name="businessEnquiryProfile" data-analyticsField="${'pw.form.label.yourRole' @i18n}" class="form-control validateForTags" id="role" required>
                             </div>
-                            <div data-role-error-msg="${'pw.form.errormsg.selectOneOption' @i18n}" class="errorMsg" auto-locator="roleError">
+                            <div data-role-error-msg="${'pw.form.errormsg.selectOneOption' @i18n}" class="errorMsg">
                               ${'pw.form.errormsg.selectOneOption' @i18n}</div>
                           </div>
                         </div>
 
-                        <div class="formfield" id="messageBoxDiv" data-general-placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" auto-locator="message">
+                        <div class="formfield" id="messageBoxDiv" data-general-placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}">
                           <label class="text-area-label" data-text-area-label="${'pw.form.label.message' @i18n}"
                             for="businessEnquiryMessageText">${'pw.form.label.message' @i18n}</label>
                           <textarea auto_locator="messageBoxStep3" class="form-control validateForTags"
                             id="businessEnquiryMessageText" rows="12" name="businessEnquiryMessage" data-analyticsField="${'pw.form.label.message' @i18n}" placeholder="${'pw.form.businessenq.messagebox.howWeCanHelpText' @i18n}" required></textarea>
-                          <div data-error-msg="${'pw.form.errormsg.enterthisfield' @i18n}" class="errorMsg" auto-locator="messageError">
+                          <div data-error-msg="${'pw.form.errormsg.enterthisfield' @i18n}" class="errorMsg">
                             ${'pw.form.errormsg.enterthisfield' @i18n}</div>
                         </div>
                       </div>
@@ -355,9 +355,9 @@
                 </div>
               </div>
             </div>
-            <!-- step 3 end -->
+            <!-- step 2 end -->
 
-            <!--step 4 start -->
+            <!--step 3 start -->
             <div class="bef-tab-pane" data-stepNumber="3" data-stepName="contactInfo" role="tabpanel"
               auto_locator="businessEnquiryListContainerStep5" id="bef-step-3">
               <div class="row no-gutters">
@@ -576,7 +576,7 @@
                 </div>
               </div>
             </div>
-            <!---step 4 end-->
+            <!---step 3 end-->
 
             <!--step Final start -->
             <div class="bef-tab-pane" role="tabpanel" id="bef-step-final"

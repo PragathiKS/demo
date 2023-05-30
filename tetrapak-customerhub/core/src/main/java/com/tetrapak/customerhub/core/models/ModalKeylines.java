@@ -52,32 +52,16 @@ public class ModalKeylines {
 	return (modalTitle != null ? modalTitle : DEFAULT_TITLE);
     }
 
-    public void setModalTitle(String modalTitle) {
-	this.modalTitle = modalTitle;
-    }
-
     public String getModalDescription() {
 	return (modalDescription != null ? modalDescription : DEFAULT_DESCRIPTION);
-    }
-
-    public void setModalDescription(String modalDescription) {
-	this.modalDescription = modalDescription;
     }
 
     public String getSelectVolumes() {
 	return (selectVolumes != null ? selectVolumes : DEFAULT_VOLUMES);
     }
 
-    public void setSelectVolumes(String selectVolumes) {
-	this.selectVolumes = selectVolumes;
-    }
-
     public String getSelectOpenings() {
 	return (selectOpenings != null ? selectOpenings : DEFAULT_OPENINGS);
-    }
-
-    public void setSelectOpenings(String selectOpenings) {
-	this.selectOpenings = selectOpenings;
     }
 
     public String getDownloadKeyline() {
@@ -86,10 +70,6 @@ public class ModalKeylines {
     
     public String getDownloadKeylineError() {
 	return (downloadKeylineError != null ? downloadKeylineError : DEFAULT_DOWNLOAD_ERROR);
-    }
-
-    public void setDownloadKeyline(String downloadKeyline) {
-	this.downloadKeyline = downloadKeyline;
     }
 
 }

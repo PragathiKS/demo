@@ -78,6 +78,14 @@ public @interface CreateLiveCopyServiceConfig {
     String[] getPortugeseLiveCopyBasePaths();
 
     /**
+     * Gets the russian live copy base paths.
+     *
+     * @return the russian live copy base paths
+     */
+    @AttributeDefinition(name = "Russian Live Copy Base Paths", description = "Russian Live Copy Base Paths")
+    String[] getRussianLiveCopyBasePaths();
+
+    /**
      * Gets the spanish live copy base paths.
      *
      * @return the spanish live copy base paths

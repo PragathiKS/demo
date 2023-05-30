@@ -122,7 +122,7 @@ class Banner {
       else if(this.cache.currentElement === this.cache.lastElement){
         $(this.cache.eles[this.cache.currentElement]).css('top', this.cache.topElement +'px');   
         $(this.cache.eles[this.cache.lastElement]).addClass('fixed');
-        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px');
+        $(this.cache.eles[this.cache.lastElement]).css('top', this.cache.topElement +'px'); 
       }
     }
   }

@@ -124,24 +124,12 @@
                                         fieldLabel="RK Status Label (i18N key)"
                                         name="./rkStatus"
                                         required="true"/>
-									<rkSubType
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="RK SubType (i18N key)"
-                                        name="./rkSubType"
-                                        required="true"/>	
                                     <rkhandling
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                         fieldLabel="RK Handling Label (i18N key)"
                                         name="./rkHandling"
                                         required="true"/>
-									<rkValidation
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="RK Validation (i18N key)"
-                                        name="./rkValidation"
-                                        required="true"/>	
                                     <planninginformation
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

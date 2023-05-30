@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tetrapak.publicweb.core.services.PardotService;
+import com.tetrapak.publicweb.core.utils.GlobalUtil;
 
 /**
  * The Class Business Inquiry Form Submit Request Servlet.
@@ -37,7 +38,7 @@ public class BusinessEnquiryPardotServlet extends SlingAllMethodsServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(BusinessEnquiryPardotServlet.class);
 
     @Reference
-    private transient PardotService pardotService;
+    private PardotService pardotService;
 
     /**
      * Do get.
@@ -50,7 +51,11 @@ public class BusinessEnquiryPardotServlet extends SlingAllMethodsServlet {
     @Override
     protected void doPost(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         try {
-            submitCustomFormData(request);
+            if (GlobalUtil.isChinaDataFlow(request)) {
+                submitCustomFormData(request);
+            } else {
+                pardotService.submitPardotPostRespose(request.getParameterMap());
+            }           
             // send response
             sendResponse(resp);
 
@@ -86,6 +91,4 @@ public class BusinessEnquiryPardotServlet extends SlingAllMethodsServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write("Success");
     }
-
-
 }

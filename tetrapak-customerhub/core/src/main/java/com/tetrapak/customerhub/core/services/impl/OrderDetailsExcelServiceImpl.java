@@ -105,7 +105,7 @@ public class OrderDetailsExcelServiceImpl implements OrderDetailsExcelService {
             orderDetailsSection[1][0] = addTagToContent(getI18nVal(orderDetailsModel.getOrderStatus()) + COLON_SPACE
                     + getProcessedValue(orderDetails.getStatus()), halfBoldStyleTags);
             orderDetailsSection[2][0] = addTagToContent(StringUtils.EMPTY, regularStyleTag);
-            orderDetailsSection[3][0] = addTagToContent(SHEET_NAME,
+            orderDetailsSection[3][0] = addTagToContent("Order Details",
                     new String[]{ExcelUtil.BOLD_TAG, ExcelUtil.DARK_GREY_BG_TAG});
             orderDetailsSection[4][0] = addTagToContent(getI18nVal(orderDetailsModel.getCustomerNameLabel())
                     + COLON_SPACE + getProcessedValue(orderDetails.getCustomerName()), halfBoldStyleTags);

@@ -12,7 +12,7 @@
     <div class="row no-gutters" data-sly-test="${'pw.form.businessenq.specificAreaOfInterest' @i18n}">
       <div class="col-sm-12" auto_locator="businessEnquiryContainerHeadingTextStep1">
         <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
-          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.specificAreaOfInterest', variant='small', auto_locator='specificAreaPackaging'}" />
+          data-sly-call="${heading.heading_h4_template @ headingText='pw.form.businessenq.specificAreaOfInterest', variant='small'}" />
       </div>
     </div>
 
@@ -20,35 +20,35 @@
       <div class="col-sm-12 formfield" auto_locator="businessEnquiryRightContainerStep1">
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingAM', required=true, label='pw.form.businessenq.packaging.additionalMaterials', name='businessAreaInterestPackaging', locale= 'en', value='Additional Materials', auto_locator='packingBusinessAreaValues'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingAM', required=true, label='pw.form.businessenq.packaging.additionalMaterials', name='businessAreaInterestPackaging', locale= 'en', value='Additional Materials'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingMTL', required=true, label='pw.form.businessenq.packaging.multipacksTraysLogistic', name='businessAreaInterestPackaging', locale= 'en', value='Downstream Equipment', auto_locator='packingBusinessAreaValues'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingMTL', required=true, label='pw.form.businessenq.packaging.multipacksTraysLogistic', name='businessAreaInterestPackaging', locale= 'en', value='Downstream Equipment'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingFM', required=true, label='pw.form.businessenq.packaging.fillingMachines', name='businessAreaInterestPackaging', locale= 'en', value='Filling Machines', auto_locator='packingBusinessAreaValues'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingFM', required=true, label='pw.form.businessenq.packaging.fillingMachines', name='businessAreaInterestPackaging', locale= 'en', value='Filling Machines'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingIS', required=true, label='pw.form.businessenq.packaging.installationServices', name='businessAreaInterestPackaging', locale= 'en', value='Installation, Commissioning & Validation', auto_locator='packingBusinessAreaValues'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingIS', required=true, label='pw.form.businessenq.packaging.installationServices', name='businessAreaInterestPackaging', locale= 'en', value='Installation, Commissioning & Validation'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingPP', required=true, label='pw.form.businessenq.packaging.packagePortfolio', name='businessAreaInterestPackaging', locale= 'en', value='Packages', auto_locator='packingBusinessAreaValues'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingPP', required=true, label='pw.form.businessenq.packaging.packagePortfolio', name='businessAreaInterestPackaging', locale= 'en', value='Packages'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingSUO', required=true, label='pw.form.businessenq.packaging.startUpOffering', name='businessAreaInterestPackaging', locale= 'en', value='Start-up Offering', auto_locator='packingBusinessAreaValues'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingSUO', required=true, label='pw.form.businessenq.packaging.startUpOffering', name='businessAreaInterestPackaging', locale= 'en', value='Start-up Offering'}">
         </sly>
         <sly
           data-sly-use.radioField="/apps/publicweb/components/molecules/radiofieldinput/radiofieldinput-template.html"
-          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingOther',  required=true, label='pw.form.businessenq.other', name='businessAreaInterestPackaging', locale= 'en', value='Other', auto_locator='packingBusinessAreaValues'}">
+          data-sly-call="${radioField.radiofieldinput_template @ id='baoiPackagingOther',  required=true, label='pw.form.businessenq.other', name='businessAreaInterestPackaging', locale= 'en', value='Other'}">
         </sly>
         <input type="hidden" name="specificInterestAreaPackagingEqTitle" class="form-control"
           id="specificInterestAreaPackagingEqTitle" data-analyticsField="Specific area of interest" required>
-        <div class="errorMsg specificInterestAreaError" auto_locator="errorPackagingBusinessArea">
+        <div class="errorMsg specificInterestAreaError">
           ${'pw.form.errormsg.selectOneOption' @i18n}
         </div>
       </div>

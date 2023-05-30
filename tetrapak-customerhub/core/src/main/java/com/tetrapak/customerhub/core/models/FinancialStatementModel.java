@@ -19,8 +19,6 @@ import java.util.Map;
  */
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class FinancialStatementModel {
-	
-	private static final String INVOICE_DOWNLOAD_URL = "/bin/customerhub/invoice/document.{docId}.pdf";
 
     @Self
     private Resource resource;
@@ -239,7 +237,7 @@ public class FinancialStatementModel {
     }
 
     public String getDownloadInvoice() {
-        return INVOICE_DOWNLOAD_URL;
+        return "/bin/customerhub/invoice/document.{docId}.pdf";
     }
 
     public boolean isPublishEnvironment() {

@@ -1,4 +1,3 @@
-/*
 import $ from 'jquery';
 import RichText from './RichText';
 import richtextTemplate from '../../../test-templates-hbs/richtext.hbs';
@@ -34,5 +33,3 @@ describe('RichText', function () {
     done();
   });
 });
-*/
-

@@ -58,7 +58,6 @@
             "siteLicensesDescriptionHeading": "Site LIcenses",
             "nameOfSite": "Name of site",
             "inputFieldError": "Input field error",
-            "numberFieldError": "Number field error",
             "basicUnitToolTipDescription": "basic unit tooltip description",
             "advancedUnitToolTipHeading": "Advanced unit tooltip heading",
             "plcType": "PLC Type",

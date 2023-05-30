@@ -200,7 +200,7 @@ public class PlantMasterTrainingsModel {
 
     /** The training details api. */
     @ValueMapValue
-    private String trainingDetailsApi;    
+    private String trainingDetailsApi;
     
     /** The subtitle */
     @ValueMapValue
@@ -253,6 +253,7 @@ public class PlantMasterTrainingsModel {
      */
     @PostConstruct
     protected void init() {
+
         Map<String, Object> i18KeyMap = getPlantMasterTrainingI18KeyMap();
         Gson gson = new Gson();
         i18nKeys = gson.toJson(i18KeyMap);
@@ -435,10 +436,10 @@ public class PlantMasterTrainingsModel {
      */
     public String getGroupServletUrl() {
         return resource.getPath() + GROUP_SERVLET_URL_POSTFIX;
-    }    
+    }
     
     public String getSubTitle() {
         return subTitle;
     }
-
+    
 }

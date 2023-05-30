@@ -42,13 +42,13 @@ public class OrderDetailsDownloadFileServlet extends SlingAllMethodsServlet {
     private static final long serialVersionUID = 2323660841296799482L;
 
     @Reference
-    private transient OrderDetailsApiService orderDetailsApiService;
+    private OrderDetailsApiService orderDetailsApiService;
 
     @Reference
-    private transient OrderDetailsPDFService generatePDF;
+    private OrderDetailsPDFService generatePDF;
 
     @Reference
-    private transient OrderDetailsExcelService generateExcel;
+    private OrderDetailsExcelService generateExcel;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderDetailsDownloadFileServlet.class);
 

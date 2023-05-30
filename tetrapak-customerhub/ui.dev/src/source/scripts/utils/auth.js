@@ -17,7 +17,6 @@ function generateToken() {
     || $('.tp-add-equipment').attr('data-src_ispublishenvironment')
     || $('.tp-aip-trainings').attr('data-src_ispublishenvironment')
     || $('.tp-aip-licenses').attr('data-src_ispublishenvironment')
-    || $('.tp-tech-pub').attr('data-src_ispublishenvironment')
     || $('.tp-rk').attr('data-src_ispublishenvironment')
     || $('.tp-rk-detail').attr('data-src_ispublishenvironment');
   return (

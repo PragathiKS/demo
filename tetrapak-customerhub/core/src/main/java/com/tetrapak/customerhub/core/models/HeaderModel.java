@@ -27,9 +27,6 @@ import java.util.List;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderModel {
 
-	private static final String LOGO_TEXT_I18N_KEY = "cuhu.logotext.text";
-	private static final String USER_INFO_I18N = "Charlie Svensson";
-	
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -91,11 +88,11 @@ public class HeaderModel {
     }
 
     public String getLogoTextI18n() {
-        return LOGO_TEXT_I18N_KEY;
+        return "cuhu.logotext.text";
     }
 
     public String getGetUserInfoI18n() {
-        return USER_INFO_I18N;
+        return "Charlie Svensson";
     }
 
     public boolean getRightNavDisplay() {

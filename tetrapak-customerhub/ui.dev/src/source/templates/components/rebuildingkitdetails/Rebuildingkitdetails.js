@@ -41,7 +41,6 @@ function _renderRebuildingKitDetails({ isNotConfirmed }) {
 function _renderCtiDocuments(langAvailable, otherLang, reqOtherLang) {
   const $this = this;
   const { i18nKeys } = $this.cache;
-
   if (!langAvailable) {
     render.fn({
       template: 'rebuildingCtiDocuments',
@@ -294,7 +293,7 @@ function _getCtiDocuments() {
   const $this = this;
   const { apiCTI } = $this.cache;
   const rkRelease = $this.cache.$rebuildingData.technicalBulletin;
-  //const rkRelease = 'TT3_2020_01_01';
+  // const rkRelease = 'TT3_2020_01_01';
   if (rkRelease !== '') {
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
@@ -467,6 +466,7 @@ class Rebuildingkitdetails {
     this.cache.$reportModal = this.root.parent().find('.js-update-modal');
     this.cache.$closeBtn = this.root.parent().find('.js-close-btn');
     this.cache.$applyLanguage = this.root.parent().find('.js-apply-language');
+    this.cache.apiURL = this.root.data('preferred-language-api');
     this.cache.$spinner = this.root.find('.tp-spinner');
     // Create Local Array Object for Language List
     const $this = this;

@@ -42,8 +42,7 @@ public class LinkUtils extends WCMUsePojo {
     /**
      * Gets the asset name.
      *
-     * @param path
-     *            the asset path.
+     * @param path the asset path.
      * @return the asset name.
      */
     public static String getAssetName(final String path) {
@@ -57,8 +56,7 @@ public class LinkUtils extends WCMUsePojo {
     /**
      * Gets the root path.
      *
-     * @param pagePath
-     *            the page path
+     * @param pagePath the page path
      * @return the root path
      */
     public static String getRootPath(final String pagePath) {

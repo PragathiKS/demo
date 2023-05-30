@@ -63,15 +63,6 @@
   </sly>
   
   <sly data-sly-test="${digitalDataModel.isPublisher}">
-    <!-- <script>
-      var OneTrust = {
-        dataSubjectParams: {
-          id: '',
-          isAnonymous: false,
-          token: ''
-        }
-      }
-    </script> -->
     <script type="text/javascript" defer>
       var OneTrust = {
         dataSubjectParams: {
@@ -142,8 +133,6 @@
           OneTrust.dataSubjectParams.token = jwt;
         }
       })();
-
-      //# sourceURL=cookieDebug.js
     </script>
   </sly>
   <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
@@ -165,6 +154,10 @@
   <!--/* script for DEV and QA */-->
   <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
     <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+  </sly>
+  <sly data-sly-test="${pageHeadModel.baiduMapkey}">
+    <script src="https://api.map.baidu.com/api?v=3.0&ak=${pageHeadModel.baiduMapkey}" type="text/plain"
+      class="optanon-category-4" defer></script>
   </sly>
 
   <sly data-sly-include="customheaderlibs.html"></sly>

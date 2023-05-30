@@ -32,8 +32,7 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Heading text (i18N key)"
                                                 name="./heading"
-                                                required="true"/>
-											
+                                                required="true"/>											
 											<subtitle
 												jcr:primaryType="nt:unstructured"
 												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"

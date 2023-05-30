@@ -39,7 +39,7 @@ public class HeaderModelTest {
     private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content";
     
     /** The Constant RESOURCE. */
-    private static final String RESOURCE_TWO = TEST_CONTENT_ROOT_TWO + "/en";
+    private static final String RESOURCE_TWO = TEST_CONTENT_ROOT_TWO + "/jcr:content";
 
     /** The Constant MARKETS_CONTENT_ROOT. */
     private static final String MARKETS_CONTENT_ROOT = "/content/tetrapak/publicweb";
@@ -191,23 +191,6 @@ public class HeaderModelTest {
     
     @Test
     public void testGetMarketList() {
-	AemContext contextMarket = new AemContext();
-        MockSlingHttpServletRequest request = contextMarket.request();
-        contextMarket.load().json(RESOURCE_CONTENT_TWO, TEST_CONTENT_ROOT_TWO); 
-        contextMarket.request().setPathInfo(RESOURCE_TWO);
-        request.setResource(contextMarket.resourceResolver().getResource(RESOURCE_TWO));
-        resource = contextMarket.currentResource(RESOURCE_TWO);
-        contextMarket.addModelsForPackage("com.tetrapak.publicweb.core.models");
-        HeaderModel modalMarket = request.adaptTo(modelClass);
-        
-        assertEquals("Header", "Tetra Pak Global",
-        	modalMarket.getMarketList().getGlobalMarketTitle());
-        assertEquals("Header", "Tetra Pak Global",
-        	modalMarket.getCountryTitle());
-    }
-    
-    @Test
-    public void testGetGlobalMarket() {
         MockSlingHttpServletRequest request = context.request();
         context.load().json(RESOURCE_CONTENT_TWO, TEST_CONTENT_ROOT_TWO); 
         context.request().setPathInfo(RESOURCE_TWO);
@@ -216,11 +199,8 @@ public class HeaderModelTest {
         context.addModelsForPackage("com.tetrapak.publicweb.core.models");
         model = request.adaptTo(modelClass);
         
-        marketBean.setMarketName("Tetra Pak Global");
-        marketBean.setCountryName("Global");
-       
         assertEquals("Header", "Tetra Pak Global",
-                model.getMarketList().getGlobalMarket().getMarketName());
+                model.getMarketList().getGlobalMarketTitle());
     }
 
 }

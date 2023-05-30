@@ -1,17 +1,16 @@
 package com.tetrapak.customerhub.core.models;
 
-import java.util.Iterator;
-
-import javax.annotation.PostConstruct;
-
+import com.tetrapak.customerhub.core.beans.GetStartedBean;
+import com.tetrapak.customerhub.core.beans.ImageBean;
+import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.LinkUtil;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 
-import com.tetrapak.customerhub.core.beans.GetStartedBean;
-import com.tetrapak.customerhub.core.beans.ImageBean;
-import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import javax.annotation.PostConstruct;
+import java.util.Iterator;
 
 /**
  * Model class for Recommended for you card component

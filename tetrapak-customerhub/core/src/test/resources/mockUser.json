@@ -6,7 +6,7 @@
   "jcr:createdBy": "authentication-service",
   "emailId": "test@tetrapak.com",
   "bpnumber": "EE15308999",
-  "groups": "[cuhu_tppm_product_common, cuhu_tppm_product_siemenstiaplatform, cuhu_tppm_role_customerkey]",
+  "groups": "[cuhu_tppm_product_common, cuhu_tppm_product_siemenstiaplatform]",
   "jcr:created": "Fri Mar 04 2022 12:08:55 GMT+0100",
   "rep:principalName": "AEMEXT099",
   "jcr:uuid": "2a717500-8dcd-3387-89cc-f6805ab10b5e",

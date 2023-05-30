@@ -52,9 +52,6 @@ public class StoriesModelTest {
 
     /** The Constant RESOURCE_CONTENT_SEMI. */
     private static final String RESOURCE_CONTENT_SEMI = "/stories/test-content-semi.json";
-    
-    /** The Constant RESOURCE_CONTENT_SEMI. */
-    private static final String RESOURCE_CONTENT_AUTO = "/stories/test-content-auto.json";
 
     /** The Constant RESOURCE_HOME. */
     private static final String RESOURCE_HOME = "/stories/home.json";
@@ -273,14 +270,6 @@ public class StoriesModelTest {
         Mockito.when(hit.getProperties()).thenReturn(properties);
         Mockito.when(pageManager.getPage(SOLUTIONS_PAGE)).thenReturn(context.pageManager().getPage(SOLUTIONS_PAGE));
         List<AggregatorModel> aggregatorList = aggregatorService.getAggregatorList(resource, tags, 4, "and");
-        
-        context.load().json(RESOURCE_CONTENT_AUTO, TEST_CONTENT_ROOT);
-        MockSlingHttpServletRequest request = context.request();
-        context.request().setPathInfo(RESOURCE);
-        request.setResource(context.resourceResolver().getResource(RESOURCE));
-        resource = context.currentResource(RESOURCE);
-        model = request.adaptTo(modelClass);
-        
         assertEquals("Solutions", aggregatorList.get(0).getTitle());
         assertEquals("/content/dam/tetrapak/publicweb/logo_tetra_pak_white.svg", aggregatorList.get(0).getImagePath());
         assertEquals("alt", aggregatorList.get(0).getAltText());

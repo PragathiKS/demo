@@ -381,7 +381,8 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Text available for the visitor"
                                                 fieldLabel="Link Text"
-                                                name="./linkText">
+                                                name="./linkText"
+												required="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="linkText"/>
@@ -393,7 +394,8 @@
                                                 fieldDescription="Link to destination URL"
                                                 fieldLabel="Link Path"
                                                 name="./linkPath"
-                                                rootPath="/content">
+                                                rootPath="/content"
+												required="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="linkPath"/>

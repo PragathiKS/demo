@@ -401,22 +401,22 @@ public class FinancialResultsPDFServiceImpl implements FinancialResultsPDFServic
         table.addCell(cell);
         PDFUtil2.drawLine(writer, 36, 580, writer.getVerticalPosition(false));
 
-        for (Record financialRecord : records) {
-            cell = getPdfPCell(financialRecord.getDocumentNumber(), HEIGHT, languageSpecificFont);
+        for (Record record : records) {
+            cell = getPdfPCell(record.getDocumentNumber(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(documentTypeMap.get(financialRecord.getDocumentType()), HEIGHT, languageSpecificFont);
+            cell = getPdfPCell(documentTypeMap.get(record.getDocumentType()), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(financialRecord.getInvoiceReference(), HEIGHT, languageSpecificFont);
+            cell = getPdfPCell(record.getInvoiceReference(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(financialRecord.getPoNumber(), HEIGHT, languageSpecificFont);
+            cell = getPdfPCell(record.getPoNumber(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(financialRecord.getDocDate(), HEIGHT, languageSpecificFont);
+            cell = getPdfPCell(record.getDocDate(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(financialRecord.getDueDate(), HEIGHT, languageSpecificFont);
+            cell = getPdfPCell(record.getDueDate(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(financialRecord.getCurrency(), HEIGHT, languageSpecificFont);
+            cell = getPdfPCell(record.getCurrency(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
-            cell = getPdfPCell(financialRecord.getOrgAmount(), HEIGHT, languageSpecificFont);
+            cell = getPdfPCell(record.getOrgAmount(), HEIGHT, languageSpecificFont);
             table.addCell(cell);
         }
         return table;

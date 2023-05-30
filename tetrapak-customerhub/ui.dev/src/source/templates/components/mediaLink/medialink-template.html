@@ -44,7 +44,7 @@
       <sly data-sly-test.linkTypeInternal="${child.linkType == 'internal' ? 'icon-Chevron_Right' : ''}" />
       <sly data-sly-test.linkTypeExternal="${child.linkType == 'external' ? 'icon-External_Link' : ''}" />
       <sly data-sly-test.linkTypeDownload="${child.linkType == 'download' && child.pdfType==true ? 'icon-PDF' : ''}" />
-      <sly data-sly-test.linkTypeDownloadPDF="${child.linkType == 'download' ? 'icon-Download' : ''}" />
+	  <sly data-sly-test.linkTypeDownloadPDF="${child.linkType == 'download' ? 'icon-Download' : ''}" />
       <sly data-sly-test.sectionValue ="${mediaSectionName == '' ? mediaHeading : mediaSectionName } "/>
       <a  data-sly-test="${child.linkText}"
         href="${child.linkUrl}"

@@ -45,8 +45,6 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
     private static final String VALUE = "Value";
     private static final String LICENSE_TYPE_ENGINEERING = "engineering";
     private static final String LICENSE_TYPE_ACTIVE_WITHDRAWAL = "activeWithdrawal";
-    private static final String HIDE_SUFFIX = "HideClass";
-    private static final String HIDE_CSS_CLASS = "hide";
     private static final String USERS_HTML_NAME = "<tr><td class='license-list'> NAME </td>";
     private static final String USERS_HTML_DATE = "<td class='license-list'> DATE </td> ";
     private static final String USERS_HTML_LICENSES = "<td class='license-list'> \tLICENSES </td></tr><tr><td colspan='3'>&nbsp;</td></tr>";
@@ -190,6 +188,7 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
                 getI18nValue(bundle, prefix, plantMasterLicensesModel.getEmailaddress()));
     }
 
+
     /**
      * Extract labels to be used in email for engineering license type
      * @param emailParams
@@ -306,20 +305,11 @@ public class PlantMasterLicensesServiceImpl implements PlantMasterLicensesServic
                 siteLicenseFormBean.getNumberOfAdvancedUnit());
     }
 
+
     private WithdrawalLicenseFormBean createWithdrawalLicenseFormBean(String requestData) {
         LOGGER.debug("Withdrawal License Request data json : {}", requestData);
         Gson gson = new Gson();
         return gson.fromJson(requestData, WithdrawalLicenseFormBean.class);
-    }
-    private Map<String, String> cssHideIfEmpty(final String key, final String value) {
-        Map<String, String> entry;
-        if (StringUtils.isBlank(value)) {
-            entry = Map.of(key + HIDE_SUFFIX, HIDE_CSS_CLASS);
-        } else {
-            entry = Map.of(key + HIDE_SUFFIX, StringUtils.EMPTY);
-        }
-        return entry;
-
     }
 
     private EngineeringLicenseFormBean createEngineeringLicenseFormBean(String requestData) {
