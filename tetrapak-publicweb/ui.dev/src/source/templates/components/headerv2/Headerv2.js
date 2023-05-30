@@ -142,7 +142,11 @@ class Headerv2 {
 
     $subMenuIcon.on('click', () => {
       $subMenu.toggle();
-      $subMenuIcon.hasClass('active') ? $subMenuIcon.removeClass('active') : $subMenuIcon.addClass('active');
+      if ($subMenuIcon.hasClass('icon-Burger')) {
+        $subMenuIcon.addClass('icon-Close').removeClass('icon-Burger');
+      } else {
+        $subMenuIcon.addClass('icon-Burger').removeClass('icon-Close');
+      }
     });
   }
 

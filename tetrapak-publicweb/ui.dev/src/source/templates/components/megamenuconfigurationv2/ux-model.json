@@ -42,8 +42,8 @@
                     "linkText": "Heading goes here"
                 },
                 {
-                    "icon": "icon-Close_pw",
-                    "linkText": "Heading goes here"
+                    "subHeader": "Heading goes here",
+                    "subHeaderDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida"
                 },
                 {
                     "linkText": "Heading goes here"

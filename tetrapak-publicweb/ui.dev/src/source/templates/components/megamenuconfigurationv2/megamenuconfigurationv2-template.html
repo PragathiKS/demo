@@ -3,22 +3,36 @@
         <sly data-sly-list.column="${data.columns}">
             <sly data-sly-test.isPrimaryType="${column.type == 'primary'}" />
             <sly data-sly-test.isImageType="${column.type == 'image'}" />
-            <sly data.sly-test.inlineBg="${'background-image: url({0})' @ format=column.imgUrl}" />
-            <div class="tp-pw-megamenuv2-column--${column.type || 'default'}"><!-- style="${column.imgUrl ? inlineBg : ''}" -->
-                <div data-sly-test="${(isPrimaryType || isImageType)}" class="tp-pw-megamenuv2-column__header-wrapper">
-                    <h3 data-sly-test="${column.header}">
-                        ${column.header}
-                    </h3>
-                    <p data-sly-test="${column.description}">
-                        ${column.description}
-                    </p>
+            <div class="tp-pw-megamenuv2-column--${column.type || 'default'}">
+                <div class="tp-pw-megamenuv2-column__content-wrapper">
+                    <img data-sly-test="${isImageType}" src="${column.imgUrl}"/>
+                    <div data-sly-test="${(isPrimaryType || isImageType)}" class="tp-pw-megamenuv2-column__header-wrapper">
+                        <h3 data-sly-test="${column.header}">
+                            ${column.header}
+                        </h3>
+                        <p data-sly-test="${column.description}">
+                            ${column.description}
+                        </p>
+                    </div>
+                    <div data-sly-test="${column.links}" data-sly-list.link="${column.links}" class="tp-pw-megamenuv2-column__links-wrapper">
+                        <a data-sly-test="${link.linkText}" href="${link.linkUrl}" target="_blank" tabindex="${linkList.index}">
+                            <i data-sly-test="${link.icon}" class="${link.icon}"></i>
+                            ${link.linkText}
+                        </a>
+                        <div class="tp-pw-megamenuv2-column__subheader-wrapper" data-sly-test="${link.subHeader}">
+                            <div class="tp-pw-megamenuv2-column__subheader-wrapper__header">
+                                <h4 tabindex="${linkList.index}">
+                                    ${link.subHeader}
+                                </h4>
+                                <i class="icon-Chevron_Right"></i>
+                            </div>
+                            <p data-sly-test="${link.subHeaderDescription}">
+                                ${link.subHeaderDescription}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <sly data-sly-list.link="${column.links}">
-                    <a href="${link.linkUrl}" target="_blank">
-                        <i data.sly-test="${link.icon}" class="${link.icon}"></i>
-                        ${link.linkText}
-                    </a>
-                </sly>
+                
             </div>
         </sly>
     </div>

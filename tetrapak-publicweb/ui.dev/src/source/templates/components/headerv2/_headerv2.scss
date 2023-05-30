@@ -3,10 +3,17 @@ $submenu-shadow-color: #000000;
 @mixin hyperlink-base {
     color: $color-congress-blue;
     cursor: pointer;
-    transform: color .2s;
+    transform: color .2s, border-color .2s;
 
     &:hover {
         color: $color-bright-blue;
+    }
+
+    i {
+        &:hover {
+            color: $color-bright-blue;
+            border-color: $color-bright-blue;
+        }
     }
 }
 
@@ -36,7 +43,7 @@ $submenu-shadow-color: #000000;
     display: flex;
     background-color: $color-white;
     box-sizing: border-box;
-    box-shadow: 0 4px 16px $submenu-shadow-color;
+    box-shadow: 0 4px 16px 0 $dialog-shadow-color;
     border-radius: 4px;
     min-width: 129px;
     flex-direction: column;
@@ -83,12 +90,13 @@ $submenu-shadow-color: #000000;
         align-items: center;
 
         a {
+            font-size: $font-baseline;
             display: flex;
             padding: $spacing-small;
             border-bottom: 1px solid $color-mercury;
             box-sizing: border-box;
             width: 100%;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             background-color: $color-white;
 
@@ -146,6 +154,19 @@ $submenu-shadow-color: #000000;
                 }
             }
         }
+
+        .tp-pw-headerv2-market-selector, .tp-pw-headerv2-login-selector {
+            background-color: transparent;
+            border-top: 1px solid $color-mercury;
+            border-bottom: 0;
+            padding: $spacing-small;
+            i {
+                margin-right: $spacing-small-half;
+                padding: 1px;
+                border-radius: 100px;
+                border: 1px solid $color-congress-blue;
+            }
+        }
     }
 
     nav {
@@ -159,7 +180,7 @@ $submenu-shadow-color: #000000;
             align-items: center;
             border-bottom: 1px solid $color-mercury;
             box-sizing: border-box;
-            padding: $padding-l 0 $padding-l 24px;
+            padding: $spacing-big-half 0 $spacing-big-half 24px;
 
             .tp-pw-headerv2-logo {
                 img {
@@ -177,9 +198,22 @@ $submenu-shadow-color: #000000;
 
                 a {
                     @include hyperlink($font-sm, $spacing-small);
+                    padding: $spacing-big-half 0;
 
                     &:last-of-type {
                         margin-right: $padding-xxxl;
+                    }
+                }
+
+                .tp-pw-headerv2-market-selector, .tp-pw-headerv2-login-selector {
+                    padding-left: $spacing-small;
+                    border-left: 1px solid $color-mercury;
+
+                    i {
+                        margin-right: $spacing-small-half;
+                        padding: 1px;
+                        border-radius: 100px;
+                        border: 1px solid $color-congress-blue;
                     }
                 }
             }
