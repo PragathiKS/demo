@@ -19,6 +19,35 @@
                             ${navigationLink.linkText}
                         </a>
                     </sly>
+                    <sly data-sly-test="${!data.marketSelectorDisabled}">
+                        <sly 
+                        data-sly-test="${data.displayCurrentLanguage}" 
+                        data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
+                            <a 
+                                class="tp-pw-headerv2-market-selector" 
+                                data-language="${data.currentLanguage}"
+                                data-link-section="Header Navigation" 
+                                data-link-name="market locator" 
+                                href="#">
+                                <span>
+                                    <i auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw"></i>${data.currentMarket}
+                                    ${data.displayCurrentLanguage ? concatenatLanguage : ''}
+                                </span>
+                            </a>
+                        </sly>
+                    </sly>
+                    <sly data-sly-test="${data.loginLink != '#'}">
+                        <a 
+                            class="tp-pw-headerv2-login-selector" 
+                            target="_blank" 
+                            href="${data.loginLink}"
+                            data-link-section="Header Navigation" 
+                            data-link-name="login_My tetrapak">
+                            <span>
+                                <i class="icon-Avatar"></i>${data.loginLabel}
+                            </span>
+                        </a>
+                    </sly>
                 </div>
                 <div class="tp-pw-headerv2-mobile-secondary-navigation">
                     <i class="js-submenu-mobile-icon icon-Burger"></i>
@@ -37,9 +66,6 @@
                         </div>
                     </div>
                 </div>
-                <sly 
-                    data-sly-use.searchbar="/apps/publicweb/components/content/searchbar/searchbar-template.html"
-                    data-sly-call="${searchbar.searchbar_template @ searchPage=data.searchPage}" />
             </div>
         </nav>
         <div class="tp-pw-headerv2-mobile-secondary-navigation-menu">
@@ -53,29 +79,39 @@
                     ${navigationLink.linkText}
                 </a>
             </sly>
-            <sly data-sly-test="${data.displayCurrentLanguage}">
-                <!-- <li class="tp-pw-mobile-navigation__secondary__link"
-                    data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}" />
-                    <a class="d-flex justify-content-between nav-link js-header__selected-lang-pw" href="#"
-                    data-link-section="Header Navigation" data-link-name="market locator" data-language="${data.currentLanguage}"><span><i
-                        auto_locator="countrySelectorIconMobile" class="icon-Globe"></i>${data.currentMarket}
-                        ${data.displayCurrentLanguage ? concatenatLanguage : ''}</span></a>
-                </li> -->
-            </sly>
             <sly data-sly-test="${!data.marketSelectorDisabled}">
+                <sly 
+                data-sly-test="${data.displayCurrentLanguage}" 
+                data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
+                    <a 
+                        class="tp-pw-headerv2-market-selector" 
+                        data-language="${data.currentLanguage}"
+                        data-link-section="Header Navigation" 
+                        data-link-name="market locator" 
+                        href="#">
+                        <span>
+                            <i auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw"></i>${data.currentMarket}
+                            ${data.displayCurrentLanguage ? concatenatLanguage : ''}
+                        </span>
+                    </a>
+                </sly>
+            </sly>
+            <sly data-sly-test="${data.loginLink != '#'}">
                 <a 
-                    class="tp-pw-headerv2-mobile-secondary-navigation-menu__link js-header__selected-lang-pw" 
-                    data-language="${data.currentLanguage}"
+                    class="tp-pw-headerv2-login-selector" 
+                    target="_blank" 
+                    href="${data.loginLink}"
                     data-link-section="Header Navigation" 
-                    data-link-name="market locator" 
-                    href="#">
-                    <i
-                        auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw">
-                    </i>
+                    data-link-name="login_My tetrapak">
+                    <span>
+                        <i class="icon-Avatar"></i>${data.loginLabel}
+                    </span>
                 </a>
             </sly>
         </div>
-            <!-- <sly data-sly-use.marketselector="/apps/publicweb/components/content/marketselector/marketselector-template.html"
-                data-sly-call="${marketselector.marketselector_template @ data=data.marketList}" /> -->
+        <!-- <sly data-sly-use.marketselector="/apps/publicweb/components/content/marketselector/marketselector-template.html"
+            data-sly-call="${marketselector.marketselector_template @ data=data.marketList}" />
+        <sly data-sly-use.searchbar="/apps/publicweb/components/content/searchbar/searchbar-template.html"
+            data-sly-call="${searchbar.searchbar_template @ searchPage=data.searchPage}" /> -->
     </header>
 </sly>

@@ -2,11 +2,13 @@
     "logoLink": "http://www.google.com",
     "logoAlt": "Logo",
     "logoImagePath": "/content/dam/tetrapak/publicweb/logo/en/tetra-pak-two-liner.png",
-    "marketTitle": "Sweden",
     "marketSelectorDisabled": false,
+    "displayCurrentLanguage": true,
     "loginLabel": "My Tetra Pak",
     "loginLink": "http://mytetrapak.com",
     "searchPage": "/content/tetrapak/publicweb/lang-masters/en/search",
+    "currentMarket": "Sweden",
+    "currentLanguage": "English",
     "secondaryNavigationLinks": [
       {
         "linkText": "Career",
