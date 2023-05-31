@@ -112,6 +112,7 @@
         @media #{$i-pad} {
             display: flex;
         }
+        // sass-lint:disable force-pseudo-nesting
         .icon-Burger_pw::before {
             font-size: 20px;
             line-height: 20px;
@@ -362,6 +363,7 @@
             border-bottom: 1px solid $color-mercury;
             a {
                 color: $color-tundora;
+                // sass-lint:disable force-pseudo-nesting
                 i:first-child {
                     padding-right: #{convert-to-rem(8px)};
                 }

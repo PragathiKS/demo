@@ -73,14 +73,17 @@
                 width: calc(100% - 32px);
             }
             .tp-pw-megamenuv2-column__header-wrapper {
+                border: 12px solid $color-sky-blue;
                 position: absolute;
                 width: calc(100% - 64px);
                 margin: 32px;
                 padding: 28px;
-                border: 12px solid $color-sky-blue;
                 box-sizing: border-box;
             }
-            h3, p {
+            h3 {
+                color: $color-white;
+            }
+            p {
                 color: $color-white;
             }
         }

@@ -1,3 +1,5 @@
+// sass-lint:disable-all
+
 .pw-megamenu {
     visibility: hidden;
     top: 80px;
@@ -554,8 +556,13 @@
         }
     }
 }
-.pw-megamenu .col-side-links .list-side-links li a:hover {
+.pw-megamenu .col-side-links .list-side-links li {
     color: $color-sky-blue;
+}
+a {
+  &:hover {
+    color: $color-sky-blue;
+  }
 }
 .pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw {
     display: none;

@@ -90,8 +90,8 @@ $submenu-shadow-color: #000000;
         align-items: center;
 
         a {
-            font-size: $font-baseline;
             display: flex;
+            font-size: $font-baseline;
             padding: $spacing-small;
             border-bottom: 1px solid $color-mercury;
             box-sizing: border-box;
@@ -155,16 +155,28 @@ $submenu-shadow-color: #000000;
             }
         }
 
-        .tp-pw-headerv2-market-selector, .tp-pw-headerv2-login-selector {
+        .tp-pw-headerv2-market-selector {
             background-color: transparent;
             border-top: 1px solid $color-mercury;
             border-bottom: 0;
             padding: $spacing-small;
             i {
+                border: 1px solid $color-congress-blue;
                 margin-right: $spacing-small-half;
                 padding: 1px;
                 border-radius: 100px;
+            }
+        }
+        .tp-pw-headerv2-login-selector {
+            background-color: transparent;
+            border-top: 1px solid $color-mercury;
+            border-bottom: 0;
+            padding: $spacing-small;
+            i {
                 border: 1px solid $color-congress-blue;
+                margin-right: $spacing-small-half;
+                padding: 1px;
+                border-radius: 100px;
             }
         }
     }
@@ -205,15 +217,27 @@ $submenu-shadow-color: #000000;
                     }
                 }
 
-                .tp-pw-headerv2-market-selector, .tp-pw-headerv2-login-selector {
+                .tp-pw-headerv2-market-selector {
                     padding-left: $spacing-small;
                     border-left: 1px solid $color-mercury;
 
                     i {
+                        border: 1px solid $color-congress-blue;
                         margin-right: $spacing-small-half;
                         padding: 1px;
                         border-radius: 100px;
+                    }
+                }
+
+                .tp-pw-headerv2-login-selector {
+                    padding-left: $spacing-small;
+                    border-left: 1px solid $color-mercury;
+
+                    i {
                         border: 1px solid $color-congress-blue;
+                        margin-right: $spacing-small-half;
+                        padding: 1px;
+                        border-radius: 100px;
                     }
                 }
             }
