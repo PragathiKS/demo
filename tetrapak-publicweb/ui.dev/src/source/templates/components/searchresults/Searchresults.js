@@ -307,6 +307,10 @@ class Searchresults {
     const { contentType, theme, searchTerm } = this.cache.searchParams;
     let joinedFilterTags = { ...contentType, ...theme };
     const filterCheck = joinedFilterTags;
+    if(this.cache.searchLandingType === 'events' || this.cache.searchLandingType === 'cases' ||
+    this.cache.searchLandingType === 'news'){
+      delete joinedFilterTags[this.cache.searchLandingType];
+    }
     joinedFilterTags = $.isEmptyObject(joinedFilterTags) ? [] : joinedFilterTags;
 
     // do the analytics call
