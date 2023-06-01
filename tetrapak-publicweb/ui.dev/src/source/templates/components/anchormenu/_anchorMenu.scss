@@ -19,8 +19,14 @@
             @include padding($padding-l $padding-l);
             @include margin($margin-zero);
         }
+        @media #{$mobile} {
+            border-bottom: 1px solid $color-mercury;
+        }
         &.show-secondary .secondary {
             display: block;
+        }
+        &.collapsed {
+            display: none;
         }
     }
 
@@ -146,13 +152,26 @@
     }
     border-top: 1px solid $color-mercury;
     border-bottom: 1px solid $color-mercury;
-    & a {
+    &.active {
+        border-bottom: 0;
+    }
+    a {
         display: flex;
-        color: $color-tundora;
+        color: $color-congress-blue;
         justify-content: space-between;
         align-items: center;
         &.active {
-            color: $color-congress-blue;
+            font-weight: 700;
+        }
+        &.active > i.icon.with-arrow {
+            &::before {
+                transform: rotate(-90deg);
+            }
+        }
+        i.icon.with-arrow {
+            &::before {
+                transform: rotate(90deg);
+            }
         }
     }
 }
