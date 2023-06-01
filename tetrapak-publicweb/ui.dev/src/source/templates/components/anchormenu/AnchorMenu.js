@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { isDesktop1024Mode, scrollToElement } from '../../../scripts/common/common';
+import { isDesktop1024Mode, isMobile1024Mode, scrollToElement } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class AnchorMenu {
@@ -10,6 +10,7 @@ class AnchorMenu {
   initCache() {
     this.cache.$anchorLink = this.root.find('a');
     this.cache.$anchorMenu = document.getElementsByClassName('pw-anchor-menu');
+    this.cache.$anchorMenuTitleContainer = document.getElementsByClassName('pw-anchor-menu-title-container');
     this.cache.$anchorMenuTitle = document.getElementById('pw-anchor-menu-title');
     this.cache.$progressIndicator = this.root.find('.pw-anchor-menu-progress-indicator');
     this.cache.$anchorMenuContent = this.root.find('.pw-anchor-menu-content');
@@ -91,6 +92,9 @@ class AnchorMenu {
         //Find child after creation of secondary anchor menus
         this.cache.$secondaryAnchorMenuContent = this.root.find('.secondary')[0].children;
       }
+    } else {
+      // For mobile view, hide anchor menu list item
+      this.cache.$anchorMenuContainer.classList.add('collapsed');
     }
   }
 
@@ -167,36 +171,48 @@ class AnchorMenu {
 
   scrollToSection = e => {
     e.preventDefault();
+    const { $anchorMenuTitleContainer, $anchorMenuContainer } = this.cache;
     const $this = $(e.target);
-    const anchorId = $this.data('link-section');
-    const linkName = $this.data('link-name');
-    const currentIndex = $this.parents('li').index();
+    if (!$this[0].classList.contains('pw-anchor-menu-title-container') && $this[0].id !== 'pw-anchor-menu-title' && !$this[0].classList.contains('icon')) {
+      const anchorId = $this.data('link-section');
+      const linkName = $this.data('link-name');
+      const currentIndex = $this.parents('li').index();
 
-    const trackingObj = {
-      linkType: 'internal',
-      linkSection: `Hyperlink click`,
-      linkParentTitle: '',
-      linkName
-    };
+      const trackingObj = {
+        linkType: 'internal',
+        linkSection: `Hyperlink click`,
+        linkParentTitle: '',
+        linkName
+      };
 
-    const eventObj = {
-      eventType: 'linkClick',
-      event: 'Anchor Tag'
-    };
-    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+      const eventObj = {
+        eventType: 'linkClick',
+        event: 'Anchor Tag'
+      };
+      trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
 
-    //end of analytics call
-    location.hash = anchorId;
+      //end of analytics call
+      location.hash = anchorId;
 
-    this.resetOverflowMenu();
+      this.resetOverflowMenu();
 
-    //Set selection
-    this.cache.$isAnchorMenuClicked = true;
-    this.cache.$currentIndex = currentIndex;
-    this.setAnchorMenuSelection(currentIndex);
-    scrollToElement(() => {
-      this.cache.$isAnchorMenuClicked = false;
-    },`#${anchorId}`);
+      //Set selection
+      this.cache.$isAnchorMenuClicked = true;
+      this.cache.$currentIndex = currentIndex;
+      this.setAnchorMenuSelection(currentIndex);
+      scrollToElement(() => {
+        this.cache.$isAnchorMenuClicked = false;
+      },`#${anchorId}`);
+    } else if (!$anchorMenuTitleContainer[0].classList.contains('active')) {
+    //Handle anchor menu title click
+      $anchorMenuTitleContainer[0].classList.add('active');
+      $anchorMenuTitleContainer[0].parentElement.classList.add('active');
+      $anchorMenuContainer.classList.remove('collapsed');
+    } else {
+      $anchorMenuTitleContainer[0].classList.remove('active');
+      $anchorMenuTitleContainer[0].parentElement.classList.remove('active');
+      $anchorMenuContainer.classList.add('collapsed');
+    }
   };
 
   setAnchorMenuSelection(currentIndex) {
@@ -223,12 +239,17 @@ class AnchorMenu {
 
   isElementInViewport(element) {
     const rect = element.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+    const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+    const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+    if (isMobile1024Mode()) {
+      const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+      const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
+      return (vertInView && horInView);
+    } else {
+      return (
+        rect.top >= 0 && rect.left >= 0 && rect.bottom <= windowHeight && rect.right <= windowWidth
+      );
+    }
   }
 
   init() {
