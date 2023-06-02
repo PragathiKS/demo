@@ -4,25 +4,18 @@
 
     <div class="tp-accordion pw-padding--regular pw-margin--regular pw-theme--grayscale-white" id="accordion_${resource.path.hashCode}"
          data-panelcontainer="${wcmmode.edit && 'accordion'}"
-         id="${accordion.id}"
          class="cmp-accordion"
          data-cmp-is="accordion"
          data-cmp-data-layer="${data.data.json}"
          data-cmp-single-expansion="${data.singleExpansion}"
          data-placeholder-text="${wcmmode.edit && 'Please drag Accordion item components here' @ i18n}">
-
-
       <h2 class="tp-accordion__heading" data-sly-test="${data.heading}"> ${data.heading}</h2>
       <p class="tp-accordion__description" data-sly-test="${data.description}"> ${data.description}</p>
 
-
-
       <div class="tp-accordion__events accordion">
-
 
         <sly data-sly-list.tab="${data.items}">
           <sly data-sly-test="${tab.title}">
-
 
             <button type="button" class="tp-accordion__event js-accordion__event collapsed"
                     data-toggle="collapse" data-target="#collapse_${tabList.index}_${resource.path.hashCode}" data-index="${tabList.index}"
@@ -31,20 +24,33 @@
               <i class="icon icon-Arrow_Right_pw"></i>
             </button>
 
-            <div id="collapse_${tabList.index}_${resource.path.hashCode}"
-                 class="tp-accordion-detail-wrapper collapse">
-              <div class="tp-accordion-detail" data-link-parent-title="${tab.title @i18n,locale=data.locale}">
-                <div class="tp-accordion__event-detail-description">${tab.accordionDetails @ context='html'} ABC TEST  </div>
-                </div>
+            <sly data-sly-test="${!wcmmode.edit}">
+              <div id="collapse_${tabList.index}_${resource.path.hashCode}"
+                   class="tp-accordion-detail-wrapper collapse">
 
+            </sly>
+            <div class="tp-accordion-detail" data-link-parent-title="${tab.accordionHeading @i18n,locale=data.locale}">
+              <div class="tp-accordion__event-detail-description">
+                <div data-sly-resource="${tab.name @ decorationTagName='div'}"
+                     data-cmp-hook-accordion="panel"
+                     id="${item.id}-panel"
+                     role="region"
+                     aria-labelledby="${tab.id}-button">
+                </div>
+              </div>
             </div>
-          </sly>
-        </sly>
+            <sly data-sly-test="${!wcmmode.edit}">
+
       </div>
-      <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
-           data-sly-test="${(wcmmode.edit || wcmmode.preview) && data.items.size < 3}"></sly>
+</sly>
+
+
+ </div>
+        </div>
+
+<sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+     data-sly-test="${(wcmmode.edit || wcmmode.preview) && data.items.size < 4}"></sly>
     </div>
-  </div>
 </sly>
 
 
