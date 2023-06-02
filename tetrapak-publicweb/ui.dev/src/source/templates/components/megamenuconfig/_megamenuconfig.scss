@@ -1,0 +1,134 @@
+@mixin megacolumn($padding) {
+    background-color: $color-wild-sand;
+    width: 100%;
+    position: relative;
+    .tp-pw-megamenuv2-column__content-wrapper {
+        padding: $padding;
+    }
+}
+
+@mixin hyperlink-base {
+    color: $color-congress-blue;
+    cursor: pointer;
+    transform: color .2s;
+    &:hover {
+        color: $color-bright-blue;
+    }
+}
+
+@mixin hyperlink($font-size, $margin-left) {
+    @include hyperlink-base;
+    margin-left: $margin-left;
+    font-size: $font-size;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    text-decoration: none;
+}
+
+.tp-pw-megamenuv2 {
+    display: flex;
+    justify-content: center;
+
+    a {
+        @include hyperlink($font-baseline, 0);
+        margin-bottom: $spacing-small;
+    }
+    h3 {
+        color: $color-congress-blue;
+        font-size: $font-l;
+        font-weight: bold;
+        margin-bottom: $spacing-small;
+    }
+    h4 {
+        color: $color-tundora;
+        font-size: $font-sm;
+        text-transform: uppercase;
+        padding-right: 8px;
+        font-weight: bold;
+    }
+    p {
+        color: $color-tundora;
+        font-size: $font-sm;
+        margin-bottom: $spacing-small;
+    }
+    i {
+        color: $color-congress-blue;
+        font-size: $font-baseline;
+        width: 20px;
+        margin-right: 8px;
+    }
+
+    .tp-pw-megamenuv2-column {
+        &--default {
+            @include megacolumn (80px 48px);
+        }
+        &--primary {
+            @include megacolumn(32px 80px 48px 32px);
+            background-color: $color-white;
+        }
+        &--image {
+            @include megacolumn(0);
+            .tp-pw-megamenuv2-column__content-wrapper {
+                width: calc(100% - 32px);
+            }
+            .tp-pw-megamenuv2-column__header-wrapper {
+                border: 12px solid $color-sky-blue;
+                position: absolute;
+                width: calc(100% - 64px);
+                margin: 32px;
+                padding: 28px;
+                box-sizing: border-box;
+            }
+            h3 {
+                color: $color-white;
+            }
+            p {
+                color: $color-white;
+            }
+        }
+        &__content-wrapper {
+            z-index: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            img {
+                position: absolute;
+                object-fit: cover;
+                height: 100%;
+                z-index: 0;
+            }
+        }
+        &__header-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            z-index: 1;
+        }
+        &__links-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        &__subheader-wrapper {
+            display: flex;
+            flex-direction: column;
+            &__header {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                i {
+                    color: $color-tundora;
+                    font-size: $font-sm;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
