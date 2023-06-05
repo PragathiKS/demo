@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { isDesktop1024Mode, isMobile1024Mode, scrollToElement } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-class AnchorMenu {
+class Anchorv2 {
   constructor({ el }) {
     this.root = $(el);
   }
@@ -142,7 +142,7 @@ class AnchorMenu {
     const { $anchorLink, $anchorMenu } = this.cache;
     $anchorLink.on('click', this.scrollToSection);
     if($anchorMenu) {
-      const doc = document.getElementsByClassName('anchormenu');
+      const doc = document.getElementsByClassName('anchorv2');
       if ( doc && doc.length > 0 ) {
         window.addEventListener('scroll', this.onPageScroll, false);
       }
@@ -259,4 +259,4 @@ class AnchorMenu {
   }
 }
 
-export default AnchorMenu;
+export default Anchorv2;
