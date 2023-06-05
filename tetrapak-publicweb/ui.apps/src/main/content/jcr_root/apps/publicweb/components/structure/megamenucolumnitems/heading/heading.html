@@ -3,6 +3,6 @@
        class="cq-placeholder"></p>
 </sly>
 
-<sly data-sly-test="false" data-sly-use.model="com.tetrapak.publicweb.core.models.megamenucolumnitem.HeadingModel"
-		data-sly-use.lib="megamenuheading-template.html"
-         data-sly-call="${lib.megamenuheading_template @ data=model}" />
+<sly data-sly-use.megamenuheadingdata="com.tetrapak.publicweb.core.models.megamenucolumnitem.HeadingModel"
+    data-sly-use.lib="/apps/publicweb/components/content/megamenuheading/megamenuheading-template.html"
+    data-sly-call="${lib.megamenuheading_template @ data=megamenuheadingdata}" />

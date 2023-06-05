@@ -1,0 +1,11 @@
+.tp-pw-megamenuconfig {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    .cq-Editable-dom--container, 
+    .cq-Editable-dom--container.aem-GridColumn {
+        width: 100%;
+    }
+}

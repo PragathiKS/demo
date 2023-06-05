@@ -174,8 +174,12 @@
         "source/templates/components/accordion/",
         "source/templates/components/anchorv2/",
         "source/templates/components/headerv2/",
-        "source/templates/components/megamenuconfigurationv2/",
-        "source/templates/components/megamenuconfig/"
+        "source/templates/components/megamenuconfig/",
+        "source/templates/components/megamenucolumn/",
+        "source/templates/components/megamenuheading/",
+        "source/templates/components/megamenudescription/",
+        "source/templates/components/megamenunavigationlinks/",
+        "source/templates/components/megamenuteaser/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
