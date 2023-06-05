@@ -170,7 +170,8 @@
         "source/templates/components/pagination/",
         "source/templates/components/socialsidebar/",
         "source/templates/components/stories/",
-        "source/templates/components/anchormenu/"
+        "source/templates/components/anchormenu/",
+        "source/templates/components/anchorv2/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
