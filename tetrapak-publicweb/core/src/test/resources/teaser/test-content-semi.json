@@ -35,7 +35,8 @@
 					"tags": [
 						"tetrapak:publicweb/product/type/product-a"
 					],
-					"heading": "Heading",
+					"heading": "This is heading of teaser",
+					"description": "This is description of Teaser",
 					"numberOfColumns": "4",
 					"jcr:lastModified": "Mon Apr 13 2020 15:48:16 GMT+0530",
 					"sling:resourceType": "publicweb/components/content/teaser",

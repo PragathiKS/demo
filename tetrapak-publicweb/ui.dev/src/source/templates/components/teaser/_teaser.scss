@@ -25,6 +25,10 @@
             }
         }
     }
+    &__description {
+        @include padding-left($padding-l);
+        @include margin-bottom($margin-l);
+    }
     &__link {
         @include margin-left($margin-md);
         @include margin-bottom($margin-md);
@@ -223,6 +227,35 @@
                     padding-right: 15px;
                 }
             }
+        }
+    }
+    .separator {
+        border-right: 1px solid $color-mercury;
+        &.twoCol {
+            &:nth-child(2n) {
+                border-right: 0 none;
+            }
+        }
+        &.threeCol {
+            &:nth-child(3n) {
+                border-right: 0 none;
+            }
+        }
+        &.fourCol {
+            &:nth-child(4n) {
+                border-right: 0 none;
+            }
+        }
+        &.fiveCol {
+            &:nth-child(5n) {
+                border-right: 0 none;
+            }
+        }
+        @media #{$mobile} {
+            border-right: 0 none;
+        }
+        &:last-child {
+            border-right: 0 none;
         }
     }
     @media #{$mobile} {
