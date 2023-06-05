@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-class Megamenuconfig {
+class MegaMenuNavigationLinks {
   constructor({ el }) {
     this.root = $(el);
   }
@@ -28,4 +28,4 @@ class Megamenuconfig {
   }
 }
 
-export default Megamenuconfig;
+export default MegaMenuNavigationLinks;
