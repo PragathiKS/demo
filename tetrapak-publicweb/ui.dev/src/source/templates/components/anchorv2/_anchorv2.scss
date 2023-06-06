@@ -20,6 +20,7 @@
             @include margin($margin-zero);
         }
         @media #{$mobile} {
+            padding-bottom: $padding-md;
             border-bottom: 1px solid $color-mercury;
         }
         &.show-secondary .secondary {
@@ -164,11 +165,13 @@
             font-weight: 700;
         }
         &.active > i.icon.with-arrow {
+            color: $color-tundora;
             &::before {
                 transform: rotate(-90deg);
             }
         }
         i.icon.with-arrow {
+            color: $color-tundora;
             &::before {
                 transform: rotate(90deg);
             }
