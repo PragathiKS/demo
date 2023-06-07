@@ -25,22 +25,8 @@ public class AnchorModel extends com.tetrapak.publicweb.core.models.AnchorModel 
     @Self
     private SlingHttpServletRequest request;
 
-    @ValueMapValue
-    private String ctaLinkText;
-
-    @ValueMapValue
-    private String ctaLinkUrl;
-
     public List<AnchorBean> getAnchorDetailList() {
 
         return anchorModel.getAnchorDetailList();
-    }
-
-    public String getCtaLinkText() {
-        return ctaLinkText;
-    }
-
-    public String getCtaLinkUrl() {
-        return LinkUtils.sanitizeLink(ctaLinkUrl,request);
     }
 }
