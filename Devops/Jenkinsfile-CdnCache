@@ -12,7 +12,7 @@ pipeline {
         booleanParam defaultValue: true, description: 'Please check in case you want to delete Customerhub cache', name: 'Customerhub'
         booleanParam defaultValue: false, description: 'Please check in case you want to delete Brandsource cache', name: 'Brandsource'
         booleanParam defaultValue: true, description: 'Please check in case you want to delete Tetralaval cache', name: 'Tetralaval'
-         booleanParam defaultValue: true, description: 'Please check in case you want to delete Supplierportal cache', name: 'Supplierportal'
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete Supplierportal cache', name: 'Supplierportal'
     }
 
     options {
@@ -34,7 +34,7 @@ pipeline {
                         urls <<  "\"https://mypages-${env}.tetrapak.com/\""
                     }
                     if (params.Tetralaval) {
-                        urls <<  "\"https://www-${env}tetralaval.com/\""
+                        urls <<  "\"https://www-${env}.tetralaval.com/\""
                     }
                     if (params.Supplierportal) {
                         urls <<  "\"https://supplier-${env}.tetrapak.com/\""
