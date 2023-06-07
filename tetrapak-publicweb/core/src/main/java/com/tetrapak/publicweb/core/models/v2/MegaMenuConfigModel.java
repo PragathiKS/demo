@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.models;
+package com.tetrapak.publicweb.core.models.v2;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;

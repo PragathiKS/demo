@@ -1,18 +1,19 @@
-package com.tetrapak.publicweb.core.models;
+package com.tetrapak.publicweb.core.models.v2;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.constants.PWConstants;
+import com.tetrapak.publicweb.core.models.LinkModel;
+import com.tetrapak.publicweb.core.models.MainNavigationLinkModel;
+import com.tetrapak.publicweb.core.models.MarketSelectorModel;
+import com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel;
+import com.tetrapak.publicweb.core.models.MegaMenuSolutionModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import com.tetrapak.publicweb.core.utils.NavigationUtil;
+import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
@@ -21,13 +22,12 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.publicweb.core.beans.LinkBean;
-import com.tetrapak.publicweb.core.constants.PWConstants;
-import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.utils.NavigationUtil;
-import com.tetrapak.publicweb.core.utils.PageUtil;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * The Class HeaderModel.
@@ -55,7 +55,9 @@ public class HeaderModel {
     private String loginLink;
 
     /** The contact us link. */
-    private String contactUsLink;
+    private List<LinkModel> secondaryNavigationLinks;
+
+    private List<MainNavigationLinkModel> mainNavigationLinks;
 
     /** The contact us alt text. */
     private String contactUsAltText;
@@ -71,9 +73,6 @@ public class HeaderModel {
 
     /** The market Selector Flag. */
     private Boolean marketSelectorDisabled;
-
-    /** The mega menu links list. */
-    private final List<LinkBean> megaMenuLinksList = new ArrayList<>();
 
     /** The mega menu configuration model. */
     private MegaMenuConfigurationModel megaMenuConfigurationModel;
@@ -120,13 +119,13 @@ public class HeaderModel {
                 logoImagePath = configurationModel.getLogoImagePath();
                 logoLink = LinkUtils.sanitizeLink(configurationModel.getLogoLink(),request);
                 logoAlt = configurationModel.getLogoAlt();
-                contactUsLink = LinkUtils.sanitizeLink(configurationModel.getContactLink(),request);
-                contactUsAltText = configurationModel.getContactText();
                 loginLabel = configurationModel.getLoginLabel();
                 loginLink = LinkUtils.sanitizeLink(configurationModel.getLoginLink(),request);
-                solutionPage = configurationModel.getSolutionPage();
                 searchPage = LinkUtils.sanitizeLink(configurationModel.getSearchPage(),request);
                 marketSelectorDisabled = configurationModel.getMarketSelectorDisabled();
+                secondaryNavigationLinks = configurationModel.getSecondaryNavigationLinks();
+                mainNavigationLinks = configurationModel.getMainNavigationLinks();
+
                 Page countryPage = PageUtil.getCountryPage(currentPage);
 		if (Objects.nonNull(countryPage) && !countryPage.getName().equals(PWConstants.LANG_MASTERS)) {
 		    countryTitle = countryPage.getProperties().get(PWConstants.PROP_COUNTRY_NAME, "");
@@ -135,72 +134,10 @@ public class HeaderModel {
 		    LOGGER.debug("countryTitle: {}", countryTitle);
 		}
             }
-            setMegaMenuLinksList(rootPath);
-            setSolutionPageTitle();
         }
 
     }
 
-    /**
-     * Sets the mega menu links list.
-     *
-     * @param rootPath
-     *            the new mega menu links list
-     */
-    public void setMegaMenuLinksList(final String rootPath) {
-        final Resource rootResource = request.getResourceResolver().getResource(rootPath);
-        if (Objects.nonNull(rootResource)) {
-            final ResourceResolver resourceResolver = rootResource.getResourceResolver();
-            final PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
-            if (Objects.nonNull(pageManager)) {
-                final Page page = pageManager.getContainingPage(rootResource);
-                setLinkBean(page);
-            } else {
-                LOGGER.error("Page Manager is null");
-            }
-        }
-    }
-
-    /**
-     * Sets the link bean.
-     *
-     * @param page
-     *            the new link bean
-     */
-    private void setLinkBean(final Page page) {
-        if (Objects.nonNull(page)) {
-            final Iterator<Page> childPages = page.listChildren();
-            while (childPages.hasNext()) {
-                populateMegaMenuLinksList(childPages);
-            }
-        }
-    }
-
-    /**
-     * Populate mega menu links list.
-     *
-     * @param childPages
-     *            the child pages
-     */
-    private void populateMegaMenuLinksList(final Iterator<Page> childPages) {
-        final Page childPage = childPages.next();
-        if (!childPage.isHideInNav()) {
-            final LinkBean linkBean = new LinkBean();
-            final String title = NavigationUtil.getNavigationTitle(childPage);
-            linkBean.setLinkText(title);
-            linkBean.setLinkPath(LinkUtils.sanitizeLink(childPage.getPath(), request));
-            final String solutionPageWithoutExtension = NavigationUtil.getSolutionPageWithoutExtension(solutionPage);
-            if (!childPage.getPath().equalsIgnoreCase(solutionPageWithoutExtension)) {
-                final SectionMenuModel sectionMenuModel = new SectionMenuModel();
-                sectionMenuModel.setSectionHomePageTitle(childPage);
-                sectionMenuModel.setSectionHomePagePath(childPage, request);
-                sectionMenuModel.populateSectionMenu(megaMenuConfigurationModel, childPage,
-                        solutionPageWithoutExtension, request);
-                linkBean.setNavigationConfigurationModel(sectionMenuModel);
-            }
-            megaMenuLinksList.add(linkBean);
-        }
-    }
 
     /**
      * Gets the logo image path.
@@ -239,15 +176,6 @@ public class HeaderModel {
     }
 
     /**
-     * Gets the contact link.
-     *
-     * @return the contact link
-     */
-    public String getContactUsLink() {
-        return contactUsLink;
-    }
-
-    /**
      * Gets the contact text.
      *
      * @return the contact text
@@ -265,15 +193,6 @@ public class HeaderModel {
         return loginLabel;
     }
 
-    /**
-     * Gets the mega menu links list.
-     *
-     * @return the mega menu links list
-     */
-    public List<LinkBean> getMegaMenuLinksList() {
-        return new ArrayList<>(megaMenuLinksList);
-    }
-    
     /**
     * Gets the mega menu configuration model.
     *
@@ -352,15 +271,6 @@ public class HeaderModel {
         return solutionPageTitle;
     }
 
-    /**
-     * Sets the solution page title.
-     *
-     * @param headerConfigurationResource
-     *            the new solution page title
-     */
-    private void setSolutionPageTitle() {
-        this.solutionPageTitle = NavigationUtil.getSolutionPageTitle(request, solutionPage);
-    }
 
     /**
      * @return markets list
@@ -434,5 +344,13 @@ public class HeaderModel {
      */
     public String getCountryTitle() {
 	return countryTitle;
+    }
+
+    public List<LinkModel> getSecondaryNavigationLinks() {
+        return secondaryNavigationLinks;
+    }
+
+    public List<MainNavigationLinkModel> getMainNavigationLinks() {
+        return mainNavigationLinks;
     }
 }

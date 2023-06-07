@@ -1,8 +1,11 @@
-package com.tetrapak.publicweb.core.models;
+package com.tetrapak.publicweb.core.models.v2;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
+import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.beans.LanguageBean;
+import com.tetrapak.publicweb.core.beans.MarketBean;
+import com.tetrapak.publicweb.core.models.v2.HeaderConfigurationModel;
+import com.tetrapak.publicweb.core.models.v2.HeaderModel;
+import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
@@ -10,11 +13,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import com.day.cq.wcm.api.Page;
-import com.tetrapak.publicweb.core.beans.LanguageBean;
-import com.tetrapak.publicweb.core.beans.MarketBean;
-
-import io.wcm.testing.mock.aem.junit.AemContext;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class HeaderModelTest {
     @Rule
@@ -54,7 +54,7 @@ public class HeaderModelTest {
     private static final String RESOURCE1 = TEST_CONTENT_ROOT1 + "/jcr:content/root/responsivegrid/megamenuconfig";
 
     /** The model. */
-    private HeaderModel model;
+    private com.tetrapak.publicweb.core.models.v2.HeaderModel model;
 
     /** The resource. */
     private Resource resource;
@@ -70,8 +70,6 @@ public class HeaderModelTest {
     
     @Mock
     private Page currentPage;
-    
-    Class<HeaderModel> modelClass = HeaderModel.class;
     
     /**
      * Sets the up.
@@ -93,7 +91,7 @@ public class HeaderModelTest {
         context.request().setPathInfo(TEST_CONTENT_ROOT);
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
-        model = request.adaptTo(modelClass);
+        model = request.adaptTo(HeaderModel.class);
         
         marketBean.setMarketName("Belgium");
         marketBean.setCountryName("Belgique");
@@ -113,16 +111,9 @@ public class HeaderModelTest {
         assertEquals("Header", "Logo ", model.getLogoAlt());
         assertEquals("Header", "http://www.google.com", model.getLoginLink());
         assertEquals("Header", "Login Label", model.getLoginLabel());
-        assertEquals("Header", "/content/tetrapak/publicweb/global/en.html", model.getContactUsLink());
-        assertEquals("Header", "Contact Us Label", model.getContactUsAltText());
         assertEquals("Header", "/content/dam/tetrapak/publicweb/global/header/header.png", model.getLogoImagePath());
-        assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/check.html",
-                model.getMegaMenuLinksList().get(0).getLinkPath());
-        assertEquals("Header", "check", model.getMegaMenuLinksList().get(0).getLinkText());
         assertNotNull("Header", model.getMegaMenuConfigurationModel());
-        assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/solutions.html", model.getSolutionPage());
         assertEquals("Header", "/content/tetrapak/publicweb/language-masters/en/search.html", model.getSearchPage());
-        assertEquals("Header", "Solutions", model.getSolutionPageTitle());
         assertEquals("Header", true, model.getMarketList().getMarkets().get(2).equals(marketBean));
         assertEquals("Header", "Belgium", model.getMarketList().getMarkets().get(2).getMarketName());
         assertEquals("Header", "Belgique", model.getMarketList().getMarkets().get(2).getCountryName());
@@ -198,7 +189,7 @@ public class HeaderModelTest {
         request.setResource(contextMarket.resourceResolver().getResource(RESOURCE_TWO));
         resource = contextMarket.currentResource(RESOURCE_TWO);
         contextMarket.addModelsForPackage("com.tetrapak.publicweb.core.models");
-        HeaderModel modalMarket = request.adaptTo(modelClass);
+        HeaderModel modalMarket = request.adaptTo(HeaderModel.class);
         
         assertEquals("Header", "Tetra Pak Global",
         	modalMarket.getMarketList().getGlobalMarketTitle());
@@ -214,7 +205,7 @@ public class HeaderModelTest {
         request.setResource(context.resourceResolver().getResource(RESOURCE_TWO));
         resource = context.currentResource(RESOURCE_TWO);
         context.addModelsForPackage("com.tetrapak.publicweb.core.models");
-        model = request.adaptTo(modelClass);
+        model = request.adaptTo(HeaderModel.class);
         
         marketBean.setMarketName("Tetra Pak Global");
         marketBean.setCountryName("Global");
