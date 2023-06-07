@@ -1,0 +1,71 @@
+@Library('jenkins-pipeline-library') _
+pipeline {
+    agent {
+       node {
+           label 'cfe-deploy'
+       }
+    }
+
+    parameters {
+        choice(name: 'Environment', choices: ['DEV','QA','STAGE',"SUP"], description: 'Select the environment')
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete Publicweb cache', name: 'Publicweb'
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete Customerhub cache', name: 'Customerhub'
+        booleanParam defaultValue: false, description: 'Please check in case you want to delete Brandsource cache', name: 'Brandsource'
+        booleanParam defaultValue: true, description: 'Please check in case you want to delete Tetralaval cache', name: 'Tetralaval'
+         booleanParam defaultValue: true, description: 'Please check in case you want to delete Supplierportal cache', name: 'Supplierportal'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+
+
+    stages {
+        stage('Delete Cdn Cache') {
+            steps {
+                script {
+                    def env = params.Environment.toLowerCase()
+                    def urls = []
+                    if (params.Publicweb) {
+                        urls <<  "https://www-${env}.tetrapak.com/"
+                    }
+                    if (params.Customerhub) {
+                        urls <<  "https://mypages-${env}.tetrapak.com/"
+                    }
+                    if (params.Tetralaval) {
+                        urls <<  "https://www-${env}tetralaval.com/"
+                    }
+                    if (params.Supplierportal) {
+                        urls <<  "https://supplier-${env}.tetrapak.com/"
+                    }
+
+                    def url_param = urls.join(' , ')
+
+                    sh "username='kumar.rajeev2@publicissapient.com' \
+                        apiKey='hteKgi4ZM2ytX#' \
+                        date=`env LANG='en_US.UTF-8' date -u \"+%a, %d %b %Y %H:%M:%S GMT\"` \
+                        password=`echo -en \"\$date\" | openssl dgst -sha1 -hmac \$apiKey -binary | openssl enc -base64` \
+                        curl -i --url 'https://api.cdnetworks.com/ccm/purge/ItemIdReceiver' \
+                        -X 'POST' \
+                        -u \"\$username:\$password\" \
+                        -H \"Date:\$date\" \
+                        -H 'Content-Type: application/json' \
+                        -d'{
+                            \"urls\": [
+                                ${url_param}
+                            ],
+                            \"urlAction\":\"delete\"
+                        }'
+                "
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
