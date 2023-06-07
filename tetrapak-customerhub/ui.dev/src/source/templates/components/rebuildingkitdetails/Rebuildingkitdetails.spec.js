@@ -126,5 +126,7 @@ describe('Rebuildingkitdetails', function () {
     });
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
     done();
-  });
+
+    
+  }); 
 });
