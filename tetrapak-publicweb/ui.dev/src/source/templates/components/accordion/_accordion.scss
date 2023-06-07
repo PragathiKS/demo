@@ -8,7 +8,6 @@
         padding: $padding-zero;
 
         @media #{$desktop} {
-            @include padding-right($padding-l);
             padding-left: $padding-zero;
         }
     }
@@ -78,20 +77,16 @@
             }
         }
         .icon-Arrow_Right_pw {
-            @include right($margin-md);
             @include width($spacing-big-half);
             @include height($spacing-big-half);
             @include font-size($font-sm);
             position: absolute;
+            right: 0;
             top: 0;
             bottom: 0;
             margin: auto;
             transition: transform $anim-speed-quick $anim-ease;
             transform: rotate(270deg);
-
-            @media #{$desktop} {
-                @include right($margin-md);
-            }
 
             &::before {
                 vertical-align: top;
