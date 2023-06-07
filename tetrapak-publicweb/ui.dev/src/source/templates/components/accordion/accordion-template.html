@@ -1,9 +1,9 @@
 <sly data-sly-template.accordion_template="${@data, flag}">
 
   <div class="pw-container" data-module="Accordion">
-    <div class="tp-accordion pw-padding--regular pw-margin--regular pw-theme--grayscale-white"
+    <div class="tp-accordion pw-padding--regular pw-margin--regular pw-theme--grayscale-white cmp-accordion"
       id="accordion_${resource.path.hashCode}" data-panelcontainer="${wcmmode.edit && 'accordion'}"
-      class="cmp-accordion" data-cmp-is="accordion" data-cmp-data-layer="${data.data.json}"
+      data-cmp-is="accordion" data-cmp-data-layer="${data.data.json}"
       data-cmp-single-expansion="${data.singleExpansion}"
       data-placeholder-text="${wcmmode.edit && 'Please drag Accordion item components here' @ i18n}">
       <h2 class="tp-accordion__heading" data-sly-test="${data.heading}"> ${data.heading}</h2>
