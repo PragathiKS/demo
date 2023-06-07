@@ -1,4 +1,4 @@
-package com.tetrapak.publicweb.core.models;
+package com.tetrapak.publicweb.core.models.v2;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;

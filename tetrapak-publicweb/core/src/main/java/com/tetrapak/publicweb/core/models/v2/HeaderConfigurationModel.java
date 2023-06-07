@@ -1,5 +1,7 @@
-package com.tetrapak.publicweb.core.models;
+package com.tetrapak.publicweb.core.models.v2;
 
+import com.tetrapak.publicweb.core.models.LinkModel;
+import com.tetrapak.publicweb.core.models.MainNavigationLinkModel;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
@@ -8,9 +10,10 @@ import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
- * The Class HeaderConfigurationModel.
+ * The Class NewHeaderConfigurationModel.
  */
 @Model(adaptables = {Resource.class} , defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeaderConfigurationModel {
@@ -39,18 +42,6 @@ public class HeaderConfigurationModel {
     @Inject
     private String loginLabel;
 
-    /** The contact link. */
-    @Inject
-    private String contactLink;
-
-    /** The contact text. */
-    @Inject
-    private String contactText;
-
-    /** The solution page. */
-    @ValueMapValue
-    private String solutionPage;
-
     /** The market title. */
     @ValueMapValue
     private String marketTitle;
@@ -62,6 +53,12 @@ public class HeaderConfigurationModel {
     /** The search page. */
     @ValueMapValue
     private String searchPage;
+
+    @Inject
+    private List<LinkModel> secondaryNavigationLinks;
+
+    @Inject
+    private List<MainNavigationLinkModel> mainNavigationLinks;
 
     /**
      * Gets the logo image path.
@@ -108,32 +105,6 @@ public class HeaderConfigurationModel {
         return loginLabel;
     }
 
-    /**
-     * Gets the contact link.
-     *
-     * @return the contact link
-     */
-    public String getContactLink() {
-        return contactLink;
-    }
-
-    /**
-     * Gets the contact text.
-     *
-     * @return the contact text
-     */
-    public String getContactText() {
-        return contactText;
-    }
-
-    /**
-     * Gets the solution page.
-     *
-     * @return the solution page
-     */
-    public String getSolutionPage() {
-        return solutionPage;
-    }
 
     /**
      * Gets the market title.
@@ -160,4 +131,13 @@ public class HeaderConfigurationModel {
     public Boolean getMarketSelectorDisabled() {
         return marketSelectorDisabled;
     }
+
+    public List<LinkModel> getSecondaryNavigationLinks() {
+        return secondaryNavigationLinks;
+    }
+
+    public List<MainNavigationLinkModel> getMainNavigationLinks() {
+        return mainNavigationLinks;
+    }
+
 }
