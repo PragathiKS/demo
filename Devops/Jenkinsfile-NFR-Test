@@ -8,7 +8,7 @@ pipeline {
     }
     
     triggers {
-        cron('H H(21-23) * * 3,7')
+        cron('H H(21-23) * * 7')
     }
     
     parameters {
@@ -163,6 +163,7 @@ pipeline {
             steps {
                 script {
                     sh "rm -rf reports 2> /dev/null && mkdir reports"
+                    sh label: "Clean past Reports", script: "rm -f reports_20*.zip"
                     if (params.ZAP_Run) {
                         sh label: "Copy ZAP Report", script: "mkdir -p  reports/zap && cp -a Devops/zap/. reports/zap/ 2> /dev/null"
                         sh label: "Clean ZAP working dir", script: "sudo rm -rf Devops/zap 2> /dev/null"
