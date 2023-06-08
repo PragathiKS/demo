@@ -76,7 +76,7 @@
         background-color: $color-white;
         box-shadow: 0 4px 16px $shadow;
         border-radius: 4px;
-        padding: 18px 24px;
+        padding: $padding-eighteen $padding-l;
         li {
             text-align: center;
         }
@@ -122,7 +122,7 @@
     }
     .pw-progress-indicator-container {
         position: absolute;
-        bottom: $padding-zero;
+        bottom: 0;
         padding-bottom: 25px;
         @media #{$mobile} {
             display: none;
