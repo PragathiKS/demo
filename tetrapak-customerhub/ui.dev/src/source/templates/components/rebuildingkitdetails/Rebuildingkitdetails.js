@@ -199,7 +199,7 @@ function  _renderRebuildingKitReportModal() {
             serialnumber: $this.cache.$rebuildingData.serialNumber,
             reportedrebuildingkit: $this.cache.$rebuildingData.rkNumber,
             reportedrebuildingkitname: $this.cache.$rebuildingData.rkDesc,
-            reportedby: 'My Tetra Pak',
+            // reportedby: 'My Tetra Pak',
             comment: formData.get('comments'),
             currentstatus: $this.cache.$rebuildingData.implStatus,
             reportedstatus: formData.get('status'),
