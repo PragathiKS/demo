@@ -23,44 +23,39 @@
       "jcr:primaryType": "nt:unstructured",
       "jcr:createdBy": "admin",
       "description": "Description of the accordion component",
+      "headingElement": "h3",
       "jcr:lastModifiedBy": "admin",
-      "jcr:created": "Thu May 11 2023 12:53:14 GMT+0530",
+      "jcr:created": "Thu Jun 08 2023 12:27:29 GMT+0530",
       "heading": "Heading of the accordion component",
-      "jcr:lastModified": "Fri May 12 2023 15:33:59 GMT+0530",
+      "jcr:lastModified": "Thu Jun 08 2023 16:28:24 GMT+0530",
       "singleExpansion": "false",
       "sling:resourceType": "publicweb/components/content/accordion",
-      "item_1683797247242": {
+      "teaser": {
         "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
         "logicalOperator": "and",
         "numberOfColumns": "3",
-        "cq:panelTitle": "Teaser Component",
+        "cq:panelTitle": "Teaser",
         "jcr:lastModifiedBy": "admin",
         "contentType": "automatic",
+        "jcr:created": "Thu Jun 08 2023 12:27:45 GMT+0530",
         "pwTheme": "grayscale-white",
-        "tags": [ "tetrapak:packaging/package-type/tetra-brik" ],
-        "jcr:lastModified": "Thu May 11 2023 14:58:04 GMT+0530",
+        "heading": "Teaser Component Heading",
+        "jcr:lastModified": "Thu Jun 08 2023 16:28:37 GMT+0530",
         "sling:resourceType": "publicweb/components/content/teaser",
         "displayDate": "false"
       },
-      "item_1684124494552": {
+      "medialink": {
         "jcr:primaryType": "nt:unstructured",
-        "cq:panelTitle": "2",
+        "jcr:createdBy": "admin",
+        "cq:panelTitle": "Media & Link",
         "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Jun 08 2023 12:27:49 GMT+0530",
         "pwTheme": "grayscale-white",
-        "headingDesc": "This is media and link description",
-        "heading": "This is media and link heading ",
-        "jcr:lastModified": "Mon May 15 2023 09:53:32 GMT+0530",
-        "columnOneTitle": "Link 1",
-        "sling:resourceType": "publicweb/components/content/mediaLink",
-        "columnOneList": {
-          "jcr:primaryType": "nt:unstructured",
-          "item0": {
-            "jcr:primaryType": "nt:unstructured",
-            "linkLabel": "Link 1 label",
-            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home/test-page",
-            "linkDesc": "This is link description"
-          }
-        }
+        "headingDesc": "Media & Link description",
+        "heading": "Media & Link heading",
+        "jcr:lastModified": "Thu Jun 08 2023 16:29:05 GMT+0530",
+        "sling:resourceType": "publicweb/components/content/mediaLink"
       }
     }
   }
