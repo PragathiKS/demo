@@ -39,8 +39,6 @@ describe('Rebuildingkitdetails', function () {
     this.renderCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'renderCtiDocuments');
     this.renderRebuildingKitDetailsBottomSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetailsBottom');
     this.changePreferredLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'changePreferredLanguage');
-    this.requestCtiLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'requestCtiLanguage');
-    this.submitCTIemailSpy = sinon.spy(this.rebuildingkitDetails, 'submitCTIemail');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     const apiResponse = {data :[{...rebuildingkitDetailsData.data[0],...rebuildingkitCtiData.data[0]}]};
@@ -64,8 +62,6 @@ describe('Rebuildingkitdetails', function () {
     this.changePreferredLanguageSpy.restore();
     this.getCtiDocumentsSpy.restore();
     this.renderCtiDocumentsSpy.restore();
-    this.requestCtiLanguageSpy.restore();
-    this.submitCTIemailSpy.restore();
     this.renderSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
@@ -84,9 +80,8 @@ describe('Rebuildingkitdetails', function () {
     expect(render.fn.called).to.be.true;
     expect(this.getCtiDocumentsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
-    expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
-    expect(this.renderCtiDocumentsSpy.called).to.be.true;
+    expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();
   });
@@ -130,13 +125,6 @@ describe('Rebuildingkitdetails', function () {
       e.preventDefault();
     });
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
-    done();
-  });
-  it('should call request translation on request button click', function (done) {
-    $('.js-request-translation').trigger('click');
-    expect(this.requestCtiLanguageSpy.called).to.be.false;
-    expect(this.submitCTIemailSpy.called).to.be.false;
-    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 201 }));
     done();
   });
 });

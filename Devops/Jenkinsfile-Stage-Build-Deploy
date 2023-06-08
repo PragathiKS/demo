@@ -229,7 +229,7 @@ pipeline {
                 prodartifactdownload()
                 parallel (
                     "Author Tetralaval" : {
-                        authordeploylaval()
+                        authordeploy()
                     },
                     "Publisher Tetralaval" : {
                         publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
