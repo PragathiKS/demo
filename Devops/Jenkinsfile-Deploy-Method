@@ -8,7 +8,7 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'Environment', choices: ['QA65', 'SUP65', 'DEV65'], description: 'Select the environment')
+        choice(name: 'Environment', choices: ['QA', 'DEV','SUP'], description: 'Select the environment')
         booleanParam defaultValue: false, description: 'Please check in case you want to build Commons Module', name: 'DeployCommons'
         string(name: 'Snapshot_Commons', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
         
@@ -47,16 +47,17 @@ pipeline {
 
         stage('Author and Publisher Deployment') {
             steps {
-                script {                
-                    if (params.Environment == "SUP65") {
-                        author_url = "https://author1westeurope.sup65.tetrapak.adobecqms.net"
-                        publish_url = "https://publish1westeurope.sup65.tetrapak.adobecqms.net" 
-                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
+                script {     
+                    if (params.Environment == "QA") {
+                        author_url = "https://author1westeurope.test65.tetrapak.adobecqms.net"
+                        publish_url = "https://publish1westeurope.test65.tetrapak.adobecqms.net"
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username', passwordVariable: 'password']])
                         {
-                            supdeployment()
+                            devdeployment()
                         }
                     }
-                    if (params.Environment == "DEV65") {
+                               
+                    if (params.Environment == "DEV") {
 
                         author_url = "https://author1westeurope.dev65.tetrapak.adobecqms.net"
                         publish_url = "https://publish1westeurope.dev65.tetrapak.adobecqms.net"
@@ -65,14 +66,16 @@ pipeline {
                             devdeployment()
                         }
                     }
-                    if (params.Environment == "QA65") {
-                        author_url = "https://author1westeurope.test65.tetrapak.adobecqms.net"
-                        publish_url = "https://publish1westeurope.test65.tetrapak.adobecqms.net"
-                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredqa', usernameVariable: 'username', passwordVariable: 'password']])
+
+                    if (params.Environment == "SUP") {
+                        author_url = "https://author1westeurope.sup65.tetrapak.adobecqms.net"
+                        publish_url = "https://publish1westeurope.sup65.tetrapak.adobecqms.net" 
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aemcredsup', usernameVariable: 'username', passwordVariable: 'password']])
                         {
-                            devdeployment()
+                            supdeployment()
                         }
                     }
+
                     if (params.Environment == "STAGE65") {                          
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sapient-user', usernameVariable: 'username', passwordVariable: 'password']])
                         {                           
@@ -321,22 +324,9 @@ pipeline {
     }
 
     def cacheflush() { 
-            withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-            {
-                if (params.Environment == "SUP65") {
-                   sh label: "Starting SUP65 Dispatcher Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.97.72 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'     
-                }
-                if (params.Environment == "DEV65") {
-                    sh label: "Starting DEV65 Dispatcher Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'  
-                }
-                if (params.Environment == "QA65") {
-                    sh label: "Starting QA65 Dispatcher Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'  
-                }
-                if (params.Environment == "STAGE65") {                      
-                    sh label: "Starting STAGE65 Dispatcher 1 Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"' 
-                    sh label: "Starting STAGE65 Dispatcher 2 Cache Clear", script: 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'  
-                }
-            }
+        build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: params.Environment)], wait: true
+
+        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: params.Environment), booleanParam(name: 'Publicweb', value: params.DeployPublicWeb), booleanParam(name: 'Customerhub', value: params.DeployMyTetrapak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.DeployTetraLaval), booleanParam(name: 'Supplierportal', value: params.DeploySupplierportal)], wait: true  
     }
 
    def precheck() {
