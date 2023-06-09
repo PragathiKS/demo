@@ -4,9 +4,8 @@ import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.LinkModel;
 import com.tetrapak.publicweb.core.models.MainNavigationLinkModel;
-import com.tetrapak.publicweb.core.models.MarketSelectorModel;
+import com.tetrapak.publicweb.core.models.v2.MarketSelectorModel;
 import com.tetrapak.publicweb.core.models.MegaMenuConfigurationModel;
-import com.tetrapak.publicweb.core.models.MegaMenuSolutionModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
 import com.tetrapak.publicweb.core.utils.NavigationUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
@@ -109,7 +108,7 @@ public class HeaderModel {
         if (languagePage != null && languagePage.getParent() != null) {
             marketPage = languagePage.getParent();
         }
-        final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfiguration";
+        final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfigurationv";
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
         megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo());
         if (Objects.nonNull(headerConfigurationResource)) {
@@ -200,57 +199,6 @@ public class HeaderModel {
     */
    public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
        return megaMenuConfigurationModel;
-    }
-
-    /**
-     * Gets the end to end solution section.
-     *
-     * @return the end to end solution section
-     */
-    public List<MegaMenuSolutionModel> getEndToEndSolutionSection() {
-        final List<MegaMenuSolutionModel> endToEndSolutionList = new ArrayList<>();
-        final List<MegaMenuSolutionModel> endToEndSolution = megaMenuConfigurationModel.getEndToEndSolutionSection();
-        if (CollectionUtils.isNotEmpty(endToEndSolution)) {
-            endToEndSolution.forEach(f -> {
-                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
-                endToEndSolutionList.add(f);
-            });
-        }
-        return endToEndSolutionList;
-    }
-
-    /**
-     * Gets the link section.
-     *
-     * @return the link section
-     */
-    public List<LinkModel> getLinkSection() {
-        final List<LinkModel> linkSectionList = new ArrayList<>();
-        final List<LinkModel> linkSection = megaMenuConfigurationModel.getLinkSection();
-        if (CollectionUtils.isNotEmpty(linkSection)) {
-            linkSection.forEach(f -> {
-                f.setLinkUrl(LinkUtils.sanitizeLink(f.getLinkUrl(), request));
-                linkSectionList.add(f);
-            });
-        }
-        return linkSectionList;
-    }
-
-    /**
-     * Gets the food category section.
-     *
-     * @return the food category section
-     */
-    public List<MegaMenuSolutionModel> getFoodCategorySection() {
-        final List<MegaMenuSolutionModel> foodCategoryList = new ArrayList<>();
-        final List<MegaMenuSolutionModel> foodCategorySection = megaMenuConfigurationModel.getFoodCategorySection();
-        if (CollectionUtils.isNotEmpty(foodCategorySection)) {
-            foodCategorySection.forEach(f -> {
-                f.setPath(LinkUtils.sanitizeLink(f.getPath(), request));
-                foodCategoryList.add(f);
-            });
-        }
-        return foodCategoryList;
     }
 
     /**
