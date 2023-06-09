@@ -64,6 +64,12 @@ public class RebuildingKitDetailsModel {
 	 */
     @ValueMapValue
     private String rkAndEquipmentInformation;
+
+    /**
+	 * The view In E Biz Button
+	 */
+    @ValueMapValue
+    private String viewInEBizButton;
 	
 	/**
 	 * The Country Location
@@ -357,6 +363,7 @@ public class RebuildingKitDetailsModel {
     @PostConstruct protected void init() throws UnsupportedEncodingException {
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(CustomerHubConstants.RK_AND_EQUIPMENT_INFORMATION, getRkAndEquipmentInformation());
+         i18KeyMap.put(CustomerHubConstants.VIEW_IN_E_BIZ_BUTTON, getViewInEBizButton());
         i18KeyMap.put(CustomerHubConstants.COUNTRY_LOCATION, getCountryLocation());
         i18KeyMap.put(CustomerHubConstants.FUNCTIONAL_LOCATION, getFunctionalLocation());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MATERIAL, getEquipmentMaterial());
@@ -450,6 +457,15 @@ public class RebuildingKitDetailsModel {
      */
 	public String getRkAndEquipmentInformation() {
 		return rkAndEquipmentInformation;
+	}
+
+     /**
+     * Gets the viewInEBizButton.
+     *
+     * @return the viewInEBizButton
+     */
+	public String getViewInEBizButton() {
+		return viewInEBizButton;
 	}
 
     /**

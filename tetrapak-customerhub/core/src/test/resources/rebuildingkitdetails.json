@@ -39,6 +39,7 @@
         "rebuildingkitdetails": {
           "jcr:primaryType": "nt:unstructured",
           "rkAndEquipmentInformation": "cuhu.rebuildingkits.rkAndEquipmentInformation",
+          "viewInEBizButton": "cuhu.rebuildingkits.viewInEBizButton",
           "jcr:createdBy": "admin",
           "countryLocation": "cuhu.rebuildingkits.countryLocation",
           "functionalLocation": "cuhu.rebuildingkits.functionalLocation",

@@ -79,6 +79,7 @@ public class RebuildingKitDetailsModelTest {
 	@Test
 	public void testLabeli18NKeys() {
 		assertEquals("cuhu.rebuildingkits.rkAndEquipmentInformation",model.getRkAndEquipmentInformation());
+		assertEquals("cuhu.rebuildingkits.viewInEBizButton",model.getViewInEBizButton());
 		assertEquals("cuhu.rebuildingkits.countryLocation",model.getCountryLocation());
 		assertEquals("cuhu.rebuildingkits.functionalLocation",model.getFunctionalLocation());
 		assertEquals("cuhu.rebuildingkits.equipmentMaterial",model.getEquipmentMaterial());
