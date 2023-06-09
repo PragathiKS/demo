@@ -92,6 +92,36 @@ public final class TLConstants {
     /** The Constant for email template path in Contact Us Email Job. */
     public static final String JOB_TEMPLATE_PATH = "templatePath";
 
+    /** The Constant TEXT_VIDEO. */
+    public static final String TEXT_VIDEO = "textVideo";
+    /** The Constant AUTOMATIC. */
+    public static final String AUTOMATIC = "automatic";
+
+    /** The Constant SEMI_AUTOMATIC. */
+    public static final String SEMI_AUTOMATIC = "semi-automatic";
+
+    /** The Constant MANUAL. */
+    public static final String MANUAL = "manual";
+
+    /** The Constant MANUAL. */
+    public static final String MANUAL_LIST = "manualList";
+
+    /** The Constant ENABLE_JS_API. */
+    public static final String ENABLE_JS_API = "enablejsapi=1";
+
+    /** The Constant DESKTOP. */
+    public static final String DESKTOP = "desktop";
+
+    /** The Constant DESKTOP.*/
+    public static final String DESKTOP_LARGE = "desktopL";
+
+    /** The Constant MOBILELANDSCAPE. */
+    public static final String MOBILELANDSCAPE = "mobileL";
+
+    /** The Constant MOBILEPORTRAIT. */
+    public static final String MOBILEPORTRAIT = "mobileP";
+
+
     /**
      * Instantiates a new TL constants.
      */
