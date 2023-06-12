@@ -3,8 +3,6 @@ import $ from 'jquery';
 import 'bootstrap';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
 import { isMobile } from '../../../scripts/common/common';
-// import { trackAnalytics } from '../../../scripts/utils/analytics';
-// import { checkActiveOverlay, isDesktop } from '../../../scripts/common/common';
 
 
 class Headerv2 {

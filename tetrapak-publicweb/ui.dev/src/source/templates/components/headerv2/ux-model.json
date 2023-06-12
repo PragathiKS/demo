@@ -31,47 +31,47 @@
       {
         "linkText": "Solutions",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "solutions"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
       },
       {
         "linkText": "Innovation",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "innovation"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
       },
       {
         "linkText": "Sustainability",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "sustainability"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
       },
       {
         "linkText": "About Tetra Pak",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "about"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
       },
       {
         "linkText": "One more link 1",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "onemore"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
       },
       {
         "linkText": "One more link 2",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "onemore"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
       },
       {
         "linkText": "One more link 3",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "onemore"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
       },
       {
         "linkText": "One more link 4",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "onemore"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
       },
       {
         "linkText": "One more link 5",
         "linkUrl": "http://www.google.com",
-        "megaMenuPath": "onemore"
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
       }
     ],
     "marketList": {
