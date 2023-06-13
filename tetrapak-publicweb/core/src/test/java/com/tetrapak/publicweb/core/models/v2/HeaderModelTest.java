@@ -140,6 +140,8 @@ public class HeaderModelTest {
         assertEquals("Header", 43, model.getMarketList().getCol4Start());
         assertEquals("Header", 54, model.getMarketList().getCol4End());
         assertEquals("Header", false, model.getMarketSelectorDisabled());
+        assertEquals(2,model.getSecondaryNavigationLinks().size());
+        assertEquals(4,model.getMainNavigationLinks().size());
     }
     
     @Test
