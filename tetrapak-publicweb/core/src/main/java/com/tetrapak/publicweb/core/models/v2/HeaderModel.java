@@ -58,14 +58,8 @@ public class HeaderModel {
 
     private List<MainNavigationLinkModel> mainNavigationLinks;
 
-    /** The contact us alt text. */
-    private String contactUsAltText;
-
     /** The login label. */
     private String loginLabel;
-
-    /** The solution page. */
-    private String solutionPage;
 
     /** The search page. */
     private String searchPage;
@@ -75,9 +69,6 @@ public class HeaderModel {
 
     /** The mega menu configuration model. */
     private MegaMenuConfigurationModel megaMenuConfigurationModel;
-
-    /** The solution page title. */
-    private String solutionPageTitle;
 
     /** The market page. */
     private Page marketPage;
@@ -137,92 +128,30 @@ public class HeaderModel {
 
     }
 
-
-    /**
-     * Gets the logo image path.
-     *
-     * @return the logo image path
-     */
     public String getLogoImagePath() {
         return logoImagePath;
     }
 
-    /**
-     * Gets the logo link.
-     *
-     * @return the logo link
-     */
     public String getLogoLink() {
         return logoLink;
     }
 
-    /**
-     * Gets the logo alt.
-     *
-     * @return the logo alt
-     */
     public String getLogoAlt() {
         return logoAlt;
     }
 
-    /**
-     * Gets the login link.
-     *
-     * @return the login link
-     */
     public String getLoginLink() {
         return loginLink;
     }
 
-    /**
-     * Gets the contact text.
-     *
-     * @return the contact text
-     */
-    public String getContactUsAltText() {
-        return contactUsAltText;
-    }
-
-    /**
-     * Gets the login label.
-     *
-     * @return the login label
-     */
     public String getLoginLabel() {
         return loginLabel;
     }
 
-    /**
-    * Gets the mega menu configuration model.
-    *
-    * @return the mega menu configuration model
-    */
    public MegaMenuConfigurationModel getMegaMenuConfigurationModel() {
        return megaMenuConfigurationModel;
     }
 
-    /**
-     * Gets the solution page.
-     *
-     * @return the solution page
-     */
-    public String getSolutionPage() {
-        return LinkUtils.sanitizeLink(solutionPage, request);
-    }
-
-    /**
-     * Gets the solution page title.
-     *
-     * @return the solution page title
-     */
-    public String getSolutionPageTitle() {
-        return solutionPageTitle;
-    }
-
-
-    /**
-     * @return markets list
-     */
     public MarketSelectorModel getMarketList() {
         return request.adaptTo(MarketSelectorModel.class);
     }
@@ -284,12 +213,7 @@ public class HeaderModel {
     public Boolean getMarketSelectorDisabled() {
         return marketSelectorDisabled;
     }
-    
-    /**
-     * Gets the country page's title
-     * 
-     * @return country title
-     */
+
     public String getCountryTitle() {
 	return countryTitle;
     }
