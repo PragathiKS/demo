@@ -66,11 +66,11 @@
                                 <items jcr:primaryType="nt:unstructured">
                                     <center
                                         jcr:primaryType="nt:unstructured"
+                                        selected="true"
                                         text="Center"
                                         value="center"/>
                                     <left
                                         jcr:primaryType="nt:unstructured"
-                                        selected="true"
                                         text="Left"
                                         value="left"/>
 
