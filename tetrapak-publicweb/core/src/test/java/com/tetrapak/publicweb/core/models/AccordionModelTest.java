@@ -11,25 +11,26 @@ import org.junit.Test;
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 public class AccordionModelTest {
-	@Rule
-	public AemContext context = new AemContext();
 
-	/** The Constant RESOURCE_CONTENT. */
-	private static final String RESOURCE_CONTENT = "/accordion/test-content.json";
+    @Rule
+    public AemContext context = new AemContext();
 
-	/** The Constant TEST_CONTENT_ROOT. */
-	private static final String TEST_CONTENT_ROOT = "/content/tetrapak/publicweb/en/dashboard";
+    /** The Constant RESOURCE_CONTENT. */
+    private static final String RESOURCE_CONTENT = "/accordion/test-content.json";
 
-	/** The Constant RESOURCE. */
-	private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/root/responsivegrid/accordion";
+    /** The Constant TEST_CONTENT_ROOT. */
+    private static final String TEST_CONTENT_ROOT = "/content/publicweb/en";
 
-	/** The model. */
-	private AccordionModel model;
+    /** The Constant RESOURCE. */
+    private static final String RESOURCE = TEST_CONTENT_ROOT + "/jcr:content/accordion";
 
-	/** The resource. */
-	private Resource resource;
+    /** The model. */
+    private AccordionModel model;
 
-	 /**
+    /** The resource. */
+    private Resource resource;
+
+    /**
      * Sets the up.
      *
      * @throws Exception
@@ -41,11 +42,15 @@ public class AccordionModelTest {
         Class<AccordionModel> modelClass = AccordionModel.class;
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
-        context.addModelsForClasses(modelClass);        
+        context.addModelsForClasses(modelClass);
+        
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(TEST_CONTENT_ROOT);
+        request.setResource(context.resourceResolver().getResource(RESOURCE));
         resource = context.currentResource(RESOURCE);
-        model = resource.adaptTo(modelClass);
+        model = request.adaptTo(modelClass);
     }
-    
+
     /**
      * Test model, resource and all getters of the Footer Config model.
      *
@@ -55,7 +60,7 @@ public class AccordionModelTest {
     @Test
     public void testSimpleLoadAndGetters() throws Exception {
     	assertEquals("Heading of the accordion component", model.getHeading());
-        assertEquals("Accordion list - Heading 2", model.getAccordionList().get(1).getAccordionHeading());
+        assertEquals("Description of the accordion component", model.getDescription());
      
-    }
+    }    
 }
