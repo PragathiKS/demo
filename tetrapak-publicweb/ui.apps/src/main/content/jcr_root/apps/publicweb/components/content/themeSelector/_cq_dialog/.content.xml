@@ -64,15 +64,16 @@
                                     fieldLabel="Text Alignment"
                                     name="./pwTextAlignment">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <left
-                                            jcr:primaryType="nt:unstructured"
-                                            selected="true"
-                                            text="Left"
-                                            value="left"/>
                                     <center
-                                            jcr:primaryType="nt:unstructured"
-                                            text="Center"
-                                            value="center"/>
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Center"
+                                        value="center"/>
+                                    <left
+                                        jcr:primaryType="nt:unstructured"
+                                        selected="true"
+                                        text="Left"
+                                        value="left"/>
+
                                 </items>
                             </pwTextAlignment>
                             <pwButtonThemes
