@@ -41,9 +41,7 @@
         color: $color-tundora;
         background-color: transparent;
         // border-top: $letter-spacing-sm solid $color-mercury;
-        @media #{$desktop} {
-            border-bottom: $letter-spacing-sm solid $color-mercury;
-        }
+        border-bottom: $letter-spacing-sm solid $color-mercury;
         margin-top: -$letter-spacing-sm;
         position: relative;
         width: 100%;
