@@ -1,7 +1,7 @@
 <sly data-sly-template.medialink_template="${@data, flag}">
     <sly
         data-sly-test.mediaLinkSubHeadingClass="${(data.columnOneTitle || data.columnTwoTitle || data.columnThreeTitle) ? 'medialink__subheading' : ''}" />
-    <div id="${data.anchorId}" title="${data.anchorTitle}">
+    <div class="pw-container" id="${data.anchorId}" title="${data.anchorTitle}">
         <div class="medialink pw-theme--${data.pwTheme}" data-module="MediaLink">
             <div data-sly-test="${data.heading}" class="medialink__heading">
                 <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
