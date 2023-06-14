@@ -16,6 +16,17 @@
     &--bgColor-grey {
         @include column;
         background-color: $color-wild-sand;
+
+        .tp-pw-megamenuheading {
+            h2 {
+                color: $color-tundora;
+            }
+        }
+        h4 {
+            font-size: $font-xs;
+        }
+
+
     }
     &__item {
         width: 100%;

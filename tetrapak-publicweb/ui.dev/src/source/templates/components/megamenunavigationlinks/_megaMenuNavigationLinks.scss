@@ -1,5 +1,5 @@
 .tp-pw-megamenunavigationlinks {
-    padding: 0 $padding-xxxl;
+    padding: 0 $padding-xxxl $spacing-big-half $padding-xxxl;
     &__item {
         margin-bottom: $padding-md;
         a {
@@ -11,11 +11,35 @@
             &:hover {
                 color: $color-bright-blue;
             }
+
+            &.subheader {
+                color: $color-tundora;
+                cursor: default;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: $font-xs;
+                &:hover {
+                    color: $color-tundora;
+                }
+            }
         }
         p {
             color: $color-tundora;
             margin: 0;
             font-size: $font-sm;
+        }
+        i {
+            color: $color-congress-blue;
+            margin-right: $padding-sm;
+            &.subheader-icon {
+                color: $color-tundora;
+                margin-left: $padding-sm;
+                font-size: $font-xs;
+            }
+            &.subheader-prefix {
+                color: $color-tundora;
+                font-size: $font-xs;
+            }
         }
     }
 }

@@ -39,6 +39,7 @@ class Headerv2 {
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
     this.bindSubmenuMobileOpenEvent();
+    this.bindMegaMenuLinkHoverEvent();
   }
 
   getMainNavigationWidth = () => this.root.find('.tp-pw-headerv2-main-navigation').width();
@@ -145,6 +146,29 @@ class Headerv2 {
       } else {
         $subMenuIcon.addClass('icon-Burger').removeClass('icon-Close');
       }
+    });
+  }
+
+  bindMegaMenuLinkHoverEvent = () => {
+    this.root.find('.tp-pw-headerv2-main-navigation > a').each(function(index) {
+      const link = $(this);
+
+      if (!index) {
+        link.addClass('active');
+        $(`.tp-pw-headerv2-megamenu`).first().removeClass('hidden');
+      }
+
+      link.on('mouseover', () => {
+        $('.tp-pw-headerv2-main-navigation > a').removeClass('active');
+        link.addClass('active');
+        $(`.tp-pw-headerv2-megamenu`).each(function(megamenuIndex) {
+          if (index === megamenuIndex) {
+            $(this).removeClass('hidden');
+          } else {
+            $(this).addClass('hidden');
+          }
+        });
+      });
     });
   }
 
