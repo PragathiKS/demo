@@ -41,7 +41,9 @@
         color: $color-tundora;
         background-color: transparent;
         // border-top: $letter-spacing-sm solid $color-mercury;
-        border-bottom: $letter-spacing-sm solid $color-mercury;
+        @media #{$desktop} {
+            border-bottom: $letter-spacing-sm solid $color-mercury;
+        }
         margin-top: -$letter-spacing-sm;
         position: relative;
         width: 100%;
@@ -63,18 +65,12 @@
         }
 
         div {
-            @include padding($padding-md $margin-xl $padding-md $padding-zero);
+            @include padding($padding-l $margin-xl $padding-l $padding-zero);
 
         }
 
         &:first-of-type {
             @include margin-top($margin-md);
-        }
-
-        &:last-of-type.collapsed {
-            @media #{$mobile} {
-                border-bottom: $letter-spacing-sm solid $color-mercury;
-            }
         }
         .icon-Arrow_Right_pw {
             @include width($spacing-big-half);
@@ -122,11 +118,5 @@
 
     &__event-detail-wrapper {
         @include padding($padding-md);
-    }
-
-    &-detail-wrapper {
-        border: 1px dashed $color-mercury;
-        border-radius: $border-radius;
-        padding: $padding-md;
     }
 }
