@@ -101,6 +101,9 @@
 
         &:not(.collapsed) {
             border-bottom: 0;
+            .tp-accordion__event-title {
+                padding-bottom: 0;
+            }
 
             @media #{$mobile} {
                 color: $color-tundora;
