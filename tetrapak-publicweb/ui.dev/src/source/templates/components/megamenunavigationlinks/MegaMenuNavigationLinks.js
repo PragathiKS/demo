@@ -5,24 +5,27 @@ class MegaMenuNavigationLinks {
     this.root = $(el);
   }
   cache = {};
+  
   initCache() {
-    /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache = {
+      linkTargetClass: '.tp-pw-megamenunavigationlinks__item'
+    };
   }
+
+  getDivsWithEmptyLinks = () => this.root.find(`${this.cache.linkTargetClass}> a`).not('[href]').parent()
+
+  replaceEmptyLinksWithSubheaders = () => {
+    this.getDivsWithEmptyLinks().each(function() {
+      $(this).find('i').addClass('subheader-prefix');
+      $(this).find('a').addClass('subheader').append('<i class="subheader-icon icon-Chevron_Right tp_icon"></i>');
+    });
+  }
+
+
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    this.replaceEmptyLinksWithSubheaders();
   }
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }

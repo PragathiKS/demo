@@ -56,7 +56,10 @@
             <div class="tp-pw-headerv2-second-row">
                 <div class="tp-pw-headerv2-main-navigation">
                     <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
-                        <a class="js-tp-pw-headerv2-main-navigation-link" href="${navigationLink.linkUrl}" target="_blank">
+                        <a 
+                            class="js-tp-pw-headerv2-main-navigation-link js-megamenulink-${navigationLinkList.index}" 
+                            href="${navigationLink.linkUrl}" 
+                            target="_blank" >
                             ${navigationLink.linkText}
                         </a>
                     </sly>
@@ -70,7 +73,7 @@
         </nav>
         <div class="tp-pw-headerv2-mobile-secondary-navigation-menu">
             <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
-                <a href="${navigationLink.linkUrl}" target="_blank">
+                <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index}">
                     ${navigationLink.linkText}
                 </a>
             </sly>
@@ -110,11 +113,19 @@
             </sly>
         </div>
     </header>
-    <!-- 
-    <div 
-        class="tp-pw-headerv2-megamenu"
-        data-sly-resource="${@path='/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html',
-        wcmmode='disabled'}">
-    </div> 
-    -->
+    <sly data-sly-use.marketselector="/apps/publicweb/components/content/marketselector/marketselector-template.html"
+        data-sly-call="${marketselector.marketselector_template @ data=data.marketList}" />
+    <sly data-sly-use.searchbar="/apps/publicweb/components/content/searchbar/searchbar-template.html"
+        data-sly-call="${searchbar.searchbar_template @ searchPage=data.searchPage}" />
+    <sly data-sly-list.link="${data.mainNavigationLinks}">
+        <sly data-sly-test="${link.megaMenuPath}">
+            <div 
+                class="tp-pw-headerv2-megamenu hidden js-megamenu-${linkList.index}"
+                data-sly-resource="${@path=link.megaMenuPath,
+                selectors='content',
+                wcmmode='disabled'}">
+            </div> 
+        </sly>
+    </sly>
+    
 </sly>

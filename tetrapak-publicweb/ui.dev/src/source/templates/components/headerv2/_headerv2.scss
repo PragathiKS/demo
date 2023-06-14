@@ -57,8 +57,19 @@ $submenu-shadow-color: #000000;
         &:last-of-type {
             margin-bottom: 0;
         }
+
+        &.active {
+            text-decoration: underline;
+        }
     }
 }
+
+.tp-pw-headerv2-megamenu {
+    &.hidden {
+        display: none;
+    }
+}
+
 
 .tp-pw-headerv2 {
     display: flex;
@@ -155,10 +166,8 @@ $submenu-shadow-color: #000000;
             border-bottom: 0;
             padding: $spacing-small;
             i {
-                border: 1px solid $color-congress-blue;
                 margin-right: $spacing-small-half;
                 padding: 1px;
-                border-radius: 100px;
             }
         }
         .tp-pw-headerv2-login-selector {
@@ -167,10 +176,8 @@ $submenu-shadow-color: #000000;
             border-bottom: 0;
             padding: $spacing-small;
             i {
-                border: 1px solid $color-congress-blue;
                 margin-right: $spacing-small-half;
                 padding: 1px;
-                border-radius: 100px;
             }
         }
     }
@@ -216,10 +223,8 @@ $submenu-shadow-color: #000000;
                     border-left: 1px solid $color-mercury;
 
                     i {
-                        border: 1px solid $color-congress-blue;
                         margin-right: $spacing-small-half;
                         padding: 1px;
-                        border-radius: 100px;
                     }
                 }
 
@@ -228,10 +233,8 @@ $submenu-shadow-color: #000000;
                     border-left: 1px solid $color-mercury;
 
                     i {
-                        border: 1px solid $color-congress-blue;
                         margin-right: $spacing-small-half;
                         padding: 1px;
-                        border-radius: 100px;
                     }
                 }
             }
@@ -269,6 +272,10 @@ $submenu-shadow-color: #000000;
                     @include hyperlink($font-baseline, $margin-xxxl);
                     white-space: nowrap;
                     min-width: $padding-l;
+
+                    &.active {
+                        text-decoration: underline;
+                    }
                 }
             }
         }

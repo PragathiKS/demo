@@ -14,9 +14,8 @@ class MegaMenuTeaser {
   }
 
   bindEvents() {
-    const megaMenuDescription = new MegaMenuDescription({
-      el: '.tp-pw-megamenuteaser',
-      targetClass: this.cache.descriptionTargetClass
+    const megaMenuDescription = new MegaMenuDescription({ 
+      el: this.root.find(this.cache.descriptionTargetClass)
     });
     megaMenuDescription.init();
   }
