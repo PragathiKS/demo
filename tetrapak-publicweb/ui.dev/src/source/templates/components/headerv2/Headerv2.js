@@ -162,6 +162,13 @@ class Headerv2 {
         this.selectFirstMegaMenuLink();
       }
 
+      link.on('mouseleave', () => {
+        $('.tp-pw-headerv2-main-navigation > a').removeClass('active');
+        $(`.tp-pw-headerv2-megamenu`).each(function() {
+          $(this).addClass('hidden');
+        });
+      });
+
       link.on('mouseover', () => {
         $('.tp-pw-headerv2-main-navigation > a').removeClass('active');
         link.addClass('active');
