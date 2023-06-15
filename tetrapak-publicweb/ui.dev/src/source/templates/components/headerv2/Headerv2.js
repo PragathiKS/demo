@@ -163,22 +163,13 @@ class Headerv2 {
       }
 
       link.on('mouseleave', () => {
-        $('.tp-pw-headerv2-main-navigation > a').removeClass('active');
-        $(`.tp-pw-headerv2-megamenu`).each(function() {
-          $(this).addClass('hidden');
-        });
+        link.removeClass('active');
+        $(`.js-megamenu-${index}`).addClass('hidden');
       });
 
-      link.on('mouseover', () => {
-        $('.tp-pw-headerv2-main-navigation > a').removeClass('active');
+      link.on('mouseenter', () => {
         link.addClass('active');
-        $(`.tp-pw-headerv2-megamenu`).each(function(megamenuIndex) {
-          if (index === megamenuIndex) {
-            $(this).removeClass('hidden');
-          } else {
-            $(this).addClass('hidden');
-          }
-        });
+        $(`.js-megamenu-${index}`).removeClass('hidden');
       });
     });
   }
