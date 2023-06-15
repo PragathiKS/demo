@@ -149,13 +149,17 @@ class Headerv2 {
     });
   }
 
-  bindMegaMenuLinkHoverEvent = () => {
+  selectFirstMegaMenuLink = () => {
+    this.root.find('.tp-pw-headerv2-main-navigation > a').first().addClass('active');
+    $(`.tp-pw-headerv2-megamenu`).first().removeClass('hidden');
+  }
+
+  bindMegaMenuLinkHoverEvent = (selectFirstItemByDefault=false) => {
     this.root.find('.tp-pw-headerv2-main-navigation > a').each(function(index) {
       const link = $(this);
 
-      if (!index) {
-        link.addClass('active');
-        $(`.tp-pw-headerv2-megamenu`).first().removeClass('hidden');
+      if (selectFirstItemByDefault && !index) {
+        this.selectFirstMegaMenuLink();
       }
 
       link.on('mouseover', () => {
