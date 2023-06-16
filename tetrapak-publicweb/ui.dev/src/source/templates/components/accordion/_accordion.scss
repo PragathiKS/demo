@@ -61,6 +61,12 @@
                 font-size: $font-md;
             }
         }
+        &-detail-description {
+            .medialink {
+                margin: 0;
+                padding: 0;
+            }
+        }
 
         div {
             @include padding($padding-l $margin-xl $padding-l $padding-zero);

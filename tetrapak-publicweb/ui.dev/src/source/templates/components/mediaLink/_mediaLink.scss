@@ -1,4 +1,16 @@
 .medialink {
+    @include border-radius($border-radius);
+    @include padding-left($padding-md);
+    @include padding-right($padding-md);
+    @include padding-top($padding-l);
+    @include margin(0 $margin-md);
+    @media #{$desktop} {
+        @include padding($padding-xxxl);
+        @include padding-left($padding-xxxl);
+        @include padding-right($padding-xxxl);
+        @include margin(0 $margin-xxxl);
+    }
+
     &__heading {
         @include font-size($font-l);
         @include padding-top($padding-zero);
