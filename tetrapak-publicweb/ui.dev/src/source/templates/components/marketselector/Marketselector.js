@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
@@ -15,8 +13,6 @@ class Marketselector {
   }
   bindEvents() {
     const { $marketSelectorList} = this.cache;
-
-    console.log(this.root);
 
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showlanuagepreferencepopup-pw', this.showPopup);
@@ -46,18 +42,16 @@ class Marketselector {
 
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
       if(url){
-        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
           window.open(url,'_blank');
         }
         else {
-          window.open(url,'_self'); 
+          window.open(url,'_self');
         }
       }
     }
 
   showPopup = () => {
-    console.log(`showPopup`, this.cache.$modal);
-
     const $this = this;
     const { $modal } = $this.cache;
     $modal.modal();
