@@ -18,17 +18,17 @@ class Headerv2 {
       variables: {
         'mainNavigationLinksInititalWidth': this.getMainNavigationWidth(),
         /*
-          The summed width of all the items in the main navigation menu. 
+          The summed width of all the items in the main navigation menu.
         */
         'nOfElementsInSubmenu': 0,
-        /* 
+        /*
           The 'nOfElementsInSubmenu' is equal to the elements in the collapsible menu.
         */
         'mainNavigationLinksWidthList': this.getMainNavigationLinksWidthList(),
         /*
           The 'mainNavigationLinksWidthList' contains each of the main navigation menu's item width.
         */
-       'isMegaMenuHovered': false
+        'isMegaMenuHovered': false
       },
       $elements: {
         'mainNavigationLinks': this.root.find('.tp-pw-headerv2-main-navigation a')
@@ -62,16 +62,16 @@ class Headerv2 {
       const lastItemsWidth = navLinkWidths[navLinkLastWidthIndex];
       const minMargin = HEADER_MIN_MARGIN + this.cache.constants.extraMargin;
       const isLargerThanMargin = widthDiff <= minMargin;
-      const isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu && 
+      const isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu &&
         (widthDiff > lastItemsWidth + minMargin * 2);
 
       if (isLargerThanMargin) {
         this.shiftMainNavigationLink();
-      } 
+      }
       else if (isLargerThanLastItemWithMargin) {
         this.unshiftMainNavigationLink();
       }
-    }
+    };
 
     let isLargerThanMargin = true;
     let isLargerThanLastItemWithMargin = true;
@@ -85,7 +85,7 @@ class Headerv2 {
       const navLinkLastWidthIndex = navLinkWidths.length - this.cache.variables.nOfElementsInSubmenu;
       const lastItemsWidth = navLinkWidths[navLinkLastWidthIndex];
       isLargerThanMargin = widthDiff <= HEADER_MIN_MARGIN;
-      isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu && 
+      isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu &&
         (widthDiff > lastItemsWidth + HEADER_MIN_MARGIN * 2);
       handleResize();
     }
@@ -187,12 +187,12 @@ class Headerv2 {
       const showMegaMenu = (i=index) => {
         $(getMegaMenuLinkSelector(i)).addClass('active');
         $(getMegaMenuSelector(i)).removeClass('hidden');
-      }
+      };
 
       const hideMegaMenu = (i=index) => {
         $(getMegaMenuLinkSelector(i)).removeClass('active');
         $(getMegaMenuSelector(i)).addClass('hidden');
-      }
+      };
 
       const hideOtherMegaMenus = (hideAll=false) => {
         $allMegaMenu.each(function(megaMenuIndex) {
@@ -201,8 +201,8 @@ class Headerv2 {
           } else if (megaMenuIndex !== index) {
             hideMegaMenu(megaMenuIndex);
           }
-        })
-      }
+        });
+      };
 
       $link.on('mouseenter', () => {
         hideOtherMegaMenus();
