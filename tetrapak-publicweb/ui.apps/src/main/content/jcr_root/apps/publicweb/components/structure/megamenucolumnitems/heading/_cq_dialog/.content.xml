@@ -27,6 +27,23 @@
                   fieldLabel="Heading URL"
                   name="./headingURL"
                   rootPath="/content/tetrapak/publicweb"/>
+              <headingstyle
+                      granite:class="cq-dialog-dropdown-disable-enable"
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                      fieldLabel="Select the heading style"
+                      name="./headingStyle">
+                <items jcr:primaryType="nt:unstructured">
+                  <primary
+                          jcr:primaryType="nt:unstructured"
+                          text="Primary"
+                          value="primary"/>
+                  <secondary
+                          jcr:primaryType="nt:unstructured"
+                          text="Secondary"
+                          value="secondary"/>
+                </items>
+              </headingstyle>
             </items>
           </column>
         </items>
