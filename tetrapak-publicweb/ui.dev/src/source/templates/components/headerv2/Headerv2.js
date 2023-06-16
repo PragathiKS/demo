@@ -1,6 +1,7 @@
 /* eslint-disable */
 import $ from 'jquery';
 import 'bootstrap';
+import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
 import { isMobile } from '../../../scripts/common/common';
 
@@ -40,6 +41,7 @@ class Headerv2 {
     this.bindSubmenuOpenEvent();
     this.bindSubmenuMobileOpenEvent();
     this.bindMegaMenuLinkHoverEvent();
+    this.bindMarketSelectorOpenEvent();
   }
 
   getMainNavigationWidth = () => this.root.find('.tp-pw-headerv2-main-navigation').width();
@@ -152,6 +154,30 @@ class Headerv2 {
   selectFirstMegaMenuLink = () => {
     this.root.find('.tp-pw-headerv2-main-navigation > a').first().addClass('active');
     $(`.tp-pw-headerv2-megamenu`).first().removeClass('hidden');
+  }
+
+  bindMarketSelectorOpenEvent = () => {
+    this.root.find('.js-header__selected-lang-pw').on('click', (e) => {
+
+      console.log(`bindMarketSelectorOpenEvent`, this.root.find('.js-lang-modal'), $('.js-lang-modal'));
+
+      $('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
+      this.trackLanguageSelector(e);
+    });
+  }
+
+  trackLanguageSelector = () => {
+    const trackingObj = {
+      linkType: 'internal',
+      linkSection: 'Hyperlink click',
+      linkParentTitle: '',
+      linkName: 'Market Selector'
+    };
+    const eventObj = {
+      eventType: 'linkClick',
+      event: 'Market Selector'
+    };
+    trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
   }
 
   bindMegaMenuLinkHoverEvent = (selectFirstItemByDefault=false) => {

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
@@ -13,6 +15,9 @@ class Marketselector {
   }
   bindEvents() {
     const { $marketSelectorList} = this.cache;
+
+    console.log(this.root);
+
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showlanuagepreferencepopup-pw', this.showPopup);
     $marketSelectorList.on('click', this.trackMarketSelectorAnalytics);
@@ -51,6 +56,8 @@ class Marketselector {
     }
 
   showPopup = () => {
+    console.log(`showPopup`, this.cache.$modal);
+
     const $this = this;
     const { $modal } = $this.cache;
     $modal.modal();

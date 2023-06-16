@@ -21,13 +21,13 @@
                     </sly>
                     <sly data-sly-test="${!data.marketSelectorDisabled}">
                         <sly 
-                        data-sly-test="${data.displayCurrentLanguage}" 
+                        data-sly-test="${data.marketList.markets.size >= 1}" 
                         data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
                             <a 
-                                class="tp-pw-headerv2-market-selector" 
+                                class="tp-pw-headerv2-market-selector js-header__selected-lang-pw" 
                                 data-language="${data.currentLanguage}"
                                 data-link-section="Header Navigation" 
-                                data-link-name="market locator" 
+                                data-link-name="market locator " 
                                 href="#">
                                 <span>
                                     <i auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw"></i>${data.currentMarket}
@@ -82,12 +82,12 @@
                     ${navigationLink.linkText}
                 </a>
             </sly>
-            <sly data-sly-test="${!data.marketSelectorDisabled}">
+            <sly data-sly-test="${data.marketList.markets.size >= 1}">
                 <sly 
                 data-sly-test="${data.displayCurrentLanguage}" 
                 data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
                     <a 
-                        class="tp-pw-headerv2-market-selector" 
+                        class="tp-pw-headerv2-market-selector js-header__selected-lang-pw" 
                         data-language="${data.currentLanguage}"
                         data-link-section="Header Navigation" 
                         data-link-name="market locator" 

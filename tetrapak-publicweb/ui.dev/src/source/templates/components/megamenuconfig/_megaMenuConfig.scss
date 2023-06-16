@@ -1,12 +1,12 @@
 .tp-pw-megamenuconfig {
-    width: 100%;
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: stretch;
     border-top: 1px solid $color-mercury;
     box-sizing: border-box;
 
-    .cq-Editable-dom--container, 
+    .cq-Editable-dom--container,
     .cq-Editable-dom--container.aem-GridColumn {
         width: 100%;
     }
