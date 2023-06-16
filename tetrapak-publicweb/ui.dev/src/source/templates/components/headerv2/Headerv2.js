@@ -1,4 +1,3 @@
-/* eslint-disable */
 import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
@@ -29,6 +28,7 @@ class Headerv2 {
         /*
           The 'mainNavigationLinksWidthList' contains each of the main navigation menu's item width.
         */
+       'isMegaMenuHovered': false
       },
       $elements: {
         'mainNavigationLinks': this.root.find('.tp-pw-headerv2-main-navigation a')
@@ -151,16 +151,8 @@ class Headerv2 {
     });
   }
 
-  selectFirstMegaMenuLink = () => {
-    this.root.find('.tp-pw-headerv2-main-navigation > a').first().addClass('active');
-    $(`.tp-pw-headerv2-megamenu`).first().removeClass('hidden');
-  }
-
   bindMarketSelectorOpenEvent = () => {
     this.root.find('.js-header__selected-lang-pw').on('click', (e) => {
-
-      console.log(`bindMarketSelectorOpenEvent`, this.root.find('.js-lang-modal'), $('.js-lang-modal'));
-
       $('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
       this.trackLanguageSelector(e);
     });
@@ -180,22 +172,49 @@ class Headerv2 {
     trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
   }
 
-  bindMegaMenuLinkHoverEvent = (selectFirstItemByDefault=false) => {
-    this.root.find('.tp-pw-headerv2-main-navigation > a').each(function(index) {
-      const link = $(this);
+  bindMegaMenuLinkHoverEvent = () => {
+    const linksSelector = '.tp-pw-headerv2-main-navigation > a';
+    this.root.find(linksSelector).each(function(index) {
+      const getMegaMenuSelector = (megaMenuSelectorIndex) => `.js-megamenu-${megaMenuSelectorIndex}`;
+      const getMegaMenuLinkSelector = (megaMenuLinkSelectorIndex) => `.js-megamenulink-${megaMenuLinkSelectorIndex}`;
+      const firstRowSelector = `.tp-pw-headerv2-first-row`;
+      const allMegaMenuSelector = `.tp-pw-headerv2-megamenu`;
+      const $link = $(this);
+      const $megaMenu = $(getMegaMenuSelector(index));
+      const $firstRow= $(firstRowSelector);
+      const $allMegaMenu = $(allMegaMenuSelector);
 
-      if (selectFirstItemByDefault && !index) {
-        this.selectFirstMegaMenuLink();
+      const showMegaMenu = (i=index) => {
+        $(getMegaMenuLinkSelector(i)).addClass('active');
+        $(getMegaMenuSelector(i)).removeClass('hidden');
       }
 
-      link.on('mouseleave', () => {
-        link.removeClass('active');
-        $(`.js-megamenu-${index}`).addClass('hidden');
+      const hideMegaMenu = (i=index) => {
+        $(getMegaMenuLinkSelector(i)).removeClass('active');
+        $(getMegaMenuSelector(i)).addClass('hidden');
+      }
+
+      const hideOtherMegaMenus = (hideAll=false) => {
+        $allMegaMenu.each(function(megaMenuIndex) {
+          if (hideAll) {
+            hideMegaMenu(megaMenuIndex);
+          } else if (megaMenuIndex !== index) {
+            hideMegaMenu(megaMenuIndex);
+          }
+        })
+      }
+
+      $link.on('mouseenter', () => {
+        hideOtherMegaMenus();
+        showMegaMenu();
       });
 
-      link.on('mouseenter', () => {
-        link.addClass('active');
-        $(`.js-megamenu-${index}`).removeClass('hidden');
+      $megaMenu.on('mouseleave', () => {
+        hideMegaMenu();
+      });
+
+      $firstRow.on('mouseenter', () => {
+        hideOtherMegaMenus(true);
       });
     });
   }
