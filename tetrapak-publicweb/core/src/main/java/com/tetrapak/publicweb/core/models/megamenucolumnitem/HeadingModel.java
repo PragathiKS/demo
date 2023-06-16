@@ -15,11 +15,18 @@ public class HeadingModel {
     @ValueMapValue
     private String headingURL;
 
+    @ValueMapValue
+    private String headingStyle;
+
     public String getHeading() {
         return heading;
     }
 
     public String getHeadingURL() {
         return headingURL;
+    }
+
+    public String getHeadingStyle() {
+        return headingStyle;
     }
 }
