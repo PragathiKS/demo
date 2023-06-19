@@ -240,16 +240,8 @@ class Anchorv2 {
   isElementInViewport(element) {
     const rect = element.getBoundingClientRect();
     const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-    const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
-    if (isMobile1024Mode()) {
-      const vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
-      const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
-      return (vertInView && horInView);
-    } else {
-      return (
-        rect.top >= 0 && rect.left >= 0 && rect.bottom <= windowHeight && rect.right <= windowWidth
-      );
-    }
+    const vertInView = (rect.top <= (windowHeight/3)) && ((rect.top + rect.height) >= 0);
+    return vertInView;
   }
 
   init() {
