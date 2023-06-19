@@ -2,7 +2,7 @@
   <div id="${data.anchorId}" data-module='RichText' title="${data.anchorTitle}"
     class="pw-container reference-class pw-margin--${data.pwPadding} ${(data.pwPadding == 'zero' && data.topSpacing == 'topmargin') ? 'topmargin' : ''}">
     <div
-      class="tp-pw-richText-container tp-pw-richText pw-theme--${data.pwTheme} pw-text-color--${data.pwTextColor} col-sm-12 col-lg-12 d-flex ${data.pwTextAlignment == 'center' ? 'justify-content-lg-center justify-content-sm-center' : ''} pw-padding--regular">
+      class="tp-pw-richText-container tp-pw-richText pw-theme--${data.pwTheme} pw-text-color--${data.pwTextColor} col-sm-12 col-lg-12 d-flex ${data.pwTextAlignment == 'left' ? '' : 'justify-content-lg-center justify-content-sm-center'} pw-padding--regular">
       <div data-link-section='RTE_Text Hyperlink' data-link-name=''
         class='col-lg-8 col-sm-12 fullBleed tp-pw-richText-wrapper'>
         ${data.text @context='html'}

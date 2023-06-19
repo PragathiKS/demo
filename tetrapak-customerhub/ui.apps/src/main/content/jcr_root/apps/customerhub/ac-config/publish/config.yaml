@@ -343,6 +343,21 @@
 
     - cuhub_aem_rebuildingkits:
 
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
         - path: /content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits
           permission: allow
           privileges: jcr:read

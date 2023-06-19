@@ -1,5 +1,16 @@
 <h1><span>{{rebuildingData.serialNumber}}</span>&nbsp;{{rebuildingData.equipmentDesc}}&nbsp;|&nbsp;{{rebuildingData.rkNumber}}&nbsp;{{rebuildingData.rkDesc}}
 </h1>
+
+<div class="row tp-rebuilding-details__view-e-business-button-row d-none">
+
+    {{> atoms/buttons/button/button text=i18nKeys.viewInEBizButton modifier="primary" 
+    className="tp-rebuilding-details__view-e-business-btn" jsClass="js-rebuilding-details__view-e-business-btn" 
+    iconClass="icon-Trolley" dataLocator="rebuilding-details__view-e-business-btn" }}
+
+</div>
+
+ 
+ 
 <div class="row tp-rebuilding-details__info-card-row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-12 tp-rebuilding-details__info-card-col">
         <div class="tp-rebuilding-details__info-card js-rebuilding-details__info-card top">

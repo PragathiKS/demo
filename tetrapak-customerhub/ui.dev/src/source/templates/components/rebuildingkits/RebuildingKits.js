@@ -138,6 +138,8 @@ class RebuildingKits {
         };
       }
     }
+    // Remove the first element from customisableTableHeaders
+    customisableTableHeaders.shift();
   };
 
   renderSearchCount = () => {
