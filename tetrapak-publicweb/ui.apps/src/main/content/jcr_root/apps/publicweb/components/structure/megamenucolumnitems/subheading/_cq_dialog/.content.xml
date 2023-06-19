@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
-    jcr:title="Heading Component Configurations"
+    jcr:title="Subheading Component Configurations"
     sling:resourceType="cq/gui/components/authoring/dialog">
   <content
       jcr:primaryType="nt:unstructured"
       sling:resourceType="granite/ui/components/coral/foundation/tabs">
     <items jcr:primaryType="nt:unstructured">
-      <heading
+      <subheading
           jcr:primaryType="nt:unstructured"
-          jcr:title="Heading"
+          jcr:title="Subheading"
           sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
         <items jcr:primaryType="nt:unstructured">
           <column
@@ -19,18 +19,18 @@
               <heading
                   jcr:primaryType="nt:unstructured"
                   sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                  fieldLabel="Heading"
-                  name="./heading"/>
+                  fieldLabel="Subheading"
+                  name="./subheading"/>
               <headingLink
                   jcr:primaryType="nt:unstructured"
                   sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                  fieldLabel="Heading URL"
-                  name="./headingURL"
+                  fieldLabel="Subheading URL"
+                  name="./subheadingURL"
                   rootPath="/content/tetrapak/publicweb"/>
             </items>
           </column>
         </items>
-      </heading>
+      </subheading>
     </items>
   </content>
 </jcr:root>
