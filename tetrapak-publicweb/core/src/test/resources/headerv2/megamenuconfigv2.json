@@ -72,13 +72,15 @@
             "jcr:primaryType":"nt:unstructured",
             "sling:resourceType":"publicweb/components/structure/megamenucolumn",
             "bgColor": "white",
-            "heading":{
+            "subheading":{
               "jcr:primaryType":"nt:unstructured",
               "jcr:createdBy":"admin",
               "jcr:lastModifiedBy":"admin",
+              "subheading": "Sample Subheading",
+              "subheadingURL": "/content/tetrapak/publicweb/lang-masters/en/solutions",
               "jcr:created":"Thu Apr 27 2023 11:18:46 GMT+0200",
               "jcr:lastModified":"Thu Apr 27 2023 11:18:46 GMT+0200",
-              "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/heading"
+              "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading"
             },
             "description":{
               "jcr:primaryType":"nt:unstructured",
