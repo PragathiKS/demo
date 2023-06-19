@@ -184,10 +184,26 @@ function  _renderRebuildingKitReportModal() {
     $reportModal.modal('hide');
   });
 
-  this.root.on('click', '.js-rk-make-update',  (e) => {
+  this.root.on('click', '.js-rk-make-update', (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget.form);
     auth.getToken(({ data: authData }) => {
+      const reportedStatus = formData.get('status');
+      const payload = {
+        serialnumber: $this.cache.$rebuildingData.serialNumber,
+        reportedrebuildingkit: $this.cache.$rebuildingData.rkNumber,
+        reportedrebuildingkitname: $this.cache.$rebuildingData.rkDesc,
+        reportedby: 'My Tetra Pak',
+        comment: formData.get('comments'),
+        currentstatus: $this.cache.$rebuildingData.implStatus,
+        reportedstatus: reportedStatus,
+        source: 'My Tetra Pak'
+      };
+  
+      if (reportedStatus === 'Implemented') {
+        payload.date = formData.get('date');
+      }
+  
       ajaxWrapper
         .getXhrObj({
           url: $this.cache.rebuildingReportApi,
@@ -195,17 +211,7 @@ function  _renderRebuildingKitReportModal() {
           cache: true,
           dataType: 'json',
           contentType: 'application/json',
-          data: JSON.stringify({
-            serialnumber: $this.cache.$rebuildingData.serialNumber,
-            reportedrebuildingkit: $this.cache.$rebuildingData.rkNumber,
-            reportedrebuildingkitname: $this.cache.$rebuildingData.rkDesc,
-            // reportedby: 'My Tetra Pak',
-            comment: formData.get('comments'),
-            currentstatus: $this.cache.$rebuildingData.implStatus,
-            reportedstatus: formData.get('status'),
-            date: formData.get('date'),
-            source: 'My Tetra Pak'
-          }),
+          data: JSON.stringify(payload),
           beforeSend(jqXHR) {
             jqXHR.setRequestHeader(
               'Authorization',
@@ -226,7 +232,7 @@ function  _renderRebuildingKitReportModal() {
           logger.error(e);
         });
     });
-  });
+  });  
 }
 
 function _requestCtiLanguage(lang) {
