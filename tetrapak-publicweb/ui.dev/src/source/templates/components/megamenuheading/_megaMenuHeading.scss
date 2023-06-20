@@ -1,7 +1,13 @@
 .tp-pw-megamenuheading {
     h2 {
-        color: $color-congress-blue;
+        color: $color-tundora;
         margin: $padding-xl $padding-xxxl $padding-md;
         font-size: $font-l;
+    }
+
+    a {
+        h2 {
+            color: $color-congress-blue;
+        }
     }
 }

@@ -179,7 +179,8 @@
         "source/templates/components/megamenuheading/",
         "source/templates/components/megamenudescription/",
         "source/templates/components/megamenunavigationlinks/",
-        "source/templates/components/megamenuteaser/"
+        "source/templates/components/megamenuteaser/",
+        "source/templates/components/megamenusubheading/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"
