@@ -1,8 +1,8 @@
-import MegaMenuConfig from './MegaMenuConfig';
+import MegaMenuConfigV2 from './MegaMenuConfigV2';
 
-describe('MegaMenuConfig', function () {
+describe('MegaMenuConfigV2', function () {
   before(function () {
-    this.megaMenuConfig = new MegaMenuConfig({
+    this.megaMenuConfig = new MegaMenuConfigV2({
       el: document.body
     });
     this.initSpy = sinon.spy(this.megaMenuConfig, 'init');
