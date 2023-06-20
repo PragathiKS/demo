@@ -2,6 +2,9 @@
     padding: 0 $padding-xxxl;
     &__item {
         margin-bottom: $padding-md;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
         a {
             color: $color-congress-blue;
             cursor: pointer;
