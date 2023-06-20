@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import $ from 'jquery';
 
 class MegaMenuDescription {
@@ -13,7 +11,7 @@ class MegaMenuDescription {
   }
 
   htmlDecode = (input) => {
-    var doc = new DOMParser().parseFromString(input, "text/html");
+    var doc = new DOMParser().parseFromString(input, 'text/html');
     return doc.documentElement.textContent;
   }
 
@@ -25,15 +23,15 @@ class MegaMenuDescription {
     observer.observe(this.root, config);
   }
 
-  isEditMode = () => {
-    return window.location.href.includes('/editor.html/content/experience-fragments/publicweb/en/solutions-mega-menu/');
-  }
+  isEditMode = () => window.location.href.includes(
+    '/editor.html/content/experience-fragments/publicweb/en/solutions-mega-menu/'
+  );
 
   bindEvents() {
     if (this.isEditMode()) {
       this.watchChanges(this.root, () => this.swapDescriptionStringWithHTML());
     } else {
-      this.swapDescriptionStringWithHTML()
+      this.swapDescriptionStringWithHTML();
     }
   }
 

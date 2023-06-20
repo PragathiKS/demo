@@ -1,0 +1,20 @@
+.tp-pw-megamenusubheading {
+    padding: 0 $padding-xxxl;
+    a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-decoration: none;
+    }
+    h3 {
+        color: $color-tundora;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: $font-xs;
+    }
+    i {
+        color: $color-tundora;
+        margin: 0 $padding-sm;
+        font-size: $font-xs;
+    }
+}

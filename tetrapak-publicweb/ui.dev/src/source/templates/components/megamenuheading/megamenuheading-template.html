@@ -1,5 +1,12 @@
 <sly data-sly-template.megamenuheading_template="${@data, flag}">
     <div data-module="MegaMenuHeading" class="tp-pw-megamenuheading">
-       <h2>${data.heading}</h2>
+        <sly data-sly-test="${data.headingURL}">
+            <a href="${data.headingURL}">
+                <h2>${data.heading}</h2>
+            </a>
+        </sly>
+        <sly data-sly-test="${!data.headingURL}">
+            <h2>${data.heading}</h2>
+        </sly>
     </div>
 </sly>
