@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { isDesktop1024Mode, isMobile1024Mode, scrollToElement } from '../../../scripts/common/common';
+import { isDesktop1024Mode, scrollToElement } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Anchorv2 {
@@ -139,18 +139,38 @@ class Anchorv2 {
   }
 
   bindEvents() {
-    const { $anchorLink, $anchorMenu } = this.cache;
+    const { $anchorLink, $anchorMenu, $anchorMenuContent } = this.cache;
     $anchorLink.on('click', this.scrollToSection);
     if($anchorMenu) {
       const doc = document.getElementsByClassName('anchorv2');
       if ( doc && doc.length > 0 ) {
         window.addEventListener('scroll', this.onPageScroll, false);
+        const options = {
+          root: null, // relative to document viewport
+          rootMargin: '0px', // margin around root. Values are similar to css property. Unitless values not allowed
+          threshold: 0.25 // visible amount of item shown in relation to root
+        };
+        const intersectionCallback = (entries) => {
+          entries.forEach((entry) => {
+            if (!this.cache.$isAnchorMenuClicked) {
+              if (entry.isIntersecting) {
+                this.setAnchorMenuSelection(entry.target.elem_index);
+              }
+            }
+          });
+        };
+        const observer = new IntersectionObserver(intersectionCallback, options);
+        for(let index=0; index<$anchorMenuContent.length; index++) {
+          const elem = document.querySelector(`#${$anchorMenuContent[index].children[0].dataset.linkSection}`);
+          elem.elem_index = index;
+          observer.observe(elem);
+        }
       }
     }
   }
 
   onPageScroll = () => {
-    const { $anchorMenu, $offsetTop, $anchorMenuContent } = this.cache;
+    const { $anchorMenu, $offsetTop } = this.cache;
     if (window.pageYOffset >= $offsetTop) {
       $anchorMenu[0].classList.add('sticky-anchor-menu');
       $anchorMenu[0].classList.remove('tp-container');
@@ -160,13 +180,13 @@ class Anchorv2 {
     }
 
     //Update progress indicator
-    if (!this.cache.$isAnchorMenuClicked) {
-      for(let index=0; index<$anchorMenuContent.length; index++) {
-        if (this.isElementInViewport(document.querySelector(`#${$anchorMenuContent[index].children[0].dataset.linkSection}`))) {
-          this.setAnchorMenuSelection(index);
-        }
-      }
-    }
+    // if (!this.cache.$isAnchorMenuClicked) {
+    //   for(let index=0; index<$anchorMenuContent.length; index++) {
+    //     if (this.isElementInViewport(document.querySelector(`#${$anchorMenuContent[index].children[0].dataset.linkSection}`))) {
+    //       this.setAnchorMenuSelection(index);
+    //     }
+    //   }
+    // }
   }
 
   scrollToSection = e => {
