@@ -84,9 +84,10 @@ class FormContainer {
     this.cache.$form = this.root.find('.tl-contactForm').find('.cmp-form');
     this.cache.$formThankYou = this.root.find('.tl-contactForm__thankyou');
     this.cache.$errorMessage = this.root.find('.tl-contactForm__error');
-    this.cache.$contactBtn = this.root.find('.js-tpatom-btn__tl-contactUs');
     this.cache.$modal = this.root.find('.js-tp-contact__modal');
     this.cache.$closeBtn = this.root.find('.js-close-btn');
+
+    this.cache.$contactBtn = this.root.parent().find('.js-tpatom-btn__tl-contactUs');
 
     this.cache.headingText = this.cache.$heading.text();
     this.cache.thankYouText = this.cache.$thankYou.text();
