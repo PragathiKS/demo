@@ -1,21 +1,27 @@
+/* eslint-disable */
+
 import $ from 'jquery';
 import 'bootstrap';
 import { logger } from 'tpPublic/scripts/utils/logger';
 
 class FormContainer {
+  constructor({ el }) {
+    this.root = $(el);
+  }
+
   cache = {};
   resetForm(isForm) {
-    const { $form, $formThankYou, $thankYouText, $heading, $headingText, $errorMessage } = this.cache;
+    const { $form, $formThankYou, thankYouText, $heading, headingText, $errorMessage } = this.cache;
     $errorMessage.addClass('d-none');
     if (isForm) {
-      $heading.show().text($headingText);
+      $heading.show().text(headingText);
       $heading.removeClass('text-center');
       $form.show();
       $formThankYou.hide();
     }
     if (!isForm) {
       $heading.addClass('text-center');
-      $heading.text($thankYouText);
+      $heading.text(thankYouText);
       $form.hide();
       $formThankYou.show();
     }
@@ -67,15 +73,23 @@ class FormContainer {
   }
 
   initCache() {
+    console.log(
+      '\n\n\n',
+      { root: this.root },
+      '\n\n\n'
+    );
+
     this.cache.$heading = this.root.find('.pw-modal-header__heading');
-    this.cache.$headingText = this.cache.$heading.text();
+    this.cache.$thankYou = this.root.find('.tl-contactForm__thankyou-heading');
     this.cache.$form = this.root.find('.tl-contactForm').find('.cmp-form');
     this.cache.$formThankYou = this.root.find('.tl-contactForm__thankyou');
     this.cache.$errorMessage = this.root.find('.tl-contactForm__error');
-    this.cache.$thankYouText = this.root.find('.tl-contactForm__thankyou-heading').text();
     this.cache.$contactBtn = this.root.find('.js-tpatom-btn__tl-contactUs');
     this.cache.$modal = this.root.find('.js-tp-contact__modal');
     this.cache.$closeBtn = this.root.find('.js-close-btn');
+
+    this.cache.headingText = this.cache.$heading.text();
+    this.cache.thankYouText = this.cache.$thankYou.text();
   }
 
   init() {
