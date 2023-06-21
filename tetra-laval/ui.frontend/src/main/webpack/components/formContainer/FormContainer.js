@@ -67,15 +67,15 @@ class FormContainer {
   }
 
   initCache() {
-    this.cache.$heading = $('.pw-modal-header__heading');
+    this.cache.$heading = this.root.find('.pw-modal-header__heading');
     this.cache.$headingText = this.cache.$heading.text();
-    this.cache.$form = $('.tl-contactForm').find('.cmp-form');
-    this.cache.$formThankYou = $('.tl-contactForm__thankyou');
-    this.cache.$errorMessage = $('.tl-contactForm__error');
-    this.cache.$thankYouText = $('.tl-contactForm__thankyou-heading').text();
-    this.cache.$contactBtn = $('.js-tpatom-btn__tl-contactUs');
-    this.cache.$modal = $('.js-tp-contact__modal');
-    this.cache.$closeBtn = $('.js-close-btn');
+    this.cache.$form = this.root.find('.tl-contactForm').find('.cmp-form');
+    this.cache.$formThankYou = this.root.find('.tl-contactForm__thankyou');
+    this.cache.$errorMessage = this.root.find('.tl-contactForm__error');
+    this.cache.$thankYouText = this.root.find('.tl-contactForm__thankyou-heading').text();
+    this.cache.$contactBtn = this.root.find('.js-tpatom-btn__tl-contactUs');
+    this.cache.$modal = this.root.find('.js-tp-contact__modal');
+    this.cache.$closeBtn = this.root.find('.js-close-btn');
   }
 
   init() {
