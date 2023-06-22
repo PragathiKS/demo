@@ -1,5 +1,5 @@
 .tp-pw-megamenuteaser {
-    z-index: 1;
+    z-index: $zindex-p;
     position: relative;
     width: 100%;
     height: 100%;
@@ -18,10 +18,10 @@
 
     &__header-wrapper {
         position: absolute;
-        z-index: 1;
+        z-index: $zindex-p;
         bottom: 0;
         left: 0;
-        margin: 32px;
+        margin: $margin-xl;
 
         h2 {
             color: $color-white;
