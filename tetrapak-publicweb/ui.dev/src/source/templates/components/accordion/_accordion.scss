@@ -61,10 +61,30 @@
                 font-size: $font-md;
             }
         }
+
         &-detail-description {
-            .medialink {
-                margin: 0;
-                padding: 0;
+            @media #{$desktop} {
+                .medialink,
+                .teaserMarginL,
+                .tp-teaser {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            @media #{$mobile} {
+                .tp-teaser {
+                    padding: 0;
+                    margin: 0;
+                    .description {
+                        display: block;
+                    }
+                    .tilte {
+                        display: none;
+                    }
+                    .carousal-wrapper {
+                        padding-bottom: $padding-sm;
+                    }
+                }
             }
         }
 
@@ -107,9 +127,6 @@
 
         &:not(.collapsed) {
             border-bottom: 0;
-            .tp-accordion__event-title {
-                padding-bottom: 0;
-            }
 
             @media #{$mobile} {
                 color: $color-tundora;
