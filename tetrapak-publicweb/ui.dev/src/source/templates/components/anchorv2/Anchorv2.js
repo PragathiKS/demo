@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { isDesktop1024Mode, isMobile1024Mode, scrollToElement } from '../../../scripts/common/common';
+import { isDesktop1024Mode, scrollToElement } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Anchorv2 {
