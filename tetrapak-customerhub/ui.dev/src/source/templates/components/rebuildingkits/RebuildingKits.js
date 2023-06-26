@@ -234,6 +234,8 @@ class RebuildingKits {
         $(`.js-rk__table-summary__cell--${customisableTableHeaders[i].index}`).removeClass('hide');
       }
     }
+    // Remove the first element from customisableTableHeaders
+    customisableTableHeaders.shift();
   }
 
   renderDefaultCountry = () => {
