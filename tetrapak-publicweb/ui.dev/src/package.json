@@ -17,7 +17,6 @@
     "buildDev": "grunt",
     "buildWatch": "grunt aemWatch",
     "buildStart": "grunt aemStart",
-    "buildFonts": "grunt webfont",
     "prod": "webpack --color",
     "dev": "webpack --config=webpack.dev.js --color",
     "createComponent": "argon-create --config=config.json",
