@@ -68,7 +68,18 @@
                 .teaserMarginL,
                 .tp-teaser {
                     margin: 0;
-                    padding: 0;
+                    padding-right: 0;
+                    padding-top: 0;
+                }
+                .tp-teaser {
+                    padding-left: 0;
+                    &__details {
+                        div {
+                            &:first-child {
+                                padding-left: 0;
+                            }
+                        }
+                    }
                 }
             }
             @media #{$mobile} {
