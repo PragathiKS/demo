@@ -63,7 +63,7 @@
   </sly>
  
   
-  <sly data-sly-test="${digitalDataModel.isPublisher}">
+  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
     <!-- <script>
       var OneTrust = {
         dataSubjectParams: {
@@ -156,7 +156,7 @@ else {
 
     }
 	  async function fetchUsers() {
-		await readCookieData();
+		  await readCookieData();
 
       }
       fetchUsers().then(()=>{
