@@ -43,7 +43,7 @@
   
           function setCookie(cname, cvalue, exdays) {
             var d = new Date();
-            var domain = "localhost";
+            var domain = ".tetrapak.com";
             d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
             let expires = "expires=" + d.toUTCString();
             document.cookie = document.cookie =
@@ -60,7 +60,7 @@
           // Url for the request
       async function fetchUsers(){
         var users = await fetch(window.cuoneTrustValue);
-        var data = users.json();
+        var data = await users.json();
         return data;
       }
         
@@ -73,9 +73,9 @@
               OneTrust.dataSubjectParams.id = uidValue;
               OneTrust.dataSubjectParams.token = jwtToken;
             }).then(()=>{
-            var head= document.getElementsByTagName('head')[0];
-            var script= document.createElement('script');
-                script.type= 'text/javascript';
+              var head= document.getElementsByTagName('head')[0];
+              var script= document.createElement('script');
+              script.type= 'text/javascript';
              	script.src= `https://cdn.cookielaw.org/consent/${headerGlobalUtil.dataDomainScript @ context='unsafe'}/otSDKStub.js`
                 script.setAttribute('data-document-language','true')
                 script.setAttribute('charset','UTF-8')
