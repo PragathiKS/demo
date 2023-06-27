@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="sling:OsgiConfig"
+          azureidtenantid="d2d2794a-61cc-4823-9690-8e288fd554cc"
+          pbicid="4f0f766b-d2eb-4a50-be2a-52ff8e1657b7"
+          pbics="zYs8Q~OvTfJsJsqGoQmxBWzfw6V2s-z8WpJCwcBW"
+          pbidatasetid="5b01daa5-56c1-46f8-94e8-a18f20cc0fb7"
+		  pbireportid="5d3c5f2a-b062-4ddb-ab09-4224fb845a99"
+		  pbiworkspaceid="17884c21-49de-42ba-8519-dea43237c2df"/>
