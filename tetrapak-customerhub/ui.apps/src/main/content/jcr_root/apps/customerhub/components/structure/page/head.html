@@ -18,7 +18,8 @@
         var cuoneTrustValue = '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
       </script>
     </sly>
-    
+ 
+
     <sly data-sly-test="${headerGlobalUtil.isPublish}">
       <!-- <script>
         var OneTrust = {
@@ -37,12 +38,12 @@
             token: ''
           }
         };
-        (function () {
+       
           var uidValue, jwtToken;
   
           function setCookie(cname, cvalue, exdays) {
             var d = new Date();
-            var domain = ".tetrapak.com";
+            var domain = "localhost";
             d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
             let expires = "expires=" + d.toUTCString();
             document.cookie = document.cookie =
@@ -57,11 +58,13 @@
           }
   
           // Url for the request
-          fetch(window.cuoneTrustValue)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
+      async function fetchUsers(){
+        var users = await fetch(window.cuoneTrustValue);
+        var data = users.json();
+        return data;
+      }
+        
+      fetchUsers().then((data) => {
               uidValue = data.uid;
               jwtToken = data.jwt;
               localStorage.setItem("uidValueset", uidValue);
@@ -69,21 +72,29 @@
               setCookie("TPCOOKIEUSER", uidValue, 365);
               OneTrust.dataSubjectParams.id = uidValue;
               OneTrust.dataSubjectParams.token = jwtToken;
-            })
-            .catch(function (error) {
+            }).then(()=>{
+            var head= document.getElementsByTagName('head')[0];
+            var script= document.createElement('script');
+                script.type= 'text/javascript';
+             	script.src= `https://cdn.cookielaw.org/consent/${headerGlobalUtil.dataDomainScript @ context='unsafe'}/otSDKStub.js`
+                script.setAttribute('data-document-language','true')
+                script.setAttribute('charset','UTF-8')
+                script.setAttribute('data-domain-script', `${headerGlobalUtil.dataDomainScript @ context='unsafe'}`)
+                script.async = false;
+                head.appendChild(script);
+        }).catch(function (error) {
               console.log(error);
             });
-        })();
+       
   
         //# sourceURL=cookieDebug.js
       </script>
     </sly>
     <sly data-sly-test="${headerGlobalUtil.isPublish && headerGlobalUtil.dataDomainScript}">
-    	<script src="https://cdn.cookielaw.org/consent/${headerGlobalUtil.dataDomainScript}/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${headerGlobalUtil.dataDomainScript}" ></script>
-        <script type="text/javascript">
+        <script type="text/javascript" defer>
           function OptanonWrapper() { }
       </script>
-    </sly>
+  </sly>
     <sly data-sly-include="customheaderlibs.html"></sly>
     <sly data-sly-call="${headlibRenderer.headlibs @
                                 designPath         = page.designPath,
