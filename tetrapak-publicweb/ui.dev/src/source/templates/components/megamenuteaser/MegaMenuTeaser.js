@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import MegaMenuDescription from '../megamenudescription/MegaMenuDescription';
 
 class MegaMenuTeaser {
   constructor({ el }) {
@@ -8,17 +7,10 @@ class MegaMenuTeaser {
   cache = {};
 
   initCache() {
-    this.cache = {
-      descriptionTargetClass: '.tp-pw-megamenuteaser__description'
-    };
+    this.cache = {};
   }
 
-  bindEvents() {
-    const megaMenuDescription = new MegaMenuDescription({
-      el: this.root.find(this.cache.descriptionTargetClass)
-    });
-    megaMenuDescription.init();
-  }
+  bindEvents() {}
 
   init() {
     this.initCache();
