@@ -1,0 +1,28 @@
+.tp-pw-megamenunavigationlinks {
+    padding: 0 $padding-xxxl;
+    &__item {
+        margin-bottom: $padding-md;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        a {
+            color: $color-congress-blue;
+            cursor: pointer;
+            font-size: $font-baseline;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-bright-blue;
+            }
+        }
+        p {
+            color: $color-tundora;
+            margin: 0;
+            font-size: $font-sm;
+        }
+        i {
+            color: $color-congress-blue;
+            margin-right: $padding-sm;
+        }
+    }
+}

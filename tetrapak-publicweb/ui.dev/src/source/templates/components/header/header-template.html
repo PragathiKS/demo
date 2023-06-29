@@ -88,14 +88,14 @@
         </li>
         </sly>
         <sly data-sly-test="${!data.marketSelectorDisabled}">
-        <li class="tp-pw-mobile-navigation__secondary__link">
-          <sly data-sly-test="${data.displayCurrentLanguage}"
-            data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}" />
-          <a class="d-flex justify-content-between nav-link js-header__selected-lang-pw" href="#"
-            data-link-section="Header Navigation" data-link-name="market locator" data-language="${data.currentLanguage}"><span><i
-                auto_locator="countrySelectorIconMobile" class="icon-Globe"></i>${data.currentMarket}
-              ${data.displayCurrentLanguage ? concatenatLanguage : ''}</span></a>
-        </li>
+          <li class="tp-pw-mobile-navigation__secondary__link">
+            <sly data-sly-test="${data.displayCurrentLanguage}"
+              data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}" />
+            <a class="d-flex justify-content-between nav-link js-header__selected-lang-pw" href="#"
+              data-link-section="Header Navigation" data-link-name="market locator" data-language="${data.currentLanguage}"><span><i
+                  auto_locator="countrySelectorIconMobile" class="icon-Globe"></i>${data.currentMarket}
+                ${data.displayCurrentLanguage ? concatenatLanguage : ''}</span></a>
+          </li>
         </sly>
         <sly data-sly-test="${data.loginLink != '#'}">
         <li class="tp-pw-mobile-navigation__secondary__link">
