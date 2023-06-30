@@ -1,10 +1,9 @@
-/* eslint-disable */
 import $ from 'jquery';
 import 'bootstrap';
 import { logger } from 'tpPublic/scripts/utils/logger';
 import TabsListParent from 'tpPublic/templates/components/tabslist/TabsList.js';
 
-let parent;
+let parent = null;
 class TabList extends TabsListParent {
   constructor({ el }) {
     parent = super({ el });
@@ -40,13 +39,10 @@ class TabList extends TabsListParent {
     this.cache.modal = $tabSection.find('.js-tp-contact__modal');
     this.cache.closeBtn = $tabSection.find('.js-close-btn');
     this.cache.contactBtn = $tabSection.find('.js-tpatom-btn__tl-contactUs');
-
-    console.log('Hiren Parmar | Contact Us button in TabList', this.cache.contactBtn);
     this.cache.headingText = this.cache.heading.text();
     this.cache.thankYouText = this.cache.thankYou.text();
 
     const { contactBtn, modal, closeBtn, form, errorMessage } = this.cache;
-    console.log('Hiren Parmar | Contact Us button For Events', this.cache.contactBtn);
     contactBtn.on('click', function () {
       modal.modal();
       $this.resetForm(true);
@@ -60,7 +56,7 @@ class TabList extends TabsListParent {
     form.submit(function (e) {
       e.preventDefault();
       const form = $(this);
-      const formData = form.serialize() +'&'+contactBtn.attr('data-companykey')+'='+contactBtn.attr('data-companyvalue');
+      const formData = `${form.serialize()}&${contactBtn.attr('data-companykey')}=${contactBtn.attr('data-companyvalue')}`;
       $.ajax({
         type: form.attr('method'),
         url: form.attr('action'),
@@ -83,22 +79,26 @@ class TabList extends TabsListParent {
           const resStatus = JSON.parse(res.responseText);
           errorMessage.removeClass('d-none');
           errorMessage.text(resStatus.statusMessage);
-          logger?.error(res);
+          logger?.error(res, parent);
         });
     });
-    /*-- END CONTACT US --*/
   }
-  
   bindEvents () {
-    // super.bindEvents();
+    const { activeTheme } = this.cache;
     const $this = this;
-    $('.js-tablist__event').on('click', function() {
-      setTimeout(() => {
-        $this.loadContactUs();
-      }, 200);
-    });
+    this.root
+      .on('click', '.js-tablist__event', function () {
+        const self = $(this);
+        if (!self.hasClass(`active--${activeTheme}`)) {
+          $this.showTabDetail(self.data('target'));
+          $this.loadContactUs();
+        }
+        $this.root.find('.js-tablist__event').removeClass(`active--${activeTheme}`);
+        self.addClass(`active--${activeTheme}`).toggleClass('m-active');
+      })
+      .on('click', '.js-tablist__event-detail-description-link', this.trackAnalytics)
+      .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists);
   }
-
   init() {
     super.init();
     this.bindEvents();
