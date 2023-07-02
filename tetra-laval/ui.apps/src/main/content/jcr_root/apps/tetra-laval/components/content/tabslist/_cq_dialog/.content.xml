@@ -141,16 +141,14 @@
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                     fieldLabel="Link Label"
-                                                                    name="./linkLabel"
-                                                                    required="{Boolean}true"/>
-                                                                <formPath
+                                                                    name="./linkLabel"/>
+																<formPath
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                                     fieldDescription="Select the form that should be displayed as Modal"
                                                                     fieldLabel="Form"
                                                                     name="./formPath"
-                                                                    required="{Boolean}true"
-                                                                    rootPath="/content/experience-fragments/tetra-laval"/>
+																	rootPath="/content/experience-fragments/tetra-laval"/>
                                                                 <contactDetails
                                                                     jcr:primaryType="nt:unstructured"
                                                                     sling:resourceType="granite/ui/components/coral/foundation/form/select"
