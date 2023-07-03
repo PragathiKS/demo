@@ -10,7 +10,9 @@ class MegaMenuTeaser {
     this.cache = {};
   }
 
-  bindEvents() {}
+  bindEvents() {
+    /*add code here*/
+  }
 
   init() {
     this.initCache();
