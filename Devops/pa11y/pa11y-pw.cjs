@@ -21,7 +21,8 @@ async function testPW(env, url_list_file_nm, out_dir) {
         await page.waitForSelector('#onetrust-accept-btn-handler', { visible: true });
         await page.waitForTimeout(7000)
         await page.click('#onetrust-accept-btn-handler');
-        
+
+
         // Pa11y Options
         const mtp_opt =  {
             browser,

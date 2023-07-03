@@ -1,0 +1,131 @@
+<sly data-sly-template.headerv2_template="${@data, flag}">
+    <header class="tp-pw-headerv2 js-tp-pw-headerv2 font-fixing ${wcmmode.edit ? 'wcmmode-edit': ''}" data-module="Headerv2">
+        <nav>
+            <div class="tp-pw-headerv2-first-row">
+                <div class="tp-pw-headerv2-logo">
+                    <a 
+                        data-sly-test="${data.logoLink}"
+                        data-sly-unwrap="${!data.logoLink}"
+                        href="${data.logoLink}"
+                        target="${data.logoLinkTarget}" 
+                    >
+                        <sly data-sly-test.logoAltWithCountyTitle="${'{0} {1}' @ format=[data.logoAlt, data.countryTitle]}" />
+                        <img src="${data.logoImagePath}" alt="${data.countryTitle? logoAltWithCountyTitle : data.logoAlt}" />
+                    </a>
+                </div>
+                <div class="tp-pw-headerv2-secondary-navigation">
+                    <sly data-sly-list.navigationLink="${data.secondaryNavigationLinks}">
+                        <a href="${navigationLink.linkUrl}" target="_blank">
+                            ${navigationLink.linkText}
+                        </a>
+                    </sly>
+                    <sly data-sly-test="${!data.marketSelectorDisabled}">
+                        <sly 
+                        data-sly-test="${data.marketList.markets.size >= 1}" 
+                        data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
+                            <a 
+                                class="tp-pw-headerv2-market-selector js-header__selected-lang-pw" 
+                                data-language="${data.currentLanguage}"
+                                data-link-section="Header Navigation" 
+                                data-link-name="market locator " 
+                                href="#">
+                                <span>
+                                    <i auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw"></i>${data.currentMarket}
+                                    ${data.displayCurrentLanguage ? concatenatLanguage : ''}
+                                </span>
+                            </a>
+                        </sly>
+                    </sly>
+                    <sly data-sly-test="${data.loginLink != '#'}">
+                        <a 
+                            class="tp-pw-headerv2-login-selector" 
+                            target="_blank" 
+                            href="${data.loginLink}"
+                            data-link-section="Header Navigation" 
+                            data-link-name="login_My tetrapak">
+                            <span>
+                                <i class="icon-Avatar"></i>${data.loginLabel}
+                            </span>
+                        </a>
+                    </sly>
+                </div>
+                <div class="tp-pw-headerv2-mobile-secondary-navigation">
+                    <i class="js-submenu-mobile-icon icon-Burger"></i>
+                </div>
+            </div>
+            <div class="tp-pw-headerv2-second-row">
+                <div class="tp-pw-headerv2-main-navigation">
+                    <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
+                        <a 
+                            class="js-tp-pw-headerv2-main-navigation-link js-megamenulink-${navigationLinkList.index}" 
+                            href="${navigationLink.linkUrl}" 
+                            target="_blank" >
+                            ${navigationLink.linkText}
+                        </a>
+                    </sly>
+                    <div class="tp-pw-headerv2-submenu-wrapper">
+                        <i class="js-submenu-icon icon-Three_Dot"></i>
+                        <div class="tp-pw-headerv2-submenu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="tp-pw-headerv2-mobile-secondary-navigation-menu">
+            <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
+                <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index}">
+                    ${navigationLink.linkText}
+                </a>
+            </sly>
+            <sly data-sly-list.navigationLink="${data.secondaryNavigationLinks}">
+                <a href="${navigationLink.linkUrl}" target="_blank" class="secondary">
+                    ${navigationLink.linkText}
+                </a>
+            </sly>
+            <sly data-sly-test="${data.marketList.markets.size >= 1}">
+                <sly 
+                data-sly-test="${data.displayCurrentLanguage}" 
+                data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
+                    <a 
+                        class="tp-pw-headerv2-market-selector js-header__selected-lang-pw" 
+                        data-language="${data.currentLanguage}"
+                        data-link-section="Header Navigation" 
+                        data-link-name="market locator" 
+                        href="#">
+                        <span>
+                            <i auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw"></i>${data.currentMarket}
+                            ${data.displayCurrentLanguage ? concatenatLanguage : ''}
+                        </span>
+                    </a>
+                </sly>
+            </sly>
+            <sly data-sly-test="${data.loginLink != '#'}">
+                <a 
+                    class="tp-pw-headerv2-login-selector" 
+                    target="_blank" 
+                    href="${data.loginLink}"
+                    data-link-section="Header Navigation" 
+                    data-link-name="login_My tetrapak">
+                    <span>
+                        <i class="icon-Avatar"></i>${data.loginLabel}
+                    </span>
+                </a>
+            </sly>
+        </div>
+    </header>
+    <sly data-sly-use.marketselector="/apps/publicweb/components/content/marketselector/marketselector-template.html"
+        data-sly-call="${marketselector.marketselector_template @ data=data.marketList}" />
+    <sly data-sly-use.searchbar="/apps/publicweb/components/content/searchbar/searchbar-template.html"
+        data-sly-call="${searchbar.searchbar_template @ searchPage=data.searchPage}" />
+    <sly data-sly-list.link="${data.mainNavigationLinks}">
+        <sly data-sly-test="${link.megaMenuPath}">
+            <div 
+                class="tp-pw-headerv2-megamenu hidden js-megamenu-${linkList.index}"
+                data-sly-resource="${@path=link.megaMenuPath,
+                selectors='content',
+                wcmmode='disabled'}">
+            </div> 
+        </sly>
+    </sly>
+    
+</sly>

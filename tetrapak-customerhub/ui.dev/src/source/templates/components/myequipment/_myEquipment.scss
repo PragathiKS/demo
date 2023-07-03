@@ -76,10 +76,6 @@ $color-red: #ff0000;
         }
     }
 
-    &__filter-button-all {
-        display: none;
-    }
-
     &__heading {
         @include font-size($font-xl);
         @include line-height(40px, $font-xl);

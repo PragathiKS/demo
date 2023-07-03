@@ -1,0 +1,19 @@
+<sly data-sly-template.megamenuconfigv2_template="${@data, flag}">
+    <div data-module="MegaMenuConfigV2" class="tp-pw-megamenuconfigv2">
+        <div 
+            data-sly-test="${data.numberOfColumns >= 1}" 
+            data-sly-resource="${'col1' @ resourceType='publicweb/components/structure/megamenucolumn'}">
+        </div>
+        <div 
+            data-sly-test="${data.numberOfColumns >= 2}" 
+            data-sly-resource="${'col2' @ resourceType='publicweb/components/structure/megamenucolumn'}">
+        </div>
+        <sly data-sly-test="${data.numberOfColumns == 3}">
+            <div data-sly-resource="${'col3' @ resourceType='publicweb/components/structure/megamenucolumn'}"></div>
+        </sly>
+        <sly data-sly-test="${data.numberOfColumns == 4}">
+            <div data-sly-resource="${'col4' @ resourceType='publicweb/components/structure/megamenucolumn'}"></div>
+            <div data-sly-resource="${'col3' @ resourceType='publicweb/components/structure/megamenucolumn'}"></div>
+        </sly>
+    </div>
+</sly>

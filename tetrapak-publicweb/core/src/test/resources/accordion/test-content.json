@@ -1,52 +1,61 @@
 {
   "jcr:primaryType": "cq:Page",
   "jcr:createdBy": "admin",
-  "jcr:created": "Tue Apr 18 2023 12:38:38 GMT+0530",
+  "jcr:created": "Mon May 08 2023 15:14:52 GMT+0530",
   "jcr:content": {
     "jcr:primaryType": "cq:PageContent",
     "jcr:createdBy": "admin",
     "mobileOverviewLabel": "Overview",
-    "jcr:title": "Accordion",
+    "jcr:title": "New Accordion",
     "cq:template": "/conf/publicweb/settings/wcm/templates/public-web-landing-page-with-section-menu",
     "altText": "thumbnail image alt text",
     "imagePath": "/content/dam/tetrapak/783px-Test-Logo.svg.png",
     "pwButtonTheme": "link",
-    "jcr:created": "Tue Apr 18 2023 12:38:38 GMT+0530",
-    "cq:lastModified": "Mon Apr 24 2023 13:48:41 GMT+0530",
+    "jcr:created": "Mon May 08 2023 15:14:52 GMT+0530",
+    "cq:lastModified": "Fri May 12 2023 15:34:46 GMT+0530",
     "titleSuffix": "Tetra Pak",
     "hideInSearch@Delete": "true",
     "linkPath": "/content/dam/wknd-events/wknd-events.jpg",
     "linkText": "this is link text of thumbnail",
     "sling:resourceType": "publicweb/components/structure/pages/sectionmenupage",
     "cq:lastModifiedBy": "admin",
-    "root": {
+    "accordion": {
       "jcr:primaryType": "nt:unstructured",
-      "sling:resourceType": "wcm/foundation/components/responsivegrid",
-      "responsivegrid": {
+      "jcr:createdBy": "admin",
+      "description": "Description of the accordion component",
+      "headingElement": "h3",
+      "jcr:lastModifiedBy": "admin",
+      "jcr:created": "Thu Jun 08 2023 12:27:29 GMT+0530",
+      "heading": "Heading of the accordion component",
+      "jcr:lastModified": "Thu Jun 08 2023 16:28:24 GMT+0530",
+      "singleExpansion": "false",
+      "sling:resourceType": "publicweb/components/content/accordion",
+      "teaser": {
         "jcr:primaryType": "nt:unstructured",
-        "sling:resourceType": "wcm/foundation/components/responsivegrid",
-        "accordion": {
-          "jcr:primaryType": "nt:unstructured",
-          "jcr:createdBy": "admin",
-          "description": "Accordion Description",
-          "jcr:lastModifiedBy": "admin",
-          "jcr:created": "Tue Apr 18 2023 12:39:13 GMT+0530",
-          "heading": "Heading of the accordion component",
-          "jcr:lastModified": "Mon Apr 24 2023 13:48:41 GMT+0530",
-          "sling:resourceType": "publicweb/components/content/accordion",
-          "textIsRich": [ "true", "true" ],
-          "accordionList": {
-            "jcr:primaryType": "nt:unstructured",
-            "item0": {
-              "jcr:primaryType": "nt:unstructured",
-              "accordionHeading": "Accordion list - Heading 1"
-            },
-            "item1": {
-              "jcr:primaryType": "nt:unstructured",
-              "accordionHeading": "Accordion list - Heading 2"
-            }
-          }
-        }
+        "jcr:createdBy": "admin",
+        "logicalOperator": "and",
+        "numberOfColumns": "3",
+        "cq:panelTitle": "Teaser",
+        "jcr:lastModifiedBy": "admin",
+        "contentType": "automatic",
+        "jcr:created": "Thu Jun 08 2023 12:27:45 GMT+0530",
+        "pwTheme": "grayscale-white",
+        "heading": "Teaser Component Heading",
+        "jcr:lastModified": "Thu Jun 08 2023 16:28:37 GMT+0530",
+        "sling:resourceType": "publicweb/components/content/teaser",
+        "displayDate": "false"
+      },
+      "medialink": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "cq:panelTitle": "Media & Link",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Jun 08 2023 12:27:49 GMT+0530",
+        "pwTheme": "grayscale-white",
+        "headingDesc": "Media & Link description",
+        "heading": "Media & Link heading",
+        "jcr:lastModified": "Thu Jun 08 2023 16:29:05 GMT+0530",
+        "sling:resourceType": "publicweb/components/content/mediaLink"
       }
     }
   }

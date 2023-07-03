@@ -306,11 +306,9 @@ def publishCoverageReport() {
 }
 
 def cacheflush() {
-    echo "Starting Dev Dispatcher Cache Clear"
-    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-    {
-        sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-    }        
+    build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: 'DEV')], wait: true
+
+    build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: 'DEV'), booleanParam(name: 'Publicweb', value: params.Build_Publicweb), booleanParam(name: 'Customerhub', value: params.Build_MyTetraPak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.Build_Tetralaval), booleanParam(name: 'Supplierportal', value: params.Build_Supplierportal)], wait: true       
 }
 
 def sonarreport() {

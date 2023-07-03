@@ -71,6 +71,11 @@
                             <artifactId>tetrapak-commons.it.launcher</artifactId>
                             <target>/apps/commons/install</target>
                         </embedded>
+                        <embedded>
+                            <groupId>org.apache.sling</groupId>
+                            <artifactId>org.apache.sling.dynamic-include</artifactId>
+                            <target>/apps/vendor-packages/content/install</target>
+                        </embedded>
 
                     </embeddeds>
                     <filters>
@@ -153,6 +158,10 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.dynamic-include</artifactId>
         </dependency>
     </dependencies>
 
