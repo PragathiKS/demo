@@ -19,6 +19,14 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     public void activate(PowerBiReportConfig config) {
         this.config = config;
     }
+      /**
+     * @return the PowerBI Service URL
+     */
+    @Override
+    public String getPbiServiceUrl() {
+
+        return config.pbiserviceurl();
+    }
     /**
      * @return the azureID tenantid
      */

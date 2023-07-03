@@ -7,6 +7,14 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
         description = "EmbeddPowerBi Report Configuration")
 public @interface PowerBiReportConfig {
    
+
+     /**
+     * PowerBI Service URL
+     * @return PowerBI Service URL
+     */
+    @AttributeDefinition(name = "PowerBI Service URL",
+            description = "PowerBI Service URL", type = AttributeType.STRING)
+    String pbiserviceurl();
     /**
      * Azure TenantID
      * @return Azure TenantID
