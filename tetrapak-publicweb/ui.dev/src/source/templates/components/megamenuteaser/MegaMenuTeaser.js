@@ -11,7 +11,7 @@ class MegaMenuTeaser {
   }
 
   bindEvents() {
-    /* */
+    /*add code here*/
   }
 
   init() {
