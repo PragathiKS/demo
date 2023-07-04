@@ -5,6 +5,9 @@
     align-items: stretch;
     border-top: 1px solid $color-mercury;
     box-sizing: border-box;
+    position: fixed;
+    top: auto;
+    z-index: $zindex-anchor-menu;
 
     .cq-Editable-dom--container,
     .cq-Editable-dom--container.aem-GridColumn {

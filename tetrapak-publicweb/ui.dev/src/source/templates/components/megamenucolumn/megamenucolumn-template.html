@@ -1,5 +1,5 @@
 <sly data-sly-template.megamenucolumn_template="${@data, flag}">
-    <div data-module="MegaMenuColumn" class="tp-pw-megamenucolumn--bgColor-${data.bgColor || 'white'}">
+    <div data-module="MegaMenuColumn" class="tp-pw-megamenucolumn ${data.bgColor || 'white'}-bg">
         <sly data-sly-list.item="${data.items}">
             <div class="tp-pw-megamenucolumn__item--${item.name}">
                 <sly data-sly-resource="${item.name}"></sly>
