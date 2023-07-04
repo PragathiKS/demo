@@ -303,7 +303,7 @@
                                                 fieldLabel="Thumbnail Image path"
                                                 name="./imagePath"
                                                 required="{Boolean}true"
-                                                rootPath="/content/dam/tetrapak">
+                                                rootPath="/content/dam/tetra-laval">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="imagePath"/>
