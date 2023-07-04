@@ -12,268 +12,100 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="granite/ui/components/coral/foundation/tabs">
                 <items jcr:primaryType="nt:unstructured">
-                    <basic
+                    <basic/>
+                    <aggregator
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Basic"
+                        jcr:title="Tetra Laval Aggregator Configuration *"
                         sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
                         <items jcr:primaryType="nt:unstructured">
                             <column
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/container">
-                                <items jcr:primaryType="nt:unstructured" sling:hideChildren="[branding,htmlid]">
-                                    <title
+                                <items jcr:primaryType="nt:unstructured">
+                                    <aggregator
                                         jcr:primaryType="nt:unstructured"
-                                        jcr:title="Title and Tags"
+                                        jcr:title="Aggregator Configurations"
                                         sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <title
+                                            <info
+                                                cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/field"
+                                                fieldLabel="*Please use title, tags &amp; description from basic tab"/>
+                                            <imagePath
+                                                cq:showOnCreate="{Boolean}true"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Original Image should be in 16:9 aspect ratio"
+                                                fieldLabel="Thumbnail Image path"
+                                                name="./imagePath"
+                                                required="{Boolean}true"
+                                                rootPath="/content/dam/tetrapak">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-msm-lockable="imagePath"/>
+                                            </imagePath>
+                                            <imageAltText
+                                                cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldDescription="Visible to the visitors in the Browser tab.The character recommendation is 60"
-                                                fieldLabel="Title"
-                                                name="./jcr:title"
-                                                renderReadOnly="{Boolean}true"
+                                                fieldDescription="Required for Accessibility use"
+                                                fieldLabel="Thumbnail Image Alt Text"
+                                                name="./altText"
                                                 required="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="jcr:title"/>
-                                            </title>
-                                            <titlesuffix
+                                                    cq-msm-lockable="altText"/>
+                                            </imageAltText>
+                                            <linkText
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Title suffix"
-                                                name="./titleSuffix"
-                                                value="Tetra Laval">
+                                                fieldDescription="Text available for the visitor"
+                                                fieldLabel="Link Text"
+                                                name="./linkText">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="titleSuffix"/>
-                                            </titlesuffix>
-                                            <pagename
-                                                cq:hideOnEdit="{Boolean}true"
+                                                    cq-msm-lockable="linkText"/>
+                                            </linkText>
+                                            <linkPath
                                                 cq:showOnCreate="{Boolean}true"
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                fieldLabel="Name"
-                                                name="pageName"
-                                                validation="admin.pagename"/>
-                                            <msmConfigEndpoint
-                                                granite:class="msm-config-endpoint"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                                value="${empty param.item ? requestPathInfo.suffix : param.item }"/>
-                                            <tags
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="cq/gui/components/coral/common/form/tagfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                autocreateTag="{Boolean}true"
-                                                emptyText="Pick the most important areas/keywords"
-                                                fieldDescription="Pick the most important areas/keywords"
-                                                fieldLabel="Tags"
-                                                multiple="{Boolean}true"
-                                                name="./cq:tags"
-                                                rootPath="/content/cq:tags/tetra-laval">
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                                fieldDescription="Link to destination URL"
+                                                fieldLabel="Link Path"
+                                                name="./linkPath"
+                                                rootPath="/content">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="cq:tags"/>
-                                            </tags>
-                                            <tagsShowOnCreate
-                                                cq:hideOnEdit="{Boolean}true"
+                                                    cq-msm-lockable="linkPath"/>
+                                            </linkPath>
+                                            <linkType
                                                 cq:showOnCreate="{Boolean}true"
-                                                granite:comment="Handled by a custom POST servlet for the Create Page case"
                                                 jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="cq/gui/components/coral/common/form/tagfield"
-                                                fieldLabel="Tags"
-                                                multiple="{Boolean}true"
-                                                name="./cq:tags"
-                                                rootPath="/content/cq:tags/tetra-laval"/>
-                                            <hideinnav
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                name="./hideInNav"
-                                                renderReadOnly="{Boolean}true"
-                                                text="Hide in Navigation"
-                                                value="true">
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Link Type"
+                                                name="./pwButtonTheme">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <linkButton
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Link Text"
+                                                        value="link"/>
+                                                    <button
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Button"
+                                                        value="secondary"/>
+                                                </items>
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="hideInNav"/>
-                                            </hideinnav>
-                                            <charset
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
-                                                allowBulkEdit="{Boolean}true"
-                                                ignoreData="{Boolean}true"
-                                                name="_charset_"
-                                                value="utf-8"/>
-                                            <hideinsitemap
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                name="./hideInSitemap"
-                                                renderReadOnly="{Boolean}true"
-                                                text="Hide in Sitemap"
-                                                value="true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="hideInSitemap"/>
-                                            </hideinsitemap>
-                                            <aggregatorPage
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                name="./aggregatorPage"
-                                                renderReadOnly="{Boolean}true"
-                                                text="Aggregator Page"
-                                                fieldDescription="Check if you want to set page as aggregator page. Moreover please set redirect to proper search page in Advanced tab"
-                                                value="true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="aggregatorPage"/>
-                                            </aggregatorPage>
+                                                    cq-msm-lockable="pwButtonTheme"/>
+                                            </linkType>
                                         </items>
-                                    </title>
-                                    <moretitles
-                                        cq:showOnCreate="{Boolean}true"
-                                        jcr:primaryType="nt:unstructured"
-                                        jcr:title="More Titles and Description"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <navigationtitle
-                                                cq:showOnCreate="{Boolean}true"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                allowBulkEdit="{Boolean}true"
-                                                fieldLabel="Navigation Title"
-                                                name="./navTitle"
-                                                renderReadOnly="{Boolean}true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="navTitle"/>
-                                            </navigationtitle>
-                                            <description
-                                                cq:showOnCreate="{Boolean}true"
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
-                                                fieldDescription="Maximum character limit is 160"
-                                                fieldLabel="Description"
-                                                maxlength="{Long}160"
-                                                name="./jcr:description"
-                                                renderReadOnly="{Boolean}true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="jcr:description"/>
-                                            </description>
-                                        </items>
-                                    </moretitles>
-                                    <onofftime
-                                        cq:showOnCreate="{Boolean}false"
-                                        jcr:primaryType="nt:unstructured"
-                                        jcr:title="On/Off Time"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <ondate
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
-                                                displayedFormat="MMMM DD, YYYY hh:mm a"
-                                                displayTimezoneMessage="{Boolean}true"
-                                                fieldLabel="On Time"
-                                                name="./onTime"
-                                                renderReadOnly="{Boolean}true"
-                                                type="datetime">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="onTime"/>
-                                            </ondate>
-                                            <offdate
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
-                                                displayedFormat="MMMM DD, YYYY hh:mm a"
-                                                displayTimezoneMessage="{Boolean}true"
-                                                fieldLabel="Off Time"
-                                                name="./offTime"
-                                                renderReadOnly="{Boolean}true"
-                                                type="datetime">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    allowBulkEdit="{Boolean}true"
-                                                    cq-msm-lockable="offTime"/>
-                                            </offdate>
-                                        </items>
-                                    </onofftime>
-                                    <vanityurl
-                                        cq:showOnCreate="{Boolean}false"
-                                        jcr:primaryType="nt:unstructured"
-                                        jcr:title="Vanity URL"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <vanitypath
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                                cq-msm-lockable="sling:vanityPath"
-                                                fieldLabel="Vanity URL"
-                                                renderReadOnly="{Boolean}true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="sling:vanityPath"/>
-                                                <field
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    name="./sling:vanityPath"
-                                                    required="{Boolean}true"/>
-                                            </vanitypath>
-                                            <redirectVanityURL
-                                                jcr:primaryType="nt:unstructured"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                name="./sling:redirect"
-                                                renderReadOnly="{Boolean}true"
-                                                text="Redirect Vanity URL"
-                                                value="true">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="./sling:redirect"/>
-                                            </redirectVanityURL>
-                                        </items>
-                                    </vanityurl>
-                                    <metarobots
-                                        cq:showOnCreate="{Boolean}false"
-                                        jcr:primaryType="nt:unstructured"
-                                        jcr:title="Meta Robots"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
-                                        <items jcr:primaryType="nt:unstructured">
-                                            <noIndex
-                                                jcr:primaryType="nt:unstructured"
-                                                cq:showOnCreate="{Boolean}true"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                renderReadOnly="true"
-                                                name="./noIndex"
-                                                text="No Index"
-                                                value="noindex">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="noIndex"/>
-                                            </noIndex>
-                                            <noFollow
-                                                jcr:primaryType="nt:unstructured"
-                                                cq:showOnCreate="{Boolean}true"
-                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
-                                                renderReadOnly="true"
-                                                name="./noFollow"
-                                                text="No Follow"
-                                                value="nofollow">
-                                                <granite:data
-                                                    jcr:primaryType="nt:unstructured"
-                                                    cq-msm-lockable="noFollow"/>
-                                            </noFollow>
-                                        </items>
-                                    </metarobots>
+                                    </aggregator>
                                 </items>
                             </column>
                         </items>
-                    </basic>
+                    </aggregator>
                 </items>
             </tabs>
         </items>
