@@ -10,7 +10,7 @@ class Headerv2 {
     this.root = $(el);
   }
 
-  initCache() {
+  initCache = () => {
     this.cache = {
       constants: {
         'extraMargin': 0
@@ -31,17 +31,19 @@ class Headerv2 {
         'isMegaMenuHovered': false
       },
       $elements: {
-        'mainNavigationLinks': this.root.find('.tp-pw-headerv2-main-navigation a')
+        'mainNavigationLinks': this.root.find('.tp-pw-headerv2-main-navigation a'),
+        'backdrop': this.root.find('.tp-pw-headerv2__backdrop')
       }
     };
   }
 
-  bindEvents() {
+  bindEvents = () => {
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
     this.bindSubmenuMobileOpenEvent();
     this.bindMegaMenuLinkHoverEvent();
     this.bindMarketSelectorOpenEvent();
+    this.setBackdropPosition();
   }
 
   getMainNavigationWidth = () => this.root.find('.tp-pw-headerv2-main-navigation').width();
@@ -173,6 +175,7 @@ class Headerv2 {
   }
 
   bindMegaMenuLinkHoverEvent = () => {
+    const $backdrop = this.cache.$elements.backdrop;
     const linksSelector = '.tp-pw-headerv2-main-navigation > a';
     this.root.find(linksSelector).each(function(index) {
       const getMegaMenuSelector = (megaMenuSelectorIndex) => `.js-megamenu-${megaMenuSelectorIndex}`;
@@ -187,11 +190,13 @@ class Headerv2 {
       const showMegaMenu = (i=index) => {
         $(getMegaMenuLinkSelector(i)).addClass('active');
         $(getMegaMenuSelector(i)).removeClass('hidden');
+        $backdrop.removeClass('hidden');
       };
 
       const hideMegaMenu = (i=index) => {
         $(getMegaMenuLinkSelector(i)).removeClass('active');
         $(getMegaMenuSelector(i)).addClass('hidden');
+        $backdrop.addClass('hidden');
       };
 
       const hideOtherMegaMenus = (hideAll=false) => {
@@ -217,6 +222,11 @@ class Headerv2 {
         hideOtherMegaMenus(true);
       });
     });
+  }
+
+  setBackdropPosition = () => {
+    const headerHeight = this.root.height();
+    this.cache.$elements.backdrop.css('top', headerHeight);
   }
 
   init() {

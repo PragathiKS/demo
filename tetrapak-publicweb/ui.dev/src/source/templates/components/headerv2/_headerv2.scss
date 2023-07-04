@@ -12,6 +12,19 @@
     align-items: center;
     width: 100%;
 
+    &__backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $overlay-color;
+        z-index: $zindex-nav;
+        &.hidden {
+            display: none;
+        }
+    }
+
     a {
         text-rendering: optimizeLegibility;
         text-size-adjust: 100%;
@@ -119,6 +132,7 @@
     nav {
         width: 100%;
         background-color: $color-white;
+        z-index: $zindex-nav;
 
         .tp-pw-headerv2-first-row {
             display: flex;
