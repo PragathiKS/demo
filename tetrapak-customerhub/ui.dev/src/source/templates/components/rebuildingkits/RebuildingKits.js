@@ -33,6 +33,7 @@ import {
   RK_STATUS,
   RK_HANDLING,
   RK_ORDER,
+  RK_I18N_RK_ICON,
   RK_I18N_COUNTRY_CODE,
   RK_I18N_LINE_CODE,
   RK_I18N_EQ_DESC,
@@ -138,8 +139,6 @@ class RebuildingKits {
         };
       }
     }
-    // Remove the first element from customisableTableHeaders
-    customisableTableHeaders.shift();
   };
 
   renderSearchCount = () => {
@@ -234,8 +233,6 @@ class RebuildingKits {
         $(`.js-rk__table-summary__cell--${customisableTableHeaders[i].index}`).removeClass('hide');
       }
     }
-    // Remove the first element from customisableTableHeaders
-    customisableTableHeaders.shift();
   }
 
   renderDefaultCountry = () => {
@@ -907,7 +904,7 @@ class RebuildingKits {
 
   setDefaultTableHeaders = () => {
     this.cache.customisableTableHeaders = [
-      {key:RK_ICON,index:0,isChecked: true},
+      {key:RK_ICON,index:0,optionDisplayText:this.cache.i18nKeys[RK_I18N_RK_ICON],isChecked: false,isDisabled:true},
       {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:1,isDisabled:false},
       {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:2,isDisabled:false},
       {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:3,isDisabled:false},
