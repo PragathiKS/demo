@@ -1,20 +1,16 @@
-@mixin column {
+.tp-pw-megamenucolumn  {
     display: flex;
     width: 100%;
     height: 100%;
     justify-content: flex-start;
     align-items: stretch;
     flex-direction: column;
-}
 
-.tp-pw-megamenucolumn  {
-    &--bgColor-white {
-        @include column;
+    &.white-bg {
         background-color: $color-white;
     }
 
-    &--bgColor-grey {
-        @include column;
+    &.grey-bg {
         background-color: $color-wild-sand;
 
         .tp-pw-megamenuheading {
@@ -30,5 +26,14 @@
             height: 100%;
             position: relative;
         }
+    }
+}
+
+.tp-pw-megamenucolumn > div {
+    &:last-of-type {
+        padding-bottom: $margin-l;
+    }
+    &:first-of-type {
+        padding-bottom: 0;
     }
 }
