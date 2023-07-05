@@ -32,18 +32,46 @@ class Headerv2 {
       },
       $elements: {
         'mainNavigationLinks': this.root.find('.tp-pw-headerv2-main-navigation a'),
-        'backdrop': this.root.find('.tp-pw-headerv2__backdrop')
+        'backdrop': this.root.find('.tp-pw-headerv2__backdrop'),
+        'searchIcon': this.root.find('.tp-pw-headerv2-search-box-toggle')
       }
     };
   }
 
-  bindEvents = () => {
-    this.bindWindowSizeChangeEvent();
-    this.bindSubmenuOpenEvent();
-    this.bindSubmenuMobileOpenEvent();
-    this.bindMegaMenuLinkHoverEvent();
-    this.bindMarketSelectorOpenEvent();
-    this.setBackdropPosition();
+  hideSearchbar = () => {
+    $('.js-pw-header-search-barv2').removeClass('show');
+  }
+
+  bindSearchIconClickEvent = () => {
+    const $searchBar = $('.js-pw-header-search-bar');
+
+    $searchBar.addClass('show');
+    this.cache.$elements.searchIcon.on('click', this.searchIconClick);
+  }
+
+  searchIconClick = () => {
+    const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
+
+    if ($searchBarWrapper.hasClass('show')) {
+      $searchBarWrapper.removeClass('show');
+    } else {
+      $('.js-search-bar-input').val('');
+      $searchBarWrapper.addClass('show');
+      $('.search-bar-input').trigger('focus');
+
+      const dataObj = {
+        linkType: 'internal',
+        linkSection: 'Hyperlink click',
+        linkParentTitle: '',
+        linkName: 'Search'
+      };
+      const eventObj = {
+        eventType: 'linkClick',
+        event: 'Search'
+      };
+
+      trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    }
   }
 
   getMainNavigationWidth = () => this.root.find('.tp-pw-headerv2-main-navigation').width();
@@ -190,6 +218,7 @@ class Headerv2 {
       const showMegaMenu = (i=index) => {
         $(getMegaMenuLinkSelector(i)).addClass('active');
         $(getMegaMenuSelector(i)).removeClass('hidden');
+        $('.tp-pw-headerv2-searchbar-wrapper').removeClass('show');
         $backdrop.removeClass('hidden');
       };
 
@@ -209,8 +238,16 @@ class Headerv2 {
         });
       };
 
+      $link.on('mouseleave', () => {
+        hideOtherMegaMenus(true);
+      });
+
       $link.on('mouseenter', () => {
         hideOtherMegaMenus();
+        showMegaMenu();
+      });
+
+      $megaMenu.on('mouseenter', () => {
         showMegaMenu();
       });
 
@@ -227,6 +264,16 @@ class Headerv2 {
   setBackdropPosition = () => {
     const headerHeight = this.root.height();
     this.cache.$elements.backdrop.css('top', headerHeight);
+  }
+
+  bindEvents = () => {
+    this.bindWindowSizeChangeEvent();
+    this.bindSubmenuOpenEvent();
+    this.bindSubmenuMobileOpenEvent();
+    this.bindMegaMenuLinkHoverEvent();
+    this.bindMarketSelectorOpenEvent();
+    this.setBackdropPosition();
+    this.bindSearchIconClickEvent();
   }
 
   init() {

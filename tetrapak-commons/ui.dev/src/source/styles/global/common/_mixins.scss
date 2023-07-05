@@ -230,9 +230,9 @@
     }
 }
 
-@mixin hyperlink($font-size, $margin-left) {
+@mixin hyperlink($font-size, $padding-left) {
     @include hyperlink-base;
-    margin-left: $margin-left;
+    padding-left: $padding-left;
     font-size: $font-size;
     text-decoration: none;
 }
