@@ -1,0 +1,201 @@
+<sly data-sly-template.tabslist_template="${@data, componentName, flag}">
+  <sly data-sly-test.parentHeading="${data.heading}" />
+  <div auto-locator="${componentName}" id="${data.anchorId}" title="${data.anchorTitle}" class="pw-container" data-module="TabsList">
+    <div
+      class="pw-tablist pw-padding--regular pw-margin--regular pw-theme--${data.pwTheme} pw-tablist--${data.pwDisplay} js-tablist">
+      <input type="hidden" class="tabComponentId" name="tabComponentId" value="${resource.name}" />
+      <input type="hidden" class="activeTheme" name="activeTheme" value="${data.pwTheme}" />
+      <h3 data-sly-test="${parentHeading}" class="pw-tablist__heading js-tablist__heading"> ${parentHeading @
+        context='html'}</h3>
+      <div class="row">
+        <div
+          class="pw-tablist__events col-lg-5  ${data.pwDisplay == 'display-row' ? 'pw-tablist__events-icright' : 'pw-tablist__events-icleft'}"
+          id="accordion_${resource.name}">
+          <sly data-sly-list.tab="${data.tabs}">
+            <sly data-sly-test="${tab.title}">
+              <sly
+                      data-sly-test.tabContentType="${tab.tabType == 'videoText' ? 'Text & Video' : 'Text & Image'}" />
+                    <sly
+                      data-sly-test.buttonLinkType="${tab.pwButtonTheme == 'secondary' ? '_CTA' : '_Text Hyperlink'}" />
+              <sly data-sly-test.pwThemeActive="${[' m-active active--', data.pwTheme] @ join=''}" />
+              <button type="button"
+                class="pw-tablist__event js-pw-tablist__event js-tablist__event${tabList.index == 0 ? pwThemeActive : ' collapsed'}"
+                data-toggle="collapse" data-target="#tab_${resource.name}_${tabList.index}"
+                data-index="${tabList.index}" aria-expanded="${tabList.index == 0 ? 'true' : 'false'}"
+                data-link-name="${componentName == 'pxpoptions' ? tab.subTitle : tab.title}" data-link-section="tablist_CTA" data-parent-title="CTA_${data.heading}">
+                <sly data-sly-test="${data.pwDisplay == 'display-row'}">
+                  <div>
+                    <p class="pw-tablist__event-title-icright">${componentName == 'pxpoptions' ? tab.subTitle : tab.title @ context='html'}</p>
+                  </div>
+                  <i class="icon icon-right icon-Arrow_Right_pw"></i>
+                </sly>
+                <sly data-sly-test="${data.pwDisplay == 'display-row-reversed'}">
+                  <i class="icon icon-left icon-Arrow_Right_pw"></i>
+                  <div>
+                    <p class="pw-tablist__event-title-icleft">${componentName == 'pxpoptions' ? tab.subTitle : tab.title @ context='html'}<p>
+                  </div>
+                </sly>
+              </button>
+              <sly data-sly-test.videoPathPW="${tab.damVideoPath}"></sly>
+              <div
+                class="pw-tablist__event-detail-wrapper ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} d-lg-none collapse${tabList.index == 0 ? ' show' : ''}"
+                id="tab_${resource.name}_${tabList.index}" data-parent="#accordion_${resource.name}">
+                <div class="pw-tablist__event-detail js-video-props" data-link-parent-title="${tab.title}"
+                  data-video-type="${tab.videoSource}" data-video-name="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}">
+                  <!--image video component  -->
+                  <sly data-sly-test="${tab.tabType == 'videoText'}">
+                    <sly data-sly-test="${tab.videoSource == 'damVideo' && tab.damVideoPath}">
+                      <div data-sly-test="${tab.damVideoPath}" class="tpatom-dam pw-tablist__media-wrapper">
+                        <sly data-sly-test="${wcmmode.edit}">
+                          <video title="${noval}" class="js-dam-player" controls poster="${tab.thumbnailPath}">
+                            <source src="${tab.damVideoPath}">
+                          </video>
+                        </sly>
+                        <sly data-sly-test="${!wcmmode.edit}">
+                          <sly
+                            data-sly-use.dynamicImageModel="${'com.tetralaval.models.DynamicImageModel' @ imagePath=tab.thumbnailPath}">
+                          </sly>
+                          <video title="${noval}" class="js-dam-player" controls
+                            poster="${dynamicImageModel.desktopUrl}">
+                            <source src="${videoPathPW}">
+                          </video>
+                        </sly>
+                      </div>
+                    </sly>
+                    <sly data-sly-test="${tab.videoSource == 'youtube'}">
+                      <sly data-sly-use.digitalDataModel="com.tetralaval.models.PageLoadAnalyticsModel"></sly>
+                      <!-- youtube video -->
+                      <div data-sly-test="${tab.youtubeEmbedURL}" class="pw-text-video__video tpatom-youtube pw-tablist__media-wrapper">
+                        <sly data-sly-test="${!digitalDataModel.isPublisher}">
+                          <iframe title="${noval}" class="tpatom-yt-player js-yt-player"
+                                  src="${tab.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
+                                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                  allowfullscreen></iframe>
+                        </sly>
+                        <sly data-sly-test="${digitalDataModel.isPublisher}">
+                          <iframe title="${noval}" class="tpatom-yt-player js-yt-player"
+                                  class="optanon-category-4"
+                                  data-src="${tab.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
+                                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                  allowfullscreen></iframe>
+                        </sly>
+                      </div>
+                      <!-- youtube video end -->
+
+                      <!-- No Video when cookie not accepted -->
+                      <div class="pw-text-video__novideo">
+                        <div class="pw-text-video__novideo_content pw-tablist__novideop">
+                          <div class="pw-text-video_content"></div>
+                          <button id="ot-sdk-btn" class="ot-sdk-show-settings">Cookies Settings</button>
+                        </div>
+                      </div>
+                    </sly>
+                  </sly>
+                  <sly data-sly-test="${tab.tabType == 'imageText' && tab.fileReference}">
+                    <div class="x-img-responsive">
+                          <a data-sly-test="${tab.linkURL && tab.linkURL!='#'}"
+                          href="${tab.linkURL ? tab.linkURL : '#'}"
+                          class="img-link-tablist js-tablist__event-detail-description-link"
+                          data-custom="${customData @ context='text'}"
+                          data-link-section="${tabContentType}_imageClick"
+                          data-link-name="${tab.linkText}"
+                          data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
+                          data-component-name="${tabContentType}"
+                          data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
+                          data-tab-title="${tab.title}">
+                      <sly data-sly-test="${!wcmmode.edit}">
+                        <sly
+                          data-sly-use.dynamicMediaImage="/apps/tetra-laval/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                          data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=tab.fileReference, altText=tab.alt, className='pw-tablist__media-wrapper'}" />
+                      </sly>
+                      <sly data-sly-test="${wcmmode.edit}">
+                        <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
+                      </sly>
+                      </a>
+                      <span data-sly-test="${!tab.linkURL || tab.linkURL=='#'}">
+                      <sly data-sly-test="${!wcmmode.edit}">
+                        <sly
+                          data-sly-use.dynamicMediaImage="/apps/tetra-laval/components/content/dynamicMediaImage/dynamicMediaImage-template.html"
+                          data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=tab.fileReference, altText=tab.alt, className='pw-tablist__media-wrapper'}" />
+                      </sly>
+                      <sly data-sly-test="${wcmmode.edit}">
+                        <img class="pw-tablist__media-wrapper" src="${tab.fileReference}" alt="${tab.alt}" />
+                      </sly>
+                  </span>
+                    </div>
+                  </sly>
+                  <!--end image video component  -->
+                  <p data-sly-test ="${tab.articleDate && data.displayDate}" class="pw-tablist__event-detail-block-time">${tab.articleDate @ context='html'}</p>
+                  <sly data-sly-test="${!(tab.articleDate && data.displayDate)}">
+                    <p data-sly-test="${tab.subTitle}" class="pw-tablist__event-detail-subtitle font-fixing js-tablist__event-detail-subtitle">${tab.subTitle @
+                      context='html'}</p>
+                  </sly>
+                  <h4 class="pw-tablist__event-detail-title js-tablist__event-detail-title d-none d-lg-block">
+                    ${tab.title @ context='html'}</h4>
+                  <sly data-sly-test="${tab.description}">
+                  <div class="pw-tablist__event-detail-description">${tab.description @ context='html'}</div>
+                  </sly>
+				      <div class="tl-contactus">
+                <button data-sly-test="${tab.linkLabel}" type="button" class="tpatom-btn tpatom-btn--primary js-tpatom-btn__tl-contactUs" 
+    		             data-companyvalue="${tab.company}" data-companykey=":company">
+                  <span class="tp-next-btn__text">${tab.linkLabel}</span>
+                  <i class="tpatom-button__icon icon-Arrow_Right_pw"></i>
+                </button>
+                <p data-sly-test="${wcmmode.edit}" data-emptytext="configure ${component.title}" class="cq-placeholder"></p>
+                <div class="modal tp-modal tl-contact-modal js-tp-contact__modal fade" tabindex="-1" role="dialog" aria-modal="true">
+                  <div class="modal-dialog modal-dialog-centered tp-modal-dialog">
+                  <div class="modal-content tp-modal-content">
+                  <div class="modal-body">
+                      <!-- Contact Form -->
+                      <sly data-sly-test.formPath="${tab.formPath}" />
+                      <sly data-sly-test="${formPath}" data-sly-resource="${@path=formPath, selectors='content', wcmmode='disabled'}"></sly>
+                  </div>
+                  </div>
+               </div>
+               </div>
+                    </div>
+                  <sly data-sly-test.variant="${tab.pwButtonTheme == 'secondary' ? 'primary' : 'transparent'}">
+
+                    <sly data-sly-test.buttonDownloadCheck="${tab.pwLinkTheme == 'download' ? '_Download' : ''}" />
+                    <sly
+                      data-sly-test.videoName="${tab.videoSource == 'youtube'? tab.youtubeEmbedURL : tab.videoName}" />
+                    <a data-sly-test="${tab.linkText}" href="${tab.linkURL}"
+                      class="tpatom-link tpatom-link--${variant || 'primary'} pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
+                      data-custom="${customData @ context='text'}" title="${btnTooltip}"
+                      data-link-section="${tabContentType}${buttonLinkType}"
+                      data-link-name="${tab.linkText}"
+                      data-component-name="${tabContentType}"
+                      data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
+                      data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
+                      data-tab-title="${tab.title}">
+                      <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon${variant != 'transparent' ? ' icon-Arrow_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
+                    </a>
+                    <!-- </sly> -->
+                  </sly>
+                </div>
+              </div>
+            </sly>
+            <sly data-sly-test="${tabList.last && data.readMorePath && data.readMorePath!='#'}">
+              <div
+                class="pw-tablist__event ${data.pwDisplay == 'display-row' ? 'pw-tablist__event-readmore-icright' : 'pw-tablist__event-readmore-icleft'}">
+                <a href="${data.readMorePath}"
+                  class="tpatom-link tpatom-link--transparent pw-tablist__event-detail-description-link js-tablist__event-detail-description-link"
+                  data-link-section="tablist_Text Hyperlink"
+                  data-component-name="tablist"
+                  data-link-name="${data.readMoreText}"
+                  data-button-link-type="link" data-asset-name="${data.assetName}" data-tab-title="${data.heading}"
+                  data-tab-type="">
+                  <span class="tpatom-link__text sly-text">${data.readMoreText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
+                </a>
+              </div>
+            </sly>
+          </sly>
+        </div>
+        <div
+          class="pw-tablist__events-sidesection js-tablist__events-sidesection ${data.pwTheme == 'grayscale-white' ? ' pw-theme--grayscale-lighter' : ' pw-theme--grayscale-white'} col-lg-7 d-none d-lg-block"
+          aria-live="polite">
+        </div>
+      </div>
+    </div>
+  </div>
+</sly>

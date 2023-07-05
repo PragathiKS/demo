@@ -44,6 +44,7 @@ export const RK_PROPERTY_KEYS = [
   RK_EQUIPMENT_NUMBER
 ];
 
+export const RK_I18N_RK_ICON = 'rkType';
 export const RK_I18N_COUNTRY_CODE = 'country';
 export const RK_I18N_LINE_CODE = 'functionalLocation';
 export const RK_I18N_EQ_DESC = 'equipmentDescription';
