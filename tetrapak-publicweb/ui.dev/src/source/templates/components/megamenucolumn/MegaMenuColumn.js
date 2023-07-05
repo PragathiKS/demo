@@ -5,24 +5,29 @@ class MegaMenuColumn {
     this.root = $(el);
   }
   cache = {};
+  
   initCache() {
-    /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
+    this.cache = {
+      $elements: {
+        header: this.root.find('.tp-pw-megamenuheading'),
+        teaserHeader: this.root.find('.tp-pw-megamenuteaser__header-wrapper')
+      }
+    };
   }
+
+  bindSetMarginIfNoHeaderEvent = () => {
+    const header = this.cache.$elements.header.get(0);
+    const teaserHeader = this.cache.$elements.teaserHeader.get(0);
+
+    if (!header && !teaserHeader) {
+      this.root.css('padding-top', '74px');
+    }
+  }
+
   bindEvents() {
-    /* Bind jQuery events here */
-    /**
-     * Example:
-     * const { $submitBtn } = this.cache;
-     * $submitBtn.on('click', () => { ... });
-     */
+    this.bindSetMarginIfNoHeaderEvent();
   }
   init() {
-    /* Mandatory method */
     this.initCache();
     this.bindEvents();
   }
