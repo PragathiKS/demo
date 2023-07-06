@@ -889,6 +889,9 @@ public final class CustomerHubConstants {
     
     /** The Constant RK & EQUIPMENT_INFORMATION. */
     public static final String RK_AND_EQUIPMENT_INFORMATION = "rkAndEquipmentInformation";
+
+     /** The Constant View in E Business Button. */
+    public static final String VIEW_IN_E_BIZ_BUTTON = "viewInEBizButton";
     
     /** The Constant Country Location */
     public static final String COUNTRY_LOCATION = "countryLocation";
