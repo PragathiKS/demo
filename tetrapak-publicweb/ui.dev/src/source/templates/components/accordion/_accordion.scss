@@ -16,6 +16,7 @@
     &__heading {
         @include font-size($font-l);
         @include line-height($padding-xl, $font-m-xl);
+        word-break: break-all;
         @media #{$desktop} {
             @include font-size($font-xl);
             @include line-height($padding-xxl, $font-xl);
