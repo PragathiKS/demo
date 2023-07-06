@@ -1,9 +1,68 @@
+@mixin searchbar-overrides {
+    margin: $margin-xl;
+    position: relative;
+    top: 0;
+    width: 60vw;
+    .search-bar-close {
+        display: none;
+    }
+    .vl {
+        display: none;
+    }
+
+    .pw-header-search-bar {
+        display: block;
+    }
+
+    .pw-header-search-bar__container {
+        border: 1px solid $color-tundora;
+        border-radius: $border-radius;
+        padding: 0 $margin-xl;
+        height: 100%;
+    }
+
+    .pw-header-search-bar__container .row {
+        display: block;
+        padding: 0;
+        max-width: 100%;
+    }
+    .search-bar-input {
+        width: 100%;
+    }
+    .col-lg-8 {
+        min-width: 100%;
+    }
+    .search-icon {
+        color: $color-congress-blue;
+    }
+}
+
 .tp-pw-headerv2-megamenu {
     &.hidden {
         display: none;
     }
 }
 
+.tp-pw-headerv2-searchbar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0;
+    transition: height .3s ease;
+    overflow: hidden;
+
+    &.show {
+        height: 124px;
+    }
+
+    .pw-header-search-bar {
+        @include searchbar-overrides;
+
+        @media #{$desktop} {
+            @include searchbar-overrides;
+        }
+    }
+}
 
 .tp-pw-headerv2 {
     display: flex;
@@ -23,6 +82,11 @@
         &.hidden {
             display: none;
         }
+    }
+
+    .tp-pw-headerv2-search-wrapper {
+        text-align: right;
+        margin-right: $margin-xxxl;
     }
 
     a {
@@ -204,7 +268,6 @@
         }
 
         .tp-pw-headerv2-second-row {
-            @include padding($spacing-small 0 $spacing-small 0);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -217,9 +280,9 @@
                 padding-right: $spacing-big;
 
                 a {
+                    @include padding($spacing-small 0 $spacing-small 0);
                     @include hyperlink($font-baseline, $margin-xxxl);
                     white-space: nowrap;
-                    min-width: $padding-l;
 
                     &.active {
                         text-decoration: underline;
