@@ -15,7 +15,7 @@
 		"hideInSearch@Delete": "true",
 		"linkType": "button",
 		"sling:resourceType": "publicweb/components/structure/pages/landingpage",
-		"cq:lastModifiedBy": "admin",		
+		"cq:lastModifiedBy": "admin",
 		"root": {
 			"jcr:primaryType": "nt:unstructured",
 			"responsivegrid": {
@@ -37,10 +37,12 @@
 					"tags": [
 						"tetrapak:publicweb/product/type/product-a"
 					],
-					"heading": "Heading",
+					"heading": "This is heading of teaser",
+					"description": "This is description of Teaser",
+					"numberOfColumns": "4",
 					"jcr:lastModified": "Mon Apr 13 2020 15:48:16 GMT+0530",
-					"sling:resourceType": "publicweb/components/content/teaser",	
-					"displayDate" :  "true",
+					"sling:resourceType": "publicweb/components/content/teaser",
+					"displayDate": "true",
 					"manualList": {
 						"jcr:primaryType": "nt:unstructured",
 						"item0": {
