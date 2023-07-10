@@ -135,28 +135,6 @@ describe('Rebuildingkitdetails', function () {
     expect(render.fn.called).to.be.true;
     done();
   });
-
-  // it('should call and render rebuilding data', function (done) {
-  //   expect(this.getRebuildingKitDetailsSpy.called).to.be.true;
-  //   expect(this.renderRebuildingKitDetailsSpy.called).to.be.true;
-  //   expect(render.fn.called).to.be.true;
-  //   expect(this.getCtiDocumentsSpy.called).to.be.true;
-  //   this.ajaxStub.restore();
-  //   this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
-  //   this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
-  //   expect(this.renderCtiDocumentsSpy.called).to.be.true;
-  //   const isLanguage = false;
-  //   if(!isLanguage) {
-  //     expect(render.fn.called).to.be.true;
-  //   } else {
-  //     expect(render.fn.called).to.be.true;
-  //   }
-  //   expect(render.fn.called).to.be.true;
-  //   expect(render.fn.called).to.be.true;
-    // expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
-    // expect(render.fn.called).to.be.true;
-  //   done();
-  // });
   
   it('should change preffered language', function (done) {
     $('.js-apply-language').trigger('click',function(e){
