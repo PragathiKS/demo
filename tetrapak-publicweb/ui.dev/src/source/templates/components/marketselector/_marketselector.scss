@@ -3,6 +3,7 @@
 
     a {
         &:hover {
+            // sass-lint:disable force-pseudo-nesting
             span:nth-child(2) {
                 border-left: 1px solid $color-sky-blue;
             }

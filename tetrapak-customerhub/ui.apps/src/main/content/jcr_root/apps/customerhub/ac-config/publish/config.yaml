@@ -67,6 +67,11 @@
           memberOf: everyone
           path: /home/groups/cuhugroups
 
+    - cuhub_aem_rebuildingkits:
+        - name: Rebuilding Kits Access
+          memberOf: everyone
+          path: /home/groups/cuhugroups
+
 - ace_config:
 
     - cuhu_aem_default:
@@ -304,10 +309,21 @@
           privileges: jcr:read
               
     - cuhu_aem_my_equip:
-                    
-        - path:  /content/tetrapak/customerhub/global/en/installed-equipments
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
           permission: allow
-          privileges: jcr:read
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
           
         - path:  /content/tetrapak/customerhub/global/en/installed-equipments/equipments
           permission: allow
@@ -321,10 +337,27 @@
           permission: allow
           privileges: jcr:read
           
-        - path:  /content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits
-          permission: allow
-          privileges: jcr:read
-          
         - path:  /content/tetrapak/customerhub/global/en/installed-equipments/technical-publication
           permission: allow
-          privileges: jcr:read 
+          privileges: jcr:read
+
+    - cuhub_aem_rebuildingkits:
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: deny
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob:
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: ""
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments
+          permission: allow
+          privileges: jcr:read,jcr:readAccessControl
+          repGlob: /jcr:*
+
+        - path: /content/tetrapak/customerhub/global/en/installed-equipments/rebuilding-kits
+          permission: allow
+          privileges: jcr:read

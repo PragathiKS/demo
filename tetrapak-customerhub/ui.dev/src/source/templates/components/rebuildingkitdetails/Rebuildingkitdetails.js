@@ -27,7 +27,7 @@ function _renderRebuildingKitDetails({ isNotConfirmed }) {
   const $this = this;
   const { $rebuildingData } = $this.cache;
   const { i18nKeys } = $this.cache;
-
+  
   render.fn({
     template: 'rebuildingkitDetails',
     target: $this.cache.$content,
@@ -35,6 +35,11 @@ function _renderRebuildingKitDetails({ isNotConfirmed }) {
   });
   $('.js-rebuilding-details__update').on('click', function() {
     $this.renderRebuildingKitReportModal();
+  });
+  $('.js-rebuilding-details__view-e-business-btn').on('click', function() {
+    const rkNumbner=$this.cache.$rebuildingData.rkNumber;
+    const eBusinessUrl=$this.cache.eBusinessUrl;
+    window.open(`${eBusinessUrl}/${rkNumbner}`, '_blank');   
   });
 }
 
@@ -179,10 +184,26 @@ function  _renderRebuildingKitReportModal() {
     $reportModal.modal('hide');
   });
 
-  this.root.on('click', '.js-rk-make-update',  (e) => {
+  this.root.on('click', '.js-rk-make-update', (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget.form);
     auth.getToken(({ data: authData }) => {
+      const reportedStatus = formData.get('status');
+      const payload = {
+        serialnumber: $this.cache.$rebuildingData.serialNumber,
+        reportedrebuildingkit: $this.cache.$rebuildingData.rkNumber,
+        reportedrebuildingkitname: $this.cache.$rebuildingData.rkDesc,
+        // reportedby: 'My Tetra Pak',
+        comment: formData.get('comments'),
+        currentstatus: $this.cache.$rebuildingData.implStatus,
+        reportedstatus: reportedStatus,
+        source: 'My Tetra Pak'
+      };
+  
+      if (reportedStatus === 'Implemented') {
+        payload.date = formData.get('date');
+      }
+  
       ajaxWrapper
         .getXhrObj({
           url: $this.cache.rebuildingReportApi,
@@ -190,17 +211,7 @@ function  _renderRebuildingKitReportModal() {
           cache: true,
           dataType: 'json',
           contentType: 'application/json',
-          data: JSON.stringify({
-            serialnumber: $this.cache.$rebuildingData.serialNumber,
-            reportedrebuildingkit: $this.cache.$rebuildingData.rkNumber,
-            reportedrebuildingkitname: $this.cache.$rebuildingData.rkDesc,
-            reportedby: 'My Tetra Pak',
-            comment: formData.get('comments'),
-            currentstatus: $this.cache.$rebuildingData.implStatus,
-            reportedstatus: formData.get('status'),
-            date: formData.get('date'),
-            source: 'My Tetra Pak'
-          }),
+          data: JSON.stringify(payload),
           beforeSend(jqXHR) {
             jqXHR.setRequestHeader(
               'Authorization',
@@ -221,7 +232,7 @@ function  _renderRebuildingKitReportModal() {
           logger.error(e);
         });
     });
-  });
+  });  
 }
 
 function _requestCtiLanguage(lang) {
@@ -427,7 +438,13 @@ function _getRebuildingKitDetails() {
         $this.renderRebuildingKitDetails({ isNotConfirmed: true });
         this.getCtiDocuments();
         $this.renderRebuildingKitDetailsBottom();
-        $this.updateRkValidationRows();
+        $this.updateRkValidationRows();    
+        
+        if($this.cache.$rebuildingData.rkTypeCode.startsWith('B')===true)
+        {
+          $('.tp-rebuilding-details__view-e-business-button-row').removeClass('d-none');          
+        }       
+        
       })
       .fail((e) => {
         logger.error(e);
@@ -453,6 +470,7 @@ class Rebuildingkitdetails {
     this.cache.apiURL = this.root.data('preferred-language-api');
     this.cache.apiCTI = this.root.data('cti-api');
     this.cache.apiRequestCTI = this.root.data('request-cti-api');
+    this.cache.eBusinessUrl=this.root.data('e-business-url');
     this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
       '.js-rebuilding-details__contentbottom'

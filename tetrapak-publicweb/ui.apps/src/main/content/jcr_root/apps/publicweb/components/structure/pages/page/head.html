@@ -61,8 +61,9 @@
       var pwoneTrustValue = '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
     </script>
   </sly>
+ 
   
-  <sly data-sly-test="${digitalDataModel.isPublisher}">
+  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
     <!-- <script>
       var OneTrust = {
         dataSubjectParams: {
@@ -72,7 +73,7 @@
         }
       }
     </script> -->
-    <script type="text/javascript" defer>
+    <script type="text/javascript" defer >
       var OneTrust = {
         dataSubjectParams: {
           id: '',
@@ -80,7 +81,7 @@
           token: ''
         }
       };
-      (function () {
+
         var cookieValue, isCookieExist, pwoneTrustValue, uidValue, jwtToken;
         function getCookie(name) {
           var value = "; " + document.cookie;
@@ -116,55 +117,82 @@
             ";path=/";
         }
 
-        // Url for the request
-        pwoneTrustValue = window.pwoneTrustValue + "?UserID=" + cookieValue;
-        if (isCookieExist === false || localStorage.getItem("jwttokenset") === null) {
-          fetch(pwoneTrustValue)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
+  pwoneTrustValue = window.pwoneTrustValue + "?UserID=" + cookieValue;
+ if (isCookieExist === false || localStorage.getItem("jwttokenset") === null) {
+      async function fetchUsers() {
+			var response = await fetch(pwoneTrustValue)
+            var data = await response.json();
+            return data;
+        }
+        fetchUsers().then(data => {
               uidValue = data.uid;
               jwtToken = data.jwt;
               localStorage.setItem("uidValueset", uidValue);
               localStorage.setItem("jwttokenset", jwtToken);
               setCookie("TPCOOKIEUSER", uidValue, 365);
               OneTrust.dataSubjectParams.id = uidValue;
-          		OneTrust.dataSubjectParams.token = jwtToken;
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        } else {
-          var userid = localStorage.getItem("uidValueset");
+              OneTrust.dataSubjectParams.token = jwtToken;
+        }).then(()=>{
+            var head= document.getElementsByTagName('head')[0];
+            var script= document.createElement('script');
+                script.type= 'text/javascript';
+                script.src= `https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript @ context='unsafe'}/otSDKStub.js`;
+                script.setAttribute('data-document-language','true');
+                script.setAttribute('charset','UTF-8');
+                script.setAttribute('data-domain-script', `${digitalDataModel.dataDomainScript @ context='unsafe'}`)
+                script.async = false;
+                head.appendChild(script);
+  
+        })
+}
+else {
+
+	function readCookieData(){
+		  var userid = localStorage.getItem("uidValueset");
           var jwt = localStorage.getItem("jwttokenset");
           OneTrust.dataSubjectParams.id = userid;
           OneTrust.dataSubjectParams.token = jwt;
-        }
-      })();
+         
 
-      //# sourceURL=cookieDebug.js
+    }
+	  async function fetchUsers() {
+		  await readCookieData();
+
+      }
+      fetchUsers().then(()=>{
+
+			   	var head= document.getElementsByTagName('head')[0];
+            	var script= document.createElement('script');
+                script.type= 'text/javascript';
+                script.src= `https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript @ context='unsafe'}/otSDKStub.js`;
+                script.setAttribute('data-document-language','true');
+                script.setAttribute('charset','UTF-8');
+                script.setAttribute('data-domain-script', `${digitalDataModel.dataDomainScript @ context='unsafe'}`)
+                script.async = false;
+                head.appendChild(script);
+      })
+}
+
     </script>
-  </sly>
-  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
-    <script src="https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript}/otSDKStub.js"
-      data-document-language="true" type="text/javascript" charset="UTF-8"
-      data-domain-script="${digitalDataModel.dataDomainScript}" defer></script>
-    <script type="text/javascript" defer>
+ </sly>
+ 
+ <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}"> 
+    <script type="text/javascript defer">
       function OptanonWrapper() { }
     </script>
   </sly>
+ 
 
   <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js"></script>
   </sly>
 
   <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
   </sly>
   <!--/* script for DEV and QA */-->
   <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
   </sly>
 
   <sly data-sly-include="customheaderlibs.html"></sly>

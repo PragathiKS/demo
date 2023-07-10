@@ -1,0 +1,9 @@
+<sly data-sly-test="${wcmmode.edit}">
+     <p data-emptytext="configure ${component.title}"
+        class="cq-placeholder"></p>
+ </sly>
+ 
+ <sly data-sly-use.megamenudescriptiondata="com.tetrapak.publicweb.core.models.megamenucolumnitem.DescriptionModel"
+     data-sly-use.lib="/apps/publicweb/components/content/megamenudescription/megamenudescription-template.html"
+     data-sly-call="${lib.megamenudescription_template @ data=megamenudescriptiondata}" />
+ 

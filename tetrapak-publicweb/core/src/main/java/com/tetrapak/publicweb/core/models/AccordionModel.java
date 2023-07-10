@@ -1,20 +1,24 @@
 package com.tetrapak.publicweb.core.models;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import javax.inject.Inject;
-
+import com.adobe.cq.wcm.core.components.models.Accordion;
+import com.adobe.cq.wcm.core.components.models.ListItem;
+import com.drew.lang.annotations.NotNull;
+import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
+import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.annotations.via.ResourceSuperType;
 
-import com.tetrapak.publicweb.core.models.multifield.AccordionListModel;
+@Model(adaptables = SlingHttpServletRequest.class,defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class AccordionModel {
+public class AccordionModel implements Accordion {
+
+    @Self @Via(type = ResourceSuperType.class)
+    private Accordion accordion;
 
     /**
      * The request.
@@ -25,20 +29,15 @@ public class AccordionModel {
     /**
      * Heading.
      */
-    @Inject
+    @ValueMapValue
     private String heading;
 
     /**
      * Description.
      */
-    @Inject
+    @ValueMapValue
     private String description;
 
-    /**
-     * Accordion List.
-     */
-    @Inject
-    private List<AccordionListModel> accordionList;
 
     /**
      * Gets the heading.
@@ -58,16 +57,9 @@ public class AccordionModel {
         return description;
     }
 
-    /**
-     * Gets the accordion List.
-     *
-     * @return lists
-     */
-    public List<AccordionListModel> getAccordionList() {
-        final List<AccordionListModel> lists = new ArrayList<>();
-        if (Objects.nonNull(accordionList)) {
-            lists.addAll(accordionList);
-        }
-        return lists;
+    @NotNull @Override
+    public List<ListItem> getItems() {
+        return accordion.getItems();
     }
+
 }

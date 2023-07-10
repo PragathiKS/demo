@@ -1,0 +1,15 @@
+<sly data-sly-template.megamenunavigationlinks_template="${@data, flag}">
+    <div data-module="MegaMenuNavigationLinks" class="tp-pw-megamenunavigationlinks">
+        <sly data-sly-list.link="${data.navLinks}">
+            <div class="tp-pw-megamenunavigationlinks__item">
+                <i data-sly-test=${link.linkIconClass} class="${link.linkIconClass}"></i>
+                <a href="${link.linkUrl}">
+                    ${link.linkLabel}
+                </a>
+                <p data-sly-test=${link.linkDescription}>
+                    ${link.linkDescription}
+                </p>
+            </div>
+        </sly>
+    </div>
+</sly>

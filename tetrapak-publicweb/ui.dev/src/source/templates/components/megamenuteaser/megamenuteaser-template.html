@@ -1,0 +1,11 @@
+<sly data-sly-template.megamenuteaser_template="${@data, flag}">
+    <div data-module="MegaMenuTeaser" class="tp-pw-megamenuteaser">
+        <img src="${data.imagePath}" alt="${data.imageAltText}" />
+        <div class="tp-pw-megamenuteaser__header-wrapper">
+            <h2>${data.title}</h2>
+            <div class="tp-pw-megamenuteaser__description">
+                ${data.description @context='html'}
+            </div>
+        </div>
+    </div>
+</sly>

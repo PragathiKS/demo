@@ -1,0 +1,23 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="configure ${component.title}"
+       class="cq-placeholder"></p>
+    <sly data-sly-use.headerConfig="com.tetrapak.publicweb.core.models.v2.HeaderConfigurationModel">
+        Logo Image Path: ${headerConfig.logoImagePath}</br>
+        Logo Link : ${headerConfig.logoLink} <br/>
+        Logo Alt :  ${headerConfig.logoAlt} <br/>
+        Login Label : ${headerConfig.loginLabel} <br/>
+        Login Link : ${headerConfig.loginLink} <br/>
+        Secondary Navigation Links : <br/>
+        <sly data-sly-list.links="${headerConfig.secondaryNavigationLinks}">
+            Link label: ${links.linkText}<br/>
+            Link path: ${links.linkUrl}<br/>
+        </sly>
+        <sly data-sly-list.mainLinks="${headerConfig.mainNavigationLinks}">
+            Main Navigation Links : <br/>
+            Link label: ${mainLinks.linkText}<br/>
+            Mega Menu URL: ${mainLinks.megaMenuPath}<br/>
+            Link path: ${mainLinks.linkUrl}<br/>
+        </sly>
+
+    </sly>
+</sly>

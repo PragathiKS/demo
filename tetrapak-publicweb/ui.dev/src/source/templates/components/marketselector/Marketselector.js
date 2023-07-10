@@ -13,6 +13,7 @@ class Marketselector {
   }
   bindEvents() {
     const { $marketSelectorList} = this.cache;
+
     this.root.on('click', '.js-close-btn', this.hidePopUp)
       .on('showlanuagepreferencepopup-pw', this.showPopup);
     $marketSelectorList.on('click', this.trackMarketSelectorAnalytics);
@@ -41,11 +42,11 @@ class Marketselector {
 
       trackAnalytics(trackingObj, 'linkClick', 'linkClick', undefined, false, eventObj);
       if(url){
-        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){ 
+        if (e.metaKey || e.ctrlKey || e.keyCode === 91 || e.keyCode === 224){
           window.open(url,'_blank');
         }
         else {
-          window.open(url,'_self'); 
+          window.open(url,'_self');
         }
       }
     }

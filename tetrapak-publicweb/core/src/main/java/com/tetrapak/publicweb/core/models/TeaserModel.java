@@ -44,6 +44,10 @@ public class TeaserModel {
     @ValueMapValue
     private String heading;
 
+    /** The description. */
+    @ValueMapValue
+    private String description;
+
     /** The number Of Columns. */
     @ValueMapValue
     private String numberOfColumns;
@@ -198,6 +202,15 @@ public class TeaserModel {
      */
     public String getHeading() {
         return heading;
+    }
+
+    /**
+     * Gets the description.
+     *
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
     }
 
     /**

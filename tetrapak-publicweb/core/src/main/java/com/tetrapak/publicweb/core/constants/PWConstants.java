@@ -529,6 +529,8 @@ public final class PWConstants {
     /** The Constant WCM_COMMAND_ENDPOINT. */
     public static final String WCM_COMMAND_ENDPOINT = "/bin/wcmcommand";
 
+    public static final String ICON_CSS_CLASS_PREFIX="icon-";
+
     /**
      * Instantiates a new PW constants.
      */
