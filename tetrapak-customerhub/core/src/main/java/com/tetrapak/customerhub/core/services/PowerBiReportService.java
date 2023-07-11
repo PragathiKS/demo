@@ -18,4 +18,8 @@ public interface PowerBiReportService {
     
     String getPbiworkspaceid();
 
+    public String getGenerateApi();
+
+    public String getGenerateEmbedToken(String accessToken);
+
 }
