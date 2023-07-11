@@ -174,6 +174,7 @@ function  _renderRebuildingKitReportModal() {
           target: '.js-update-modal'
         });
         $reportModal.modal('show');
+        $this.bindFormChangeEvents();
       })
       .fail((e) => {
         logger.error(e);
@@ -452,6 +453,22 @@ function _getRebuildingKitDetails() {
   });
 }
 
+function _bindFormChangeEvents() {
+  const $form = this.root.find('.tp-rk-report__modal-content');
+  const $updateBtn = $form.find('.js-rk-make-update');
+  $('select', $form).each((_, item) => {
+    $(item).on('input change', () => { 
+      if (item.id === 'status') {
+        if (item.value !== '') {
+          $updateBtn.removeAttr('disabled');
+        } else {
+          $updateBtn.attr('disabled', 'disabled');
+        }
+      }
+    });
+  });
+}
+
 class Rebuildingkitdetails {
   constructor({ el }) {
     this.root = $(el);
@@ -577,6 +594,9 @@ class Rebuildingkitdetails {
   }
   submitCTIemail() {
     return _submitCTIemail.apply(this, arguments);
+  }
+  bindFormChangeEvents() {
+    return _bindFormChangeEvents.apply(this, arguments);
   }
 
   bindEvents() {
