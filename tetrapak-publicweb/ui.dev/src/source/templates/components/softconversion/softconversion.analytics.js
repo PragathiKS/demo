@@ -70,8 +70,6 @@ export const changeStepError = function (formName, formStep, formType, dataObj, 
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-
-
 export const loadDownloadReady = function (formName, dataObj, parentComponent) {
   const formObj = {
     formName: formName,
