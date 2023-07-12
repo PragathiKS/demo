@@ -43,6 +43,7 @@ describe('Rebuildingkitdetails', function () {
     this.requestCtiLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'requestCtiLanguage');
     this.submitCTIemailSpy = sinon.spy(this.rebuildingkitDetails, 'submitCTIemail');
     this.changePreferredLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'changePreferredLanguage');
+    this.bindFormChangeEventsSpy = sinon.spy(this.rebuildingkitDetails, 'bindFormChangeEvents');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     const apiResponse = {data :[{...rebuildingkitDetailsData.data[0],...rebuildingkitCtiData.data[0]}]};
@@ -65,6 +66,7 @@ describe('Rebuildingkitdetails', function () {
     this.renderRebuildingKitDetailsSpy.restore();
     this.updateRkValidationRowsSpy.restore();
     this.changePreferredLanguageSpy.restore();
+    this.bindFormChangeEventsSpy.restore();
     this.getCtiDocumentsSpy.restore();
     this.renderCtiDocumentsSpy.restore();
     this.renderSpy.restore();
