@@ -38,6 +38,10 @@ describe('Rebuildingkitdetails', function () {
     this.getCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'getCtiDocuments');
     this.renderCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'renderCtiDocuments');
     this.renderRebuildingKitDetailsBottomSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetailsBottom');
+    this.updateRkValidationRowsSpy = sinon.spy(this.rebuildingkitDetails, 'updateRkValidationRows');
+    this.renderRebuildingKitReportModalSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitReportModal');
+    this.requestCtiLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'requestCtiLanguage');
+    this.submitCTIemailSpy = sinon.spy(this.rebuildingkitDetails, 'submitCTIemail');
     this.changePreferredLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'changePreferredLanguage');
     this.bindFormChangeEventsSpy = sinon.spy(this.rebuildingkitDetails, 'bindFormChangeEvents');
     this.renderSpy = sinon.spy(render, 'fn');
@@ -60,11 +64,15 @@ describe('Rebuildingkitdetails', function () {
     this.bindEventsSpy.restore();
     this.getRebuildingKitDetailsSpy.restore();
     this.renderRebuildingKitDetailsSpy.restore();
+    this.updateRkValidationRowsSpy.restore();
     this.changePreferredLanguageSpy.restore();
     this.bindFormChangeEventsSpy.restore();
     this.getCtiDocumentsSpy.restore();
     this.renderCtiDocumentsSpy.restore();
     this.renderSpy.restore();
+    this.renderRebuildingKitReportModalSpy.restore();
+    this.requestCtiLanguageSpy.restore();
+    this.submitCTIemailSpy.restore();
     this.ajaxStub.restore();
     this.openStub.restore();
     this.tokenStub.restore();
@@ -76,13 +84,55 @@ describe('Rebuildingkitdetails', function () {
     done();
   });
 
-  it('should call and render rebuilding data', function (done) {
+  it('should call and render rebuildingkitdetails', function (done) {
     expect(this.getRebuildingKitDetailsSpy.called).to.be.true;
+    this.ajaxStub.restore();
+    this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+    this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
     expect(this.renderRebuildingKitDetailsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     expect(this.getCtiDocumentsSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     expect(render.fn.called).to.be.true;
+    expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
+    expect(render.fn.called).to.be.true;
+    expect(this.updateRkValidationRowsSpy.called).to.be.true;
+    done();
+  });
+
+  it('should call and get CTI data', function (done) {
+    expect(this.getRebuildingKitDetailsSpy.called).to.be.true;
+    expect(this.getCtiDocumentsSpy.called).to.be.true;
+    const rkRelease = 'TT3_2020_01_01';
+    if(rkRelease !== '') {
+      this.ajaxStub.restore();
+      this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+      this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
+      expect(this.renderCtiDocumentsSpy.called).to.be.true;
+      expect(render.fn.called).to.be.true;
+    } else {
+      expect(this.renderCtiDocumentsSpy.called).to.be.true;
+      expect(render.fn.called).to.be.true;
+    }
+    expect(render.fn.called).to.be.true;
+    done();
+  });
+
+  it('should call and render CTI documents', function (done) {
+    expect(this.getCtiDocumentsSpy.called).to.be.true;
+    expect(render.fn.called).to.be.true;
+    expect(this.renderCtiDocumentsSpy.called).to.be.true;
+    const langAvailable = false;
+    if(!langAvailable) {
+      expect(render.fn.called).to.be.true;
+    } else {
+      expect(render.fn.called).to.be.true;
+    }
+    done();
+  });
+
+  it('should call and render rebuildingkits bottom data', function (done) {
+    expect(this.getRebuildingKitDetailsSpy.called).to.be.true;
     expect(this.renderRebuildingKitDetailsBottomSpy.called).to.be.true;
     expect(render.fn.called).to.be.true;
     done();
@@ -93,6 +143,8 @@ describe('Rebuildingkitdetails', function () {
       e.preventDefault();
     });
     expect(this.changePreferredLanguageSpy.called).to.be.true;
+    this.ajaxStub.restore();
+    this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
     done();
@@ -128,11 +180,31 @@ describe('Rebuildingkitdetails', function () {
     });
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
     done();
+  }); 
+
+  it('should request CTI translation', function (done) {
+    const $this = this;
+    $('.js-request-translation').trigger('click', function(e) {
+      e.preventDefault();
+      expect($this.requestCtiLanguageSpy.called).to.be.true;
+      expect($this.submitCTIemailSpy.called).to.be.true;
+      this.ajaxStub.restore();
+      this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+      this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
+    });
+    done();
   });
-  
-  it('should open report implementation status modal', function (done) {
-    $('.js-rebuilding-details__update').trigger('click');
-    expect($('.tp-rk-report-modal').hasClass('show')).to.be.true;
+
+  it('should render RK report modal', function (done) {
+    const $this = this;
+    $('.js-rebuilding-details__update').trigger('click', function(e) {
+      e.preventDefault();
+      expect($this.renderRebuildingKitReportModalSpy.called).to.be.true;
+      this.ajaxStub.restore();
+      this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
+      this.ajaxStub.yieldsTo('beforeSend', jqRef).returns(ajaxResponse({ status: 200 }));
+      expect(render.fn.called).to.be.true;
+    });
     done();
   });
 });

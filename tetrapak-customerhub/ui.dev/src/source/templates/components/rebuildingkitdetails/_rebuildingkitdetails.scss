@@ -7,12 +7,11 @@
     }
 }
 .tp-rebuilding-details {
-    &__view-e-business-button-row{
+    &__view-e-business-button-row {
         @include margin-bottom($margin-md);
-        button{
+        button {
             @include margin-left($margin-md);
         }
-       
     }
     &__content {
         h1 {
