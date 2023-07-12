@@ -31,7 +31,8 @@ class Subscriptionform {
     this.cache.requestPayload[`firstName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`lastName-${this.cache.$componentName}`]='';
     this.cache.requestPayload[`email-${this.cache.$componentName}`]='';
-    this.cache.mainHead = $($('.'+this.cache.$componentName).find('.pw-subscription__modalTitle')).html();
+    this.cache.preFix = 'Signup | ';
+    this.cache.mainHead = this.cache.preFix+$($('.'+this.cache.$componentName).find('.pw-subscription__modalTitle')).html();
     this.cache.$thankYouCTA = this.root.find('.thankyouTarget');
   }
 
