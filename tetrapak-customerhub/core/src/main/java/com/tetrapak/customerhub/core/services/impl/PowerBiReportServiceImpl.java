@@ -1,40 +1,25 @@
 package com.tetrapak.customerhub.core.services.impl;
 
-import com.adobe.acs.commons.http.HttpClientFactory;
-import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.services.PowerBiReportService;
 import com.tetrapak.customerhub.core.services.config.PowerBiReportConfig;
-
-import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.osgi.services.HttpClientBuilderFactory;
-import org.apache.http.util.EntityUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
-import java.lang.reflect.Type;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,8 +27,6 @@ import org.slf4j.LoggerFactory;
 @Designate(ocd = PowerBiReportConfig.class)
 public class PowerBiReportServiceImpl implements PowerBiReportService {
     private PowerBiReportConfig config;
-
-    private int StudentId;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PowerBiReportServiceImpl.class);
 
@@ -68,6 +51,23 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     public String getPbiServiceUrl() {
 
         return config.pbiserviceurl();
+    }
+     /**
+     * @return the PowerBI Resource URL
+     */
+    @Override
+    public String getPbiResourceUrl() {
+
+        return config.pbiresourceurl();
+    }
+
+ /**
+     * @return the PowerBI Embedtoken URL
+     */
+    @Override
+    public String getPbiEmbedtokenUrl() {
+
+        return config.pbiembedtokenurl();
     }
 
     /**
@@ -121,70 +121,44 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     // generate Bearer URL
     public String getGenerateApi() {
 
-        LOGGER.info("Inside generateAPI method  ::::");
+        //LOGGER.info("Inside generateAPI method  ::::");
 
-        String url = "https://login.microsoftonline.com/d2d2794a-61cc-4823-9690-8e288fd554cc/oauth2/token";
+
+
+       //String url = "https://login.microsoftonline.com/d2d2794a-61cc-4823-9690-8e288fd554cc/oauth2/token";
+       String url = getPbiServiceUrl()+getAzureidtenantid()+ "/oauth2/token";
+       //LOGGER.info(" String URL2  :::: {}", url);
+
         HttpClient httpClient = HttpFactory.newBuilder().build();
 
         String result = "";
         try {
 
-            LOGGER.info("Inside generateAPI Try  ::::");
+            //LOGGER.info("Inside generateAPI Try  ::::");
 
             URIBuilder uribuilder = new URIBuilder(url);
-            // uribuilder.setParameter("Content-Type", "application/x-www-form-urlencoded");
-
-            /*
-             * uribuilder.setParameter("Cookie",
-             * "fpc=AuXEWLdfoyhIt-44blOGpyvlmTEsAgAAAMFXN9wOAAAA; stsservicecookie=estsfd; x-ms-gateway-slice=estsfd"
-             * );
-             * uribuilder.setParameter("Cache-Control", "no-cache");
-             * 
-             * uribuilder.setParameter("User-Agent", "PostmanRuntime/7.32.3");
-             * uribuilder.setParameter("Accept", "
-             *//*
-                * ");
-                * uribuilder.setParameter("Accept-Encoding", "gzip, deflate, br");
-                * uribuilder.setParameter("Connection", "keep-alive");
-                * uribuilder.setParameter("Content-Type", "application/x-www-form-urlencoded");
-                * uribuilder.setParameter("resource","https://analysis.windows.net/powerbi/api"
-                * );
-                * uribuilder.setParameter("client_id","4f0f766b-d2eb-4a50-be2a-52ff8e1657b7");
-                * uribuilder.setParameter("client_secret",
-                * "zYs8Q~OvTfJsJsqGoQmxBWzfw6V2s-z8WpJCwcBW");
-                * uribuilder.setParameter("grant_type","client_credentials");
-                * 
-                */
-
+           
             // add request parameter
             List<NameValuePair> pairs = new ArrayList<>();
-            pairs.add(new BasicNameValuePair("resource", "https://analysis.windows.net/powerbi/api"));
-            pairs.add(new BasicNameValuePair("client_id", "4f0f766b-d2eb-4a50-be2a-52ff8e1657b7"));
-            pairs.add(new BasicNameValuePair("client_secret", "zYs8Q~OvTfJsJsqGoQmxBWzfw6V2s-z8WpJCwcBW"));
+            pairs.add(new BasicNameValuePair("resource", getPbiResourceUrl()));
+            pairs.add(new BasicNameValuePair("client_id", getPbicid()));
+            pairs.add(new BasicNameValuePair("client_secret", getPbics()));
             pairs.add(new BasicNameValuePair("grant_type", "client_credentials"));
-            // pairs.add(new BasicNameValuePair("Cookie",
-            // "fpc=AuXEWLdfoyhIt-44blOGpyvlmTEsAgAAAMFXN9wOAAAA; stsservicecookie=estsfd;
-            // x-ms-gateway-slice=estsfd"));
-            // pairs.add(new BasicNameValuePair("Cache-Control", "no-cache"));
-            // pairs.add(new BasicNameValuePair("User-Agent", "PostmanRuntime/7.32.3"));
-            // pairs.add(new BasicNameValuePair("Accept", "*/*"));
-            // pairs.add(new BasicNameValuePair("Accept-Encoding", "gzip, deflate, br"));
-            // pairs.add(new BasicNameValuePair("Connection", "keep-alive"));
 
-            LOGGER.info("Request Parameter : {}", pairs);
+            //LOGGER.info("Request Parameter : {}", pairs);
             HttpPost httppost = new HttpPost(uribuilder.build());
 
             httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
             httppost.setHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            LOGGER.info("Httppost before setEntity : {}", httppost);
+            //LOGGER.info("Httppost before setEntity : {}", httppost);
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairs, "utf-8");
             formEntity.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
 
             httppost.setEntity(formEntity);
             // httppost.setEntity(new UrlEncodedFormEntity(pairs,StandardCharsets.UTF_8));
 
-            LOGGER.info("httppost : {}", httppost);
+            //LOGGER.info("httppost : {}", httppost);
 
             // Execute and get the response.
             HttpResponse httpResponse = httpClient.execute(httppost);
@@ -198,16 +172,16 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
             // {}",httpResponse.getStatusLine().getStatusCode());
 
             if (httpResponse.getStatusLine().getStatusCode() != 200) {
-                LOGGER.info("Status not equal to 200 : {}", httpResponse.getStatusLine().getStatusCode());
+                //LOGGER.info("Status not equal to 200 : {}", httpResponse.getStatusLine().getStatusCode());
                 throw new RuntimeException(
-                        " Failed : HTTP error code : " + httpResponse.getStatusLine().getStatusCode());
+                        " Failed To Generate Bearer Token : HTTP error code : " + httpResponse.getStatusLine().getStatusCode());
             } else {
                 // EntityUtils to get the response content
                 // String content = EntityUtils.toString(respEntity);
 
                 result = IOUtils.toString(httpResponse.getEntity().getContent(), StandardCharsets.UTF_8);
 
-                LOGGER.info(" Inside respEntity result : {}", result);
+                //LOGGER.info(" Inside respEntity result : {}", result);
 
             }
 
@@ -222,28 +196,32 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
 
     public String getGenerateEmbedToken(String accessToken1) {
 
-        LOGGER.info("ET Inside getGenerateEmbedToken Method  ::::");
+        //LOGGER.info("ET Inside getGenerateEmbedToken Method  ::::");
 
-        String resourceet = "https://api.powerbi.com/v1.0/myorg/groups/17884c21-49de-42ba-8519-dea43237c2df/reports/5d3c5f2a-b062-4ddb-ab09-4224fb845a99/GenerateToken?accessLevel=View";
+        String resourceet = "https://api.powerbi.com/v1.0/myorg/groups/"+getPbiworkspaceid()+"/reports/"+getPbireportid()+"/GenerateToken?accessLevel=View";
+        //String resourceet2 = "https://api.powerbi.com/v1.0/myorg/groups/17884c21-49de-42ba-8519-dea43237c2df/reports/5d3c5f2a-b062-4ddb-ab09-4224fb845a99/GenerateToken?accessLevel=View";
+        
+
+         //LOGGER.info("ET ResourceEmbedToken >>>>>>  :::: {}", resourceet);
         HttpClient httpClientet = HttpFactory.newBuilder().build();
 
         String embedtoken = "";
 
-        LOGGER.info("ET Inside getGenerateEmbedToken AccessToken  :::: {}", accessToken1);
-        LOGGER.info("ET Inside getGenerateEmbedToken EmbedToken  :::: {}", embedtoken);
+        //LOGGER.info("ET Inside getGenerateEmbedToken AccessToken  :::: {}", accessToken1);
+        //LOGGER.info("ET Inside getGenerateEmbedToken EmbedToken  :::: {}", embedtoken);
 
         try {
-            LOGGER.info("ET Inside getGenerateEmbedToken Try  ::::");
+            //LOGGER.info("ET Inside getGenerateEmbedToken Try  ::::");
 
             URIBuilder uribuilder = new URIBuilder(resourceet);
 
             List<NameValuePair> pairset = new ArrayList<>();
             pairset.add(new BasicNameValuePair("accessLevel", "View"));
             pairset.add(new BasicNameValuePair("allowSaveAs", "false"));
-            pairset.add(new BasicNameValuePair("datasetId", "5b01daa5-56c1-46f8-94e8-a18f20cc0fb7"));
+            pairset.add(new BasicNameValuePair("datasetId", getPbidatasetid()));
             // pairset.add(new BasicNameValuePair("grant_type","client_credentials"));
 
-            LOGGER.info("ET Request Parameter : {}", pairset);
+            //LOGGER.info("ET Request Parameter : {}", pairset);
             HttpPost httppostet = new HttpPost(uribuilder.build());
 
             // httppostet.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -270,22 +248,22 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
             
 
             if (httpResponseet.getStatusLine().getStatusCode() != 200) {
-                LOGGER.info("ET Status not equal to 200 : {}", httpResponseet.getStatusLine().getStatusCode());
+                //LOGGER.info("ET Status not equal to 200 : {}", httpResponseet.getStatusLine().getStatusCode());
                 throw new RuntimeException(
-                        "ET  Failed : HTTP error code : " + httpResponseet.getStatusLine().getStatusCode());
+                        " Failed To Generate Embed Token : HTTP error code : " + httpResponseet.getStatusLine().getStatusCode());
             } else {
                 // EntityUtils to get the response content
                 // String content = EntityUtils.toString(respEntity);
 
-                LOGGER.info("ET Status  equal to 200 : {}", httpResponseet.getStatusLine().getStatusCode());
+                //LOGGER.info("ET Status  equal to 200 : {}", httpResponseet.getStatusLine().getStatusCode());
 
                 embedtoken = IOUtils.toString(httpResponseet.getEntity().getContent(), StandardCharsets.UTF_8);
 
-                LOGGER.info("ET Inside respEntity result : {}", embedtoken);
+                //LOGGER.info("ET Inside respEntity result : {}", embedtoken);
 
             }
         } catch (Exception e) {
-            LOGGER.info("ET Inside getGenerateEmbedToken Try  Catch ::::");
+            //LOGGER.info("ET Inside getGenerateEmbedToken Try  Catch ::::");
             //LOGGER.info("ET Inside Catch : {}", e.printStackTrace());
             //System.out.println(" SOP >>>>>>>> "+e.printStackTrace().);
             e.printStackTrace();
@@ -295,9 +273,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
 
     }
 
-    // GenerateApi();
+    
 
 }
-// generate Bearer Token
-// generate EmbedTokenw
-// >> API Error Handling
+

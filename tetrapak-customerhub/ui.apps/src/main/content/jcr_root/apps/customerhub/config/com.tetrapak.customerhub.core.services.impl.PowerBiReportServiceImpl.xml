@@ -2,6 +2,8 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
           jcr:primaryType="sling:OsgiConfig"
           pbiserviceurl="https://login.microsoftonline.com/"
+          pbiresourceurl="https://analysis.windows.net/powerbi/api"
+          pbiembedtokenurl="https://api.powerbi.com/v1.0/myorg/groups/"
           azureidtenantid="d2d2794a-61cc-4823-9690-8e288fd554cc"
           pbicid="4f0f766b-d2eb-4a50-be2a-52ff8e1657b7"
           pbics="zYs8Q~OvTfJsJsqGoQmxBWzfw6V2s-z8WpJCwcBW"

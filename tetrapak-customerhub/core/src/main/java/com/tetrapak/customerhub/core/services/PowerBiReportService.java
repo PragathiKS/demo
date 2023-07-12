@@ -5,6 +5,10 @@ package com.tetrapak.customerhub.core.services;
 public interface PowerBiReportService {
 
     String getPbiServiceUrl();
+
+    String getPbiResourceUrl();
+
+    String getPbiEmbedtokenUrl();
     
     String getAzureidtenantid();
 

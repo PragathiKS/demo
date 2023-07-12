@@ -15,6 +15,22 @@ public @interface PowerBiReportConfig {
     @AttributeDefinition(name = "PowerBI Service URL",
             description = "PowerBI Service URL", type = AttributeType.STRING)
     String pbiserviceurl();
+
+    /**
+     * PowerBI EmbeddToken URL
+     * @return PowerBI EmbeddToken URL
+     */
+    @AttributeDefinition(name = "PowerBI EmbeddToken URL",
+            description = "PowerBI EmbeddToken URL", type = AttributeType.STRING)
+    String pbiembedtokenurl();
+
+    /**
+     * PowerBI Resource URL
+     * @return PowerBI Resource URL
+     */
+    @AttributeDefinition(name = "PowerBI Resource URL",
+            description = "PowerBI Resource URL", type = AttributeType.STRING)
+    String pbiresourceurl();
     /**
      * Azure TenantID
      * @return Azure TenantID
