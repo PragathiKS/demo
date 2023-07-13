@@ -34,7 +34,7 @@ class Embedpowerbireport {
      * this.cache.$submitBtn = this.root.find('.js-submit-btn');
      */
     this.cache.reportId = this.root.data('report-id');
-    this.cache.embedURL = this.root.data('embed-preurl')+this.cache.reportId;  
+    this.cache.embedURL = this.root.data('embed-url');  
     this.renderPowerBIReport();
   }
   renderPowerBIReport() {

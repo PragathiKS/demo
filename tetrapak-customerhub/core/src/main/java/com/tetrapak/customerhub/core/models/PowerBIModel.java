@@ -33,13 +33,18 @@ public class PowerBIModel {
 
     private String result;
     private String embedtoken;
-    private String rptid;
+    private String reportId;
+    private String embedURL;
 
     @PostConstruct
     protected void init() {
       result= pbireportService.getGenerateApi();
 
-      rptid= "https://app.powerbi.com/reportEmbed?reportId="+pbireportService.getPbireportid();//TO be added in Config Embedrpturl
+      reportId=pbireportService.getPbireportid(); 
+      
+      embedURL="https://app.powerbi.com/reportEmbed?reportId="+pbireportService.getPbireportid();
+
+      LOGGER.info("PBI EmbedURL>>>>>>>>>>  {}",embedURL);
 
       Gson gson = new Gson();
       Type mapType  = new TypeToken<Map<String,String>>(){}.getType();
@@ -62,15 +67,23 @@ public class PowerBIModel {
       embedtoken= accessTokenet;
     }
 
+    public void setEmbedURL(String setEmbedURL) {
+    LOGGER.info("Inside setEmbedURL method");
+        this.embedURL = embedURL; }
+
    public String getEmbedtoken() {
       return embedtoken;
       }
 
-    public String getRptid() {
-        LOGGER.info("PBI Report ID :::: {}",rptid);
-        return rptid;
+    public String getReportid() {
+        LOGGER.info("PBI Report ID :::: {}",reportId);
+        return reportId;
       }
 
+     public String getEmbedURL() {
+        LOGGER.info("PBI EmbedURL :::: {}",embedURL);
+        return embedURL;
+      }
     public String getResult() {
         return result;
       }
