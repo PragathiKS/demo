@@ -33,4 +33,7 @@
     /type "deny"
   }
 
-
+/0011 {
+    /glob "*.onetrustcookietoken.json"
+    /type "deny"
+  }
