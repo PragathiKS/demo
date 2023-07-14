@@ -103,6 +103,7 @@ RewriteRule   "^/robots.txt"  "/content/dam/tetrapak/publicweb/robots.txt" [PT]
 RewriteRule   "^/sitemap.xml" "/content/tetrapak/publicweb.sitemap.xml" [PT,L]
 
 RewriteCond   %{REQUEST_URI} !^/.*/jcr:content/.*$
+RewriteCond   %{REQUEST_URI} !^/content/experience-fragments/.*$ ## SMAR-32913
 RewriteCond   %{HTTP_HOST}  '${PUBLICWEB_URL}'
 RewriteCond   "%{REQUEST_URI}" "!\.(jpg|gif|png|css|js|xls|xlsx|doc|docx|pdf|jpeg|mp4|json|css|ico|woff|woff2|ttf|svg|tif|ppt|pptx|xml|mp3)$"
 RewriteRule   "^/(.*)$"  "/content/tetrapak/publicweb/global/en/$1.html" [PT,L]
