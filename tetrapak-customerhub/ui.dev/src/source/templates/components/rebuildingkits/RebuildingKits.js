@@ -1015,7 +1015,7 @@ class RebuildingKits {
 
     this.cache.$rkStatusFilterLabel.on('click', () => {
       this.cache.filterModalData['rkStatus'] = this.getFilterModalData('rebuildingKitStatus');
-      const formDetail = {activeForm:'rkStatus',header:i18nKeys['rkStatus'],maxFiltersSelection:getNOfOptions('rkStatus')};
+      const formDetail = {activeForm:'rebuildingKitStatus',header:i18nKeys['rkStatus'],maxFiltersSelection:getNOfOptions('rkStatus')};
       this.renderFilterForm(this.cache.filterModalData['rkStatus'], formDetail, this.cache.$rkStatusFilterLabel);
       $modal.modal();
     });
