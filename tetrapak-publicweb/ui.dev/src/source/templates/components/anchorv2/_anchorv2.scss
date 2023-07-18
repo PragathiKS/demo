@@ -12,7 +12,7 @@
         @media #{$mobile} {
             @include margin($margin-zero);
         }
-        z-index: $zindex-anchor-menu;
+        z-index: $zindex-p;
     }
     &__regular {
         @media #{$desktop} {
