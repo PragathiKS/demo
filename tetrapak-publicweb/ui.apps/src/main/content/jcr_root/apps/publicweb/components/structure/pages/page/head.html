@@ -8,7 +8,7 @@
     inheritedPageProperties.titleSuffix : 'Tetra Pak'} ${pageHeadModel.pageTitleCountrySuffix}
   </title>
   <link rel="icon" type="image/png" href="/content/dam/tetrapak/publicweb/favicon.png">
-  <script>
+  <script type="text/javascript">
     var digitalData = ${ digitalDataModel.digitalData @context="unsafe"};
   </script>
 
@@ -73,7 +73,7 @@
         }
       }
     </script> -->
-    <script type="text/javascript" defer >
+    <script type="text/javascript" >
       var OneTrust = {
         dataSubjectParams: {
           id: '',
@@ -177,7 +177,7 @@ else {
  </sly>
  
  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}"> 
-    <script type="text/javascript defer">
+    <script type="text/javascript">
       function OptanonWrapper() { }
     </script>
   </sly>
