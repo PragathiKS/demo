@@ -37,9 +37,12 @@ function _renderRebuildingKitDetails({ isNotConfirmed }) {
     $this.renderRebuildingKitReportModal();
   });
   $('.js-rebuilding-details__view-e-business-btn').on('click', function() {
-    const rkNumbner=$this.cache.$rebuildingData.rkNumber;
-    const eBusinessUrl=$this.cache.eBusinessUrl;
-    window.open(`${eBusinessUrl}/${rkNumbner}`, '_blank');   
+    if($this.cache.isPartsAccess) {
+      window.open(`${$this.cache.eBusinessUrl}/${$this.cache.$rebuildingData.rkNumber}`, '_blank');
+    }
+    else {
+      window.open(`${$this.cache.eBusinessUrl}`, '_blank');
+    }
   });
 }
 
@@ -488,6 +491,7 @@ class Rebuildingkitdetails {
     this.cache.apiCTI = this.root.data('cti-api');
     this.cache.apiRequestCTI = this.root.data('request-cti-api');
     this.cache.eBusinessUrl=this.root.data('e-business-url');
+    this.cache.isPartsAccess=this.root.data('is-parts-access');
     this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
       '.js-rebuilding-details__contentbottom'
