@@ -205,14 +205,28 @@
             align-items: center;
             border-bottom: 1px solid $color-mercury;
             box-sizing: border-box;
-            padding: $spacing-big-half 0 $spacing-big-half 24px;
+            padding: $spacing-big $padding-xxxl;
 
             .tp-pw-headerv2-logo {
                 img {
                     height: 80px;
                     margin-top: -20px;
                     margin-bottom: -20px;
-                    margin-left: 30px;
+                  
+
+                }
+            }
+            i.icon-Search_pw,
+            i.icon-Close_pw {
+                font-size: 20px;
+                line-height: 20px;
+                @media #{$desktop} {
+                    @include font-size($font-normal);
+                    line-height: 16px;
+                }
+                @media #{$i-pad} {
+                    font-size: 20px;
+                    line-height: 20px;
                 }
             }
 
@@ -223,11 +237,8 @@
 
                 a {
                     @include hyperlink($font-sm, $spacing-small);
-                    padding: $spacing-big-half 0;
-
-                    &:last-of-type {
-                        margin-right: $padding-xxxl;
-                    }
+                    padding: 0 $spacing-small 0 0;
+                    line-height: 40px;
                 }
 
                 .tp-pw-headerv2-market-selector {
