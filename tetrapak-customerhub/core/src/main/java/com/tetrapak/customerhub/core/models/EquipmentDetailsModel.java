@@ -294,6 +294,12 @@ public class EquipmentDetailsModel {
      * The is publish environment.
      */
     private boolean isPublishEnvironment = Boolean.FALSE;
+    
+    /**
+     * The path to Technical Publication page.
+     */
+    @Inject
+    private String techPubPath;
 
     /**
      * Gets the country.
@@ -689,6 +695,14 @@ public class EquipmentDetailsModel {
 	 */
 	public String getMappedMyEquipmentUrl() {
 		return LinkUtil.getValidLink(resource, myEqipmentPath);
+	}
+	
+	/**
+	 * Get valid url to Technical Publication
+	 * @return mapped url.
+	 */
+	public String getMappedTechnicalPublicationUrl() {
+		return LinkUtil.getValidLink(resource, techPubPath);
 	}
 
     /**
