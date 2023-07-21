@@ -33,7 +33,6 @@ import {
   RK_STATUS,
   RK_HANDLING,
   RK_ORDER,
-  RK_I18N_RK_ICON,
   RK_I18N_COUNTRY_CODE,
   RK_I18N_LINE_CODE,
   RK_I18N_EQ_DESC,
@@ -55,8 +54,7 @@ import {
   RK_PROPERTY_KEYS,
   RK_API_FILTER_KEYS,
   RK_PLANNED_DATE,
-  RK_I18N_PLANNED_DATE,
-  RK_ICON
+  RK_I18N_PLANNED_DATE
 } from './constants';
 import { renderDatePicker } from '../datepicker';
 
@@ -904,7 +902,6 @@ class RebuildingKits {
 
   setDefaultTableHeaders = () => {
     this.cache.customisableTableHeaders = [
-      {key:RK_ICON,index:0,optionDisplayText:this.cache.i18nKeys[RK_I18N_RK_ICON],isChecked: true,isDisabled:true},
       {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:1,isDisabled:false},
       {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:2,isDisabled:false},
       {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:3,isDisabled:false},
