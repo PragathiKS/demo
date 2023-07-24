@@ -2,8 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
-import { isMobile } from '../../../scripts/common/common';
-
+import { checkActiveOverlay, isDesktopMode} from '../../../scripts/common/common';
 
 class Headerv2 {
   constructor({ el }) {
@@ -51,13 +50,35 @@ class Headerv2 {
 
   searchIconClick = () => {
     const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
+    if (!isDesktopMode) {
+      if ($searchBarWrapper.hasClass('show')) {
+        $searchBarWrapper.removeClass('show');
+      } else {
+        $('.js-search-bar-input').val('');
+        $searchBarWrapper.addClass('show');
+        $('.search-bar-input').trigger('focus');
 
-    if ($searchBarWrapper.hasClass('show')) {
-      $searchBarWrapper.removeClass('show');
-    } else {
+        const dataObj = {
+          linkType: 'internal',
+          linkSection: 'Hyperlink click',
+          linkParentTitle: '',
+          linkName: 'Search'
+        };
+        const eventObj = {
+          eventType: 'linkClick',
+          event: 'Search'
+        };
+
+        trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+      }
+    }
+    else if (this.cache.$elements.searchIcon.children('i').hasClass('icon-Search_pw')) {
+      this.cache.$elements.searchIcon.children('i').removeClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Close_pw');
       $('.js-search-bar-input').val('');
       $searchBarWrapper.addClass('show');
       $('.search-bar-input').trigger('focus');
+      $('body').css('overflow','hidden');
 
       const dataObj = {
         linkType: 'internal',
@@ -71,6 +92,13 @@ class Headerv2 {
       };
 
       trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+    }
+    else {
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
+      $searchBarWrapper.removeClass('show');
+      const activeOverlay = ['.tp-pw-headerv2-searchbar-wrapper'];
+      checkActiveOverlay(activeOverlay);
     }
   }
 
@@ -164,19 +192,17 @@ class Headerv2 {
   bindSubmenuMobileOpenEvent = () => {
     const $subMenu = this.root.find('.tp-pw-headerv2-mobile-secondary-navigation-menu');
     const $subMenuIcon = this.root.find('.js-submenu-mobile-icon');
-
-    if (isMobile()) {
-      $subMenu.toggle(true);
-    } else {
-      $subMenu.toggle(false);
-    }
-
+    $subMenu.toggle(false);
     $subMenuIcon.on('click', () => {
       $subMenu.toggle();
-      if ($subMenuIcon.hasClass('icon-Burger')) {
-        $subMenuIcon.addClass('icon-Close').removeClass('icon-Burger');
+      if ($subMenuIcon.hasClass('icon-Burger_pw')) {
+        $subMenuIcon.addClass('icon-Close_pw').removeClass('icon-Burger_pw');
+        $('body').css('overflow','hidden');
       } else {
-        $subMenuIcon.addClass('icon-Burger').removeClass('icon-Close');
+        $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+        // check if other overlay is active
+        const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+        checkActiveOverlay(activeOverlay);
       }
     });
   }

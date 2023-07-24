@@ -51,7 +51,18 @@
                     </sly>
                 </div>
                 <div class="tp-pw-headerv2-mobile-secondary-navigation">
-                    <i class="js-submenu-mobile-icon icon-Burger"></i>
+                    <div class="tp-pw-headerv2-search-wrapper">
+                        <sly data-sly-test="${data.searchPage != '#'}">
+                            <a 
+                                class="tp-pw-headerv2-search-box-toggle"
+                                data-link-section="Header Navigation" 
+                                data-link-name="Internal Search icon" 
+                                href="#">
+                                <i class="icon-Search_pw"></i>
+                            </a>
+                        </sly>
+                    </div>
+                    <i class="js-submenu-mobile-icon icon-Burger_pw"></i>
                 </div>
             </div>
             <div class="tp-pw-headerv2-second-row">
@@ -85,43 +96,52 @@
         </nav>
         <div class="tp-pw-headerv2-mobile-secondary-navigation-menu">
             <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
-                <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index}">
-                    ${navigationLink.linkText}
-                </a>
+                <div class="tp-pw-anchor-container-primary">
+                    <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} justify-content-between">
+                        <span>${navigationLink.linkText}</span>
+                        <i class="icon-Arrow_Right_pw"></i>
+                    </a>
+                </div>
             </sly>
             <sly data-sly-list.navigationLink="${data.secondaryNavigationLinks}">
-                <a href="${navigationLink.linkUrl}" target="_blank" class="secondary">
-                    ${navigationLink.linkText}
-                </a>
+                <div class="tp-pw-anchor-container-secondary">
+                    <a href="${navigationLink.linkUrl}" target="_blank" class="secondary">
+                        ${navigationLink.linkText}
+                    </a>
+                </div>
             </sly>
             <sly data-sly-test="${data.marketList.markets.size >= 1}">
                 <sly 
                 data-sly-test="${data.displayCurrentLanguage}" 
                 data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
-                    <a 
-                        class="tp-pw-headerv2-market-selector js-header__selected-lang-pw" 
-                        data-language="${data.currentLanguage}"
-                        data-link-section="Header Navigation" 
-                        data-link-name="market locator" 
-                        href="#">
-                        <span>
-                            <i auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw"></i>${data.currentMarket}
-                            ${data.displayCurrentLanguage ? concatenatLanguage : ''}
-                        </span>
-                    </a>
+                    <div class="tp-pw-headerv2-selector-container">
+                        <a 
+                            class="tp-pw-headerv2-market-selector js-header__selected-lang-pw" 
+                            data-language="${data.currentLanguage}"
+                            data-link-section="Header Navigation" 
+                            data-link-name="market locator" 
+                            href="#">
+                            <span>
+                                <i auto_locator="countrySelectorIcon" class="icon-Globe_blue_pw"></i>${data.currentMarket}
+                                ${data.displayCurrentLanguage ? concatenatLanguage : ''}
+                            </span>
+                        </a>
+                    </div>
                 </sly>
             </sly>
             <sly data-sly-test="${data.loginLink != '#'}">
-                <a 
-                    class="tp-pw-headerv2-login-selector" 
-                    target="_blank" 
-                    href="${data.loginLink}"
-                    data-link-section="Header Navigation" 
-                    data-link-name="login_My tetrapak">
-                    <span>
-                        <i class="icon-Avatar"></i>${data.loginLabel}
-                    </span>
-                </a>
+                <div class="tp-pw-headerv2-selector-container">
+                    <a 
+                        class="tp-pw-headerv2-login-selector" 
+                        target="_blank" 
+                        href="${data.loginLink}"
+                        data-link-section="Header Navigation" 
+                        data-link-name="login_My tetrapak">
+                        <span>
+                            <i class="icon-Avatar"></i>${data.loginLabel}
+                        </span>
+                    </a>
+                </div>
             </sly>
         </div>
     </header>
