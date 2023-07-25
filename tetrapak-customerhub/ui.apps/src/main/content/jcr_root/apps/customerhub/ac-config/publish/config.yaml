@@ -67,7 +67,7 @@
           memberOf: everyone
           path: /home/groups/cuhugroups
 
-    - cuhub_aem_rebuildingkits:
+    - cuhu_aem_rebuildingkits:
         - name: Rebuilding Kits Access
           memberOf: everyone
           path: /home/groups/cuhugroups
@@ -333,7 +333,7 @@
           permission: allow
           privileges: jcr:read
 
-    - cuhub_aem_rebuildingkits:
+    - cuhu_aem_rebuildingkits:
 
         - path: /content/tetrapak/customerhub/global/en/installed-equipments
           permission: deny
