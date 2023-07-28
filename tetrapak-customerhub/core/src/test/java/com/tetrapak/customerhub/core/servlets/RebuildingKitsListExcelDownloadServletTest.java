@@ -73,7 +73,7 @@ public class RebuildingKitsListExcelDownloadServletTest {
 		parameters.put("countrycodes", "DE");
 		request.setParameterMap(parameters);
 		Mockito.when(rebuildingKitsApiService.getRebuildingkitsList(Mockito.any(), Mockito.any()))
-				.thenReturn(rebuildingKitsApiServiceTest.getRebuildingkitsList("","DE"));
+				.thenReturn(rebuildingKitsApiServiceTest.getRebuildingkitsList("", null));
 		Mockito.when(excelService.generateCSV(Mockito.any(),Mockito.any(),Mockito.any())).thenReturn(true);
 		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
 		assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());
@@ -104,7 +104,7 @@ public class RebuildingKitsListExcelDownloadServletTest {
 		parameters.put("countrycodes", "DE");
 		request.setParameterMap(parameters);
 		Mockito.when(rebuildingKitsApiService.getRebuildingkitsList(Mockito.any(), Mockito.any()))
-				.thenReturn(rebuildingKitsApiServiceTest.getRebuildingkitsList("","DE"));
+				.thenReturn(rebuildingKitsApiServiceTest.getRebuildingkitsList("", null));
 		Mockito.when(excelService.generateCSV(Mockito.any(),Mockito.any(),Mockito.any())).thenReturn(true);
 		rebuildingKitsListExcelDownloadServlet.doGet(request, response);
 		assertEquals("status should be ok", HttpStatus.SC_OK, response.getStatus());

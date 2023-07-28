@@ -3,7 +3,6 @@ package com.tetrapak.customerhub.core.services.impl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.tetrapak.customerhub.core.beans.equipment.EquipmentApiUpdateRequestBean;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.ImplementationStatusUpdateBean;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RKResults;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
@@ -20,6 +19,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URLEncoder;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -99,12 +99,12 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	}
 
 	@Override
-	public List<RebuildingKits> getRebuildingkitsList(String token, String countryCode) {
+	public List<RebuildingKits> getRebuildingkitsList(String token, Map<String, String[]> parameters) {
 
 		List<RebuildingKits> allResults = new ArrayList<>();
 		List<Integer> skipElements = new ArrayList<>();
 
-		Map<String, String> getrbkInitial = getAllRebuildingKitsAPI(0, token, countryCode);
+		Map<String, String> getrbkInitial = getAllRebuildingKitsAPI(0, token, parameters);
 
 		// Make a call to first set of results to get the total number of results
 		parseAPIResponse(getrbkInitial).ifPresent(s -> {
@@ -125,7 +125,7 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 		// Concurrently make call to API for fetching results in smaller sets
 		List<CompletableFuture<List<RebuildingKits>>> apiCallFutures = skipElements.stream()
 				.map(skipElement -> CompletableFuture
-						.supplyAsync(() -> getAllRebuildingKitsAPI(skipElement, token, countryCode),executor)
+						.supplyAsync(() -> getAllRebuildingKitsAPI(skipElement, token, parameters),executor)
 						.exceptionally(exception -> {
 							LOGGER.error("Error while executing API for index starting from {}", skipElement,
 									exception);
@@ -189,16 +189,24 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 	 * @param countryCode
 	 * @return Map map containing JSON response of API and HTTP call status.
 	 */
-	private Map<String, String> getAllRebuildingKitsAPI(Integer skip, String token, String countryCode) {
+	private Map<String, String> getAllRebuildingKitsAPI(Integer skip, String token, Map<String, String[]> parameters) {
 		LOGGER.debug("Current Thread name : {}", Thread.currentThread().getName());
-		final String url = apigeeService.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR
-				+ GlobalUtil.getSelectedApiMapping(apigeeService, "rebuildingkits-rebuildingkitslist")
-				+ CustomerHubConstants.QUESTION_MARK + CustomerHubConstants.COUNTRY_CODE + CustomerHubConstants.EQUALS_CHAR
-				+ countryCode + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.SKIP + CustomerHubConstants.EQUALS_CHAR + skip + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.COUNT + CustomerHubConstants.EQUALS_CHAR + getNoOfRecordsCount() + CustomerHubConstants.AMPERSAND
-				+ CustomerHubConstants.EQUIPMENT_API_SORT + CustomerHubConstants.EQUALS_CHAR + CustomerHubConstants.LINE_CODE + CustomerHubConstants.COMMA + CustomerHubConstants.POSITION;
-		return HttpUtil.executeHttp(token, url);
+		StringBuilder url = new StringBuilder();
+		url.append(apigeeService.getApigeeServiceUrl()).append(CustomerHubConstants.PATH_SEPARATOR)
+			.append(GlobalUtil.getSelectedApiMapping(apigeeService, "rebuildingkits-rebuildingkitslist"))
+			.append(CustomerHubConstants.QUESTION_MARK);
+		for (String key: parameters.keySet()) {
+			String keyStr = key;
+			String[] values = parameters.get(keyStr);
+			url.append(keyStr).append(CustomerHubConstants.EQUALS_CHAR)
+			.append(Arrays.asList(values).stream().map(URLEncoder::encode).collect(Collectors.joining(CustomerHubConstants.COMMA)))
+	        .append(CustomerHubConstants.AMPERSAND);
+	    }
+		url.append(CustomerHubConstants.DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER).append(CustomerHubConstants.AMPERSAND)
+		.append(CustomerHubConstants.SKIP).append(CustomerHubConstants.EQUALS_CHAR).append(skip).append(CustomerHubConstants.AMPERSAND)
+		.append(CustomerHubConstants.COUNT).append(CustomerHubConstants.EQUALS_CHAR).append(getNoOfRecordsCount()).append(CustomerHubConstants.AMPERSAND)
+		.append(CustomerHubConstants.EQUIPMENT_API_SORT).append(CustomerHubConstants.EQUALS_CHAR).append(CustomerHubConstants.LINE_CODE)
+		.append(CustomerHubConstants.COMMA).append(CustomerHubConstants.POSITION);
+		return HttpUtil.executeHttp(token, url.toString());
 	}
 }
