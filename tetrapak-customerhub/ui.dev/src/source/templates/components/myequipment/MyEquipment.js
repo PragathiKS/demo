@@ -272,7 +272,7 @@ class MyEquipment {
       const url = `${equipmentDetailsUrl}?id=${id}`;
       const $linkName = `${$(e.currentTarget).find('td').eq(4).text().trim()  }-${  id}`;
       _trackEquipmentLinkClick($linkName);
-      window.open(url, '_blank');
+      window.open(url, '_self');
     });
 
     $modal.on('shown.bs.modal', () => {

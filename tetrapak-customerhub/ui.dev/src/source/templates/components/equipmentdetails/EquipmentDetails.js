@@ -193,6 +193,7 @@ class EquipmentDetails {
     this.cache.detailsApi = this.root.data('details-api');
     this.cache.statusApi = this.root.data('status-api');
     this.cache.submitApi = this.root.data('submit-api');
+    this.cache.equipmetListURL = this.root.data('equipment-list-url');
     this.cache.$contentWrapper = this.root.find('.tp-equipment-details__content-wrapper');
     this.cache.$content = this.root.find('.js-equipment-details__content');
     this.cache.$spinner = this.root.find('.tp-spinner');
@@ -214,6 +215,11 @@ class EquipmentDetails {
   }
 
   bindEvents() {
+
+    this.root.on('click', '.js-equipment-details__back-btn', () => {
+      window.location.href = this.cache.equipmetListURL;
+    });
+
     this.root.on('click', '.js-equipment-details__update', () => {
       this.renderEquipInfoCardWithData();
       this.trackFormStart();

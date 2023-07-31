@@ -239,6 +239,12 @@
                                             fieldLabel="Status Update Description  (i18N key)"
                                             name="./statusUpdateDescription"
                                             required="true"/>
+                                    <backToEquipmentList
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="backToEquipmentList Label (i18N key)"
+                                            name="./backToEquipmentList"
+                                            required="true"/>
                                 </items>
                             </column>
                         </items>
