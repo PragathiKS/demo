@@ -177,7 +177,6 @@ class Anchorv2 {
       const anchorId = $this.data('link-section');
       const linkName = $this.data('link-name');
       const currentIndex = $this.parents('li').index();
-
       const trackingObj = {
         linkType: 'internal',
         linkSection: `Hyperlink click`,
@@ -216,9 +215,19 @@ class Anchorv2 {
   };
 
   setAnchorMenuSelection(currentIndex) {
-    const { $progressIndicator, $anchorMenuContent, $maxPrimaryLinks, $secondaryAnchorMenuContent, $anchorMenuTitle } = this.cache;
+    const { $progressIndicator, $anchorMenuContent, $maxPrimaryLinks, $secondaryAnchorMenuContent, $anchorMenuTitle, $anchorMenuTitleContainer, $anchorMenuContainer   } = this.cache;
     if ($anchorMenuTitle) {
       $anchorMenuTitle.textContent = $anchorMenuContent[currentIndex].innerText;
+      if (!isDesktop1024Mode()){
+        $anchorMenuTitleContainer[0].classList.remove('active');
+        $anchorMenuTitleContainer[0].parentElement.classList.remove('active');
+        $anchorMenuContainer.classList.add('collapsed');
+      }
+      else{
+        $anchorMenuContainer.classList.remove('collapsed');
+
+      }
+
     }
     //Progress indicator
     $progressIndicator.css('margin-left', `${$anchorMenuContent[currentIndex].children[0].offsetLeft}px`);
