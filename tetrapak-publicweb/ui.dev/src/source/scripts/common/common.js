@@ -61,12 +61,12 @@ export const isTabletOrDesktopMode = () => (isTabletMode() || isDesktopMode());
 /**
  * Checks if current screen mode is mobile
  */
-export const isMobile1024Mode = () => ($(window).outerWidth() < 1024);
+export const isMobileScreenMode = () => ($(window).outerWidth() < 1024);
 
 /**
  * Checks if current screen mode is desktop
  */
-export const isDesktop1024Mode = () => !isMobile1024Mode();
+export const isDesktopScreenMode = () => !isMobileScreenMode();
 
 /**
  * Checks if author mode is enabled

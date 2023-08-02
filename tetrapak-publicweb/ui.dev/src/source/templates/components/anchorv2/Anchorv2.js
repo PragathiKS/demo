@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { isDesktop1024Mode, scrollToElement } from '../../../scripts/common/common';
+import { isDesktopScreenMode, scrollToElement } from '../../../scripts/common/common';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 class Anchorv2 {
@@ -27,7 +27,7 @@ class Anchorv2 {
       this.setAnchorMenuSelection(0);
     }
     this.getMaxNumberOfPrimaryLinks();
-    if (document.querySelector('.pw-anchor-menu__regular') && isDesktop1024Mode()) {
+    if (document.querySelector('.pw-anchor-menu__regular') && isDesktopScreenMode()) {
       const container = this.cache.$anchorMenuContainer;
       const primary = container.querySelector('.pw-anchor-menu-list');
       const primaryItems = container.querySelectorAll('.pw-anchor-menu-list > li:not(.more)');
@@ -218,7 +218,7 @@ class Anchorv2 {
     const { $progressIndicator, $anchorMenuContent, $maxPrimaryLinks, $secondaryAnchorMenuContent, $anchorMenuTitle, $anchorMenuTitleContainer, $anchorMenuContainer   } = this.cache;
     if ($anchorMenuTitle) {
       $anchorMenuTitle.textContent = $anchorMenuContent[currentIndex].innerText;
-      if (!isDesktop1024Mode()){
+      if (!isDesktopScreenMode()){
         $anchorMenuTitleContainer[0].classList.remove('active');
         $anchorMenuTitleContainer[0].parentElement.classList.remove('active');
         $anchorMenuContainer.classList.add('collapsed');
@@ -235,10 +235,10 @@ class Anchorv2 {
     for(let index=0; index<$anchorMenuContent.length; index++) {
       //Reset active state
       $anchorMenuContent[index].children[0].classList.remove('active');
-      if ($secondaryAnchorMenuContent && isDesktop1024Mode()) {
+      if ($secondaryAnchorMenuContent && isDesktopScreenMode()) {
         $secondaryAnchorMenuContent[index].children[0].classList.remove('active');
       }
-      if (currentIndex >= $maxPrimaryLinks && currentIndex === index && isDesktop1024Mode()) {
+      if (currentIndex >= $maxPrimaryLinks && currentIndex === index && isDesktopScreenMode()) {
         $secondaryAnchorMenuContent[index].children[0].classList.add('active');
       } else if (currentIndex === index) {
         $anchorMenuContent[index].children[0].classList.add('active');
