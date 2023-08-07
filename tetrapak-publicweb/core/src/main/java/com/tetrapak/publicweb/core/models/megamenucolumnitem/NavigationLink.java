@@ -51,6 +51,10 @@ public class NavigationLink {
 
     public String getLinkUrl() {
         return linkUrl;
+    }    
+ 
+    public void setLinkUrl(String linkUrl) {
+        this.linkUrl = linkUrl;
     }
 
     public String getLinkDescription() {
@@ -63,5 +67,5 @@ public class NavigationLink {
 
     public String getLinkIconClass() {
         return linkIconClass;
-    }
+    }    
 }
