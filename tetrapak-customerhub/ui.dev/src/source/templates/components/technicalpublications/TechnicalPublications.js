@@ -4,6 +4,7 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {getI18n} from '../../../scripts/common/common';
 
 function _getFolderData(stepKey, options) {
   const $this = this;
@@ -95,10 +96,12 @@ function _getFolderData(stepKey, options) {
         }
         if (stepKey === 'folderDetails') {
           const documentType = folderDetails.value.split(',')[0];
+          const searchResultsLabel = getI18n(i18nKeys.searchResults);
+
           srNo = folderDetails.value.split(',')[1];
           finalData = res.data.filter(data => data.typeCode === documentType);
           searchResults.show();
-          searchResults.text(`${finalData.length} ${i18nKeys.searchResults}`);
+          searchResults.text(`${finalData.length} ${searchResultsLabel}`);
         }
         $this.renderFolderData(stepKey, finalData, srNo);
         $this.renderBreadcrumbs(stepKey);
