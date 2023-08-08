@@ -17,4 +17,63 @@
         margin: 0 $padding-sm;
         font-size: $font-xs;
     }
+
+    @media #{$mobile} {
+        padding: $padding-md $padding-md $padding-md;
+        .tp-pw-accordion-header {
+            display: flex;
+            justify-content: space-between;
+            line-height: $font-sm;
+            h3 {
+                color: $color-tundora;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: $font-sm;
+            }
+            i.icon {
+                color: $color-tundora;
+                margin: 0 $padding-sm;
+                font-size: $font-sm;
+                &::before {
+                    transform: rotate(-90deg);
+                }
+            }
+            &.collapsed > i.icon {
+                color: $color-tundora;
+                margin: 0 $padding-sm;
+                font-size: $font-sm;
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+}
+
+.tp-pw-megamenusubheading-overviewlink {
+    @media #{$desktop} {
+        display: none;
+    }
+    display: flex;
+    padding: 0 $padding-md $padding-md;
+    a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-decoration: none;
+        font-size: $font-m-sm;
+    }
+
+    i.icon {
+        color: $color-congress-blue;
+        margin: 0 $padding-sm;
+        font-size: $font-sm;
+        line-height: $font-l;
+    }
+}
+
+.tp-pw-megamenusubheading-separator {
+    height: 1px;
+    background-color: $color-mercury;
+    margin: 0 $padding-md;
 }

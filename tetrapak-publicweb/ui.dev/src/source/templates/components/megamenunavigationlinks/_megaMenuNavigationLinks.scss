@@ -1,9 +1,21 @@
 .tp-pw-megamenunavigationlinks {
     padding: 0 $padding-xxxl;
+    @media #{$mobile} {
+        padding: 0 $padding-md;
+    }
     &__item {
         margin-bottom: $padding-md;
+        @media #{$mobile} {
+            margin-bottom: 0;
+            padding: $padding-md 0;
+            border-bottom: 1px solid $color-mercury;
+        }
         &:last-of-type {
             margin-bottom: 0;
+            @media #{$mobile} {
+                margin-bottom: $padding-md;
+                border-bottom: 0;
+            }
         }
         a {
             color: $color-congress-blue;

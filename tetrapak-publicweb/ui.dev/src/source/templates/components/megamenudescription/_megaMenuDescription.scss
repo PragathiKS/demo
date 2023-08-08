@@ -2,4 +2,8 @@
     color: $color-tundora;
     margin: 0 $padding-xxxl $padding-md;
     font-size: $font-sm;
+    @media #{$mobile} {
+        margin: 0 $padding-md $padding-md;
+        line-height: $font-m-md;
+    }
 }
