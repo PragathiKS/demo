@@ -43,6 +43,65 @@
     }
 }
 
+.tp-pw-headerv2-megamenu-mobile {
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background: $color-white;
+    z-index: $zindex-anchor-menu;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &.hidden {
+        display: none;
+    }
+
+    &.is-open {
+        position: absolute;
+        transform: translateX(-100%);
+        transition: transform 440ms ease-out;
+    }
+
+    &.is-close {
+        transform: translateX(95%);
+        transition: transform 1440ms ease-out;
+    }
+
+    .tp-pw-headerv2-back-row {
+        padding: $spacing-small;
+        height: $header-height-mobile * 1px;
+        line-height: 32px;
+        position: sticky;
+        top: 0;
+        z-index: $zindex-anchor-menu + 1;
+        background-color: $color-white;
+
+        &.hidden {
+            display: none;
+        }
+
+        .tp-pw-headerv2-back-row-back-button {
+            color: $color-tundora;
+            font-size: 16px;
+            i {
+                &::before {
+                    transform: rotate(180deg);
+                }
+            }
+            .tp-pw-headerv2-back-row-back-text {
+                padding-left: 8px;
+            }
+        }
+
+        .tp-pw-headerv2-back-row-close-button {
+            float: right;
+            font-size: 16px;
+        }
+    }
+}
+
 .tp-pw-headerv2-searchbar-wrapper {
     display: flex;
     justify-content: center;
@@ -53,9 +112,9 @@
 
     &.show {
         @media #{$desktop} {
-         height: 124px;
+            height: 124px;
         }
-        height: calc(100vh - 64px);
+        height: calc(100vh - #{$header-height-mobile * 1px});
     }
 
     .pw-header-search-bar {
@@ -112,8 +171,14 @@
         overflow-y: auto;
         overflow-x: hidden;
         background-color: $color-white;
-        height: calc(100vh - 64px);
-        top: 72px;
+        height: calc(100vh - #{$header-height-mobile * 1px});
+        top: $header-height-mobile * 1px;
+
+        i {
+            &::before {
+                font-size: 16px;
+            }
+        }
 
         .tp-pw-anchor-container-primary {
             background-color: $color-white;
@@ -127,6 +192,7 @@
 
         a {
             display: flex;
+            color: $color-congress-blue;
             font-size: $font-baseline;
             padding: $padding-md 0;
             border-bottom: 1px solid $color-mercury;
@@ -135,7 +201,6 @@
             justify-content: flex-start;
             align-items: center;
             background-color: $color-white;
-            color: $color-congress-blue;
             &.secondary {
                 background-color: $color-wild-sand;
                 border-bottom: 0;
@@ -234,6 +299,11 @@
 
             @media #{$mobile} {
                 padding: $spacing-small;
+                height: $header-height-mobile * 1px;
+            }
+
+            &.hidden {
+                display: none;
             }
             
             .tp-pw-headerv2-logo {
@@ -243,7 +313,6 @@
                     margin-bottom: -20px;
                 }
             }
-            
             i.icon-Search_pw,
             i.icon-Close_pw {
                 font-size: 20px;
@@ -255,6 +324,10 @@
                 @media #{$i-pad} {
                     font-size: 20px;
                     line-height: 20px;
+                }
+                @media #{$mobile} {
+                    font-size: 16px;
+                    line-height: 16px;
                 }
             }
 
@@ -299,10 +372,13 @@
                     align-items: center;
                 }
 
-                // i {
-                //     @include hyperlink-icon;
-                //     margin-right: $padding-xxxl;
-                // }
+                .submenu-mobile-icon {
+                    &::before {
+                        color: $color-congress-blue;
+                        font-size: $font-normal;
+                    }
+                }
+
             }
 
         }

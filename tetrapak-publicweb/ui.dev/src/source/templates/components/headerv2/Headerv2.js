@@ -3,6 +3,8 @@ import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
 import { checkActiveOverlay, isDesktopMode} from '../../../scripts/common/common';
+import { render } from '../../../scripts/utils/render';
+const sampleJson = require('./megaMenuSample.json');
 
 class Headerv2 {
   constructor({ el }) {
@@ -35,6 +37,12 @@ class Headerv2 {
         'searchIcon': this.root.find('.tp-pw-headerv2-search-box-toggle')
       }
     };
+    this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
+    this.cache.$backButton = this.root.find('.tp-pw-headerv2-back-row-back-button');
+    this.cache.$closeButton = this.root.find('.tp-pw-headerv2-back-row-close-button');
+    //Mobile menu
+    this.cache.$subMenu = this.root.find('.tp-pw-headerv2-mobile-secondary-navigation-menu');
+    this.cache.$subMenuIcon = this.root.find('.js-submenu-mobile-icon');
   }
 
   hideSearchbar = () => {
@@ -190,8 +198,7 @@ class Headerv2 {
   }
 
   bindSubmenuMobileOpenEvent = () => {
-    const $subMenu = this.root.find('.tp-pw-headerv2-mobile-secondary-navigation-menu');
-    const $subMenuIcon = this.root.find('.js-submenu-mobile-icon');
+    const { $subMenu, $subMenuIcon } = this.cache;
     $subMenu.toggle(false);
     $subMenuIcon.on('click', () => {
       $subMenu.toggle();
@@ -292,6 +299,75 @@ class Headerv2 {
     this.cache.$elements.backdrop.css('top', headerHeight);
   }
 
+  bindMegaMenuLinkMobileClickEvent = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
+    const linksSelector = '.tp-pw-headerv2-mobile-secondary-navigation-menu > .tp-pw-anchor-container-primary > a';
+
+    this.root.find(linksSelector).each(function(index) {
+      const getMegaMenuSelector = (megaMenuSelectorIndex) => `.tp-pw-megamenu-mobile-subpage-${megaMenuSelectorIndex}`;
+      const $link = $(this);
+      const allMegaMenuSelector = `.tp-pw-headerv2-megamenu-mobile`;
+      const $allMegaMenu = $(allMegaMenuSelector);
+
+      const showMegaMenu = (i=index) => {
+        $('.tp-pw-headerv2-first-row').addClass('hidden');
+        $(getMegaMenuSelector(i)).removeClass('hidden');
+        setTimeout(() => {
+          $(getMegaMenuSelector(i)).removeClass('is-close').addClass('is-open');
+
+          render.fn({
+            template: 'megaMenuV2Subpage',
+            data: sampleJson,
+            target: '.tp-pw-meganenu-subpage-wrapper',
+            hidden: false
+          });
+
+          // Add event on back button
+          $('.tp-pw-headerv2-megamenu-mobile.is-open > .tp-pw-headerv2-back-row > .tp-pw-headerv2-back-row-back-button').on('click', function() {
+            $('.tp-pw-headerv2-first-row').removeClass('hidden');
+            $('.tp-pw-headerv2-megamenu-mobile').removeClass('is-open').addClass('is-close');
+            setTimeout(() => {
+              $('.tp-pw-headerv2-megamenu-mobile').addClass('hidden');
+            }, 150);
+          });
+          // Close mega menu
+          $('.tp-pw-headerv2-megamenu-mobile.is-open > .tp-pw-headerv2-back-row > .tp-pw-headerv2-back-row-close-button').on('click', function() {
+            $('.tp-pw-headerv2-first-row').removeClass('hidden');
+            $('.tp-pw-headerv2-megamenu-mobile').removeClass('is-open').addClass('is-close');
+            setTimeout(() => {
+              $('.tp-pw-headerv2-megamenu-mobile').addClass('hidden');
+              $subMenu.toggle(false);
+              $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+              // check if other overlay is active
+              const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+              checkActiveOverlay(activeOverlay);
+            }, 50);
+          });
+        }, 20);
+      };
+
+      const hideMegaMenu = (i=index) => {
+        $(getMegaMenuSelector(i)).removeClass('is-open').addClass('hidden is-close');
+      };
+
+      const hideOtherMegaMenus = (hideAll=false) => {
+        $allMegaMenu.each(function(megaMenuIndex) {
+          if (hideAll) {
+            hideMegaMenu(megaMenuIndex);
+          } else if (megaMenuIndex !== index) {
+            hideMegaMenu(megaMenuIndex);
+          }
+        });
+      };
+
+      $link.on('click', () => {
+        hideOtherMegaMenus();
+        showMegaMenu();
+      });
+
+    });
+  }
+
   bindEvents = () => {
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
@@ -300,6 +376,7 @@ class Headerv2 {
     this.bindMarketSelectorOpenEvent();
     this.setBackdropPosition();
     this.bindSearchIconClickEvent();
+    this.bindMegaMenuLinkMobileClickEvent();
   }
 
   init() {

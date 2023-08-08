@@ -62,7 +62,7 @@
                             </a>
                         </sly>
                     </div>
-                    <i class="js-submenu-mobile-icon icon-Burger_pw"></i>
+                    <i class="submenu-mobile-icon js-submenu-mobile-icon icon-Burger_pw"></i>
                 </div>
             </div>
             <div class="tp-pw-headerv2-second-row">
@@ -97,7 +97,7 @@
         <div class="tp-pw-headerv2-mobile-secondary-navigation-menu">
             <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
                 <div class="tp-pw-anchor-container-primary">
-                    <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} justify-content-between">
+                    <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} js-click-menu-link justify-content-between">
                         <span>${navigationLink.linkText}</span>
                         <i class="icon-Arrow_Right_pw"></i>
                     </a>
@@ -154,6 +154,19 @@
                 wcmmode='disabled'}">
             </div> 
         </sly>
+    </sly>
+    <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
+        <div class="tp-pw-headerv2-megamenu-mobile hidden tp-pw-megamenu-mobile-subpage-${navigationLinkList.index}">
+            <div class="tp-pw-headerv2-back-row">
+                <button class="tp-pw-headerv2-back-row-back-button" aria-label="mobile naviagtion back button" title="mobile naviagtion back button">
+                    <i class="icon icon-Arrow_Right_pw"></i><span class="tp-pw-headerv2-back-row-back-text">Back</span>
+                </button>
+                <button class="tp-pw-headerv2-back-row-close-button" aria-label="mobile naviagtion close button" title="mobile naviagtion close button">
+                    <i class="icon icon-Close_pw"></i>
+                </button>
+            </div>
+            <div class="tp-pw-meganenu-subpage-wrapper"></div>
+        </div>
     </sly>
     <div class="tp-pw-headerv2-market-selector-wrapper">
         <sly data-sly-use.marketselector="/apps/publicweb/components/content/marketselector/marketselector-template.html"
