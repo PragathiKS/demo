@@ -74,6 +74,7 @@
                                                 fieldDescription="Pick the most important areas/keywords"
                                                 fieldLabel="Tags"
                                                 multiple="{Boolean}true"
+												required="{Boolean}true"
                                                 name="./cq:tags">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
@@ -126,6 +127,7 @@
                                                 allowBulkEdit="{Boolean}true"
                                                 fieldLabel="Navigation Title"
                                                 name="./navTitle"
+												required="{Boolean}true"
                                                 renderReadOnly="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
@@ -140,6 +142,7 @@
                                                 fieldLabel="Description"
                                                 maxlength="{Long}160"
                                                 name="./jcr:description"
+												required="{Boolean}true"
                                                 renderReadOnly="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
