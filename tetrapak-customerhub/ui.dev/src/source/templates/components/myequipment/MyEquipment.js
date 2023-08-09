@@ -354,7 +354,12 @@ class MyEquipment {
   getActiveCountryCode = () => {
     const { countryData } = this.cache;
     const activeCountry = countryData.filter(e => e.isChecked);
-    return activeCountry[0].countryCode;
+    if (activeCountry) {
+      return activeCountry.countryCode;
+    } else {
+      throw Error('Couldn\'t get active country');
+    }
+  //  return 'DE';//activeCountry[0].countryCode;
   }
 
   getAllAvailableFilterVals(filterValuesArr, newCountry, appliedFilter) {
@@ -877,10 +882,10 @@ class MyEquipment {
   }
 
   renderNewPage = ({resetSkip, analyticsAction}) => {
-    const {itemsPerPage, countryData, activeSortData, combinedFiltersObj} = this.cache;
+    const {itemsPerPage, activeSortData, combinedFiltersObj} = this.cache; //countryData
     const equipmentApi = this.cache.equipmentApi.data('list-api');
-    const activeCountry = countryData.filter(e => e.isChecked);
-    const countryCode = activeCountry[0].countryCode;
+    //const activeCountry = countryData.filter(e => e.isChecked);
+    const countryCode = this.getActiveCountryCode();
     let apiUrlRequest = '';
     const filtersQuery = _buildQueryUrl(combinedFiltersObj);
     const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
