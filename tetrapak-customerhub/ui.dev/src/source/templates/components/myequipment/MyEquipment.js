@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
