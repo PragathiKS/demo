@@ -33,8 +33,10 @@ describe('MyEquipment', function () {
     this.applyFilterSpy = sinon.spy(this.myequipment, 'applyFilter');
     this.renderFilterFormSpy = sinon.spy(this.myequipment, 'renderFilterForm');
     this.downloadExcel = sinon.spy(this.myequipment, 'downloadExcel');
+    this.sortTableByKey = sinon.spy(this.myequipment, 'sortTableByKey');
     this.renderNewCountry = sinon.spy(this.myequipment, 'renderNewCountry');
     this.deleteAllFilters = sinon.spy(this.myequipment, 'deleteAllFilters');
+    this.updateFilterCountValue= sinon.spy(this.myequipment, 'updateFilterCountValue');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     this.ajaxStub
       .yieldsTo('beforeSend', jqRef)
@@ -62,8 +64,11 @@ describe('MyEquipment', function () {
     this.applyFilterSpy.restore();
     this.renderFilterFormSpy.restore();
     this.downloadExcel.restore();
+    this.sortTableByKey.restore();
+   
     this.renderNewCountry.restore();
     this.deleteAllFilters.restore();
+    this.updateFilterCountValue.restore();
   });
   it('should initialize', function (done) {
     expect(this.myequipment.init.called).to.be.true;
@@ -89,19 +94,47 @@ describe('MyEquipment', function () {
     expect(this.myequipment.downloadExcel.called).to.be.true;
     done();
   });
+
+  it('Sort Table row', function(done){
+    $('.js-my-equipment__table-summary__sort').trigger('click');
+    expect(this.myequipment.sortTableByKey.called).to.be.true;
+    done();
+  });
+  it('should open equipment details', function(done){
+    $('.js-my-equipment__table-summary__row').trigger('click');
+    expect(this.myequipment.sortTableByKey.called).to.be.true;
+    done();
+  });
+ 
+  
   it('should render new country on country filter change', function (done) {
     $('.tp-my-equipment__country-button-filter').trigger('click');
     $('.js-apply-filter-button').trigger('click');
     expect(this.myequipment.renderNewCountry.called).to.be.true;
     done();
   });
+  it('update Filter Button Count', function (done) {
+    $('.tp-my-equipment__filter-button').trigger('click');
+    $('.tp-my-equipment__customer-button-filter').trigger('click');
+    $('.js-apply-filter-button').trigger('click');
+    expect(this.myequipment.updateFilterCountValue.called).to.be.true;
+    done();
+  });
+  
   it('should apply filters', function (done) {
     $('.tp-my-equipment__equip-desc-button-filter').trigger('click');
     $('.js-apply-filter-button').trigger('click');
     expect(this.myequipment.applyFilter.called).to.be.true;
+
+    $('.js-tp-my-equipment__remove-button').trigger('click');
+    expect(this.myequipment.applyFilter.called).to.be.true;
     
     $('.tp-my-equipment__customer-button-filter').trigger('click');
     $('.js-apply-filter-button').trigger('click');
+    expect(this.myequipment.applyFilter.called).to.be.true;
+
+    $('.tp-my-equipment__filter-button').trigger('click');
+    $('.js-tp-my-equipment__remove-button').trigger('click');
     expect(this.myequipment.applyFilter.called).to.be.true;
     
     $('.tp-my-equipment__line-button-filter').trigger('click');
@@ -120,12 +153,18 @@ describe('MyEquipment', function () {
     $('.js-apply-filter-button').trigger('click');
     expect(this.myequipment.applyFilter.called).to.be.true;
     
+    $('.js-my-equipment__customise-table-action').trigger('click');
+    $('.js-apply-filter-button').trigger('click');
+    expect(this.myequipment.applyFilter.called).to.be.true;
+
     done();
   });
+
   it('should delete all filters on button click', function (done) {
     $('.tp-my-equipment__customer-button-filter').trigger('click');
     $('.js-tp-my-equipment__remove-all-button').trigger('click');
     expect(this.myequipment.deleteAllFilters.called).to.be.true;
     done();
   });
+  
 })
