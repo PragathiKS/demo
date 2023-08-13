@@ -423,9 +423,10 @@ public class RebuildingKitDetailsModel {
         List<String> userGroups = GlobalUtil.getCustomerGroups(request);
         String selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
         this.partsExternalUrl = rebuildingKitsDetailsService.getEbizUrl(selectedLanguage , userGroups);
-        if(userGroups.contains(CustomerHubConstants.PARTS_GROUP)){
+        if (userGroups.contains(CustomerHubConstants.PARTS_GROUP)) {
             isPartsAccess = Boolean.TRUE;
-        } if (slingSettingsService.getRunModes().contains("publish")) {
+        }
+        if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
 
