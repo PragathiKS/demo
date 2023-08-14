@@ -1,11 +1,18 @@
 package com.tetrapak.customerhub.core.services.impl;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.PowerBiReportService;
 import com.tetrapak.customerhub.core.services.config.PowerBiReportConfig;
+
+import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -30,8 +37,10 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PowerBiReportServiceImpl.class);
 
+    private String accessToken;
+
     @Reference
-    private HttpClientBuilderFactory HttpFactory;
+    private HttpClientBuilderFactory httpFactory;
 
     /**
      * 
@@ -47,7 +56,6 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     /**
      * @return the PowerBI Service URL
      */
-    @Override
     public String getPbiServiceUrl() {
 
         return config.pbiserviceurl();
@@ -55,16 +63,16 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
      /**
      * @return the PowerBI Resource URL
      */
-    @Override
+    
     public String getPbiResourceUrl() {
 
         return config.pbiresourceurl();
     }
 
- /**
+    /**
      * @return the PowerBI Embedtoken URL
      */
-    @Override
+    
     public String getPbiEmbedtokenUrl() {
 
         return config.pbiembedtokenurl();
@@ -73,7 +81,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     /**
      * @return the azureID tenantid
      */
-    @Override
+    
     public String getAzureidtenantid() {
         return config.azureidtenantid();
     }
@@ -81,7 +89,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     /**
      * @return the powerbi clientid
      */
-    @Override
+    
     public String getPbicid() {
         return config.pbicid();
     }
@@ -89,7 +97,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     /**
      * @return the powerbi client sceret
      */
-    @Override
+    
     public String getPbics() {
         return config.pbics();
     }
@@ -97,7 +105,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     /**
      * @return the powerbi datasetid
      */
-    @Override
+    
     public String getPbidatasetid() {
         return config.pbidatasetid();
     }
@@ -105,7 +113,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     /**
      * @return the powerbi reportid
      */
-    @Override
+    
     public String getPbireportid() {
         return config.pbireportid();
     }
@@ -113,167 +121,101 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
     /**
      * @return the powerbi workspaceid
      */
-    @Override
+    
     public String getPbiworkspaceid() {
         return config.pbiworkspaceid();
     }
 
-    // generate Bearer URL
+    /**
+     * @return the getGenerateApi
+     */
     public String getGenerateApi() {
 
-        //LOGGER.info("Inside generateAPI method  ::::");
-
-
-
-       //String url = "https://login.microsoftonline.com/d2d2794a-61cc-4823-9690-8e288fd554cc/oauth2/token";
-       String url = getPbiServiceUrl()+getAzureidtenantid()+ "/oauth2/token";
-       //LOGGER.info(" String URL2  :::: {}", url);
-
-        HttpClient httpClient = HttpFactory.newBuilder().build();
-
-        String result = "";
+        LOGGER.debug("Inside generateAPI method of PowerBiReportServiceImpl ::::");
+        String url = getPbiServiceUrl()+getAzureidtenantid()+ CustomerHubConstants.PBIGENERATEAPI_POSTURL;
+        LOGGER.debug("PBI URL for generateAPI method of PowerBiReportServiceImpl :::: {}",url);
+        HttpClient httpClient = httpFactory.newBuilder().build();
+        
         try {
-
-            //LOGGER.info("Inside generateAPI Try  ::::");
-
             URIBuilder uribuilder = new URIBuilder(url);
-           
-            // add request parameter
             List<NameValuePair> pairs = new ArrayList<>();
-            pairs.add(new BasicNameValuePair("resource", getPbiResourceUrl()));
-            pairs.add(new BasicNameValuePair("client_id", getPbicid()));
-            pairs.add(new BasicNameValuePair("client_secret", getPbics()));
-            pairs.add(new BasicNameValuePair("grant_type", "client_credentials"));
+            pairs.add(new BasicNameValuePair(CustomerHubConstants.RESOURCE, getPbiResourceUrl()));
+            pairs.add(new BasicNameValuePair(CustomerHubConstants.PBI_CLIENTID, getPbicid()));
+            pairs.add(new BasicNameValuePair(CustomerHubConstants.PBI_CLIENT_SECRET, getPbics()));
+            pairs.add(new BasicNameValuePair(CustomerHubConstants.GRANT_TYPE,CustomerHubConstants.PBI_CLIENT_CREDENTIALS));
 
-            //LOGGER.info("Request Parameter : {}", pairs);
             HttpPost httppost = new HttpPost(uribuilder.build());
-
-            httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");
-            httppost.setHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            //LOGGER.info("Httppost before setEntity : {}", httppost);
-            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairs, "utf-8");
-            formEntity.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
-
+            httppost.setHeader(CustomerHubConstants.CONTENT_TYPE, CustomerHubConstants.APPLICATION_TYPE_URLENCODED);
+            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairs, CustomerHubConstants.UTF_8);
+            formEntity.setContentType(CustomerHubConstants.ENTITY_CONTENTTYPE);
             httppost.setEntity(formEntity);
-            // httppost.setEntity(new UrlEncodedFormEntity(pairs,StandardCharsets.UTF_8));
-
-            //LOGGER.info("httppost : {}", httppost);
-
-            // Execute and get the response.
             HttpResponse httpResponse = httpClient.execute(httppost);
-
-            // LOGGER.info("Http Response before respEntity :
-            // {}",IOUtils.toString(httpResponse.getEntity().getContent()));
-            // HttpEntity respEntity = httpResponse.getEntity();
-            // LOGGER.info("respEntity : {}",respEntity);
-
-            // LOGGER.info("Status equal to 200 :
-            // {}",httpResponse.getStatusLine().getStatusCode());
-
-            if (httpResponse.getStatusLine().getStatusCode() != 200) {
-                //LOGGER.info("Status not equal to 200 : {}", httpResponse.getStatusLine().getStatusCode());
-                throw new RuntimeException(
-                        " Failed To Generate Bearer Token : HTTP error code : " + httpResponse.getStatusLine().getStatusCode());
-            } else {
-                // EntityUtils to get the response content
-                // String content = EntityUtils.toString(respEntity);
-
-                result = IOUtils.toString(httpResponse.getEntity().getContent(), StandardCharsets.UTF_8);
-
-                //LOGGER.info(" Inside respEntity result : {}", result);
-
+            if (httpResponse.getStatusLine().getStatusCode() != 200 ) {
+                throw new IllegalArgumentException(" Failed To Generate Bearer Token : HTTP error code : {} " +httpResponse.getStatusLine().getStatusCode() );
+            } else 
+            {
+                accessToken = IOUtils.toString(httpResponse.getEntity().getContent(), StandardCharsets.UTF_8);
+                Gson gson = new Gson();
+                Type mapType  = new TypeToken<Map<String,String>>(){}.getType();
+                Map<String,String> mapAccessToken = gson.fromJson(accessToken, mapType);
+                accessToken = mapAccessToken.get(CustomerHubConstants.ACCESS_TOKEN);
+                LOGGER.info("PBI Access Token Generated ");
             }
 
         } catch (URISyntaxException ue) {
-            ue.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("URISyntaxException in PBI getGenerateApi : ",ue);
+           } catch (Exception e) {
+            LOGGER.error("Exception in PBI getGenerateApi : ",e);
         }
-        return result;
+        return accessToken;
 
     }
-
-    public String getGenerateEmbedToken(String accessToken1) {
-
-        //LOGGER.info("ET Inside getGenerateEmbedToken Method  ::::");
-
-        String resourceet = "https://api.powerbi.com/v1.0/myorg/groups/"+getPbiworkspaceid()+"/reports/"+getPbireportid()+"/GenerateToken?accessLevel=View";
-        //String resourceet2 = "https://api.powerbi.com/v1.0/myorg/groups/17884c21-49de-42ba-8519-dea43237c2df/reports/5d3c5f2a-b062-4ddb-ab09-4224fb845a99/GenerateToken?accessLevel=View";
+    /**
+     * @return the getGenerateEmbedToken
+     */
+    public String getGenerateEmbedToken() {
         
-
-         //LOGGER.info("ET ResourceEmbedToken >>>>>>  :::: {}", resourceet);
-        HttpClient httpClientet = HttpFactory.newBuilder().build();
-
+        accessToken=getGenerateApi();
+        LOGGER.debug("ET Inside getGenerateEmbedToken Method  of  PowerBiReportServiceImpl ::::");
+        String resourceet = getPbiEmbedtokenUrl()+getPbiworkspaceid()+ CustomerHubConstants.PBIEMB_REPORT +getPbireportid()+ CustomerHubConstants.PBIEMBTOKEN_POSTURL;
+        LOGGER.debug("PBI PreEmbedURL for getGenerateEmbedToken method of PowerBiReportServiceImpl :::: {}",resourceet);
+        HttpClient httpClientet = httpFactory.newBuilder().build();
         String embedtoken = "";
-
-        //LOGGER.info("ET Inside getGenerateEmbedToken AccessToken  :::: {}", accessToken1);
-        //LOGGER.info("ET Inside getGenerateEmbedToken EmbedToken  :::: {}", embedtoken);
-
         try {
-            //LOGGER.info("ET Inside getGenerateEmbedToken Try  ::::");
-
             URIBuilder uribuilder = new URIBuilder(resourceet);
 
             List<NameValuePair> pairset = new ArrayList<>();
-            pairset.add(new BasicNameValuePair("accessLevel", "View"));
-            pairset.add(new BasicNameValuePair("allowSaveAs", "false"));
-            pairset.add(new BasicNameValuePair("datasetId", getPbidatasetid()));
-            // pairset.add(new BasicNameValuePair("grant_type","client_credentials"));
-
-            //LOGGER.info("ET Request Parameter : {}", pairset);
+            pairset.add(new BasicNameValuePair(CustomerHubConstants.ACCESS_LEVEL, CustomerHubConstants.VIEW));
+            pairset.add(new BasicNameValuePair(CustomerHubConstants.ALLOW_SAVEAS_AS, CustomerHubConstants.FALSE));
+            pairset.add(new BasicNameValuePair(CustomerHubConstants.PBI_DATASETID, getPbidatasetid()));
             HttpPost httppostet = new HttpPost(uribuilder.build());
-
-            // httppostet.addHeader("Content-Type", "application/x-www-form-urlencoded");
-            httppostet.setHeader("Authorization", "Bearer "+ accessToken1);
-            httppostet.setHeader("Accept", "application/json");
-            httppostet.setHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            //LOGGER.info("ET Httppost before setEntity : {}", httppostet);
-            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairset, "utf-8");
-            formEntity.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
-
+            httppostet.setHeader(CustomerHubConstants.AUTHORIZATION_HEADER_NAME,CustomerHubConstants.BEARER_COOKIE_VALUE+ accessToken);
+            httppostet.setHeader(CustomerHubConstants.ACCEPT, CustomerHubConstants.APPLICATION_JSON);
+            httppostet.setHeader(CustomerHubConstants.CONTENT_TYPE, CustomerHubConstants.APPLICATION_TYPE_URLENCODED);
+            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairset, CustomerHubConstants.UTF_8);
+            formEntity.setContentType(CustomerHubConstants.ENTITY_CONTENTTYPE);
             httppostet.setEntity(formEntity);
-            // httppost.setEntity(new UrlEncodedFormEntity(pairs,StandardCharsets.UTF_8));
-            //LOGGER.info("ET httppost after setEntity: {}", httppostet);
-
-            // Execute and get the response.
             HttpResponse httpResponseet = httpClientet.execute(httppostet);
-
-            /*LOGGER.info("ET Http Response before respEntity : {}",
-                    IOUtils.toString(httpResponseet.getEntity().getContent()));
-            HttpEntity respEntity = httpResponseet.getEntity();
-            LOGGER.info("ET respEntity : {}", respEntity);*/
-
-            
-
             if (httpResponseet.getStatusLine().getStatusCode() != 200) {
-                //LOGGER.info("ET Status not equal to 200 : {}", httpResponseet.getStatusLine().getStatusCode());
-                throw new RuntimeException(
+                throw new IllegalArgumentException(
                         " Failed To Generate Embed Token : HTTP error code : " + httpResponseet.getStatusLine().getStatusCode());
-            } else {
-                // EntityUtils to get the response content
-                // String content = EntityUtils.toString(respEntity);
-
-                //LOGGER.info("ET Status  equal to 200 : {}", httpResponseet.getStatusLine().getStatusCode());
-
+            } else 
+            {
                 embedtoken = IOUtils.toString(httpResponseet.getEntity().getContent(), StandardCharsets.UTF_8);
-
-                //LOGGER.info("ET Inside respEntity result : {}", embedtoken);
-
+                Gson gsonet = new Gson();
+                Type mapTypeet  = new TypeToken<Map<String,String>>(){}.getType();
+                Map<String,String> mapEmbedToken = gsonet.fromJson(embedtoken, mapTypeet);
+                embedtoken = mapEmbedToken.get(CustomerHubConstants.TOKEN);
+                LOGGER.info("PBI Embedtoken :::: {}",embedtoken);
+                LOGGER.info("PBI Embedd Token Generated ");
             }
         } catch (Exception e) {
-            //LOGGER.info("ET Inside getGenerateEmbedToken Try  Catch ::::");
-            //LOGGER.info("ET Inside Catch : {}", e.printStackTrace());
-            //System.out.println(" SOP >>>>>>>> "+e.printStackTrace().);
-            e.printStackTrace();
+            
+            LOGGER.error("Exception in PBI getGenerateEmbedToken : ",e);
         }
 
         return embedtoken;
 
     }
-
-    
-
 }
 

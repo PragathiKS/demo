@@ -1,10 +1,8 @@
 package com.tetrapak.customerhub.core.models;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
+import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.PowerBiReportService;
-import java.lang.reflect.Type;
-import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -23,69 +21,55 @@ import org.slf4j.LoggerFactory;
 @Model(adaptables = {Resource.class, SlingHttpServletRequest.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PowerBIModel {
 
-   private static final Logger LOGGER = LoggerFactory.getLogger(PowerBIModel.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(PowerBIModel.class);
 
-    @OSGiService
+  @OSGiService
     private PowerBiReportService pbireportService;
 
-    @SlingObject
-     protected SlingHttpServletResponse response;
-
-    private String result;
+  @SlingObject
+    protected SlingHttpServletResponse response;
     private String embedtoken;
     private String reportId;
     private String embedURL;
-
-    @PostConstruct
+   
+  @PostConstruct
     protected void init() {
-      result= pbireportService.getGenerateApi();
+        reportId=pbireportService.getPbireportid(); 
+        embedURL= CustomerHubConstants.PBIEMBTOKEN_PRETURL + pbireportService.getPbireportid();
+        embedtoken= pbireportService.getGenerateEmbedToken();
+        Cookie cookie = new Cookie(CustomerHubConstants.PBI_COOKIE_EMBEDTOKEN, embedtoken);
+        cookie.setMaxAge(3600); 
+        response.addCookie(cookie);
+        LOGGER.debug("PBI COOKIE added ::::");
+  }
 
-      reportId=pbireportService.getPbireportid(); 
-      
-      embedURL="https://app.powerbi.com/reportEmbed?reportId="+pbireportService.getPbireportid();
+   public void setEmbedtoken(String embedtoken) {
+        this.embedtoken=embedtoken;
+  }
 
-      LOGGER.info("PBI EmbedURL>>>>>>>>>>  {}",embedURL);
-
-      Gson gson = new Gson();
-      Type mapType  = new TypeToken<Map<String,String>>(){}.getType();
-      Map<String,String> ser = gson.fromJson(result, mapType);
-      String accessToken = ser.get("access_token");
-      LOGGER.info("PBI Access Token Generated ");
-
-      embedtoken= pbireportService.getGenerateEmbedToken(accessToken);
-      Gson gsonet = new Gson();
-      Type mapTypeet  = new TypeToken<Map<String,String>>(){}.getType();
-      Map<String,String> seret = gsonet.fromJson(embedtoken, mapTypeet);
-      String accessTokenet = seret.get("token");
-
-      LOGGER.info("PBI Embedd Token Generated " );
-      Cookie cookie = new Cookie("pbi-accesstoken", accessTokenet);
-      cookie.setMaxAge(3600); // in seconds, 3600 = 1 hour.
-      response.addCookie(cookie);
-      LOGGER.info("PBI COOKIE added ::::");
-      //LOGGER.info(" Response  Info: {}", response);
-      embedtoken= accessTokenet;
-    }
-
-    public void setEmbedURL(String setEmbedURL) {
-    LOGGER.info("Inside setEmbedURL method");
-        this.embedURL = embedURL; }
+   public void setReportid(String reportId) {
+        this.reportId=reportId;
+  }
+  
+   public void setEmbedURL(String embedURL) {
+        this.embedURL=embedURL;
+  }
 
    public String getEmbedtoken() {
-      return embedtoken;
-      }
+        LOGGER.debug("PBI Embedtoken :::: {}",embedtoken);
+        return embedtoken;
+  }
 
-    public String getReportid() {
-        LOGGER.info("PBI Report ID :::: {}",reportId);
+  public String getReportid() {
+        LOGGER.debug("PBI Report ID :::: {}",reportId);
         return reportId;
-      }
+  }
 
-     public String getEmbedURL() {
-        LOGGER.info("PBI EmbedURL :::: {}",embedURL);
+   public String getEmbedURL() {
+        LOGGER.debug("PBI EmbedURL :::: {}",embedURL);
+        reportId=pbireportService.getPbireportid(); 
+        embedURL= CustomerHubConstants.PBIEMBTOKEN_PRETURL + pbireportService.getPbireportid();
         return embedURL;
-      }
-    public String getResult() {
-        return result;
-      }
-
+   }
+  
 }
