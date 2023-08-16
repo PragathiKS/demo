@@ -42,7 +42,7 @@ class TabList extends TabsListParent {
   loadContactUs = () => {
     const $this = this;
     let $tabSection;
-    let $winWidth = $(window).width();
+    const $winWidth = $(window).width();
 
     if($winWidth <= 1023) {
       $tabSection = $this.root.find('.pw-tablist__event-detail-wrapper');
@@ -117,7 +117,6 @@ class TabList extends TabsListParent {
       })
       .on('click', '.js-tablist__event-detail-description-link', this.trackAnalytics)
       .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists);
-    
     window.addEventListener('resize',debounce(function() {
       $this.loadContactUs();
     }));
