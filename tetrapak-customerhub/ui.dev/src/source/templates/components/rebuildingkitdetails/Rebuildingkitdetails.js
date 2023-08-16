@@ -26,23 +26,15 @@ function _renderRebuildingKitDetailsBottom() {
 function _renderRebuildingKitDetails({ isNotConfirmed }) {
   const $this = this;
   const { $rebuildingData } = $this.cache;
-  const { i18nKeys } = $this.cache;
+  const { i18nKeys,isPartsAccess,eBusinessUrl } = $this.cache;
   
   render.fn({
     template: 'rebuildingkitDetails',
     target: $this.cache.$content,
-    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData, isNotConfirmed }
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData, isNotConfirmed,isPartsAccess:isPartsAccess,eBusinessUrl:eBusinessUrl }
   });
   $('.js-rebuilding-details__update').on('click', function() {
     $this.renderRebuildingKitReportModal();
-  });
-  $('.js-rebuilding-details__view-e-business-btn').on('click', function() {
-    if($this.cache.isPartsAccess) {
-      window.open(`${$this.cache.eBusinessUrl}/${$this.cache.$rebuildingData.rkNumber}`, '_blank');
-    }
-    else {
-      window.open(`${$this.cache.eBusinessUrl}`, '_blank');
-    }
   });
 }
 
