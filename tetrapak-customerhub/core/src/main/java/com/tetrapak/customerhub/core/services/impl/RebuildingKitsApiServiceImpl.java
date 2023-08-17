@@ -92,7 +92,9 @@ public class RebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 		requestBean.setSource(CustomerHubConstants.TETRAPAK_CUSTOMERHUB_SOURCENAME);
 		requestBean.setCurrentStatus(xssFilter.filter(bean.getCurrentStatus()));
 		requestBean.setReportedStatus(xssFilter.filter(bean.getReportedStatus()));
-		requestBean.setDate((xssFilter.filter(bean.getDate())));
+		if(StringUtils.isNotBlank(bean.getDate())){
+			requestBean.setDate((xssFilter.filter(bean.getDate())));
+		}
 		return requestBean;
 	}
 

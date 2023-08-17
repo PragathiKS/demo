@@ -1,11 +1,14 @@
 <sly data-sly-template.teaser_template="${@data, flag}">
-    <div class="pw-container" data-module="teaser">
+    <div class="pw-container" data-module="teaser" auto_locator="teaserOrganism">
       <section class="tp-teaser pw-theme--${data.pwTheme}"  id="${data.anchorId}" title="${data.anchorTitle}" >
-        <div data-sly-test="${data.heading}" class="tp-teaser__heading">
+        <div data-sly-test="${data.heading}" class="tp-teaser__heading" auto_locator="teaserHeadline">
           <sly data-sly-use.heading="/apps/commons/components/atoms/heading/heading.html"
               data-sly-call="${heading.heading_h3_template @ headingText=data.heading}"/>
         </div>
-
+        <div data-sly-test="${data.description}"class="tp-teaser__description">
+          <p>${data.description}</p>
+        </div>
+        
         <sly data-sly-test.webUrl="${data.webUrl}">
            <a data-link-section="Teaser_Text Hyperlink"
               data-paren-link-title="${data.heading}"
@@ -18,12 +21,13 @@
            </a>
         </sly>
 
+        <sly data-sly-test.columnNumbers="${data.numberOfColumns}"/>
         <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
         <sly data-sly-test.showCarousal="${(data.enableCarousel && teaserSize > 3) ? 'true':'false'}"/>
-        <div data-paren-link-title="${data.heading}" class="${showCarousal == 'true' ? 'owl-carousel' : ''} tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}">
+        <div data-paren-link-title="${data.heading}" class="${showCarousal == 'true' ? 'owl-carousel' : ''} tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}" auto_locator="carouselTeaser" >
           <sly data-sly-test.teaserType="${teaserSize > 2 ? 'teaser2' : 'teaser1'}"/>
           <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'secondary' ? 'CTA' : 'Text Hyperlink'}" />
-            <div class="carousal-wrapper col-md-12 ${teaserSize > 2 ? 'col-lg-4' : 'col-lg-6' } ${((teaserSize==2 && childList.index==1) || (teaserSize==1 && childList.index==0) || childList.index==2 || childList.index==5 || childList.index==8 || childList.index==11  ) ? '' : 'rightbar' } ${child.linkText ? 'teaserMargin' : 'teaserMarginL'  } ">
+          <div class="carousal-wrapper col-6 col-md-12 small-screen ${teaserSize > 2 && columnNumbers == '3' ? 'col-lg-4':''} ${teaserSize > 3 && columnNumbers == '4' ? 'col-lg-3' : ''} ${teaserSize > 4 && columnNumbers == '5' ? 'tp-teaser__width' : ''} ${teaserSize == 2 ? 'col-lg-6':''} ${teaserSize == 3 ? 'col-lg-4':''} ${teaserSize == 4 ? 'col-lg-3':''} ${child.linkText ? 'teaserMargin' : 'teaserMarginL'} separator ${columnNumbers == '2' ? 'twoCol' : ''} ${columnNumbers == '3' ? 'threeCol' : ''} ${columnNumbers == '4' ? 'fourCol' : ''} ${columnNumbers == '5' ? 'fiveCol' : ''}" auto_locator="teaserPODs">
             <a data-sly-test="${child.linkPath && child.linkPath!='#' && child.fileReference}"
               href="${child.linkPath}"
               class="js-teaser-analytics teaser-image-link"
@@ -35,6 +39,7 @@
               data-button-link-type="${child.pwButtonTheme}"
               data-paren-link-title="${data.heading}:${child.title}"
               data-anchor-type="${dataLinkSectionCTAText}"
+              auto_locator="podImage"
             >
 
               <sly data-sly-test = "${!wcmmode.edit}">
@@ -44,7 +49,7 @@
                 <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
               </sly>
             </a>
-            <span  data-sly-test="${!child.linkPath  || child.linkPath=='#'}">
+            <span  data-sly-test="${!child.linkPath  || child.linkPath=='#'}" auto_locator="podImage">
               <sly data-sly-test = "${!wcmmode.edit}">
                 <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=teaserType, className='tp-teaser__image image',imgBackground=data.pwImgBackground}" />
               </sly>
@@ -55,9 +60,9 @@
             <p data-sly-test = "${child.articleDate && data.displayDate}" class="block-time ${child.fileReference ? 'noTopPad' : ''}">${child.articleDate @ context='html'}</p>
             <h4 data-sly-test = "${child.title}" class="tilte ${child.fileReference ? 'noTopPad' : ''}" auto_locator="podTitle">${child.title @ context='html'}</h4>
 
-            <p  data-sly-test = "${child.description}" class="description">${child.description @ context='html'}</p>
+            <p  data-sly-test = "${child.description}" class="description" auto_locator="podDescription">${child.description @ context='html'}</p>
 
-            <div class="link" data-sly-test="${child.linkText}">
+            <div class="link" data-sly-test="${child.linkText}" auto_locator="podLink">
               <sly data-sly-test.dataLinkSectionCTAText="${child.pwButtonTheme == 'secondary' ? 'CTA' : 'Text Hyperlink'}" />
               <a data-sly-test="${child.linkText}"
                   href="${child.linkPath}"
@@ -74,7 +79,7 @@
             </div>
           </div>
         </div>
-        <div data-sly-test="${data.linkPath && data.linkPath!='#'}" class="tp-teaser__seeAllLink text-center">
+        <div data-sly-test="${data.linkPath && data.linkPath!='#'}" class="tp-teaser__seeAllLink text-center" auto_locator="viewMoreLink">
           <a href="${data.linkPath}" class="tpatom-link tpatom-link--transparent">
             <span class="tpatom-link__text sly-text">${data.linkLabel}</span><span class="nowrap-text">&#8288;<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
           </a>

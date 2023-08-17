@@ -185,7 +185,7 @@ function  _renderRebuildingKitReportModal() {
     $reportModal.modal('hide');
   });
 
-  this.root.on('click', '.js-rk-make-update',  (e) => {
+  this.root.on('click', '.js-rk-make-update', (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget.form);
     auth.getToken(({ data: authData }) => {
@@ -233,7 +233,7 @@ function  _renderRebuildingKitReportModal() {
           logger.error(e);
         });
     });
-  });
+  });  
 }
 
 function _requestCtiLanguage(lang) {

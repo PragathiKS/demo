@@ -15,6 +15,7 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.annotations.Default;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +44,14 @@ public class TeaserModel {
     /** The heading. */
     @ValueMapValue
     private String heading;
+
+    /** The description. */
+    @ValueMapValue
+    private String description;
+
+    /** The number Of Columns. */
+    @ValueMapValue @Default(values = "3")
+    private String numberOfColumns;
 
     /** The content type. */
     @ValueMapValue
@@ -194,6 +203,24 @@ public class TeaserModel {
      */
     public String getHeading() {
         return heading;
+    }
+
+    /**
+     * Gets the description.
+     *
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Gets the number of columns.
+     *
+     * @return the number of columns.
+     */
+    public String getNumberOfColumns() {
+        return numberOfColumns;
     }
 
     /**
