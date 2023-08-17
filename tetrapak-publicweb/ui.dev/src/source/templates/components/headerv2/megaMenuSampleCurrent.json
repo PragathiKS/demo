@@ -1,0 +1,193 @@
+{
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:createdBy": "sebrahmanays",
+    "numberOfColumns": "4",
+    "jcr:lastModifiedBy": "sebrahmanays",
+    "jcr:created": "Mon Jul 03 2023 12:04:21 GMT+0000",
+    "jcr:lastModified": "Mon Jul 03 2023 12:04:30 GMT+0000",
+    "sling:resourceType": "publicweb/components/structure/megamenuconfigv2",
+    "col1": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "publicweb/components/structure/megamenucolumn",
+      "heading": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:08:25 GMT+0000",
+        "heading": "Solutions",
+        "jcr:lastModified": "Fri Aug 04 2023 14:47:06 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/heading",
+        "headingURL": "https://www.google.com"
+      },
+      "description_1230358658": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Fri Aug 04 2023 11:14:17 GMT+0530",
+        "text": "<p>This is description for heading</p>\r\n",
+        "jcr:lastModified": "Fri Aug 04 2023 11:14:36 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/description",
+        "textIsRich": "true"
+      },
+      "subheading": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Thu Aug 03 2023 13:44:43 GMT+0530",
+        "jcr:lastModified": "Thu Aug 03 2023 13:59:23 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/subheading",
+        "subheading": "Solutions Subheading"
+      },
+      "description": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:08:39 GMT+0000",
+        "text": "<p>This is some <b>description</b>.&nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida</p>\r\n",
+        "jcr:lastModified": "Wed Aug 02 2023 15:56:36 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/description",
+        "textIsRich": "true"
+      },
+      "navigationlinks": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:09:38 GMT+0000",
+        "jcr:lastModified": "Mon Aug 07 2023 11:00:33 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/navigationlinks",
+        "navLinks": [
+          {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link Column 1",
+            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home"
+          },
+          {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link 2 Column 1",
+            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home"
+          },
+          {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link 3 Column 1",
+            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home"
+          },
+          {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link 4 column 1",
+            "linkUrl": "https://www.google.com",
+            "linkDescription": "desc for heading"
+          }
+        ]
+      }
+    },
+    "col2": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:lastModifiedBy": "admin",
+      "bgColor": "grey",
+      "jcr:lastModified": "Fri Aug 04 2023 10:26:44 GMT+0530",
+      "sling:resourceType": "publicweb/components/structure/megamenucolumn",
+      "subheading": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:11:07 GMT+0000",
+        "subheadingURL": "/content/tetrapak/publicweb/lang-masters/en/home",
+        "jcr:lastModified": "Wed Aug 02 2023 15:58:41 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/subheading",
+        "subheading": "HEADING GOES HERE"
+      },
+      "description": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:11:26 GMT+0000",
+        "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida</p>\r\n",
+        "jcr:lastModified": "Wed Aug 02 2023 15:59:01 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/description",
+        "textIsRich": "true"
+      },
+      "navigationlinks": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:11:49 GMT+0000",
+        "jcr:lastModified": "Wed Aug 02 2023 15:59:44 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/navigationlinks"
+      }
+    },
+    "col4": {
+      "jcr:primaryType": "nt:unstructured",
+      "jcr:lastModifiedBy": "admin",
+      "bgColor": "grey",
+      "jcr:lastModified": "Fri Aug 04 2023 10:26:55 GMT+0530",
+      "sling:resourceType": "publicweb/components/structure/megamenucolumn",
+      "subheading": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:12:40 GMT+0000",
+        "subheadingURL": "/content/tetrapak/publicweb/lang-masters/en/home",
+        "jcr:lastModified": "Wed Aug 02 2023 16:00:15 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/subheading",
+        "subheading": "HEADING GOES HERE"
+      },
+      "navigationlinks": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Mon Jul 03 2023 12:13:01 GMT+0000",
+        "jcr:lastModified": "Wed Aug 02 2023 16:26:53 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/navigationlinks",
+        "navLinks": [
+          {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link Column 4",
+            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home"
+          },
+          {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link 2 Column 4",
+            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home"
+          },
+          {
+            "jcr:primaryType": "nt:unstructured",
+            "linkLabel": "Link 3 Column 4",
+            "linkUrl": "/content/tetrapak/publicweb/lang-masters/en/home"
+          }
+        ]
+      },
+      "subheading_1495294106": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Wed Aug 02 2023 16:00:54 GMT+0530",
+        "jcr:lastModified": "Wed Aug 02 2023 16:01:00 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/subheading",
+        "subheading": "HEADING GOES HERE"
+      },
+      "navigationlinks_1623518204": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "admin",
+        "jcr:lastModifiedBy": "admin",
+        "jcr:created": "Wed Aug 02 2023 16:01:32 GMT+0530",
+        "jcr:lastModified": "Wed Aug 02 2023 16:27:13 GMT+0530",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/navigationlinks"
+      }
+    },
+    "col3": {
+      "jcr:primaryType": "nt:unstructured",
+      "sling:resourceType": "publicweb/components/structure/megamenucolumn",
+      "teaser": {
+        "jcr:primaryType": "nt:unstructured",
+        "jcr:createdBy": "sebrahmanays",
+        "description": "<p>Teaser Description</p>\r\n",
+        "jcr:lastModifiedBy": "admin",
+        "imagePath": "/content/dam/tetrapak/publicweb/gb/en/sustainability/carton-swan-label-teaser.jpg",
+        "jcr:created": "Mon Jul 03 2023 12:14:17 GMT+0000",
+        "title": "Teaser Title",
+        "jcr:lastModified": "Tue Jul 04 2023 11:02:27 GMT+0000",
+        "sling:resourceType": "publicweb/components/structure/megamenucolumnitems/teaser",
+        "textIsRich": "true"
+      }
+    }
+  }
