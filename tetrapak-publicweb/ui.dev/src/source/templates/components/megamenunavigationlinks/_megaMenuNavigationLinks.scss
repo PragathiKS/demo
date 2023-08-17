@@ -8,7 +8,9 @@
         @media #{$mobile} {
             margin-bottom: 0;
             padding: $padding-md 0;
-            border-bottom: 1px solid $color-mercury;
+            &.nav-link-bottom-border {
+                border-bottom: 1px solid $color-mercury;
+            }
         }
         &:last-of-type {
             margin-bottom: 0;

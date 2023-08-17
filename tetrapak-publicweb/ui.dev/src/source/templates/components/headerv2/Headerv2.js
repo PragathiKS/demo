@@ -4,7 +4,8 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
 import { checkActiveOverlay, isDesktopMode} from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
-const sampleJson = require('./megaMenuSample.json');
+//const sampleJson = require('./megaMenuSample.json');
+const sampleJsonCurrent = require('./megaMenuSampleCurrent.json');
 
 class Headerv2 {
   constructor({ el }) {
@@ -102,11 +103,11 @@ class Headerv2 {
       trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
     else {
+      //Close search
+      $searchBarWrapper.removeClass('show');
       this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
       this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
-      $searchBarWrapper.removeClass('show');
-      const activeOverlay = ['.tp-pw-headerv2-searchbar-wrapper'];
-      checkActiveOverlay(activeOverlay);
+      $('body').css('overflow','auto');
     }
   }
 
@@ -310,21 +311,19 @@ class Headerv2 {
       const $allMegaMenu = $(allMegaMenuSelector);
 
       const showMegaMenu = (i=index) => {
-        $('.tp-pw-headerv2-first-row').addClass('hidden');
         $(getMegaMenuSelector(i)).removeClass('hidden');
         setTimeout(() => {
           $(getMegaMenuSelector(i)).removeClass('is-close').addClass('is-open');
 
           render.fn({
             template: 'megaMenuV2Subpage',
-            data: sampleJson,
+            data: Headerv2.covertJSONFormat(sampleJsonCurrent),
             target: '.tp-pw-meganenu-subpage-wrapper',
             hidden: false
           });
 
           // Add event on back button
           $('.tp-pw-headerv2-megamenu-mobile.is-open > .tp-pw-headerv2-back-row > .tp-pw-headerv2-back-row-back-button').on('click', function() {
-            $('.tp-pw-headerv2-first-row').removeClass('hidden');
             $('.tp-pw-headerv2-megamenu-mobile').removeClass('is-open').addClass('is-close');
             setTimeout(() => {
               $('.tp-pw-headerv2-megamenu-mobile').addClass('hidden');
@@ -332,7 +331,6 @@ class Headerv2 {
           });
           // Close mega menu
           $('.tp-pw-headerv2-megamenu-mobile.is-open > .tp-pw-headerv2-back-row > .tp-pw-headerv2-back-row-close-button').on('click', function() {
-            $('.tp-pw-headerv2-first-row').removeClass('hidden');
             $('.tp-pw-headerv2-megamenu-mobile').removeClass('is-open').addClass('is-close');
             setTimeout(() => {
               $('.tp-pw-headerv2-megamenu-mobile').addClass('hidden');
@@ -382,6 +380,57 @@ class Headerv2 {
   init() {
     this.initCache();
     this.bindEvents();
+  }
+
+  static covertJSONFormat = (sampleJsonCurrent) => {
+    var finalJson = {};
+    if (sampleJsonCurrent.col1) {
+      finalJson.col1 = Headerv2.convertColumnJson(sampleJsonCurrent.col1);
+    }
+    if (sampleJsonCurrent.col2) {
+      finalJson.col2 = Headerv2.convertColumnJson(sampleJsonCurrent.col2);
+    }
+    if (sampleJsonCurrent.col4) {
+      finalJson.col4 = Headerv2.convertColumnJson(sampleJsonCurrent.col4);
+    }
+    if (sampleJsonCurrent.col3) {
+      finalJson.col3 = Headerv2.convertColumnJson(sampleJsonCurrent.col3);
+    }
+    return finalJson;
+  }
+
+  static convertColumnJson = (column) => {
+    var allKeys = Object.keys(column);
+    var headingObj = {};
+    var subheadingObj = {};
+    var finalJsonObj = {};
+    var subheadings = [];
+    for(var index=0; index<allKeys.length; index++) {
+      if(allKeys[index].startsWith('heading')) {
+        headingObj = {};
+        headingObj.heading = column[allKeys[index]];
+        if(allKeys[index+1].startsWith('description')) {
+          headingObj.description = column[allKeys[index+1]];    
+        }
+        finalJsonObj.heading = headingObj;
+      }
+      if(allKeys[index].startsWith('subheading')) {
+        subheadingObj = {};
+        subheadingObj.subheading = column[allKeys[index]];
+        subheadings.push(subheadingObj);
+      }
+      if(allKeys[index].startsWith('description')) {
+        subheadingObj.description = column[allKeys[index]];
+      }
+      if(allKeys[index].startsWith('navigationlinks')) {
+        subheadingObj.navigationlinks = column[allKeys[index]];
+      }
+    }
+    if(column.bgColor) {
+      finalJsonObj.bgColor = column.bgColor;
+    }
+    finalJsonObj.subheadings = subheadings;
+    return finalJsonObj;
   }
 }
 
