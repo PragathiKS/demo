@@ -408,32 +408,36 @@ class MyEquipment {
   }
 
   renderSearchCount = () => {
-    this.cache.$searchResults.text(`${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
+    if (this.cache.meta) {
+      this.cache.$searchResults.text(`${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
+    }
   }
 
   renderPaginationTableData = (list) => {
-    const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
+    if (list.meta) {
+      const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
 
-    if (list.summary.length === 0) {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      });
-    }
-    else {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: {...list, summary: list.summary, paginationObj: paginationObj },
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      },() => {
-        this.hideShowColums();
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip();
+      if (list.summary.length === 0) {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
         });
-      });
+      }
+      else {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: {...list, summary: list.summary, paginationObj: paginationObj },
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
+        },() => {
+          this.hideShowColums();
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+          });
+        });
+      }
     }
   }
 
@@ -485,7 +489,7 @@ class MyEquipment {
           this.renderSearchCount();
           this.updateFilterCountValue(label,1,$countryFilterLabel);
 
-          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+          if (analyticsAction && analyticsAction.action === 'addedFilter' && response.meta) {
             _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
           }
         }).fail(() => {
@@ -942,15 +946,15 @@ class MyEquipment {
           this.renderSearchCount();
           this.mapTableColumn();
 
-          if (analyticsAction && analyticsAction.action === 'removedFilter') {
+          if (analyticsAction && analyticsAction.action === 'removedFilter' && response.meta) {
             _removeFilterAnalytics(analyticsAction.targetFilter, response.meta.total);
           }
 
-          if (analyticsAction && analyticsAction.action === 'removedAllFilters') {
+          if (analyticsAction && analyticsAction.action === 'removedAllFilters' && response.meta) {
             _removeAllFiltersAnalytics(analyticsAction.items, response.meta.total);
           }
 
-          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+          if (analyticsAction && analyticsAction.action === 'addedFilter' && response.meta) {
             _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
           }
         }).fail(() => {
