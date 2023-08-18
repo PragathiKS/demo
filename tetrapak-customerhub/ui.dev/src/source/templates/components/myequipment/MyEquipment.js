@@ -7,7 +7,7 @@ import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
+import { _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
 import file from '../../../scripts/utils/file';
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData, _remapFilterOptionKey } from './MyEquipment.utils';
@@ -105,7 +105,6 @@ class MyEquipment {
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
     this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
-    this.cache.$showHideAllFiltersBtn = this.root.find('.js-tp-my-equipment__show-hide-all-button');
     this.cache.$removeAllFiltersBtn = this.root.find('.js-tp-my-equipment__remove-all-button');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
@@ -262,10 +261,6 @@ class MyEquipment {
     this.cache.$removeAllFiltersBtn.on('click', () => {
       this.deleteAllFilters();
       this.toggleRemoveAllFilters(false);
-    });
-
-    this.cache.$showHideAllFiltersBtn.on('click', () => {
-      this.showHideAllFilters();
     });
 
     this.root.on('click', '.js-my-equipment__table-summary__sort',  (e) => {
@@ -798,19 +793,6 @@ class MyEquipment {
       'sendPosition': sortedByKey === 'functionalLocation'
     };
     this.renderNewPage({'resetSkip': true});
-  }
-
-  showHideAllFilters = () => {
-    const $allBtnFilters = this.root.find('.tp-my-equipment__filter-button-all');
-    const showLabel = this.cache.$showHideAllFiltersBtn.data('show-label');
-    const hideLabel = this.cache.$showHideAllFiltersBtn.data('hide-label');
-    const $label = this.cache.$showHideAllFiltersBtn.find('.tpatom-btn__text');
-    const currentLabel = $.trim($label.text());
-
-    _hideShowAllFiltersAnalytics(currentLabel, currentLabel === showLabel ? 'filterShow' : 'filterHide');
-
-    $allBtnFilters.toggle();
-    $label.text(currentLabel === showLabel ? hideLabel : showLabel);
   }
 
   addCombinedFilter = (activeFilterForm, $filtersCheckbox) => {
