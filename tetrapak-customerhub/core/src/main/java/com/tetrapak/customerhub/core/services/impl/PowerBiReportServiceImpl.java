@@ -133,7 +133,6 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
 
         LOGGER.debug("Inside generateAPI method of PowerBiReportServiceImpl ::::");
         String url = getPbiServiceUrl()+getAzureidtenantid()+ CustomerHubConstants.PBIGENERATEAPI_POSTURL;
-        LOGGER.debug("PBI URL for generateAPI method of PowerBiReportServiceImpl :::: {}",url);
         HttpClient httpClient = httpFactory.newBuilder().build();
         
         try {
@@ -155,11 +154,12 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
             } else 
             {
                 accessToken = IOUtils.toString(httpResponse.getEntity().getContent(), StandardCharsets.UTF_8);
+                LOGGER.debug("PBI Raw Access Token Generated ::");
                 Gson gson = new Gson();
                 Type mapType  = new TypeToken<Map<String,String>>(){}.getType();
                 Map<String,String> mapAccessToken = gson.fromJson(accessToken, mapType);
                 accessToken = mapAccessToken.get(CustomerHubConstants.ACCESS_TOKEN);
-                LOGGER.info("PBI Access Token Generated ");
+                LOGGER.debug("PBI Access Token Generated ");
             }
 
         } catch (URISyntaxException ue) {
@@ -174,11 +174,9 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
      * @return the getGenerateEmbedToken
      */
     public String getGenerateEmbedToken() {
-        
+        LOGGER.debug("PBI Inside getGenerateEmbedToken ::::::");
         accessToken=getGenerateApi();
-        LOGGER.debug("ET Inside getGenerateEmbedToken Method  of  PowerBiReportServiceImpl ::::");
         String resourceet = getPbiEmbedtokenUrl()+getPbiworkspaceid()+ CustomerHubConstants.PBIEMB_REPORT +getPbireportid()+ CustomerHubConstants.PBIEMBTOKEN_POSTURL;
-        LOGGER.debug("PBI PreEmbedURL for getGenerateEmbedToken method of PowerBiReportServiceImpl :::: {}",resourceet);
         HttpClient httpClientet = httpFactory.newBuilder().build();
         String embedtoken = "";
         try {
@@ -206,8 +204,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
                 Type mapTypeet  = new TypeToken<Map<String,String>>(){}.getType();
                 Map<String,String> mapEmbedToken = gsonet.fromJson(embedtoken, mapTypeet);
                 embedtoken = mapEmbedToken.get(CustomerHubConstants.TOKEN);
-                LOGGER.info("PBI Embedtoken :::: {}",embedtoken);
-                LOGGER.info("PBI Embedd Token Generated ");
+                LOGGER.debug("PBI Embedd Token Generated ");
             }
         } catch (Exception e) {
             

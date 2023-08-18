@@ -34,40 +34,25 @@ public class PowerBIModel {
    
   @PostConstruct
     protected void init() {
-        reportId=pbireportService.getPbireportid(); 
+        LOGGER.debug("PBI MOdel Init Method ::::");
+        reportId=pbireportService.getPbireportid();
         embedURL= CustomerHubConstants.PBIEMBTOKEN_PRETURL + pbireportService.getPbireportid();
         embedtoken= pbireportService.getGenerateEmbedToken();
         Cookie cookie = new Cookie(CustomerHubConstants.PBI_COOKIE_EMBEDTOKEN, embedtoken);
         cookie.setMaxAge(3600); 
         response.addCookie(cookie);
-        LOGGER.debug("PBI COOKIE added ::::");
+        LOGGER.debug("PBI COOKIE added ::::" );
   }
 
-   public void setEmbedtoken(String embedtoken) {
-        this.embedtoken=embedtoken;
-  }
-
-   public void setReportid(String reportId) {
-        this.reportId=reportId;
-  }
-  
-   public void setEmbedURL(String embedURL) {
-        this.embedURL=embedURL;
-  }
-
-   public String getEmbedtoken() {
-        LOGGER.debug("PBI Embedtoken :::: {}",embedtoken);
+  public String getEmbedtoken() {
         return embedtoken;
   }
 
   public String getReportid() {
-        LOGGER.debug("PBI Report ID :::: {}",reportId);
         return reportId;
   }
 
    public String getEmbedURL() {
-        LOGGER.debug("PBI EmbedURL :::: {}",embedURL);
-        reportId=pbireportService.getPbireportid(); 
         embedURL= CustomerHubConstants.PBIEMBTOKEN_PRETURL + pbireportService.getPbireportid();
         return embedURL;
    }
