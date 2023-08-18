@@ -4,8 +4,7 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
 import { checkActiveOverlay, isDesktopMode} from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
-//const sampleJson = require('./megaMenuSample.json');
-const sampleJsonCurrent = require('./megaMenuSampleCurrent.json');
+const sampleJsonUpdated = require('./megaMenuSampleUpdated.json');
 
 class Headerv2 {
   constructor({ el }) {
@@ -317,7 +316,7 @@ class Headerv2 {
 
           render.fn({
             template: 'megaMenuV2Subpage',
-            data: Headerv2.covertJSONFormat(sampleJsonCurrent),
+            data: sampleJsonUpdated,
             target: '.tp-pw-meganenu-subpage-wrapper',
             hidden: false
           });
@@ -380,57 +379,6 @@ class Headerv2 {
   init() {
     this.initCache();
     this.bindEvents();
-  }
-
-  static covertJSONFormat = (sampleJsonCurrent) => {
-    var finalJson = {};
-    if (sampleJsonCurrent.col1) {
-      finalJson.col1 = Headerv2.convertColumnJson(sampleJsonCurrent.col1);
-    }
-    if (sampleJsonCurrent.col2) {
-      finalJson.col2 = Headerv2.convertColumnJson(sampleJsonCurrent.col2);
-    }
-    if (sampleJsonCurrent.col4) {
-      finalJson.col4 = Headerv2.convertColumnJson(sampleJsonCurrent.col4);
-    }
-    if (sampleJsonCurrent.col3) {
-      finalJson.col3 = Headerv2.convertColumnJson(sampleJsonCurrent.col3);
-    }
-    return finalJson;
-  }
-
-  static convertColumnJson = (column) => {
-    var allKeys = Object.keys(column);
-    var headingObj = {};
-    var subheadingObj = {};
-    var finalJsonObj = {};
-    var subheadings = [];
-    for(var index=0; index<allKeys.length; index++) {
-      if(allKeys[index].startsWith('heading')) {
-        headingObj = {};
-        headingObj.heading = column[allKeys[index]];
-        if(allKeys[index+1].startsWith('description')) {
-          headingObj.description = column[allKeys[index+1]];    
-        }
-        finalJsonObj.heading = headingObj;
-      }
-      if(allKeys[index].startsWith('subheading')) {
-        subheadingObj = {};
-        subheadingObj.subheading = column[allKeys[index]];
-        subheadings.push(subheadingObj);
-      }
-      if(allKeys[index].startsWith('description')) {
-        subheadingObj.description = column[allKeys[index]];
-      }
-      if(allKeys[index].startsWith('navigationlinks')) {
-        subheadingObj.navigationlinks = column[allKeys[index]];
-      }
-    }
-    if(column.bgColor) {
-      finalJsonObj.bgColor = column.bgColor;
-    }
-    finalJsonObj.subheadings = subheadings;
-    return finalJsonObj;
   }
 }
 

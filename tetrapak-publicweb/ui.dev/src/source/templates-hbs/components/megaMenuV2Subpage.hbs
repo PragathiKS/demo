@@ -3,45 +3,58 @@
 <div class="tp-pw-megamenucolumn grey-bg">
 {{else}}
 <div class="tp-pw-megamenucolumn white-bg">
-{{/if_eq}}   
-	{{#if col1.heading}}
+{{/if_eq}}
+	{{#if col1.columnItems.heading}}
         <div class="tp-pw-megamenuheading">
-            {{#if col1.heading.heading.headingURL}}
-                <a href="{{col1.heading.heading.headingURL}}"><h2>{{col1.heading.heading.heading}}</h2></a>
+            {{#if col1.columnItems.heading.headingURL}}
+                <a href="{{col1.columnItems.heading.headingURL}}"><h2>{{col1.columnItems.heading.heading}}</h2></a>
             {{else}}
-                <h2>{{col1.heading.heading.heading}}</h2>
+                <h2>{{col1.columnItems.heading.heading}}</h2>
             {{/if}}    
         </div>
-        {{#if col1.heading.description}}
-        	<div class="tp-pw-megamenudescription">{{{col1.heading.description.text}}}</div>
+        {{#if col1.columnItems.description}}
+        	<div class="tp-pw-megamenudescription">{{{col1.columnItems.description.text}}}</div>
         {{/if}}
+        {{#if col1.columnItems.navigationlinks.navLinks}}
+            <div class="tp-pw-megamenunavigationlinks">
+                {{#each col1.columnItems.navigationlinks.navLinks}}
+                    {{#if linkLabel}}
+                        <div class="tp-pw-megamenunavigationlinks__item nav-link-bottom-border navLink{{@index}}">    
+                            <a href="{{linkUrl}}">{{linkLabel}}</a>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+		{{/if}}
 	{{/if}}
-	{{#if col1.subheadings}}
-		{{#each col1.subheadings}}
+	{{#if col1.columnItems.megaMenuAccordions}}
+		{{#each col1.columnItems.megaMenuAccordions}}
         	<div class="accordion" id="accordion-col1-{{@index}}">
 			<div class="tp-pw-megamenusubheading">
                 <div class="tp-pw-accordion-header" data-toggle="collapse" data-target="#collapse-col1-{{@index}}" aria-expanded="true" aria-controls="collapse-col1-{{@index}}">
-                    <h3>{{subheading.subheading}}</h3>
+                    <h3>{{subHeadings.subheading.subheading}}</h3>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             </div>
 			<div id="collapse-col1-{{@index}}" class="collapse show" aria-labelledby="heading-col1-{{@index}}" data-parent="#accordion-col1-{{@index}}">
-			{{#if description}}
-					<div class="tp-pw-megamenudescription">{{{description.text}}}</div>
+			{{#if subHeadings.description}}
+					<div class="tp-pw-megamenudescription">{{{subHeadings.description.text}}}</div>
 			{{/if}}
-            {{#if subheading.subheadingURL}}
+            {{#if subHeadings.subheading.subheadingURL}}
                 <div class="tp-pw-megamenusubheading-overviewlink">
-            	    <a href="{{subheading.subheadingURL}}">{{subheading.subheadingOverviewText}}</a>
+            	    <a href="{{subHeadings.subheading.subheadingURL}}">{{subHeadings.subheading.subheadingOverviewText}}</a>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             {{/if}}
-			{{#if navigationlinks.navLinks}}
+			{{#if subHeadings.navigationlinks.navLinks}}
                 <div class="tp-pw-megamenusubheading-separator"></div>
                 <div class="tp-pw-megamenunavigationlinks">
-                    {{#each navigationlinks.navLinks}}
+                    {{#each subHeadings.navigationlinks.navLinks}}
+                        {{#if linkLabel}}
                         <div class="tp-pw-megamenunavigationlinks__item nav-link-bottom-border navLink{{@index}}">    
                             <a href="{{linkUrl}}">{{linkLabel}}</a>
                         </div>
+                        {{/if}}
                     {{/each}}
                 </div>
 			{{/if}}
@@ -57,44 +70,57 @@
 {{else}}
 <div class="tp-pw-megamenucolumn white-bg">
 {{/if_eq}}
-	{{#if col2.heading}}
-         <div class="tp-pw-megamenuheading">
-            {{#if col2.heading.heading.headingURL}}
-                <a href="{{col2.heading.heading.headingURL}}"><h2>{{col2.heading.heading.heading}}</h2></a>
+	{{#if col2.columnItems.heading}}
+        <div class="tp-pw-megamenuheading">
+            {{#if col2.columnItems.heading.headingURL}}
+                <a href="{{col2.columnItems.heading.headingURL}}"><h2>{{col2.columnItems.heading.heading}}</h2></a>
             {{else}}
-                <h2>{{col2.heading.heading.heading}}</h2>
+                <h2>{{col2.columnItems.heading.heading}}</h2>
             {{/if}}    
         </div>
-        {{#if col2.heading.description}}
-            <div class="tp-pw-megamenudescription">{{{col2.heading.description.text}}}</div>
+        {{#if col2.columnItems.description}}
+        	<div class="tp-pw-megamenudescription">{{{col2.columnItems.description.text}}}</div>
         {{/if}}
+        {{#if col2.columnItems.navigationlinks.navLinks}}
+            <div class="tp-pw-megamenunavigationlinks">
+                {{#each col2.columnItems.navigationlinks.navLinks}}
+                    {{#if linkLabel}}
+                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">    
+                            <a href="{{linkUrl}}">{{linkLabel}}</a>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+		{{/if}}
 	{{/if}}
-	{{#if col2.subheadings}}
-		{{#each col2.subheadings}}
-			<div class="accordion" id="accordion-col2-{{@index}}">
+	{{#if col2.columnItems.megaMenuAccordions}}
+		{{#each col2.columnItems.megaMenuAccordions}}
+        	<div class="accordion" id="accordion-col2-{{@index}}">
 			<div class="tp-pw-megamenusubheading">
-                <div class="tp-pw-accordion-header collapsed" data-toggle="collapse" data-target="#collapse-col2-{{@index}}" aria-expanded="false" aria-controls="collapse-col2-{{@index}}">
-                    <h3>{{subheading.subheading}}</h3>
+                <div class="tp-pw-accordion-header" data-toggle="collapse" data-target="#collapse-col2-{{@index}}" aria-expanded="true" aria-controls="collapse-col2-{{@index}}">
+                    <h3>{{subHeadings.subheading.subheading}}</h3>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             </div>
-			<div id="collapse-col2-{{@index}}" class="collapse" aria-labelledby="heading-col2-{{@index}}" data-parent="#accordion-col2-{{@index}}">
-			{{#if description}}
-					<div class="tp-pw-megamenudescription">{{{description.text}}}</div>
+			<div id="collapse-col2-{{@index}}" class="collapse show" aria-labelledby="heading-col2-{{@index}}" data-parent="#accordion-col2-{{@index}}">
+			{{#if subHeadings.description}}
+					<div class="tp-pw-megamenudescription">{{{subHeadings.description.text}}}</div>
 			{{/if}}
-            {{#if subheading.subheadingURL}}
+            {{#if subHeadings.subheading.subheadingURL}}
                 <div class="tp-pw-megamenusubheading-overviewlink">
-            	    <a href="{{subheading.subheadingURL}}">{{subheading.subheadingOverviewText}}</a>
+            	    <a href="{{subHeadings.subheading.subheadingURL}}">{{subHeadings.subheading.subheadingOverviewText}}</a>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             {{/if}}
-			{{#if navigationlinks.navLinks}}
+			{{#if subHeadings.navigationlinks.navLinks}}
                 <div class="tp-pw-megamenusubheading-separator"></div>
                 <div class="tp-pw-megamenunavigationlinks">
-                    {{#each navigationlinks.navLinks}}
-                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}"> 
+                    {{#each subHeadings.navigationlinks.navLinks}}
+                        {{#if linkLabel}}
+                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">    
                             <a href="{{linkUrl}}">{{linkLabel}}</a>
                         </div>
+                        {{/if}}
                     {{/each}}
                 </div>
 			{{/if}}
@@ -110,44 +136,57 @@
 {{else}}
 <div class="tp-pw-megamenucolumn white-bg">
 {{/if_eq}}
-	{{#if col4.heading}}
-		<div class="tp-pw-megamenuheading">
-            {{#if col4.heading.heading.headingURL}}
-                <a href="{{col4.heading.heading.headingURL}}"><h2>{{col4.heading.heading.heading}}</h2></a>
+	{{#if col4.columnItems.heading}}
+        <div class="tp-pw-megamenuheading">
+            {{#if col4.columnItems.heading.headingURL}}
+                <a href="{{col4.columnItems.heading.headingURL}}"><h2>{{col4.columnItems.heading.heading}}</h2></a>
             {{else}}
-                <h2>{{col4.heading.heading.heading}}</h2>
+                <h2>{{col4.columnItems.heading.heading}}</h2>
             {{/if}}    
         </div>
-        {{#if col4.heading.description}}
-        	<div class="tp-pw-megamenudescription">{{{col4.heading.description.text}}}</div>
+        {{#if col4.columnItems.description}}
+        	<div class="tp-pw-megamenudescription">{{{col4.columnItems.description.text}}}</div>
         {{/if}}
+        {{#if col4.columnItems.navigationlinks.navLinks}}
+            <div class="tp-pw-megamenunavigationlinks">
+                {{#each col4.columnItems.navigationlinks.navLinks}}
+                    {{#if linkLabel}}
+                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">    
+                            <a href="{{linkUrl}}">{{linkLabel}}</a>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+		{{/if}}
 	{{/if}}
-	{{#if col4.subheadings}}
-		{{#each col4.subheadings}}
-			<div class="accordion" id="accordion-col4-{{@index}}">
+	{{#if col4.columnItems.megaMenuAccordions}}
+		{{#each col4.columnItems.megaMenuAccordions}}
+        	<div class="accordion" id="accordion-col4-{{@index}}">
 			<div class="tp-pw-megamenusubheading">
-                <div class="tp-pw-accordion-header collapsed" data-toggle="collapse" data-target="#collapse-col4-{{@index}}" aria-expanded="false" aria-controls="collapse-col4-{{@index}}">
-                    <h3>{{subheading.subheading}}</h3>
+                <div class="tp-pw-accordion-header" data-toggle="collapse" data-target="#collapse-col4-{{@index}}" aria-expanded="true" aria-controls="collapse-col4-{{@index}}">
+                    <h3>{{subHeadings.subheading.subheading}}</h3>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             </div>
-			<div id="collapse-col4-{{@index}}" class="collapse" aria-labelledby="heading-col4-{{@index}}" data-parent="#accordion-col4-{{@index}}">
-			{{#if description}}
-					<div class="tp-pw-megamenudescription">{{{description.text}}}</div>
+			<div id="collapse-col4-{{@index}}" class="collapse show" aria-labelledby="heading-col4-{{@index}}" data-parent="#accordion-col4-{{@index}}">
+			{{#if subHeadings.description}}
+					<div class="tp-pw-megamenudescription">{{{subHeadings.description.text}}}</div>
 			{{/if}}
-            {{#if subheading.subheadingURL}}
+            {{#if subHeadings.subheading.subheadingURL}}
                 <div class="tp-pw-megamenusubheading-overviewlink">
-            	    <a href="{{subheading.subheadingURL}}">{{subheading.subheadingOverviewText}}</a>
+            	    <a href="{{subHeadings.subheading.subheadingURL}}">{{subHeadings.subheading.subheadingOverviewText}}</a>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             {{/if}}
-			{{#if navigationlinks.navLinks}}
+			{{#if subHeadings.navigationlinks.navLinks}}
                 <div class="tp-pw-megamenusubheading-separator"></div>
                 <div class="tp-pw-megamenunavigationlinks">
-                    {{#each navigationlinks.navLinks}}
-                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">       
+                    {{#each subHeadings.navigationlinks.navLinks}}
+                        {{#if linkLabel}}
+                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">    
                             <a href="{{linkUrl}}">{{linkLabel}}</a>
                         </div>
+                        {{/if}}
                     {{/each}}
                 </div>
 			{{/if}}
@@ -163,44 +202,57 @@
 {{else}}
 <div class="tp-pw-megamenucolumn white-bg">
 {{/if_eq}}
-	{{#if col3.heading}}
-		<div class="tp-pw-megamenuheading">
-            {{#if col3.heading.heading.headingURL}}
-                <a href="{{col3.heading.heading.headingURL}}"><h2>{{col3.heading.heading.heading}}</h2></a>
+	{{#if col3.columnItems.heading}}
+        <div class="tp-pw-megamenuheading">
+            {{#if col3.columnItems.heading.headingURL}}
+                <a href="{{col3.columnItems.heading.headingURL}}"><h2>{{col3.columnItems.heading.heading}}</h2></a>
             {{else}}
-                <h2>{{col3.heading.heading.heading}}</h2>
+                <h2>{{col3.columnItems.heading.heading}}</h2>
             {{/if}}    
         </div>
-        {{#if col3.heading.description}}
-        	<div class="tp-pw-megamenudescription">{{{col3.heading.description.text}}}</div>
+        {{#if col3.columnItems.description}}
+        	<div class="tp-pw-megamenudescription">{{{col3.columnItems.description.text}}}</div>
         {{/if}}
+        {{#if col3.columnItems.navigationlinks.navLinks}}
+            <div class="tp-pw-megamenunavigationlinks">
+                {{#each col3.columnItems.navigationlinks.navLinks}}
+                    {{#if linkLabel}}
+                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">    
+                            <a href="{{linkUrl}}">{{linkLabel}}</a>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+		{{/if}}
 	{{/if}}
-	{{#if col3.subheadings}}
-		{{#each col3.subheadings}}
-			<div class="accordion" id="accordion-col3-{{@index}}">
+	{{#if col3.columnItems.megaMenuAccordions}}
+		{{#each col3.columnItems.megaMenuAccordions}}
+        	<div class="accordion" id="accordion-col3-{{@index}}">
 			<div class="tp-pw-megamenusubheading">
-                <div class="tp-pw-accordion-header collapsed" data-toggle="collapse" data-target="#collapse-col3-{{@index}}" aria-expanded="false" aria-controls="collapse-col3-{{@index}}">
-                    <h3>{{subheading.subheading}}</h3>
+                <div class="tp-pw-accordion-header" data-toggle="collapse" data-target="#collapse-col3-{{@index}}" aria-expanded="true" aria-controls="collapse-col3-{{@index}}">
+                    <h3>{{subHeadings.subheading.subheading}}</h3>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             </div>
-			<div id="collapse-col3-{{@index}}" class="collapse" aria-labelledby="heading-col3-{{@index}}" data-parent="#accordion-col3-{{@index}}">
-			{{#if description}}
-					<div class="tp-pw-megamenudescription">{{{description.text}}}</div>
+			<div id="collapse-col3-{{@index}}" class="collapse show" aria-labelledby="heading-col3-{{@index}}" data-parent="#accordion-col3-{{@index}}">
+			{{#if subHeadings.description}}
+					<div class="tp-pw-megamenudescription">{{{subHeadings.description.text}}}</div>
 			{{/if}}
-            {{#if subheading.subheadingURL}}
+            {{#if subHeadings.subheading.subheadingURL}}
                 <div class="tp-pw-megamenusubheading-overviewlink">
-            	    <a href="{{subheading.subheadingURL}}">{{subheading.subheadingOverviewText}}</a>
+            	    <a href="{{subHeadings.subheading.subheadingURL}}">{{subHeadings.subheading.subheadingOverviewText}}</a>
                     <i class="icon icon-Navigation_Right_pw"></i>
                 </div>
             {{/if}}
-			{{#if navigationlinks.navLinks}}
+			{{#if subHeadings.navigationlinks.navLinks}}
                 <div class="tp-pw-megamenusubheading-separator"></div>
                 <div class="tp-pw-megamenunavigationlinks">
-                    {{#each navigationlinks.navLinks}}
-                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">       
+                    {{#each subHeadings.navigationlinks.navLinks}}
+                        {{#if linkLabel}}
+                        <div class="tp-pw-megamenunavigationlinks__item navLink{{@index}}">    
                             <a href="{{linkUrl}}">{{linkLabel}}</a>
                         </div>
+                        {{/if}}
                     {{/each}}
                 </div>
 			{{/if}}
@@ -208,20 +260,5 @@
             </div>
 		{{/each}}
 	{{/if}}
-    {{#if col3.teaser}}
-    	{{#if col3.teaser.title}}
-        	<div class="accordion" id="accordion-col3">
-			<div class="tp-pw-megamenusubheading">
-                <div class="tp-pw-accordion-header collapsed" data-toggle="collapse" data-target="#collapse-col3" aria-expanded="false" aria-controls="collapse-col3">
-                    <h3>{{col3.teaser.title}}</h3>
-                    <i class="icon icon-Navigation_Right_pw"></i>
-                </div>
-            </div>
-			<div id="collapse-col3" class="collapse" aria-labelledby="heading-col3" data-parent="#accordion-col3">
-			{{#if col3.teaser.description}}
-					<div class="tp-pw-megamenudescription">{{{col3.teaser.description}}}</div>
-			{{/if}}
-        {{/if}}
-    {{/if}}
 </div>    
 {{/if}}
