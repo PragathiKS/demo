@@ -57,7 +57,16 @@ class Headerv2 {
   }
 
   searchIconClick = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
     const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
+    //Check if submenu page opened
+    if ($subMenuIcon.hasClass('icon-Close_pw')) {
+      $subMenu.toggle(false);
+      $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+      const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+      checkActiveOverlay(activeOverlay);
+    }
+
     if (!isDesktopMode) {
       if ($searchBarWrapper.hasClass('show')) {
         $searchBarWrapper.removeClass('show');
@@ -201,6 +210,14 @@ class Headerv2 {
     const { $subMenu, $subMenuIcon } = this.cache;
     $subMenu.toggle(false);
     $subMenuIcon.on('click', () => {
+      //Check if search menu enabled
+      if(this.cache.$elements.searchIcon.children('i').hasClass('icon-Close_pw')) {
+        const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
+        $searchBarWrapper.removeClass('show');
+        this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
+        this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
+      }
+
       $subMenu.toggle();
       if ($subMenuIcon.hasClass('icon-Burger_pw')) {
         $subMenuIcon.addClass('icon-Close_pw').removeClass('icon-Burger_pw');

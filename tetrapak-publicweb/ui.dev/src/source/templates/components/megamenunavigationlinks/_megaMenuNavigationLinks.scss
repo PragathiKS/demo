@@ -7,8 +7,9 @@
         margin-bottom: $padding-md;
         @media #{$mobile} {
             margin-bottom: 0;
-            padding: $padding-md 0;
+            padding: $padding-md 0 0;
             &.nav-link-bottom-border {
+                padding-bottom: $padding-md;
                 border-bottom: 1px solid $color-mercury;
             }
         }
