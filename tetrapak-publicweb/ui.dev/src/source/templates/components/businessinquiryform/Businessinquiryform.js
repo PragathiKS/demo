@@ -53,7 +53,8 @@ class Businessinquiryform {
     this.cache.$positionField = this.root.find('.formfield.position-field');
     this.cache.$functionField = this.root.find('.formfield.function-field');
     this.cache.$formInfo = this.root.find('form');
-    this.cache.$isFormStart = false;    
+    this.cache.$isFormStart = false;
+    this.cache.$preFix = 'Contact Sales | ';
     this.cache.requestPayload = {
       'domainURL': window.location.host,
       'firstName': '',
@@ -423,7 +424,7 @@ class Businessinquiryform {
       const tabId = $(this).closest('.bef-tab-pane.active').attr('id');
       if(tabId === 'bef-step-1') {
         self.cache.$isFormStart = true;
-        makeLoad(self.step1head, self.mainHead);
+        makeLoad(self.step1head, self.cache.$preFix+self.mainHead);
       }
 
       let isvalid = true;
@@ -732,7 +733,7 @@ class Businessinquiryform {
       $(val).on('click', function () {
         if (!self.cache.$isFormStart) {
           self.cache.$isFormStart = true;
-          makeLoad(stepHead, mainHead);
+          makeLoad(stepHead, self.cache.$preFix+mainHead);
         }
       });
     });
