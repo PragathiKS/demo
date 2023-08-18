@@ -11,7 +11,7 @@ import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import javax.inject.Inject;
 import java.util.List;
 
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL,resourceType = "publicweb/components/structure/megamenucolumnitems/navigationlinks")
 public class NavigationLinksModel {
 
     /** The request. */
