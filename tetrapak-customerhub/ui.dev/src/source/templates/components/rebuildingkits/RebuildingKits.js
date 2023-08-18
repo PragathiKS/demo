@@ -154,7 +154,6 @@ class RebuildingKits {
     const optionValueKey = filterByProperty;
     const filterOptionsArr = [];
     let filterOptionsDatasource = [];
-
     const allAvailableApiFilterCheckboxes = [...allApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
     const currentSelectionApiFilterCheckboxes = [...currentApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
 
@@ -753,6 +752,18 @@ class RebuildingKits {
                 this.checkActiveFilterSets(filterVal, res.data);
               }
             }
+            const rkStatuses = [];
+            if (filterVal === 'rkstatuses') {
+              res.data.forEach(function (data) {
+                for (const [key, value] of Object.entries(data)) {
+                  if (key === 'rebuildingKitStatus') {
+                    data['rkStatus'] = value;
+                  }
+                }
+                rkStatuses.push(data);
+              });
+              this.cache.allApiFilterValsObj[filterVal] = rkStatuses;
+            }
           });
       });
     });
@@ -1011,7 +1022,7 @@ class RebuildingKits {
     });
 
     this.cache.$rkStatusFilterLabel.on('click', () => {
-      this.cache.filterModalData['rkStatus'] = this.getFilterModalData('rebuildingKitStatus');
+      this.cache.filterModalData['rkStatus'] = this.getFilterModalData('rkStatus');
       const formDetail = {activeForm:'rkStatus',header:i18nKeys['rkStatus'],maxFiltersSelection:getNOfOptions('rkStatus')};
       this.renderFilterForm(this.cache.filterModalData['rkStatus'], formDetail, this.cache.$rkStatusFilterLabel);
       $modal.modal();
