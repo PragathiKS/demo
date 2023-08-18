@@ -1401,7 +1401,7 @@
           privileges:
           repGlob:
 
-        - path: /content/dam/tetrapak/publicweb/global
+        - path: /content/dam/tetrapak/publicweb/gb
           permission: allow
           actions: read,modify,create,delete,replicate
           privileges:
