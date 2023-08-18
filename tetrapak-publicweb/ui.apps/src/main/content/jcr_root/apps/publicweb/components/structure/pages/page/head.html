@@ -8,11 +8,15 @@
     inheritedPageProperties.titleSuffix : 'Tetra Pak'} ${pageHeadModel.pageTitleCountrySuffix}
   </title>
   <link rel="icon" type="image/png" href="/content/dam/tetrapak/publicweb/favicon.png">
-  <script>
+  <script type="text/javascript">
     var digitalData = ${ digitalDataModel.digitalData @context="unsafe"};
   </script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/pw-icons.woff" as="font" type="font/woff" crossorigin />
+
   <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}" />
   <meta data-sly-test.description="${properties['jcr:description']}" name="description"
     content="${description @ context='scriptComment'}" />
@@ -57,9 +61,19 @@
       var pwoneTrustValue = '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
     </script>
   </sly>
+ 
   
-  <sly data-sly-test="${digitalDataModel.isPublisher}">
-    <script type="text/javascript" defer>
+  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
+    <!-- <script>
+      var OneTrust = {
+        dataSubjectParams: {
+          id: '',
+          isAnonymous: false,
+          token: ''
+        }
+      }
+    </script> -->
+    <script type="text/javascript" >
       var OneTrust = {
         dataSubjectParams: {
           id: '',
@@ -67,7 +81,7 @@
           token: ''
         }
       };
-      (function () {
+
         var cookieValue, isCookieExist, pwoneTrustValue, uidValue, jwtToken;
         function getCookie(name) {
           var value = "; " + document.cookie;
@@ -103,53 +117,82 @@
             ";path=/";
         }
 
-        // Url for the request
-        pwoneTrustValue = window.pwoneTrustValue + "?UserID=" + cookieValue;
-        if (isCookieExist === false || localStorage.getItem("jwttokenset") === null) {
-          fetch(pwoneTrustValue)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
+  pwoneTrustValue = window.pwoneTrustValue + "?UserID=" + cookieValue;
+ if (isCookieExist === false || localStorage.getItem("jwttokenset") === null) {
+      async function fetchUsers() {
+			var response = await fetch(pwoneTrustValue)
+            var data = await response.json();
+            return data;
+        }
+        fetchUsers().then(data => {
               uidValue = data.uid;
               jwtToken = data.jwt;
               localStorage.setItem("uidValueset", uidValue);
               localStorage.setItem("jwttokenset", jwtToken);
               setCookie("TPCOOKIEUSER", uidValue, 365);
               OneTrust.dataSubjectParams.id = uidValue;
-          		OneTrust.dataSubjectParams.token = jwtToken;
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        } else {
-          var userid = localStorage.getItem("uidValueset");
+              OneTrust.dataSubjectParams.token = jwtToken;
+        }).then(()=>{
+            var head= document.getElementsByTagName('head')[0];
+            var script= document.createElement('script');
+                script.type= 'text/javascript';
+                script.src= `https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript @ context='unsafe'}/otSDKStub.js`;
+                script.setAttribute('data-document-language','true');
+                script.setAttribute('charset','UTF-8');
+                script.setAttribute('data-domain-script', `${digitalDataModel.dataDomainScript @ context='unsafe'}`)
+                script.async = false;
+                head.appendChild(script);
+  
+        })
+}
+else {
+
+	function readCookieData(){
+		  var userid = localStorage.getItem("uidValueset");
           var jwt = localStorage.getItem("jwttokenset");
           OneTrust.dataSubjectParams.id = userid;
           OneTrust.dataSubjectParams.token = jwt;
-        }
-      })();
+         
+
+    }
+	  async function fetchUsers() {
+		  await readCookieData();
+
+      }
+      fetchUsers().then(()=>{
+
+			   	var head= document.getElementsByTagName('head')[0];
+            	var script= document.createElement('script');
+                script.type= 'text/javascript';
+                script.src= `https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript @ context='unsafe'}/otSDKStub.js`;
+                script.setAttribute('data-document-language','true');
+                script.setAttribute('charset','UTF-8');
+                script.setAttribute('data-domain-script', `${digitalDataModel.dataDomainScript @ context='unsafe'}`)
+                script.async = false;
+                head.appendChild(script);
+      })
+}
+
     </script>
-  </sly>
-  <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}">
-    <script src="https://cdn.cookielaw.org/consent/${digitalDataModel.dataDomainScript}/otSDKStub.js"
-      data-document-language="true" type="text/javascript" charset="UTF-8"
-      data-domain-script="${digitalDataModel.dataDomainScript}" defer></script>
-    <script type="text/javascript" defer>
+ </sly>
+ 
+ <sly data-sly-test="${digitalDataModel.isPublisher && digitalDataModel.dataDomainScript}"> 
+    <script type="text/javascript">
       function OptanonWrapper() { }
     </script>
   </sly>
+ 
 
   <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js"></script>
   </sly>
 
   <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
   </sly>
   <!--/* script for DEV and QA */-->
   <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
-    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js" async></script>
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
   </sly>
 
   <sly data-sly-include="customheaderlibs.html"></sly>
