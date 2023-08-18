@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.models;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -22,6 +23,8 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import com.tetrapak.customerhub.core.services.RebuildingKitsDetailsService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
@@ -346,10 +349,22 @@ public class RebuildingKitDetailsModel {
     @OSGiService
     private APIGEEService service;
 
+    @OSGiService
+    private UserPreferenceService userPreferenceService;
+
+    @OSGiService
+    private RebuildingKitsDetailsService rebuildingKitsDetailsService;
+
     /**
      * The is publish environment.
      */
     private boolean isPublishEnvironment = Boolean.FALSE;
+
+    /**
+     * This is boolean parts access.
+     */
+    private boolean isPartsAccess = Boolean.FALSE;
+
 
     private String userNameValue;
 
@@ -357,6 +372,7 @@ public class RebuildingKitDetailsModel {
 
     private String emailApiUrl;
 
+    private String partsExternalUrl;
     /**
      * init method.
      */
@@ -404,6 +420,12 @@ public class RebuildingKitDetailsModel {
         i18KeyMap.put(CustomerHubConstants.MAKE_UPDATE, getMakeUpdate());
         i18KeyMap.put(CustomerHubConstants.RK_REPORT_THANKYOU_TITLE, getRKReportThankyoutitle());
         i18KeyMap.put(CustomerHubConstants.RK_REPORT_THANKYOU_DESC, getRKReportThankyoudesc());
+        List<String> userGroups = GlobalUtil.getCustomerGroups(request);
+        String selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+        this.partsExternalUrl = rebuildingKitsDetailsService.getEbizUrl(selectedLanguage , userGroups);
+        if (userGroups.contains(CustomerHubConstants.PARTS_GROUP)) {
+            isPartsAccess = Boolean.TRUE;
+        }
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }

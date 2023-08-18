@@ -1003,6 +1003,8 @@ public final class CustomerHubConstants {
     /** One Trust Token Servlet Url */
     public static final String ONETRUST_TOKEN_SERVLET_URL= ".onetrustcookietoken.json";
 
+    /** Parts group */
+    public static final String PARTS_GROUP = "cuhu_parts";
     /** Constant PBIGENERATEAPI_POSTURL. */
     public static final String PBIGENERATEAPI_POSTURL = "/oauth2/token";
 

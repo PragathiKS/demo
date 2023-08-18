@@ -4,6 +4,17 @@ import { logger } from 'tpPublic/scripts/utils/logger';
 import TabsListParent from 'tpPublic/templates/components/tabslist/TabsList.js';
 
 let parent = null;
+
+function debounce(func){
+  var timer;
+  return function(event){
+    if(timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(func,100,event);
+  };
+}
+
 class TabList extends TabsListParent {
   constructor({ el }) {
     parent = super({ el });
@@ -30,7 +41,15 @@ class TabList extends TabsListParent {
 
   loadContactUs = () => {
     const $this = this;
-    const $tabSection = $this.root.find('.js-tablist__events-sidesection');
+    let $tabSection;
+    const $winWidth = $(window).width();
+
+    if($winWidth <= 1023) {
+      $tabSection = $this.root.find('.pw-tablist__event-detail-wrapper');
+    } else {
+      $tabSection = $this.root.find('.js-tablist__events-sidesection');
+    }
+
     this.cache.heading = $tabSection.find('.pw-modal-header__heading');
     this.cache.thankYou = $tabSection.find('.tl-contactForm__thankyou-heading');
     this.cache.form = $tabSection.find('.tl-contactForm').find('.cmp-form');
@@ -40,7 +59,7 @@ class TabList extends TabsListParent {
     this.cache.closeBtn = $tabSection.find('.js-close-btn');
     this.cache.contactBtn = $tabSection.find('.js-tpatom-btn__tl-contactUs');
     this.cache.headingText = this.cache.heading.text();
-    this.cache.thankYouText = this.cache.thankYou.text();
+    this.cache.thankYouText = this.cache.thankYou.eq(0).text();
 
     const { contactBtn, modal, closeBtn, form, errorMessage } = this.cache;
     contactBtn.on('click', function () {
@@ -98,11 +117,14 @@ class TabList extends TabsListParent {
       })
       .on('click', '.js-tablist__event-detail-description-link', this.trackAnalytics)
       .on('hidden.bs.collapse', '.collapse', this.pauseVideoIfExists);
+    window.addEventListener('resize',debounce(function() {
+      $this.loadContactUs();
+    }));
   }
   init() {
     super.init();
-    this.bindEvents();
     this.loadContactUs();
+    this.bindEvents();
   }
 }
 export default TabList;

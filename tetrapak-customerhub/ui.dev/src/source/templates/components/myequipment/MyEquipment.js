@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -354,7 +352,12 @@ class MyEquipment {
   getActiveCountryCode = () => {
     const { countryData } = this.cache;
     const activeCountry = countryData.filter(e => e.isChecked);
-    return activeCountry[0].countryCode;
+    if (activeCountry) {
+      return activeCountry.countryCode;
+    } else {
+      throw Error('Couldn\'t get active country');
+    }
+  //  return 'DE';//activeCountry[0].countryCode;
   }
 
   getAllAvailableFilterVals(filterValuesArr, newCountry, appliedFilter) {
@@ -405,32 +408,36 @@ class MyEquipment {
   }
 
   renderSearchCount = () => {
-    this.cache.$searchResults.text(`${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
+    if (this.cache.meta) {
+      this.cache.$searchResults.text(`${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['searchResults'])}`);
+    }
   }
 
   renderPaginationTableData = (list) => {
-    const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
+    if (list.meta) {
+      const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
 
-    if (list.summary.length === 0) {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      });
-    }
-    else {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: {...list, summary: list.summary, paginationObj: paginationObj },
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      },() => {
-        this.hideShowColums();
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip();
+      if (list.summary.length === 0) {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
         });
-      });
+      }
+      else {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: {...list, summary: list.summary, paginationObj: paginationObj },
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
+        },() => {
+          this.hideShowColums();
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+          });
+        });
+      }
     }
   }
 
@@ -482,7 +489,7 @@ class MyEquipment {
           this.renderSearchCount();
           this.updateFilterCountValue(label,1,$countryFilterLabel);
 
-          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+          if (analyticsAction && analyticsAction.action === 'addedFilter' && response.meta) {
             _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
           }
         }).fail(() => {
@@ -877,10 +884,10 @@ class MyEquipment {
   }
 
   renderNewPage = ({resetSkip, analyticsAction}) => {
-    const {itemsPerPage, countryData, activeSortData, combinedFiltersObj} = this.cache;
+    const {itemsPerPage, activeSortData, combinedFiltersObj} = this.cache; //countryData
     const equipmentApi = this.cache.equipmentApi.data('list-api');
-    const activeCountry = countryData.filter(e => e.isChecked);
-    const countryCode = activeCountry[0].countryCode;
+    //const activeCountry = countryData.filter(e => e.isChecked);
+    const countryCode = this.getActiveCountryCode();
     let apiUrlRequest = '';
     const filtersQuery = _buildQueryUrl(combinedFiltersObj);
     const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
@@ -939,15 +946,15 @@ class MyEquipment {
           this.renderSearchCount();
           this.mapTableColumn();
 
-          if (analyticsAction && analyticsAction.action === 'removedFilter') {
+          if (analyticsAction && analyticsAction.action === 'removedFilter' && response.meta) {
             _removeFilterAnalytics(analyticsAction.targetFilter, response.meta.total);
           }
 
-          if (analyticsAction && analyticsAction.action === 'removedAllFilters') {
+          if (analyticsAction && analyticsAction.action === 'removedAllFilters' && response.meta) {
             _removeAllFiltersAnalytics(analyticsAction.items, response.meta.total);
           }
 
-          if (analyticsAction && analyticsAction.action === 'addedFilter') {
+          if (analyticsAction && analyticsAction.action === 'addedFilter' && response.meta) {
             _addFilterAnalytics(analyticsAction.targetFilter, response.meta.total, analyticsAction.items);
           }
         }).fail(() => {

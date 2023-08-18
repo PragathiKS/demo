@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.ImplementationStatusUpdateBean;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import java.util.List;
+import java.util.Map;
 
 public interface RebuildingKitsApiService {
 
@@ -14,7 +15,7 @@ public interface RebuildingKitsApiService {
 	 * 	 @param countryCode countryCode
 	 * @return json object
 	 */
-	List<RebuildingKits> getRebuildingkitsList(String token, String countryCode);
+	List<RebuildingKits> getRebuildingkitsList(String token, Map<String, String[]> parameters);
 
 	/**
 	 * 

@@ -26,20 +26,15 @@ function _renderRebuildingKitDetailsBottom() {
 function _renderRebuildingKitDetails({ isNotConfirmed }) {
   const $this = this;
   const { $rebuildingData } = $this.cache;
-  const { i18nKeys } = $this.cache;
+  const { i18nKeys,isPartsAccess,eBusinessUrl } = $this.cache;
   
   render.fn({
     template: 'rebuildingkitDetails',
     target: $this.cache.$content,
-    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData, isNotConfirmed }
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData, isNotConfirmed,isPartsAccess:isPartsAccess,eBusinessUrl:eBusinessUrl }
   });
   $('.js-rebuilding-details__update').on('click', function() {
     $this.renderRebuildingKitReportModal();
-  });
-  $('.js-rebuilding-details__view-e-business-btn').on('click', function() {
-    const rkNumbner=$this.cache.$rebuildingData.rkNumber;
-    const eBusinessUrl=$this.cache.eBusinessUrl;
-    window.open(`${eBusinessUrl}/${rkNumbner}`, '_blank');   
   });
 }
 
@@ -488,6 +483,7 @@ class Rebuildingkitdetails {
     this.cache.apiCTI = this.root.data('cti-api');
     this.cache.apiRequestCTI = this.root.data('request-cti-api');
     this.cache.eBusinessUrl=this.root.data('e-business-url');
+    this.cache.isPartsAccess=this.root.data('is-parts-access');
     this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
       '.js-rebuilding-details__contentbottom'
