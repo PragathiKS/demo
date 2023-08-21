@@ -21,6 +21,36 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Heading"
                                 name="./heading"/>
+							<countrycfpath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Country Content Fragment Path"
+                                name="./countryCFPath"/>
+							<countrylabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Country Field Label"
+                                name="./countryLabel"/>
+							<countrydropdownlabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Country Dropdown Default Value Label"
+                                name="./countryDropdownLabel"/>		
+							<officecfpath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Office Content Fragment Path"
+                                name="./officeCFPath"/>
+							<officelabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Office Field Label"
+                                name="./officeLabel"/>
+							<officedropdownlabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Office Dropdown Default Value Label"
+                                name="./officeDropdownLabel"/>		
                         </items>
                     </column>
                 </items>
