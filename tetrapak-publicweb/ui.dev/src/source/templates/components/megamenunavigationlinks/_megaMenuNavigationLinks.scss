@@ -25,6 +25,8 @@
             cursor: pointer;
             font-size: $font-baseline;
             text-decoration: none;
+            font-weight: 500;
+            line-height: $font-l;
 
             &:hover {
                 color: $color-bright-blue;
@@ -34,6 +36,8 @@
             color: $color-tundora;
             margin: $padding-zero;
             font-size: $font-sm;
+            font-weight: 500;
+            line-height: $font-m-md;
         }
         i {
             color: $color-congress-blue;
