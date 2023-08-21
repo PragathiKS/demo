@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
 import org.junit.Before;
@@ -13,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.tetrapak.publicweb.core.mock.MockHelper;
+import com.tetrapak.publicweb.core.models.FindMyOfficeModel;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 import com.tetrapak.publicweb.core.services.impl.FindMyOfficeServiceImpl;
 
@@ -24,9 +25,11 @@ public class FindMyOfficeServletTest {
     private static final String TEST_OFFICE_CONTENT = "/contentFragments/office.json";
 
     /** The Constant TEST_CONTENT_ROOT. */
-    private static final String TEST_COUNTRY_ROOT = "/content/dam/tetrapak/findMyOffice/contentFragments/countries";
+    private static final String TEST_COUNTRY_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/countries";
 
-    private static final String TEST_OFFICE_ROOT = "/content/dam/tetrapak/findMyOffice/contentFragments/offices";
+    private static final String TEST_OFFICE_ROOT = "/content/dam/tetrapak/publicweb/contentfragment/offices";
+    private static final String CONTENT_PAGE_PATH = "/content/tetrapak/publicweb/lang-masters/en/contact-us/jcr:content/root/responsivegrid/findmyoffice";
+    private static final String PAGE_CONTENT = "/findMyOffice/component-content.json";
 
     /** The context. */
     @Rule
@@ -42,19 +45,21 @@ public class FindMyOfficeServletTest {
     @Before
     public void setup() {
         findMyOfficeService = new FindMyOfficeServiceImpl();
+        Class<FindMyOfficeModel> modelClass = FindMyOfficeModel.class;
         Map<String, Object> config = new HashMap<>();
-        config.put("getCountriesContentFragmentRootPath",
-                "/content/dam/tetrapak/findMyOffice/contentFragments/countries");
-        config.put("getOfficesContentFragmentRootPath", "/content/dam/tetrapak/findMyOffice/contentFragments/offices");
+        config.put("getCountriesContentFragmentRootPath", TEST_COUNTRY_ROOT);
+        config.put("getOfficesContentFragmentRootPath", TEST_OFFICE_ROOT);
         config.put("getGoogleAPIKey", "AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ");
         context.registerService(FindMyOfficeService.class, findMyOfficeService);
+        context.addModelsForClasses(modelClass);
         context.getService(FindMyOfficeService.class);
         MockOsgi.activate(context.getService(FindMyOfficeService.class), context.bundleContext(), config);
         findMyOfficeServlet = MockHelper.getServlet(context, FindMyOfficeServlet.class);
         context.load().json(TEST_COUNTRY_CONTENT, TEST_COUNTRY_ROOT);
         context.load().json(TEST_OFFICE_CONTENT, TEST_OFFICE_ROOT);
+        context.load().json(PAGE_CONTENT, CONTENT_PAGE_PATH);
         context.request().setResource(context.currentResource());
-
+        context.currentResource(CONTENT_PAGE_PATH);
     }
 
     /**
