@@ -166,7 +166,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      *            the data resource
      */
     private void setCountryBean(ResourceResolver resourceResolver, final CountryBean countryBean,
-            final String countryName, Resource dataResource, String officePath) {
+            final String countryName, Resource dataResource, final String officePath) {
         if (Objects.nonNull(dataResource)) {
             final ValueMap vMap = dataResource.getValueMap();
             countryBean.setLongitude(vMap.get("longitude", Double.class));
