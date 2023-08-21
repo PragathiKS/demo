@@ -1,5 +1,6 @@
 .tp-pw-megamenusubheading {
-    padding: $padding-md $padding-xxxl 0;
+    padding: 0 $padding-xxxl;
+    margin-bottom: $font-xxs;
     a {
         display: flex;
         justify-content: flex-start;
@@ -10,11 +11,11 @@
         color: $color-tundora;
         text-transform: uppercase;
         font-weight: bold;
-        font-size: $font-xs;
+        font-size: $font-sm;
     }
     i {
         color: $color-tundora;
         margin: 0 $padding-sm;
-        font-size: $font-xs;
+        font-size: $font-sm;
     }
 }
