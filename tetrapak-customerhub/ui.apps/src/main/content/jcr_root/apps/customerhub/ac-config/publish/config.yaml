@@ -146,6 +146,10 @@
           permission: allow
           privileges: jcr:read
 
+        - path: /content/tetrapak/customerhub/global/en/powerbitestpage
+          permission: allow
+          privileges: jcr:read
+
     - cuhu_pack_design:
 
         - path: /content/tetrapak/customerhub/global/en/package-design/introduction
