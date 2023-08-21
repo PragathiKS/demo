@@ -216,15 +216,15 @@
             }
             i.icon-Search_pw,
             i.icon-Close_pw {
-                font-size: 20px;
-                line-height: 20px;
+                font-size: $font-m-md;
+                line-height: $font-m-md;
                 @media #{$desktop} {
                     @include font-size($font-normal);
-                    line-height: 16px;
+                    line-height: $font-normal;
                 }
                 @media #{$i-pad} {
-                    font-size: 20px;
-                    line-height: 20px;
+                    font-size: $font-m-md;
+                    line-height: $font-m-md;
                 }
             }
 
