@@ -26,7 +26,7 @@ describe("TechnicalPublications", function () {
       el: document.body,
     });
   }
-  
+
   before(function () {
     this.enableTimeouts(false);
     this.domHtml = technicalPublicationsTmpl();
@@ -64,7 +64,7 @@ describe("TechnicalPublications", function () {
     done();
   });
 
-  it("should correctly render the 'countries' step", function (done) { 
+  it("should correctly render the 'countries' step", function (done) {
     const innerHeaderText = $($(".tp-tech-pub__thead-primary").get(0).children[0].innerHTML).text().replace(/\s+/g, '');
     const innerBreadcrumbText = $(".tp-tech-pub__bc-item > button").get(0).innerHTML.replace(/\s+/g, '');
     const renderedBtnLabels = $('.js-tech-pub__folder-btn').map(function() {
@@ -75,7 +75,6 @@ describe("TechnicalPublications", function () {
     expect(this.techPub.getFolderData.called).to.be.true;
     expect(this.techPub.renderBreadcrumbs.called).to.be.true;
     expect(this.techPub.renderFolderData.called).to.be.true;
-
     expect(innerHeaderText).to.equal('cuhu.technicalpublications.country');
     expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
     expect(renderedBtnLabels.includes('Sweden')).to.be.true;

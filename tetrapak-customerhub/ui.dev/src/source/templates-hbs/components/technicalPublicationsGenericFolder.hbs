@@ -3,6 +3,7 @@
         <thead class="tp-tech-pub__thead-primary">
         <tr>
             {{#if isCountriesStep}}
+                <th></th>
                 <th>{{i18n key=this.i18nKeys.country}}</th>
             {{/if}}
             {{#if isCountryStep}}
@@ -43,6 +44,11 @@
             {{#each folderData}}
             <tr>
                 {{#if ../isCountriesStep}}
+                    <td class="tp-tech-pub__table-icon">
+                        <span>
+                            <i class="icon icon-Folder"></i>
+                        </span>
+                    </td>
                      <td>
                         <button type="button"
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"

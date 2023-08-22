@@ -1,4 +1,9 @@
 .tp-tech-pub {
+    &__table-wrap {
+        @media #{$mobile} {
+            overflow-x: auto;
+        }     
+    }
     &__header {
         &-wrapper {
             @include margin-bottom($margin-l);
@@ -66,12 +71,22 @@
             @include padding($padding-md);
         }
 
-        th {
-            font-weight: 500;
+        tr {
+            &:first-of-type {
+                border-bottom: 1px solid $color-mercury;
+            }
         }
 
         td {
             border-bottom: 1px solid $color-mercury;
+            button {
+                @media #{$mobile} {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    max-width: 50vw;
+                    text-overflow: ellipsis;
+                }
+            }
         }
         &-icon {
             color: $color-congress-blue;
