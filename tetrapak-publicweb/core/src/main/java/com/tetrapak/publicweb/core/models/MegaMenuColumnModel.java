@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tetrapak.publicweb.core.models.megamenucolumnitem.MegaMenuAccordion;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
@@ -16,8 +17,13 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import static com.tetrapak.publicweb.core.constants.PWConstants.MEGAMENU_HEADING_RESOURCETYPE;
+import static com.tetrapak.publicweb.core.constants.PWConstants.MEGAMENU_SUBHEADING_RESOURCETYPE;
 
 @Model(
         adaptables = { Resource.class },
@@ -47,27 +53,34 @@ public class MegaMenuColumnModel {
         columnItems = new HashMap<>();
         if(resource!=null) {
             Iterator<Resource> children = resource.listChildren();
-            megaMenuAccordions = new ArrayList<>();
+            megaMenuAccordions = new LinkedList<>();
             MegaMenuAccordion megaMenuAccordion = null;
             while (children.hasNext()) {
                 Resource itemResource = children.next();
                 items.add(itemResource);
-                if (itemResource.isResourceType("publicweb/components/structure/megamenucolumnitems/subheading")){
+                if (itemResource.isResourceType(MEGAMENU_SUBHEADING_RESOURCETYPE)){
                     megaMenuAccordion = new MegaMenuAccordion();
-                    Map<String,Object> accordionItems = new HashMap<>();
-                    accordionItems.put(itemResource.getName(),itemResource.adaptTo(modelFactory.getModelFromResource(itemResource).getClass()));
+                    Map<String,Object> accordionItems = new LinkedHashMap<>();
+                    accordionItems.put(getItemResourceName(itemResource),itemResource.adaptTo(modelFactory.getModelFromResource(itemResource).getClass()));
                     megaMenuAccordion.setSubHeadings(accordionItems);
                     megaMenuAccordions.add(megaMenuAccordion);
-                }else if(megaMenuAccordion !=null && !itemResource.isResourceType("publicweb/components/structure/megamenucolumnitems/heading")) {
+                }else if(megaMenuAccordion !=null && !itemResource.isResourceType(MEGAMENU_HEADING_RESOURCETYPE)) {
                     Map<String,Object> accordionItems = megaMenuAccordion.getSubHeadings();
-                    accordionItems.put(itemResource.getName(),itemResource.adaptTo(modelFactory.getModelFromResource(itemResource).getClass()));
+                    accordionItems.put(getItemResourceName(itemResource),itemResource.adaptTo(modelFactory.getModelFromResource(itemResource).getClass()));
                     megaMenuAccordion.setSubHeadings(accordionItems);
                 }else{
-                    columnItems.put(itemResource.getName(),itemResource.adaptTo(modelFactory.getModelFromResource(itemResource).getClass()));
+                    columnItems.put(getItemResourceName(itemResource),itemResource.adaptTo(modelFactory.getModelFromResource(itemResource).getClass()));
                 }
             }
             columnItems.put("megaMenuAccordions",megaMenuAccordions);
         }
+    }
+
+    private String getItemResourceName(Resource itemResource) {
+        if(itemResource.getName().contains("_")){
+            return StringUtils.substring(itemResource.getName(),0,itemResource.getName().indexOf("_"));
+        }
+        return itemResource.getName();
     }
 
     public String getBgColor() {

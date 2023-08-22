@@ -531,6 +531,10 @@ public final class PWConstants {
 
     public static final String ICON_CSS_CLASS_PREFIX="icon-";
 
+    public static final String MEGAMENU_SUBHEADING_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/subheading";
+
+    public static final String MEGAMENU_HEADING_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/heading";
+
     /**
      * Instantiates a new PW constants.
      */

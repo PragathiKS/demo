@@ -12,6 +12,11 @@ import javax.servlet.Servlet;
 import java.io.IOException;
 import java.util.Iterator;
 
+/*
+This servlet is used to modify the backend column nodes based on
+the user selection of number of columns in dialog. For example, if the number of columns selected by author
+is 2 and there are already 3 column nodes, the 3rd node will be deleted.
+ */
 @Component(
         service = Servlet.class,
         property = { "sling.servlet.methods=" + HttpConstants.METHOD_POST,
