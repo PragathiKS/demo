@@ -75,3 +75,4 @@
 
 ## Allow GET Requests
 /0065 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/searchlanding*" } # SMAR-32164
+/0066 { /type "allow" /method "GET" /url "/content/experience-fragments/publicweb/*/_jcr_content.content.cache.html" } ## SMAR-32913

@@ -1,0 +1,462 @@
+<div class="tp-card tp-my-equipment" data-src_ispublishenvironment="true" data-module="MyEquipment">
+    <code class="d-none js-my-equipment__config">
+      {"filtersSelected":"cuhu.equipment.filtersSelected","equipmentDescription":"cuhu.equipment.equipmentdescription","country":"cuhu.equipment.country","customizeTable":"cuhu.equipment.customizetable","showallfilters":"cuhu.equipment.showallfilters","hideallfilters":"cuhu.equipment.hideallfilters","filtersOf":"cuhu.equipment.of","line":"cuhu.equipment.line","locationToolTip":"cuhu.equipment.locationToolTip","siteDescToolTip":"cuhu.equipment.siteDescToolTip","equipDescToolTip":"cuhu.equipment.equipdesctooltip","searchResults":"cuhu.equipment.searchresults","equipmentType":"cuhu.equipment.equipmentType","apiErrorCodes":{"default":"cuhu.error.message","YS_GW_ODATA/033":"cuhu.financial.errorCode.033","YS_GW_ODATA/034":"cuhu.financial.errorCode.034","YS_GW_ODATA/032":"cuhu.financial.errorCode.032"},"countryToolTip":"cuhu.equipment.countrytooltip","removeAll":"cuhu.equipment.removeall","lineToolTip":"cuhu.equipment.linetooltip","maxLimitErrorPre":"cuhu.equipment.youCanOnlySelect","removeallfilters":"cuhu.equipment.removeallfilters","serialNumber":"cuhu.equipment.serialnumber","maxLimitErrorAfter":"cuhu.equipment.optionsPleaseDeselect","last":"cuhu.equipment.last","siteToolTip":"cuhu.equipment.sitetooltip","siteDescription":"cuhu.equipment.siteDescription","permanentVolumeConversion":"cuhu.equipment.permanentVolumeConversion","equipmentStatus":"cuhu.equipment.equipmentstatus","myEquipment":"cuhu.equipment.myequipment","site":"cuhu.equipment.site","hideAndShowCta":"cuhu.equipment.hideAndShowCta","noDataFound":"cuhu.myEquipment.NoDataFound","functionalLocationToolTip":"cuhu.equipment.functionalLocationToolTip","functionalLocation":"cuhu.equipment.functionalLocation","location":"cuhu.equipment.location","applyFilter":"cuhu.equipment.applyfilter","first":"cuhu.equipment.first","serialNumToolTip":"cuhu.equipment.serialnumtooltip","equipStatToolTip":"cuhu.equipment.equipstattooltip","customer":"cuhu.equipment.customer"}
+    </code>
+    <!--API List -->
+
+  <div class="d-none js-equipment-api" data-country-api="https://api-dev.tetrapak.com/installedbase/equipments/countries" data-equip-details-url="https://mypages-dev.tetrapak.com/installed-equipments/equipments/equipment-details.html" data-list-api="https://api-dev.tetrapak.com/installedbase/equipments"></div>
+
+    <!--Loading -->
+  <div class="tp-spinner d-none">
+    
+  <div class="tpatom-loader js-loader">
+    
+  <div class="tpatom-loading-anim">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+</div>
+
+  </div>
+
+  </div>
+    <!-- Content Container -->
+  <div class="tp-equipment-content">
+    <div class="tp-my-equipment__header-wrapper">
+      <h2 class="tp-my-equipment__heading js-my-equipment__heading">
+          My Equipment
+      </h2>
+      <!-- Actions -->
+      <div class="tp-my-equipment__header-action-wrapper">
+        <div class="tp-my-equipment__header-mobile">
+          <button class="tp-next-btn js-mobile-header-actions">
+            <i class="icon icon-Three_Dot">
+            </i>
+          </button>
+        </div>
+        <div class="tp-my-equipment__header-actions">
+          <div class="tp-my-equipment__header-actionicons">
+            <a class="tp-my-equipment__action-button js-my-equipment__add-new-equipment-action" href="https://mypages-dev.tetrapak.com/installed-equipments/equipments/add-equipment.html" target="_blank">
+              <i class="icon icon-Circle_Plus action-icon"></i>
+              <span class="tpatom-btn__text tp-my-equipment__header-action-text">Add new equipment</span>
+            </a>
+            <div class="tp-my-equipment__action-button second js-my-equipment__customise-table-action">
+              <i class="icon icon-Hide action-icon"></i>
+              <span class="tpatom-btn__text tp-my-equipment__header-action-text">Customise Table</span>
+            </div>
+            <input type="hidden" id="downloadExcelServletUrl" name="downloadExcelServletUrl" value="/content/tetrapak/customerhub/global/en/installed-equipments/equipments/jcr:content/root/responsivegrid/myequipment.download.excel">
+            
+    
+    
+    
+    
+    
+    <button class="tpatom-btn tp-button-link js-my-equipment__export-excel-action tpatom-btn--primary tp-my-equipment__action-button">
+        
+          <i class="icon icon-Excel action-icon"></i>
+        
+        <span class="tpatom-btn__text sly-text">Export to CSV</span>
+    </button>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="tp-my-equipment__filter-wrapper">
+      <div class="tp-my-equipment__filter-chips">
+        <button type="button" data-label="Country Test +" class="tp-my-equipment__country-button-filter tp-my-equipment__filter-button active" auto_locator="countryFilter">
+          Country Test: 1
+        </button>
+
+        <button type="button" data-label="MOCK_VALUE" class="tp-my-equipment__customer-button-filter tp-my-equipment__filter-button" auto_locator="customerFilter">
+          MOCK_VALUE
+        </button>
+
+        <button type="button" data-label="MOCK_VALUE" class="tp-my-equipment__line-button-filter tp-my-equipment__filter-button" auto_locator="lineFilter">
+          MOCK_VALUE
+        </button>
+
+        <button type="button" data-label="MOCK_VALUE" class="tp-my-equipment__status-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="statusFilter">
+          MOCK_VALUE
+        </button>
+
+        <button type="button" data-label="MOCK_VALUE" class="tp-my-equipment__equip-type-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="typeFilter">
+          MOCK_VALUE
+        </button>
+
+        <button type="button" data-label="MOCK_VALUE" class="tp-my-equipment__equip-desc-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="descriptionFilter">
+          MOCK_VALUE
+        </button>
+
+        <button type="button" data-label="MOCK_VALUE" class="tp-my-equipment__serial-button-filter tp-my-equipment__filter-button tp-my-equipment__filter-button-all" auto_locator="serialNoFilter">
+          MOCK_VALUE
+        </button>
+      </div>
+      <div>
+        <button class="tpatom-btn tp-my-equipment__remove-button js-tp-my-equipment__remove-all-button" auto_locator="removeFilter" hidden="">
+          <i class="icon icon-My_Euipment_Bin_X"></i>
+          <span class="tpatom-btn__text sly-text">${"cuhu.equipment.removeallfilters"}</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="tp-my-equipment__search-count"></div>
+
+    <div id="equipment-filter-modal" class="modal js-filter-modal tp-modal fade tp-equipment__filter-form" tabindex="-1" aria-hidden="true" role="dialog">
+    </div>
+
+    <div class="tp-my-equipment__table_wrapper"><div class="tp-my-equipment__table custom-scrollbar-horizontal on">
+        <table class="tpmol-table tp-my-equipment__table-summary__table js-my-equipment__table-summary__table">
+            <thead class="tpmol-table__head tp-my-equipment__table-summary__head js-my-equipment__table-summary__head">
+                <tr class="tpmol-table__rowheading tp-my-equipment__table-summary__row tp-my-equipment__table-summary__rowheading js-my-equipment__table-summary__rowheading">
+                        <th data-key="countryCode" class="tpmol-table__cellheading tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--0">
+                                    Country Test
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Country Test</span>
+                                                <span>Country Tool Tip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                        <th data-key="site" class="tpmol-table__cellheading sortable tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--1">
+                                <button type="button" class="tpmol-table__sort clearfix tp-my-equipment__table-summary__sort js-my-equipment__table-summary__sort" data-key="site" "="">
+                                    
+                                    <span>Site</span>
+                                </button>
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Site</span>
+                                                <span>Site Tool Tip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                        <th data-key="siteDesc" class="tpmol-table__cellheading sortable tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--2 hide">
+                                <button type="button" class="tpmol-table__sort clearfix tp-my-equipment__table-summary__sort js-my-equipment__table-summary__sort" data-key="siteDesc" "="">
+                                    
+                                    <span>Site Description</span>
+                                </button>
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Site Description</span>
+                                                <span>cuhu.equipment.siteDescToolTip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                        <th data-key="functionalLocation" class="tpmol-table__cellheading sortable tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--3">
+                                <button type="button" class="tpmol-table__sort clearfix tp-my-equipment__table-summary__sort js-my-equipment__table-summary__sort" data-key="functionalLocation" "="">
+                                    
+                                    <span>Functional Location</span>
+                                </button>
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Functional Location</span>
+                                                <span>Functional Location Tool Tip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                        <th data-key="equipmentName" class="tpmol-table__cellheading sortable  tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading  js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--4">
+                                <button type="button" class="tpmol-table__sort clearfix tp-my-equipment__table-summary__sort js-my-equipment__table-summary__sort" data-key="equipmentName" "="">
+                                    
+                                    <span>Equipment Description</span>
+                                </button>
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Equipment Description</span>
+                                                <span>Equipment Description Tool Tip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                        <th data-key="serialNumber" class="tpmol-table__cellheading sortable  tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading  js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--5">
+                                <button type="button" class="tpmol-table__sort clearfix tp-my-equipment__table-summary__sort js-my-equipment__table-summary__sort" data-key="serialNumber" "="">
+                                    
+                                    <span>Serial Number</span>
+                                </button>
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Serial Number</span>
+                                                <span>Serial Number Tool Tip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                        <th data-key="equipmentStatusDesc" class="tpmol-table__cellheading sortable tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--6">
+                                <button type="button" class="tpmol-table__sort clearfix tp-my-equipment__table-summary__sort js-my-equipment__table-summary__sort" data-key="equipmentStatusDesc" "="">
+                                    
+                                    <span>Equipment Status</span>
+                                </button>
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Equipment Status</span>
+                                                <span>Equipment Status Tool Tip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                        <th data-key="location" class="tpmol-table__cellheading sortable tp-my-equipment__table-summary__cell tp-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading js-my-equipment__table-summary__cellheading--7 hide">
+                                <button type="button" class="tpmol-table__sort clearfix tp-my-equipment__table-summary__sort js-my-equipment__table-summary__sort" data-key="location" "="">
+                                    
+                                    <span>Location</span>
+                                </button>
+                                <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<span class='tooltip-header'>Location</span>
+                                                <span>cuhu.equipment.locationToolTip</span>">
+                                    <i class="icon icon-Info"></i>
+                                </button>
+                        </th>
+                </tr>
+            </thead>
+            <tbody class="tpmol-table__body tp-my-equipment__table-summary__body">
+              
+              
+                <tr tabindex="0" role="link" href="9060001942" class="tpmol-table__row tp-my-equipment__table-summary__row js-my-equipment__table-summary__row js-my-equipment__table-summary__row--18">
+                        <td data-key="countryCode" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--0">
+                                    CN
+                        </td>
+                        <td data-key="site" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--1">
+                                    BD FUYU   FYU
+                        </td>
+                        <td data-key="siteDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--2 hide">
+                                    BRIGHT DAIRY HEILONGJIANG PLANT - spc ex
+                        </td>
+                        <td data-key="functionalLocation" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--3">
+                                    CNC-BD FUYU   FYU-LN 06
+                        </td>
+                        <td data-key="equipmentName" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--4 ">
+                                    Tetra Cardboard Packer 71
+                        </td>
+                        <td data-key="serialNumber" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--5 ">
+                                    75642/17298
+                        </td>
+                        <td data-key="equipmentStatusDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--6">
+                                    Produced New Machine
+                        </td>
+                        <td data-key="location" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--7 hide">
+                                    SHIJIAZHUANG
+                        </td>
+                </tr>
+                <tr tabindex="0" role="link" href="9060001910" class="tpmol-table__row tp-my-equipment__table-summary__row js-my-equipment__table-summary__row js-my-equipment__table-summary__row--19">
+                        <td data-key="countryCode" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--0">
+                                    CN
+                        </td>
+                        <td data-key="site" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--1">
+                                    BD FUYU   FYU
+                        </td>
+                        <td data-key="siteDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--2 hide">
+                                    BRIGHT DAIRY HEILONGJIANG PLANT - spc ex
+                        </td>
+                        <td data-key="functionalLocation" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--3">
+                                    CNC-BD FUYU   FYU-LN 07
+                        </td>
+                        <td data-key="equipmentName" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--4 ">
+                                    TETRA BRIK MACHINE TBA/8
+                        </td>
+                        <td data-key="serialNumber" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--5 ">
+                                    14623/12358
+                        </td>
+                        <td data-key="equipmentStatusDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--6">
+                                    Produced New Machine
+                        </td>
+                        <td data-key="location" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--7 hide">
+                                    SHIJIAZHUANG
+                        </td>
+                </tr>
+                <tr tabindex="0" role="link" href="9060001943" class="tpmol-table__row tp-my-equipment__table-summary__row js-my-equipment__table-summary__row js-my-equipment__table-summary__row--20">
+                        <td data-key="countryCode" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--0">
+                                    CN
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="site" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--1">
+                                    BD FUYU   FYU
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="siteDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--2 hide">
+                                    BRIGHT DAIRY HEILONGJIANG PLANT - spc ex
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="functionalLocation" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--3">
+                                    CNC-BD FUYU   FYU-LN 07
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentName" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--4 ">
+                                    PULLTAB UNIT PT8
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="serialNumber" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--5 ">
+                                    22613/01057
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentStatusDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--6">
+                                    Produced New Machine
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="location" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--7 hide">
+                                    SHIJIAZHUANG
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr tabindex="0" role="link" href="9060001944" class="tpmol-table__row tp-my-equipment__table-summary__row js-my-equipment__table-summary__row js-my-equipment__table-summary__row--21">
+                        <td data-key="countryCode" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--0">
+                                    CN
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="site" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--1">
+                                    BD FUYU   FYU
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="siteDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--2 hide">
+                                    BRIGHT DAIRY HEILONGJIANG PLANT - spc ex
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="functionalLocation" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--3">
+                                    CNC-BD FUYU   FYU-LN 07
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentName" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--4 ">
+                                    TETRA CAP APPLICATOR 21
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="serialNumber" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--5 ">
+                                    75600/17408
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentStatusDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--6">
+                                    Produced New Machine
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="location" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--7 hide">
+                                    SHIJIAZHUANG
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr tabindex="0" role="link" href="9060001953" class="tpmol-table__row tp-my-equipment__table-summary__row js-my-equipment__table-summary__row js-my-equipment__table-summary__row--22">
+                        <td data-key="countryCode" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--0">
+                                    CN
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="site" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--1">
+                                    BD FUYU   FYU
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="siteDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--2 hide">
+                                    BRIGHT DAIRY HEILONGJIANG PLANT - spc ex
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="functionalLocation" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--3">
+                                    CNC-BD FUYU   FYU-LN 07
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentName" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--4 ">
+                                    TETRA FILM WRAPPER -66
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="serialNumber" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--5 ">
+                                    75611/17687
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentStatusDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--6">
+                                    Produced New Machine
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="location" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--7 hide">
+                                    SHIJIAZHUANG
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr tabindex="0" role="link" href="9060001914" class="tpmol-table__row tp-my-equipment__table-summary__row js-my-equipment__table-summary__row js-my-equipment__table-summary__row--23">
+                        <td data-key="countryCode" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--0">
+                                    CN
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="site" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--1">
+                                    BD FUYU   FYU
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="siteDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--2 hide">
+                                    BRIGHT DAIRY HEILONGJIANG PLANT - spc ex
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="functionalLocation" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--3">
+                                    CNC-BD FUYU   FYU-LN 07
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentName" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--4 ">
+                                    TETRA CARDBOARD PACKER 70
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="serialNumber" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--5 ">
+                                    75185/14785
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentStatusDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--6">
+                                    Produced New Machine
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="location" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--7 hide">
+                                    SHIJIAZHUANG
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr tabindex="0" role="link" href="9060001946" class="tpmol-table__row tp-my-equipment__table-summary__row js-my-equipment__table-summary__row js-my-equipment__table-summary__row--24">
+                        <td data-key="countryCode" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--0">
+                                    CN
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="site" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--1">
+                                    BD FUYU   FYU
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="siteDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--2 hide">
+                                    BRIGHT DAIRY HEILONGJIANG PLANT - spc ex
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="functionalLocation" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--3">
+                                    CNC-BD FUYU   FYU-LN 08
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentName" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--4 ">
+                                    TETRA BRIK MACHINE TBA/8
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="serialNumber" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--5 ">
+                                    15010/01375
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="equipmentStatusDesc" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--6">
+                                    Produced New Machine
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="location" class="tpmol-table__cell tp-my-equipment__table-summary__cell js-my-equipment__table-summary__cell js-my-equipment__table-summary__cell--7 hide">
+                                    SHIJIAZHUANG
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+    <div class="tp-tbl-pagination js-tbl-pagination" aria-live="polite">
+        <div class="tp-tbl-pagination__container clearfix">
+            <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__first float-left" disabled="" data-skip="0" data-page-number="1">
+                        <i class="icon icon-Right_new icon-left"></i>
+                    <span class="tpatom-btn__text">First</span>
+            </button>
+            <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__prev float-left" disabled="" data-skip="-25" data-page-number="0">
+                    <span class="tpatom-btn__text sr-only">cuhu.pagination.prev</span><i class="icon icon-Right_new icon-left"></i>
+            </button>
+                        <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn float-left active" data-page-number="1">
+                                <span class="tpatom-btn__text">1</span>
+                        </button>
+                        <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__direct float-left" data-skip="25" data-page-number="2">
+                                <span class="tpatom-btn__text">2</span>
+                        </button>
+                        <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__direct float-left" data-skip="50" data-page-number="3">
+                                <span class="tpatom-btn__text">3</span>
+                        </button>
+            <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__next float-left" data-skip="25" data-page-number="2">
+                    <span class="tpatom-btn__text sr-only">cuhu.pagination.next</span><i class="icon icon-Right_new"></i>
+            </button>
+            <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__last float-left" data-skip="100" data-page-number="5">
+                    <span class="tpatom-btn__text">Last</span><i class="icon icon-Right_new"></i>
+            </button>
+        </div>
+    
+    </div>
+</div>
+    <div class="tp-my-equipment__flex-container">
+      <div class="tp-my-equipment__pagination-container" id="pagination-container"></div>
+      <div class="tp-my-equipment__serial-desc"><span class="tp-my-equipment__astrick">*</span> Permanent volume conversion</div>
+  </div>
+  </div>
+  </div>

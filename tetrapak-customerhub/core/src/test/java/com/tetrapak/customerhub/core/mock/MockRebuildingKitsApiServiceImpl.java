@@ -6,11 +6,12 @@ import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MockRebuildingKitsApiServiceImpl implements RebuildingKitsApiService {
 
 	@Override
-	public List<RebuildingKits> getRebuildingkitsList(String token, String countryCode) {
+	public List<RebuildingKits> getRebuildingkitsList(String token, Map<String, String[]> parameters) {
 		return getMockRebuildingKitsList();
 	}
 

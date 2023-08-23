@@ -68,11 +68,14 @@ export const _buildTableRows = (data, keys) => {
   };
 
   let icon = '';
-  if(data[RK_TYPE_CODE].startsWith('A')) {
-    icon = 'Mandatory_Kit';
-  } else if(data[RK_TYPE_CODE].startsWith('B')) {
-    icon = 'Trolley';
+  if (data[RK_TYPE_CODE]) {
+    if(data[RK_TYPE_CODE].startsWith('A')) {
+      icon = 'Mandatory_Kit';
+    } else if(data[RK_TYPE_CODE].startsWith('B')) {
+      icon = 'Trolley';
+    }
   }
+
   keys.forEach((key, index) => {
     const value = key === RK_ICON ? icon : data[key];
 

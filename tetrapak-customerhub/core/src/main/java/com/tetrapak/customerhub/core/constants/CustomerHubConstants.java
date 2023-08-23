@@ -1003,10 +1003,79 @@ public final class CustomerHubConstants {
     /** One Trust Token Servlet Url */
     public static final String ONETRUST_TOKEN_SERVLET_URL= ".onetrustcookietoken.json";
 
+    /** Parts group */
+    public static final String PARTS_GROUP = "cuhu_parts";
+    /** Constant PBIGENERATEAPI_POSTURL. */
+    public static final String PBIGENERATEAPI_POSTURL = "/oauth2/token";
 
+    /** Constant PBIEMBTOKEN_POSTURL. */
+    public static final String PBIEMBTOKEN_POSTURL = "/GenerateToken?accessLevel=View";
+
+    /** Constant PBIEMBTOKEN_PREURL. */
+     public static final String PBIEMBTOKEN_PRETURL = "https://app.powerbi.com/reportEmbed?reportId=";  
+
+    /** Constant PBIEMB_REPORT. */
+    public static final String PBIEMB_REPORT = "/reports/";
+    
+    /** Constant PBI_RESOURCE. */
+    public static final String RESOURCE = "resource";
+
+    /** Constant PBI_CLIENTID. */
+    public static final String PBI_CLIENTID = "client_id";  
+    
+    /** Constant PBI_CLIENT_SECRET. */
+    public static final String PBI_CLIENT_SECRET = "client_secret";  
+    
+    /** Constant PBI_GRANT_TYPE. */
+    public static final String GRANT_TYPE = "grant_type";  
+    
+    /** Constant PBI_CLIENT_CREDENTIALS. */
+    public static final String PBI_CLIENT_CREDENTIALS = "client_credentials";
+    
+    /** Constant CONTENT_TYPE. */
+    public static final String CONTENT_TYPE = "Content-Type";
+
+    /** Constant APPLICATION_TYPE_URLENCODED. */
+    public static final String APPLICATION_TYPE_URLENCODED = "application/x-www-form-urlencoded";
+
+    /** Constant UTF_8. */
+    public static final String UTF_8 = "utf-8";
+
+    /** Constant ENTITY_CONTENTTYPE. */
+    public static final String ENTITY_CONTENTTYPE = "application/x-www-form-urlencoded; charset=UTF-8";
+
+    /** Constant APPLICATION_JSON. */
+    public static final String APPLICATION_JSON = "application/json";
+
+    /** Constant ACCESS_TOKEN. */
+    public static final String ACCESS_TOKEN = "access_token";	
+
+    /** Constant ACCESS_LEVEL. */
+    public static final String ACCESS_LEVEL = "accessLevel";
+
+    /** Constant VIEW. */
+    public static final String VIEW = "View";
+    
+    /** Constant ALLOW_SAVEAS_AS. */
+    public static final String ALLOW_SAVEAS_AS = "allowSaveAs"; 
+    
+    /** Constant PBI_DATASETID. */
+    public static final String PBI_DATASETID = "datasetId";
+    
+    /** Constant HTTP_ACCEPT. */
+    public static final String ACCEPT = "Accept";
+    
+    /** Constant AUTHORIZATION_HEADER_NAME. */
+	public static final String AUTHORIZATION_HEADER_NAME = "Authorization";
+    
+	/** Constant BEARER_COOKIE_VALUE. */
+	public static final String BEARER_COOKIE_VALUE = "Bearer ";
     /**
      * Instantiates a new customer hub constants.
      */
+    /** Constant PBI_COOKIE_EMBEDTOKEN. */
+	public static final String PBI_COOKIE_EMBEDTOKEN ="pbi-accesstoken";
+
     private CustomerHubConstants() {
         throw new IllegalStateException("Utility class");
     }

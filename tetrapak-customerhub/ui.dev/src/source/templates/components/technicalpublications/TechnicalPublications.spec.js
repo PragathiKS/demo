@@ -79,4 +79,13 @@ describe("TechnicalPublications", function () {
     expect(this.techPub.renderFolderData.called).to.be.true;
     done();
   });
+  it("should render i18n values", function (done) {
+    const innerHeaderText = $($(".tp-tech-pub__thead-primary").get(0).children[0].innerHTML).text();
+    const innerBreadcrumbText = $(".tp-tech-pub__bc-item > button").get(0).innerHTML;
+
+    expect(innerHeaderText).to.equal('cuhu.technicalpublications.country');
+    expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
+
+    done();
+  });
 });

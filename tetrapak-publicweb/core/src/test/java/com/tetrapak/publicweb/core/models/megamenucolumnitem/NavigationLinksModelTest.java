@@ -5,6 +5,7 @@ import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,8 +34,12 @@ public class NavigationLinksModelTest {
         // load the resources for each object
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE_PATH);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
         resource = context.currentResource(RESOURCE_PATH);
-        model = resource.adaptTo(modelClass);
+        assert resource != null;
+        model = request.adaptTo(modelClass);
     }
 
     @Test

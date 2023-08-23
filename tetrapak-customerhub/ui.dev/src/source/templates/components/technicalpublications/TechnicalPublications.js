@@ -4,10 +4,20 @@ import {ajaxWrapper} from '../../../scripts/utils/ajax';
 import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
+import {getI18n} from '../../../scripts/common/common';
 
 function _getFolderData(stepKey, options) {
   const $this = this;
-  const { countriesApi, customerApi, lineApi, equipmentApi, techPubApi, searchResults, i18nKeys } = $this.cache;
+  const { 
+    countriesApi, 
+    customerApi, 
+    lineApi, 
+    equipmentApi, 
+    techPubApi, 
+    searchResults, 
+    i18nKeys,
+    techPubApiResults
+  } = $this.cache;
   const { folderNavData, apiDataObj } = $this.cache;
   const { country, customer, line, lineFolders, folderDetails } = folderNavData;
   const { isBreadcrumbNav } = options;
@@ -47,6 +57,24 @@ function _getFolderData(stepKey, options) {
     $this.renderBreadcrumbs(stepKey);
 
     return false;
+  }
+
+  if (techPubApiResults && stepKey === 'folderDetails') {
+    searchResults.hide();
+
+    const documentType = folderDetails.value.split(',')[0];
+    const searchResultsLabel = getI18n(i18nKeys.searchResults);
+
+    const srNo = folderDetails.value.split(',')[1];
+    const finalData = techPubApiResults.filter(data => data.typeCode === documentType);
+    searchResults.show();
+    searchResults.text(`${finalData.length} ${searchResultsLabel}`);
+
+    $this.renderFolderData(stepKey, finalData, srNo);
+    $this.renderBreadcrumbs(stepKey);
+    $this.setApiData(stepKey, finalData);
+    
+    return;
   }
 
   auth.getToken(({ data: authData }) => {
@@ -92,13 +120,17 @@ function _getFolderData(stepKey, options) {
               return data;
             }
           });
+
+          $this.setTechPubApiResults(res.data);
         }
         if (stepKey === 'folderDetails') {
           const documentType = folderDetails.value.split(',')[0];
+          const searchResultsLabel = getI18n(i18nKeys.searchResults);
+
           srNo = folderDetails.value.split(',')[1];
           finalData = res.data.filter(data => data.typeCode === documentType);
           searchResults.show();
-          searchResults.text(`${finalData.length} ${i18nKeys.searchResults}`);
+          searchResults.text(`${finalData.length} ${searchResultsLabel}`);
         }
         $this.renderFolderData(stepKey, finalData, srNo);
         $this.renderBreadcrumbs(stepKey);
@@ -224,6 +256,7 @@ class TechnicalPublications {
     this.cache.$folderListingWrapper = this.root.find('.js-tech-pub__folder-listing');
     this.cache.$spinner = this.root.find('.js-tp-spinner');
     this.cache.searchResults = this.root.find('.js-tech-pub__search-count');
+    this.cache.techPubApiResults = null;
 
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
@@ -269,6 +302,10 @@ class TechnicalPublications {
     };
   }
 
+  setTechPubApiResults = (value) => {
+    this.cache.techPubApiResults = value;
+  }
+
   bindEvents() {
     this.root.on('click', '.js-tech-pub__folder-btn',  (e) => {
       const $this = this;
@@ -280,24 +317,28 @@ class TechnicalPublications {
         const countryId = $btn.data('country-id');
         const countryName = $btn.data('country-name');
         $this.setFolderNavData(nextFolder, countryId, countryName);
+        $this.setTechPubApiResults(null);
       }
 
       if (currentStep === 'country') {
         const customerNumber = $btn.data('customer-number');
         const customer = $btn.data('customer');
         $this.setFolderNavData(nextFolder, customerNumber, customer);
+        $this.setTechPubApiResults(null);
       }
 
       if (currentStep === 'customer') {
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);
+        $this.setTechPubApiResults(null);
       }
 
       if (currentStep === 'line') {
         const lineCode = $btn.data('line-code');
         const lineDescription = $btn.data('line-description');
         $this.setFolderNavData(nextFolder, lineCode, lineDescription);
+        $this.setTechPubApiResults(null);
       }
 
       if (currentStep === 'lineFolders') {

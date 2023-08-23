@@ -232,7 +232,8 @@
         "source/templates/components/mediaLink/",
         "source/templates/components/breadcrumb/",
         "source/templates/components/banner/",
-        "source/templates/components/rkliabilityconditions/"
+        "source/templates/components/rkliabilityconditions/",
+        "source/templates/components/embedpowerbireport/"
       ],
       "dashboard": [
         "source/templates/components/contactcard/",

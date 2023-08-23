@@ -1,5 +1,8 @@
 @import '~tpPublic/templates/components/tabslist/tabsList';
 
+.tl-contactus {
+    @include margin-bottom($margin-md);
+}
 .pw-tablist__event-detail-description {
     li {
         display: table-row;

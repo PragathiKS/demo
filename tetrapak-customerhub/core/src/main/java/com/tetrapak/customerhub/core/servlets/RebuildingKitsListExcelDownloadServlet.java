@@ -47,14 +47,12 @@ public class RebuildingKitsListExcelDownloadServlet extends SlingAllMethodsServl
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
 		try {
 			boolean flag = false;
-			String countryCode = request.getParameter(CustomerHubConstants.COUNTRY_CODE);
-
 			final String token = request.getCookie(AUTH_TOKEN) == null ? StringUtils.EMPTY : getAuthTokenValue(request);
 			LOGGER.debug("Got authToken from cookie : {}", token);
 
 			StopWatch rbkAPIClock = new StopWatch();
 			rbkAPIClock.start();
-			List<RebuildingKits> results = rebuildingKitsApiService.getRebuildingkitsList(token, countryCode);
+			List<RebuildingKits> results = rebuildingKitsApiService.getRebuildingkitsList(token, request.getParameterMap());
 			rbkAPIClock.stop();
 			LOGGER.debug("Total time taken for calling equipment list api is {} " ,rbkAPIClock.getTime());
 

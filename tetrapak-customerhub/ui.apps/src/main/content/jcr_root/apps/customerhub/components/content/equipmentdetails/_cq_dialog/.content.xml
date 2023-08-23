@@ -255,6 +255,12 @@
                                 fieldLabel="Path To My Equipment Page"
                                 name="./myEqipmentPath"
                                 required="true"/>
+							<techPubPath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                                fieldLabel="Path To Technical Publication Page"
+                                name="./techPubPath"
+                                required="false"/>	
                         </items>
                     </column1>
                 </items>

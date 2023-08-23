@@ -1,0 +1,9 @@
+<sly data-sly-template.embedpowerbireport_template="${@data, flag}">
+    <div data-module="Embedpowerbireport" 
+    data-report-id="${data.reportid}"
+    data-embed-url="${data.embedURL}">
+        <!--/* Component HTML code goes here */-->
+        <h1>${data.reportName}</h1>
+        <div class="tp-embedpowerbi" id="reportContainer"></div>
+    </div>
+</sly>
