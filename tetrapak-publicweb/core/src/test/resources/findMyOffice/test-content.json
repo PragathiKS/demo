@@ -19,7 +19,13 @@
 			"sling:resourceType": "publicweb/components/content/findMyOffice",
 			"anchorId":"test01",
 			"anchorTitle":"title",
-			"heading":"Heading"
+			"heading":"Heading",
+			"officeCFPath": "/content/dam/tetrapak/publicweb/contentfragment/offices",
+			"countryLabel": "Country or Region",
+			"countryCFPath": "/content/dam/tetrapak/publicweb/contentfragment/countries",
+			"officeLabel": "Recycler Offices",
+			"countryDropdownLabel": "Choose your Country or Region",
+			"officeDropdownLabel": "Select Recycler Offices"
 			}
 		}
 	

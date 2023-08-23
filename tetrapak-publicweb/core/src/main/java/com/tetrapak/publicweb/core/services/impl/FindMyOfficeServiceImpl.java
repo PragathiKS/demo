@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.commons.jcr.JcrConstants;
 import com.tetrapak.publicweb.core.beans.CountryBean;
 import com.tetrapak.publicweb.core.beans.OfficeBean;
+import com.tetrapak.publicweb.core.models.FindMyOfficeModel;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
 /**
@@ -104,11 +105,15 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      * @return the find my office data
      */
 	@Override
-	public Map<String, CountryBean> getFindMyOfficeData(final ResourceResolver resourceResolver) {
+	public Map<String, CountryBean> getFindMyOfficeData(final ResourceResolver resourceResolver, FindMyOfficeModel findMyOfficeModel) {
 		LOGGER.debug("Inside getFindMyOfficeData method");
 		corporateOfficeList.clear();
 		countryOfficeList.clear();
-		final Resource countriesRootRes = resourceResolver.getResource(getCountryCfRootPath());
+		final String countryCFPath = StringUtils.isBlank(findMyOfficeModel.getCountryCFPath()) ? config.getCountriesContentFragmentRootPath()
+				: findMyOfficeModel.getCountryCFPath();
+		final String officeCFPath = StringUtils.isBlank(findMyOfficeModel.getOfficeCFPath()) ? config.getOfficesContentFragmentRootPath()
+				: findMyOfficeModel.getOfficeCFPath();
+		final Resource countriesRootRes = resourceResolver.getResource(countryCFPath);
 		if (Objects.nonNull(countriesRootRes)) {
 			final Iterator<Resource> rootIterator = countriesRootRes.listChildren();
 			while (rootIterator.hasNext()) {
@@ -122,7 +127,7 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
 					final String countryName = childResource.getName();
 					final String dataPath = childResource.getPath() + DATA_ROOT_PATH;
 					Resource dataResource = resourceResolver.getResource(dataPath);
-					setCountryBean(resourceResolver, countryBean, countryName, dataResource);
+					setCountryBean(resourceResolver, countryBean, countryName, dataResource, officeCFPath);
 					setLists(countryBean, countryTitle);
 				}
 
@@ -161,12 +166,12 @@ public class FindMyOfficeServiceImpl implements FindMyOfficeService {
      *            the data resource
      */
     private void setCountryBean(ResourceResolver resourceResolver, final CountryBean countryBean,
-            final String countryName, Resource dataResource) {
+            final String countryName, Resource dataResource, final String officePath) {
         if (Objects.nonNull(dataResource)) {
             final ValueMap vMap = dataResource.getValueMap();
             countryBean.setLongitude(vMap.get("longitude", Double.class));
             countryBean.setLatitude(vMap.get("latitude", Double.class));
-            final String countryPath = getOfficeCfRootPath() + "/" + countryName;
+            final String countryPath = officePath + "/" + countryName;
             Resource countryResource = resourceResolver.getResource(countryPath);
             List<OfficeBean> officeBeanList = new ArrayList<>();
             if (Objects.nonNull(countryResource)) {
