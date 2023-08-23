@@ -37,19 +37,22 @@
                            "jcr:primaryType":"nt:unstructured",
                            "linkLabel":"Processing",
                            "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
-                           "linkDescription":"Hello"
+                           "linkDescription":"Hello",
+                           "linkIconClass":"icon-Dairy_cow_pw"
                         },
                        "item1":{
                            "jcr:primaryType":"nt:unstructured",
                            "linkLabel":"Processing 2 1st sub",
                            "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
-                           "linkDescription":"Hello 2"
+                           "linkDescription":"Hello 2",
+                           "linkIconClass":"icon-Powder_pw"
                         },
                         "item2":{
                             "jcr:primaryType":"nt:unstructured",
                             "linkLabel":"Processing 3 1st sub",
                             "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
-                            "linkDescription":"Hello 3"
+                            "linkDescription":"Hello 3",
+                            "linkIconClass":"icon-Beverages_icon_pw"
                          }
                      }
                   },
