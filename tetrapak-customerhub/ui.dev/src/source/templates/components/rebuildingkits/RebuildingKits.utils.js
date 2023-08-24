@@ -12,7 +12,7 @@ export const _remapFilterProperty = (filterProperty) => {
       return 'equipmentstatuses';
     case 'rkTypeCode':
       return 'rktypes';
-    case 'rebuildingKitStatus':
+    case 'rkStatus':
       return 'rkstatuses';
     case 'rkHandling':
       return 'rkhandlings';

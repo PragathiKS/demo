@@ -73,7 +73,7 @@
         </sly>
         <sly data-sly-test="${data.videoSource == 'youtube'}">
             <sly data-sly-use.digitalDataModel="com.tetrapak.publicweb.core.models.PageLoadAnalyticsModel"></sly>
-            <div class="pw-text-video__video js-video-props" data-link-parent-title="${data.youtubeEmbedURL}"
+            <div class="pw-text-video__video pw-text-video__video-youTube js-video-props" data-link-parent-title="${data.youtubeEmbedURL}"
                  data-video-type="${data.videoSource}" data-video-name="${data.youtubeEmbedURL}">
                 <sly data-sly-test="${!digitalDataModel.isPublisher}">
                     <iframe  class='js-yt-player' src="${data.youtubeEmbedURL}" frameborder="0"
