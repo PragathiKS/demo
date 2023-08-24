@@ -17,6 +17,9 @@ public class HeadingModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    @SlingObject
+    private Resource resource;
+
     @ValueMapValue
     private String heading;
 
@@ -31,7 +34,12 @@ public class HeadingModel {
     }
 
     public String getHeadingURL() {
-       return LinkUtils.sanitizeLink(headingURL, request);
+        if(request!=null){
+            return LinkUtils.sanitizeLink(headingURL, request);
+        }else{
+            return LinkUtils.sanitizeLink(headingURL, resource);
+        }
+
     }
 
     public String getHeadingStyle() {

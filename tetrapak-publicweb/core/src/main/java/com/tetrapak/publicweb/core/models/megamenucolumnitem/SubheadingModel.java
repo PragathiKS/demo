@@ -17,6 +17,9 @@ public class SubheadingModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
+    @SlingObject
+    private Resource resource;
+
     @ValueMapValue
     private String subheading;
 
@@ -28,6 +31,11 @@ public class SubheadingModel {
     }
 
     public String getSubheadingURL() {
-        return LinkUtils.sanitizeLink(subheadingURL, request);
+
+        if(request!=null){
+            return LinkUtils.sanitizeLink(subheadingURL, request);
+        }else{
+            return LinkUtils.sanitizeLink(subheadingURL, resource);
+        }
     }
 }
