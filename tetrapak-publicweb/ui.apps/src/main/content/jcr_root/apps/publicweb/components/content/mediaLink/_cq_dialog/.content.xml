@@ -1,227 +1,282 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:primaryType="nt:unstructured"
-    jcr:title="Media &amp; Link"
-    sling:resourceType="cq/gui/components/authoring/dialog">
-    <content
-        jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/coral/foundation/tabs">
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Media &amp; Link"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+  <content
+      jcr:primaryType="nt:unstructured"
+      sling:resourceType="granite/ui/components/coral/foundation/tabs">
+    <items jcr:primaryType="nt:unstructured">
+      <properties
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Properties"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
         <items jcr:primaryType="nt:unstructured">
-            <heading
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Heading"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <heading
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Heading"
+                  name="./heading"/>
+              <headingDesc
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Heading Description"
+                  name="./headingDesc"/>
+              <showImage
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                    fieldDescription="Check if you want to show images"
+                    fieldLabel="Do you want to show images ?"
+                    name="./showImage"
+                    text="Show Image ?"
+                    uncheckedValue="{Boolean}false"
+                    value="{Boolean}true"/>
+              <imageAspectRatio
+                   granite:class="cq-dialog-dropdown-disable-enable"
+                   jcr:primaryType="nt:unstructured"
+                   sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                   fieldLabel="Image Aspect Ratio"
+                   fieldDescription="Select the aspect ratio for images in Media and Link"
+                   name="./imageAspectRatio">
                 <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <heading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Heading"
-                                name="./heading"/>
-                            <headingDesc
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Heading Description"
-                                name="./headingDesc"/>
-                        </items>
-                    </column>
+                  <firstColumn
+                      jcr:primaryType="nt:unstructured"
+                      text="1:1"
+                      value="1:1"
+                      selected = "true"/>
+                  <secondColumn
+                      jcr:primaryType="nt:unstructured"
+                      text="16:9"
+                      value="0:0:16:9"/>
                 </items>
-            </heading>
-            <column1
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Column 1"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <title
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Title"
-                                name="./columnOneTitle"/>
-                            <columnone
-                                jcr:primaryType="nt:unstructured"
-                                jcr:title="List"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldLabel="Configure Media &amp; Link section">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./columnOneList">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <linkLabel
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Link text"
-                                                    fieldLabel="Link label"
-                                                    name="./linkLabel"/>
-                                                <linkUrl
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                    fieldDescription="Link to destination path"
-                                                    fieldLabel="Link path"
-                                                    name="./linkUrl"
-                                                    rootPath="/content"/>
-                                                <linkDesc
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Description of Link"
-                                                    fieldLabel="Link Description"
-                                                    name="./linkDesc"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
-                            </columnone>
-                        </items>
-                    </column>
-                </items>
-            </column1>
-            <column2
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Column 2"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <title
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Title"
-                                name="./columnTwoTitle"/>
-                            <columntwo
-                                jcr:primaryType="nt:unstructured"
-                                jcr:title="List"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldLabel="Configure Media &amp; Link section">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./columnTwoList">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <linkLabel
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Link text"
-                                                    fieldLabel="Link label"
-                                                    name="./linkLabel"/>
-                                                <linkUrl
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                    fieldDescription="Link to destination path"
-                                                    fieldLabel="Link Url"
-                                                    name="./linkUrl"
-                                                    rootPath="/content"/>
-                                                <linkDesc
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Description of Link"
-                                                    fieldLabel="Link Description"
-                                                    name="./linkDesc"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
-                            </columntwo>
-                        </items>
-                    </column>
-                </items>
-            </column2>
-            <column3
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Column 3"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <title
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Title"
-                                name="./columnThreeTitle"/>
-                            <columnthree
-                                jcr:primaryType="nt:unstructured"
-                                jcr:title="List"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                                composite="{Boolean}true"
-                                fieldLabel="Configure Media &amp; Link section">
-                                <field
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/container"
-                                    name="./columnThreeList">
-                                    <items jcr:primaryType="nt:unstructured">
-                                        <column
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
-                                            <items jcr:primaryType="nt:unstructured">
-                                                <linkLabel
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Link text"
-                                                    fieldLabel="Link label"
-                                                    name="./linkLabel"/>
-                                                <linkUrl
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                                    fieldDescription="Link to destination path"
-                                                    fieldLabel="Link Url"
-                                                    name="./linkUrl"
-                                                    rootPath="/content"/>
-                                                <linkDesc
-                                                    jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Description of Link"
-                                                    fieldLabel="Link Description"
-                                                    name="./linkDesc"/>
-                                            </items>
-                                        </column>
-                                    </items>
-                                </field>
-                            </columnthree>
-                        </items>
-                    </column>
-                </items>
-            </column3>
-            <anchor
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/include"
-                path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
-            <design
-                jcr:primaryType="nt:unstructured"
-                jcr:title="Design"
-                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
-                <items jcr:primaryType="nt:unstructured">
-                    <column
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/container">
-                        <items jcr:primaryType="nt:unstructured">
-                            <pwThemes
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/include"
-                                path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
-                        </items>
-                    </column>
-                </items>
-            </design>
+              </imageAspectRatio>
+            </items>
+          </column>
         </items>
-    </content>
+      </properties>
+      <column1
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Column 1"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <title
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Title"
+                  name="./columnOneTitle"/>
+              <columnone
+                  jcr:primaryType="nt:unstructured"
+                  jcr:title="List"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                  composite="{Boolean}true"
+                  fieldLabel="Configure Media &amp; Link section">
+                <field
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                    name="./columnOneList">
+                  <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                      <items jcr:primaryType="nt:unstructured">
+                        <linkLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Link text"
+                            fieldLabel="Link label"
+                            name="./linkLabel"/>
+                        <linkUrl
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                            fieldDescription="Link to destination path"
+                            fieldLabel="Link path"
+                            name="./linkUrl"
+                            rootPath="/content"/>
+                        <linkDesc
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Description of Link"
+                            fieldLabel="Link Description"
+                            name="./linkDesc"/>
+                        <fileReference
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/include"
+                          fieldLabel="Image path"
+                          path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
+                        <alt
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/include"
+                          path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
+                      </items>
+                    </column>
+                  </items>
+                </field>
+              </columnone>
+            </items>
+          </column>
+        </items>
+      </column1>
+      <column2
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Column 2"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <title
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Title"
+                  name="./columnTwoTitle"/>
+              <columntwo
+                  jcr:primaryType="nt:unstructured"
+                  jcr:title="List"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                  composite="{Boolean}true"
+                  fieldLabel="Configure Media &amp; Link section">
+                <field
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                    name="./columnTwoList">
+                  <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                      <items jcr:primaryType="nt:unstructured">
+                        <linkLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Link text"
+                            fieldLabel="Link label"
+                            name="./linkLabel"/>
+                        <linkUrl
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                            fieldDescription="Link to destination path"
+                            fieldLabel="Link Url"
+                            name="./linkUrl"
+                            rootPath="/content"/>
+                        <linkDesc
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Description of Link"
+                            fieldLabel="Link Description"
+                            name="./linkDesc"/>
+                        <fileReference
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/include"
+                          fieldLabel="Image path"
+                          path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
+                        <alt
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/include"
+                          path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
+                      </items>
+                    </column>
+                  </items>
+                </field>
+              </columntwo>
+            </items>
+          </column>
+        </items>
+      </column2>
+      <column3
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Column 3"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <title
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                  fieldLabel="Title"
+                  name="./columnThreeTitle"/>
+              <columnthree
+                  jcr:primaryType="nt:unstructured"
+                  jcr:title="List"
+                  sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                  composite="{Boolean}true"
+                  fieldLabel="Configure Media &amp; Link section">
+                <field
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                    name="./columnThreeList">
+                  <items jcr:primaryType="nt:unstructured">
+                    <column
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                      <items jcr:primaryType="nt:unstructured">
+                        <linkLabel
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Link text"
+                            fieldLabel="Link label"
+                            name="./linkLabel"/>
+                        <linkUrl
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+                            fieldDescription="Link to destination path"
+                            fieldLabel="Link Url"
+                            name="./linkUrl"
+                            rootPath="/content"/>
+                        <linkDesc
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldDescription="Description of Link"
+                            fieldLabel="Link Description"
+                            name="./linkDesc"/>
+                        <fileReference
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/include"
+                          fieldLabel="Image path"
+                          path="publicweb/components/content/image/cq:dialog/content/items/image/items/column/items/file"/>
+                        <alt
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                            path="publicweb/components/content/image/cq:dialog/content/items/metadata/items/columns/items/column/items/alternativeGroup/items/alt"/>
+                      </items>
+                    </column>
+                  </items>
+                </field>
+              </columnthree>
+            </items>
+          </column>
+        </items>
+      </column3>
+      <anchor
+          jcr:primaryType="nt:unstructured"
+          sling:resourceType="granite/ui/components/coral/foundation/include"
+          path="/apps/publicweb/components/content/anchorSelector/cq:dialog/content/items/anchor"/>
+      <design
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Design"
+          sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+          <column
+              jcr:primaryType="nt:unstructured"
+              sling:resourceType="granite/ui/components/coral/foundation/container">
+            <items jcr:primaryType="nt:unstructured">
+              <pwThemes
+                  jcr:primaryType="nt:unstructured"
+                  sling:resourceType="granite/ui/components/coral/foundation/include"
+                  path="publicweb/components/content/themeSelector/cq:dialog/content/items/design/items/column/items/pwThemes"/>
+            </items>
+          </column>
+        </items>
+      </design>
+    </items>
+  </content>
 </jcr:root>
