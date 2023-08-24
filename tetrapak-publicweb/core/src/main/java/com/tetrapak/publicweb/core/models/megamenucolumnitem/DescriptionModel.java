@@ -15,7 +15,6 @@ public class DescriptionModel {
     @ValueMapValue
     private String text;
 
-    @JsonRawValue
     public String getText() {
         return text;
     }
