@@ -7,6 +7,7 @@ import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
 import javax.inject.Inject;
@@ -20,15 +21,20 @@ public class NavigationLinksModel {
     @SlingObject
     private SlingHttpServletRequest request;
 
-    @Inject
-    @Via("resource")
+    @SlingObject
+    private Resource resource;
+
+    @ChildResource
     private List<NavigationLink> navLinks;
 
     public List<NavigationLink> getNavLinks() {
-       if (navLinks != null && !navLinks.isEmpty()) {
+       if (navLinks != null && !navLinks.isEmpty() && request!=null) {
 			navLinks.stream()
 					.forEach(model -> model.setLinkUrl(LinkUtils.sanitizeLink(model.getLinkUrl(), request)));
-		}
+		} else if (navLinks != null && !navLinks.isEmpty() && resource!=null){
+           navLinks.stream()
+                   .forEach(model -> model.setLinkUrl(LinkUtils.sanitizeLink(model.getLinkUrl(), resource)));
+       }
     
        return navLinks;
     }
