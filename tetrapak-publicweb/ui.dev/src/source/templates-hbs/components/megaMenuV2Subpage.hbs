@@ -284,5 +284,16 @@
             </div>
 		{{/each}}
 	{{/if}}
+    {{#if col3.columnItems.teaser}}
+    <div class="tp-pw-megamenuteaser">
+        <img src="{{col3.columnItems.teaser.imagePath}}" alt="{{col3.columnItems.teaser.imageAltText}}" />
+        <div class="tp-pw-megamenuteaser__header-wrapper">
+            <h2>{{col3.columnItems.teaser.title}}</h2>
+            <div class="tp-pw-megamenuteaser__description">
+                {{{col3.columnItems.teaser.description}}}
+            </div>
+        </div>
+    </div>
+    {{/if}}
 </div>    
 {{/if}}

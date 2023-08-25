@@ -4,7 +4,7 @@ import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
 import { checkActiveOverlay, isDesktopMode} from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
-const sampleJsonUpdated = require('./megaMenuSampleUpdated.json');
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
 
 class Headerv2 {
   constructor({ el }) {
@@ -43,6 +43,7 @@ class Headerv2 {
     //Mobile menu
     this.cache.$subMenu = this.root.find('.tp-pw-headerv2-mobile-secondary-navigation-menu');
     this.cache.$subMenuIcon = this.root.find('.js-submenu-mobile-icon');
+    this.cache.megaMenuPaths = [];
   }
 
   hideSearchbar = () => {
@@ -317,7 +318,7 @@ class Headerv2 {
   }
 
   bindMegaMenuLinkMobileClickEvent = () => {
-    const { $subMenu, $subMenuIcon } = this.cache;
+    const { $subMenu, $subMenuIcon, megaMenuPaths } = this.cache;
     const linksSelector = '.tp-pw-headerv2-mobile-secondary-navigation-menu > .tp-pw-anchor-container-primary > a';
 
     this.root.find(linksSelector).each(function(index) {
@@ -330,12 +331,22 @@ class Headerv2 {
         $(getMegaMenuSelector(i)).removeClass('hidden');
         setTimeout(() => {
           $(getMegaMenuSelector(i)).removeClass('is-close').addClass('is-open');
-
-          render.fn({
-            template: 'megaMenuV2Subpage',
-            data: sampleJsonUpdated,
-            target: '.tp-pw-meganenu-subpage-wrapper',
-            hidden: false
+          ajaxWrapper.getXhrObj({
+            url: megaMenuPaths[i],
+            method: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend(jqXHR) {
+              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            },
+            showLoader: true
+          }).done((data) => {
+            render.fn({
+              template: 'megaMenuV2Subpage',
+              data: data,
+              target: '.tp-pw-meganenu-subpage-wrapper',
+              hidden: false
+            });
           });
 
           // Add event on back button
@@ -393,9 +404,19 @@ class Headerv2 {
     this.bindMegaMenuLinkMobileClickEvent();
   }
 
+  buildMegaMenu = () => {
+    const { megaMenuPaths } = this.cache;
+    const allMegaMenuSelector = `.tp-pw-megamenuconfigv2`;
+    const $allMegaMenu = $(allMegaMenuSelector);
+    $allMegaMenu.each(function() {
+      megaMenuPaths.push($(this).attr('data-model-json-path'));
+    });
+  }
+
   init() {
     this.initCache();
     this.bindEvents();
+    this.buildMegaMenu();
   }
 }
 
