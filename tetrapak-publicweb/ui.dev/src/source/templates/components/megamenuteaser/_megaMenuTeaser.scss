@@ -2,7 +2,9 @@
     z-index: $zindex-p;
     position: relative;
     width: 100%;
-    margin-top: -$margin-xl;
+    @media #{$desktop} {
+        margin-top: -$margin-xl;
+    }
     height: calc(100% + 32px);
     img {
         position: relative;
@@ -14,7 +16,7 @@
 
     &__description {
         color: $color-white;
-        font-size: $font-sm;
+        font-size: $font-m-sm;
     }
 
     &__header-wrapper {
@@ -28,6 +30,9 @@
             color: $color-white;
             font-size: $font-l;
             margin-bottom: $padding-sm;
+            @media #{$mobile} {
+                font-size: $font-md;
+            }
         }
     }
 }
