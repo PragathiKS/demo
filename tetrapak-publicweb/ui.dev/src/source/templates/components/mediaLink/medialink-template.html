@@ -21,17 +21,39 @@
                         </div>
                         <div data-sly-list.child="${data.columnOneList}">
                             <div class="medialink__wrapper">
-                                <a href="${child.linkUrl}"
-                                    class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                    title="${child.linkLabel}" data-asset-name="${child.assetName}"
-                                    data-section-name="${data.columnOneTitle || data.heading}"
-                                    data-link-section="Related links and downloads_Text Hyperlink"
-                                    data-link-name="${child.linkLabel}">
-                                    <span class="tpatom-link__text sly-text">${child.linkLabel @
-                                        context='html'}</span><i class="icon icon-link"></i>
-                                </a>
+                                <sly data-sly-test="${data.showImage}">
+                                    <div class="medialink__image">
+                                        <sly data-sly-test="${data.imageAspectRatio =='1:1'}"> 
+                                            <sly data-sly-test = "${!wcmmode.edit}">
+                                                <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=medialinkType}" />
+                                            </sly>
+                                             <sly data-sly-test = "${wcmmode.edit}">
+                                                    <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
+                                             </sly>
+                                        </sly>
+                                        <sly data-sly-test="${data.imageAspectRatio =='16:9'}"> 
+                                            <sly data-sly-test = "${!wcmmode.edit}">
+                                                <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=medialinkType}" />
+                                             </sly>
+                                            <sly data-sly-test = "${wcmmode.edit}">
+                                                <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
+                                            </sly>
+                                         </sly>
+                                     </div>
+                                </sly>
+                                 <div class="medialink__content">
+                                    <a href="${child.linkUrl}"
+                                        class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                                        title="${child.linkLabel}" data-asset-name="${child.assetName}"
+                                        data-section-name="${data.columnOneTitle || data.heading}"
+                                        data-link-section="Related links and downloads_Text Hyperlink"
+                                        data-link-name="${child.linkLabel}">
+                                        <span class="tpatom-link__text sly-text">${child.linkLabel @
+                                            context='html'}</span><i class="icon icon-link"></i>
+                                    </a>
 
-                                <p>${child.linkDesc}</p>
+                                 <p>${child.linkDesc}</p>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -45,16 +67,39 @@
                         </div>
                         <div data-sly-list.child="${data.columnTwoList}">
                             <div class="medialink__wrapper">
-                                <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
-                                    class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                    title="${child.linkLabel}" data-asset-name="${child.assetName}"
-                                    data-link-section="Related links and downloads_Text Hyperlink"
-                                    data-section-name="${data.columnTwoTitle || data.heading}"
-                                    data-link-name="${child.linkLabel}">
-                                    <span class="tpatom-link__text sly-text">${child.linkLabel @
-                                        context='html'}</span><i class="icon icon-link"></i>
-                                </a>
-                                <p>${child.linkDesc @ context='html'}</p>
+                                <sly data-sly-test="${data.showImage}">
+                                    <div class="medialink__image">
+                                        <sly data-sly-test="${data.imageAspectRatio =='1:1'}"> 
+                                            <sly data-sly-test = "${!wcmmode.edit}">
+                                                <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=medialinkType}" />
+                                            </sly>
+                                             <sly data-sly-test = "${wcmmode.edit}">
+                                                    <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
+                                             </sly>
+                                        </sly>
+                                        <sly data-sly-test="${data.imageAspectRatio =='16:9'}"> 
+                                            <sly data-sly-test = "${!wcmmode.edit}">
+                                                <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=medialinkType}" />
+                                             </sly>
+                                            <sly data-sly-test = "${wcmmode.edit}">
+                                                <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
+                                            </sly>
+                                         </sly>
+                                     </div>
+                                </sly>
+                                <div class="medialink__content">
+
+                                    <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                                        class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                                        title="${child.linkLabel}" data-asset-name="${child.assetName}"
+                                        data-link-section="Related links and downloads_Text Hyperlink"
+                                        data-section-name="${data.columnTwoTitle || data.heading}"
+                                        data-link-name="${child.linkLabel}">
+                                        <span class="tpatom-link__text sly-text">${child.linkLabel @
+                                            context='html'}</span><i class="icon icon-link"></i>
+                                    </a>
+                                    <p>${child.linkDesc @ context='html'}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,16 +113,38 @@
                         </div>
                         <div data-sly-list.child="${data.columnThreeList}">
                             <div class="medialink__wrapper">
-                                <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
-                                    class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
-                                    title="${child.linkLabel}"
-                                    data-link-section="Related links and downloads_Text Hyperlink"
-                                    data-section-name="${data.columnThreeTitle || data.heading}"
-                                    data-asset-name="${child.assetName}" data-link-name="${child.linkLabel}">
-                                    <span class="tpatom-link__text sly-text">${child.linkLabel @
-                                        context='html'}</span><i class="icon icon-link"></i>
-                                </a>
-                                <p>${child.linkDesc @ context='html'}</p>
+                                                                <sly data-sly-test="${data.showImage}">
+                                    <div class="medialink__image">
+                                        <sly data-sly-test="${data.imageAspectRatio =='1:1'}"> 
+                                            <sly data-sly-test = "${!wcmmode.edit}">
+                                                <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=medialinkType}" />
+                                            </sly>
+                                             <sly data-sly-test = "${wcmmode.edit}">
+                                                    <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
+                                             </sly>
+                                        </sly>
+                                        <sly data-sly-test="${data.imageAspectRatio =='16:9'}"> 
+                                            <sly data-sly-test = "${!wcmmode.edit}">
+                                                <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=medialinkType}" />
+                                             </sly>
+                                            <sly data-sly-test = "${wcmmode.edit}">
+                                                <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
+                                            </sly>
+                                         </sly>
+                                     </div>
+                                </sly>
+                                <div class="medialink__content">
+                                    <a data-sly-test="${child.linkLabel}" href="${child.linkUrl}"
+                                        class="medialink__link tpatom-link tpatom-link--transparent js-medialink-analytics"
+                                        title="${child.linkLabel}"
+                                        data-link-section="Related links and downloads_Text Hyperlink"
+                                        data-section-name="${data.columnThreeTitle || data.heading}"
+                                        data-asset-name="${child.assetName}" data-link-name="${child.linkLabel}">
+                                        <span class="tpatom-link__text sly-text">${child.linkLabel @
+                                            context='html'}</span><i class="icon icon-link"></i>
+                                    </a>
+                                    <p>${child.linkDesc @ context='html'}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
