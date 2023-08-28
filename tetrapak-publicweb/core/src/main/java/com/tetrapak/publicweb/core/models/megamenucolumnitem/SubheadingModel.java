@@ -26,6 +26,9 @@ public class SubheadingModel {
     @ValueMapValue
     private String subheadingURL;
 
+    @ValueMapValue
+    private String subheadingOverviewText;
+
     public String getSubheading() {
         return subheading;
     }
@@ -37,5 +40,9 @@ public class SubheadingModel {
         }else{
             return LinkUtils.sanitizeLink(subheadingURL, resource);
         }
+    }
+
+    public String getSubheadingOverviewText() {
+        return subheadingOverviewText;
     }
 }
