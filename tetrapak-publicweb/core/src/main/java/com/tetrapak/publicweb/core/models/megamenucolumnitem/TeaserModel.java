@@ -20,6 +20,9 @@ public class TeaserModel {
 
     @ValueMapValue
     private String imageAltText;
+    
+    @ValueMapValue
+    private String imageLink;
 
     public String getTitle() {
         return title;
@@ -33,7 +36,11 @@ public class TeaserModel {
         return imagePath;
     }
 
-    public String getImageAltText() {
+	public String getImageAltText() {
         return imageAltText;
-    }
+    }	
+
+    public String getImageLink() {
+		return imageLink;
+	}
 }
