@@ -5,6 +5,10 @@
     @media #{$desktop} {
         margin-top: -$margin-xl;
     }
+    @media #{$mobile} {
+        margin-bottom: $margin-md;
+    }
+
     height: calc(100% + 32px);
     img {
         position: relative;
