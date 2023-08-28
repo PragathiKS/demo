@@ -17,7 +17,7 @@
     .pw-header-search-bar__container {
         border: 1px solid $color-tundora;
         border-radius: $border-radius;
-        padding: 0 $margin-xl;
+        padding: $padding-md $margin-xl;
         height: 100%;
     }
 
@@ -124,6 +124,9 @@
         width: 100vh;
         @media #{$desktop} {
             @include searchbar-overrides;
+        }
+        @media #{$mobile} {
+            width: 100%;
         }
     }
 }
@@ -298,11 +301,6 @@
         width: 100%;
         background-color: $color-white;
         z-index: $zindex-nav;
-        // @media #{$mobile} {
-        //     position: fixed;
-        //     top: 0;
-        //     z-index: $zindex-nav;
-        // }
 
         .tp-pw-headerv2-first-row {
             display: flex;

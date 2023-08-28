@@ -46,10 +46,6 @@ class Headerv2 {
     this.cache.megaMenuPaths = [];
   }
 
-  hideSearchbar = () => {
-    $('.js-pw-header-search-barv2').removeClass('show');
-  }
-
   bindSearchIconClickEvent = () => {
     const $searchBar = $('.js-pw-header-search-bar');
 
@@ -155,7 +151,7 @@ class Headerv2 {
       $(window).off('resize');
       $(window).on('resize', handleResize);
       const windowWidth = $(window).width();
-      const navWidth = $('.tp-pw-headerv2-main-navigation').width();
+      const navWidth = $('.js-tp-pw-headerv2-main-navigation').width();
       const widthDiff = windowWidth - navWidth;
       const navLinkWidths = this.cache.variables['mainNavigationLinksWidthList'];
       const navLinkLastWidthIndex = navLinkWidths.length - this.cache.variables.nOfElementsInSubmenu;
@@ -202,41 +198,56 @@ class Headerv2 {
     $subMenu.toggle(false);
 
     $subMenuIcon.on('click', () => {
-      $subMenu.toggle();
-      $subMenuIcon.hasClass('active') ? $subMenuIcon.removeClass('active') : $subMenuIcon.addClass('active');
+      this.openSubmenuEvent();
     });
+  }
+
+  openSubmenuEvent = () => {
+    const $subMenu = this.root.find('.tp-pw-headerv2-submenu');
+    const $subMenuIcon = this.root.find('.js-submenu-icon');
+    $subMenu.toggle();
+    $subMenuIcon.hasClass('active') ? $subMenuIcon.removeClass('active') : $subMenuIcon.addClass('active');
   }
 
   bindSubmenuMobileOpenEvent = () => {
     const { $subMenu, $subMenuIcon } = this.cache;
     $subMenu.toggle(false);
     $subMenuIcon.on('click', () => {
-      //Check if search menu enabled
-      if(this.cache.$elements.searchIcon.children('i').hasClass('icon-Close_pw')) {
-        const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
-        $searchBarWrapper.removeClass('show');
-        this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
-        this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
-      }
-
-      $subMenu.toggle();
-      if ($subMenuIcon.hasClass('icon-Burger_pw')) {
-        $subMenuIcon.addClass('icon-Close_pw').removeClass('icon-Burger_pw');
-        $('body').css('overflow','hidden');
-      } else {
-        $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
-        // check if other overlay is active
-        const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
-        checkActiveOverlay(activeOverlay);
-      }
+      this.openMobileMenu();
     });
+  }
+
+  openMobileMenu = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
+    //Check if search menu enabled
+    if(this.cache.$elements.searchIcon.children('i').hasClass('icon-Close_pw')) {
+      const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
+      $searchBarWrapper.removeClass('show');
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
+    }
+
+    $subMenu.toggle();
+    if ($subMenuIcon.hasClass('icon-Burger_pw')) {
+      $subMenuIcon.addClass('icon-Close_pw').removeClass('icon-Burger_pw');
+      $('body').css('overflow','hidden');
+    } else {
+      $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+      // check if other overlay is active
+      const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+      checkActiveOverlay(activeOverlay);
+    }
   }
 
   bindMarketSelectorOpenEvent = () => {
     this.root.find('.js-header__selected-lang-pw').on('click', (e) => {
-      $('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
-      this.trackLanguageSelector(e);
+      this.openMarketSelector(e);
     });
+  }
+
+  openMarketSelector = (e) => {
+    $('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
+    this.trackLanguageSelector(e);
   }
 
   trackLanguageSelector = () => {
@@ -319,7 +330,7 @@ class Headerv2 {
 
   bindMegaMenuLinkMobileClickEvent = () => {
     const { $subMenu, $subMenuIcon, megaMenuPaths } = this.cache;
-    const linksSelector = '.tp-pw-headerv2-mobile-secondary-navigation-menu > .tp-pw-anchor-container-primary > a';
+    const linksSelector = `.tp-pw-headerv2-mobile-secondary-navigation-menu > .tp-pw-anchor-container-primary > a`;
 
     this.root.find(linksSelector).each(function(index) {
       const getMegaMenuSelector = (megaMenuSelectorIndex) => `.tp-pw-megamenu-mobile-subpage-${megaMenuSelectorIndex}`;
