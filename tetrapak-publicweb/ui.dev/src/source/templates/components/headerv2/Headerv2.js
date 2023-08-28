@@ -125,6 +125,7 @@ class Headerv2 {
   }
 
   bindWindowSizeChangeEvent = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
     const handleResize = () => {
       const windowWidth = $(window).width();
       const navWidth = $('.tp-pw-headerv2-main-navigation').width();
@@ -134,8 +135,14 @@ class Headerv2 {
       const lastItemsWidth = navLinkWidths[navLinkLastWidthIndex];
       const minMargin = HEADER_MIN_MARGIN + this.cache.constants.extraMargin;
       const isLargerThanMargin = widthDiff <= minMargin;
-      const isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu &&
-        (widthDiff > lastItemsWidth + minMargin * 2);
+      const isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu && (widthDiff > lastItemsWidth + minMargin * 2);
+      //Check if submenu page opened
+      if ($subMenuIcon.hasClass('icon-Close_pw')) {
+        $subMenu.toggle(false);
+        $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+        const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+        checkActiveOverlay(activeOverlay);
+      }
 
       if (isLargerThanMargin) {
         this.shiftMainNavigationLink();
