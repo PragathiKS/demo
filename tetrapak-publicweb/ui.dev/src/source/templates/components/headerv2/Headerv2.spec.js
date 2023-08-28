@@ -130,4 +130,12 @@ describe('Headerv2', function () {
     expect($('.js-megamenu-0').hasClass('hidden')).to.be.true;
     done();
   });
+
+  it('should close mega menu on window resize', function (done) {
+    $('.submenu-mobile-icon').addClass('icon-Close_pw').removeClass('icon-Burger_pw');;
+    $(window).trigger('resize');
+    expect($('.submenu-mobile-icon').hasClass('icon-Burger_pw')).to.be.true;
+    done();
+  });
+
 });
