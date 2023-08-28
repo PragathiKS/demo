@@ -138,7 +138,7 @@
             display: none;
         }
     }
-    &__cta{
+    &__cta {
         display: none;
     }
 }
@@ -156,7 +156,6 @@
         padding-right: $padding-l;
         transition: all $anim-speed-quick $anim-ease;
         animation: fadeIn 5s;
-        -webkit-animation: fadeIn 5s;
         @media #{$mobile} {
             display: none;
         }
@@ -165,16 +164,13 @@
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
-        @-webkit-keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+    
     }
 }
        
 .pw-anchor-menu-mobile {
     @include padding($padding-md $padding-l);
-    @media #{$desktop} {
+    @media #{$desktop}{
         display: none;
     }
     border-top: 1px solid $color-mercury;
