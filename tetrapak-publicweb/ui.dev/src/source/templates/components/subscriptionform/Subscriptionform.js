@@ -66,6 +66,7 @@ class Subscriptionform {
   }
 
   submitForm = () => {
+    const $this = this;
     const servletPath = this.cache.businessformapi.data('sf-api-servlet');
     const pardotURL = this.cache.businessformapi.data('sf-pardot-url');
     const chinapardotURL = this.cache.businessformapi.data('sf-china-pardot-url');
@@ -101,7 +102,8 @@ class Subscriptionform {
         'Country/Location':dataObj.country,
         'Marketing Consent': dataObj.marketingConsent ? 'Checked':'Unchecked'
       }, 'formcomplete', 'formload', 
-      []
+      [],
+      $this.getFormHandler()
     );
 
     // IF UTM fields in URL
@@ -153,8 +155,7 @@ class Subscriptionform {
       $('.serviceError').show();
     });
   }
-
-
+  
   bindEvents() {
     const { requestPayload, $submitBtn, $dropItem, $thankYouCTA, $componentName } = this.cache;
     this.root.on('click', '.js-close-btn', this.hidePopUp)
@@ -204,7 +205,7 @@ class Subscriptionform {
         tab.find('.form-group, .formfield').removeClass('field-error');
         self.submitForm();
       }else {
-        subscriptionAnalytics(self.cache.mainHead, {}, 'formerror', 'formclick', errObj);
+        subscriptionAnalytics(self.cache.mainHead, {}, 'formerror', 'formclick', errObj, self.getFormHandler());
       }
     });
 
@@ -233,13 +234,29 @@ class Subscriptionform {
     const { $modal } = $this.cache;
     this.resetModal();
     $modal.modal();
-    subscriptionAnalytics(this.cache.mainHead, {}, 'formstart', 'formload', []);
+    subscriptionAnalytics(this.cache.mainHead, {}, 'formstart', 'formload', [], $this.getFormHandler());
   }
 
   hidePopUp = () => {
     const $this = this;
     $this.root.modal('hide');
     this.resetModal();
+  }
+
+  getFormHandler() {
+    const { requestPayload, businessformapi } = this.cache;
+    const pardotURL = businessformapi.data('sf-pardot-url');
+    const chinapardotURL = businessformapi.data('sf-china-pardot-url');
+    const countryCode = businessformapi.data('sf-countrycode');
+    const countryData = {};
+    if(requestPayload.country === 'China' || countryCode ==='cn') {
+      countryData['isChina'] = true;
+      countryData['formHandler'] = chinapardotURL;
+    } else {
+      countryData['isChina'] = false;
+      countryData['formHandler'] = pardotURL;
+    }
+    return countryData;
   }
 
   resetModal = () => {
