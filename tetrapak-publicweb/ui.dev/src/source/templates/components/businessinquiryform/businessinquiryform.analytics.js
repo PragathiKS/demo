@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const makeLoad = function (label, formName) {
+export const makeLoad = function (label, formName, countryData) {
   const formObj = {
     formName: formName,
     formStep: 'Step 1',
@@ -9,6 +9,11 @@ export const makeLoad = function (label, formName) {
     areaofInterest: '',
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: 'formstart',
     event: 'Hard Conversion Form'
@@ -16,7 +21,7 @@ export const makeLoad = function (label, formName) {
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
-export const changeStepNext = function (formName, formStep, formType, areaofInterest, dataObj) {
+export const changeStepNext = function (formName, formStep, formType, areaofInterest, dataObj, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
@@ -24,6 +29,11 @@ export const changeStepNext = function (formName, formStep, formType, areaofInte
     areaofInterest: areaofInterest,
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: `${formStep} Next`,
     event: 'Hard Conversion Form'
@@ -39,7 +49,7 @@ export const changeStepNext = function (formName, formStep, formType, areaofInte
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const changeStepPrev = function (formName, formStep, formType, areaofInterest) {
+export const changeStepPrev = function (formName, formStep, formType, areaofInterest, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
@@ -47,6 +57,11 @@ export const changeStepPrev = function (formName, formStep, formType, areaofInte
     areaofInterest: areaofInterest,
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: `${formStep} previous`,
     event: 'Hard Conversion Form'
@@ -54,7 +69,7 @@ export const changeStepPrev = function (formName, formStep, formType, areaofInte
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const changeStepError = function (formName, formStep, formType, areaofInterest, dataObj, errorObj={}) {
+export const changeStepError = function (formName, formStep, formType, areaofInterest, dataObj, errorObj={}, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
@@ -63,6 +78,11 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
     formField: [],
     formError:errorObj
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: 'formerror',
     event: 'Hard Conversion Form'
@@ -78,7 +98,7 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const loadThankYou = function (formName, formStep, areaofInterest, dataObj) {
+export const loadThankYou = function (formName, formStep, areaofInterest, dataObj, countryData) {
   const formTitle = $('.heading-summary h4').text().trim();
   const formObj = {
     formName: formName,
@@ -87,6 +107,11 @@ export const loadThankYou = function (formName, formStep, areaofInterest, dataOb
     areaofInterest: areaofInterest,
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: 'formcomplete',
     event: 'Hard Conversion Form'
