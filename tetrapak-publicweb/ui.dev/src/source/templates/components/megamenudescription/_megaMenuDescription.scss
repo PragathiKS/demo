@@ -1,9 +1,10 @@
 .tp-pw-megamenudescription {
     color: $color-tundora;
-    margin: 0 $padding-xxxl $padding-md;
+    margin: 0 $padding-md $padding-md;
     font-size: $font-sm;
-    @media #{$mobile} {
-        margin: 0 $padding-md $padding-md;
-        line-height: $font-m-md;
+    font-weight: 500;
+    line-height: $font-m-md;
+    @media #{$desktop} {
+        margin: 0 $padding-xxxl $padding-md;
     }
 }

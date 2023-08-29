@@ -1,23 +1,25 @@
 .tp-pw-megamenuheading {
     h2 {
-        color: $color-tundora;
-        margin: 0 $padding-xxxl $padding-md;
-        font-size: $font-l;
-        @media #{$mobile} {
-            color: $color-congress-blue;
-            margin: 0 $padding-md $padding-sm;
-            font-size: $font-md;
-            line-height: $font-l;
+        color: $color-congress-blue;
+        margin: 0 $padding-md $padding-sm;
+        font-size: $font-md;
+        line-height: $font-l;
+        @media #{$desktop} {
+            color: $color-tundora;
+            margin: 0 $padding-xxxl $padding-md;
+            font-size: $font-l;
         }
     }
 
     a {
         h2 {
-            color: $color-congress-blue;
-            @media #{$mobile} {
-                margin: 0 $padding-md $padding-sm;
-                font-size: $font-md;
-                line-height: $font-l;
+            margin: 0 $padding-md $padding-sm;
+            font-size: $font-md;
+            line-height: $font-l;
+            @media #{$desktop} {
+                color: $color-congress-blue;
+                margin: 0 $padding-xxxl $padding-md;
+                font-size: $font-l;
             }
         }
     }
