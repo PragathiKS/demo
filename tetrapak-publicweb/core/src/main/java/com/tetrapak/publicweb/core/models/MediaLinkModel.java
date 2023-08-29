@@ -40,7 +40,7 @@ public class MediaLinkModel {
     private Boolean showImage;
     
     /** The Image aspect Ratio. */
-    @ValueMapValue @Default(values = "1:1")
+    @ValueMapValue @Default(values = "medialink1")
     private String imageAspectRatio;
     
     /** The anchor id. */

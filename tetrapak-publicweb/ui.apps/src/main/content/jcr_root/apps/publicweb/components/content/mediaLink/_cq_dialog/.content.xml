@@ -46,12 +46,12 @@
                   <firstColumn
                       jcr:primaryType="nt:unstructured"
                       text="1:1"
-                      value="1:1"
+                      value="medialink1"
                       selected = "true"/>
                   <secondColumn
                       jcr:primaryType="nt:unstructured"
                       text="16:9"
-                      value="0:0:16:9"/>
+                      value="medialink2"/>
                 </items>
               </imageAspectRatio>
             </items>
