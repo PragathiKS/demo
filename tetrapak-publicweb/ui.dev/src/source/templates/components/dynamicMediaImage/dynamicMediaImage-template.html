@@ -1,16 +1,18 @@
-<template
-        data-sly-template.dynamicMediaImage_template="${@ imagePath,altText,imageCrop,dheight,dwidth,mheightl,mheightp,mwidthp,imageCrop,componentName,className,imgBackground,isBanner,imageRatio} ">
-    <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel'
+<template data-sly-template.dynamicMediaImage_template="${@ imagePath,altText,imageCrop,dheight,dwidth,mheightl,mheightp,mwidthp,imageCrop,componentName,className,imgBackground,isBanner,imageRatio} ">
+  <sly data-sly-use.dynamicImageModel="${'com.tetrapak.publicweb.core.models.DynamicImageModel'
                                             @ imagePath=imagePath, altText=altText,
     										dheight=dheight,dwidth=dwidth,mheightl=mheightl,
                                             mheightp=mheightp,mwidthp=mwidthp,imageCrop=imageCrop,componentName=componentName,imgBackground=imgBackground}">
-    </sly>
+  </sly>
 
-    <sly data-sly-test.imgRatio="${isBanner ? imageRatio : '0 0 16 9'}"/>
-    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${imgRatio}'%3E%3C/svg%3E" data-src="${dynamicImageModel.desktopUrl}" class="img-responsive js-dynamic-media ${className}"
-         itemprop="image" alt="${dynamicImageModel.altText}"
-         data-src_desktop="${dynamicImageModel.desktopUrl}"
-         data-src_desktopL="${dynamicImageModel.desktopLargeUrl}"
-         data-src_mobileP="${dynamicImageModel.mobilePortraitUrl}"
-         data-src_mobileL="${dynamicImageModel.mobileLandscapeUrl}"/>
+  <sly data-sly-test.imgRatio="${isBanner ? imageRatio : '0 0 16 9'}" />
+
+  <sly data-sly-test.imgRatio="${componentName == 'medialink1' ? '0 0 1 1' : '0 0 16 9 '}" />
+
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${imgRatio}'%3E%3C/svg%3E" data-src="${dynamicImageModel.desktopUrl}" class="img-responsive js-dynamic-media ${className}"
+       itemprop="image" alt="${dynamicImageModel.altText}"
+       data-src_desktop="${dynamicImageModel.desktopUrl}"
+       data-src_desktopL="${dynamicImageModel.desktopLargeUrl}"
+       data-src_mobileP="${dynamicImageModel.mobilePortraitUrl}"
+       data-src_mobileL="${dynamicImageModel.mobileLandscapeUrl}" />
 </template>
