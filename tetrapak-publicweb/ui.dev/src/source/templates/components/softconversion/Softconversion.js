@@ -171,7 +171,7 @@ class Softconversion {
 
     // do the analytics call for not me
     const $formName = $this.cache.$preFix + 'Welcome back';
-    changeStepNext($formName, { 'return Type': $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    changeStepNext($formName, { 'return Type': $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent, $this.getFormHandler());
 
     // reset the input values for all fields
     this.cache.inputFields.each(function(){
@@ -270,10 +270,11 @@ class Softconversion {
 
     // do the analytics call for yes its me
     const $formName = $this.cache.$preFix + 'Welcome back';
-    changeStepNext($formName, { 'return Type': $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    changeStepNext($formName, { 'return Type': $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent, $this.getFormHandler());
   }
 
   submitForm = () => {
+    const $this = this;
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
     const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url')?.replace(/^https?:\/\//, '');
     const apiPayload =  {};
@@ -377,7 +378,7 @@ class Softconversion {
     isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
 
     // Analytics Tracking
-    loadDownloadReady(this.cache.$preFix+this.mainHeading, dataObj, this.cache.$parentComponent);
+    loadDownloadReady(this.cache.$preFix+this.mainHeading, dataObj, this.cache.$parentComponent, $this.getFormHandler());
   }
 
   getPageURL() {
@@ -514,7 +515,7 @@ class Softconversion {
       if (isvalid) {
         self.submitForm();
       } else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`) {
-        changeStepError(self.cache.$preFix+self.mainHeading, 'Step 1', self.step1heading, {}, $parentComponent, errObj);
+        changeStepError(self.cache.$preFix+self.mainHeading, 'Step 1', self.step1heading, {}, $parentComponent, errObj, self.getFormHandler());
       }
     });
 
@@ -541,14 +542,14 @@ class Softconversion {
     const $formName = $this.cache.$preFix+$this.mainHeading;
     const visitorMail = storageUtil.getCookie('visitor-mail');
     if(visitorMail) {
-      makeLoad('welcome back', $formName, this.cache.$parentComponent, 'welcome back:formstart');
+      makeLoad('welcome back', $formName, this.cache.$parentComponent, 'welcome back:formstart', $this.getFormHandler());
       $(`#visitor-email-${this.cache.$componentName}`).text(visitorMail).css('font-weight', 900);
       $(`.heading_${this.cache.$componentName}`, this.root).text('');
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).addClass('active');
       isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
-    }else{
-      makeLoad($this.step1heading, $formName, this.cache.$parentComponent, 'formstart');
+    } else {
+      makeLoad($this.step1heading, $formName, this.cache.$parentComponent, 'formstart', $this.getFormHandler());
     }
 
     const { $modal } = $this.cache;
@@ -558,6 +559,24 @@ class Softconversion {
   hidePopUp = () => {
     const $this = this;
     $this.root.modal('hide');
+  }
+
+  getFormHandler() {
+    const {softconversionapi, requestPayload, $componentName } = this.cache;
+
+    const countryCookie = storageUtil.getCookie('countryValue');
+    const site = requestPayload[`site_country_${$componentName}`];
+    const pardotUrl = softconversionapi.data('softconversion-pardot-url');
+    const chinapardotUrl = softconversionapi.data('softconversion-china-pardot-url');
+    const countryData = {};
+    if(site ==='cn' || countryCookie ==='China') {
+      countryData['isChina'] = true;
+      countryData['formHandler'] = chinapardotUrl;
+    } else {
+      countryData['isChina'] = false;
+      countryData['formHandler'] = pardotUrl;
+    }
+    return countryData;
   }
 
   init() {

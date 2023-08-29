@@ -8,7 +8,7 @@ class Anchorv2 {
   }
   cache = {};
   initCache() {
-    this.cache.$anchorLink = this.root.find('a');
+    this.cache.$anchorLink = this.root.find('.anchorv2_link');
     this.cache.$anchorMenu = document.getElementsByClassName('pw-anchor-menu');
     this.cache.$anchorMenuTitleContainer = document.getElementsByClassName('pw-anchor-menu-title-container');
     this.cache.$anchorMenuTitle = document.getElementById('pw-anchor-menu-title');
