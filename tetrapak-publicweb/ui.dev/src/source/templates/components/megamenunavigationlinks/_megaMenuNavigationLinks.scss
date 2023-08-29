@@ -1,23 +1,23 @@
 .tp-pw-megamenunavigationlinks {
-    padding: 0 $padding-xxxl;
+    padding: $padding-zero $padding-xxxl;
     @media #{$mobile} {
-        padding: 0 $padding-md;
+        padding: $padding-zero $padding-md;
     }
     &__item {
         margin-bottom: $padding-md;
         @media #{$mobile} {
-            margin-bottom: 0;
-            padding: $padding-md 0 0;
+            margin-bottom: $padding-zero;
+            padding: $padding-md $padding-zero $padding-zero;
             &.nav-link-bottom-border {
                 padding-bottom: $padding-md;
                 border-bottom: 1px solid $color-mercury;
             }
         }
         &:last-of-type {
-            margin-bottom: 0;
+            margin-bottom: $padding-zero;
             @media #{$mobile} {
                 margin-bottom: $padding-md;
-                border-bottom: 0;
+                border-bottom: $padding-zero;
             }
         }
         a {
@@ -34,7 +34,7 @@
         }
         p {
             color: $color-tundora;
-            margin: 0;
+            margin: $padding-zero;
             font-size: $font-sm;
             font-weight: 500;
             line-height: $font-m-md;
