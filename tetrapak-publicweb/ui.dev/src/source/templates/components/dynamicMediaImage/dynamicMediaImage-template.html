@@ -6,9 +6,6 @@
   </sly>
 
   <sly data-sly-test.imgRatio="${isBanner ? imageRatio : '0 0 16 9'}" />
-
-  <sly data-sly-test.imgRatio="${componentName == 'medialink1' ? '0 0 1 1' : '0 0 16 9 '}" />
-
   <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='${imgRatio}'%3E%3C/svg%3E" data-src="${dynamicImageModel.desktopUrl}" class="img-responsive js-dynamic-media ${className}"
        itemprop="image" alt="${dynamicImageModel.altText}"
        data-src_desktop="${dynamicImageModel.desktopUrl}"
