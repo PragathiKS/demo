@@ -2,6 +2,7 @@ package com.tetrapak.supplierportal.core.utils;
 
 import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.supplierportal.core.services.APIGEEService;
 import com.tetrapak.supplierportal.core.services.CookieDataDomainScriptService;
 import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 import org.apache.commons.lang3.StringUtils;
@@ -255,6 +256,35 @@ public final class GlobalUtil {
         }
         valueMap = userResource.getValueMap();
         return valueMap;
+    }
+    
+    /**
+     * Method to get a particular endpoint e.g. order-details-parts
+     *
+     * @param apigeeService API GEE Service
+     * @param prefix        String prefix
+     * @return String value
+     */
+    public static String getSelectedApiMapping(APIGEEService apigeeService, String prefix) {
+        String[] mappings = getApiMappings(apigeeService);
+        String mappingValue = StringUtils.EMPTY;
+        for (String mapping : mappings) {
+            if (prefix.equalsIgnoreCase(StringUtils.substringBefore(mapping, ":"))) {
+                mappingValue = StringUtils.substringAfter(mapping, ":");
+                break;
+            }
+        }
+        return mappingValue;
+    }
+
+    /**
+     * Method to get API Mappings.
+     *
+     * @param apigeeService API GEE Service
+     * @return String array
+     */
+    public static String[] getApiMappings(APIGEEService apigeeService) {
+        return null != apigeeService ? apigeeService.getApiMappings() : null;
     }
 
 }

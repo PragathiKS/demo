@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="sling:OsgiConfig"
+          apigeeServiceUrl="https://api.tetrapak.com"
+          apigeeClientID=""
+          apigeeClientSecret=""
+          apiMappings="[token-generator:bin/supplierportal/token-generator,auth-token:/oauth2/v2/token,sp-filters:/supplierpayments/filters,sp-invoices:/supplierpayments/invoices]"/>
