@@ -24,7 +24,7 @@
 			"heading": "Heading",
 			"headingDesc": "headingDesc",
 			"showImage": "true",
-			"imageAspectRatio": "medialink1",
+			"imageAspectRatio": "mediaLink",
 			"columnTwoTitle": "title 2",
 			"columnTwoDesc": "columnTwoDesc",
 			"jcr:lastModified": "Mon Apr 20 2020 18:16:31 GMT+0530",
