@@ -52,7 +52,7 @@ public class MediaLinkModelTest {
         assertEquals("Heading", model.getHeading());
         assertEquals("headingDesc", model.getHeadingDesc());
         assertEquals(true, model.getShowImage());
-        assertEquals("medialink1", model.getImageAspectRatio());
+        assertEquals("mediaLink", model.getImageAspectRatio());
         assertEquals("mediaLink01", model.getAnchorId());
         assertEquals("Anchor  title", model.getAnchorTitle());
         assertEquals("grayscale-white", model.getPwTheme());

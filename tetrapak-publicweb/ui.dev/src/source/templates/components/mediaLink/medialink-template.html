@@ -23,7 +23,7 @@
                             <div class="medialink__wrapper">
                                 <sly data-sly-test="${data.showImage}">
                                     <div class="medialink__image">
-                                        <sly data-sly-test="${data.imageAspectRatio =='medialink1'}"> 
+                                        <sly data-sly-test="${data.imageAspectRatio =='mediaLink'}"> 
                                             <sly data-sly-test = "${!wcmmode.edit}">
                                                 <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=data.imageAspectRatio, className='img-responsive', isBanner=true, imageRatio='0 0 1 1'}" />
                                             </sly>
@@ -31,7 +31,7 @@
                                                     <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
                                              </sly>
                                         </sly>
-                                        <sly data-sly-test="${data.imageAspectRatio =='medialink2'}"> 
+                                        <sly data-sly-test="${data.imageAspectRatio =='mediaLink-wide'}"> 
                                             <sly data-sly-test = "${!wcmmode.edit}">
                                                 <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=data.imageAspectRatio, className='img-responsive', isBanner=true, imageRatio='0 0 16 9'}" />
                                              </sly>
@@ -69,7 +69,7 @@
                             <div class="medialink__wrapper">
                                 <sly data-sly-test="${data.showImage}">
                                     <div class="medialink__image">
-                                        <sly data-sly-test="${data.imageAspectRatio =='medialink1'}"> 
+                                        <sly data-sly-test="${data.imageAspectRatio =='mediaLink'}"> 
                                             <sly data-sly-test = "${!wcmmode.edit}">
                                                 <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=data.imageAspectRatio, className='img-responsive', isBanner=true, imageRatio='0 0 1 1'}" />
                                             </sly>
@@ -77,7 +77,7 @@
                                                     <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
                                              </sly>
                                         </sly>
-                                        <sly data-sly-test="${data.imageAspectRatio =='medialink2'}"> 
+                                        <sly data-sly-test="${data.imageAspectRatio =='mediaLink-wide'}"> 
                                             <sly data-sly-test = "${!wcmmode.edit}">
                                                 <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=data.imageAspectRatio, className='img-responsive', isBanner=true, imageRatio='0 0 16 9'}" />
                                              </sly>
@@ -115,7 +115,7 @@
                             <div class="medialink__wrapper">
                                                                 <sly data-sly-test="${data.showImage}">
                                     <div class="medialink__image">
-                                        <sly data-sly-test="${data.imageAspectRatio =='medialink1'}"> 
+                                        <sly data-sly-test="${data.imageAspectRatio =='mediaLink'}"> 
                                             <sly data-sly-test = "${!wcmmode.edit}">
                                                 <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=data.imageAspectRatio, className='img-responsive', isBanner=true, imageRatio='0 0 1 1'}" />
                                             </sly>
@@ -123,7 +123,7 @@
                                                     <img data-sly-test = "${child.fileReference}" alt="${child.alt}" src="${child.fileReference}" class="image img-responsive" />
                                              </sly>
                                         </sly>
-                                        <sly data-sly-test="${data.imageAspectRatio =='medialink2'}"> 
+                                        <sly data-sly-test="${data.imageAspectRatio =='mediaLink-wide'}"> 
                                             <sly data-sly-test = "${!wcmmode.edit}">
                                                 <sly data-sly-test = "${child.fileReference}" data-sly-use.dynamicMediaImage="/apps/publicweb/components/content/dynamicMediaImage/dynamicMediaImage-template.html" data-sly-call="${dynamicMediaImage.dynamicMediaImage_template @imagePath=child.fileReference, altText=child.alt, componentName=data.imageAspectRatio, className='img-responsive', isBanner=true, imageRatio='0 0 16 9'}" />
                                              </sly>
