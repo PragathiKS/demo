@@ -6,6 +6,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.tetrapak.publicweb.core.constants.PWConstants;
+import org.apache.sling.api.resource.Resource;
 
 /**
  * The Class LinkUtils.
@@ -34,6 +35,19 @@ public class LinkUtils extends WCMUsePojo {
                 && !link.endsWith(".htm")) {
             if (GlobalUtil.isPublish()) {
                 return request.getResourceResolver().map(link);
+            }
+            return link + ".html";
+        }
+        return link;
+    }
+
+    public static String sanitizeLink(final String link, final Resource resource) {
+        if (StringUtils.isBlank(link)) {
+            return "#";
+        } else if (link.startsWith("/content/") && !link.startsWith("/content/dam/") && !link.endsWith(".html")
+                && !link.endsWith(".htm")) {
+            if (GlobalUtil.isPublish()) {
+                return resource.getResourceResolver().map(link);
             }
             return link + ".html";
         }

@@ -2,8 +2,9 @@ import $ from 'jquery';
 import 'bootstrap';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 import { HEADER_MIN_MARGIN } from './Headerv2.constants';
-import { isMobile } from '../../../scripts/common/common';
-
+import { checkActiveOverlay, isDesktopMode} from '../../../scripts/common/common';
+import { render } from '../../../scripts/utils/render';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
 
 class Headerv2 {
   constructor({ el }) {
@@ -36,10 +37,13 @@ class Headerv2 {
         'searchIcon': this.root.find('.tp-pw-headerv2-search-box-toggle')
       }
     };
-  }
-
-  hideSearchbar = () => {
-    $('.js-pw-header-search-barv2').removeClass('show');
+    this.cache.$clickMenuLink = this.root.find('.js-click-menu-link');
+    this.cache.$backButton = this.root.find('.tp-pw-headerv2-back-row-back-button');
+    this.cache.$closeButton = this.root.find('.tp-pw-headerv2-back-row-close-button');
+    //Mobile menu
+    this.cache.$subMenu = this.root.find('.tp-pw-headerv2-mobile-secondary-navigation-menu');
+    this.cache.$subMenuIcon = this.root.find('.js-submenu-mobile-icon');
+    this.cache.megaMenuPaths = [];
   }
 
   bindSearchIconClickEvent = () => {
@@ -50,14 +54,45 @@ class Headerv2 {
   }
 
   searchIconClick = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
     const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
+    //Check if submenu page opened
+    if ($subMenuIcon.hasClass('icon-Close_pw')) {
+      $subMenu.toggle(false);
+      $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+      const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+      checkActiveOverlay(activeOverlay);
+    }
 
-    if ($searchBarWrapper.hasClass('show')) {
-      $searchBarWrapper.removeClass('show');
-    } else {
+    if (!isDesktopMode) {
+      if ($searchBarWrapper.hasClass('show')) {
+        $searchBarWrapper.removeClass('show');
+      } else {
+        $('.js-search-bar-input').val('');
+        $searchBarWrapper.addClass('show');
+        $('.search-bar-input').trigger('focus');
+
+        const dataObj = {
+          linkType: 'internal',
+          linkSection: 'Hyperlink click',
+          linkParentTitle: '',
+          linkName: 'Search'
+        };
+        const eventObj = {
+          eventType: 'linkClick',
+          event: 'Search'
+        };
+
+        trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
+      }
+    }
+    else if (this.cache.$elements.searchIcon.children('i').hasClass('icon-Search_pw')) {
+      this.cache.$elements.searchIcon.children('i').removeClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Close_pw');
       $('.js-search-bar-input').val('');
       $searchBarWrapper.addClass('show');
       $('.search-bar-input').trigger('focus');
+      $('body').css('overflow','hidden');
 
       const dataObj = {
         linkType: 'internal',
@@ -72,6 +107,13 @@ class Headerv2 {
 
       trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
     }
+    else {
+      //Close search
+      $searchBarWrapper.removeClass('show');
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
+      $('body').css('overflow','auto');
+    }
   }
 
   getMainNavigationWidth = () => this.root.find('.tp-pw-headerv2-main-navigation').width();
@@ -83,6 +125,7 @@ class Headerv2 {
   }
 
   bindWindowSizeChangeEvent = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
     const handleResize = () => {
       const windowWidth = $(window).width();
       const navWidth = $('.tp-pw-headerv2-main-navigation').width();
@@ -92,8 +135,14 @@ class Headerv2 {
       const lastItemsWidth = navLinkWidths[navLinkLastWidthIndex];
       const minMargin = HEADER_MIN_MARGIN + this.cache.constants.extraMargin;
       const isLargerThanMargin = widthDiff <= minMargin;
-      const isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu &&
-        (widthDiff > lastItemsWidth + minMargin * 2);
+      const isLargerThanLastItemWithMargin = this.cache.variables.nOfElementsInSubmenu && (widthDiff > lastItemsWidth + minMargin * 2);
+      //Check if submenu page opened
+      if ($subMenuIcon.hasClass('icon-Close_pw')) {
+        $subMenu.toggle(false);
+        $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+        const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+        checkActiveOverlay(activeOverlay);
+      }
 
       if (isLargerThanMargin) {
         this.shiftMainNavigationLink();
@@ -109,7 +158,7 @@ class Headerv2 {
       $(window).off('resize');
       $(window).on('resize', handleResize);
       const windowWidth = $(window).width();
-      const navWidth = $('.tp-pw-headerv2-main-navigation').width();
+      const navWidth = $('.js-tp-pw-headerv2-main-navigation').width();
       const widthDiff = windowWidth - navWidth;
       const navLinkWidths = this.cache.variables['mainNavigationLinksWidthList'];
       const navLinkLastWidthIndex = navLinkWidths.length - this.cache.variables.nOfElementsInSubmenu;
@@ -156,36 +205,56 @@ class Headerv2 {
     $subMenu.toggle(false);
 
     $subMenuIcon.on('click', () => {
-      $subMenu.toggle();
-      $subMenuIcon.hasClass('active') ? $subMenuIcon.removeClass('active') : $subMenuIcon.addClass('active');
+      this.openSubmenuEvent();
     });
   }
 
-  bindSubmenuMobileOpenEvent = () => {
-    const $subMenu = this.root.find('.tp-pw-headerv2-mobile-secondary-navigation-menu');
-    const $subMenuIcon = this.root.find('.js-submenu-mobile-icon');
+  openSubmenuEvent = () => {
+    const $subMenu = this.root.find('.tp-pw-headerv2-submenu');
+    const $subMenuIcon = this.root.find('.js-submenu-icon');
+    $subMenu.toggle();
+    $subMenuIcon.hasClass('active') ? $subMenuIcon.removeClass('active') : $subMenuIcon.addClass('active');
+  }
 
-    if (isMobile()) {
-      $subMenu.toggle(true);
-    } else {
-      $subMenu.toggle(false);
+  bindSubmenuMobileOpenEvent = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
+    $subMenu.toggle(false);
+    $subMenuIcon.on('click', () => {
+      this.openMobileMenu();
+    });
+  }
+
+  openMobileMenu = () => {
+    const { $subMenu, $subMenuIcon } = this.cache;
+    //Check if search menu enabled
+    if(this.cache.$elements.searchIcon.children('i').hasClass('icon-Close_pw')) {
+      const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
+      $searchBarWrapper.removeClass('show');
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
     }
 
-    $subMenuIcon.on('click', () => {
-      $subMenu.toggle();
-      if ($subMenuIcon.hasClass('icon-Burger')) {
-        $subMenuIcon.addClass('icon-Close').removeClass('icon-Burger');
-      } else {
-        $subMenuIcon.addClass('icon-Burger').removeClass('icon-Close');
-      }
-    });
+    $subMenu.toggle();
+    if ($subMenuIcon.hasClass('icon-Burger_pw')) {
+      $subMenuIcon.addClass('icon-Close_pw').removeClass('icon-Burger_pw');
+      $('body').css('overflow','hidden');
+    } else {
+      $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+      // check if other overlay is active
+      const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+      checkActiveOverlay(activeOverlay);
+    }
   }
 
   bindMarketSelectorOpenEvent = () => {
     this.root.find('.js-header__selected-lang-pw').on('click', (e) => {
-      $('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
-      this.trackLanguageSelector(e);
+      this.openMarketSelector(e);
     });
+  }
+
+  openMarketSelector = (e) => {
+    $('.js-lang-modal').trigger('showlanuagepreferencepopup-pw');
+    this.trackLanguageSelector(e);
   }
 
   trackLanguageSelector = () => {
@@ -268,6 +337,82 @@ class Headerv2 {
     this.cache.$elements.backdrop.css('top', headerHeight);
   }
 
+  bindMegaMenuLinkMobileClickEvent = () => {
+    const { $subMenu, $subMenuIcon, megaMenuPaths } = this.cache;
+    const linksSelector = `.tp-pw-headerv2-mobile-secondary-navigation-menu > .tp-pw-anchor-container-primary > a`;
+
+    this.root.find(linksSelector).each(function(index) {
+      const getMegaMenuSelector = (megaMenuSelectorIndex) => `.tp-pw-megamenu-mobile-subpage-${megaMenuSelectorIndex}`;
+      const $link = $(this);
+      const allMegaMenuSelector = `.tp-pw-headerv2-megamenu-mobile`;
+      const $allMegaMenu = $(allMegaMenuSelector);
+
+      const showMegaMenu = (i=index) => {
+        $(getMegaMenuSelector(i)).removeClass('hidden');
+        setTimeout(() => {
+          $(getMegaMenuSelector(i)).removeClass('is-close').addClass('is-open');
+          ajaxWrapper.getXhrObj({
+            url: megaMenuPaths[i],
+            method: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            beforeSend(jqXHR) {
+              jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            },
+            showLoader: true
+          }).done((data) => {
+            render.fn({
+              template: 'megaMenuV2Subpage',
+              data: data,
+              target: '.tp-pw-meganenu-subpage-wrapper',
+              hidden: false
+            });
+          });
+
+          // Add event on back button
+          $('.tp-pw-headerv2-megamenu-mobile.is-open > .tp-pw-headerv2-back-row > .tp-pw-headerv2-back-row-back-button').on('click', function() {
+            $('.tp-pw-headerv2-megamenu-mobile').removeClass('is-open').addClass('is-close');
+            setTimeout(() => {
+              $('.tp-pw-headerv2-megamenu-mobile').addClass('hidden');
+            }, 150);
+          });
+          // Close mega menu
+          $('.tp-pw-headerv2-megamenu-mobile.is-open > .tp-pw-headerv2-back-row > .tp-pw-headerv2-back-row-close-button').on('click', function() {
+            $('.tp-pw-headerv2-megamenu-mobile').removeClass('is-open').addClass('is-close');
+            setTimeout(() => {
+              $('.tp-pw-headerv2-megamenu-mobile').addClass('hidden');
+              $subMenu.toggle(false);
+              $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+              // check if other overlay is active
+              const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
+              checkActiveOverlay(activeOverlay);
+            }, 50);
+          });
+        }, 20);
+      };
+
+      const hideMegaMenu = (i=index) => {
+        $(getMegaMenuSelector(i)).removeClass('is-open').addClass('hidden is-close');
+      };
+
+      const hideOtherMegaMenus = (hideAll=false) => {
+        $allMegaMenu.each(function(megaMenuIndex) {
+          if (hideAll) {
+            hideMegaMenu(megaMenuIndex);
+          } else if (megaMenuIndex !== index) {
+            hideMegaMenu(megaMenuIndex);
+          }
+        });
+      };
+
+      $link.on('click', () => {
+        hideOtherMegaMenus();
+        showMegaMenu();
+      });
+
+    });
+  }
+
   bindEvents = () => {
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
@@ -276,11 +421,22 @@ class Headerv2 {
     this.bindMarketSelectorOpenEvent();
     this.setBackdropPosition();
     this.bindSearchIconClickEvent();
+    this.bindMegaMenuLinkMobileClickEvent();
+  }
+
+  buildMegaMenu = () => {
+    const { megaMenuPaths } = this.cache;
+    const allMegaMenuSelector = `.tp-pw-megamenuconfigv2`;
+    const $allMegaMenu = $(allMegaMenuSelector);
+    $allMegaMenu.each(function() {
+      megaMenuPaths.push($(this).attr('data-model-json-path'));
+    });
   }
 
   init() {
     this.initCache();
     this.bindEvents();
+    this.buildMegaMenu();
   }
 }
 
