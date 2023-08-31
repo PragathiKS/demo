@@ -13,6 +13,7 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.Designate;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-@Component(immediate = true, service = RebuildingKitsDetailsService.class)
+@Component(immediate = true, service = RebuildingKitsDetailsService.class, configurationPolicy = ConfigurationPolicy.REQUIRE)
 @Designate(ocd = RebuildingKitsDetailsConfig.class)
 public class RebuildingKitsDetailsServiceImpl implements RebuildingKitsDetailsService {
 

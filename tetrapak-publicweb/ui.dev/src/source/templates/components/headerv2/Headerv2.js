@@ -220,12 +220,14 @@ class Headerv2 {
         $(getMegaMenuSelector(i)).removeClass('hidden');
         $('.tp-pw-headerv2-searchbar-wrapper').removeClass('show');
         $backdrop.removeClass('hidden');
+        $('body').addClass('scrollOff');
       };
 
       const hideMegaMenu = (i=index) => {
         $(getMegaMenuLinkSelector(i)).removeClass('active');
         $(getMegaMenuSelector(i)).addClass('hidden');
         $backdrop.addClass('hidden');
+        $('body').removeClass('scrollOff');
       };
 
       const hideOtherMegaMenus = (hideAll=false) => {
