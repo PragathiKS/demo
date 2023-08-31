@@ -8,7 +8,7 @@
       var contentPath = $form.attr("action");
        $.ajax({
           method: "POST",
-          url: "/bin/publicweb/megamenucolumns",
+          url: contentPath+".updatemegamenucolumns.json",
           data: { columns: columns, contentPath: contentPath }
         }).done(function( msg ) {
 
