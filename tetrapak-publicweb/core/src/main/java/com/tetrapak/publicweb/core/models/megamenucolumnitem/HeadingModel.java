@@ -4,16 +4,21 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-@Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {SlingHttpServletRequest.class, Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL,resourceType = "publicweb/components/structure/megamenucolumnitems/heading")
+@Exporter(name = "jackson", extensions = "json")
 public class HeadingModel {
 
     /** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
+
+    @SlingObject
+    private Resource resource;
 
     @ValueMapValue
     private String heading;
@@ -29,7 +34,12 @@ public class HeadingModel {
     }
 
     public String getHeadingURL() {
-       return LinkUtils.sanitizeLink(headingURL, request);
+        if(request!=null){
+            return LinkUtils.sanitizeLink(headingURL, request);
+        }else{
+            return LinkUtils.sanitizeLink(headingURL, resource);
+        }
+
     }
 
     public String getHeadingStyle() {

@@ -3,15 +3,15 @@
     width: 100%;
     justify-content: center;
     align-items: stretch;
-    border-top: 1px solid $color-mercury;
     box-sizing: border-box;
     position: fixed;
     top: auto;
     z-index: $zindex-anchor-menu;
+    flex-direction: column;
 
-    .cq-Editable-dom--container,
-    .cq-Editable-dom--container.aem-GridColumn {
-        width: 100%;
+    @media #{$desktop} {
+        flex-direction: row;
+        border-top: 1px solid $color-mercury;
     }
 }
 

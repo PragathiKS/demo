@@ -54,6 +54,7 @@ class Businessinquiryform {
     this.cache.$functionField = this.root.find('.formfield.function-field');
     this.cache.$formInfo = this.root.find('form');
     this.cache.$isFormStart = false;
+    this.cache.$countryOrigin = this.cache.businessformapi.data('bef-countrycode');
     this.cache.$preFix = 'Contact Sales | ';
     this.cache.requestPayload = {
       'domainURL': window.location.host,
@@ -66,6 +67,21 @@ class Businessinquiryform {
       'company': '',
       'pageurl': window.location.href
     };
+  }
+
+  getFormHandler() {
+    const { requestPayload, $countryOrigin } = this.cache;
+    const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
+    const chinabefPardotURL = this.cache.businessformapi.data('china-bef-pardoturl');
+    const countryData = {};
+    if(requestPayload.country === 'China' || $countryOrigin ==='cn') {
+      countryData['isChina'] = true;
+      countryData['formHandler'] = chinabefPardotURL;
+    } else {
+      countryData['isChina'] = false;
+      countryData['formHandler'] = befPardotURL;
+    }
+    return countryData;
   }
 
   onKeydown(event, options) {
@@ -179,7 +195,7 @@ class Businessinquiryform {
 
     dataObj['pageurl'] = this.cache.requestPayload.pageurl;
 
-    loadThankYou(self.mainHead, 'Step 4', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj, ...self.restObj2, 'Marketing Consent': 'Checked' });
+    loadThankYou(self.mainHead, 'Step 4', self.cache.requestPayload['purposeOfInterestAreaEqTitle'], { ...self.restObj, ...self.restObj2, 'Marketing Consent': 'Checked' }, self.getFormHandler());
     window.scrollTo(0, $('.pw-businessEnquiry-form').offset().top);
 
     // IF UTM fields in URL
@@ -423,7 +439,7 @@ class Businessinquiryform {
       const tabId = $(this).closest('.bef-tab-pane.active').attr('id');
       if(tabId === 'bef-step-1') {
         self.cache.$isFormStart = true;
-        makeLoad(self.step1head, self.cache.$preFix+self.mainHead);
+        makeLoad(self.step1head, self.cache.$preFix+self.mainHead, self.getFormHandler());
       }
 
       let isvalid = true;
@@ -437,19 +453,19 @@ class Businessinquiryform {
         }
         switch (target) {
         case '#bef-step-1':
-          changeStepPrev(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          changeStepPrev(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.getFormHandler());
           break;
         case '#businessInquiry_packaging':
-          changeStepPrev(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          changeStepPrev(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.getFormHandler());
           break;
         case '#businessInquiry_processing':
-          changeStepPrev(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          changeStepPrev(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.getFormHandler());
           break;
         case '#businessInquiry_services':
-          changeStepPrev(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          changeStepPrev(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.getFormHandler());
           break;
         case '#bef-step-2':
-          changeStepPrev(self.mainHead, 'Step 4', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle']);
+          changeStepPrev(self.mainHead, 'Step 4', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], self.getFormHandler());
           break;
         default:
           break;
@@ -546,19 +562,19 @@ class Businessinquiryform {
             }
             switch (target) {
             case '#businessInquiry_packaging':
-              changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
+              changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics, self.getFormHandler());
               break;
             case '#businessInquiry_processing':
-              changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
+              changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics, self.getFormHandler());
               break;
             case '#businessInquiry_services':
-              changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
+              changeStepNext(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics, self.getFormHandler());
               break;
             case '#bef-step-2':
-              changeStepNext(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
+              changeStepNext(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics, self.getFormHandler());
               break;
             case '#bef-step-3':
-              changeStepNext(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics);
+              changeStepNext(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], $objAnalytics, self.getFormHandler());
               break;
             default:
               break;
@@ -576,22 +592,22 @@ class Businessinquiryform {
         
         switch (target) {
         case '#businessInquiry_packaging':
-          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj, self.getFormHandler());
           break;
         case '#businessInquiry_processing':
-          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj, self.getFormHandler());
           break;
         case '#businessInquiry_services':
-          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 1', self.step1head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj, self.getFormHandler());
           break;
         case '#bef-step-2':
-          changeStepError(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, formStepNumber, formTypeTitle, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj, self.getFormHandler());
           break;
         case '#bef-step-3':
-          changeStepError(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 3', self.step2head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj, self.getFormHandler());
           break;
         case '#bef-step-final':
-          changeStepError(self.mainHead, 'Step 4', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 4', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj, self.getFormHandler());
           break;
         default:
           break;
@@ -688,7 +704,7 @@ class Businessinquiryform {
       } else {
         switch (target) {
         case '#bef-step-final':
-          changeStepError(self.mainHead, 'Step 4', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj);
+          changeStepError(self.mainHead, 'Step 4', self.step3head, self.cache.requestPayload['purposeOfInterestAreaEqTitle'], {}, errObj, self.getFormHandler());
           break;
         default:
           break;
@@ -732,7 +748,7 @@ class Businessinquiryform {
       $(val).on('click', function () {
         if (!self.cache.$isFormStart) {
           self.cache.$isFormStart = true;
-          makeLoad(stepHead, self.cache.$preFix+mainHead);
+          makeLoad(stepHead, self.cache.$preFix+mainHead, self.getFormHandler());
         }
       });
     });

@@ -6,6 +6,9 @@
     align-items: stretch;
     flex-direction: column;
     padding-top: $margin-xl;
+    @media #{$mobile} {
+        padding-top: $padding-zero;
+    }
 
     &.white-bg {
         background-color: $color-white;
@@ -33,8 +36,11 @@
 .tp-pw-megamenucolumn > div {
     &:last-of-type {
         padding-bottom: $margin-l;
+        @media #{$mobile} {
+            padding-bottom: $padding-zero;
+        }
     }
     &:first-of-type {
-        padding-bottom: 0;
+        padding-bottom: $padding-zero;
     }
 }

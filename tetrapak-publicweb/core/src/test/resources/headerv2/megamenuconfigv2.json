@@ -66,6 +66,61 @@
                   "linkDescription":"This is packaging description"
                 }
               }
+            },
+            "subheading":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:createdBy":"admin",
+              "jcr:lastModifiedBy":"admin",
+              "jcr:created":"Wed Aug 16 2023 10:05:34 GMT+0200",
+              "jcr:lastModified":"Wed Aug 16 2023 10:05:45 GMT+0200",
+              "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading",
+              "subheading":"This is another subheading"
+            },
+            "description_231554255":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:createdBy":"admin",
+              "jcr:lastModifiedBy":"admin",
+              "jcr:created":"Wed Aug 16 2023 10:05:48 GMT+0200",
+              "text":"<p>This is a short description</p>\r\n",
+              "jcr:lastModified":"Wed Aug 16 2023 10:05:57 GMT+0200",
+              "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/description",
+              "textIsRich":"true"
+            },
+            "navigationlinks_719134860":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:createdBy":"admin",
+              "jcr:lastModifiedBy":"admin",
+              "jcr:created":"Wed Aug 16 2023 10:06:01 GMT+0200",
+              "jcr:lastModified":"Wed Aug 16 2023 10:06:15 GMT+0200",
+              "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/navigationlinks",
+              "navLinks":{
+                "jcr:primaryType":"nt:unstructured",
+                "item0":{
+                  "jcr:primaryType":"nt:unstructured",
+                  "linkLabel":"Processing",
+                  "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                  "linkDescription":"Hello"
+                }
+              }
+            },
+            "subheading_1576508184":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:createdBy":"admin",
+              "jcr:lastModifiedBy":"admin",
+              "jcr:created":"Wed Aug 16 2023 14:15:49 GMT+0200",
+              "jcr:lastModified":"Wed Aug 16 2023 14:15:57 GMT+0200",
+              "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading",
+              "subheading":"Hello Another"
+            },
+            "description_1318666687":{
+              "jcr:primaryType":"nt:unstructured",
+              "jcr:createdBy":"admin",
+              "jcr:lastModifiedBy":"admin",
+              "jcr:created":"Wed Aug 16 2023 14:16:05 GMT+0200",
+              "text":"<p>This is another sub</p>\r\n",
+              "jcr:lastModified":"Wed Aug 16 2023 14:16:15 GMT+0200",
+              "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/description",
+              "textIsRich":"true"
             }
           },
           "col2":{

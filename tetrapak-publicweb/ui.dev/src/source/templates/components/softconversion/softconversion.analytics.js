@@ -1,10 +1,15 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const makeLoad = function (label, formName, parentComponent, eventType='formstart') {
+export const makeLoad = function (label, formName, parentComponent, eventType='formstart', countryData) {
   const formObj = {
     formName: formName,
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: eventType,
     event: `${parentComponent} : Soft Conversion Form`
@@ -13,11 +18,16 @@ export const makeLoad = function (label, formName, parentComponent, eventType='f
 };
 
 
-export const changeStepNext = function (formName, dataObj, parentComponent) {
+export const changeStepNext = function (formName, dataObj, parentComponent, countryData) {
   const formObj = {
     formName: formName,
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: `formreturn`,
     event: `${parentComponent} : Soft Conversion Form`
@@ -34,13 +44,18 @@ export const changeStepNext = function (formName, dataObj, parentComponent) {
 };
 
 
-export const changeStepPrev = function (formName, formStep, formType, parentComponent) {
+export const changeStepPrev = function (formName, formStep, formType, parentComponent, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
     formType: formType,
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: `${formStep} previous`,
     event: `${parentComponent} : Soft Conversion Form`
@@ -49,12 +64,17 @@ export const changeStepPrev = function (formName, formStep, formType, parentComp
 };
 
 
-export const changeStepError = function (formName, formStep, formType, dataObj, parentComponent, errorObj={}) {
+export const changeStepError = function (formName, formStep, formType, dataObj, parentComponent, errorObj={}, countryData) {
   const formObj = {
     formName: formName,
     formField: [],
     formError:errorObj
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: 'formerror',
     event: `${parentComponent} : Soft Conversion Form`
@@ -70,11 +90,16 @@ export const changeStepError = function (formName, formStep, formType, dataObj, 
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const loadDownloadReady = function (formName, dataObj, parentComponent) {
+export const loadDownloadReady = function (formName, dataObj, parentComponent, countryData) {
   const formObj = {
     formName: formName,
     formField: []
   };
+  if(countryData.isChina) {
+    formObj['formIdChina'] = countryData.formHandler;
+  } else {
+    formObj['formIdGlobal'] = countryData.formHandler;
+  }
   const eventObj = {
     eventType: 'formcomplete',
     event: `${parentComponent} : Soft Conversion Form`
