@@ -359,10 +359,11 @@ class Headerv2 {
             },
             showLoader: true
           }).done((data) => {
+            const rendererClass = `.tp-pw-meganenu-subpage-wrapper-${i}`;
             render.fn({
               template: 'megaMenuV2Subpage',
               data: data,
-              target: '.tp-pw-meganenu-subpage-wrapper',
+              target: rendererClass,
               hidden: false
             });
           });
