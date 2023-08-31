@@ -23,6 +23,8 @@
 			"pwTheme": "grayscale-white",
 			"heading": "Heading",
 			"headingDesc": "headingDesc",
+			"showImage": "true",
+			"imageAspectRatio": "medialink1",
 			"columnTwoTitle": "title 2",
 			"columnTwoDesc": "columnTwoDesc",
 			"jcr:lastModified": "Mon Apr 20 2020 18:16:31 GMT+0530",
@@ -35,7 +37,9 @@
 					"jcr:primaryType": "nt:unstructured",
 					"linkLabel": "Link Label 1",
 					"linkDesc": "linkDesc",
-					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/test"
+					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/test",
+					"fileReference": "/content/dam/tetrapak/products/pxp/fillingmachines/test1.png",
+					"alt": "Alternative Text 1"
 				}
 			},
 			"columnTwoList": {
@@ -44,7 +48,9 @@
 					"jcr:primaryType": "nt:unstructured",
 					"linkLabel": "Link Label 2",
 					"linkDesc": "linkDesc",
-					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/home"
+					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/home",
+					"fileReference": "/content/dam/tetrapak/products/pxp/fillingmachines/test2.png",
+					"alt": "Alternative Text 2"
 				}
 			},
 			"columnThreeList": {
@@ -53,10 +59,11 @@
 					"jcr:primaryType": "nt:unstructured",
 					"linkLabel": "Link Label 3",
 					"linkDesc": "linkDesc",
-					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/solution"
+					"linkUrl": "/content/tetrapak/publicweb/lang-master/en/solution",
+					"fileReference": "/content/dam/tetrapak/products/pxp/fillingmachines/test3.png",
+					"alt": "Alternative Text 3"
 				}
 			}
 		}
 	}
-
 }
