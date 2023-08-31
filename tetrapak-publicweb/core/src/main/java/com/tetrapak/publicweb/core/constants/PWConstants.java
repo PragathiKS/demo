@@ -535,6 +535,10 @@ public final class PWConstants {
 
     public static final String MEGAMENU_HEADING_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/heading";
 
+    public static final String MEGAMENU_CONFIGURATION_DIALOG_SELECTED_COLUMNS = "columns";
+
+    public static final String MEGAMENU_CONFIGURATION_RESOURCE_PATH = "contentPath";
+
     /**
      * Instantiates a new PW constants.
      */
