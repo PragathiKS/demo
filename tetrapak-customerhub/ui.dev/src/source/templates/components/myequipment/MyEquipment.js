@@ -4,8 +4,9 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
-import { ajaxMethods } from '../../../scripts/utils/constants';
-import { _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
+import  filters  from '../../../scripts/utils/filters';
+import { ajaxMethods,EQ_TYPE,EQ_FILTERS } from '../../../scripts/utils/constants';
+import {  _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
 import file from '../../../scripts/utils/file';
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData, _remapFilterOptionKey } from './MyEquipment.utils';
@@ -120,6 +121,7 @@ class MyEquipment {
     this.cache.currentPageNumber = 1;
     this.cache.filterModalData = {};
     this.cache.combinedFiltersObj = {};
+    this.cache.equipmentListFiltersObj={};
     this.cache.sortableKeys = ['site','lineCode','equipmentStatusDesc','serialNumber','functionalLocation','siteDesc','location','equipmentName'];
     this.cache.activeSortData = null;
     this.cache.activePage = 1;
@@ -265,14 +267,30 @@ class MyEquipment {
       const $tHeadBtn = $(e.currentTarget).parent();
       this.sortTableByKey($tHeadBtn);
     });
-
     this.root.on('click', '.js-my-equipment__table-summary__row',  (e) => {
       const id = $(e.currentTarget).attr('href');
       const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
       const url = `${equipmentDetailsUrl}?id=${id}`;
       const $linkName = `${$(e.currentTarget).find('td').eq(4).text().trim()  }-${  id}`;
+
+      // this.cache.equipmentListFiltersObj= this.cache.combinedFiltersObj;
+      // this.cache.equipmentListFiltersObj['country'] = this.getActiveCountryCode();
+      // if(storageUtil.getCookie('TPCOOKIEUSERTEM'))
+      // {
+      //   this.cache.equipmentListFiltersObj['userName']= storageUtil.getCookie('TPCOOKIEUSERTEM');
+      // }
+      // else
+      // {
+      //   this.cache.equipmentListFiltersObj['userName']= '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
+      // }
+      
+      // window.localStorage.setItem('equipmentListFilters',JSON.stringify(this.cache.equipmentListFiltersObj));
+
+      filters.setFilterChipInLocalStorage(EQ_TYPE,this.cache.combinedFiltersObj,this.getActiveCountryCode());
+
       _trackEquipmentLinkClick($linkName);
       window.open(url, '_self');
+
     });
 
     $modal.on('shown.bs.modal', () => {
@@ -362,8 +380,8 @@ class MyEquipment {
 
   getAllAvailableFilterVals(filterValuesArr, newCountry, appliedFilter) {
     const equipmentApi = this.cache.equipmentApi.data('list-api');
-    const { combinedFiltersObj } = this.cache;
-
+    const { combinedFiltersObj } = this.cache;    
+   
     filterValuesArr.forEach(filterVal => {
       const appliedFilterApiKey = _remapFilterProperty(appliedFilter);
 
@@ -613,7 +631,6 @@ class MyEquipment {
     if (Object.keys(combinedFiltersObj).length === 0) {
       return;
     }
-
     Object.keys(combinedFiltersObj).forEach(enabledFilter => {
       if (combinedFiltersObj[enabledFilter].length && filterVal === _remapFilterProperty(enabledFilter)) {
         const filterPropertyRemap = _remapFilterProperty(enabledFilter);
@@ -711,6 +728,20 @@ class MyEquipment {
     if (options && options.removeFilter) {
       if (this.cache.combinedFiltersObj[activeFilterForm]) {
         delete this.cache.combinedFiltersObj[activeFilterForm];
+        
+        // this.cache.equipmentListFiltersObj= this.cache.combinedFiltersObj;
+        // this.cache.equipmentListFiltersObj['country'] = this.getActiveCountryCode();
+        // if(storageUtil.getCookie('TPCOOKIEUSERTEMP'))
+        // {
+        //   this.cache.equipmentListFiltersObj['userName']= storageUtil.getCookie('TPCOOKIEUSERTEMP');
+        // }
+        // else
+        // {
+        //   this.cache.equipmentListFiltersObj['userName']= '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
+        // }
+        // window.localStorage.setItem('equipmentListFilters',JSON.stringify(this.cache.equipmentListFiltersObj));
+
+        filters.setFilterChipInLocalStorage(EQ_TYPE,this.cache.combinedFiltersObj,this.getActiveCountryCode());
       }
       filterCount = null;
     }
@@ -968,6 +999,7 @@ class MyEquipment {
     this.cache.$spinner.removeClass('d-none');
     const countryApi = this.cache.equipmentApi.data('country-api');
     const equipmentApi = this.cache.equipmentApi.data('list-api');
+    let apiUrlRequest = '';
     auth.getToken(({ data: authData }) => {
       ajaxWrapper
         .getXhrObj({
@@ -984,14 +1016,76 @@ class MyEquipment {
         }).then(res => {
           this.cache.countryData = _getFormattedCountryData(res.data);
           this.cache.authData = authData;
-          const { countryCode } = this.cache.countryData && this.cache.countryData[0];
+          let { countryCode } = this.cache.countryData && this.cache.countryData[0];
           const { itemsPerPage } = this.cache;
+          
+          this.cache.combinedFiltersObj=filters.getFiltersValueFromLocalStorage(EQ_TYPE);
+          //const cacheEquipmentListFiltersObj=JSON.parse(window.localStorage.getItem('equipmentListFilters'));
+          if(this.cache.combinedFiltersObj!==null){
+            if (Object.keys(this.cache.combinedFiltersObj).length) {
+              // const currentUser=storageUtil.getCookie('TPCOOKIEUSERTEMP')|| '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
+              // if(currentUser===cacheEquipmentListFiltersObj['userName'])
+              // {
+              //   this.cache.combinedFiltersObj=cacheEquipmentListFiltersObj;
+              // }
+              // else
+              // {
+              //   window.localStorage.removeItem('equipmentListFilters');
+              // }
 
-          this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], true);
+              //this.cache.combinedFiltersObj=cacheEquipmentListFiltersObj;
+              countryCode=this.cache.combinedFiltersObj[EQ_FILTERS.COUNTRY] || '';
+              
+              if(this.cache.combinedFiltersObj[EQ_FILTERS.COUNTRY]){
+                const filterData = this.cache.countryData;
+                for (var index in filterData) {
+                  if (filterData[index].countryCode===countryCode) {
+                    filterData[index].isChecked = true;
+                  } else {
+                    filterData[index].isChecked = false;
+                  }
+                }               
+
+                this.cache.$countryFilterLabel.addClass('active');
+                if (this.cache.$equipmentDescFilterLabel) {
+                  this.cache.$countryFilterLabel.text(`${getI18n(this.cache.i18nKeys['country'])}: ${1}`);                  
+                }
+              }
+              
+              if(this.cache.combinedFiltersObj[EQ_FILTERS.EQUIPMENTNAME]){
+                this.cache.$equipmentDescFilterLabel.addClass('active');
+                if (this.cache.$equipmentDescFilterLabel) {
+                  this.cache.$equipmentDescFilterLabel.text(`${getI18n(this.cache.i18nKeys['equipmentDescription'])}: ${1}`);
+                }
+              }
+
+              if(this.cache.combinedFiltersObj[EQ_FILTERS.SERIALNUMBER]){
+                this.cache.$serialNumberFilterLabel.addClass('active');
+                if (this.cache.$serialNumberFilterLabel) {
+                  this.cache.$serialNumberFilterLabel.text(`${getI18n(this.cache.i18nKeys['serialNumber'])}: ${1}`);
+                }
+              }
+            }
+            this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], false);
+            this.toggleRemoveAllFilters(true);
+          }
+          else {
+            this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], true);
+          }
+
+          const filtersQuery = _buildQueryUrl(this.cache.combinedFiltersObj);
+          
+          apiUrlRequest = `${equipmentApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}`;
+         
+          if (filtersQuery) {
+            apiUrlRequest += `&${filtersQuery}`;
+          }
+
+          apiUrlRequest += `&sort=${this.cache.defaultSortParams}`;
 
           ajaxWrapper
             .getXhrObj({
-              url: `${equipmentApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}&sort=${this.cache.defaultSortParams}`,
+              url: apiUrlRequest,
               method: 'GET',
               contentType: 'application/json',
               dataType: 'json',
