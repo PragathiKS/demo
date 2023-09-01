@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
@@ -33,6 +34,14 @@ public class MediaLinkModel {
     /** The heading Description. */
     @ValueMapValue
     private String headingDesc;
+
+    /** The enable show image. */
+    @ValueMapValue @Default(values = "false")
+    private Boolean showImage;
+    
+    /** The Image aspect Ratio. */
+    @ValueMapValue @Default(values = "mediaLink")
+    private String imageAspectRatio;
     
     /** The anchor id. */
     @ValueMapValue
@@ -90,6 +99,24 @@ public class MediaLinkModel {
     public String getHeadingDesc() {
 		return headingDesc;
 	}
+
+    /**
+     * Gets the show image.
+     *
+     * @return the show image
+     */
+    public Boolean getShowImage() {
+        return showImage;
+    }
+       
+    /**
+     * Gets the image aspect ratio.
+     *
+     * @return the image aspect ratio.
+     */
+    public String getImageAspectRatio() {
+        return imageAspectRatio;
+    }
 	
     /**
      * Gets the anchor id.

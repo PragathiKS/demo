@@ -27,6 +27,14 @@ public class LinkModel {
     /** The asset name. */
     private String assetName;
 
+    /** The file reference. */
+    @ValueMapValue
+    private String fileReference;
+
+    /** The alt. */
+    @ValueMapValue
+    private String alt;
+
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
 
@@ -98,6 +106,24 @@ public class LinkModel {
             assetName = StringUtils.substringAfterLast(linkUrl, FORWARD_SLASH);
         }
         return assetName;
+    }
+
+     /**
+     * Gets the file reference.
+     *
+     * @return the file reference
+     */
+    public String getFileReference() {
+        return fileReference;
+    }
+
+    /**
+     * Gets the alt.
+     *
+     * @return the alt
+     */
+    public String getAlt() {
+        return alt;
     }
 
 }
