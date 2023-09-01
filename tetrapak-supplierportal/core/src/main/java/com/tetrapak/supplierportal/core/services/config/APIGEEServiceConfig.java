@@ -9,7 +9,7 @@ import org.osgi.service.metatype.annotations.ObjectClassDefinition;
  *
  * @author Sunil Kumar Yadav
  */
-@ObjectClassDefinition(name = "API GEE Service Configuration", description = "API GEE Service Configuration")
+@ObjectClassDefinition(name = "SupplierPortal APIGEE Service Configuration", description = "SupplierPortal APIGEE Service Configuration")
 public @interface APIGEEServiceConfig {
 
     /**

@@ -3,6 +3,8 @@ package com.tetrapak.supplierportal.core.servlets;
 import java.io.IOException;
 import java.util.Objects;
 import javax.servlet.Servlet;
+import javax.servlet.http.Cookie;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -49,9 +51,9 @@ public class APIGEETokenGeneratorServlet extends SlingSafeMethodsServlet {
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         LOGGER.debug("HTTP GET request from APIGEETokenGeneratorServlet");
         String acctokenStr = StringUtils.EMPTY;
-        Object acctoken = request.getCookie(TOKEN_NAME);
+        Cookie acctoken = request.getCookie(TOKEN_NAME);
         if (Objects.nonNull(acctoken)) {
-        	acctokenStr = xssAPI.encodeForHTML(request.getCookie(TOKEN_NAME).getValue());
+        	acctokenStr = xssAPI.encodeForHTML(acctoken.getValue());
         }
         LOGGER.info("Acctoken String {}" ,apigeeService);
         JsonObject jsonResponse = apigeeService.retrieveAPIGEEToken(acctokenStr);

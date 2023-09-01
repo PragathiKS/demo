@@ -211,6 +211,8 @@ public final class SupplierPortalConstants {
     
     public static final String APPLICATION_URL_ENCODED = "application/x-www-form-urlencoded";
 
+    public static final String AUTH_TOKEN = "auth-token";
+
     /**
      * Instantiates a new customer hub constants.
      */

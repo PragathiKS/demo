@@ -15,7 +15,7 @@ import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.TOKEN;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.UTF_8;
-
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.AUTH_TOKEN;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -83,54 +83,45 @@ public class APIGEEServiceImpl implements APIGEEService {
         return config.apigeeClientSecret();
     }
     
-    private HttpPost createRequest(final String apiURL,String accToken) throws UnsupportedEncodingException {
-    	
-    	String authString = getApigeeClientID() + ":" + getApigeeClientSecret();
-        String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
-    	 
-    	HttpPost postRequest = new HttpPost(apiURL);
-        postRequest.addHeader(AUTHORIZATION, BASIC  + encodedAuthString);
-        postRequest.addHeader(CONTENT_TYPE, APPLICATION_URL_ENCODED);
-        postRequest.addHeader(ACCEPT, APPLICATION_JSON);
-        List<NameValuePair> postParameters = new ArrayList<>();
-        postParameters.add(new BasicNameValuePair(GRANT_TYPE, GRANT_TYPE_VALUE));
-        postParameters.add(new BasicNameValuePair(TOKEN, accToken));
-        postRequest.setEntity(new UrlEncodedFormEntity(postParameters, UTF_8));
-        return postRequest;
-    }
+	private HttpPost createRequest(final String apiURL, String accToken) throws UnsupportedEncodingException {
+		String authString = getApigeeClientID() + ":" + getApigeeClientSecret();
+		String encodedAuthString = Base64.getEncoder().encodeToString(authString.getBytes());
+
+		HttpPost postRequest = new HttpPost(apiURL);
+		postRequest.addHeader(AUTHORIZATION, BASIC + encodedAuthString);
+		postRequest.addHeader(CONTENT_TYPE, APPLICATION_URL_ENCODED);
+		postRequest.addHeader(ACCEPT, APPLICATION_JSON);
+		List<NameValuePair> postParameters = new ArrayList<>();
+		postParameters.add(new BasicNameValuePair(GRANT_TYPE, GRANT_TYPE_VALUE));
+		postParameters.add(new BasicNameValuePair(TOKEN, accToken));
+		postRequest.setEntity(new UrlEncodedFormEntity(postParameters, UTF_8));
+		return postRequest;
+	}
     
     @Override
-    public JsonObject retrieveAPIGEEToken(String accToken) throws IOException {
-    	 LOGGER.debug("APIGEEServiceImpl#retrieveAPIGEEToken-- Start");
-    	JsonObject jsonResponse = new JsonObject();
-    	final String apiURL = getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(this, "auth-token");
-    	
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
-        try {
-        	HttpPost postRequest = createRequest(apiURL, accToken);
-        	long startTime = System.currentTimeMillis();
-            HttpResponse httpResponse = httpClient.execute(postRequest);
-            LOGGER.info("PostRequest {}", postRequest.toString());
-            if(LOGGER.isInfoEnabled()) {
-             LOGGER.info("Time take to complete APIGEE Token call::{} ms", (System.currentTimeMillis()-startTime));	
-            }
-            statusCode = httpResponse.getStatusLine().getStatusCode();
-            jsonResponse.addProperty(STATUS_CODE,statusCode);
-            LOGGER.debug("Http Post request status code: {}", statusCode);
-            jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
-            jsonResponse.addProperty(STATUS, RESPONSE_STATUS_SUCCESS);
-            LOGGER.debug("APIGEE Call is Success");
-        } catch (IOException e) {
-            LOGGER.error("Unable to connect to the APIGEE Call - url {}", apiURL, e);
-            jsonResponse.addProperty(STATUS_CODE,statusCode);
-            jsonResponse.addProperty(STATUS, RESPONSE_STATUS_FAILURE);
-            jsonResponse.addProperty(RESULT, e.getMessage());
-        }
-        return jsonResponse;
-   }
+	public JsonObject retrieveAPIGEEToken(String accToken) throws IOException {
+		LOGGER.debug("APIGEEServiceImpl#retrieveAPIGEEToken-- Start");
+		JsonObject jsonResponse = new JsonObject();
+		final String apiURL = getApigeeServiceUrl() + GlobalUtil.getSelectedApiMapping(this,AUTH_TOKEN );
 
-	public void setConfig(APIGEEServiceConfig config) {
-		this.config = config;
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
+		try {
+			HttpPost postRequest = createRequest(apiURL, accToken);
+			HttpResponse httpResponse = httpClient.execute(postRequest);
+			statusCode = httpResponse.getStatusLine().getStatusCode();
+			jsonResponse.addProperty(STATUS_CODE, statusCode);
+			LOGGER.debug("Http Post request status code: {}", statusCode);
+			jsonResponse = HttpUtil.setJsonResponse(jsonResponse, httpResponse);
+			jsonResponse.addProperty(STATUS, RESPONSE_STATUS_SUCCESS);
+			LOGGER.debug("APIGEE Call is Success");
+		} catch (IOException e) {
+			LOGGER.error("Unable to connect to the APIGEE Call - url {}", apiURL, e);
+			jsonResponse.addProperty(STATUS_CODE, statusCode);
+			jsonResponse.addProperty(STATUS, RESPONSE_STATUS_FAILURE);
+			jsonResponse.addProperty(RESULT, e.getMessage());
+		}
+		return jsonResponse;
 	}
+
 }

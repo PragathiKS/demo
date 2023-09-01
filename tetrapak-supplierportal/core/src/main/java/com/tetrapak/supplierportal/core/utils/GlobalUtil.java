@@ -42,6 +42,7 @@ public final class GlobalUtil {
 
     private static final String NAVIGATION_PATH = "/jcr:content/root/responsivegrid";
     private static final String NAVIGATION = "navigationconfiguration";
+    private static final String COLON = ":";
 
     public static final String LANG_CODE = "lang-code";
 
@@ -269,8 +270,8 @@ public final class GlobalUtil {
         String[] mappings = getApiMappings(apigeeService);
         String mappingValue = StringUtils.EMPTY;
         for (String mapping : mappings) {
-            if (prefix.equalsIgnoreCase(StringUtils.substringBefore(mapping, ":"))) {
-                mappingValue = StringUtils.substringAfter(mapping, ":");
+            if (prefix.equalsIgnoreCase(StringUtils.substringBefore(mapping, COLON))) {
+                mappingValue = StringUtils.substringAfter(mapping,COLON );
                 break;
             }
         }
