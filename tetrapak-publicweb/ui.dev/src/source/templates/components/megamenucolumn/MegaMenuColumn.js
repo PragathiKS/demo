@@ -20,7 +20,7 @@ class MegaMenuColumn {
     const teaserHeader = this.cache.$elements.teaserHeader.get(0);
 
     if (!header && !teaserHeader) {
-      this.root.css('padding-top', '74px');
+      this.root.css('padding-top', '72px');
     }
   }
 

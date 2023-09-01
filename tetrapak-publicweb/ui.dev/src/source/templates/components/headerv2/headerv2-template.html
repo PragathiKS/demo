@@ -111,9 +111,7 @@
                 </div>
             </sly>
             <sly data-sly-test="${data.marketList.markets.size >= 1}">
-                <sly 
-                data-sly-test="${data.displayCurrentLanguage}" 
-                data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
+                <sly data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
                     <div class="tp-pw-headerv2-selector-container">
                         <a 
                             class="tp-pw-headerv2-market-selector js-header__selected-lang-pw" 
