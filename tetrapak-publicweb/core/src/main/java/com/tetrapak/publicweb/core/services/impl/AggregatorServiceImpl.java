@@ -26,6 +26,7 @@ import com.tetrapak.publicweb.core.models.AggregatorModel;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 
 @Component(immediate = true, service = AggregatorService.class)
 public class AggregatorServiceImpl implements AggregatorService {
@@ -48,11 +49,15 @@ public class AggregatorServiceImpl implements AggregatorService {
 		SearchResult searchResults = executeAggregatorQuery(resource, tags, maxTabs,logicalOperator);
 		for (Hit hit : searchResults.getHits()) {
 			try {
-				AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
-				if (null != aggregator && Objects.nonNull(hit.getProperties().get("articleDate", String.class))) {
-					aggregatorList.add(aggregator);
-				} else if (null != aggregator && Objects.nonNull(hit.getProperties().get("cq:lastModified", String.class))) {
-					publishedDateList.add(aggregator);
+				Page currentPage = pageManager.getPage(hit.getPath());
+				Resource pageContentRes = currentPage.getContentResource();
+				if (!(pageContentRes.getValueMap().containsKey(PWConstants.NOFOLLOW_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.NOINDEX_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.HIDEINSEARCH_PROPERTY))) {
+					AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
+					if (null != aggregator && Objects.nonNull(hit.getProperties().get("articleDate", String.class))) {
+						aggregatorList.add(aggregator);
+					} else if (null != aggregator && Objects.nonNull(hit.getProperties().get("cq:lastModified", String.class))) {
+						publishedDateList.add(aggregator);
+					}
 				}
 			} catch (RepositoryException e) {
 				LOGGER.info("RepositoryException in getAggregatorList", e.getMessage(), e);
@@ -77,9 +82,12 @@ public class AggregatorServiceImpl implements AggregatorService {
 			// logic added to exclude external links or not available resources - SMAR-12038
 			Page currentPage = pageManager.getPage(pagePath.getPageURL());
 			if (currentPage != null) {
-				AggregatorModel aggregator = getAggregator(currentPage);
-				if (aggregator != null) {
-					aggregatorList.add(aggregator);
+				Resource pageContentRes = currentPage.getContentResource();
+				if (!(pageContentRes.getValueMap().containsKey(PWConstants.NOFOLLOW_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.NOINDEX_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.HIDEINSEARCH_PROPERTY))) {
+					AggregatorModel aggregator = getAggregator(currentPage);
+					if (aggregator != null) {
+						aggregatorList.add(aggregator);
+					}
 				}
 			}
 		}
