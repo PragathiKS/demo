@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -18,15 +19,11 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.models.annotations.Default;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import org.apache.sling.api.resource.ResourceResolver;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
-import com.tetrapak.publicweb.core.constants.PWConstants;
 
 /**
  * The Class TeaserModel.
@@ -160,29 +157,10 @@ public class TeaserModel {
 	 */
 	public void getManualList() {
 		if (manualList != null && !manualList.isEmpty()) {
-            ResourceResolver resolver = resource.getResourceResolver();
-            PageManager pageManager = resolver.adaptTo(PageManager.class);
-            for (ManualModel manualModel : manualList) {
-                ManualModel teaser = new ManualModel();
-                String path = manualModel.getLinkPath();
-                if (!path.startsWith("/content/dam")) {
-                    Page currentPage = pageManager.getPage(path);
-                    Resource pageContentRes = currentPage.getContentResource();
-                    if (!(pageContentRes.getValueMap().containsKey(PWConstants.NOFOLLOW_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.NOINDEX_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.HIDEINSEARCH_PROPERTY))) {
-                        teaser.setAlt(manualModel.getAlt());
-                        teaser.setTitle(manualModel.getTitle());
-                        teaser.setArticleDate(manualModel.getArticleDate());
-                        teaser.setDescription(manualModel.getDescription());
-                        teaser.setLinkText(manualModel.getLinkText());
-                        teaser.setLinkPath(LinkUtils.sanitizeLink(manualModel.getLinkPath(), request));
-                        teaser.setPwButtonTheme(manualModel.getPwButtonTheme());
-                        teaser.setFileReference(manualModel.getFileReference());
-                        teaserList.add(teaser);
-                    }
-                } else {
-                    teaserList.add(manualModel);
-                }
-            }
+            teaserList = manualList.stream()
+                    .filter(model-> !model.isHideInTeaser())
+                    .peek(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)))
+                    .collect(Collectors.toList());
 		}
 	}
 

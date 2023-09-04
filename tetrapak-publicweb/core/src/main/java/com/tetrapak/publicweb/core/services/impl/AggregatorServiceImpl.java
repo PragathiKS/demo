@@ -49,15 +49,11 @@ public class AggregatorServiceImpl implements AggregatorService {
 		SearchResult searchResults = executeAggregatorQuery(resource, tags, maxTabs,logicalOperator);
 		for (Hit hit : searchResults.getHits()) {
 			try {
-				Page currentPage = pageManager.getPage(hit.getPath());
-				Resource pageContentRes = currentPage.getContentResource();
-				if (!(pageContentRes.getValueMap().containsKey(PWConstants.NOFOLLOW_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.NOINDEX_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.HIDEINSEARCH_PROPERTY))) {
-					AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
-					if (null != aggregator && Objects.nonNull(hit.getProperties().get("articleDate", String.class))) {
-						aggregatorList.add(aggregator);
-					} else if (null != aggregator && Objects.nonNull(hit.getProperties().get("cq:lastModified", String.class))) {
-						publishedDateList.add(aggregator);
-					}
+				AggregatorModel aggregator = getAggregator(pageManager.getPage(hit.getPath()));
+				if (null != aggregator && Objects.nonNull(hit.getProperties().get("articleDate", String.class))) {
+					aggregatorList.add(aggregator);
+				} else if (null != aggregator && Objects.nonNull(hit.getProperties().get("cq:lastModified", String.class))) {
+					publishedDateList.add(aggregator);
 				}
 			} catch (RepositoryException e) {
 				LOGGER.info("RepositoryException in getAggregatorList", e.getMessage(), e);
@@ -133,6 +129,12 @@ public class AggregatorServiceImpl implements AggregatorService {
 				map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);
 			}
 		}
+		map.put("2_property","jcr:content/@noFollow");
+		map.put("2_property.operation","not");
+		map.put("3_property","jcr:content/@noIndex");
+		map.put("3_property.operation","not");
+		map.put("4_property","jcr:content/@hideInSearch");
+		map.put("4_property.operation","not");
 		map.put("104_orderby", "@jcr:content/articleDate");
 		map.put("105_orderby", "@jcr:content/cq:lastModified");
 		map.put("104_orderby.sort", "desc");
