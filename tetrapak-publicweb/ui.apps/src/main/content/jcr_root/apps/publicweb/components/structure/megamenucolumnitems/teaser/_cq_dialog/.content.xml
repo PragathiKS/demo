@@ -139,11 +139,11 @@
                                 fieldLabel="Image alt text"
                                 name="./imageAltText"/>
 							<imageLink
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
-                                fieldLabel="Image Link"
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
+								fieldLabel="Image Link"
 								rootPath="/content/tetrapak/publicweb"
-                                name="./imageLink"/>
+								name="./imageLink"/>
                         </items>
                     </column>
                 </items>
