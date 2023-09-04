@@ -273,19 +273,6 @@ class MyEquipment {
       const url = `${equipmentDetailsUrl}?id=${id}`;
       const $linkName = `${$(e.currentTarget).find('td').eq(4).text().trim()  }-${  id}`;
 
-      // this.cache.equipmentListFiltersObj= this.cache.combinedFiltersObj;
-      // this.cache.equipmentListFiltersObj['country'] = this.getActiveCountryCode();
-      // if(storageUtil.getCookie('TPCOOKIEUSERTEM'))
-      // {
-      //   this.cache.equipmentListFiltersObj['userName']= storageUtil.getCookie('TPCOOKIEUSERTEM');
-      // }
-      // else
-      // {
-      //   this.cache.equipmentListFiltersObj['userName']= '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
-      // }
-      
-      // window.localStorage.setItem('equipmentListFilters',JSON.stringify(this.cache.equipmentListFiltersObj));
-
       filters.setFilterChipInLocalStorage(EQ_TYPE,this.cache.combinedFiltersObj,this.getActiveCountryCode());
 
       _trackEquipmentLinkClick($linkName);
@@ -732,19 +719,6 @@ class MyEquipment {
     if (options && options.removeFilter) {
       if (this.cache.combinedFiltersObj[activeFilterForm]) {
         delete this.cache.combinedFiltersObj[activeFilterForm];
-        
-        // this.cache.equipmentListFiltersObj= this.cache.combinedFiltersObj;
-        // this.cache.equipmentListFiltersObj['country'] = this.getActiveCountryCode();
-        // if(storageUtil.getCookie('TPCOOKIEUSERTEMP'))
-        // {
-        //   this.cache.equipmentListFiltersObj['userName']= storageUtil.getCookie('TPCOOKIEUSERTEMP');
-        // }
-        // else
-        // {
-        //   this.cache.equipmentListFiltersObj['userName']= '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
-        // }
-        // window.localStorage.setItem('equipmentListFilters',JSON.stringify(this.cache.equipmentListFiltersObj));
-
         filters.setFilterChipInLocalStorage(EQ_TYPE,this.cache.combinedFiltersObj,this.getActiveCountryCode());
       }
       filterCount = null;
@@ -1024,20 +998,9 @@ class MyEquipment {
           const { itemsPerPage } = this.cache;
           
           this.cache.combinedFiltersObj=filters.getFiltersValueFromLocalStorage(EQ_TYPE);
-          //const cacheEquipmentListFiltersObj=JSON.parse(window.localStorage.getItem('equipmentListFilters'));
           if(this.cache.combinedFiltersObj!==null){
             if (Object.keys(this.cache.combinedFiltersObj).length) {
-              // const currentUser=storageUtil.getCookie('TPCOOKIEUSERTEMP')|| '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
-              // if(currentUser===cacheEquipmentListFiltersObj['userName'])
-              // {
-              //   this.cache.combinedFiltersObj=cacheEquipmentListFiltersObj;
-              // }
-              // else
-              // {
-              //   window.localStorage.removeItem('equipmentListFilters');
-              // }
-
-              //this.cache.combinedFiltersObj=cacheEquipmentListFiltersObj;
+             
               countryCode=this.cache.combinedFiltersObj[EQ_FILTERS.COUNTRY] || '';
               
               if(this.cache.combinedFiltersObj[EQ_FILTERS.COUNTRY]){
