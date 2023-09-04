@@ -12,7 +12,7 @@ export default {
         filterChipsStorageObj[EQ_FILTERS.USERNAME]= storageUtil.getCookie(TPCOOKIEUSERTEM);
       }
       else{
-        filterChipsStorageObj[EQ_FILTERS.USERNAME]= '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
+        filterChipsStorageObj[EQ_FILTERS.USERNAME]= '';
       }
       window.localStorage.setItem(EQ_LOCAL_STORAGE,JSON.stringify(filterChipsStorageObj));
     }
@@ -23,7 +23,7 @@ export default {
       const cacheEquipmentListFiltersObj=JSON.parse(window.localStorage.getItem(EQ_LOCAL_STORAGE));
       if(cacheEquipmentListFiltersObj!==null){
         if (Object.keys(cacheEquipmentListFiltersObj).length){
-          const currentUser=storageUtil.getCookie(TPCOOKIEUSERTEM)|| '41d5f2f7a719ca9c3d2f4e6fd7a5b27aa6e028c2b5dd8df66fae975bb210b594';
+          const currentUser=storageUtil.getCookie(TPCOOKIEUSERTEM)|| '';
           if(currentUser===cacheEquipmentListFiltersObj[EQ_FILTERS.USERNAME]){
             filterChipsStorageObj[EQ_FILTERS.COUNTRY] = cacheEquipmentListFiltersObj[EQ_FILTERS.COUNTRY]||'';
             filterChipsStorageObj[EQ_FILTERS.EQUIPMENTNAME] = cacheEquipmentListFiltersObj[EQ_FILTERS.EQUIPMENTNAME]||'';

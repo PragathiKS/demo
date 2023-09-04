@@ -3,6 +3,7 @@ import 'bootstrap';
 import { logger } from '../../../scripts/utils/logger';
 import { getMaxSafeInteger } from '../../../scripts/common/common';
 import { $body } from '../../../scripts/utils/commonSelectors';
+//import {EQ_LOCAL_STORAGE} from '../../../scripts/utils/constants';
 
 class InactivityDialog {
   constructor({ el }) {
@@ -43,6 +44,7 @@ class InactivityDialog {
   logoutSession = () => {
     const { logoutURL } = this.cache;
     if (logoutURL) {
+      //window.localStorage.removeItem(EQ_LOCAL_STORAGE);
       window.open(logoutURL, '_self');
     }
   };

@@ -371,7 +371,11 @@ class MyEquipment {
     const { countryData } = this.cache;
     const activeCountry = countryData.filter(e => e.isChecked);
     if (activeCountry) {
-      return activeCountry.countryCode;
+      if(activeCountry[0]=== undefined){
+        return activeCountry.countryCode;
+      } else {
+        return activeCountry[0].countryCode;
+      }
     } else {
       throw Error('Couldn\'t get active country');
     }
@@ -1108,7 +1112,7 @@ class MyEquipment {
               this.renderPaginationTableData(tableData);
               this.renderSearchCount();
               this.mapTableColumn();
-              this.showHideAllFilters();
+              //this.showHideAllFilters();
             }).fail(() => {
               this.cache.$content.removeClass('d-none');
               this.cache.$spinner.addClass('d-none');
