@@ -1,0 +1,676 @@
+{
+    "meta": {
+      "count": 1500,
+      "skip": 0,
+      "total": 37,
+      "version": "1"
+    },
+    "data": [
+      {
+        "id": "94899",
+        "customerNumber": "94899",
+        "customer": "A. Dohrn & A. Timm GmbH & Co. KG - Großbeeren - 94899",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/94899?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91318",
+        "customerNumber": "91318",
+        "customer": "Almil AG - POLLING - 91318",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91318?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90561",
+        "customerNumber": "90561",
+        "customer": "Andreas Oster Weinkellerei KG - Cochem - 90561",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90561?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92451",
+        "customerNumber": "92451",
+        "customer": "Arla Foods Deutschland GmbH - Pronsfeld - 92451",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92451?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "98121",
+        "customerNumber": "98121",
+        "customer": "Arla Foods Deutschland GmbH - UPAHL - 98121",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/98121?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91631",
+        "customerNumber": "91631",
+        "customer": "beckers bester GmbH - Noerten-Hardenberg - 91631",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91631?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91276",
+        "customerNumber": "91276",
+        "customer": "DMK Deutsches Milchkontor GmbH - ZEVEN - 91276",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91276?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91641",
+        "customerNumber": "91641",
+        "customer": "Eipro-Vermarktung GmbH & Co. KG - Lohne - 91641",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91641?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "96071",
+        "customerNumber": "96071",
+        "customer": "Frischli Milchwerk Weissenfels GmbH - Weissenfels - 96071",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/96071?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92502",
+        "customerNumber": "92502",
+        "customer": "Frischli Milchwerke GmbH - Rehburg-Loccum - 92502",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92502?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90961",
+        "customerNumber": "90961",
+        "customer": "Hauser Weinimport GmbH - Fischach - 90961",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90961?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91171",
+        "customerNumber": "91171",
+        "customer": "Hochwald Foods GmbH - Hungen - 91171",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91171?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91301",
+        "customerNumber": "91301",
+        "customer": "Hochwald Foods GmbH - Kaiserslautern - 91301",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91301?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90474",
+        "customerNumber": "90474",
+        "customer": "Hochwald Foods GmbH - Polling - 90474",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90474?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92901",
+        "customerNumber": "92901",
+        "customer": "Hohenloher Molkerei eG - Schwaebisch Hall - 92901",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92901?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90191",
+        "customerNumber": "90191",
+        "customer": "Jacoby GmbH - Auggen - 90191",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90191?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90084",
+        "customerNumber": "90084",
+        "customer": "Johann Spielmann GmbH - Dorsten - 90084",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90084?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92611",
+        "customerNumber": "92611",
+        "customer": "Lausitzer Früchteverarbeitung GmbH - Sohland - 92611",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92611?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "99603",
+        "customerNumber": "99603",
+        "customer": "Milchhof Albert GmbH & Co. KG - Schesslitz - 99603",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/99603?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92431",
+        "customerNumber": "92431",
+        "customer": "Milchwerke Berchtesgadener - Piding - 92431",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92431?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91011",
+        "customerNumber": "91011",
+        "customer": "Milchwirtschaftl. Industrie Ges. - Herford - 91011",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91011?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "94521",
+        "customerNumber": "94521",
+        "customer": "Molkerei Ammerland eG - Wiefelstede - 94521",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/94521?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92911",
+        "customerNumber": "92911",
+        "customer": "Naabtaler Milchwerke GmbH&Co.KG - Schwarzenfeld - 92911",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92911?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90289",
+        "customerNumber": "90289",
+        "customer": "Natumi GmbH - Troisdorf - 90289",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90289?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92061",
+        "customerNumber": "92061",
+        "customer": "Ovobest Eiprodukte GmbH & Co.KG - Neuenkirchen-Vörden - 92061",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92061?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90341",
+        "customerNumber": "90341",
+        "customer": "Peter Mertes KG - Bernkastel-Kues - 90341",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90341?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92532",
+        "customerNumber": "92532",
+        "customer": "Privatmolkerei Naarmann GmbH - NEUENKIRCHEN - 92532",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92532?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92571",
+        "customerNumber": "92571",
+        "customer": "riha WeserGold Getraenke - Rinteln - 92571",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92571?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "95562",
+        "customerNumber": "95562",
+        "customer": "RL Regionale-Lebensmittel - MARBURG - 95562",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/95562?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90141",
+        "customerNumber": "90141",
+        "customer": "Rücker GmbH - Aurich - 90141",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90141?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90907",
+        "customerNumber": "90907",
+        "customer": "Sachsenmilch Leppersdorf GmbH - WACHAU - 90907",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90907?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "90251",
+        "customerNumber": "90251",
+        "customer": "Schwaelbchen Molkerei - Bad Schwalbach - 90251",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/90251?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "94236",
+        "customerNumber": "94236",
+        "customer": "Schwarzwaldmilch GmbH Freiburg - Freiburg - 94236",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/94236?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92421",
+        "customerNumber": "92421",
+        "customer": "Stute Nahrungsmittelwerke - Paderborn - 92421",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92421?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "91296",
+        "customerNumber": "91296",
+        "customer": "Teutoburger Mineralbrunnen - BIELEFELD - 91296",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/91296?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "95851",
+        "customerNumber": "95851",
+        "customer": "Vogtlandmilch GmbH - Plauen - 95851",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/95851?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "92987",
+        "customerNumber": "92987",
+        "customer": "Wolfgang Jobmann GmbH - REINBEK - 92987",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/customers/92987?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
