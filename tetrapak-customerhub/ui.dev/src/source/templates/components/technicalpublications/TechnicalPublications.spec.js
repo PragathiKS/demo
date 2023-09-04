@@ -170,7 +170,7 @@ describe("TechnicalPublications", function () {
 
     expect(innerHeaderText).to.equal('cuhu.technicalpublications.documentNumber');
     expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
-    expect(renderedLinkLabels.includes('3526595-0106')).to.be.true;
+    expect(renderedLinkLabels.includes('3526594-0107')).to.be.true;
 
     done();
   });

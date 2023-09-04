@@ -5,16 +5,17 @@ import {ajaxMethods} from '../../../scripts/utils/constants';
 import {logger} from '../../../scripts/utils/logger';
 import {render} from '../../../scripts/utils/render';
 import {getI18n} from '../../../scripts/common/common';
+import { DOCUMENT_TYPES } from './constants';
 
 function _getFolderData(stepKey, options) {
   const $this = this;
-  const { 
-    countriesApi, 
-    customerApi, 
-    lineApi, 
-    equipmentApi, 
-    techPubApi, 
-    searchResults, 
+  const {
+    countriesApi,
+    customerApi,
+    lineApi,
+    equipmentApi,
+    techPubApi,
+    searchResults,
     i18nKeys,
     techPubApiResults
   } = $this.cache;
@@ -23,29 +24,41 @@ function _getFolderData(stepKey, options) {
   const { isBreadcrumbNav } = options;
   let apiUrl;
   let serialNumber;
+
+  this.cache.typeCode = null;
+
   switch (stepKey) {
-    case 'countries':
+    case 'countries': {
       apiUrl = countriesApi;
       break;
-    case 'country':
+    }
+    case 'country': {
       apiUrl = `${customerApi}?countrycodes=${country.value}&count=1500`;
       break;
-    case 'customer':
+    }
+    case 'customer': {
       apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}`;
       break;
-    case 'line':
+    }
+    case 'line': {
       apiUrl = `${equipmentApi}?skip=0&countrycodes=${country.value}&customerNumber=${customer.value}&linecodes=${line.value}&results=extended`;
       break;
-    case 'lineFolders':
-      serialNumber = lineFolders.value.split('/');
+    }
+    case 'lineFolders': {
+      const value = `${lineFolders.value}`;
+      serialNumber = value.split('/');
       apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
       break;
-    case 'folderDetails':
-      serialNumber = folderDetails.value.split(',')[1].split('/');
+    }
+    case 'folderDetails': {
+      const value = `${folderDetails.value}`;
+      serialNumber = value.split(',')[1].split('/');
       apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
       break;
-    default:
+    }
+    default: {
       break;
+    }
   }
 
   $this.showSpinner(true);
@@ -70,14 +83,14 @@ function _getFolderData(stepKey, options) {
     searchResults.show();
     searchResults.text(`${finalData.length} ${searchResultsLabel}`);
 
-    $this.renderFolderData(stepKey, finalData, srNo);
+    $this.renderFolderData(stepKey, finalData, srNo, documentType);
     $this.renderBreadcrumbs(stepKey);
     $this.setApiData(stepKey, finalData);
-    
+
     return;
   }
 
-  auth.getToken(({ data: authData }) => {
+  return auth.getToken(({ data: authData }) => {
     ajaxWrapper
       .getXhrObj({
         url: apiUrl,
@@ -95,6 +108,8 @@ function _getFolderData(stepKey, options) {
 
         let finalData = res.data;
         let srNo = '';
+        let docType = '';
+
         if(stepKey === 'line') {
           finalData = res.data.filter(data => data.serialNumber !== '');
         }
@@ -106,17 +121,20 @@ function _getFolderData(stepKey, options) {
           res.data.forEach(function(data) {
             docObj[data.typeCode] = `${data.typeCode} - ${data.type}`;
           });
-          Object.keys(docObj).forEach(function(obj) {
+
+          Object.keys(docObj).forEach(function(docType) {
             const docObject = {
-              'docTitle': docObj[obj],
-              'docType': obj,
+              docType,
+              'docTitle': docObj[docType],
               'serialNo': lineFolders.value
             };
             docData.push(docObject);
           });
 
           finalData = docData.filter(function(data){
-            if(data.docType === 'OM' || data.docType === 'MM') {
+            const isValidDocType = DOCUMENT_TYPES.includes(data.docType);
+
+            if(isValidDocType) {
               return data;
             }
           });
@@ -129,10 +147,11 @@ function _getFolderData(stepKey, options) {
 
           srNo = folderDetails.value.split(',')[1];
           finalData = res.data.filter(data => data.typeCode === documentType);
+          docType = documentType;
           searchResults.show();
           searchResults.text(`${finalData.length} ${searchResultsLabel}`);
         }
-        $this.renderFolderData(stepKey, finalData, srNo);
+        $this.renderFolderData(stepKey, finalData, srNo, docType);
         $this.renderBreadcrumbs(stepKey);
         $this.setApiData(stepKey, finalData);
       }).fail((e) => {
@@ -141,24 +160,34 @@ function _getFolderData(stepKey, options) {
   });
 }
 
-function _renderFolderData(stepKey, folderData, serialNo) {
+function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
   const $this = this;
-  const { $folderListingWrapper } = $this.cache;
+  const { $folderListingWrapper, i18nKeys } = $this.cache;
+
+  const renderIssueDate = ['SPC'].includes(typeCode);
+  const renderDescription = ['TEM', 'CM'].includes(typeCode);
+  const renderRKNumber = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
+  const renderRKName = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
 
   render.fn({
     template: 'technicalPublicationsGenericFolder',
     target: $folderListingWrapper,
     data: {
-      i18nKeys: $this.cache.i18nKeys,
-      currentStep: stepKey,
-      serialNumber: serialNo,
+      i18nKeys,
+      documentType: typeCode,
+      currentStep,
+      serialNumber,
       folderData,
-      isCustomerStep: stepKey === 'customer',
-      isCountryStep: stepKey === 'country',
-      isCountriesStep: stepKey === 'countries',
-      isLineStep: stepKey === 'line',
-      isLineFoldersStep: stepKey === 'lineFolders',
-      isFolderDetailsStep: stepKey === 'folderDetails'
+      isCustomerStep: currentStep === 'customer',
+      isCountryStep: currentStep === 'country',
+      isCountriesStep: currentStep === 'countries',
+      isLineStep: currentStep === 'line',
+      isLineFoldersStep: currentStep === 'lineFolders',
+      isFolderDetailsStep: currentStep === 'folderDetails',
+      renderIssueDate,
+      renderDescription,
+      renderRKNumber,
+      renderRKName
     }
   }, () => {
     $this.showSpinner(false);

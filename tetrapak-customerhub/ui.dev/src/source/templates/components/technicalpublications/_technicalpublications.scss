@@ -69,6 +69,15 @@
         th,
         td {
             @include padding($padding-md);
+            color: $color-tundora;
+        }
+
+        th {
+            font-weight: 500;
+        }
+
+        td {
+            font-weight: 400;
         }
 
         tr {
