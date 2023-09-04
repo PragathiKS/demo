@@ -1075,7 +1075,6 @@ class MyEquipment {
               this.renderPaginationTableData(tableData);
               this.renderSearchCount();
               this.mapTableColumn();
-              //this.showHideAllFilters();
             }).fail(() => {
               this.cache.$content.removeClass('d-none');
               this.cache.$spinner.addClass('d-none');

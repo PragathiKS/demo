@@ -102,7 +102,6 @@ describe('MyEquipment', function () {
     done();
   });
   it('should open equipment details', function(done){
-    //window.open = function () { return window; }
     $('.js-my-equipment__table-summary__row').trigger('click');
     expect(this.myequipment.sortTableByKey.called).to.be.true;
     done();
