@@ -128,3 +128,14 @@ export const EVT_FINANCIAL_FILEDOWNLOAD = 'financial.filedownload';
 export const EVT_DROPDOWN_CHANGE = 'dropdown.change';
 // Analytics constants
 export const SOA_FORM_LOAD_MSG = 'financial search form load';
+// EQ Filters Chip
+export const EQ_TYPE='eq';
+export const EQ_LOCAL_STORAGE='equipmentListFilters';
+export const TPCOOKIEUSERTEM='TPCOOKIEUSERTEM';
+export const EQ_FILTERS = {
+  COUNTRY: 'country',
+  EQUIPMENTNAME: 'equipmentName',
+  SERIALNUMBER: 'serialNumber',
+  USERNAME:'userName'
+};
+

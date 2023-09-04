@@ -43,6 +43,13 @@ public class EquipmentDetailsModel {
     private String country;
 
     /**
+     * The Back to  Equipmenmt List Page.
+     */
+    @Inject
+    private String backToEquipmentList;
+
+
+    /**
      * The equipment information.
      */
     @Inject
@@ -364,6 +371,15 @@ public class EquipmentDetailsModel {
         return equipmentDescription;
     }
 
+    /**
+     * Gets the Back to Equipment List Page.
+     *
+     * @return the Back to equipment list Page.
+     */
+    public String getBackToEquipmentList() {
+        return backToEquipmentList;
+    }
+     
     /**
      * Gets the equipment information.
      *
@@ -710,6 +726,7 @@ public class EquipmentDetailsModel {
      */
     @PostConstruct protected void init() {
         Map<String, Object> i18KeyMap = new HashMap<>();
+        i18KeyMap.put(CustomerHubConstants.BACK_TO_EQUIPMENT_LIST, getBackToEquipmentList());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_INFORMATION, getEquipmentInformation());
         i18KeyMap.put(CustomerHubConstants.UPDATE_EQUIPMENT_INFORMATION, getUpdateEquipmentInformation());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_DETAILS, getEquipmentDetails());
