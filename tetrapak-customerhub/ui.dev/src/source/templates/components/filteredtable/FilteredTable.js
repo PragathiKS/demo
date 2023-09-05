@@ -276,10 +276,15 @@ class FilteredTable {
 
   _buildTableRow = (data, visibleColumnKeys) => {
     const dataObject = {
-      row: []
+      row: [
+        {
+          key: 'icon'
+        }
+      ]
     };
+    const keys = ['icon', ...visibleColumnKeys];
 
-    visibleColumnKeys.forEach((key, index) => {
+    keys.forEach((key, index) => {
       const value = data[key];
       dataObject.row[index] = { key, value };
 
@@ -292,11 +297,7 @@ class FilteredTable {
         dataObject.isClickable = true;
       }
       if (key === 'rkTypeCode') {
-        dataObject.row[index].icon = this._getRowIcon(value);
-        dataObject.row.unshift({
-          key: 'icon',
-          value: this._getRowIcon(value)
-        });
+        dataObject.row[0].value = this._getRowIcon(value);
       }
     });
 
