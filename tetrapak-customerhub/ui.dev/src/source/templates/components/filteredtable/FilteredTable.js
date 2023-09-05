@@ -153,7 +153,9 @@ class FilteredTable {
     const api = this.cache.api.list;
     return Promise.all(this.cache.data.filterDataEndpoints.map(endpoint => {
       let apiUrlRequest = `${api}/${endpoint}`;
-      const filterUrlParams = this._getFilterUrlParams();
+      const config = this.cache.data.tableConfig.find(({ apiKey }) => apiKey === endpoint);
+      const queryParam = config && config.queryParam;
+      const filterUrlParams = this._getFilterUrlParams(queryParam);
       apiUrlRequest += filterUrlParams ? `?${filterUrlParams}` : '';
 
       return auth.getToken(({ data: authData }) => {
@@ -175,7 +177,7 @@ class FilteredTable {
     }));
   }
 
-  _getFilterUrlParams = () => {
+  _getFilterUrlParams = (queryParam) => {
     const { values } = this.cache.variables.filters;
     const queryParams = Object.keys(values);
 
@@ -199,7 +201,8 @@ class FilteredTable {
           }
           case FILTER_TYPE_CHECKBOX: {
             const value = values[column.queryParam];
-            if (value) {
+            
+            if (value && column.queryParam !== queryParam) {
               return `${column.queryParam}=${value.join(',')}`;
             } else {
               return null;
@@ -215,6 +218,7 @@ class FilteredTable {
           }
         }
       }).filter((val) => !!val).join('&');
+
       return queryString;
     }
     return '';
@@ -261,12 +265,21 @@ class FilteredTable {
     $datePickerInput.length && $datePickerInput.trigger('focus');
   }
 
-  _buildTableRows = (data, keys) => {
+  _getRowIcon = (rkTypeCode) => {
+    if(rkTypeCode.startsWith('A')) {
+      return 'Mandatory_Kit';
+    } else if(rkTypeCode.startsWith('B')) {
+      return 'Trolley';
+    }
+    return '';
+  }
+
+  _buildTableRow = (data, visibleColumnKeys) => {
     const dataObject = {
       row: []
     };
 
-    keys.forEach((key, index) => {
+    visibleColumnKeys.forEach((key, index) => {
       const value = data[key];
       dataObject.row[index] = { key, value };
 
@@ -278,6 +291,13 @@ class FilteredTable {
         dataObject.rowLink = data['id'];
         dataObject.isClickable = true;
       }
+      if (key === 'rkTypeCode') {
+        dataObject.row[index].icon = this._getRowIcon(value);
+        dataObject.row.unshift({
+          key: 'icon',
+          value: this._getRowIcon(value)
+        });
+      }
     });
 
     return dataObject;
@@ -286,13 +306,18 @@ class FilteredTable {
   _processTableData = (data) => {
     const result = { ...data };
 
-    result.summary = data.summary.map((summary) => this._buildTableRows(
+    result.summary = data.summary.map((summary) => this._buildTableRow(
       summary,
       this.cache.variables.filters.visibleColumns
     ));
     result.summaryHeadings = this._mapHeadings(
       this.cache.variables.filters.visibleColumns
     );
+
+    result.summaryHeadings.unshift({
+      key: 'icon',
+      showTooltip: false
+    });
 
     return result;
   }
