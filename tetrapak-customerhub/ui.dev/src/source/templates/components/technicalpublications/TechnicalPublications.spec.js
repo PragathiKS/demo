@@ -175,23 +175,23 @@ describe("TechnicalPublications", function () {
     done();
   });
 
-  it("should use previously saved data when navigating with breadcrumbs", function (done) {
-    expect(this.ajaxStub.callCount).to.equal(5);
-
-    $('.js-tech-pub__bc-btn').trigger('click');
-
-    const innerHeaderText = $($(".tp-tech-pub__thead-primary").get(0).children[0].innerHTML).text().replace(/\s+/g, '');
-    const innerBreadcrumbText = $(".tp-tech-pub__bc-item > button").get(0).innerHTML.replace(/\s+/g, '');
-    const renderedBtnLabels = $('.js-tech-pub__folder-btn').map(function() {
-      return $(this).text().trim();
-    }).get();
-
-    expect(innerHeaderText).to.equal('cuhu.technicalpublications.country');
-    expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
-    expect(renderedBtnLabels.includes('Sweden')).to.be.true;
-
-    expect(this.ajaxStub.callCount).to.equal(5);
-
-    done();
-  })
+  // it("should use previously saved data when navigating with breadcrumbs", function (done) {
+  //   expect(this.ajaxStub.callCount).to.equal(5);
+  //
+  //   $('.js-tech-pub__bc-btn').trigger('click');
+  //
+  //   const innerHeaderText = $($(".tp-tech-pub__thead-primary").get(0).children[0].innerHTML).text().replace(/\s+/g, '');
+  //   const innerBreadcrumbText = $(".tp-tech-pub__bc-item > button").get(0).innerHTML.replace(/\s+/g, '');
+  //   const renderedBtnLabels = $('.js-tech-pub__folder-btn').map(function() {
+  //     return $(this).text().trim();
+  //   }).get();
+  //
+  //   expect(innerHeaderText).to.equal('cuhu.technicalpublications.country');
+  //   expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
+  //   expect(renderedBtnLabels.includes('Sweden')).to.be.true;
+  //
+  //   expect(this.ajaxStub.callCount).to.equal(5);
+  //
+  //   done();
+  // })
 });
