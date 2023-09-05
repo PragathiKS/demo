@@ -174,3 +174,18 @@ export const loader = (target, appendMode) => {
     return new Loader(loading);
   }
 };
+
+/**
+ * Returns max safe integer
+ */
+export const getMaxSafeInteger = () => (Number.MAX_SAFE_INTEGER || 9007199254740991);
+
+/**
+ * Checks if current environment is localhost
+ */
+export const isLocalhost = () => ($('#isDummyLayout').val() === 'true');
+
+/**
+ * Checks if current page is iframe
+ */
+export const isCurrentPageIframe = () => ((window.location !== window.parent.location) && (window.frameElement.getAttribute('id') !== 'ContentFrame'));
