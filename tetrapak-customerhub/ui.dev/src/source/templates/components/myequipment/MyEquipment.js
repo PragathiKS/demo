@@ -371,8 +371,8 @@ class MyEquipment {
 
   getAllAvailableFilterVals(filterValuesArr, newCountry, appliedFilter) {
     const equipmentApi = this.cache.equipmentApi.data('list-api');
-    const { combinedFiltersObj } = this.cache;    
-   
+    const { combinedFiltersObj } = this.cache;
+
     filterValuesArr.forEach(filterVal => {
       const appliedFilterApiKey = _remapFilterProperty(appliedFilter);
 
@@ -996,13 +996,13 @@ class MyEquipment {
           this.cache.authData = authData;
           let { countryCode } = this.cache.countryData && this.cache.countryData[0];
           const { itemsPerPage } = this.cache;
-          
+
           this.cache.combinedFiltersObj=filters.getFiltersValueFromLocalStorage(EQ_TYPE);
           if(this.cache.combinedFiltersObj!==null){
             if (Object.keys(this.cache.combinedFiltersObj).length) {
-             
+
               countryCode=this.cache.combinedFiltersObj[EQ_FILTERS.COUNTRY] || '';
-              
+
               if(this.cache.combinedFiltersObj[EQ_FILTERS.COUNTRY]){
                 const filterData = this.cache.countryData;
                 for (var index in filterData) {
@@ -1011,14 +1011,14 @@ class MyEquipment {
                   } else {
                     filterData[index].isChecked = false;
                   }
-                }               
+                }
 
                 this.cache.$countryFilterLabel.addClass('active');
                 if (this.cache.$equipmentDescFilterLabel) {
-                  this.cache.$countryFilterLabel.text(`${getI18n(this.cache.i18nKeys['country'])}: ${1}`);                  
+                  this.cache.$countryFilterLabel.text(`${getI18n(this.cache.i18nKeys['country'])}: ${1}`);
                 }
               }
-              
+
               if(this.cache.combinedFiltersObj[EQ_FILTERS.EQUIPMENTNAME]){
                 this.cache.$equipmentDescFilterLabel.addClass('active');
                 if (this.cache.$equipmentDescFilterLabel) {
@@ -1041,9 +1041,9 @@ class MyEquipment {
           }
 
           const filtersQuery = _buildQueryUrl(this.cache.combinedFiltersObj);
-          
+
           apiUrlRequest = `${equipmentApi}?skip=0&count=${itemsPerPage}&countrycodes=${countryCode}`;
-         
+
           if (filtersQuery) {
             apiUrlRequest += `&${filtersQuery}`;
           }
