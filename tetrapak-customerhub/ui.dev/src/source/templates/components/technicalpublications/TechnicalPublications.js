@@ -169,6 +169,12 @@ function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
   const renderRKNumber = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
   const renderRKName = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
 
+  let data = [...folderData];
+
+  if (renderRKNumber || renderRKName) {
+    data = this.extractRKDetails(folderData);
+  }
+
   render.fn({
     template: 'technicalPublicationsGenericFolder',
     target: $folderListingWrapper,
@@ -177,7 +183,7 @@ function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
       documentType: typeCode,
       currentStep,
       serialNumber,
-      folderData,
+      folderData: data,
       isCustomerStep: currentStep === 'customer',
       isCountryStep: currentStep === 'country',
       isCountriesStep: currentStep === 'countries',
@@ -389,6 +395,18 @@ class TechnicalPublications {
       const $this = this;
       const $btn = $(e.currentTarget);
       const targetStep = $btn.data('step');
+      const currentStep = Object.keys($this.cache.folderNavData).find((key) => {
+        const folderNavValue = $this.cache.folderNavData[key];
+        if (folderNavValue.isCurrentStep) {
+          return true;
+        }
+        return false;
+      });
+
+      if (targetStep === currentStep) {
+        return;
+      }
+
       const { folderNavData, searchResults } = $this.cache;
 
       searchResults.hide();
@@ -427,6 +445,26 @@ class TechnicalPublications {
 
   showSpinner() {
     return _showSpinner.apply(this, arguments);
+  }
+
+  extractRKDetails(data) {
+    return data.map((doc) => {
+      const { name, optionsAndKits } = doc;
+
+      if (name && optionsAndKits && optionsAndKits.length) {
+        const rK = optionsAndKits.find(({ name: kitName }) => kitName === name);
+        const { name: rkName, devStep, drawingSpec } = rK;
+        const rkNumber = `${drawingSpec}-${devStep}`;
+
+        return {
+          ...doc,
+          rkName,
+          rkNumber
+        };
+      }
+
+      return doc;
+    });
   }
 
   init() {
