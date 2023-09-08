@@ -1,9 +1,13 @@
 package com.tetrapak.publicweb.core.models;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+
+import javax.annotation.PostConstruct;
 
 /**
  * The Class LinkModel.
@@ -21,6 +25,9 @@ public class MainNavigationLinkModel {
 
     @ValueMapValue
     private String megaMenuPath;
+
+    @Self
+    private Resource resource;
 
     /**
      * Gets the link text.
@@ -54,10 +61,18 @@ public class MainNavigationLinkModel {
     }
 
     public String getMegaMenuPath() {
+
         return megaMenuPath;
     }
 
     public void setMegaMenuPath(String megaMenuPath) {
         this.megaMenuPath = megaMenuPath;
+    }
+
+    @PostConstruct
+    protected void init(){
+        if(StringUtils.isNotBlank(megaMenuPath) && resource.getResourceResolver().getResource(megaMenuPath)==null){
+            megaMenuPath = StringUtils.EMPTY;
+        }
     }
 }
