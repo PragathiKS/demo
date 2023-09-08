@@ -2,6 +2,11 @@ import { storageUtil } from '../common/common';
 import {EQ_TYPE,EQ_FILTERS,EQ_LOCAL_STORAGE,TPCOOKIEUSERTEM} from './constants';
 
 export default {
+  emptyFilterChipInLocalStorage(type){
+    if(type===EQ_TYPE){
+      window.localStorage.removeItem(EQ_LOCAL_STORAGE);
+    }
+  },
   setFilterChipInLocalStorage(type,filterObject,countryCode){
     const filterChipsStorageObj={};
     if(type===EQ_TYPE){

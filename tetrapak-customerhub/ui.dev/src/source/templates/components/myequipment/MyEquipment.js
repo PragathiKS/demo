@@ -785,6 +785,8 @@ class MyEquipment {
 
     this.cache.activeSortData = null;
 
+    filters.emptyFilterChipInLocalStorage(EQ_TYPE);
+
     $filterBtns.each((index, item) => {
       const initialLabel = $(item).data('label');
       $(item).removeClass('active');
