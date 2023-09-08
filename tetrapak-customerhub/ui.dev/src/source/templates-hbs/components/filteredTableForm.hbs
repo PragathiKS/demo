@@ -1,0 +1,107 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
+    <div class="modal-content tp-filtered-table__modal-content tp-modal-content">
+        <div class="modal-header tpmol-modal-header">
+            <div class="js-filtered-table__modal-header tp-filtered-table__modal-header" auto_locator="headlineOverlay">
+                {{i18n key=header}}
+            </div>
+            <button type="button" auto_locator="closebtnOverlay"
+                    class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        <div class='modal-body tp-modal-body tp-filtered-table__modal-body'>
+            {{#if isDatePicker}}
+                <div 
+                    class="js-dp" 
+                    data-from-label="{{i18n key=dateFrom}}" 
+                    data-to-label="{{i18n key=dateTo}}"
+                    data-error-label="{{i18n key=dateError}}"
+                />
+            {{else}}
+                {{#if isTextInput}}
+                    {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-filtered-table-filter-input"}}
+                {{else}}
+                    {{#if isCheckboxGroup}}
+                        {{#each formData}}
+                            {{> atoms/checkbox/checkbox value=this.businessTypeLabel text=this.businessTypeLabel check=isChecked disabled=isDisabled
+                                    uniqueKey=this.businessTypeLabel
+                                    baseClass="tp-filtered-table__type-group-option js-tp-filtered-table-type-group-option js-tp-filtered-table-filter-group-checkbox js-tp-filtered-table-filter-checkbox"
+                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                            }}
+
+                            <div class="tp-filtered-table-filter-options tp-filtered-table-group-filter-options">
+                                {{#each this.options}}
+                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            baseClass="js-tp-filtered-table-filter-checkbox"
+                                            uniqueKey=option
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                    }}
+                                {{/each}}
+                            </div>
+                        {{/each}}
+                    {{else}}
+                        <div class="tp-filtered-table-filter-options">
+                            {{#if isRadio}}
+                                {{#each formData}}
+                                    {{> atoms/radio/radio 
+                                            value=option 
+                                            text=optionDisplayText 
+                                            check=isChecked 
+                                            disabled=isDisabled
+                                            uniqueKey=option
+                                            name=@root.radioGroupName
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            jsMyEquipmentFilter="js-tp-filtered-table-filter-radio"
+                                    }}
+                                {{/each}}
+                            {{else}}
+                                {{#each formData}}
+                                    {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                            uniqueKey=option
+                                            autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                            autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                            baseClass="js-tp-filtered-table-filter-checkbox"}}
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
+        <div class="modal-footer tpmol-modal-footer tp-filtered-table__modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-filtered-table__apply-button" auto_locator="confirmbtnOverlay">
+                <span class="tpatom-btn__text sly-text">
+                    {{#if isCustomiseTable}}
+                        {{i18n key=hideAndShowCta}}
+                    {{else}}
+                        {{i18n key=applyFilter}}
+                    {{/if}}
+                </span>
+            </button>
+            {{#if isCustomiseTable}}
+                <button class="tpatom-btn tp-filtered-table__set-default-button js-tp-filtered-table__set-default-button" auto_locator="setDefaultOverlay">
+                    <i class="icon icon-Recycle"></i>
+                    <span class="tpatom-btn__text sly-text">{{i18n key=setDefaulFiltertCTA}}</span>
+                </button>
+            {{/if}}
+            {{#unless noRemoveButton}}
+                <button class="tpatom-btn tp-filtered-table__remove-button js-tp-filtered-table__remove-button" auto_locator="removeAllOverlay">
+                    <i class="icon icon-My_Euipment_Bin_X"></i>
+                    <span class="tpatom-btn__text sly-text">{{i18n key=removeAll}}</span>
+                </button>
+            {{/unless}}
+            {{#if maxItemsNo}}
+                <p class="tp-filtered-table__filter-count js-tp-filtered-table__filter-count" data-max-filters="{{maxItemsNo}}">
+                    <span class="js-tp-filtered-table__filter-count-current">{{selectedItemsNo}}</span> {{i18n key=filtersOf}}
+                    <span class="js-tp-filtered-table__filter-count-total">{{maxItemsNo}}</span> {{i18n key=filtersSelected}}
+                </p>
+                <p class="tp-filtered-table__filter-count-err js-tp-filtered-table__filter-count-err" hidden>
+                    {{i18n key=maxLimitErrorPre}} {{maxItemsNo}} {{i18n key=maxLimitErrorAfter}}
+                </p>
+            {{/if}}
+        </div>
+    </div>
+</div>
