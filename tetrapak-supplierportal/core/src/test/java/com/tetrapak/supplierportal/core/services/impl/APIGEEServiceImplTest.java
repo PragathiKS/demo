@@ -23,43 +23,41 @@ import io.wcm.testing.mock.aem.junit.AemContext;
  *
  */
 public class APIGEEServiceImplTest {
-	
+
 	private static final String APIGEE_SERVICE_URL = "https://api-mig.tetrapak.com";
-    private static final String APIGEE_MAPPINGS = "token-generator:bin/customerhub/token-generator";
-    
-    private static final String SERVLET_RESOURCE_JSON = "allContent.json";
-    private static final String SERVLET_RESOURCE_PATH = "";
+	private static final String APIGEE_MAPPINGS = "token-generator:bin/customerhub/token-generator";
 
-    private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
+	private static final String SERVLET_RESOURCE_JSON = "allContent.json";
+	private static final String SERVLET_RESOURCE_PATH = "";
 
-    @Rule
-    public final AemContext aemContext = SupplierPortalCoreAemContext.getAemContextWithJcrMock(SERVLET_RESOURCE_JSON,
-            SERVLET_RESOURCE_PATH);
+	private APIGEEServiceImpl apigeeService = new APIGEEServiceImpl();
 
+	@Rule
+	public final AemContext aemContext = SupplierPortalCoreAemContext.getAemContextWithJcrMock(SERVLET_RESOURCE_JSON,
+			SERVLET_RESOURCE_PATH);
 
-    @Before
-    public void setup() throws IOException {
+	@Before
+	public void setup() throws IOException {
 		MockitoAnnotations.initMocks(this);
-		 Map<String, Object> _config = new HashMap<>();
-	        _config.put("apigeeServiceUrl", APIGEE_SERVICE_URL);
-	        _config.put("apigeeClientID", "KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ");
-	        _config.put("apigeeClientSecret", "jX38HGX7Ze4j6vvZ");
-	        _config.put("apiMappings", APIGEE_MAPPINGS);
-	        aemContext.registerInjectActivateService(apigeeService, _config);
+		Map<String, Object> _config = new HashMap<>();
+		_config.put("apigeeServiceUrl", APIGEE_SERVICE_URL);
+		_config.put("apigeeClientID", "KHEnJskMGGogWrJAD3OyUI3VwerCLSDQ");
+		_config.put("apigeeClientSecret", "jX38HGX7Ze4j6vvZ");
+		_config.put("apiMappings", APIGEE_MAPPINGS);
+		aemContext.registerInjectActivateService(apigeeService, _config);
 	}
-    
-    @Test
-    public void testAPIGEEService() {
-        Assert.assertEquals("API GEE url", APIGEE_SERVICE_URL, apigeeService.getApigeeServiceUrl());
-        Assert.assertEquals("API GEE mapping", APIGEE_MAPPINGS, apigeeService.getApiMappings()[0]);
-    }
-    
-    @Test
-    public void testRetrieveAPIGEEToken() throws IOException {
-    	JsonObject jsonResponse = apigeeService.retrieveAPIGEEToken("test");
-    	Assert.assertNotNull(jsonResponse);
-    	Assert.assertEquals(200, jsonResponse.get(STATUS_CODE).getAsInt());
-    }
-    
-   
+
+	@Test
+	public void testAPIGEEService() {
+		Assert.assertEquals("API GEE url", APIGEE_SERVICE_URL, apigeeService.getApigeeServiceUrl());
+		Assert.assertEquals("API GEE mapping", APIGEE_MAPPINGS, apigeeService.getApiMappings()[0]);
+	}
+
+	@Test
+	public void testRetrieveAPIGEEToken() throws IOException {
+		JsonObject jsonResponse = apigeeService.retrieveAPIGEEToken("test");
+		Assert.assertNotNull(jsonResponse);
+		Assert.assertEquals(200, jsonResponse.get(STATUS_CODE).getAsInt());
+	}
+
 }

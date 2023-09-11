@@ -212,6 +212,17 @@ public final class SupplierPortalConstants {
     public static final String APPLICATION_URL_ENCODED = "application/x-www-form-urlencoded";
 
     public static final String AUTH_TOKEN = "auth-token";
+    
+    /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
+    public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
+    
+    /** The Constant PATH_SEPARATOR. */
+    public static final String PATH_SEPARATOR = "/";
+    
+    public static final String FILTERS_MAPPING = "sp-filters";
+    
+    public static final String INVOICE_MAPPING = "sp-invoices";
+
 
     /**
      * Instantiates a new customer hub constants.
