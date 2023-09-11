@@ -13,6 +13,63 @@
         jcr:mixinTypes="[cq:ReplicationStatus]"
         jcr:primaryType="sling:MessageEntry"
         sling:message="Home-Chinese"/>
+    <sp.paymentDetails.allPaymentsHeading
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Payments"/>
+    <sp.paymentDetails.amountIncludingTaxes
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Amount Including Taxes"/>
+    <sp.paymentDetails.company
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Company"/>
+    <sp.paymentDetails.companyCode
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Company Code"/>
+    <sp.paymentDetails.country
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Country"/>
+    <sp.paymentDetails.dueDate
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Due Date"/>
+    <sp.paymentDetails.invoiceDate
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Invoice Date"/>
+    <sp.paymentDetails.invoiceNo
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Invoice No"/>
+    <sp.paymentDetails.noDataFound
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" NoDataFound"/>
+    <sp.paymentDetails.pagination
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Pagination"/>
+    <sp.paymentDetails.paginationFirst
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" First"/>
+    <sp.paymentDetails.paginationLast
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Last"/>
+    <sp.paymentDetails.poNo
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" PO NO"/>
+    <sp.paymentDetails.reset
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Reset"/>
+    <sp.paymentDetails.results
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Results"/>
+    <sp.paymentDetails.status
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Invoice Status"/>
+    <sp.paymentDetails.supplier
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Supplier"/>
+    <sp.paymentDetails.supplierCode
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Supplier Code"/>
+    <sp.paymentDetails.withholdingtax
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Withholding Taxes (show currency)"/>
     <sp.requestform.ariba.email.error.label
         cq:lastReplicated="{Date}2023-03-20T08:13:57.862Z"
         cq:lastReplicatedBy="surbhi.gupta"
