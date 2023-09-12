@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
-import auth from '../../../scripts/utils/auth';
 
 class MediaLink {
   constructor({ el }) {
