@@ -93,7 +93,7 @@ $color-red: #ff0000;
                     text-decoration: inherit;
                     text-transform: none;
                     text-rendering: auto;
-                    content: '\f158'; // TODO: Need to change tis one
+                    content: '\f159'; // TODO: Need to change tis one
                     transform: rotate(-180deg);
                     width: 8px;
 
@@ -112,7 +112,7 @@ $color-red: #ff0000;
                     text-decoration: inherit;
                     text-transform: none;
                     text-rendering: auto;
-                    content: '\f158'; // TODO: Need to change tis one
+                    content: '\f159'; // TODO: Need to change tis one
                     width: 8px;
                 }
             }
@@ -122,11 +122,6 @@ $color-red: #ff0000;
         color: $color-congress-blue;
         &.left {
             transform: rotate(-180deg);
-        }
-        &.icon-Right_new {
-            &::before {
-                content: '\f158'; // TODO: Need to change tis one
-            }
         }
         &.icon-pagination {
             &::before {
