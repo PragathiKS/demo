@@ -12,8 +12,8 @@ class AllPayments {
 
   initCache() {
     const config = {
-      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusName', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
-      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplierName', 'supplier'],
+      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusCode', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
+      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusCode', 'documentReferenceID', 'supplierName', 'supplier'],
       currentPageNumber: 1,
       itemsPerPage: 10,
       activePage: 1,
@@ -27,13 +27,17 @@ class AllPayments {
         'companyCode': 'companyCode',
         'companyCountry': 'country',
         'amountInTransactionCurrency': 'amountIncludingTaxes',
-        'withholdingTaxAmmount': 'withholdingtax',
-        'invoiceStatusName': 'status',
+        'withholdingTaxAmmount': 'withHoldingTax',
+        'invoiceStatusCode': 'status',
         'documentReferenceID': 'invoiceNo',
         'supplierName': 'supplier',
         'supplier': 'supplierCode',
         'purchasingDocuments': 'poNo'
-      }
+      },
+      statusMapping: {
+        'In Process': [0,1,2,3,4,5,6,7,11,12,13,14,19,20,21,22,23,24,25,26,27,28,29,30,34,40,41,42,44,45,46,50,51,52,53,54,55,56,61,62,63,64,65,66,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,96,99],
+        'Posted' : [15,18,31,32,33,97,98],
+        'Rejected': [8,9,10,16,17]}
     };
     const selector = {
       paymentApi: this.root.querySelector('.js-payment-api'),
@@ -157,6 +161,17 @@ class AllPayments {
     return apiUrlRequest;
   }
 
+  getStatusName = (code) => {
+    const data =this.cache.statusMapping;
+
+    for (const key in data) {
+      if (data[key].includes(code)) {
+        return key;
+      }
+    }
+    return '';
+  };
+
   renderPayment = () => {
     this.showLoader(true);
 
@@ -179,7 +194,8 @@ class AllPayments {
             ...item,
             withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
             amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
-            purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multipono']:  item.purchasingDocuments
+            purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multipono']:  item.purchasingDocuments,
+            invoiceStatusCode: this.getStatusName(Number(item.invoiceStatusCode))
           }));
 
           this.cache.meta = response.meta;
