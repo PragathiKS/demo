@@ -1,0 +1,149 @@
+$color-red: #ff0000;
+
+.tp-all-payments {
+    &__heading {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+    }
+
+    &__search-count {
+        @include padding($padding-sm $padding-zero);
+        @include margin($margin-l $margin-zero);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-m-sm);
+        color: $color-congress-blue;
+        border-top: 1px solid $color-congress-blue;
+        border-bottom: 1px solid $color-congress-blue;
+    }
+
+    &__table {
+        table {
+            position: relative;
+            border-collapse: separate;
+        }
+        th {
+            @include padding($padding-md);
+            position: sticky;
+            top: 0;
+            background: $color-white;
+            border-bottom-color: $color-black;
+            font-weight: 700;
+            &.hide {
+                display: none;
+            }
+            &.sorted {
+                padding: 16px 2px 16px 30px;
+            }
+            button {
+                font-weight: 700;
+            }
+            .icon {
+                color: inherit;
+                &:hover {
+                    color: $color-congress-blue;
+                }
+            }
+            .icon-Chevron_Down {
+                width: 12px;
+                position: absolute;
+                left: 16px;
+            }
+        }
+        td {
+            @include font-size($font-m-sm);
+            @include line-height($font-l, $font-m-sm);
+            @include padding($padding-md);
+            font-weight: 500;
+            &.hide {
+                display: none;
+            }
+        }
+        tr {
+            &:last-child {
+                td {
+                    border-bottom: 0;
+                }
+            }
+        }
+        .dashed-border {
+            text-decoration: underline;
+            text-decoration-style: dashed;
+        }
+    }
+
+    &__table-summary__row {
+        &:not(.tp-all-payments__table-summary__rowheading) {
+            &:hover {
+                background-color: $color-wild-sand;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .tp-tbl-pagination {
+        &__first {
+            i.icon-Right_new {
+                &::after {
+                    display: inline-block;
+                    font-family: 'tp-icons';
+                    font-weight: normal;
+                    font-style: normal;
+                    line-height: 1;
+                    speak: none;
+                    text-decoration: inherit;
+                    text-transform: none;
+                    text-rendering: auto;
+                    content: '\f158'; // TODO: Need to change tis one
+                    transform: rotate(-180deg);
+                    width: 8px;
+
+                }
+            }
+        }
+        &__last {
+            i.icon-Right_new {
+                &::after {
+                    display: inline-block;
+                    font-family: 'tp-icons';
+                    line-height: 1;
+                    font-weight: normal;
+                    font-style: normal;
+                    speak: none;
+                    text-decoration: inherit;
+                    text-transform: none;
+                    text-rendering: auto;
+                    content: '\f158'; // TODO: Need to change tis one
+                    width: 8px;
+                }
+            }
+        }
+    }
+    .icon {
+        color: $color-congress-blue;
+        &.left {
+            transform: rotate(-180deg);
+        }
+        &.icon-Right_new {
+            &::before {
+                content: '\f158'; // TODO: Need to change tis one
+            }
+        }
+        &.icon-pagination {
+            &::before {
+                width: 8px;
+            }
+        }
+    }
+
+    button {
+        &:focus {
+            outline: 5px auto -webkit-focus-ring-color;
+        }
+    }
+
+    // overwrite the common loader style
+    .tpatom-loader {
+        @include padding($padding-md);
+        text-align: center;
+    }
+}

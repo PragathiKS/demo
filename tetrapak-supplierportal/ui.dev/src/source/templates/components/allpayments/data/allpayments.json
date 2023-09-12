@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "count": 200,
+    "skip": 0,
+    "total": 2,
+    "version": "1"
+  },
+  "data": [
+    {
+      "companyCode": "0111",
+      "documentDate": "2023-07-26",
+      "withholdingTaxCode": null,
+      "withholdingTaxAmmount": null,
+      "postingDate": "2023-07-26",
+      "documentReferenceID": "79126801",
+      "invoiceStatusCode": null,
+      "invoiceStatusName": null,
+      "transactionCurrency": "EUR",
+      "assignmentReference": "20230726",
+      "companyName": "TP Technical Service AB",
+      "companyCountry": "SE",
+      "amountInTransactionCurrency": "750.00",
+      "supplierName": "Alfa Laval Kolding AS",
+      "bankAccount": "",
+      "clearingDate": "",
+      "accountingDocument": "23000011",
+      "supplier": "387",
+      "dueCalculationBaseDate": "2023-07-26",
+      "paymentTerms": "TLN",
+      "paymentMethod": "",
+      "purchasingDocuments": [
+        "900090189"
+      ]
+    },
+    {
+      "companyCode": "0112",
+      "documentDate": "2023-07-23",
+      "withholdingTaxCode": null,
+      "withholdingTaxAmmount": null,
+      "postingDate": "2023-07-26",
+      "documentReferenceID": "79126802",
+      "invoiceStatusCode": null,
+      "invoiceStatusName": null,
+      "transactionCurrency": "EUR",
+      "assignmentReference": "20230727",
+      "companyName": "TP Technical Service AB",
+      "companyCountry": "SE",
+      "amountInTransactionCurrency": "750.00",
+      "supplierName": "Alfa Laval Kolding AS1",
+      "bankAccount": "",
+      "clearingDate": "",
+      "accountingDocument": "23000013",
+      "supplier": "388",
+      "dueCalculationBaseDate": "2023-07-27",
+      "paymentTerms": "TLN",
+      "paymentMethod": "",
+      "purchasingDocuments": [
+        "900090189",
+        "900090190"
+      ]
+    }
+  ]
+}
