@@ -1,4 +1,4 @@
-// import auth from '../../../scripts/utils/auth';
+import auth from '../../../scripts/utils/auth';
 import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
 import {  _paginationAnalytics } from './allpayments.analytics';
@@ -160,44 +160,44 @@ class AllPayments {
   renderPayment = () => {
     this.showLoader(true);
 
-    // auth.getToken(({ data: authData }) => {
-    fetch(this.getPaymentApiUrl(), {
-      method: 'GET',
-      contentType: 'application/json',
-      headers: {
-        'Authorization': `Bearer MUFeoTJuB8LGDgJJCncQxaGGd6Q1`,
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
-      .then(response => response.json())
-      .then(response => {
-        this.showLoader(false);
-        this.cache.tableData = response.data;
-
-        // Show fields based on requirement ex. render the amount field with currency
-        this.cache.tableData = this.cache.tableData.map((item) => ({
-          ...item,
-          withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
-          amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
-          purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multiplePoNmber']:  item.purchasingDocuments
-        }));
-
-        this.cache.meta = response.meta;
-        const tableData = {
-          summary: this.getTableBodyData(),
-          summaryHeadings: this.getHeaderData(),
-          i18nKeys:this.cache.i18nKeys,
-          meta:this.cache.meta
-        };
-
-        this.renderPaginationTableData(tableData);
-        this.renderSearchCount();
+    auth.getToken(({ data: authData }) => {
+      fetch(this.getPaymentApiUrl(), {
+        method: 'GET',
+        contentType: 'application/json',
+        headers: {
+          'Authorization': `Bearer ${authData.access_token}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       })
-      .catch(() => {
-        this.showLoader(false);
-        this.renderErrorTemplate();
-      });
-  // });
+        .then(response => response.json())
+        .then(response => {
+          this.showLoader(false);
+          this.cache.tableData = response.data;
+
+          // Show fields based on requirement ex. render the amount field with currency
+          this.cache.tableData = this.cache.tableData.map((item) => ({
+            ...item,
+            withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
+            amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
+            purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multiplePoNmber']:  item.purchasingDocuments
+          }));
+
+          this.cache.meta = response.meta;
+          const tableData = {
+            summary: this.getTableBodyData(),
+            summaryHeadings: this.getHeaderData(),
+            i18nKeys:this.cache.i18nKeys,
+            meta:this.cache.meta
+          };
+
+          this.renderPaginationTableData(tableData);
+          this.renderSearchCount();
+        })
+        .catch(() => {
+          this.showLoader(false);
+          this.renderErrorTemplate();
+        });
+    });
   }
 
   renderSearchCount = () => {
