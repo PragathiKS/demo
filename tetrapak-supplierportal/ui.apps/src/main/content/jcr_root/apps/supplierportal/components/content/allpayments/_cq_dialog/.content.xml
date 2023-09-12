@@ -108,29 +108,11 @@
                                 fieldLabel="Pagination (i18N key)"
                                 name="./pagination"
                                 required="true"/>
-                            <downloadExcelServletUrl
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Download Excel Servlet Url (i18N key)"
-                                name="./downloadExcelServletUrl"
-                                required="true"/>
-                            <allPaymentsApi
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="All Payments Api (i18N key)"
-                                name="./allPaymentsApi"
-                                required="true"/>
                             <noDataFound
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="No Data Found (i18N key)"
                                 name="./noDataFound"
-                                required="true"/>
-                            <filterApi
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Filter Api (i18N key)"
-                                name="./filterApi"
                                 required="true"/>
                             <paginationFirst
                                 jcr:primaryType="nt:unstructured"
