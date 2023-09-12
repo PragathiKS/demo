@@ -48,4 +48,8 @@ public class I18Constants {
 	public static final String PAGINATION_LAST = "paginationLast";
 
 	public static final String ALL_PAYMENTS_HEADING = "allPaymentsHeading";
+	
+	public static final String FETCH_ERROR = "fetcherror";
+	
+	public static final String MULTI_PO_NO = "multipono";
 }

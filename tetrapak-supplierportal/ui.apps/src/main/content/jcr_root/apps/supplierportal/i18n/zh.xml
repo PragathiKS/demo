@@ -31,12 +31,18 @@
     <sp.paymentDetails.dueDate
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Due Date"/>
+    <sp.paymentdetails.fetcherror
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Fetch Error"/>
     <sp.paymentDetails.invoiceDate
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Invoice Date"/>
     <sp.paymentDetails.invoiceNo
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Invoice No"/>
+    <sp.paymentdetails.multipono
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Multiple Po Number"/>
     <sp.paymentDetails.noDataFound
         jcr:primaryType="sling:MessageEntry"
         sling:message=" NoDataFound"/>

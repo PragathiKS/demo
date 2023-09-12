@@ -19,6 +19,8 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.FETCH_ERROR;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -123,6 +125,12 @@ public class AllPaymentsModel {
 	/** The service. */
 	@OSGiService
 	private APIGEEService service;
+	
+	@ValueMapValue
+	private String fetcherror;
+	
+	@ValueMapValue
+	private String multipono;
 
 	public Resource getResource() {
 		return resource;
@@ -346,6 +354,8 @@ public class AllPaymentsModel {
 		i18KeyMap.put(PAGINATION_FIRST, getPaginationFirst());
 		i18KeyMap.put(PAGINATION_LAST, getPaginationLast());
 		i18KeyMap.put(ALL_PAYMENTS_HEADING, getAllPaymentsHeading());
+		i18KeyMap.put(FETCH_ERROR, getAllPaymentsHeading());
+		i18KeyMap.put(MULTI_PO_NO, getAllPaymentsHeading());
 
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -367,5 +377,21 @@ public class AllPaymentsModel {
 
 	public void setI18nKeys(String i18nKeys) {
 		this.i18nKeys = i18nKeys;
+	}
+
+	public String getFetcherror() {
+		return fetcherror;
+	}
+
+	public void setFetcherror(String fetcherror) {
+		this.fetcherror = fetcherror;
+	}
+
+	public String getMultipono() {
+		return multipono;
+	}
+
+	public void setMultipono(String multipono) {
+		this.multipono = multipono;
 	}
 }

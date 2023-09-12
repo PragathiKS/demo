@@ -150,6 +150,18 @@
                                 fieldLabel="All Payments Heading (i18N key)"
                                 name="./allPaymentsHeading"
                                 required="true"/>
+                            <fetcherror
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Fetch Error (i18N key)"
+                                name="./fetcherror"
+                                required="true"/>
+                            <multipono
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Multiple Po Number (i18N key)"
+                                name="./multipono"
+                                required="true"/>
                         </items>
                     </column1>
                 </items>
