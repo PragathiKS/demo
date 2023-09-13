@@ -13,7 +13,7 @@
       "withholdingTaxAmmount": null,
       "postingDate": "2023-07-26",
       "documentReferenceID": "79126801",
-      "invoiceStatusCode": null,
+      "invoiceStatusCode": "18",
       "invoiceStatusName": null,
       "transactionCurrency": "EUR",
       "assignmentReference": "20230726",

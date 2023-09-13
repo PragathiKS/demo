@@ -164,11 +164,16 @@ class AllPayments {
   getStatusName = (code) => {
     const data =this.cache.statusMapping;
 
-    for (const key in data) {
-      if (data[key].includes(code)) {
-        return key;
+    if (code) {
+      code = Number(code);
+
+      for (const key in data) {
+        if (data[key].includes(code)) {
+          return key;
+        }
       }
     }
+
     return '';
   };
 
@@ -195,7 +200,7 @@ class AllPayments {
             withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
             amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
             purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multipono']:  item.purchasingDocuments,
-            invoiceStatusCode: this.getStatusName(Number(item.invoiceStatusCode))
+            invoiceStatusCode: this.getStatusName(item.invoiceStatusCode)
           }));
 
           this.cache.meta = response.meta;
