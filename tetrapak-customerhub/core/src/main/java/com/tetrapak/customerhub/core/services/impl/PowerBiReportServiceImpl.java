@@ -199,6 +199,9 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(pairset, CustomerHubConstants.UTF_8);
             formEntity.setContentType(CustomerHubConstants.ENTITY_CONTENTTYPE);
             httppostet.setEntity(formEntity);
+            httppostet.setHeader(CustomerHubConstants.AUTHORIZATION_HEADER_NAME,CustomerHubConstants.BEARER_COOKIE_VALUE+ accessToken);
+            httppostet.setHeader(CustomerHubConstants.ACCEPT, CustomerHubConstants.APPLICATION_JSON);
+            httppostet.setHeader(CustomerHubConstants.CONTENT_TYPE, CustomerHubConstants.APPLICATION_TYPE_URLENCODED);
             embedtoken = executeAPIRequestAndGetEmbedToken(httppostet,accessToken);
         } catch (Exception e) {
             
@@ -211,9 +214,6 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
 
     private String executeAPIRequestAndGetEmbedToken(HttpPost httpPost, String accessToken) throws IOException {
         HttpClient httpClient = httpFactory.newBuilder().build();
-        httpPost.setHeader(CustomerHubConstants.AUTHORIZATION_HEADER_NAME,CustomerHubConstants.BEARER_COOKIE_VALUE+ accessToken);
-        httpPost.setHeader(CustomerHubConstants.ACCEPT, CustomerHubConstants.APPLICATION_JSON);
-        httpPost.setHeader(CustomerHubConstants.CONTENT_TYPE, CustomerHubConstants.APPLICATION_JSON);
         HttpResponse httpResponse = httpClient.execute(httpPost);
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
             throw new IllegalArgumentException(
@@ -251,6 +251,9 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
         requestWithBP.setIdentities(identities);
         String requestBodyJson = new Gson().toJson(requestWithBP);
         httpPost.setEntity(new StringEntity(requestBodyJson, StandardCharsets.UTF_8));
+        httpPost.setHeader(CustomerHubConstants.AUTHORIZATION_HEADER_NAME,CustomerHubConstants.BEARER_COOKIE_VALUE+ accessToken);
+        httpPost.setHeader(CustomerHubConstants.ACCEPT, CustomerHubConstants.APPLICATION_JSON);
+        httpPost.setHeader(CustomerHubConstants.CONTENT_TYPE, CustomerHubConstants.APPLICATION_JSON);
         String embedToken = "";
         try {
             embedToken = executeAPIRequestAndGetEmbedToken(httpPost,accessToken);
