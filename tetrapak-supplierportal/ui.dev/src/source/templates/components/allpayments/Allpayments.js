@@ -228,44 +228,6 @@ class AllPayments {
           this.showLoader(false);
           this.renderErrorTemplate();
         });
-
-      // fetch(this.getPaymentApiUrl(), {
-      //   method: 'GET',
-      //   contentType: 'application/json',
-      //   headers: {
-      //     'Authorization': `Bearer ${authData.access_token}`,
-      //     'Content-Type': 'application/x-www-form-urlencoded'
-      //   }
-      // })
-      //   .then(response => response.json())
-      //   .then(response => {
-      //     this.showLoader(false);
-      //     this.cache.tableData = response.data;
-
-      //     // Show fields based on requirement ex. render the amount field with currency
-      //     this.cache.tableData = this.cache.tableData.map((item) => ({
-      //       ...item,
-      //       withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
-      //       amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
-      //       purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multipono']:  item.purchasingDocuments,
-      //       invoiceStatusCode: this.getStatusName(item.invoiceStatusCode)
-      //     }));
-
-      //     this.cache.meta = response.meta;
-      //     const tableData = {
-      //       summary: this.getTableBodyData(),
-      //       summaryHeadings: this.getHeaderData(),
-      //       i18nKeys:this.cache.i18nKeys,
-      //       meta:this.cache.meta
-      //     };
-
-      //     this.renderPaginationTableData(tableData);
-      //     this.renderSearchCount();
-      //   })
-      //   .catch(() => {
-      //     this.showLoader(false);
-      //     this.renderErrorTemplate();
-      //   });
     });
   }
 
