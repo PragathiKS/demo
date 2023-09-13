@@ -28,7 +28,7 @@
     <sp.paymentDetails.dueDate
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Due Date"/>
-    <sp.paymentdetails.fetcherror
+    <sp.paymentDetails.fetcherror
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Fetch Error"/>
     <sp.paymentDetails.invoiceDate
@@ -37,7 +37,7 @@
     <sp.paymentDetails.invoiceNo
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Invoice No"/>
-    <sp.paymentdetails.multipono
+    <sp.paymentDetails.multipono
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Multiple Po Number"/>
     <sp.paymentDetails.noDataFound
@@ -52,10 +52,10 @@
     <sp.paymentDetails.paginationLast
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Last"/>
-    <sp.paymentdetails.paginationNext
+    <sp.paymentDetails.paginationNext
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Next"/>
-    <sp.paymentdetails.paginationPrev
+    <sp.paymentDetails.paginationPrev
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Previous"/>
     <sp.paymentDetails.poNo
@@ -76,6 +76,9 @@
     <sp.paymentDetails.supplierCode
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Supplier Code"/>
+    <sp.paymentDetails.paid
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Paid"/>
     <sp.paymentDetails.withholdingtax
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Withholding Taxes (show currency)"/>
