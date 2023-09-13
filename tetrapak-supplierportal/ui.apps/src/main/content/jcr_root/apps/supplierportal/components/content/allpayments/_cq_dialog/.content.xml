@@ -144,6 +144,18 @@
                                 fieldLabel="Multiple Po Number (i18N key)"
                                 name="./multipono"
                                 required="true"/>
+                            <paginationprev
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Previous (i18N key)"
+                                name="./paginationprev"
+                                required="true"/>
+                            <paginationnext
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Next (i18N key)"
+                                name="./paginationnext"
+                                required="true"/>
                         </items>
                     </column1>
                 </items>

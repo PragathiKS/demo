@@ -21,6 +21,8 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_C
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.FETCH_ERROR;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_NEXT;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_PREV;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -131,6 +133,12 @@ public class AllPaymentsModel {
 	
 	@ValueMapValue
 	private String multipono;
+	
+	@ValueMapValue
+	private String paginationPrev;
+	
+	@ValueMapValue
+	private String paginationNext;
 
 	public Resource getResource() {
 		return resource;
@@ -354,8 +362,10 @@ public class AllPaymentsModel {
 		i18KeyMap.put(PAGINATION_FIRST, getPaginationFirst());
 		i18KeyMap.put(PAGINATION_LAST, getPaginationLast());
 		i18KeyMap.put(ALL_PAYMENTS_HEADING, getAllPaymentsHeading());
-		i18KeyMap.put(FETCH_ERROR, getAllPaymentsHeading());
-		i18KeyMap.put(MULTI_PO_NO, getAllPaymentsHeading());
+		i18KeyMap.put(FETCH_ERROR, getFetcherror());
+		i18KeyMap.put(MULTI_PO_NO, getMultipono());
+		i18KeyMap.put(PAGINATION_NEXT, getPaginationNext());
+		i18KeyMap.put(PAGINATION_PREV, getPaginationPrev());
 
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -394,4 +404,20 @@ public class AllPaymentsModel {
 	public void setMultipono(String multipono) {
 		this.multipono = multipono;
 	}
+
+	public String getPaginationPrev() {
+		return paginationPrev;
+	}
+
+	public void setPaginationPrev(String paginationPrev) {
+		this.paginationPrev = paginationPrev;
+	}
+
+	public String getPaginationNext() {
+		return paginationNext;
+	}
+
+	public void setPaginationNext(String paginationNext) {
+		this.paginationNext = paginationNext;
+	}	
 }

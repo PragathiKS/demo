@@ -52,4 +52,8 @@ public class I18Constants {
 	public static final String FETCH_ERROR = "fetcherror";
 	
 	public static final String MULTI_PO_NO = "multipono";
+	
+	public static final String PAGINATION_PREV = "paginationPrev";
+	
+	public static final String PAGINATION_NEXT = "paginationNext";
 }

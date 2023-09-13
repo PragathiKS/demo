@@ -52,6 +52,12 @@
     <sp.paymentDetails.paginationLast
         jcr:primaryType="sling:MessageEntry"
         sling:message="Last"/>
+    <sp.paymentdetails.paginationNext
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Next"/>
+    <sp.paymentdetails.paginationPrev
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Previous"/>
     <sp.paymentDetails.poNo
         jcr:primaryType="sling:MessageEntry"
         sling:message="PO NO"/>
