@@ -61,6 +61,9 @@
     <sp.paymentDetails.paginationPrev
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Previous"/>
+    <sp.paymentDetails.paid
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Paid"/>
     <sp.paymentDetails.poNo
         jcr:primaryType="sling:MessageEntry"
         sling:message=" PO NO"/>
@@ -79,9 +82,6 @@
     <sp.paymentDetails.supplierCode
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Supplier Code"/>
-    <sp.paymentDetails.paid
-        jcr:primaryType="sling:MessageEntry"
-        sling:message="Paid"/>
     <sp.paymentDetails.withholdingtax
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Withholding Taxes (show currency)"/>
