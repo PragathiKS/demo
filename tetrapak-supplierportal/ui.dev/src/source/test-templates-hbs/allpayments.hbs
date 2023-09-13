@@ -1,24 +1,22 @@
-<div class="tp-card tp-all-payments" data-module="Allpayments">
+<div class="tp-card tp-all-payments" data-src_ispublishenvironment="true" data-module="Allpayments" data-status-api="/content/tetrapak/supplierportal/global/en/testpagenew/jcr:content/root/responsivegrid/allpayments.invoice.status.json">
     <code class="d-none js-all-payments__config">
-      { "allPaymentsHeading": "sp.paymentDetails.allPaymentsHeading", "invoiceNo":"sp.paymentDetails.invoiceNo", "invoiceDate": "sp.paymentDetails.invoiceDate", "status":"sp.paymentDetails.status", "company":"sp.paymentDetails.company", "companyCode":"sp.paymentDetails.companyCode", "country":"sp.paymentDetails.country", "supplier":"sp.paymentDetails.supplier", "supplierCode":"sp.paymentDetails.supplierCode", "withholdingtax":"sp.paymentDetails.withholdingtax", "dueDate":"sp.paymentDetails.dueDate", "poNo":"sp.paymentDetails.poNo", "amountIncludingTaxes":"sp.paymentDetails.amountIncludingTaxes", "reset":"sp.paymentDetails.reset", "results":"sp.paymentDetails.results", "pagination":"sp.paymentDetails.pagination",  "allPaymentsHeading":"sp.paymentDetails.allPaymentsHeading", "downloadExcelServletUrl":"/bin/payments/downloadxls", "allPaymentsApi":"https://api-mig.tetrapak.com/supplierpayments/invoices", "noDataFound":"sp.paymentDetails.noDataFound", "countryApi":"", "paginationFirst":"sp.paymentDetails.paginationFirst", "paginationLast":"sp.paymentDetails.paginationLast", "multiplePoNmber":"sp.paymentDetails.multiplePoNmber" }
+      {"companyCode":"sp.paymentDetails.companyCode","country":"sp.paymentDetails.country","pagination":"sp.paymentDetails.pagination","withHoldingTax":"sp.paymentDetails.withholdingtax","multipono":"sp.paymentdetails.multipono","dueDate":"sp.paymentDetails.dueDate","supplierCode":"sp.paymentDetails.supplierCode","invoiceDate":"sp.paymentDetails.invoiceDate","allPaymentsHeading":"sp.paymentDetails.allPaymentsHeading","paginationFirst":"sp.paymentDetails.paginationFirst","paginationLast":"sp.paymentDetails.paginationLast","poNo":"sp.paymentDetails.poNo","noDataFound":"sp.paymentDetails.noDataFound","amountIncludingTaxes":"sp.paymentDetails.amountIncludingTaxes","supplier":"sp.paymentDetails.supplier","reset":"sp.paymentDetails.reset","company":"sp.paymentDetails.company","invoiceNo":"sp.paymentDetails.invoiceNo","results":"sp.paymentDetails.results","fetcherror":"sp.paymentdetails.fetcherror","status":"sp.paymentDetails.status"}
     </code>
-    <div class="d-none js-payment-api" data-list-api="https://api-dev.tetrapak.com/supplierpayments/invoices"></div>
+    <div class="d-none js-payment-api" data-list-api="https://api-dev.tetrapak.com//supplierpayments/invoices"></div>
     <div class="tp-spinner d-none">
-
-  <div class="tpatom-loader js-loader">
+      <div class="tpatom-loader js-loader">
 
   <div class="tpatom-loading-anim"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
-  </div>
-
+      </div>
     </div>
     <div class="tp-payment-content">
       <div class="tp-all-payments__header-wrapper">
         <h2 class="tp-all-payments__heading js-all-payments__heading">
-            sp.paymentDetails.allPaymentsHeading
+            Payments
         </h2>
       </div>
-      <div class="tp-all-payments__search-count">2 sp.paymentDetails.results</div>
+      <div class="tp-all-payments__search-count">18 sp.paymentDetails.results</div>
       <div id="equipment-filter-modal" class="modal js-filter-modal tp-modal fade tp-equipment__filter-form" tabindex="-1" aria-hidden="true" role="dialog">
       </div>
       <div class="tp-all-payments__table_wrapper"><div class="tp-all-payments__table custom-scrollbar-horizontal on">
@@ -28,69 +26,525 @@
                         <th data-key="documentDate" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--0">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="documentDate" "="">
 
-                                    <span>sp.paymentDetails.invoiceDate</span>
+                                    <span>Invoice Date</span>
                                 </button>
                         </th>
                         <th data-key="dueCalculationBaseDate" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--1">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="dueCalculationBaseDate" "="">
 
-                                    <span>sp.paymentDetails.dueDate</span>
+                                    <span>Due Date</span>
                                 </button>
                         </th>
                         <th data-key="companyName" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--2">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="companyName" "="">
 
-                                    <span>sp.paymentDetails.company</span>
+                                    <span>Company</span>
                                 </button>
                         </th>
                         <th data-key="companyCode" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--3">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="companyCode" "="">
 
-                                    <span>sp.paymentDetails.companyCode</span>
+                                    <span>Company Code</span>
                                 </button>
                         </th>
                         <th data-key="companyCountry" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--4">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="companyCountry" "="">
 
-                                    <span>sp.paymentDetails.country</span>
+                                    <span>Country</span>
                                 </button>
                         </th>
                         <th data-key="amountInTransactionCurrency" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--5">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="amountInTransactionCurrency" "="">
 
-                                    <span>sp.paymentDetails.amountIncludingTaxes</span>
+                                    <span>Amount Including Taxes</span>
                                 </button>
                         </th>
-                        <th data-key="withholdingTaxAmmount" class="tpmol-table__cellheading  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--6">
-                                    sp.paymentDetails.withholdingtax
+                        <th data-key="withholdingTaxAmmount" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--6">
+                                <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="withholdingTaxAmmount" "="">
+
+                                    <span>Withholding Taxes (show currency)</span>
+                                </button>
                         </th>
-                        <th data-key="invoiceStatusName" class="tpmol-table__cellheading  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--7">
-                                    sp.paymentDetails.status
+                        <th data-key="invoiceStatusCode" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--7">
+                                <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="invoiceStatusCode" "="">
+
+                                    <span>Invoice Status</span>
+                                </button>
                         </th>
                         <th data-key="documentReferenceID" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--8">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="documentReferenceID" "="">
 
-                                    <span>sp.paymentDetails.invoiceNo</span>
+                                    <span>Invoice No</span>
                                 </button>
                         </th>
                         <th data-key="supplierName" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--9">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="supplierName" "="">
 
-                                    <span>sp.paymentDetails.supplier</span>
+                                    <span>Supplier</span>
                                 </button>
                         </th>
                         <th data-key="supplier" class="tpmol-table__cellheading sortable  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--10">
                                 <button type="button" class="tpmol-table__sort clearfix tp-all-payments__table-summary__sort js-all-payments__table-summary__sort" data-key="supplier" "="">
 
-                                    <span>sp.paymentDetails.supplierCode</span>
+                                    <span>Supplier Code</span>
                                 </button>
                         </th>
                         <th data-key="purchasingDocuments" class="tpmol-table__cellheading  tp-all-payments__table-summary__cell tp-all-payments__table-summary__cellheading  js-all-payments__table-summary__cellheading js-all-payments__table-summary__cellheading--11">
-                                    sp.paymentDetails.poNo
+                                    PO NO
                         </th>
                 </tr>
             </thead>
             <tbody class="tpmol-table__body tp-all-payments__table-summary__body">
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    625.00 DKK
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Rejected
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124499
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089141
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    625.00 DKK
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Posted
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124499
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089141
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    625.00 DKK
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Rejected
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124499
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089141
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    625.00 DKK
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Posted
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124499
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089141
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    625.00 EUR
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Rejected
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124499
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089141
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    625.00 EUR
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Posted
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124499
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089141
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-04
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-04
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    1021.25 EUR
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Posted
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124500
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089891
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-03
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    1021.25 EUR
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79124600
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089891
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
+                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
+                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
+                                    2023-07-02
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
+                                    2023-07-02
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
+                                    TP Technical Service AB
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
+                                    0111
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
+                                    SE
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
+                                    1275.00 EUR
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
+
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Posted
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
+                                    79126788
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
+                                    Alfa Laval Kolding AS
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
+                                    387
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
+                                    900089891
+                                <!-- For Rebuilding Kits Details -->
+                        </td>
+                </tr>
                 <tr class="tpmol-table__row tp-all-payments__table-summary__row">
                         <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
                                     2023-07-26
@@ -120,8 +574,8 @@
 
                                 <!-- For Rebuilding Kits Details -->
                         </td>
-                        <td data-key="invoiceStatusName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
-
+                        <td data-key="invoiceStatusCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
+                                    Posted
                                 <!-- For Rebuilding Kits Details -->
                         </td>
                         <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
@@ -137,57 +591,7 @@
                                 <!-- For Rebuilding Kits Details -->
                         </td>
                         <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
-                                    900090189
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                </tr>
-                <tr class="tpmol-table__row tp-all-payments__table-summary__row">
-                        <td data-key="documentDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--0 ">
-                                    2023-07-23
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="dueCalculationBaseDate" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--1 ">
-                                    2023-07-27
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="companyName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--2 ">
-                                    TP Technical Service AB
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="companyCode" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--3 ">
-                                    0112
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="companyCountry" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--4 ">
-                                    SE
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="amountInTransactionCurrency" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--5 ">
-                                    750.00 EUR
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="withholdingTaxAmmount" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--6 ">
-
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="invoiceStatusName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--7 ">
-
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="documentReferenceID" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--8 ">
-                                    79126802
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="supplierName" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--9 ">
-                                    Alfa Laval Kolding AS1
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="supplier" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--10 ">
-                                    388
-                                <!-- For Rebuilding Kits Details -->
-                        </td>
-                        <td data-key="purchasingDocuments" class="tpmol-table__cell tp-all-payments__table-summary__cell js-all-payments__table-summary__cell js-all-payments__table-summary__cell--11 ">
-                                    sp.paymentDetails.multiplePoNmber
+                                    sp.paymentdetails.multipono
                                 <!-- For Rebuilding Kits Details -->
                         </td>
                 </tr>
@@ -199,16 +603,16 @@
         <div class="tp-tbl-pagination__container clearfix">
             <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__first float-left" disabled="" data-skip="0" data-page-number="1">
                         <i class="icon icon-Right_new icon-left"></i>
-                    <span class="tpatom-btn__text">sp.paymentDetails.paginationFirst</span>
+                    <span class="tpatom-btn__text">First</span>
             </button>
                         <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn float-left active" data-page-number="1">
                                 <span class="tpatom-btn__text">1</span>
                         </button>
-                        <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__direct float-left" data-skip="1" data-page-number="2">
+                        <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__direct float-left" data-skip="10" data-page-number="2">
                                 <span class="tpatom-btn__text">2</span>
                         </button>
-            <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__last float-left" data-skip="1" data-page-number="2">
-                    <span class="tpatom-btn__text">sp.paymentDetails.paginationLast</span><i class="icon icon-Right_new"></i>
+            <button type="button" class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__last float-left" data-skip="10" data-page-number="2">
+                    <span class="tpatom-btn__text">Last</span><i class="icon icon-Right_new"></i>
             </button>
         </div>
 

@@ -34,10 +34,7 @@ class AllPayments {
         'supplier': 'supplierCode',
         'purchasingDocuments': 'poNo'
       },
-      statusMapping: {
-        'In Process': [0,1,2,3,4,5,6,7,11,12,13,14,19,20,21,22,23,24,25,26,27,28,29,30,34,40,41,42,44,45,46,50,51,52,53,54,55,56,61,62,63,64,65,66,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,96,99],
-        'Posted' : [15,18,31,32,33,97,98],
-        'Rejected': [8,9,10,16,17]}
+      statusMapping: {}
     };
     const selector = {
       paymentApi: this.root.querySelector('.js-payment-api'),
@@ -51,6 +48,7 @@ class AllPayments {
     this.cache.tableData = [];
     this.cache.activeSortData = null;
     this.cache.i18nKeys = JSON.parse(this.cache.config.textContent);
+    this.cache.statusApiUrl = this.root.getAttribute('data-status-api');
     this.cache.authData = {};
   }
 
@@ -162,7 +160,7 @@ class AllPayments {
   }
 
   getStatusName = (code) => {
-    const data =this.cache.statusMapping;
+    const data = this.cache.statusMapping;
 
     if (code) {
       code = Number(code);
@@ -177,22 +175,34 @@ class AllPayments {
     return '';
   };
 
+  getApiPromise = (authData) => {
+    const fetchHeaderOption = {
+      method: 'GET',
+      contentType: 'application/json',
+      headers: {
+        'Authorization': `Bearer ${authData.access_token}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    };
+    let statusApiPromise = this.cache.statusMapping;
+
+    const paymentApiPromise = fetch(this.getPaymentApiUrl(), fetchHeaderOption).then(resp => resp.json());
+    if (Object.keys(this.cache.statusMapping).length === 0) {
+      statusApiPromise = fetch(this.cache.statusApiUrl).then(resp => resp.json());
+    }
+
+    return [paymentApiPromise, statusApiPromise];
+  }
+
   renderPayment = () => {
     this.showLoader(true);
 
     auth.getToken(({ data: authData }) => {
-      fetch(this.getPaymentApiUrl(), {
-        method: 'GET',
-        contentType: 'application/json',
-        headers: {
-          'Authorization': `Bearer ${authData.access_token}`,
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      })
-        .then(response => response.json())
+      Promise.all(this.getApiPromise(authData))
         .then(response => {
           this.showLoader(false);
-          this.cache.tableData = response.data;
+          this.cache.tableData = response[0].data;
+          this.cache.statusMapping = response[1];
 
           // Show fields based on requirement ex. render the amount field with currency
           this.cache.tableData = this.cache.tableData.map((item) => ({
@@ -203,7 +213,7 @@ class AllPayments {
             invoiceStatusCode: this.getStatusName(item.invoiceStatusCode)
           }));
 
-          this.cache.meta = response.meta;
+          this.cache.meta = response[0].meta;
           const tableData = {
             summary: this.getTableBodyData(),
             summaryHeadings: this.getHeaderData(),
@@ -218,6 +228,44 @@ class AllPayments {
           this.showLoader(false);
           this.renderErrorTemplate();
         });
+
+      // fetch(this.getPaymentApiUrl(), {
+      //   method: 'GET',
+      //   contentType: 'application/json',
+      //   headers: {
+      //     'Authorization': `Bearer ${authData.access_token}`,
+      //     'Content-Type': 'application/x-www-form-urlencoded'
+      //   }
+      // })
+      //   .then(response => response.json())
+      //   .then(response => {
+      //     this.showLoader(false);
+      //     this.cache.tableData = response.data;
+
+      //     // Show fields based on requirement ex. render the amount field with currency
+      //     this.cache.tableData = this.cache.tableData.map((item) => ({
+      //       ...item,
+      //       withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
+      //       amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
+      //       purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multipono']:  item.purchasingDocuments,
+      //       invoiceStatusCode: this.getStatusName(item.invoiceStatusCode)
+      //     }));
+
+      //     this.cache.meta = response.meta;
+      //     const tableData = {
+      //       summary: this.getTableBodyData(),
+      //       summaryHeadings: this.getHeaderData(),
+      //       i18nKeys:this.cache.i18nKeys,
+      //       meta:this.cache.meta
+      //     };
+
+      //     this.renderPaginationTableData(tableData);
+      //     this.renderSearchCount();
+      //   })
+      //   .catch(() => {
+      //     this.showLoader(false);
+      //     this.renderErrorTemplate();
+      //   });
     });
   }
 

@@ -1,5 +1,5 @@
 <sly data-sly-template.allpayments_template="${@data, flag}">
-  <div class="tp-card tp-all-payments" data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}" data-module="Allpayments">
+  <div class="tp-card tp-all-payments" data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}" data-module="Allpayments" data-status-api="${resource.path}.invoice.status.json">
     <code class="d-none js-all-payments__config">
       ${data.i18nKeys}
     </code>

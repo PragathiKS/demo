@@ -2,16 +2,18 @@ import Allpayments from './Allpayments';
 import allpaymentsTmpl from '../../../test-templates-hbs/allpayments.hbs';
 import auth from '../../../scripts/utils/auth';
 import allpaymentData from './data/allpayments.json';
+import statusMappingData from './data/statusmapping.json';
 
 describe('Allpayments', function () {
   let fetchStub;
+  const statusApiUrl = '/content/tetrapak/supplierportal/global/en/testpagenew/jcr:content/root/responsivegrid/allpayments.invoice.status.json';
 
   beforeEach(function () {
     this.enableTimeouts(false);
     document.body.innerHTML = allpaymentsTmpl();
 
     this.allpayments = new Allpayments({
-      el: document.body
+      el: document.body.querySelector('.tp-all-payments')
     });
 
     this.initSpy = sinon.spy(this.allpayments, 'init');
@@ -21,7 +23,6 @@ describe('Allpayments', function () {
     this.getPaymentApiUrlSpy = sinon.spy(this.allpayments, 'getPaymentApiUrl');
     this.sortActionSpy = sinon.spy(this.allpayments, 'sortAction');
     this.renderErrorTemplateSpy = sinon.spy(this.allpayments, 'renderErrorTemplate');
-
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
       data: {
         access_token: 'fLW1l1EA38xjklTrTa5MAN7GFmo2',
@@ -31,6 +32,7 @@ describe('Allpayments', function () {
     });
 
     fetchStub = sinon.stub(window, 'fetch');
+    fetchStub.withArgs(statusApiUrl).resolves({ json: sinon.stub().resolves(statusMappingData) });
   });
 
   afterEach(function () {
@@ -41,8 +43,8 @@ describe('Allpayments', function () {
     this.tokenStub.restore();
     this.paginationActionSpy.restore();
     this.renderErrorTemplateSpy.restore();
-    sinon.restore();
     fetchStub.restore();
+    sinon.restore();
   });
 
   it('should initialize', async function(){
@@ -114,13 +116,10 @@ describe('Allpayments', function () {
 
     // Set up the stub to return a rejected promise with the error message
     fetchStub.rejects(new Error(errorMessage));
-    await this.allpayments.init();
-
     try {
       await this.allpayments.init();
     } catch (error) {
       expect(this.allpayments.renderErrorTemplate.called).to.be.true;
     }
   });
-
 });
