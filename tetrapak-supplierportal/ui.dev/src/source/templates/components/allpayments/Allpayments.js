@@ -12,8 +12,8 @@ class AllPayments {
 
   initCache() {
     const config = {
-      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusCode', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
-      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusCode', 'documentReferenceID', 'supplierName', 'supplier'],
+      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusName', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
+      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'invoiceStatusName', 'documentReferenceID', 'supplierName', 'supplier'],
       currentPageNumber: 1,
       itemsPerPage: 10,
       activePage: 1,
@@ -28,7 +28,7 @@ class AllPayments {
         'companyCountry': 'country',
         'amountInTransactionCurrency': 'amountIncludingTaxes',
         'withholdingTaxAmmount': 'withHoldingTax',
-        'invoiceStatusCode': 'status',
+        'invoiceStatusName': 'status',
         'documentReferenceID': 'invoiceNo',
         'supplierName': 'supplier',
         'supplier': 'supplierCode',
@@ -159,17 +159,20 @@ class AllPayments {
     return apiUrlRequest;
   }
 
-  getStatusName = (code) => {
+  getStatusName = (statusCode, statusName, clearingDate) => {
     const data = this.cache.statusMapping;
 
-    if (code) {
-      code = Number(code);
+    if (statusCode) {
+      statusCode = Number(statusCode);
 
       for (const key in data) {
-        if (data[key].includes(code)) {
+        if (data[key].includes(statusCode)) {
           return key;
         }
       }
+    }
+    if (statusName === 'Paid' ||  clearingDate !== '') {
+      return this.cache.i18nKeys['paid'];
     }
 
     return '';
@@ -210,7 +213,7 @@ class AllPayments {
             withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
             amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
             purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multipono']:  item.purchasingDocuments,
-            invoiceStatusCode: this.getStatusName(item.invoiceStatusCode)
+            invoiceStatusName: this.getStatusName(item.invoiceStatusCode, item.invoiceStatusName, item.clearingDate)
           }));
 
           this.cache.meta = response[0].meta;
