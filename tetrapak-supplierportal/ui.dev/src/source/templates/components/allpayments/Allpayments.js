@@ -2,6 +2,7 @@ import auth from '../../../scripts/utils/auth';
 import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
 import {  _paginationAnalytics } from './allpayments.analytics';
+import { getI18n } from '../../../scripts/common/common';
 
 class AllPayments {
 
@@ -172,7 +173,7 @@ class AllPayments {
       }
     }
     if (statusName === 'Paid' ||  clearingDate !== '') {
-      return this.cache.i18nKeys['paid'];
+      return getI18n(this.cache.i18nKeys['paid']);
     }
 
     return '';
@@ -212,7 +213,7 @@ class AllPayments {
             ...item,
             withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
             amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
-            purchasingDocuments: (item.purchasingDocuments.length > 1) ? this.cache.i18nKeys['multipono']:  item.purchasingDocuments,
+            purchasingDocuments: (item.purchasingDocuments.length > 1) ? getI18n(this.cache.i18nKeys['multipono']):  item.purchasingDocuments,
             invoiceStatusName: this.getStatusName(item.invoiceStatusCode, item.invoiceStatusName, item.clearingDate)
           }));
 
@@ -236,14 +237,14 @@ class AllPayments {
 
   renderSearchCount = () => {
     if (this.cache.meta) {
-      this.cache.searchResults.textContent = `${this.cache.meta.total} ${this.cache.i18nKeys['results']}`;
+      this.cache.searchResults.textContent = `${this.cache.meta.total} ${getI18n(this.cache.i18nKeys['results'])}`;
     }
   }
 
   renderErrorTemplate = () => {
     render.fn({
       template: 'allpaymentsTable',
-      data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['fetchError']},
+      data: { noDataMessage: true, noDataFound: getI18n(this.cache.i18nKeys['fetcherror'])},
       target: '.tp-all-payments__table_wrapper',
       hidden: false
     });
@@ -255,7 +256,7 @@ class AllPayments {
     if (list.summary.length === 0) {
       render.fn({
         template: 'allpaymentsTable',
-        data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']},
+        data: { noDataMessage: true, noDataFound: getI18n(this.cache.i18nKeys['noDataFound'])},
         target: '.tp-all-payments__table_wrapper',
         hidden: false
       });
