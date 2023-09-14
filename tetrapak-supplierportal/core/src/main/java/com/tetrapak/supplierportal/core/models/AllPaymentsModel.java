@@ -23,6 +23,7 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.FETCH_ERRO
 import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_NEXT;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_PREV;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAID;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -139,6 +140,10 @@ public class AllPaymentsModel {
 	
 	@ValueMapValue
 	private String paginationNext;
+	
+	@ValueMapValue
+	private String paid;
+	
 
 	public Resource getResource() {
 		return resource;
@@ -366,6 +371,7 @@ public class AllPaymentsModel {
 		i18KeyMap.put(MULTI_PO_NO, getMultipono());
 		i18KeyMap.put(PAGINATION_NEXT, getPaginationNext());
 		i18KeyMap.put(PAGINATION_PREV, getPaginationPrev());
+		i18KeyMap.put(PAID, getPaid());
 
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -419,5 +425,13 @@ public class AllPaymentsModel {
 
 	public void setPaginationNext(String paginationNext) {
 		this.paginationNext = paginationNext;
+	}
+
+	public String getPaid() {
+		return paid;
+	}
+
+	public void setPaid(String paid) {
+		this.paid = paid;
 	}	
 }
