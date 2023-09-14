@@ -1079,6 +1079,8 @@ public final class CustomerHubConstants {
     /** Constant PBI_COOKIE_EMBEDTOKEN. */
 	public static final String PBI_COOKIE_EMBEDTOKEN ="pbi-accesstoken";
 
+    public static final String BP_NUMBER = "bpnumber";
+
     private CustomerHubConstants() {
         throw new IllegalStateException("Utility class");
     }

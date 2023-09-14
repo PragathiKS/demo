@@ -60,6 +60,11 @@ public @interface PowerBiReportConfig {
     @AttributeDefinition(name = "PowerBI DataSet ID",
             description = "PowerBI DataSet ID", type = AttributeType.STRING)
     String pbidatasetid();
+
+    @AttributeDefinition(name = "PowerBI DataSet ID for RLS Report",
+            description = "PowerBI DataSet ID for RLS Report", type = AttributeType.STRING)
+    String pbidatasetidrls();
+
      /**
      * PowerBI Report ID
      * @return PowerBI Report ID

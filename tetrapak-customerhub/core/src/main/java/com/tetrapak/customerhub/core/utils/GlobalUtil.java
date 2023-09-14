@@ -804,4 +804,17 @@ public class GlobalUtil {
         }
         return StringUtils.EMPTY;
     }
+
+    public static String getCustomerBPNumber(SlingHttpServletRequest request) {
+        String bpNumber = StringUtils.EMPTY;
+        try {
+            ValueMap vMap = getUserResourceValueMap(request);
+            if (vMap.containsKey(CustomerHubConstants.BP_NUMBER)) {
+                bpNumber = (String) vMap.get(CustomerHubConstants.BP_NUMBER);
+            }
+        } catch (RepositoryException e) {
+            LOGGER.error("RepositoryException in getting bp number in GlobalUtil", e);
+        }
+        return bpNumber;
+    }
 }
