@@ -216,8 +216,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
         HttpClient httpClient = httpFactory.newBuilder().build();
         HttpResponse httpResponse = httpClient.execute(httpPost);
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new IllegalArgumentException(
-                    " Failed To Generate Embed Token : HTTP error code : " + httpResponse.getStatusLine().getStatusCode());
+            LOGGER.error(" Failed To Generate Embed Token : HTTP error code : {}",httpResponse.getStatusLine().getStatusCode());
         } else {
             String embedtoken = IOUtils.toString(httpResponse.getEntity().getContent(), StandardCharsets.UTF_8);
             Gson gsonet = new Gson();
@@ -227,7 +226,7 @@ public class PowerBiReportServiceImpl implements PowerBiReportService {
             LOGGER.debug("PBI Embedd Token Generated ");
             return embedtoken;
         }
-
+        return StringUtils.EMPTY;
     }
 
     @Override
