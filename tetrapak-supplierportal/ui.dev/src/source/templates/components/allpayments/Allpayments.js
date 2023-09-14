@@ -213,7 +213,7 @@ class AllPayments {
             ...item,
             withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
             amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
-            purchasingDocuments: (item.purchasingDocuments.length > 1) ? getI18n(this.cache.i18nKeys['multipono']):  item.purchasingDocuments,
+            purchasingDocuments: (item.purchasingDocuments.length > 1) ? getI18n(this.cache.i18nKeys['multiPoNo']):  item.purchasingDocuments,
             invoiceStatusCode: this.getStatusName(item.invoiceStatusCode, item.invoiceStatusName, item.clearingDate)
           }));
 
@@ -244,7 +244,7 @@ class AllPayments {
   renderErrorTemplate = () => {
     render.fn({
       template: 'allpaymentsTable',
-      data: { noDataMessage: true, noDataFound: getI18n(this.cache.i18nKeys['fetcherror'])},
+      data: { noDataMessage: true, noDataFound: getI18n(this.cache.i18nKeys['fetchError'])},
       target: '.tp-all-payments__table_wrapper',
       hidden: false
     });

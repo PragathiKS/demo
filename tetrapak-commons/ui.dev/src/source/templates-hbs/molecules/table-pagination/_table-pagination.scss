@@ -6,7 +6,7 @@
     }
 
     &__ellipsis {
-        @include padding(3px 3px 0);
+        @include padding($padding-xxs $padding-xxs 0);
     }
 
     .icon {

@@ -81,7 +81,11 @@ $color-red: #ff0000;
     }
 
     .tp-tbl-pagination {
+        @include padding($padding-sm);
+
         &__first {
+            @include margin-right($margin-md);
+
             i.icon-Right_new {
                 &::after {
                     display: inline-block;
@@ -101,6 +105,8 @@ $color-red: #ff0000;
             }
         }
         &__last {
+            @include margin-left($margin-md);
+
             i.icon-Right_new {
                 &::after {
                     display: inline-block;

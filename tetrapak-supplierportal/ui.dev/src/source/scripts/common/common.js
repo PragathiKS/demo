@@ -196,15 +196,17 @@ export const isCurrentPageIframe = () => ((window.location !== window.parent.loc
  * @param {any[]|object} replaceMap Replacement list or map
  */
 export const resolveQuery = (queryString, replaceMap) => {
+  let keyRegex;
+
   // Replace the replaceable data
   if (Array.isArray(replaceMap)) {
     replaceMap.forEach(function (value, index) {
-      var keyRegex = new RegExp(`\\{${index}\\}`, 'g');
+      keyRegex = new RegExp(`\\{${index}\\}`, 'g');
       queryString = queryString.replace(keyRegex, value);
     });
   } else if (typeof replaceMap === 'object' && replaceMap !== null) {
     Object.keys(replaceMap).forEach(function (key) {
-      var keyRegex = new RegExp(`\\{${key}\\}`, 'g');
+      keyRegex = new RegExp(`\\{${key}\\}`, 'g');
       queryString = queryString.replace(keyRegex, replaceMap[key]);
     });
   }

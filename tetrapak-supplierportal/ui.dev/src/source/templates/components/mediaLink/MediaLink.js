@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
+import auth from '../../../scripts/utils/auth';
 
 class MediaLink {
   constructor({ el }) {
@@ -15,6 +16,12 @@ class MediaLink {
 
   trackAnalytics = (e) => {
     e.preventDefault();
+
+    // TODO :: This code is only for testig bearer token functionality. We should remove once the function get tested.
+    // eslint-disable-next-line no-unused-vars, no-empty-function
+    auth.getToken(({ data: authData }) => {
+    });
+
     const $target = $(e.target);
     const $this = $target.closest('.js-medialink-analytics');
     let linkParentTitle = '';
