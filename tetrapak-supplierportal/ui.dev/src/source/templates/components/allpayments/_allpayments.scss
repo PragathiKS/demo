@@ -3,7 +3,7 @@ $color-red: #ff0000;
 .tp-all-payments {
     &__heading {
         @include font-size($font-xl);
-        @include line-height(40px, $font-xl);
+        @include line-height($font-d-xl, $font-xl);
     }
 
     &__search-count {
@@ -27,15 +27,15 @@ $color-red: #ff0000;
             top: 0;
             background: $color-white;
             border-bottom-color: $color-black;
-            font-weight: 700;
+            font-weight: $font-weight-bold;
             &.hide {
                 display: none;
             }
             &.sorted {
-                padding: 16px 2px 16px 30px;
+                @include padding($padding-md $padding-xxs $padding-md $padding-xl);
             }
             button {
-                font-weight: 700;
+                font-weight: $font-weight-bold;
             }
             .icon {
                 color: inherit;
@@ -46,14 +46,14 @@ $color-red: #ff0000;
             .icon-Chevron_Down {
                 width: 12px;
                 position: absolute;
-                left: 16px;
+                left: $margin-md;
             }
         }
         td {
             @include font-size($font-m-sm);
             @include line-height($font-l, $font-m-sm);
             @include padding($padding-md);
-            font-weight: 500;
+            font-weight: $font-weight-normal;
             &.hide {
                 display: none;
             }
@@ -85,43 +85,9 @@ $color-red: #ff0000;
 
         &__first {
             @include margin-right($margin-md);
-
-            i.icon-Right_new {
-                &::after {
-                    display: inline-block;
-                    font-family: 'tp-icons';
-                    font-weight: normal;
-                    font-style: normal;
-                    line-height: 1;
-                    speak: none;
-                    text-decoration: inherit;
-                    text-transform: none;
-                    text-rendering: auto;
-                    content: '\f159'; // TODO: Need to change tis one
-                    transform: rotate(-180deg);
-                    width: 8px;
-
-                }
-            }
         }
         &__last {
             @include margin-left($margin-md);
-
-            i.icon-Right_new {
-                &::after {
-                    display: inline-block;
-                    font-family: 'tp-icons';
-                    line-height: 1;
-                    font-weight: normal;
-                    font-style: normal;
-                    speak: none;
-                    text-decoration: inherit;
-                    text-transform: none;
-                    text-rendering: auto;
-                    content: '\f159'; // TODO: Need to change tis one
-                    width: 8px;
-                }
-            }
         }
     }
     .icon {

@@ -78,9 +78,94 @@ describe('Allpayments', function () {
     expect(this.allpayments.renderPayment.called).to.be.true;
   });
 
+  it('should user can go last page when click on last button', async function(){
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-page-number.tp-tbl-pagination__last').dispatchEvent(evt);
+    expect(this.allpayments.paginationAction.called).to.be.true;
+    expect(this.allpayments.renderPayment.called).to.be.true;
+
+    // Fetch data always same so now also the active pagenumber 2
+    expect(document.querySelector('.js-page-number.active').getAttribute('data-page-number')).to.equal('1');
+  });
+
+  it('should user can go next page when click on next button', async function(){
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-page-number.tp-tbl-pagination__next').dispatchEvent(evt);
+    expect(this.allpayments.paginationAction.called).to.be.true;
+    expect(this.allpayments.renderPayment.called).to.be.true;
+
+    // Fetch data always same so now also the active pagenumber 2
+    expect(document.querySelector('.js-page-number.active').getAttribute('data-page-number')).to.equal('1');
+  });
+
+  it('should user can go next page when click on prev button', async function(){
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-page-number.tp-tbl-pagination__prev').dispatchEvent(evt);
+    expect(this.allpayments.paginationAction.called).to.be.true;
+    expect(this.allpayments.renderPayment.called).to.be.true;
+
+    // Fetch data always same so now also the active pagenumber 2
+    expect(document.querySelector('.js-page-number.active').getAttribute('data-page-number')).to.equal('1');
+  });
+
+  it('should user can go the specific page when click on page number button', async function(){
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.cache.itemsPerPage = 1;
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-page-number.tp-tbl-pagination__direct').dispatchEvent(evt);
+    expect(this.allpayments.paginationAction.called).to.be.true;
+    expect(this.allpayments.renderPayment.called).to.be.true;
+
+    // Fetch data always same so now also the active pagenumber 2
+    expect(document.querySelector('.js-page-number.active').getAttribute('data-page-number')).to.equal('1');
+  });
+
   it('should able to sort the data', async function(){
     fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
     this.allpayments.init();
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-all-payments__table-summary__sort').dispatchEvent(evt);
+
+    expect(this.allpayments.sortAction.called).to.be.true;
+    document.querySelector('.js-all-payments__table-summary__sort').dispatchEvent(evt);
+    expect(this.allpayments.renderPayment.called).to.be.true;
+  });
+
+  it('Check the item per page is changed, the pagination work as expect', async function(){
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
 
     const evt = new MouseEvent('click', {
       bubbles: true,

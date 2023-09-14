@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
 export const _paginationAnalytics = (target) => {
