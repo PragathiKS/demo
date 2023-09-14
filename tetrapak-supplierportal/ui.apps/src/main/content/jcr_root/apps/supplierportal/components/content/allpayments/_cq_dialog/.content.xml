@@ -148,13 +148,13 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Previous (i18N key)"
-                                name="./paginationprev"
+                                name="./paginationPrev"
                                 required="true"/>
                             <paginationnext
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Next (i18N key)"
-                                name="./paginationnext"
+                                name="./paginationNext"
                                 required="true"/>
                             <paid
                                 jcr:primaryType="nt:unstructured"
