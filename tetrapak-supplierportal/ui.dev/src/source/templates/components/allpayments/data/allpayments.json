@@ -10,7 +10,7 @@
           "companyCode": "0111",
           "documentDate": "2023-07-03",
           "withholdingTaxCode": null,
-          "withholdingTaxAmmount": null,
+          "withholdingTaxAmmount": "1021.25",
           "postingDate": "2023-06-03",
           "documentReferenceID": "79124600",
           "invoiceStatusCode": "XX",
