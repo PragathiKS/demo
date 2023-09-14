@@ -13,8 +13,8 @@ class AllPayments {
 
   initCache() {
     const config = {
-      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusName', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
-      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'invoiceStatusName', 'documentReferenceID', 'supplierName', 'supplier'],
+      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusCode', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
+      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplierName', 'supplier'],
       currentPageNumber: 1,
       itemsPerPage: 10,
       activePage: 1,
@@ -29,7 +29,7 @@ class AllPayments {
         'companyCountry': 'country',
         'amountInTransactionCurrency': 'amountIncludingTaxes',
         'withholdingTaxAmmount': 'withHoldingTax',
-        'invoiceStatusName': 'status',
+        'invoiceStatusCode': 'status',
         'documentReferenceID': 'invoiceNo',
         'supplierName': 'supplier',
         'supplier': 'supplierCode',
@@ -214,7 +214,7 @@ class AllPayments {
             withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
             amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
             purchasingDocuments: (item.purchasingDocuments.length > 1) ? getI18n(this.cache.i18nKeys['multipono']):  item.purchasingDocuments,
-            invoiceStatusName: this.getStatusName(item.invoiceStatusCode, item.invoiceStatusName, item.clearingDate)
+            invoiceStatusCode: this.getStatusName(item.invoiceStatusCode, item.invoiceStatusName, item.clearingDate)
           }));
 
           this.cache.meta = response[0].meta;
