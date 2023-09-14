@@ -49,7 +49,7 @@ describe('MyEquipment', function () {
         token_type: 'BearerToken'
       }
     });
-    this.myequipment.init();    
+    this.myequipment.init();
   });
 
   after(function () {
@@ -65,7 +65,7 @@ describe('MyEquipment', function () {
     this.renderFilterFormSpy.restore();
     this.downloadExcel.restore();
     this.sortTableByKey.restore();
-    
+
     this.renderNewCountry.restore();
     this.deleteAllFilters.restore();
     this.updateFilterCountValue.restore();
@@ -85,7 +85,7 @@ describe('MyEquipment', function () {
     done();
   });
   it('should open filter form on button click', function (done) {
-   
+
     $('.js-my-equipment__customise-table-action').trigger('click');
     expect(this.myequipment.renderFilterForm.called).to.be.true;
     done();
