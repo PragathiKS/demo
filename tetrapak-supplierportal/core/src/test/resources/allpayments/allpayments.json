@@ -1,0 +1,39 @@
+{
+   "jcr:primaryType":"cq:Page",
+   "jcr:content":{
+      "jcr:primaryType":"cq:PageContent",
+      "root":{
+         "jcr:primaryType":"nt:unstructured",
+         "sling:resourceType":"wcm/foundation/components/responsivegrid",
+         "responsivegrid":{
+            "jcr:primaryType":"nt:unstructured",
+            "sling:resourceType":"wcm/foundation/components/responsivegrid",
+            "allpayments":{
+               "jcr:primaryType":"nt:unstructured",
+               "invoiceNo":"sp.paymentDetails.invoiceNo",
+			   "invoiceDate": "sp.paymentDetails.invoiceDate",
+				 "status":"sp.paymentDetails.status",
+				 "company":"sp.paymentDetails.company",
+				 "companyCode":"sp.paymentDetails.companyCode",
+				 "country":"sp.paymentDetails.country",
+				 "supplier":"sp.paymentDetails.supplier",
+				 "supplierCode":"sp.paymentDetails.supplierCode",
+				 "withHoldingTax":"sp.paymentDetails.withholdingtax",
+				 "dueDate":"sp.paymentDetails.dueDate",
+				 "poNo":"sp.paymentDetails.poNo",
+				 "amountIncludingTaxes":"sp.paymentDetails.amountIncludingTaxes",
+				 "reset":"sp.paymentDetails.reset",
+				 "results":"sp.paymentDetails.results",
+				 "pagination":"sp.paymentDetails.pagination",
+				 "downloadExcelServletUrl":"/bin/payments/downloadxls",
+				 "allPaymentsApi":"https://api-mig.tetrapak.com/supplierpayments/invoices",
+				 "noDataFound":"sp.paymentDetails.noDataFound",
+				 "filterApi":"https://api-mig.tetrapak.com/installedbase/equipments/countries",
+				 "paginationFirst":"sp.paymentDetails.paginationFirst",
+				 "paginationLast":"sp.paymentDetails.paginationLast",
+				 "allPaymentsHeading": "sp.paymentDetails.allPaymentsHeading"
+            }
+         }
+      }
+   }
+}

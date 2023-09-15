@@ -1,0 +1,68 @@
+<div class="tp-tbl-pagination js-tbl-pagination" aria-live="polite">
+    <div class="tp-tbl-pagination__container clearfix">
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__first float-left"
+                jsClass="js-page-number"
+                disabled=paginationObj.prevDisabled
+                data-page-number=1
+                data-skip=0
+                preIconClass="icon-Right_new icon-left"
+                hideText=false
+                text=i18nKeys.paginationFirst}}
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__btn tp-tbl-pagination__prev float-left"
+                jsClass="js-page-number"
+                disabled=paginationObj.prevDisabled
+                data-page-number=paginationObj.prevPage
+                data-skip=paginationObj.prevSkip
+                iconClass="icon-Right_new icon-left"
+                hideText=true
+                text=i18nKeys.paginationPrev}}
+        {{#each paginationObj.pages}}
+            {{#if isPage}}
+                {{#if isSelected}}
+                    {{> atoms/buttons/button/button
+                            modifier="pagination"
+                            className="tp-tbl-pagination__btn float-left active"
+                            jsClass="js-page-number"
+                            data-page-number=pageNumber
+                            text=pageNumber}}
+                {{else}}
+                    {{> atoms/buttons/button/button
+                            modifier="pagination"
+                            className="tp-tbl-pagination__btn tp-tbl-pagination__direct float-left"
+                            jsClass="js-page-number"
+                            data-page-number=pageNumber
+                            data-skip=skip
+                            text=pageNumber}}
+                {{/if}}
+            {{/if}}
+            {{#if isEllipsis}}
+                <span class="tp-tbl-pagination__ellipsis float-left">&hellip;</span>
+            {{/if}}
+        {{/each}}
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__btn tp-tbl-pagination__next float-left"
+                jsClass="js-page-number"
+                disabled=paginationObj.nextDisabled
+                data-page-number=paginationObj.nextPage
+                data-skip=paginationObj.nextSkip
+                iconClass="icon-Right_new"
+                hideText=true
+                text=i18nKeys.paginationNext}}
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__last float-left"
+                jsClass="js-page-number"
+                disabled=paginationObj.nextDisabled
+                data-page-number=paginationObj.totalPages
+                data-skip=paginationObj.lastSkip
+                iconClass="icon-Right_new"
+                hideText=false
+                text=i18nKeys.paginationLast}}
+    </div>
+
+</div>

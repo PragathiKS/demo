@@ -1,0 +1,60 @@
+.tp-tbl-pagination {
+    @include margin-top($margin-md);
+
+    @media #{$desktop} {
+        @include margin-top($margin-l);
+    }
+
+    &__ellipsis {
+        @include padding($padding-xxs $padding-xxs 0);
+    }
+
+    .icon {
+        &:before {
+            @include width($font-xxs);
+        }
+
+        &.icon-left {
+            &:before {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &__first {
+        @include margin-right($margin-l);
+
+        .tpatom-btn__text {
+            @include margin-left($margin-sm);
+        }
+    }
+
+    &__last {
+        @include margin-left($margin-l);
+
+        .tpatom-btn__text {
+            @include margin-right($margin-sm);
+        }
+    }
+
+    .tpatom-btn--pagination {
+        &:hover {
+            &:not([disabled]) {
+                color: $color-sky-blue;
+                font-weight: normal;
+
+                .icon {
+                    color: $color-sky-blue;
+                }
+            }
+        }
+
+        &.active {
+            pointer-events: none;
+        }
+    }
+
+    &.pagination-lock {
+        pointer-events: none;
+    }
+}
