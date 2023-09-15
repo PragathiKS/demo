@@ -43,6 +43,37 @@ public class AllPaymentsModelTest {
         aemContext.registerService(APIGEEService.class, apigeeService);
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		model = resource.adaptTo(AllPaymentsModel.class);
+		model.setPublishEnvironment(true);
+		model.setDownloadExcelServletUrl(RESOURCE_PATH);
+		model.setAllPaymentsApi(RESOURCE_PATH);
+		model.setFilterApi(RESOURCE_PATH);
+		model.setFetcherror(RESOURCE_PATH);
+		model.setPaginationNext("sp.paymentDetails.pageNationNext");
+		model.setPaginationPrev("sp.paymentDetails.PaginationPrev");
+		model.setMultipono("sp.paymentDetails.Multipono");
+		model.setAmountIncludingTaxes("sp.paymentDetails.amountIncludingTaxes");
+		model.setAllPaymentsHeading("sp.paymentDetails.allPaymentsHeading");
+		model.setCompany("sp.paymentDetails.company");
+		model.setCompanyCode("sp.paymentDetails.companyCode");
+		model.setCountry("sp.paymentDetails.country");		
+		model.setDueDate("sp.paymentDetails.dueDate");		
+		model.setInvoiceDate("sp.paymentDetails.invoiceDate");
+		model.setInvoiceNo("sp.paymentDetails.invoiceNo");
+		model.setNoDataFound("sp.paymentDetails.noDataFound");
+		model.setPagination("sp.paymentDetails.pagination");
+		model.setPaginationFirst("sp.paymentDetails.paginationFirst");
+		model.setPaginationLast("sp.paymentDetails.paginationLast");
+		model.setPoNo("sp.paymentDetails.poNo");
+		model.setReset("sp.paymentDetails.reset");
+		model.setResults("sp.paymentDetails.results");		
+		model.setStatus("sp.paymentDetails.status");
+		model.setSupplier("sp.paymentDetails.supplier");
+		model.setSupplierCode("sp.paymentDetails.supplierCode");
+	    model.setWithHoldingTax("sp.paymentDetails.withholdingtax");
+	    model.setPaid("sp.paymentDetails.Paid");
+	    model.setI18nKeys(RESOURCE_PATH);
+	    model.setResource(null);
+	    model.setSlingSettingsService(null);
 	}
 	
 	/**
@@ -58,9 +89,10 @@ public class AllPaymentsModelTest {
 		assertNotNull( model.getAllPaymentsApi());
 		assertNotNull(model.getDownloadExcelServletUrl());
 		assertNotNull(model.getFilterApi());
-		assertNotNull(model.getSlingSettingsService());
+		assertNull(model.getSlingSettingsService());
 		assertNotNull(model.getI18nKeys());
-		
+		assertNull(model.getResource());
+		assertTrue(model.isPublishEnvironment());
 		assertEquals("sp.paymentDetails.amountIncludingTaxes", model.getAmountIncludingTaxes());
 		assertEquals("sp.paymentDetails.allPaymentsHeading", model.getAllPaymentsHeading());
 		assertEquals("sp.paymentDetails.company", model.getCompany());
