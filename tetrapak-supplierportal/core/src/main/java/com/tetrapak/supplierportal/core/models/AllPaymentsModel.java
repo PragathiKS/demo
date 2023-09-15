@@ -6,12 +6,17 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COUNTRY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.DUE_DATE;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.FETCH_ERROR;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_DATE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_NO;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.NO_DATA_FOUND;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_FIRST;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_LAST;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_NEXT;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_PREV;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAID;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.RESET;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.RESULTS;
@@ -19,14 +24,12 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.FETCH_ERROR;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_NEXT;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_PREV;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.PAID;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -34,6 +37,7 @@ import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.apache.sling.settings.SlingSettingsService;
+
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
@@ -110,10 +114,6 @@ public class AllPaymentsModel {
 
 	@ValueMapValue
 	private String allPaymentsHeading;
-
-	/** The service. */
-	// @OSGiService
-	// private APIGEEService service;
 
 	/** The sling settings service. */
 	@OSGiService
