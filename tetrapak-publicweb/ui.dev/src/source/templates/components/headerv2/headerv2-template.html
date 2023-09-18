@@ -1,8 +1,9 @@
 <sly data-sly-template.headerv2_template="${@data, flag}">
     <header class="tp-pw-headerv2 js-tp-pw-headerv2 font-fixing ${wcmmode.edit ? 'wcmmode-edit': ''}" data-module="Headerv2">
         <div class="tp-pw-headerv2__backdrop hidden"></div>
-        <nav>
+        <nav class="tp-pw-headerv2__container">
             <div class="tp-pw-headerv2-first-row">
+                <div class="tp-container first-row-nav">
                 <div class="tp-pw-headerv2-logo">
                     <a 
                         data-sly-test="${data.logoLink}"
@@ -65,7 +66,8 @@
                     <i class="submenu-mobile-icon js-submenu-mobile-icon icon-Burgerv3_pw"></i>
                 </div>
             </div>
-            <div class="tp-pw-headerv2-second-row">
+        </div>
+            <div class="tp-pw-headerv2-second-row tp-container">
                 <div class="tp-pw-headerv2-main-navigation">
                     <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
                         <a 

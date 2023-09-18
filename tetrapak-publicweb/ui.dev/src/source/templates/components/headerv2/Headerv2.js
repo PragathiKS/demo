@@ -421,6 +421,24 @@ class Headerv2 {
   }
 
   bindEvents = () => {
+    $(document).ready(function () {
+      let currentScroll;
+      let currentScrollTop = 0;
+      const navbar = $('nav');
+      $(window).on('scroll', function () {
+        const scrollTop = $(window).scrollTop();
+        const navheight = navbar.height();
+        currentScrollTop = scrollTop;
+        if (currentScroll < currentScrollTop && scrollTop > navheight + navheight) {
+          navbar.addClass('scrollUp');
+          navbar.removeClass('scrollDown');
+        } else if (currentScroll > currentScrollTop && !(scrollTop <= navheight)) {
+          navbar.removeClass('scrollUp');
+          navbar.addClass('scrollDown');
+        }
+        currentScroll = currentScrollTop;
+      });
+    });
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
     this.bindSubmenuMobileOpenEvent();
