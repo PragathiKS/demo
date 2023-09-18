@@ -380,10 +380,10 @@ public class AllPaymentsModel {
 		i18nKeys = gson.toJson(i18KeyMap);
 		downloadExcelServletUrl = resource.getPath() + SupplierPortalConstants.EXCEL_DOWNLOAD_EXTENSION;
 
-		filterApi = service.getApigeeServiceUrl() + SupplierPortalConstants.PATH_SEPARATOR
+		filterApi = service.getApigeeServiceUrl() 
 				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.FILTERS_MAPPING);
 
-		allPaymentsApi = service.getApigeeServiceUrl() + SupplierPortalConstants.PATH_SEPARATOR
+		allPaymentsApi = service.getApigeeServiceUrl()
 				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.INVOICE_MAPPING);
 	}
 
