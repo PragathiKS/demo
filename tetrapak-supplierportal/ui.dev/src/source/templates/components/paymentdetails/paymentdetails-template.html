@@ -1,0 +1,45 @@
+<sly data-sly-template.paymentdetails_template="${@data, flag}">
+  <div
+    data-module="Paymentdetails"
+    class="tp-card tp-payment-details js-payment-details clearfix"
+    data-details-api="${data.paymentDetailsApi}"
+  >
+  <code class="d-none js-payment-details__config">"{\n\"sp.paymentdetails.invoiceinformation\":\"Invoice information\",\n\"sp.paymentdetails.companyinformation\":\"Company information\",\n\"sp.paymentdetails.supplierinformtaion\":\"Supplier information\",\n\"sp.paymentdetails.details\":\"Details\",\n\"sp.paymentdetails.invoiceNo\":\"Invoice No.\",\n\"sp.paymentdetails.date\":\"Date\",\n\"sp.paymentdetails.status\":\"Status\",\n\"sp.paymentdetails.company\":\"Company\",\n\"sp.paymentdetails.companyCode\":\"Code\",\n\"sp.paymentdetails.country\":\"Country\",\n\"sp.paymentdetails.vendor\":\"Vendor\",\n\"sp.paymentdetails.supplierCode\":\"Code\",\n\"sp.paymentdetails.totalAmount\":\"Total Amount incl. Taxes\",\n\"sp.paymentdetails.tax\":\"Tax\",\n\"sp.paymentdetails.withHoldingTaxes\":\"Withholding Taxes\",\n\"sp.paymentdetails.netPayable\":\"Net Payable\",\n\"sp.paymentdetails.paymentTerm\":\"Payment Term\",\n\"sp.paymentdetails.dueDate\":\"Due date\",\n\"sp.paymentdetails.paidDate\":\"Paid date\",\n\"sp.paymentdetails.bankAccount\":\"Bank Account\",\n\"sp.paymentdetails.paymentMethod\":\"Payment method\",\n\"sp.paymentdetails.poNo\":\"PO No.\",\n\"sp.paymentdetails.emptyPaymentDetails\":\"No payment details data fetched\"\n}"</code>
+  <!--Loading -->
+  <div class="tp-spinner d-none">
+    <sly data-sly-use.loading="/apps/supplierportal/components/atoms/loader/loader-template.html"
+        data-sly-call="${loading.loader_template}" />
+  </div>
+  <!-- Content Container -->
+<div class="d-none tp-payment-details-content">
+  <div class="tp-payment-details__header-wrapper">
+      <h2 class="tp-payment-details__heading js-payment-details__heading">
+        ${data.heading}
+      </h2>
+
+      <!-- Actions -->
+      <div class="tp-payment-details__header-action-wrapper">
+          <div class="tp-payment-details__header-mobile">
+            <button class="tp-next-btn js-mobile-header-actions">
+              <i class="icon icon-Three_Dot">
+              </i>
+            </button>
+          </div>
+          <div class="tp-payment-details__header-actions">
+            <div class="tp-payment-details__header-action icons">
+              <input type="hidden" id="downloadCsvServletUrl" name="downloadCsvServletUrl" value="${data.downloadCsvServletUrl}" />
+              <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
+              data-sly-call="${btnRef.buttonlink_template @text='Export to pdf',modifier='second',baseClass='tp-button-link',iconClass='icon-PDF action-icon',className='tp-payment-details__action-button',jsClass='js-payment-details__export-pdf-action'}" />
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+  <div class="tp-payment-details__content-wrapper">
+
+    <div class="tp-payment-details__content js-payment-details__content d-none"></div>
+  </div>
+  <!--/* Component HTML code goes here */-->
+  <div id="payment-details-update-modal" class="modal js-update-modal tp-payment-details-modal tp-modal fade" tabindex="-1" aria-hidden="true" role="dialog"></div>
+  </div>
+</sly>

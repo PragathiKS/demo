@@ -1,0 +1,31 @@
+{
+  "heading": "Invoice information",
+  "paymentDetailsApi": "http://localhost:3001/supplierpayments/invoices",
+  "downloadCsvServletUrl": "",
+  "i18nKeys": {
+    "sp.paymentdetails.invoiceinformation": "Invoice information",
+    "sp.paymentdetails.companyinformation": "Company information",
+    "sp.paymentdetails.supplierinformtaion": "Supplier information",
+    "sp.paymentdetails.details": "Details",
+    "sp.paymentdetails.invoiceNo": "Invoice No.",
+    "sp.paymentdetails.date": "Date",
+    "sp.paymentdetails.status": "Status",
+    "sp.paymentdetails.company": "Company",
+    "sp.paymentdetails.companyCode": "Code",
+    "sp.paymentdetails.country": "Country",
+    "sp.paymentdetails.vendor": "Vendor",
+    "sp.paymentdetails.supplierCode": "Code",
+    "sp.paymentdetails.totalAmount": "Total Amount incl. Taxes",
+    "sp.paymentdetails.tax": "Tax",
+    "sp.paymentdetails.withHoldingTaxes": "Withholding Taxes",
+    "sp.paymentdetails.netPayable": "Net Payable",
+    "sp.paymentdetails.paymentTerm": "Payment Term",
+    "sp.paymentdetails.dueDate": "Due date",
+    "sp.paymentdetails.paidDate": "Paid date",
+    "sp.paymentdetails.bankAccount": "Bank Account",
+    "sp.paymentdetails.paymentMethod": "Payment method",
+    "sp.paymentdetails.poNo": "PO No.",
+    "sp.paymentdetails.emptyPaymentDetails": "No payment details data fetched",
+    "sp.paymentdetails.exportToPDF": "Export to pdf"
+  }
+}
