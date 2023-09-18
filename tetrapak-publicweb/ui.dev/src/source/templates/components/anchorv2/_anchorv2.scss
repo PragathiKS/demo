@@ -166,6 +166,12 @@
         }
     
     }
+    &.top-anchor-menu {
+        top: 64px;
+        @media #{$desktop}{
+            top: 144px;
+        }
+    }
 }
        
 .pw-anchor-menu-mobile {

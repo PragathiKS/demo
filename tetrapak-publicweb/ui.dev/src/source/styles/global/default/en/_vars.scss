@@ -32,6 +32,7 @@ $zindex-hide: -1;
 $zindex-header: 100;
 $zindex-nav: $zindex-header+1;
 $zindex-anchor-menu: $zindex-nav+1;
+$zindex-nav-flyout: $zindex-anchor-menu + 2;
 $z-index-section-menu: 90;
 $z-index-search-bar: 99;
 $zindex-top: 9999;

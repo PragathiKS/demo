@@ -6,6 +6,7 @@
     align-items: stretch;
     flex-direction: column;
     padding-top: $margin-xl;
+    padding-bottom: 48px;
     @media #{$mobile} {
         padding-top: $padding-zero;
     }
