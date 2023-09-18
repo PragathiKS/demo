@@ -10,11 +10,7 @@ import { logger } from './logger';
  * Generates a valid APIGEE token and ensures token validity
  */
 function generateToken() {
-  // const env_var = $('.tp-my-payment').attr('data-src_ispublishenvironment');
-
-  // TODO - update the code when the list payment page implemented
-  // For testing purpose now its assigned to true
-  const env_var = 'true';
+  const env_var = $('.tp-all-payments').attr('data-src_ispublishenvironment');
 
   return (
     new Promise(function (resolve, reject) {

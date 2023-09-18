@@ -12,6 +12,8 @@ public interface PowerBiReportService {
     /**
      * @return getGenerateEmbedToken
      */
-    public String getGenerateEmbedToken();
+    public String getGenerateEmbedToken(String reportId);
+
+    public String getEmbedTokenBasedOnBP(String bpNumber, String reportId);
 
 }

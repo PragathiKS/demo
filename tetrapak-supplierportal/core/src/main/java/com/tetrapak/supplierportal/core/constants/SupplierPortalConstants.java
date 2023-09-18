@@ -212,6 +212,28 @@ public final class SupplierPortalConstants {
     public static final String APPLICATION_URL_ENCODED = "application/x-www-form-urlencoded";
 
     public static final String AUTH_TOKEN = "auth-token";
+    
+    /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
+    public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
+    
+    /** The Constant PATH_SEPARATOR. */
+    public static final String PATH_SEPARATOR = "/";
+    
+    public static final String FILTERS_MAPPING = "sp-filters";
+    
+    public static final String INVOICE_MAPPING = "sp-invoices";
+    
+    public static final String EXPORT_TO_PDFURL = "/bin/supportal/invoice/export";
+
+    public static final String BEARER  = "Bearer ";
+    
+    public static final String PDF = "pdf";
+    
+    public static final String DOCUMENT_REFERENCE_ID = "documentreferenceid"; 
+    
+    public static final String AUTHTOKEN = "authToken";
+
+    public static final String ERROR_MESSAGE = "errorMsg";
 
     /**
      * Instantiates a new customer hub constants.

@@ -1,0 +1,116 @@
+$color-red: #ff0000;
+
+.tp-all-payments {
+    &__heading {
+        @include font-size($font-xl);
+        @include line-height($font-d-xl, $font-xl);
+    }
+
+    &__search-count {
+        @include padding($padding-sm $padding-zero);
+        @include margin($margin-l $margin-zero);
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-m-sm);
+        color: $color-congress-blue;
+        border-top: 1px solid $color-congress-blue;
+        border-bottom: 1px solid $color-congress-blue;
+    }
+
+    &__table {
+        table {
+            position: relative;
+            border-collapse: separate;
+        }
+        th {
+            @include padding($padding-md);
+            position: sticky;
+            top: 0;
+            background: $color-white;
+            border-bottom-color: $color-black;
+            font-weight: $font-weight-bold;
+            &.hide {
+                display: none;
+            }
+            &.sorted {
+                @include padding($padding-md $padding-xxs $padding-md $padding-xl);
+            }
+            button {
+                font-weight: $font-weight-bold;
+            }
+            .icon {
+                color: inherit;
+                &:hover {
+                    color: $color-congress-blue;
+                }
+            }
+            .icon-Chevron_Down {
+                width: 12px;
+                position: absolute;
+                left: $margin-md;
+            }
+        }
+        td {
+            @include font-size($font-m-sm);
+            @include line-height($font-l, $font-m-sm);
+            @include padding($padding-md);
+            font-weight: $font-weight-normal;
+            &.hide {
+                display: none;
+            }
+        }
+        tr {
+            &:last-child {
+                td {
+                    border-bottom: 0;
+                }
+            }
+        }
+        .dashed-border {
+            text-decoration: underline;
+            text-decoration-style: dashed;
+        }
+    }
+
+    &__table-summary__row {
+        &:not(.tp-all-payments__table-summary__rowheading) {
+            &:hover {
+                background-color: $color-wild-sand;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .tp-tbl-pagination {
+        @include padding($padding-sm);
+
+        &__first {
+            @include margin-right($margin-md);
+        }
+        &__last {
+            @include margin-left($margin-md);
+        }
+    }
+    .icon {
+        color: $color-congress-blue;
+        &.left {
+            transform: rotate(-180deg);
+        }
+        &.icon-pagination {
+            &::before {
+                width: 8px;
+            }
+        }
+    }
+
+    button {
+        &:focus {
+            outline: 5px auto -webkit-focus-ring-color;
+        }
+    }
+
+    // overwrite the common loader style
+    .tpatom-loader {
+        @include padding($padding-md);
+        text-align: center;
+    }
+}

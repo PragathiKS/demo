@@ -1,0 +1,13 @@
+<div class="tp-all-payments__table custom-scrollbar-horizontal on">
+    {{#if noDataMessage}}
+        <h3>{{i18n key=noDataFound}}</h3>
+    {{else}}
+        {{> molecules/table-sort/table-sort baseClass="tp-all-payments__table-summary" jsClass="js-all-payments__table-summary"
+        list=summary headings=summaryHeadings}}
+    {{/if}}
+</div>
+
+{{#unless noDataMessage}}
+    {{> molecules/table-pagination/table-pagination jsClass="js-all-payments__table-summary"
+            paginationObj=paginationObj}}
+{{/unless}}

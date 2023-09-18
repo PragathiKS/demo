@@ -1,7 +1,7 @@
 {
   "heading": "Invoice information",
-  "paymentDetailsApi": "http://localhost:3001/supplierpayments/invoices",
-  "downloadCsvServletUrl": "",
+  "viewPaymentDataUrl": "http://localhost:3001/supplierpayments/invoices",
+  "exportToPdfURL": "",
   "i18nKeys": {
     "sp.paymentdetails.invoiceinformation": "Invoice information",
     "sp.paymentdetails.companyinformation": "Company information",

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:language="en"
+    jcr:mixinTypes="[mix:language]"
+    jcr:primaryType="nt:folder">
+    <sp.leftnavigation.title
+        cq:lastReplicated="{Date}2023-03-30T10:31:37.913Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Home"/>
+    <sp.paymentDetails.allPaymentsHeading
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Payments"/>
+    <sp.paymentDetails.amountIncludingTaxes
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Amount Including Taxes"/>
+    <sp.paymentDetails.bankAccount
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Bank Account"/>
+    <sp.paymentDetails.code
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Code"/>
+    <sp.paymentDetails.company
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Company"/>
+    <sp.paymentDetails.companyCode
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Company Code"/>
+    <sp.paymentDetails.companyInformation
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Company Information"/>
+    <sp.paymentDetails.country
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Country"/>
+    <sp.paymentDetails.date
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Date"/>
+    <sp.paymentDetails.details
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Details"/>
+    <sp.paymentDetails.dueDate
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Due Date"/>
+    <sp.paymentDetails.emptyPaymentDetails
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Empty Payment Details"/>
+    <sp.paymentDetails.exportToPDF
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Export To PDF"/>
+    <sp.paymentDetails.fetcherror
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Fetch Error"/>
+    <sp.paymentDetails.invoiceDate
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Invoice Date"/>
+    <sp.paymentDetails.invoiceInformation
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Invoice Information"/>
+    <sp.paymentDetails.invoiceNo
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Invoice No"/>
+    <sp.paymentDetails.multipono
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Multiple Po Number"/>
+    <sp.paymentDetails.netPayable
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Net Payable"/>
+    <sp.paymentDetails.noDataFound
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="NoDataFound"/>
+    <sp.paymentDetails.pagination
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Pagination"/>
+    <sp.paymentDetails.paginationFirst
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="First"/>
+    <sp.paymentDetails.paginationLast
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Last"/>
+    <sp.paymentDetails.paginationNext
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Next"/>
+    <sp.paymentDetails.paginationPrev
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Previous"/>
+    <sp.paymentDetails.paid
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Paid"/>
+    <sp.paymentDetails.paidDate
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Paid Date"/>
+    <sp.paymentDetails.paymentMethod
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Payment Method"/>
+    <sp.paymentDetails.paymentTerm
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Payment Term"/>
+    <sp.paymentDetails.poNo
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="PO NO"/>
+    <sp.paymentDetails.reset
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Reset"/>
+    <sp.paymentDetails.results
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Results"/>
+    <sp.paymentDetails.status
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Invoice Status"/>
+    <sp.paymentDetails.supplier
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Supplier"/>
+    <sp.paymentDetails.supplierCode
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Supplier Code"/>
+    <sp.paymentDetails.supplierInformtaion
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Supplier Information"/>
+    <sp.paymentDetails.tax
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Tax"/>
+    <sp.paymentDetails.totalAmount
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Total Amount incl. taxes"/>
+    <sp.paymentDetails.withholdingtax
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Withholding Taxes (show currency)"/>
+    <sp.requestform.ariba.email.error.label
+        cq:lastReplicated="{Date}2023-03-22T06:39:52.772Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Ariba email error label"/>
+    <sp.requestform.ariba.email.label
+        cq:lastReplicated="{Date}2023-03-20T08:08:30.769Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Ariba account administrator email (optional)"/>
+    <sp.requestform.ariba.network.label
+        cq:lastReplicated="{Date}2023-03-20T08:08:33.695Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Ariba Network ID (optional)"/>
+    <sp.requestform.catalogues
+        cq:lastReplicated="{Date}2023-03-20T08:08:36.185Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="SAP Ariba - Sourcing &amp; Contracting"/>
+    <sp.requestform.catalogues.subtitle
+        cq:lastReplicated="{Date}2023-03-20T08:08:38.951Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Get support with sending and responding to RFI/RFQs, participating in auctions, using electronic signatures or similar"/>
+    <sp.requestform.city.error.msg
+        cq:lastReplicated="{Date}2023-03-20T08:08:42.606Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Please enter your city"/>
+    <sp.requestform.city.label
+        cq:lastReplicated="{Date}2023-03-20T08:08:45.285Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="City"/>
+    <sp.requestform.company.error.msg
+        cq:lastReplicated="{Date}2023-03-20T08:08:47.948Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Please enter your company legal name"/>
+    <sp.requestform.company.label
+        cq:lastReplicated="{Date}2023-03-20T08:08:51.122Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Company legal name"/>
+    <sp.requestform.country.error.msg
+        cq:lastReplicated="{Date}2023-03-20T08:08:55.103Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Please enter your country"/>
+    <sp.requestform.country.label
+        cq:lastReplicated="{Date}2023-03-20T08:08:57.647Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Country"/>
+    <sp.requestform.details.title
+        cq:lastReplicated="{Date}2023-03-20T08:09:00.822Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Your contact information"/>
+    <sp.requestform.dragdrop.button.label
+        cq:lastReplicated="{Date}2023-03-20T08:09:04.311Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Add file"/>
+    <sp.requestform.dragdrop.remove.file.label
+        cq:lastReplicated="{Date}2023-03-20T08:09:07.645Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Drag and Drop - Remove file label"/>
+    <sp.requestform.email.address.label
+        cq:lastReplicated="{Date}2023-03-20T08:09:10.640Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Email Address"/>
+    <sp.requestform.file.upload.error.msg
+        cq:lastReplicated="{Date}2023-03-20T08:09:14.731Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="File Upload Error Msg"/>
+    <sp.requestform.generalsubtitle
+        cq:lastReplicated="{Date}2023-03-21T13:30:39.289Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Didn’t find an answer to your question? Please fill out the form and we will get back to you as soon as possible. "/>
+    <sp.requestform.home.button.label
+        cq:lastReplicated="{Date}2023-03-20T08:09:21.031Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Go to home"/>
+    <sp.requestform.name.label
+        cq:lastReplicated="{Date}2023-03-20T08:09:23.980Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Name"/>
+    <sp.requestform.on.boarding.maintanance
+        cq:lastReplicated="{Date}2023-03-20T08:09:27.249Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="SAP Ariba - Onboarding and maintenance"/>
+    <sp.requestform.on.boarding.maintanance.subtitle
+        cq:lastReplicated="{Date}2023-03-20T08:09:29.983Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Get support with registration, updating supplier information or similar"/>
+    <sp.requestform.other.description.label
+        cq:lastReplicated="{Date}2023-03-20T08:09:36.891Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="When possible, share a little more information. This may help our support team to help you faster."/>
+    <sp.requestform.other.purpose
+        cq:lastReplicated="{Date}2023-03-20T08:09:40.504Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Other purpose"/>
+    <sp.requestform.other.purpose.subtitle
+        cq:lastReplicated="{Date}2023-03-20T08:09:44.801Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Get support with something that is not covered in above purposes"/>
+    <sp.requestform.other.title
+        cq:lastReplicated="{Date}2023-03-20T08:09:48.643Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Other information"/>
+    <sp.requestform.phone.error.msg
+        cq:lastReplicated="{Date}2023-03-20T08:09:52.884Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Phone error message"/>
+    <sp.requestform.phone.number.label
+        cq:lastReplicated="{Date}2023-03-20T08:09:57.130Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Phone number (optional)"/>
+    <sp.requestform.purpose.error.message
+        cq:lastReplicated="{Date}2023-03-20T08:10:00.320Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Please select a purpose"/>
+    <sp.requestform.purpose.of.contact
+        cq:lastReplicated="{Date}2023-03-20T08:10:03.844Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Purpose of contact"/>
+    <sp.requestform.query.error.msg
+        cq:lastReplicated="{Date}2023-03-20T08:10:06.906Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Please describe your query"/>
+    <sp.requestform.query.placeholder
+        cq:lastReplicated="{Date}2023-03-20T13:37:12.908Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Tell us, more in detail, about your query..."/>
+    <sp.requestform.query.subtitle
+        cq:lastReplicated="{Date}2023-03-20T08:10:10.146Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Describe your query"/>
+    <sp.requestform.query.subtitle.placeholder
+        cq:lastReplicated="{Date}2023-03-20T11:31:55.315Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Query Placeholder"/>
+    <sp.requestform.query.title
+        cq:lastReplicated="{Date}2023-03-20T08:10:16.533Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="How can we help you?"/>
+    <sp.requestform.send.button.label
+        cq:lastReplicated="{Date}2023-03-20T08:10:19.501Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Submit"/>
+    <sp.requestform.sourcing.contracting
+        cq:lastReplicated="{Date}2023-03-22T06:39:12.976Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="SAP Ariba - Catalogues"/>
+    <sp.requestform.sourcing.contracting.subtitle
+        cq:lastReplicated="{Date}2023-03-20T08:10:32.273Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Get support with creating or maintaining catalogues"/>
+    <sp.requestform.tetrapak.email.error.label
+        cq:lastReplicated="{Date}2023-03-22T06:39:06.473Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Tetrapak Email error label"/>
+    <sp.requestform.tetrapak.email.label
+        cq:lastReplicated="{Date}2023-03-20T08:10:39.116Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Tetra Pak contact email (optional)"/>
+    <sp.requestform.thankyou.subtitle
+        cq:lastReplicated="{Date}2023-03-20T08:10:42.243Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="We will get back to you via email as soon as possible."/>
+    <sp.requestform.thankyou.title
+        cq:lastReplicated="{Date}2023-03-20T08:10:46.020Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Thank you!"/>
+    <sp.requestform.title
+        cq:lastReplicated="{Date}2023-03-21T13:32:00.840Z"
+        cq:lastReplicatedBy="surbhi.gupta"
+        cq:lastReplicationAction="Activate"
+        jcr:mixinTypes="[cq:ReplicationStatus]"
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Contact support"/>
+</jcr:root>

@@ -82,6 +82,7 @@ class Paymentdetails {
      */
     this.cache.configJson = this.root.find('.js-payment-details__config').text();
     this.cache.detailsApi = this.root.data('details-api');
+    this.cache.exportToPdfURL = this.root.data('export-pdf-url');
     this.cache.$contentWrapper = this.root.find(
       '.tp-payment-details-content'
     );
@@ -111,11 +112,12 @@ class Paymentdetails {
     }
   }
   downloadPDf = () => {
+    const { documentreferenceid } = getUrlQueryParams(window.location.href);
     auth.getToken(() => {
-      const url = this.cache.downloadServletURL;
+      const url = this.cache.exportToPdfURL;
       file.get({
         extension: 'pdf',
-        url: `${url}?countrycodes=${this.getActiveCountryCode()}`,
+        url: `${url}?documentreferenceid=${documentreferenceid}`,
         method: ajaxMethods.GET
       });
     });

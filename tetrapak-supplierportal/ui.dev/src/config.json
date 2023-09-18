@@ -132,6 +132,12 @@
         "name": "paymentdetails",
         "enforce": true,
         "chunks": "all"
+      },
+      "allpayments": {
+        "testMultiple": true,
+        "name": "allpayments",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -152,6 +158,9 @@
       ],
       "paymentdetails": [
         "source/templates/components/paymentdetails/"
+      ],
+      "allpayments": [
+        "source/templates/components/allpayments/"
       ]
     },
     "handlebars": {
