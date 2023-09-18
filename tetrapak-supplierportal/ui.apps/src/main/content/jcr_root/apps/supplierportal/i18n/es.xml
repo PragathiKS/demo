@@ -16,30 +16,57 @@
     <sp.paymentDetails.amountIncludingTaxes
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Amount Including Taxes"/>
+    <sp.paymentDetails.bankAccount
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Bank Account"/>
+    <sp.paymentDetails.code
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Code"/>
     <sp.paymentDetails.company
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Company"/>
     <sp.paymentDetails.companyCode
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Company Code"/>
+    <sp.paymentDetails.companyInformation
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Company Information"/>
     <sp.paymentDetails.country
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Country"/>
+    <sp.paymentDetails.date
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Date"/>
+    <sp.paymentDetails.details
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Details"/>
     <sp.paymentDetails.dueDate
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Due Date"/>    
+        sling:message=" Due Date"/>
+    <sp.paymentDetails.emptyPaymentDetails
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Empty Payment Details"/>
+    <sp.paymentDetails.exportToPDF
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Export To PDF"/>
     <sp.paymentDetails.fetcherror
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Fetch Error"/>
     <sp.paymentDetails.invoiceDate
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Invoice Date"/>
+    <sp.paymentDetails.invoiceInformation
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Invoice Information"/>
     <sp.paymentDetails.invoiceNo
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Invoice No"/>
     <sp.paymentDetails.multipono
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Multiple Po Number"/>
+    <sp.paymentDetails.netPayable
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Net Payable"/>
     <sp.paymentDetails.noDataFound
         jcr:primaryType="sling:MessageEntry"
         sling:message=" NoDataFound"/>
@@ -61,6 +88,15 @@
     <sp.paymentDetails.paid
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Paid"/>
+    <sp.paymentDetails.paidDate
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Paid Date"/>
+    <sp.paymentDetails.paymentMethod
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Payment Method"/>
+    <sp.paymentDetails.paymentTerm
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Payment Term"/>
     <sp.paymentDetails.poNo
         jcr:primaryType="sling:MessageEntry"
         sling:message=" PO NO"/>
@@ -79,6 +115,15 @@
     <sp.paymentDetails.supplierCode
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Supplier Code"/>
+    <sp.paymentDetails.supplierInformtaion
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Supplier Informtaion"/>
+    <sp.paymentDetails.tax
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Tax"/>
+    <sp.paymentDetails.totalAmount
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Total Amount incl. taxes"/>
     <sp.paymentDetails.withholdingtax
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Withholding Taxes (show currency)"/>

@@ -58,4 +58,35 @@ public class I18Constants {
 	public static final String PAGINATION_NEXT = "paginationNext";
 	
 	public static final String PAID = "paid";
+	
+	public static final String INVOICE_INFO = "invoiceInfo";
+	
+	public static final String COMPANY_INFO = "companyInfo";
+	
+	public static final String SUPPLIER_INFO = "supplierInfo";
+	
+	public static final String DETAILS = "details";
+	
+	public static final String DATE = "date";
+	
+	public static final String VENDOR = "vendor";
+	
+	public static final String TOTAL_AMOUNT = "totalAmount";
+	
+	public static final String TAX = "tax";
+	
+	public static final String NET_PAYABLE = "netPayable";
+	
+	public static final String PAYMENT_TERM = "paymentTerm";
+	
+	public static final String PAID_DATE = "paidDate";
+	
+	public static final String BANK_ACCOUNT = "bankAccount";
+	
+	public static final String PAYMENT_METHOD = "paymentMethod"; 
+	
+	public static final String EMPTY_PAYMENT_DETAILS = "emptyPaymentDetails"; 
+	
+	public static final String EXPORT_TO_PDF = "exportToPDF";
+	
 }
