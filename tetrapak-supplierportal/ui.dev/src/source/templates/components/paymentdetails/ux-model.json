@@ -1,31 +1,7 @@
 {
   "heading": "Invoice information",
   "viewPaymentDataUrl": "http://localhost:3001/supplierpayments/invoices",
-  "exportToPdfURL": "",
-  "i18nKeys": {
-    "sp.paymentdetails.invoiceinformation": "Invoice information",
-    "sp.paymentdetails.companyinformation": "Company information",
-    "sp.paymentdetails.supplierinformtaion": "Supplier information",
-    "sp.paymentdetails.details": "Details",
-    "sp.paymentdetails.invoiceNo": "Invoice No.",
-    "sp.paymentdetails.date": "Date",
-    "sp.paymentdetails.status": "Status",
-    "sp.paymentdetails.company": "Company",
-    "sp.paymentdetails.companyCode": "Code",
-    "sp.paymentdetails.country": "Country",
-    "sp.paymentdetails.vendor": "Vendor",
-    "sp.paymentdetails.supplierCode": "Code",
-    "sp.paymentdetails.totalAmount": "Total Amount incl. Taxes",
-    "sp.paymentdetails.tax": "Tax",
-    "sp.paymentdetails.withHoldingTaxes": "Withholding Taxes",
-    "sp.paymentdetails.netPayable": "Net Payable",
-    "sp.paymentdetails.paymentTerm": "Payment Term",
-    "sp.paymentdetails.dueDate": "Due date",
-    "sp.paymentdetails.paidDate": "Paid date",
-    "sp.paymentdetails.bankAccount": "Bank Account",
-    "sp.paymentdetails.paymentMethod": "Payment method",
-    "sp.paymentdetails.poNo": "PO No.",
-    "sp.paymentdetails.emptyPaymentDetails": "No payment details data fetched",
-    "sp.paymentdetails.exportToPDF": "Export to pdf"
-  }
+  "exportToPdfURL": "/content/tetrapak/supplierportal/global/en/payment-details/jcr:content/root/responsivegrid/paymentdetails/bin/supportal/invoice/export",
+  "isPublishEnvironment": true,
+  "i18nKeys": "{\"date\":\"sp.paymentdetails.date\",\"country\":\"sp.paymentDetails.country\",\"netPayable\":\"sp.paymentdetails.netPayable\",\"dueDate\":\"sp.paymentDetails.dueDate\",\"supplierCode\":\"sp.paymentDetails.supplierCode\",\"supplierInfo\":\"sp.paymentdetails.supplierInformtaion\",\"paidDate\":\"sp.paymentdetails.paidDate\",\"poNo\":\"sp.paymentDetails.poNo\",\"details\":\"sp.paymentdetails.details\",\"company\":\"sp.paymentDetails.company\",\"invoiceNo\":\"sp.paymentdetails.invoiceNo\",\"companyCode\":\"sp.paymentDetails.companyCode\",\"bankAccount\":\"sp.paymentdetails.bankAccount\",\"invoiceInfo\":\"sp.paymentDetails.invoiceInformation\",\"fetchError\":\"sp.paymentdetails.fetcherror\",\"withHoldingTax\":\"sp.paymentdetails.withHoldingTaxes\",\"exportToPDF\":\"sp.paymentdetails.multipono\",\"companyInfo\":\"sp.paymentdetails.companyInformation\",\"tax\":\"sp.paymentdetails.tax\",\"totalAmount\":\"sp.paymentdetails.totalAmount\",\"emptyPaymentDetails\":\"sp.paymentdetails.emptyPaymentDetails\",\"multiPoNo\":\"sp.paymentdetails.multipono\",\"paymentMethod\":\"sp.paymentdetails.paymentMethod\",\"paymentTerm\":\"sp.paymentdetails.paymentTerm\",\"status\":\"sp.paymentdetails.status\"}"
 }

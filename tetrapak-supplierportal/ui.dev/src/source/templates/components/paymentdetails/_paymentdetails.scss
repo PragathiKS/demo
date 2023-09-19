@@ -1,3 +1,14 @@
+// .tp-all-payments  {
+//     i.icon {
+//         color: $color-candy-apple-red;
+//     }
+//     &.icon {
+//         color: inherit;
+//     }
+//     &.icon-PDF {
+//         color: $color-candy-apple-red;
+//     }
+// }
 .tp-payment-details {
     @include margin-bottom($margin-md);
     &__container {
@@ -53,16 +64,8 @@
             }
         }
     }
-    .icon {
+    i.icon {
         color: $color-candy-apple-red;
-        &.left {
-            transform: rotate(-180deg);
-        }
-        &.icon-pagination {
-            &::before {
-                width: 8px;
-            }
-        }
     }
     &__action-button {
         display: flex;
@@ -225,4 +228,9 @@
             align-items: center;
         }
     }
+    .tpatom-loader {
+        @include padding($padding-md);
+        text-align: center;
+    }
 }
+
