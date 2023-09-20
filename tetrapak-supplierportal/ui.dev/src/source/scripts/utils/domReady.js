@@ -8,9 +8,15 @@ import movehash from './moveHash';
 import { $body } from './commonSelectors';
 import $ from 'jquery';
 import { responsive } from './responsive';
+import { isCurrentPageIframe } from '../common/common';
+import auth from './auth';
+import tokenRefresh from './tokenRefresh';
 
 export default {
   init() {
+    // Auth and Token refresh
+    tokenRefresh.init();
+    auth.init();
     dynamicMedia.init();
     responsive.init();
     movehash();
@@ -24,5 +30,17 @@ export default {
         $this.addClass('modal-open');
       }
     });
+
+    const isIframe = isCurrentPageIframe();
+    if (isIframe && $('.js-empty-page-script').length === 0) {
+      window.parent.postMessage({
+        refresh: true
+      });
+    }
+    const $autoRefreshSession = $('#autoRefreshSession');
+    if (!isIframe && $autoRefreshSession.length && $autoRefreshSession.val() === 'true') {
+      // Fetch bearer token to start token refresh timer
+      auth.getToken();
+    }
   }
 };

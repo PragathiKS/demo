@@ -44,6 +44,16 @@
                                 <name>libs-release</name>
                                 <url>https://tetrapak.jfrog.io/tetrapak/libs-release-local</url>
                         </repository>
+						<repository>
+							<releases>
+								<enabled>true</enabled>
+							</releases>
+							<snapshots>
+								<enabled>true</enabled>
+							</snapshots>
+							<id>maven-central</id>
+							<url>https://repo.maven.apache.org/maven2</url>
+						</repository>
          	</repositories>
          	<pluginRepositories>
            		 <pluginRepository>

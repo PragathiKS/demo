@@ -2,8 +2,7 @@
 <jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
     jcr:primaryType="nt:unstructured"
     jcr:title="Embedd Power Bi report"
-    sling:resourceType="cq/gui/components/authoring/dialog"
-    helpPath="https://www.adobe.com/go/aem6_5_docs_component_en#Title">
+    sling:resourceType="cq/gui/components/authoring/dialog">
     <content
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/foundation/container">
@@ -22,6 +21,20 @@
                         fieldDescription="Leave empty to use the page title."
                         fieldLabel="Title"
                         name="./jcr:title"/>
+                    <reportWithRLS
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        fieldDescription="Embed Report with Row Level Security?"
+                        name="./reportWithRLS"
+                        text="Report with RLS"
+                        value="{Boolean}true"
+                        uncheckedValue="{Boolean}false"/>
+                    <reportId
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/textfield"
+                        fieldDescription="Enter the report ID for the report to be embedded."
+                        fieldLabel="Report ID"
+                        name="./reportId"/>
                 </items>
             </column>
         </items>

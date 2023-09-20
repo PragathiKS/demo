@@ -26,6 +26,7 @@ import com.tetrapak.publicweb.core.models.AggregatorModel;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
 import com.tetrapak.publicweb.core.services.AggregatorService;
 import com.tetrapak.publicweb.core.utils.PageUtil;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 
 @Component(immediate = true, service = AggregatorService.class)
 public class AggregatorServiceImpl implements AggregatorService {
@@ -77,9 +78,12 @@ public class AggregatorServiceImpl implements AggregatorService {
 			// logic added to exclude external links or not available resources - SMAR-12038
 			Page currentPage = pageManager.getPage(pagePath.getPageURL());
 			if (currentPage != null) {
-				AggregatorModel aggregator = getAggregator(currentPage);
-				if (aggregator != null) {
-					aggregatorList.add(aggregator);
+				Resource pageContentRes = currentPage.getContentResource();
+				if (!(pageContentRes.getValueMap().containsKey(PWConstants.NOFOLLOW_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.NOINDEX_PROPERTY) || pageContentRes.getValueMap().containsKey(PWConstants.HIDEINSEARCH_PROPERTY))) {
+					AggregatorModel aggregator = getAggregator(currentPage);
+					if (aggregator != null) {
+						aggregatorList.add(aggregator);
+					}
 				}
 			}
 		}
@@ -125,6 +129,12 @@ public class AggregatorServiceImpl implements AggregatorService {
 				map.put("1_group." + (i + 1) + "_group.property.value", tags[i]);
 			}
 		}
+		map.put("2_property","jcr:content/@noFollow");
+		map.put("2_property.operation","not");
+		map.put("3_property","jcr:content/@noIndex");
+		map.put("3_property.operation","not");
+		map.put("4_property","jcr:content/@hideInSearch");
+		map.put("4_property.operation","not");
 		map.put("104_orderby", "@jcr:content/articleDate");
 		map.put("105_orderby", "@jcr:content/cq:lastModified");
 		map.put("104_orderby.sort", "desc");

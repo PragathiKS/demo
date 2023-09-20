@@ -1,0 +1,298 @@
+{
+    "meta": {
+      "serial": "78036/00629",
+      "totalDocuments": 5,
+      "lang": "en",
+      "version": "1"
+    },
+    "data": [
+      {
+        "bom": "663651-0800",
+        "serials": [
+          {
+            "drawingSpec": "663651",
+            "serialNumber": "78036/00629",
+            "type": "1",
+            "parentSerialNumber": "",
+            "machineType": "Tetra Pak Accumulator Helix 30",
+            "devStep": "0800"
+          }
+        ],
+        "releaseDate": "2022-09-29",
+        "format": "xml",
+        "optionsAndKits": [
+          {
+            "drawingSpec": "663651",
+            "name": "Accumulator Helix ACHX30",
+            "additionalInfo": [
+              "50 m - Left Infeed (LINF)",
+              "50 m - Right Infeed (RINF)",
+              "100 m - Left Infeed (LINF)",
+              "100 m - Right Infeed (RINF)",
+              "104 m - Left Infeed (LINF)",
+              "104 m - Right Infeed (RINF)",
+              "125 m - Left Infeed (LINF)",
+              "125 m - Right Infeed (RINF)",
+              "Optional Equipment:",
+              "Caster Wheel Kit (3520702-0100)",
+              "Chain Cleaner (3530087-0100)",
+              "Rinse System (3530116-0100)",
+              "Outfeed Track Rails (3530133-0100)",
+              "Visibility Package (3540659-0100)",
+              "Drip Pans - LINF (3540699-0100)",
+              "Drip Pans - RINF (3540700-0100)",
+              "Cooling Unit (90601-3692)",
+              "SNP Communications (90459-4235)",
+              "The base machine variant in the manual is\nthe 100 m (IEC). This variant is shown when the subject is not affected\nby the variation in machine. When variations affect the subject, illustrations\nof those specific variants are also shown in the manual."
+            ],
+            "devStep": "0800"
+          }
+        ],
+        "docNo": "3526594-0107",
+        "type": "Installation Manual",
+        "mType": "Tetra Pak Accumulator Helix 30",
+        "typeCode": "IM",
+        "documentProducer": {
+          "country": "",
+          "site": "",
+          "city": "",
+          "street": "",
+          "postcode": ""
+        },
+        "optInfo": "50 m - Left Infeed (LINF)\n50 m - Right Infeed (RINF)\n100 m - Left Infeed (LINF)\n100 m - Right Infeed (RINF)\n104 m - Left Infeed (LINF)\n104 m - Right Infeed (RINF)\n125 m - Left Infeed (LINF)\n125 m - Right Infeed (RINF)\n\nThe base machine variant in the manual is the 100 m (IEC). This variant is shown when the subject is not affected by the variation in machine. When variations affect the subject, illustrations of those specific variants are also shown in the manual.",
+        "docCategory": 1,
+        "name": "Tetra Pak Accumulator Helix 30",
+        "issueDate": "2022-09",
+        "optionName": "Tetra Pak Accumulator Helix 30",
+        "lang": "en",
+        "location": "https://selupdmtpwebt1.tp1.ad1.tetrapak.com/techpub-html/html/?docno=3526594-0107&access_token=0CfpXz8p2Sj2IPQERA4BVRGDMYdG"
+      },
+      {
+        "bom": "663651-0800",
+        "serials": [
+          {
+            "drawingSpec": "663651",
+            "serialNumber": "78036/00629",
+            "type": "1",
+            "parentSerialNumber": "",
+            "machineType": "Tetra Pak Accumulator Helix 30",
+            "devStep": "0800"
+          }
+        ],
+        "releaseDate": "2022-09-29",
+        "format": "xml",
+        "optionsAndKits": [
+          {
+            "drawingSpec": "663651",
+            "name": "Accumulator Helix ACHX30",
+            "additionalInfo": [
+              "50 m - Left Infeed (LINF)",
+              "50 m - Right Infeed (RINF)",
+              "100 m - Left Infeed (LINF)",
+              "100 m - Right Infeed (RINF)",
+              "104 m - Left Infeed (LINF)",
+              "104 m - Right Infeed (RINF)",
+              "125 m - Left Infeed (LINF)",
+              "125 m - Right Infeed (RINF)",
+              "Optional Equipment:",
+              "Caster Wheel Kit (3520702-0100)",
+              "Chain Cleaner (3530087-0100)",
+              "Rinse System (3530116-0100)",
+              "Outfeed Track Rails (3530133-0100)",
+              "Visibility Package (3540659-0100)",
+              "Drip Pans - LINF (3540699-0100)",
+              "Drip Pans - RINF (3540700-0100)",
+              "Cooling Unit (90601-3692)",
+              "SNP Communications (90459-4235)",
+              "The base machine variant in the manual is\nthe 100 m (IEC). This variant is shown when the subject is not affected\nby the variation in machine. When variations affect the subject, illustrations\nof those specific variants are also shown in the manual."
+            ],
+            "devStep": "0800"
+          }
+        ],
+        "docNo": "3526595-0106",
+        "type": "Operation Manual",
+        "mType": "Tetra Pak Accumulator Helix 30",
+        "typeCode": "OM",
+        "documentProducer": {
+          "country": "",
+          "site": "",
+          "city": "",
+          "street": "",
+          "postcode": ""
+        },
+        "optInfo": "50 m - Left Infeed (LINF)\n50 m - Right Infeed (RINF)\n100 m - Left Infeed (LINF)\n100 m - Right Infeed (RINF)\n104 m - Left Infeed (LINF)\n104 m - Right Infeed (RINF)\n125 m - Left Infeed (LINF)\n125 m - Right Infeed (RINF)\n\nThe base machine variant in the manual is the 100 m (IEC). This variant is shown when the subject is not affected by the variation in machine. When variations affect the subject, illustrations of those specific variants are also shown in the manual.",
+        "docCategory": 1,
+        "name": "Tetra Pak Accumulator Helix 30",
+        "issueDate": "2022-09",
+        "optionName": "Tetra Pak Accumulator Helix 30",
+        "lang": "en",
+        "location": "https://selupdmtpwebt1.tp1.ad1.tetrapak.com/techpub-html/html/?docno=3526595-0106&access_token=0CfpXz8p2Sj2IPQERA4BVRGDMYdG"
+      },
+      {
+        "bom": "663651-0800",
+        "serials": [
+          {
+            "drawingSpec": "663651",
+            "serialNumber": "78036/00629",
+            "type": "1",
+            "parentSerialNumber": "",
+            "machineType": "Tetra Pak Accumulator Helix 30",
+            "devStep": "0800"
+          }
+        ],
+        "releaseDate": "2022-09-29",
+        "format": "xml",
+        "optionsAndKits": [
+          {
+            "drawingSpec": "663651",
+            "name": "Accumulator Helix ACHX30",
+            "additionalInfo": [
+              "50 m - Left Infeed (LINF)",
+              "50 m - Right Infeed (RINF)",
+              "100 m - Left Infeed (LINF)",
+              "100 m - Right Infeed (RINF)",
+              "104 m - Left Infeed (LINF)",
+              "104 m - Right Infeed (RINF)",
+              "125 m - Left Infeed (LINF)",
+              "125 m - Right Infeed (RINF)",
+              "Optional Equipment:",
+              "Caster Wheel Kit (3520702-0100)",
+              "Chain Cleaner (3530087-0100)",
+              "Rinse System (3530116-0100)",
+              "Outfeed Track Rails (3530133-0100)",
+              "Visibility Package (3540659-0100)",
+              "Drip Pans - LINF (3540699-0100)",
+              "Drip Pans - RINF (3540700-0100)",
+              "Cooling Unit (351439-1103)",
+              "Cooling Unit (3665156-0000)",
+              "SNP Communications (90459-4235)",
+              "The base machine variant in the manual is\nthe 100 m (IEC). This variant is shown when the subject is not affected\nby the variation in machine. When variations affect the subject, illustrations\nof those specific variants are also shown in the manual."
+            ],
+            "devStep": "0800"
+          }
+        ],
+        "docNo": "3638774-0106",
+        "type": "Maintenance Manual",
+        "mType": "Tetra Pak Accumulator Helix 30",
+        "typeCode": "MM",
+        "documentProducer": {
+          "country": "",
+          "site": "",
+          "city": "",
+          "street": "",
+          "postcode": ""
+        },
+        "optInfo": "50 m - Left Infeed (LINF)\n50 m - Right Infeed (RINF)\n100 m - Left Infeed (LINF)\n100 m - Right Infeed (RINF)\n104 m - Left Infeed (LINF)\n104 m - Right Infeed (RINF)\n125 m - Left Infeed (LINF)\n125 m - Right Infeed (RINF)\n\nThe base machine variant in the manual is the 100 m (IEC). This variant is shown when the subject is not affected by the variation in machine. When variations affect the subject, illustrations of those specific variants are also shown in the manual.",
+        "docCategory": 1,
+        "name": "Tetra Pak Accumulator Helix 30",
+        "issueDate": "2022-09",
+        "optionName": "Tetra Pak Accumulator Helix 30",
+        "lang": "en",
+        "location": "https://selupdmtpwebt1.tp1.ad1.tetrapak.com/techpub-html/html/?docno=3638774-0106&access_token=0CfpXz8p2Sj2IPQERA4BVRGDMYdG"
+      },
+      {
+        "bom": "663651-0800",
+        "serials": [
+          {
+            "drawingSpec": "663651",
+            "serialNumber": "78036/00629",
+            "type": "1",
+            "parentSerialNumber": "",
+            "machineType": "Tetra Pak Accumulator Helix 30",
+            "devStep": "0800"
+          }
+        ],
+        "releaseDate": "2020-06-18",
+        "format": "xml",
+        "optionsAndKits": [
+          {
+            "drawingSpec": "663651",
+            "name": "Accumulator Helix ACHX30-0800",
+            "additionalInfo": [
+              "50 m - Left Infeed (LINF)",
+              "50 m - Right Infeed (RINF)",
+              "100 m - Left Infeed (LINF)",
+              "100 m - Right Infeed (RINF)",
+              "104 m - Left Infeed (LINF)",
+              "104 m - Right Infeed (RINF)",
+              "125 m - Left Infeed (LINF)",
+              "125 m - Right Infeed (RINF)",
+              "Optional Equipment:",
+              "Caster Wheel Kit (3520702-0100)",
+              "Chain Cleaner (3530087-0100)",
+              "Rinse System (3530116-0100)",
+              "Outfeed Track Rails (3530133-0100)",
+              "Visibility Package (3540659-0100)",
+              "Drip Pans - LINF (3540699-0100)",
+              "Drip Pans - RINF (3540700-0100)",
+              "Cooling Unit (90601-3692)",
+              "SNP Communications (90459-4235)",
+              "The base machine variant in the manual is\nthe 100 m (IEC). This variant is shown when the subject is not affected\nby the variation in machine. When variations affect the subject, illustrations\nof those specific variants are also shown in the manual."
+            ],
+            "devStep": "0800"
+          }
+        ],
+        "docNo": "3638775-0101",
+        "type": "Electrical Manual",
+        "mType": "Tetra Pak Accumulator Helix 30",
+        "typeCode": "EM",
+        "documentProducer": {
+          "country": "",
+          "site": "",
+          "city": "",
+          "street": "",
+          "postcode": ""
+        },
+        "optInfo": "Accumulator Helix ACHX30-0800\r\n663651-0800\r\n\r\n50 m - Left Infeed (LINF)\r\n50 m - Right Infeed (RINF)\r\n100 m - Left Infeed (LINF)\r\n100 m - Right Infeed (RINF)\r\n104 m - Left Infeed (LINF)\r\n104 m - Right Infeed (RINF)\r\n125 m - Left Infeed (LINF)\r\n125 m - Right Infeed (RINF)",
+        "docCategory": 1,
+        "name": "Tetra Pak Accumulator Helix 30",
+        "issueDate": "2020-06",
+        "optionName": "Tetra Pak Accumulator Helix 30",
+        "lang": "en",
+        "location": "https://selupdmtpwebt1.tp1.ad1.tetrapak.com/techpub-html/html/?docno=3638775-0101&access_token=0CfpXz8p2Sj2IPQERA4BVRGDMYdG"
+      },
+      {
+        "bom": "663651-0800",
+        "serials": [
+          {
+            "drawingSpec": "663651",
+            "serialNumber": "78036/00629",
+            "type": "1",
+            "parentSerialNumber": "",
+            "machineType": "Tetra Pak Accumulator Helix 30",
+            "devStep": "0800"
+          }
+        ],
+        "releaseDate": "2021-02-05",
+        "format": "xml",
+        "optionsAndKits": [
+          {
+            "drawingSpec": "663651",
+            "name": "Accumulator Helix 30",
+            "additionalInfo": [
+              "-"
+            ],
+            "devStep": "0800"
+          }
+        ],
+        "docNo": "3672357-0101",
+        "type": "Spare Parts Catalogue",
+        "mType": "Tetra Pak Accumulator Helix 30",
+        "typeCode": "SPC",
+        "documentProducer": {
+          "country": "",
+          "site": "",
+          "city": "",
+          "street": "",
+          "postcode": ""
+        },
+        "optInfo": "",
+        "docCategory": 1,
+        "name": "Tetra Pak Accumulator Helix 30",
+        "issueDate": "2021-02",
+        "optionName": "Tetra Pak Accumulator Helix 30",
+        "lang": "en",
+        "location": "https://selupdmtpwebt1.tp1.ad1.tetrapak.com/techpub-html/html/?docno=3672357-0101&access_token=0CfpXz8p2Sj2IPQERA4BVRGDMYdG"
+      }
+    ]
+  }

@@ -288,10 +288,19 @@
     <div class="tp-pw-megamenuteaser">
         <img src="{{col3.columnItems.teaser.imagePath}}" alt="{{col3.columnItems.teaser.imageAltText}}" />
         <div class="tp-pw-megamenuteaser__header-wrapper">
-            <h2>{{col3.columnItems.teaser.title}}</h2>
-            <div class="tp-pw-megamenuteaser__description">
-                {{{col3.columnItems.teaser.description}}}
-            </div>
+            {{#if col3.columnItems.teaser.imageLink}}
+            <a href="{{col3.columnItems.teaser.imageLink}}">
+                <h2>{{col3.columnItems.teaser.title}}</h2>
+                <div class="tp-pw-megamenuteaser__description">
+                    {{{col3.columnItems.teaser.description}}}
+                </div>
+            </a>
+            {{else}}
+                <h2>{{col3.columnItems.teaser.title}}</h2>
+                <div class="tp-pw-megamenuteaser__description">
+                    {{{col3.columnItems.teaser.description}}}
+                </div>
+            {{/if}}
         </div>
     </div>
     {{/if}}

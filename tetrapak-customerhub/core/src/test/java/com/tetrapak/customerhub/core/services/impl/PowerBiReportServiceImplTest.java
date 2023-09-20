@@ -75,7 +75,7 @@ public class PowerBiReportServiceImplTest {
     public void testPowerBiReportService() {
   
         Assert.assertEquals("PBI Report ID", "5d3c5f2a-b062-4ddb-ab09-4224fb845a99",pbiService.getPbireportid());
-        Assert.assertEquals("PBI Embed Token","", pbiService.getGenerateEmbedToken()); 
+        Assert.assertEquals("PBI Embed Token","", pbiService.getGenerateEmbedToken("5d3c5f2a-b062-4ddb-ab09-4224fb845a99"));
  }
 }
 

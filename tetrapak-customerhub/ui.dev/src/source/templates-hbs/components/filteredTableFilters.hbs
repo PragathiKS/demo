@@ -1,0 +1,16 @@
+{{#each filters}}
+    <button 
+        type="button" 
+        data-label="{{this.label}} +"
+        data-key="{{this.key}}"
+        class="tp-filtered-table__filter-button {{this.class}}"
+        auto_locator="{{this.label}}Filter"
+    >
+        {{label}} 
+        {{#if this.filterCount}}
+        : {{this.filterCount}}
+        {{else}}
+        &nbsp;+
+        {{/if}}
+    </button>
+{{/each}}

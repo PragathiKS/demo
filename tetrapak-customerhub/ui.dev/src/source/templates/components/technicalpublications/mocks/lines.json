@@ -1,0 +1,5662 @@
+{
+    "meta": {
+      "count": 500,
+      "skip": 0,
+      "total": 314,
+      "version": "1"
+    },
+    "data": [
+      {
+        "id": "",
+        "lineCode": "",
+        "lineDescription": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ALMIL AG  POL-LN H1",
+        "lineCode": "DEC-ALMIL AG  POL-LN H1",
+        "lineDescription": "Polling, Line H1, TPA3/F TBA1000E",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ALMIL%20AG%20%20POL-LN%20H1?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ALMIL AG  POL-LN H2",
+        "lineCode": "DEC-ALMIL AG  POL-LN H2",
+        "lineDescription": "Polling, Line H1, TPA3/S TBA200S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ALMIL%20AG%20%20POL-LN%20H2?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ALMIL AG  POL-LN H3",
+        "lineCode": "DEC-ALMIL AG  POL-LN H3",
+        "lineDescription": "Polling, Line H3, TPA3/S TBA200S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ALMIL%20AG%20%20POL-LN%20H3?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ALMIL AG  POL-LN YY",
+        "lineCode": "DEC-ALMIL AG  POL-LN YY",
+        "lineDescription": "Polling, Line YY, Equipment Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ALMIL%20AG%20%20POL-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ALMIL AG  POL-LN ZZ",
+        "lineCode": "DEC-ALMIL AG  POL-LN ZZ",
+        "lineDescription": "Polling, Line ZZ, Eq. Dismantled at site",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ALMIL%20AG%20%20POL-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN 01",
+        "lineCode": "DEC-ARLAFOODS UPA-LN 01",
+        "lineDescription": "Arla Foods, Upahl, Line 01 - Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN 07",
+        "lineCode": "DEC-ARLAFOODS UPA-LN 07",
+        "lineDescription": "Arla Foods, Upahl, Line 07, TT/3",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%2007?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN 11",
+        "lineCode": "DEC-ARLAFOODS UPA-LN 11",
+        "lineDescription": "Arla Foods, Upahl, Line 11, TT/3",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%2011?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN 81",
+        "lineCode": "DEC-ARLAFOODS UPA-LN 81",
+        "lineDescription": "Arla Foods, Upahl, Line 81 - Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%2081?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN 91",
+        "lineCode": "DEC-ARLAFOODS UPA-LN 91",
+        "lineDescription": "Arla Foods, Upahl, Line 9.1 - Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%2091?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN 92",
+        "lineCode": "DEC-ARLAFOODS UPA-LN 92",
+        "lineDescription": "Arla Foods, Upahl, Line 9.2 - Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%2092?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN A1",
+        "lineCode": "DEC-ARLAFOODS UPA-LN A1",
+        "lineDescription": "Arla Foods, Upahl, Line A1, TBA/21",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%20A1?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN YY",
+        "lineCode": "DEC-ARLAFOODS UPA-LN YY",
+        "lineDescription": "Arla Foods, Upahl, Line YY, EQ. shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN ZZ",
+        "lineCode": "DEC-ARLAFOODS UPA-LN ZZ",
+        "lineDescription": "Arla Foods, Upahl, Line ZZ, Eq. Dismantl",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN101",
+        "lineCode": "DEC-ARLAFOODS UPA-LN101",
+        "lineDescription": "Arla Foods, Upahl, Line 101 - Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN101?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN102",
+        "lineCode": "DEC-ARLAFOODS UPA-LN102",
+        "lineDescription": "Arla Foods, Upahl, Line 10.2 - Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN102?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-ARLAFOODS UPA-LN8_2",
+        "lineCode": "DEC-ARLAFOODS UPA-LN8_2",
+        "lineDescription": "Arla Foods, Upahl, Line 8.2 - Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-ARLAFOODS%20UPA-LN8_2?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-A3_1",
+        "lineCode": "DEC-BERCHTESG PID-A3_1",
+        "lineDescription": "Berchtesgade, Piding, LN A3_1, TPA3/F HC",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-A3_1?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-A3_2",
+        "lineCode": "DEC-BERCHTESG PID-A3_2",
+        "lineDescription": "Berchtesgade, Piding, LN A3_2, TPA3/F HC",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-A3_2?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-A3_3",
+        "lineCode": "DEC-BERCHTESG PID-A3_3",
+        "lineDescription": "Berchtesgade, Piding, LN A3_3, TPA3/F HC",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-A3_3?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-A3_4",
+        "lineCode": "DEC-BERCHTESG PID-A3_4",
+        "lineDescription": "Berchtesgade, Piding, LN A3_4, TPA3/F HC",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-A3_4?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-C3_3",
+        "lineCode": "DEC-BERCHTESG PID-C3_3",
+        "lineDescription": "Berchtesgade, Piding, LN C3_3, C3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-C3_3?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-C3_4",
+        "lineCode": "DEC-BERCHTESG PID-C3_4",
+        "lineDescription": "Berchtesgade, Piding, LN C3_4, C3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-C3_4?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-C3_5",
+        "lineCode": "DEC-BERCHTESG PID-C3_5",
+        "lineDescription": "Berchtesgade, Piding, LN C3_5, C3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-C3_5?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-LN XX",
+        "lineCode": "DEC-BERCHTESG PID-LN XX",
+        "lineDescription": "Berchtesgade, Piding, LN XX Eq pending",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-LN%20XX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-LN ZZ",
+        "lineCode": "DEC-BERCHTESG PID-LN ZZ",
+        "lineDescription": "Berchtesgade, Piding, LN ZZ, Eq Dismantl",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-BERCHTESG PID-TT_3",
+        "lineCode": "DEC-BERCHTESG PID-TT_3",
+        "lineDescription": "Berchtesgade, Piding, Line TT/3",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-BERCHTESG%20PID-TT_3?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-DMK       ZEV-LN 9",
+        "lineCode": "DEC-DMK       ZEV-LN 9",
+        "lineDescription": "DMK, Zeven, Line 9, TT/3",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-DMK%20%20%20%20%20%20%20ZEV-LN%209?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-DOHRN TIM GRO-L21_1",
+        "lineCode": "DEC-DOHRN TIM GRO-L21_1",
+        "lineDescription": "A.Dohrn&Timm, Line 21_1, TBA/21",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-DOHRN%20TIM%20GRO-L21_1?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-DOHRN TIM GRO-L21_2",
+        "lineCode": "DEC-DOHRN TIM GRO-L21_2",
+        "lineDescription": "A.Dohrn&Timm, Line 21_2, TBA/21",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-DOHRN%20TIM%20GRO-L21_2?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-DOHRN TIM GRO-L21_3",
+        "lineCode": "DEC-DOHRN TIM GRO-L21_3",
+        "lineDescription": "A.Dohrn&Timm, Line 21_3, TBA/21",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-DOHRN%20TIM%20GRO-L21_3?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-DOHRN TIM GRO-L21_4",
+        "lineCode": "DEC-DOHRN TIM GRO-L21_4",
+        "lineDescription": "A.Dohrn&Timm, Line 21_4, TBA/21",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-DOHRN%20TIM%20GRO-L21_4?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-EIPRO     LOH-LN 01",
+        "lineCode": "DEC-EIPRO     LOH-LN 01",
+        "lineDescription": "Eipro, Lohne, Line 01, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-EIPRO%20%20%20%20%20LOH-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-EIPRO     LOH-LN 02",
+        "lineCode": "DEC-EIPRO     LOH-LN 02",
+        "lineDescription": "Eipro, Lohne, Line 02, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-EIPRO%20%20%20%20%20LOH-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-EIPRO     LOH-LN 03",
+        "lineCode": "DEC-EIPRO     LOH-LN 03",
+        "lineDescription": "Eipro, Lohne, Line 03, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-EIPRO%20%20%20%20%20LOH-LN%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  REH-LN 14",
+        "lineCode": "DEC-FRISCHLI  REH-LN 14",
+        "lineDescription": "Fischli, Rehburg, Line 14, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20REH-LN%2014?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  REH-LN 15",
+        "lineCode": "DEC-FRISCHLI  REH-LN 15",
+        "lineDescription": "Fischli, Rehburg, Line 15, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20REH-LN%2015?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  REH-LN 16",
+        "lineCode": "DEC-FRISCHLI  REH-LN 16",
+        "lineDescription": "Fischli, Rehburg, Line 16, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20REH-LN%2016?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  REH-LN 17",
+        "lineCode": "DEC-FRISCHLI  REH-LN 17",
+        "lineDescription": "Fischli, Rehburg, Line 17, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20REH-LN%2017?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  REH-LN 21",
+        "lineCode": "DEC-FRISCHLI  REH-LN 21",
+        "lineDescription": "DEC-FRISCHLI  REH-LN 21",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20REH-LN%2021?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  REH-LN YY",
+        "lineCode": "DEC-FRISCHLI  REH-LN YY",
+        "lineDescription": "Fischli, Rehburg, Line YY, Eq shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20REH-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  REH-LN ZZ",
+        "lineCode": "DEC-FRISCHLI  REH-LN ZZ",
+        "lineDescription": "Fischli, Rehburg, Line ZZ, Eq. Dismantle",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20REH-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  WEI-LN 81",
+        "lineCode": "DEC-FRISCHLI  WEI-LN 81",
+        "lineDescription": "frischli Weißenfels, LN 81, A3F TBA1000S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20WEI-LN%2081?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  WEI-LN 82",
+        "lineCode": "DEC-FRISCHLI  WEI-LN 82",
+        "lineDescription": "frischli Weißenfels, LN 82, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20WEI-LN%2082?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  WEI-LN YY",
+        "lineCode": "DEC-FRISCHLI  WEI-LN YY",
+        "lineDescription": "frischli Weißenfels, LN YY, Eq. Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20WEI-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  WEI-LN ZZ",
+        "lineCode": "DEC-FRISCHLI  WEI-LN ZZ",
+        "lineDescription": "frischli Weißenfels, LN ZZ, Eq. dismantl",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20WEI-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  WEI-LN820",
+        "lineCode": "DEC-FRISCHLI  WEI-LN820",
+        "lineDescription": "Frischli, Weißenfels, Line 820, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20WEI-LN820?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-FRISCHLI  WEI-LN830",
+        "lineCode": "DEC-FRISCHLI  WEI-LN830",
+        "lineDescription": "frischli Weißenfels, LN 830, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-FRISCHLI%20%20WEI-LN830?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HAUSER    FIS-LN 01",
+        "lineCode": "DEC-HAUSER    FIS-LN 01",
+        "lineDescription": "Hauser, Fischach, Ln 01, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HAUSER%20%20%20%20FIS-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HAUSER    FIS-LN 06",
+        "lineCode": "DEC-HAUSER    FIS-LN 06",
+        "lineDescription": "Hauser, Fischach, Ln 06, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HAUSER%20%20%20%20FIS-LN%2006?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HAUSER    FIS-LN 07",
+        "lineCode": "DEC-HAUSER    FIS-LN 07",
+        "lineDescription": "Hauser, Fischach, Ln 07, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HAUSER%20%20%20%20FIS-LN%2007?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HAUSER    FIS-LN YY",
+        "lineCode": "DEC-HAUSER    FIS-LN YY",
+        "lineDescription": "Hauser, Fischach, Ln YY, Eq. shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HAUSER%20%20%20%20FIS-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HAUSER    FIS-LN ZZ",
+        "lineCode": "DEC-HAUSER    FIS-LN ZZ",
+        "lineDescription": "Hauser, Fischach, Ln ZZ, Eq. Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HAUSER%20%20%20%20FIS-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  HUN-LN 30",
+        "lineCode": "DEC-HOCHWALD  HUN-LN 30",
+        "lineDescription": "Hochwald, Hungen, Ln 30, C3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20HUN-LN%2030?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  HUN-LN 31",
+        "lineCode": "DEC-HOCHWALD  HUN-LN 31",
+        "lineDescription": "Hochwald, Hungen, Ln 31, C3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20HUN-LN%2031?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  HUN-LN 40",
+        "lineCode": "DEC-HOCHWALD  HUN-LN 40",
+        "lineDescription": "Hochwald, Hungen, Ln 40, TT/3",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20HUN-LN%2040?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  HUN-LN 41",
+        "lineCode": "DEC-HOCHWALD  HUN-LN 41",
+        "lineDescription": "Hochwald, Hungen, Ln 41, TT/3",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20HUN-LN%2041?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  HUN-LN 42",
+        "lineCode": "DEC-HOCHWALD  HUN-LN 42",
+        "lineDescription": "Hochwald, Hungen, Ln 42, TT/3",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20HUN-LN%2042?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  HUN-LN YY",
+        "lineCode": "DEC-HOCHWALD  HUN-LN YY",
+        "lineDescription": "Hochwald, Hungen, Ln YY, Eq. Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20HUN-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  HUN-LN ZZ",
+        "lineCode": "DEC-HOCHWALD  HUN-LN ZZ",
+        "lineDescription": "Hochwald, Hungen, Ln ZZ, Eq. Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20HUN-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 01",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 01",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 1, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 02",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 02",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 2, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 03",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 03",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 3, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 04",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 04",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 4, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2004?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 08",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 08",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 8, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2008?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 20",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 20",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 20,TPA3/S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2020?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 23",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 23",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 23,TPA3/S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2023?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 24",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 24",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 24,TPA3/S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2024?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN 25",
+        "lineCode": "DEC-HOCHWALD  KAI-LN 25",
+        "lineDescription": "Hochwald, Kaiserslautern, Line 25,TPA3/S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%2025?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN YY",
+        "lineCode": "DEC-HOCHWALD  KAI-LN YY",
+        "lineDescription": "Kaiserslautern, Line YY, Eq. Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOCHWALD  KAI-LN ZZ",
+        "lineCode": "DEC-HOCHWALD  KAI-LN ZZ",
+        "lineDescription": "Kaiserslautern, Line ZZ, Eq. Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOCHWALD%20%20KAI-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 01",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 01",
+        "lineDescription": "Hohenloher, Line 01, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 02",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 02",
+        "lineDescription": "Hohenloher, Line 02, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 05",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 05",
+        "lineDescription": "Hohenloher, Line 05, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2005?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 06",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 06",
+        "lineDescription": "Hohenloher, Line 06, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2006?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 07",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 07",
+        "lineDescription": "Hohenloher, Line 07, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2007?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 08",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 08",
+        "lineDescription": "Hohenloher, Line 08, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2008?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 09",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 09",
+        "lineDescription": "Hohenloher, Line 09, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2009?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 10",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 10",
+        "lineDescription": "Hohenloher, Line 10, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2010?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 11",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 11",
+        "lineDescription": "Hohenloher, Line 11, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2011?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 12",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 12",
+        "lineDescription": "Hohenloher, Line 12, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2012?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 13",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 13",
+        "lineDescription": "Hohenloher, Line 13, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2013?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 14",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 14",
+        "lineDescription": "Hohenloher, Line 14, C3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2014?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 15",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 15",
+        "lineDescription": "Hohenloher, Line 15, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2015?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 16",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 16",
+        "lineDescription": "Hohenloher, Line 16, C3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2016?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 17",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 17",
+        "lineDescription": "Hohenloher, Line 17, TPA3/F TBA",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2017?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN 18",
+        "lineCode": "DEC-HOHENLOHE SCH-LN 18",
+        "lineDescription": "Hohenloher, Line 18, TPA3/F TBA",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%2018?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN YY",
+        "lineCode": "DEC-HOHENLOHE SCH-LN YY",
+        "lineDescription": "Hohenloher, Line YY, Eq. shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-HOHENLOHE SCH-LN ZZ",
+        "lineCode": "DEC-HOHENLOHE SCH-LN ZZ",
+        "lineDescription": "Hohenloher, Line ZZ, Eq. dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-HOHENLOHE%20SCH-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JACOBY    AUG-ELOPK",
+        "lineCode": "DEC-JACOBY    AUG-ELOPK",
+        "lineDescription": "Jacoby, Auggen, Line Elopak",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JACOBY%20%20%20%20AUG-ELOPK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JACOBY    AUG-LN 02",
+        "lineCode": "DEC-JACOBY    AUG-LN 02",
+        "lineDescription": "Jacoby, Auggen, Line 02, TBA/21 TPA500S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JACOBY%20%20%20%20AUG-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JACOBY    AUG-LN 03",
+        "lineCode": "DEC-JACOBY    AUG-LN 03",
+        "lineDescription": "Jacoby, Auggen, Line 03, TBA/21 TPA1000S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JACOBY%20%20%20%20AUG-LN%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JACOBY    AUG-LN 04",
+        "lineCode": "DEC-JACOBY    AUG-LN 04",
+        "lineDescription": "Jacoby, Auggen, Line 04, TBA/9 TBA200S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JACOBY%20%20%20%20AUG-LN%2004?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JACOBY    AUG-LN 06",
+        "lineCode": "DEC-JACOBY    AUG-LN 06",
+        "lineDescription": "Jacoby, Auggen, Line 06, TP3C/F TBA200",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JACOBY%20%20%20%20AUG-LN%2006?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JACOBY    AUG-LN YY",
+        "lineCode": "DEC-JACOBY    AUG-LN YY",
+        "lineDescription": "Jacoby, Auggen, Line YY, Eq. Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JACOBY%20%20%20%20AUG-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JACOBY    AUG-LN ZZ",
+        "lineCode": "DEC-JACOBY    AUG-LN ZZ",
+        "lineDescription": "Jacoby, Auggen, Line ZZ, EQ. Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JACOBY%20%20%20%20AUG-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JOBMANN   REI-00079",
+        "lineCode": "DEC-JOBMANN   REI-00079",
+        "lineDescription": "Wolfgang Job., Reinbek, Line 79, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JOBMANN%20%20%20REI-00079?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JOBMANN   REI-11771",
+        "lineCode": "DEC-JOBMANN   REI-11771",
+        "lineDescription": "Wolfgang Job., Reinbek, Line 11771,TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JOBMANN%20%20%20REI-11771?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-JOBMANN   REI-LN ZZ",
+        "lineCode": "DEC-JOBMANN   REI-LN ZZ",
+        "lineDescription": "Wolfgang Job.,Reinbek, Ln ZZ, Eq Disman",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-JOBMANN%20%20%20REI-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-LAUSITZER SOH-LN 01",
+        "lineCode": "DEC-LAUSITZER SOH-LN 01",
+        "lineDescription": "Lausitzer, Sohland, Line 01, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-LAUSITZER%20SOH-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-LAUSITZER SOH-LN 02",
+        "lineCode": "DEC-LAUSITZER SOH-LN 02",
+        "lineDescription": "Lausitzer, Sohland, Line 02, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-LAUSITZER%20SOH-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-LAUSITZER SOH-LN 03",
+        "lineCode": "DEC-LAUSITZER SOH-LN 03",
+        "lineDescription": "Lausitzer, Sohland, Line 03, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-LAUSITZER%20SOH-LN%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-LAUSITZER SOH-LN ZZ",
+        "lineCode": "DEC-LAUSITZER SOH-LN ZZ",
+        "lineDescription": "Lausitzer, Sohland, Line ZZ, Eq. Dismant",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-LAUSITZER%20SOH-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MERTES    BER-LN 33",
+        "lineCode": "DEC-MERTES    BER-LN 33",
+        "lineDescription": "Peter Mertes, Bernkastel, Ln 33, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MERTES%20%20%20%20BER-LN%2033?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MERTES    BER-LN 35",
+        "lineCode": "DEC-MERTES    BER-LN 35",
+        "lineDescription": "Peter Mertes, Bernkastel, Ln 35",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MERTES%20%20%20%20BER-LN%2035?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MERTES    BER-LN YY",
+        "lineCode": "DEC-MERTES    BER-LN YY",
+        "lineDescription": "P.Mertes, Bernkastel, Ln YY, Eq. Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MERTES%20%20%20%20BER-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MERTES    BER-LN ZZ",
+        "lineCode": "DEC-MERTES    BER-LN ZZ",
+        "lineDescription": "P.Mertes, Bernkastel, Ln ZZ, Eq Dismantl",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MERTES%20%20%20%20BER-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN 02",
+        "lineCode": "DEC-MH ALBERT SCH-LN 02",
+        "lineDescription": "Milchhof Adam Albert, Ln 02, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN 03",
+        "lineCode": "DEC-MH ALBERT SCH-LN 03",
+        "lineDescription": "Milchhof Adam Albert, Ln 03, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN A",
+        "lineCode": "DEC-MH ALBERT SCH-LN A",
+        "lineDescription": "Milchhof Adam,Line A, TPA3/F TBA1000S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%20A?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN B",
+        "lineCode": "DEC-MH ALBERT SCH-LN B",
+        "lineDescription": "Milchhof Adam,Line B, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%20B?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN C",
+        "lineCode": "DEC-MH ALBERT SCH-LN C",
+        "lineDescription": "Milchhof Adam,Line C, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%20C?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN D",
+        "lineCode": "DEC-MH ALBERT SCH-LN D",
+        "lineDescription": "Milchhof Adam,Line D, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%20D?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN E",
+        "lineCode": "DEC-MH ALBERT SCH-LN E",
+        "lineDescription": "Milchhof Adam,Line E, TPC3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%20E?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MH ALBERT SCH-LN YY",
+        "lineCode": "DEC-MH ALBERT SCH-LN YY",
+        "lineDescription": "Milchhof Adam,Line YY, Eq. shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MH%20ALBERT%20SCH-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MILCHWIRT HER-LN YY",
+        "lineCode": "DEC-MILCHWIRT HER-LN YY",
+        "lineDescription": "Milchwirtschaftl, Line YY, Eq. Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MILCHWIRT%20HER-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-MILCHWIRT HER-LN ZZ",
+        "lineCode": "DEC-MILCHWIRT HER-LN ZZ",
+        "lineDescription": "Milchwirtschaftl, Line ZZ, Eq. dismantle",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-MILCHWIRT%20HER-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NAABTALER SCH-L TR1",
+        "lineCode": "DEC-NAABTALER SCH-L TR1",
+        "lineDescription": "Naabtaler Milchwerke, Line Tetra Rex 1",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NAABTALER%20SCH-L%20TR1?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NAABTALER SCH-L TR2",
+        "lineCode": "DEC-NAABTALER SCH-L TR2",
+        "lineDescription": "Naabtaler Milchwerke, Line Tetra Rex 2",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NAABTALER%20SCH-L%20TR2?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NAARMANN  NEU-LN D",
+        "lineCode": "DEC-NAARMANN  NEU-LN D",
+        "lineDescription": "Neuenkirchen, Line D, TPA3/CF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NAARMANN%20%20NEU-LN%20D?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NAARMANN  NEU-LN E",
+        "lineCode": "DEC-NAARMANN  NEU-LN E",
+        "lineDescription": "Neuenkirchen, Line E, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NAARMANN%20%20NEU-LN%20E?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NAARMANN  NEU-LN ZZ",
+        "lineCode": "DEC-NAARMANN  NEU-LN ZZ",
+        "lineDescription": "Neuenkirchen, Line ZZ, Eq. Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NAARMANN%20%20NEU-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NATUMI    TRO-LN 01",
+        "lineCode": "DEC-NATUMI    TRO-LN 01",
+        "lineDescription": "Natumi Troisdorf Line 1, TPA3/F TBA1000E",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NATUMI%20%20%20%20TRO-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NATUMI    TRO-LN 02",
+        "lineCode": "DEC-NATUMI    TRO-LN 02",
+        "lineDescription": "Natumi Troisdorf Line 2, TPA3/F TBA1000E",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NATUMI%20%20%20%20TRO-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NATUMI    TRO-LN 03",
+        "lineCode": "DEC-NATUMI    TRO-LN 03",
+        "lineDescription": "Natumi Troisdorf Line 3, TPA3/F TBA1000E",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NATUMI%20%20%20%20TRO-LN%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-NATUMI    TRO-LN 04",
+        "lineCode": "DEC-NATUMI    TRO-LN 04",
+        "lineDescription": "Natumi Troisdorf Line 4, TPA3/F TBA1000E",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-NATUMI%20%20%20%20TRO-LN%2004?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-OSTER     COC-LN 01",
+        "lineCode": "DEC-OSTER     COC-LN 01",
+        "lineDescription": "Cochem, Line 01, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-OSTER%20%20%20%20%20COC-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-OSTER     COC-LN 02",
+        "lineCode": "DEC-OSTER     COC-LN 02",
+        "lineDescription": "Cochem, Line 02, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-OSTER%20%20%20%20%20COC-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-OSTER     COC-LN YY",
+        "lineCode": "DEC-OSTER     COC-LN YY",
+        "lineDescription": "Cochem, Line YY, Equipment Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-OSTER%20%20%20%20%20COC-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-OSTER     COC-LN ZZ",
+        "lineCode": "DEC-OSTER     COC-LN ZZ",
+        "lineDescription": "Cochem, Line ZZ, Equipment dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-OSTER%20%20%20%20%20COC-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-OVOBEST   NEU-GALDI",
+        "lineCode": "DEC-OVOBEST   NEU-GALDI",
+        "lineDescription": "OVOBEST, Line Galdi",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-OVOBEST%20%20%20NEU-GALDI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-REGIONALE MRG-LN A",
+        "lineCode": "DEC-REGIONALE MRG-LN A",
+        "lineDescription": "Marburg, Line A, C3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-REGIONALE%20MRG-LN%20A?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-L12_1",
+        "lineCode": "DEC-RIHA      RIN-L12_1",
+        "lineDescription": "Riha, Rinteln, Line 12_1, TP TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-L12_1?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-L12_2",
+        "lineCode": "DEC-RIHA      RIN-L12_2",
+        "lineDescription": "Riha, Rinteln, Line 12_2, TPA3/CF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-L12_2?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-L12_3",
+        "lineCode": "DEC-RIHA      RIN-L12_3",
+        "lineDescription": "Riha, Rinteln, Line 12_3, TPA3/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-L12_3?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-L12_4",
+        "lineCode": "DEC-RIHA      RIN-L12_4",
+        "lineDescription": "Riha, Rinteln, Line 12_4, TBA/22",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-L12_4?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-L12_5",
+        "lineCode": "DEC-RIHA      RIN-L12_5",
+        "lineDescription": "Riha, Rinteln, Line 12_5, TBA/8 TBA1500S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-L12_5?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-L12_6",
+        "lineCode": "DEC-RIHA      RIN-L12_6",
+        "lineDescription": "Riha, Rinteln, Line 12_6, TP A1",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-L12_6?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-LN YY",
+        "lineCode": "DEC-RIHA      RIN-LN YY",
+        "lineDescription": "Riha, Rinteln, Line YY, Eq Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RIHA      RIN-LN ZZ",
+        "lineCode": "DEC-RIHA      RIN-LN ZZ",
+        "lineDescription": "Riha, Rinteln, Line ZZ, Eq. Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RIHA%20%20%20%20%20%20RIN-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RUECKER   AUR-LN 01",
+        "lineCode": "DEC-RUECKER   AUR-LN 01",
+        "lineDescription": "Rücker, Aurich, Line 1, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RUECKER%20%20%20AUR-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RUECKER   AUR-LN 02",
+        "lineCode": "DEC-RUECKER   AUR-LN 02",
+        "lineDescription": "Rücker, Aurich, Line 2, TBA/19",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RUECKER%20%20%20AUR-LN%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RUECKER   AUR-LN YY",
+        "lineCode": "DEC-RUECKER   AUR-LN YY",
+        "lineDescription": "Rücker, Aurich, Line YY, Eq Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RUECKER%20%20%20AUR-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-RUECKER   AUR-LN ZZ",
+        "lineCode": "DEC-RUECKER   AUR-LN ZZ",
+        "lineDescription": "Rücker, Aurich, Line ZZ, Eq Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-RUECKER%20%20%20AUR-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-SCHWAELBC BAD-50933",
+        "lineCode": "DEC-SCHWAELBC BAD-50933",
+        "lineDescription": "Schwälbchen, Line 50933, TR",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-SCHWAELBC%20BAD-50933?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-SCHWAELBC BAD-82986",
+        "lineCode": "DEC-SCHWAELBC BAD-82986",
+        "lineDescription": "Schwälbchen, Line 582986, TBA/19",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-SCHWAELBC%20BAD-82986?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-SCHWAELBC BAD-LN YY",
+        "lineCode": "DEC-SCHWAELBC BAD-LN YY",
+        "lineDescription": "Schwälbchen, Line YY, Eq Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-SCHWAELBC%20BAD-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-SCHWAELBC BAD-LN ZZ",
+        "lineCode": "DEC-SCHWAELBC BAD-LN ZZ",
+        "lineDescription": "Schwälbchen, Line ZZ, Eq Dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-SCHWAELBC%20BAD-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-SCHWARZW  FRE-00013",
+        "lineCode": "DEC-SCHWARZW  FRE-00013",
+        "lineDescription": "Schwarzwaldmilch Freiburg, Ln 13, C/Flex",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-SCHWARZW%20%20FRE-00013?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-SCHWARZW  FRE-LN ZZ",
+        "lineCode": "DEC-SCHWARZW  FRE-LN ZZ",
+        "lineDescription": "Freiburg, Ln ZZ, Eq. Dismantled at site",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-SCHWARZW%20%20FRE-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-SPIELMANN DOR-LN 01",
+        "lineCode": "DEC-SPIELMANN DOR-LN 01",
+        "lineDescription": "Johann Spielmann, Dorsten, LN 1, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-SPIELMANN%20DOR-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-TEUTOBURG BIE-LN 05",
+        "lineCode": "DEC-TEUTOBURG BIE-LN 05",
+        "lineDescription": "Teutoburg, Line 05 - TBA/8 TBA1000S",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-TEUTOBURG%20BIE-LN%2005?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-TEUTOBURG BIE-LN 06",
+        "lineCode": "DEC-TEUTOBURG BIE-LN 06",
+        "lineDescription": "Teutoburg, Line 06 - TBA/21 TPA500SQ",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-TEUTOBURG%20BIE-LN%2006?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-TEUTOBURG BIE-LN 07",
+        "lineCode": "DEC-TEUTOBURG BIE-LN 07",
+        "lineDescription": "Teutoburg, Line 07 - TBA/21 TPA500SQ",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-TEUTOBURG%20BIE-LN%2007?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-TEUTOBURG BIE-LN YY",
+        "lineCode": "DEC-TEUTOBURG BIE-LN YY",
+        "lineDescription": "Teutoburg, Line YY, Equipment Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-TEUTOBURG%20BIE-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-TEUTOBURG BIE-LN ZZ",
+        "lineCode": "DEC-TEUTOBURG BIE-LN ZZ",
+        "lineDescription": "Teutoburg, Line ZZ, Equipment dismantled",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-TEUTOBURG%20BIE-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-VOGTLANDM PLA-LN 01",
+        "lineCode": "DEC-VOGTLANDM PLA-LN 01",
+        "lineDescription": "Vogtlandmilch Plauen, Line 1, TBA/8",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-VOGTLANDM%20PLA-LN%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-VOGTLANDM PLA-LN 03",
+        "lineCode": "DEC-VOGTLANDM PLA-LN 03",
+        "lineDescription": "Vogtlandmilch Plauen, Line 3, TPA3/CF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-VOGTLANDM%20PLA-LN%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-VOGTLANDM PLA-LN 05",
+        "lineCode": "DEC-VOGTLANDM PLA-LN 05",
+        "lineDescription": "Vogtlandmilch Plauen, Line 5, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-VOGTLANDM%20PLA-LN%2005?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-VOGTLANDM PLA-LN 06",
+        "lineCode": "DEC-VOGTLANDM PLA-LN 06",
+        "lineDescription": "Vogtlandmilch Plauen, Line 6, TPA3/F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-VOGTLANDM%20PLA-LN%2006?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-VOGTLANDM PLA-LN YY",
+        "lineCode": "DEC-VOGTLANDM PLA-LN YY",
+        "lineDescription": "Vogtlandmilch Plauen, Line YY, Eq Shared",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-VOGTLANDM%20PLA-LN%20YY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEC-VOGTLANDM PLA-LN ZZ",
+        "lineCode": "DEC-VOGTLANDM PLA-LN ZZ",
+        "lineDescription": "Vogtlandmilch Plauen, Line ZZ, Eq Disman",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEC-VOGTLANDM%20PLA-LN%20ZZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ALMIL AG  POL-HEX",
+        "lineCode": "DEP-ALMIL AG  POL-HEX",
+        "lineDescription": "Almil AG - Polling - HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ALMIL%20AG%20%20POL-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ALMIL AG  POL-HOM",
+        "lineCode": "DEP-ALMIL AG  POL-HOM",
+        "lineDescription": "Almil AG - Polling - HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ALMIL%20AG%20%20POL-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ALMIL AG  POL-SEP",
+        "lineCode": "DEP-ALMIL AG  POL-SEP",
+        "lineDescription": "Almil AG - Polling - SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ALMIL%20AG%20%20POL-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ALMIL AG  POL-UHT",
+        "lineCode": "DEP-ALMIL AG  POL-UHT",
+        "lineDescription": "Almil AG - Polling - UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ALMIL%20AG%20%20POL-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-AMMERLAND WIE-CH 01",
+        "lineCode": "DEP-AMMERLAND WIE-CH 01",
+        "lineDescription": "Molkerei Ammerland eG-Wiefelstede-CH 01",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-AMMERLAND%20WIE-CH%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-AMMERLAND WIE-CH 02",
+        "lineCode": "DEP-AMMERLAND WIE-CH 02",
+        "lineDescription": "Molkerei Ammerland eG-Wiefelstede-CH 02",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-AMMERLAND%20WIE-CH%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-AMMERLAND WIE-CH 03",
+        "lineCode": "DEP-AMMERLAND WIE-CH 03",
+        "lineDescription": "Molkerei Ammerland eG-Wiefelstede-CH 03",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-AMMERLAND%20WIE-CH%2003?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-AMMERLAND WIE-CH 04",
+        "lineCode": "DEP-AMMERLAND WIE-CH 04",
+        "lineDescription": "Molkerei Ammerland eG-Wiefelstede-CH 04",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-AMMERLAND%20WIE-CH%2004?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-AMMERLAND WIE-EVA",
+        "lineCode": "DEP-AMMERLAND WIE-EVA",
+        "lineDescription": "Molkerei Ammerland eG-Wiefelstede-EVA",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-AMMERLAND%20WIE-EVA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-ALF",
+        "lineCode": "DEP-ARLAFOODS PRO-ALF",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-HEX",
+        "lineCode": "DEP-ARLAFOODS PRO-HEX",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-HOM",
+        "lineCode": "DEP-ARLAFOODS PRO-HOM",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-PP 01",
+        "lineCode": "DEP-ARLAFOODS PRO-PP 01",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-Powder 01",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-PP%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-PP 02",
+        "lineCode": "DEP-ARLAFOODS PRO-PP 02",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-Powder 02",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-PP%2002?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-STT",
+        "lineCode": "DEP-ARLAFOODS PRO-STT",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-TPPM",
+        "lineCode": "DEP-ARLAFOODS PRO-TPPM",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-Plant Master",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-TPPM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS PRO-UHT",
+        "lineCode": "DEP-ARLAFOODS PRO-UHT",
+        "lineDescription": "Arla Foods GmbH-Pronsfeld-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20PRO-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-01-18",
+        "lineCode": "DEP-ARLAFOODS UPA-01-18",
+        "lineDescription": "EQ delivered 2001-2018",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-01-18?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-ALF",
+        "lineCode": "DEP-ARLAFOODS UPA-ALF",
+        "lineDescription": "Arla Foods Upahl-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-FIL",
+        "lineCode": "DEP-ARLAFOODS UPA-FIL",
+        "lineDescription": "Arla Foods Upahl-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-HEX",
+        "lineCode": "DEP-ARLAFOODS UPA-HEX",
+        "lineDescription": "Arla Foods Upahl-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-HOM",
+        "lineCode": "DEP-ARLAFOODS UPA-HOM",
+        "lineDescription": "Arla Foods Upahl-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-SEP",
+        "lineCode": "DEP-ARLAFOODS UPA-SEP",
+        "lineDescription": "Arla Foods Upahl-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-STT",
+        "lineCode": "DEP-ARLAFOODS UPA-STT",
+        "lineDescription": "Arla Foods Upahl-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-UHT",
+        "lineCode": "DEP-ARLAFOODS UPA-UHT",
+        "lineDescription": "Arla Foods Upahl-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-ARLAFOODS UPA-YP 01",
+        "lineCode": "DEP-ARLAFOODS UPA-YP 01",
+        "lineDescription": "Arla Foods Upahl-Yogurt Proc",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-ARLAFOODS%20UPA-YP%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-BECKERS   NOE-UHT",
+        "lineCode": "DEP-BECKERS   NOE-UHT",
+        "lineDescription": "Beckers bester-NOE-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-BECKERS%20%20%20NOE-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-ALF",
+        "lineCode": "DEP-DMK       ZEV-ALF",
+        "lineDescription": "Deutsches Milchkontor Zeven-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-AUT",
+        "lineCode": "DEP-DMK       ZEV-AUT",
+        "lineDescription": "Deutsches Milchkontor Zeven-AUT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-AUT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-CHE",
+        "lineCode": "DEP-DMK       ZEV-CHE",
+        "lineDescription": "Deutsches Milchkontor Zeven-CHE",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-CHE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-FIL",
+        "lineCode": "DEP-DMK       ZEV-FIL",
+        "lineDescription": "Deutsches Milchkontor Zeven-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-FLO",
+        "lineCode": "DEP-DMK       ZEV-FLO",
+        "lineDescription": "Deutsches Milchkontor Zeven-FLO",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-FLO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-HEX",
+        "lineCode": "DEP-DMK       ZEV-HEX",
+        "lineDescription": "Deutsches Milchkontor Zeven-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-HOM",
+        "lineCode": "DEP-DMK       ZEV-HOM",
+        "lineDescription": "Deutsches Milchkontor Zeven-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-MIX",
+        "lineCode": "DEP-DMK       ZEV-MIX",
+        "lineDescription": "Deutsches Milchkontor Zeven-MIX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-MIX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-SEP",
+        "lineCode": "DEP-DMK       ZEV-SEP",
+        "lineDescription": "Deutsches Milchkontor Zeven-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-STT",
+        "lineCode": "DEP-DMK       ZEV-STT",
+        "lineDescription": "Deutsches Milchkontor Zeven-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-TPPM",
+        "lineCode": "DEP-DMK       ZEV-TPPM",
+        "lineDescription": "Deutsches Milchkontor Zeven-TPPM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-TPPM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-UHT",
+        "lineCode": "DEP-DMK       ZEV-UHT",
+        "lineDescription": "Deutsches Milchkontor Zeven-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-UHT02",
+        "lineCode": "DEP-DMK       ZEV-UHT02",
+        "lineDescription": "Deutsches Milchkontor Zeven-UHT Processi",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-UHT02?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-DMK       ZEV-UHT08",
+        "lineCode": "DEP-DMK       ZEV-UHT08",
+        "lineDescription": "Deutsches Milchkontor Zeven-UHT Processi",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-DMK%20%20%20%20%20%20%20ZEV-UHT08?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-EIPRO     LOH-HEX",
+        "lineCode": "DEP-EIPRO     LOH-HEX",
+        "lineDescription": "Eipro-Vermarktung-Lohne-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-EIPRO%20%20%20%20%20LOH-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-EIPRO     LOH-STT",
+        "lineCode": "DEP-EIPRO     LOH-STT",
+        "lineDescription": "Eipro-Vermarktung-Lohne-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-EIPRO%20%20%20%20%20LOH-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-EIPRO     LOH-UHT",
+        "lineCode": "DEP-EIPRO     LOH-UHT",
+        "lineDescription": "Eipro-Vermarktung-Lohne-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-EIPRO%20%20%20%20%20LOH-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-FRISCHLI  REH-HEX",
+        "lineCode": "DEP-FRISCHLI  REH-HEX",
+        "lineDescription": "Frischli Milchwerke-Rehburg Loccum-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-FRISCHLI%20%20REH-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-FRISCHLI  REH-SEP",
+        "lineCode": "DEP-FRISCHLI  REH-SEP",
+        "lineDescription": "Frischli Milchwerke-Rehburg Loccum-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-FRISCHLI%20%20REH-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-FRISCHLI  REH-UHT",
+        "lineCode": "DEP-FRISCHLI  REH-UHT",
+        "lineDescription": "Frischli Milchwerke-Rehburg Loccum-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-FRISCHLI%20%20REH-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-FRISCHLI  WEI-FIL",
+        "lineCode": "DEP-FRISCHLI  WEI-FIL",
+        "lineDescription": "Frischli Milchwerke GmbH-Weißenfels-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-FRISCHLI%20%20WEI-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-FRISCHLI  WEI-HEX",
+        "lineCode": "DEP-FRISCHLI  WEI-HEX",
+        "lineDescription": "Frischli Milchwerke GmbH-Weißenfels-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-FRISCHLI%20%20WEI-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-FRISCHLI  WEI-SEP",
+        "lineCode": "DEP-FRISCHLI  WEI-SEP",
+        "lineDescription": "Frischli Milchwerke GmbH-Weißenfels-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-FRISCHLI%20%20WEI-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-FRISCHLI  WEI-UHT",
+        "lineCode": "DEP-FRISCHLI  WEI-UHT",
+        "lineDescription": "Frischli Milchwerke GmbH-Weißenfels-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-FRISCHLI%20%20WEI-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HAUSER    FIS-AUT",
+        "lineCode": "DEP-HAUSER    FIS-AUT",
+        "lineDescription": "Hauser Weinimport GmbH-Fischach-AUT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HAUSER%20%20%20%20FIS-AUT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HAUSER    FIS-HEX",
+        "lineCode": "DEP-HAUSER    FIS-HEX",
+        "lineDescription": "Hauser Weinimport GmbH-Fischach-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HAUSER%20%20%20%20FIS-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-ALF",
+        "lineCode": "DEP-HOCHWALD  HUN-ALF",
+        "lineDescription": "Hochwald-Hungen-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-AUT01",
+        "lineCode": "DEP-HOCHWALD  HUN-AUT01",
+        "lineDescription": "Hochwald-Hungen-AUT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-AUT01?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-GUERI",
+        "lineCode": "DEP-HOCHWALD  HUN-GUERI",
+        "lineDescription": "Hochwald-Hungen-Guerin",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-GUERI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-HEX",
+        "lineCode": "DEP-HOCHWALD  HUN-HEX",
+        "lineDescription": "Hochwald-Hungen-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-HOM",
+        "lineCode": "DEP-HOCHWALD  HUN-HOM",
+        "lineDescription": "Hochwald-Hungen-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-MIX",
+        "lineCode": "DEP-HOCHWALD  HUN-MIX",
+        "lineDescription": "Hochwald-Hungen-Mix",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-MIX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-SEP",
+        "lineCode": "DEP-HOCHWALD  HUN-SEP",
+        "lineDescription": "Hochwald-Hungen-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-STT",
+        "lineCode": "DEP-HOCHWALD  HUN-STT",
+        "lineDescription": "Hochwald-Hungen-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  HUN-UHT",
+        "lineCode": "DEP-HOCHWALD  HUN-UHT",
+        "lineDescription": "Hochwald-Hungen-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20HUN-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  KAI-SEP",
+        "lineCode": "DEP-HOCHWALD  KAI-SEP",
+        "lineDescription": "Hochwald-Kaiserslautern-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20KAI-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  KAI-STT",
+        "lineCode": "DEP-HOCHWALD  KAI-STT",
+        "lineDescription": "Hochwald-Kaiserslautern-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20KAI-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOCHWALD  POL-HOM",
+        "lineCode": "DEP-HOCHWALD  POL-HOM",
+        "lineDescription": "Hochwald-Polling-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOCHWALD%20%20POL-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-ALF",
+        "lineCode": "DEP-HOHENLOHE SCH-ALF",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-AUT",
+        "lineCode": "DEP-HOHENLOHE SCH-AUT",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-AUT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-AUT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-FIL",
+        "lineCode": "DEP-HOHENLOHE SCH-FIL",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-HEX",
+        "lineCode": "DEP-HOHENLOHE SCH-HEX",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-HOM",
+        "lineCode": "DEP-HOHENLOHE SCH-HOM",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-SEP",
+        "lineCode": "DEP-HOHENLOHE SCH-SEP",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-STT",
+        "lineCode": "DEP-HOHENLOHE SCH-STT",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-TPPM",
+        "lineCode": "DEP-HOHENLOHE SCH-TPPM",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch HallTPPM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-TPPM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-HOHENLOHE SCH-UHT",
+        "lineCode": "DEP-HOHENLOHE SCH-UHT",
+        "lineDescription": "Hohenloher Molkerei-Schwaebisch Hall-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-HOHENLOHE%20SCH-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MH ALBERT SCH-ALF",
+        "lineCode": "DEP-MH ALBERT SCH-ALF",
+        "lineDescription": "Milchhof Adam Albert-Scheßlitz-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MH%20ALBERT%20SCH-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MH ALBERT SCH-FA 01",
+        "lineCode": "DEP-MH ALBERT SCH-FA 01",
+        "lineDescription": "Milch.Adam Albert-Scheßl-Filling Area",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MH%20ALBERT%20SCH-FA%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MH ALBERT SCH-FI 01",
+        "lineCode": "DEP-MH ALBERT SCH-FI 01",
+        "lineDescription": "Milch.Adam Albert-Scheßl-Filtration Area",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MH%20ALBERT%20SCH-FI%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MH ALBERT SCH-HEX",
+        "lineCode": "DEP-MH ALBERT SCH-HEX",
+        "lineDescription": "Milchhof Adam Albert-Scheßlitz-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MH%20ALBERT%20SCH-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MH ALBERT SCH-MP 01",
+        "lineCode": "DEP-MH ALBERT SCH-MP 01",
+        "lineDescription": "Milch.Adam Albert-Scheßl-Milk Processing",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MH%20ALBERT%20SCH-MP%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MH ALBERT SCH-SEP",
+        "lineCode": "DEP-MH ALBERT SCH-SEP",
+        "lineDescription": "Milchhof Adam Albert-Scheßlitz-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MH%20ALBERT%20SCH-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MH ALBERT SCH-TPPM",
+        "lineCode": "DEP-MH ALBERT SCH-TPPM",
+        "lineDescription": "Milchhof Adam Albert-Scheßlitz-TP Plant",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MH%20ALBERT%20SCH-TPPM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-01-18",
+        "lineCode": "DEP-MIG       HER-01-18",
+        "lineDescription": "EQ delivered 2001-2018",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-01-18?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-BF 01",
+        "lineCode": "DEP-MIG       HER-BF 01",
+        "lineDescription": "MIG-Herford  Babyfood Processing",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-BF%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-CIP",
+        "lineCode": "DEP-MIG       HER-CIP",
+        "lineDescription": "MIG-Herford-CIP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-CIP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-HEX",
+        "lineCode": "DEP-MIG       HER-HEX",
+        "lineDescription": "MIG-Herford-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-HOM",
+        "lineCode": "DEP-MIG       HER-HOM",
+        "lineDescription": "MIG-Herford-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-MX  F",
+        "lineCode": "DEP-MIG       HER-MX  F",
+        "lineDescription": "MIG-Herford Mix Area Dryer F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-MX%20%20F?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-MX  G",
+        "lineCode": "DEP-MIG       HER-MX  G",
+        "lineDescription": "MIG-Herford Mix Area Dryer G",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-MX%20%20G?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-PP  F",
+        "lineCode": "DEP-MIG       HER-PP  F",
+        "lineDescription": "MIG-Herford PowderProcessing Dryer F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-PP%20%20F?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-PP  G",
+        "lineCode": "DEP-MIG       HER-PP  G",
+        "lineDescription": "MIG-Herford PowderProcessing Dryer G",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-PP%20%20G?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-PP 01",
+        "lineCode": "DEP-MIG       HER-PP 01",
+        "lineDescription": "MIG-Herford-Poweder Processing",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-PP%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-STT",
+        "lineCode": "DEP-MIG       HER-STT",
+        "lineDescription": "MIG-Herford-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-TPPM",
+        "lineCode": "DEP-MIG       HER-TPPM",
+        "lineDescription": "MIG-Herford TP Plant Master",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-TPPM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-UHT",
+        "lineCode": "DEP-MIG       HER-UHT",
+        "lineDescription": "MIG-Herford-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-UHT F",
+        "lineCode": "DEP-MIG       HER-UHT F",
+        "lineDescription": "MIG-Herford UHT Processing Dryer F",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-UHT%20F?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MIG       HER-UHT G",
+        "lineCode": "DEP-MIG       HER-UHT G",
+        "lineDescription": "MIG-Herford UHT Processing Dryer G",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MIG%20%20%20%20%20%20%20HER-UHT%20G?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MWBERCHTE PID-DOS",
+        "lineCode": "DEP-MWBERCHTE PID-DOS",
+        "lineDescription": "MW Berchtesg. Land Chiemgau-Piding-DOS",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MWBERCHTE%20PID-DOS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MWBERCHTE PID-FIL",
+        "lineCode": "DEP-MWBERCHTE PID-FIL",
+        "lineDescription": "MW Berchtesg. Land Chiemgau-Piding-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MWBERCHTE%20PID-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MWBERCHTE PID-HEX",
+        "lineCode": "DEP-MWBERCHTE PID-HEX",
+        "lineDescription": "MW Berchtesg. Land Chiemgau-Piding-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MWBERCHTE%20PID-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MWBERCHTE PID-HOM",
+        "lineCode": "DEP-MWBERCHTE PID-HOM",
+        "lineDescription": "MW Berchtesg. Land Chiemgau-Piding-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MWBERCHTE%20PID-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MWBERCHTE PID-MP 01",
+        "lineCode": "DEP-MWBERCHTE PID-MP 01",
+        "lineDescription": "MW Berchtesg. Land-Piding-MilkProcessing",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MWBERCHTE%20PID-MP%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MWBERCHTE PID-STT",
+        "lineCode": "DEP-MWBERCHTE PID-STT",
+        "lineDescription": "MW Berchtesg. Land Chiemgau-Piding-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MWBERCHTE%20PID-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-MWBERCHTE PID-UHT",
+        "lineCode": "DEP-MWBERCHTE PID-UHT",
+        "lineDescription": "MW Berchtesg. Land Chiemgau-Piding-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-MWBERCHTE%20PID-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAABTALER SCH-CHE",
+        "lineCode": "DEP-NAABTALER SCH-CHE",
+        "lineDescription": "Naabtaler MW Bechtel-Schwarzenfeld-CHE",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAABTALER%20SCH-CHE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAABTALER SCH-FIL",
+        "lineCode": "DEP-NAABTALER SCH-FIL",
+        "lineDescription": "Naabtaler MW Bechtel-Schwarzenfeld-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAABTALER%20SCH-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAABTALER SCH-HEX",
+        "lineCode": "DEP-NAABTALER SCH-HEX",
+        "lineDescription": "Naabtaler MW Bechtel-Schwarzenfeld-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAABTALER%20SCH-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAABTALER SCH-HOM",
+        "lineCode": "DEP-NAABTALER SCH-HOM",
+        "lineDescription": "Naabtaler MW Bechtel-Schwarzenfeld-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAABTALER%20SCH-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAABTALER SCH-SEP",
+        "lineCode": "DEP-NAABTALER SCH-SEP",
+        "lineDescription": "Naabtaler MW Bechtel-Schwarzenfeld-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAABTALER%20SCH-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAABTALER SCH-UHT",
+        "lineCode": "DEP-NAABTALER SCH-UHT",
+        "lineDescription": "Naabtaler MW Bechtel-Schwarzenfeld-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAABTALER%20SCH-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAARMANN  NEU-FIL",
+        "lineCode": "DEP-NAARMANN  NEU-FIL",
+        "lineDescription": "Privatmolkerei Naarmann-Neuenkirchen-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAARMANN%20%20NEU-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAARMANN  NEU-HEX",
+        "lineCode": "DEP-NAARMANN  NEU-HEX",
+        "lineDescription": "Privatmolkerei Naarmann-Neuenkirchen-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAARMANN%20%20NEU-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAARMANN  NEU-HOM",
+        "lineCode": "DEP-NAARMANN  NEU-HOM",
+        "lineDescription": "Privatmolkerei Naarmann-Neuenkirchen-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAARMANN%20%20NEU-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAARMANN  NEU-SEP",
+        "lineCode": "DEP-NAARMANN  NEU-SEP",
+        "lineDescription": "Privatmolkerei Naarmann-Neuenkirchen-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAARMANN%20%20NEU-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NAARMANN  NEU-STT",
+        "lineCode": "DEP-NAARMANN  NEU-STT",
+        "lineDescription": "Privatmolkerei Naarmann-Neuenkirchen-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NAARMANN%20%20NEU-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NATUMI    TRO-AUT01",
+        "lineCode": "DEP-NATUMI    TRO-AUT01",
+        "lineDescription": "Natumi GmbH-Troisdorf-AUT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NATUMI%20%20%20%20TRO-AUT01?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NATUMI    TRO-HEX",
+        "lineCode": "DEP-NATUMI    TRO-HEX",
+        "lineDescription": "Natumi GmbH-Troisdorf-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NATUMI%20%20%20%20TRO-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NATUMI    TRO-HOM",
+        "lineCode": "DEP-NATUMI    TRO-HOM",
+        "lineDescription": "Natumi GmbH-Troisdorf-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NATUMI%20%20%20%20TRO-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NATUMI    TRO-MIX",
+        "lineCode": "DEP-NATUMI    TRO-MIX",
+        "lineDescription": "Natumi GmbH-Troisdorf-MIX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NATUMI%20%20%20%20TRO-MIX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NATUMI    TRO-TPPM",
+        "lineCode": "DEP-NATUMI    TRO-TPPM",
+        "lineDescription": "Natumi GmbH-Troisdorf-TPPM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NATUMI%20%20%20%20TRO-TPPM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-NATUMI    TRO-UHT",
+        "lineCode": "DEP-NATUMI    TRO-UHT",
+        "lineDescription": "Natumi GmbH-Troisdorf-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-NATUMI%20%20%20%20TRO-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-OVOBEST   NEU-PR 01",
+        "lineCode": "DEP-OVOBEST   NEU-PR 01",
+        "lineDescription": "Ovobest Eiprodukte GmbH-Neuenkirchen-PR",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-OVOBEST%20%20%20NEU-PR%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-RIHA      RIN-HEX",
+        "lineCode": "DEP-RIHA      RIN-HEX",
+        "lineDescription": "riha WeserGold Getraenke, Rinteln-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-RIHA%20%20%20%20%20%20RIN-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-RIHA      RIN-SEP",
+        "lineCode": "DEP-RIHA      RIN-SEP",
+        "lineDescription": "riha WeserGold Getraenke, Rinteln-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-RIHA%20%20%20%20%20%20RIN-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-RUECKER   AUR-ALF",
+        "lineCode": "DEP-RUECKER   AUR-ALF",
+        "lineDescription": "Ruecker GmbH-Aurich-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-RUECKER%20%20%20AUR-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-RUECKER   AUR-CHE",
+        "lineCode": "DEP-RUECKER   AUR-CHE",
+        "lineDescription": "Ruecker GmbH-Aurich-CHE",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-RUECKER%20%20%20AUR-CHE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-RUECKER   AUR-HEX",
+        "lineCode": "DEP-RUECKER   AUR-HEX",
+        "lineDescription": "Ruecker GmbH-Aurich-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-RUECKER%20%20%20AUR-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-RUECKER   AUR-SEP",
+        "lineCode": "DEP-RUECKER   AUR-SEP",
+        "lineDescription": "Ruecker GmbH-Aurich-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-RUECKER%20%20%20AUR-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWAELBC BAD-ALF",
+        "lineCode": "DEP-SCHWAELBC BAD-ALF",
+        "lineDescription": "Schwaelbchen Molkerei-Bad Schwalbach-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWAELBC%20BAD-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWAELBC BAD-FIL",
+        "lineCode": "DEP-SCHWAELBC BAD-FIL",
+        "lineDescription": "Schwaelbchen Molkerei-Bad Schwalbach-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWAELBC%20BAD-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWAELBC BAD-HEX",
+        "lineCode": "DEP-SCHWAELBC BAD-HEX",
+        "lineDescription": "Schwaelbchen Molkerei-Bad Schwalbach-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWAELBC%20BAD-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWAELBC BAD-HOM",
+        "lineCode": "DEP-SCHWAELBC BAD-HOM",
+        "lineDescription": "Schwaelbchen Molkerei-Bad Schwalbach-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWAELBC%20BAD-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWAELBC BAD-SEP",
+        "lineCode": "DEP-SCHWAELBC BAD-SEP",
+        "lineDescription": "Schwaelbchen Molkerei-Bad Schwalbach-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWAELBC%20BAD-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWAELBC BAD-STT",
+        "lineCode": "DEP-SCHWAELBC BAD-STT",
+        "lineDescription": "Schwaelbchen Molkerei-Bad Schwalbach-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWAELBC%20BAD-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWAELBC BAD-UHT",
+        "lineCode": "DEP-SCHWAELBC BAD-UHT",
+        "lineDescription": "Schwaelbchen Molkerei-Bad Schwalbach-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWAELBC%20BAD-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWARZW  FRE-DOS",
+        "lineCode": "DEP-SCHWARZW  FRE-DOS",
+        "lineDescription": "Schwarzwaldmilch-Freiburg-DOS",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWARZW%20%20FRE-DOS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWARZW  FRE-HEX",
+        "lineCode": "DEP-SCHWARZW  FRE-HEX",
+        "lineDescription": "Schwarzwaldmilch-Freiburg-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWARZW%20%20FRE-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SCHWARZW  FRE-SEP",
+        "lineCode": "DEP-SCHWARZW  FRE-SEP",
+        "lineDescription": "Schwarzwaldmilch-Freiburg-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SCHWARZW%20%20FRE-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SM GMBH   LEP-ALF",
+        "lineCode": "DEP-SM GMBH   LEP-ALF",
+        "lineDescription": "Sachsenmilch GmbH-Leppersdorf-ALF",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SM%20GMBH%20%20%20LEP-ALF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SM GMBH   LEP-CHE",
+        "lineCode": "DEP-SM GMBH   LEP-CHE",
+        "lineDescription": "Sachsenmilch GmbH-Leppersdorf-CHE",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SM%20GMBH%20%20%20LEP-CHE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SM GMBH   LEP-FIL",
+        "lineCode": "DEP-SM GMBH   LEP-FIL",
+        "lineDescription": "Sachsenmilch GmbH-Leppersdorf-FIL",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SM%20GMBH%20%20%20LEP-FIL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SM GMBH   LEP-HEX",
+        "lineCode": "DEP-SM GMBH   LEP-HEX",
+        "lineDescription": "Sachsenmilch GmbH-Leppersdorf-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SM%20GMBH%20%20%20LEP-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SM GMBH   LEP-HOM",
+        "lineCode": "DEP-SM GMBH   LEP-HOM",
+        "lineDescription": "Sachsenmilch GmbH-Leppersdorf-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SM%20GMBH%20%20%20LEP-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SM GMBH   LEP-SEP",
+        "lineCode": "DEP-SM GMBH   LEP-SEP",
+        "lineDescription": "Sachsenmilch GmbH-Leppersdorf-SEP",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SM%20GMBH%20%20%20LEP-SEP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-SM GMBH   LEP-UHT",
+        "lineCode": "DEP-SM GMBH   LEP-UHT",
+        "lineDescription": "Sachsenmilch GmbH-Leppersdorf-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-SM%20GMBH%20%20%20LEP-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-STUTE     PAD-HEX",
+        "lineCode": "DEP-STUTE     PAD-HEX",
+        "lineDescription": "Stute Nahrungsmittelwerke-Paderborn-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-STUTE%20%20%20%20%20PAD-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-STUTE     PAD-HOM",
+        "lineCode": "DEP-STUTE     PAD-HOM",
+        "lineDescription": "Stute Nahrungsmittelwerke-Paderborn-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-STUTE%20%20%20%20%20PAD-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-VOGTLANDM PLA-HEX",
+        "lineCode": "DEP-VOGTLANDM PLA-HEX",
+        "lineDescription": "Vogtlandmilch GmbH Plauen-Plauen-HEX",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-VOGTLANDM%20PLA-HEX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-VOGTLANDM PLA-HOM",
+        "lineCode": "DEP-VOGTLANDM PLA-HOM",
+        "lineDescription": "Vogtlandmilch GmbH Plauen-Plauen-HOM",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-VOGTLANDM%20PLA-HOM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-VOGTLANDM PLA-MP 01",
+        "lineCode": "DEP-VOGTLANDM PLA-MP 01",
+        "lineDescription": "Vogtlandmilch GmbH-Plauen-MilkProcessing",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-VOGTLANDM%20PLA-MP%2001?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-VOGTLANDM PLA-STT",
+        "lineCode": "DEP-VOGTLANDM PLA-STT",
+        "lineDescription": "Vogtlandmilch GmbH Plauen-Plauen-STT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-VOGTLANDM%20PLA-STT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "DEP-VOGTLANDM PLA-UHT",
+        "lineCode": "DEP-VOGTLANDM PLA-UHT",
+        "lineDescription": "Vogtlandmilch GmbH Plauen-Plauen-UHT",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/DEP-VOGTLANDM%20PLA-UHT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

@@ -162,6 +162,9 @@ public final class CustomerHubConstants {
     /** The Constant DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER. */
     public static final String DOWNLOAD_EQUIPMENT_EXCEL_API_PARAMETER = "results=extended";
 
+    /** The Constant BACK_TO_EQUIPMENT_LIST. */
+    public static final String BACK_TO_EQUIPMENT_LIST = "backToEquipmentList";
+
     /** The Constant EQUIPMENT_INFORMATION. */
     public static final String EQUIPMENT_INFORMATION = "equipmentInformation";
 
@@ -1075,6 +1078,8 @@ public final class CustomerHubConstants {
      */
     /** Constant PBI_COOKIE_EMBEDTOKEN. */
 	public static final String PBI_COOKIE_EMBEDTOKEN ="pbi-accesstoken";
+
+    public static final String BP_NUMBER = "bpnumber";
 
     private CustomerHubConstants() {
         throw new IllegalStateException("Utility class");

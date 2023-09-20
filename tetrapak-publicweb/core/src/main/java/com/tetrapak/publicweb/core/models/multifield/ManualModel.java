@@ -1,8 +1,13 @@
 package com.tetrapak.publicweb.core.models.multifield;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
@@ -57,6 +62,8 @@ public class ManualModel {
     
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
+
+    private boolean hideInTeaser;
 
     /**
      * Gets the title.
@@ -226,6 +233,21 @@ public class ManualModel {
     @PostConstruct
     protected void init() {
         articleDate = GlobalUtil.formatDate(articleDate);
+        ResourceResolver resolver = resource.getResourceResolver();
+        PageManager pageManager = resolver.adaptTo(PageManager.class);
+        if (linkPath != null && (!linkPath.startsWith("/content/dam"))){
+                Page associatedPage = pageManager.getPage(linkPath);
+                if(associatedPage!=null){
+                    ValueMap pageProperties = associatedPage.getProperties();
+                    if(pageProperties.containsKey(PWConstants.NOFOLLOW_PROPERTY) || pageProperties.containsKey(PWConstants.NOINDEX_PROPERTY) || pageProperties.containsKey(PWConstants.HIDEINSEARCH_PROPERTY)){
+                        hideInTeaser = true;
+                    }
+                }
+
+        }
     }
 
+    public boolean isHideInTeaser() {
+        return hideInTeaser;
+    }
 }

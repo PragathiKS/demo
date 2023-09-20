@@ -5,20 +5,14 @@
        data-details-api="${data.equipmentListApi}"
        data-status-api="${data.statusApi}"
        data-submit-api="${data.mappedResourcePath}.equipment.html"
+       data-equipment-list-url="${data.mappedMyEquipmentUrl}"
        data-module="EquipmentDetails">
 
     <code class="d-none js-equipment-details__config">${data.i18nKeys}</code>
 
     <div class="tp-equipment-details__content-wrapper">
-     <!--
-        <div class="tp-equipment-details__container">
-        <a href="${data.mappedMyEquipmentUrl}" class="tp-equipment-details__btn tp-equipment-details__back-btn" auto_locator="backToEquipmentList">
-          <i class="icon icon-Chevron_Left"></i>
-          ${"cuhu.equipment.backToEquipList" @i18n}
-        </a>
-      </div>
-     -->
-      <div class="tp-equipment-details__content js-equipment-details__content d-none"></div>
+
+    <div class="tp-equipment-details__content js-equipment-details__content d-none"></div>
     </div>
 
     <div id="equipment-update-modal" class="modal js-update-modal tp-equipment-details-modal tp-modal fade" tabindex="-1" aria-hidden="true" role="dialog"></div>

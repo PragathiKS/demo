@@ -136,8 +136,8 @@ class DatePicker {
   beforeShowDay = (date) => {
     const inputFromSelector = `.${this.cache.inputFromSelectorId}`;
     const inputToSelector = `.${this.cache.inputToSelectorId}`;
-    const $inputFrom = $(inputFromSelector);
-    const $inputTo = $(inputToSelector);
+    const $inputFrom = this.root.find(inputFromSelector);
+    const $inputTo = this.root.find(inputToSelector);
     const inputFromValue = $inputFrom.val();
     const inputToValue = $inputTo.val();
     const inputFromValueValid = this.validateDate(inputFromValue) ? inputFromValue : '';
@@ -184,8 +184,8 @@ class DatePicker {
   onSelect = (dateStr, _inst, isFromInputChange=false, isToInputChange=false) => {
     const inputFromSelector = `.${this.cache.inputFromSelectorId}`;
     const inputToSelector = `.${this.cache.inputToSelectorId}`;
-    const $inputFrom = $(inputFromSelector);
-    const $inputTo = $(inputToSelector);
+    const $inputFrom = this.root.find(inputFromSelector);
+    const $inputTo = this.root.find(inputToSelector);
 
     const dateFromValue = isFromInputChange ? '' : $inputFrom.val();
     const dateToValue = isToInputChange ? '' : $inputTo.val();
@@ -245,11 +245,11 @@ class DatePicker {
   }
 
   removeInputFromError = () => {
-    $(`.${this.cache.inputFromErrorSelectorId}`).remove();
+    this.root.find(`.${this.cache.inputFromErrorSelectorId}`).remove();
   }
 
   removeInputToError = () => {
-    $(`.${this.cache.inputToErrorSelectorId}`).remove();
+    this.root.find(`.${this.cache.inputToErrorSelectorId}`).remove();
   }
 
   onUpdateDatepicker = () => {
@@ -265,8 +265,10 @@ class DatePicker {
 
       const onDayMouseEnter = this.onDayMouseEnter;
       const onDayMouseLeave = this.onDayMouseLeave;
-      const $inputFrom = $(inputFromSelector);
-      const $inputTo = $(inputToSelector);
+      const $inputFrom = this.root.find(inputFromSelector);
+      const $inputTo = this.root.find(inputToSelector);
+      const $wrapper = this.root.find(wrapperSelector);
+      const root = this.root;
 
       const dateFromValue = $inputFrom.val();
       const dateToValue = $inputTo.val();
@@ -281,11 +283,12 @@ class DatePicker {
       const hoverEmptyFirstClass = this.cache.hoverEmptyFirstClass;
       const hoverEmptyLastClass = this.cache.hoverEmptyLastClass;
 
-      $(wrapperSelector).off('mouseleave');
-      $(wrapperSelector).off('mouseenter');
+      $wrapper.off('mouseleave');
+      $wrapper.off('mouseenter');
 
-      $(wrapperSelector).on('mouseleave', leaveSelectorId, function() {
+      $wrapper.on('mouseleave', leaveSelectorId, function() {
         onDayMouseLeave.call(this, {
+          root,
           wrapperSelector,
           startDate,
           endDate,
@@ -294,8 +297,9 @@ class DatePicker {
         });
       });
 
-      $(wrapperSelector).on('mouseenter', restSelectorId, function() {
+      $wrapper.on('mouseenter', restSelectorId, function() {
         onDayMouseLeave.call(this, {
+          root,
           wrapperSelector,
           startDate,
           endDate,
@@ -304,8 +308,9 @@ class DatePicker {
         });
       });
 
-      $(wrapperSelector).on('mouseenter', daySelectorId, function() {
+      $wrapper.on('mouseenter', daySelectorId, function() {
         onDayMouseEnter.call(this, {
+          root,
           wrapperSelector,
           startDate: !startDate ? endDate : startDate,
           endDate: !startDate ? null : endDate,
@@ -322,13 +327,14 @@ class DatePicker {
   }
 
   onDayMouseLeave({
+    root,
     wrapperSelector,
     startDate,
     endDate
   }) {
     if (startDate && !(startDate && endDate)) {
       const daysSelector = `${wrapperSelector} tbody td`;
-      const $days = $(daysSelector).not('.ui-state-disabled');
+      const $days = root.find(daysSelector).not('.ui-state-disabled');
       $days.each(function() {
         $(this).attr('class', '');
       });
@@ -336,6 +342,7 @@ class DatePicker {
   }
 
   onDayMouseEnter({
+    root,
     wrapperSelector,
     startDate,
     endDate,
@@ -359,7 +366,7 @@ class DatePicker {
       const isLaterView = startViewTime < hoveredViewTime;
       const hoverDirection = isEarlierView ? 'left' : isLaterView ? 'right' : isEarlierDay ? 'left' : 'right';
       const daysSelector = `${wrapperSelector} tbody td`;
-      const $days = $(daysSelector).not('.ui-state-disabled');
+      const $days = root.find(daysSelector).not('.ui-state-disabled');
       const startDayCursor = hoverDirection === 'left' ?
         (isEarlierView ? 32 : startDay) : (isLaterView ? 0 : startDay);
       const isLastDayOfMonth = hoveredDay === new Date(hoveredYear, hoveredMonth, 0).getDate();
@@ -411,13 +418,13 @@ class DatePicker {
 
     $('<div />', {
       class: `${this.cache.inputsWrapperClass} ${this.cache.inputsWrapperSelectorId}`
-    }).appendTo(this.cache.el);
+    }).appendTo(this.root);
     $('<div />', {
       class: `${this.cache.inputWrapperClass} ${this.cache.inputFromWrapperSelectorId}`
-    }).appendTo(inputsWrapperSelector);
+    }).appendTo(this.root.find(inputsWrapperSelector));
     $('<label />', {
       class: `${this.cache.inputLabelClass} ${this.cache.inputFromLabelSelectorId}`
-    }).appendTo(inputFromWrapperSelector);
+    }).appendTo(this.root.find(inputFromWrapperSelector));
 
     $(inputFromLabelSelector).text(this.cache.inputFromLabel);
 
@@ -425,14 +432,14 @@ class DatePicker {
       class: `${this.cache.inputClass} ${this.cache.inputFromSelectorId}`,
       placeholder: this.cache.inputFormat,
       autofocus: true
-    }).appendTo(inputFromLabelSelector);
+    }).appendTo(this.root.find(inputFromLabelSelector));
     $('<div />', {
       class: this.cache.widgetSelectorId
-    }).appendTo(this.cache.el);
+    }).appendTo(this.root);
 
     this.inputMaskUtil.mask(inputFromSelector);
 
-    $(inputFromSelector).on('change', this.handleInputChange(
+    this.root.find(inputFromSelector).on('change', this.handleInputChange(
       this.cache.inputFromSelectorId,
       this.cache.inputFromErrorSelectorId,
       this.cache.inputFromLabelSelectorId
@@ -441,20 +448,20 @@ class DatePicker {
     if (this.cache.isRangeType) {
       $('<div />', {
         class: `${this.cache.inputWrapperClass} ${this.cache.inputToWrapperSelectorId}`
-      }).appendTo(inputsWrapperSelector);
+      }).appendTo(this.root.find(inputsWrapperSelector));
       $('<label />', {
         class: `${this.cache.inputLabelClass} ${this.cache.inputToLabelSelectorId}`
-      }).appendTo(inputToWrapperSelector);
+      }).appendTo(this.root.find(inputToWrapperSelector));
 
-      $(inputToLabelSelector).text(this.cache.inputToLabel);
+      this.root.find(inputToLabelSelector).text(this.cache.inputToLabel);
 
       $('<input />', {
         class: `${this.cache.inputClass} ${this.cache.inputToSelectorId}`,
         placeholder: this.cache.inputFormat
-      }).appendTo(inputToLabelSelector);
+      }).appendTo(this.root.find(inputToLabelSelector));
 
-      this.inputMaskUtil.mask(inputToSelector);
-      $(inputToSelector).on('change', this.handleInputChange(
+      this.inputMaskUtil.mask(this.root.find(inputToSelector));
+      this.root.find(inputToSelector).on('change', this.handleInputChange(
         this.cache.inputToSelectorId,
         this.cache.inputToErrorSelectorId,
         this.cache.inputToLabelSelectorId
@@ -479,13 +486,13 @@ class DatePicker {
     if (isValid) {
       const parsedDate = $.datepicker.parseDate(this.cache.dateFormat, value);
       const isFromDateSelected = inputSelectorId === this.cache.inputFromSelectorId;
-      $(`.${inputErrorSelectorId}`).remove();
-      $(widgetSelector).datepicker('setDate', parsedDate);
+      this.root.find(`.${inputErrorSelectorId}`).remove();
+      this.root.find(widgetSelector).datepicker('setDate', parsedDate);
       const newDate = moment($(widgetSelector).datepicker('getDate')).format(this.cache.inputFormat);
       this.onSelect(newDate, null, isFromDateSelected, !isFromDateSelected);
-      $(widgetSelector).datepicker('refresh');
+      this.root.find(widgetSelector).datepicker('refresh');
     } else {
-      const isError = $(`.${inputErrorSelectorId}`).length;
+      const isError = this.root.find(`.${inputErrorSelectorId}`).length;
 
       if (inputSelectorId === this.cache.inputFromSelectorId) {
         this.clearFromDate(false);
@@ -493,7 +500,7 @@ class DatePicker {
         this.clearToDate(false);
       }
       if (!isError) {
-        $(`.${inputLabelSelectorId}`).after(
+        this.root.find(`.${inputLabelSelectorId}`).after(
           `<div class="${this.cache.inputErrorClass} ${inputErrorSelectorId}">${this.cache.inputErrorLabel}</div>`
         );
       }
@@ -505,8 +512,8 @@ class DatePicker {
   callDates = (cb) => {
     const inputFromSelector = `.${this.cache.inputFromSelectorId}`;
     const inputToSelector = `.${this.cache.inputToSelectorId}`;
-    const $inputFrom = $(inputFromSelector);
-    const $inputTo = $(inputToSelector);
+    const $inputFrom = this.root.find(inputFromSelector);
+    const $inputTo = this.root.find(inputToSelector);
     const dateFromValue = $inputFrom.val();
     const dateToValue = $inputTo.val();
     const isFromDateValid = this.validateDate(dateFromValue);
@@ -525,58 +532,58 @@ class DatePicker {
   }
 
   appendIcons = () => {
-    $(`.${this.cache.inputFromLabelSelectorId}`).append(`<i class="icon-Close_new ${this.cache.fromDateClearIconSelectorId}"></i>`);
-    $(`.${this.cache.fromDateClearIconSelectorId}`).on('click', this.clearFromDate);
+    this.root.find(`.${this.cache.inputFromLabelSelectorId}`).append(`<i class="icon-Close_new ${this.cache.fromDateClearIconSelectorId}"></i>`);
+    this.root.find(`.${this.cache.fromDateClearIconSelectorId}`).on('click', this.clearFromDate);
 
     if (this.cache.isRangeType) {
-      $(`.${this.cache.inputToLabelSelectorId}`).append(`<i class="icon-Close_new ${this.cache.toDateClearIconSelectorId}"></i>`);
-      $(`.${this.cache.toDateClearIconSelectorId}`).on('click', this.clearToDate);
+      this.root.find(`.${this.cache.inputToLabelSelectorId}`).append(`<i class="icon-Close_new ${this.cache.toDateClearIconSelectorId}"></i>`);
+      this.root.find(`.${this.cache.toDateClearIconSelectorId}`).on('click', this.clearToDate);
     }
   }
 
   replaceIcons = () => {
-    if (!$(`.${this.cache.monthIconSelectorId}`).length) {
-      $('.ui-datepicker-next').html('⁠<i class="icon icon-Right_new"></i>');
-      $('.ui-datepicker-prev').html('<i class="icon icon-Right_new icon-left"></i>');
-      $('.ui-datepicker-month').after(`<i class="icon icon-Right_new icon-down ${this.cache.monthIconSelectorId}"></i>`);
-      $('.ui-datepicker-year').after(`<i class="icon icon-Right_new icon-down ${this.cache.yearIconSelectorId}"></i>`);
+    if (!this.root.find(`.${this.cache.monthIconSelectorId}`).length) {
+      this.root.find('.ui-datepicker-next').html('⁠<i class="icon icon-Right_new"></i>');
+      this.root.find('.ui-datepicker-prev').html('<i class="icon icon-Right_new icon-left"></i>');
+      this.root.find('.ui-datepicker-month').after(`<i class="icon icon-Right_new icon-down ${this.cache.monthIconSelectorId}"></i>`);
+      this.root.find('.ui-datepicker-year').after(`<i class="icon icon-Right_new icon-down ${this.cache.yearIconSelectorId}"></i>`);
     }
   }
 
   disableToDate = () => {
-    $(`.${this.cache.inputToWrapperSelectorId}`).addClass('disabled');
-    $(`.${this.cache.toDateClearIconSelectorId}`).addClass('disabled');
-    $(`.${this.cache.inputToSelectorId}`).prop('disabled', true);
-    $(`.${this.cache.inputToSelectorId}`).val('');
-    $(`.${this.cache.inputToErrorSelectorId}`).remove();
+    this.root.find(`.${this.cache.inputToWrapperSelectorId}`).addClass('disabled');
+    this.root.find(`.${this.cache.toDateClearIconSelectorId}`).addClass('disabled');
+    this.root.find(`.${this.cache.inputToSelectorId}`).prop('disabled', true);
+    this.root.find(`.${this.cache.inputToSelectorId}`).val('');
+    this.root.find(`.${this.cache.inputToErrorSelectorId}`).remove();
   }
 
   enableToDate = () => {
-    $(`.${this.cache.inputToWrapperSelectorId}`).removeClass('disabled');
-    $(`.${this.cache.toDateClearIconSelectorId}`).removeClass('disabled');
-    $(`.${this.cache.inputToSelectorId}`).prop('disabled', false);
+    this.root.find(`.${this.cache.inputToWrapperSelectorId}`).removeClass('disabled');
+    this.root.find(`.${this.cache.toDateClearIconSelectorId}`).removeClass('disabled');
+    this.root.find(`.${this.cache.inputToSelectorId}`).prop('disabled', false);
   }
 
   focusFromDate = () => {
-    $(`.${this.cache.inputFromSelectorId}`).trigger('focus');
+    this.root.find(`.${this.cache.inputFromSelectorId}`).trigger('focus');
   }
 
   focusToDate = () => {
-    $(`.${this.cache.inputToSelectorId}`).trigger('focus');
+    this.root.find(`.${this.cache.inputToSelectorId}`).trigger('focus');
   }
 
   clearDateSelection = () => {
     const widgetSelector = `.${this.cache.widgetSelectorId}`;
-    $(widgetSelector).datepicker('setDate', '');
-    $('.ui-state-active').attr('aria-current', 'false').removeClass('ui-state-active');
+    this.root.find(widgetSelector).datepicker('setDate', '');
+    this.root.find('.ui-state-active').attr('aria-current', 'false').removeClass('ui-state-active');
   }
 
   clearFromDate = (clearValue=true) => {
     const widgetSelector = `.${this.cache.widgetSelectorId}`;
     const inputFromSelector = `.${this.cache.inputFromSelectorId}`;
     const inputToSelector = `.${this.cache.inputToSelectorId}`;
-    const $inputFrom = $(inputFromSelector);
-    const $inputTo = $(inputToSelector);
+    const $inputFrom = this.root.find(inputFromSelector);
+    const $inputTo = this.root.find(inputToSelector);
     const inputToValue = $inputTo.val();
     const parsedToDate = this.validateDate(inputToValue) && $.datepicker.parseDate(this.cache.dateFormat, inputToValue);
 
@@ -590,20 +597,22 @@ class DatePicker {
     const widgetSelector = `.${this.cache.widgetSelectorId}`;
     const inputFromSelector = `.${this.cache.inputFromSelectorId}`;
     const inputToSelector = `.${this.cache.inputToSelectorId}`;
-    const $inputFrom = $(inputFromSelector);
-    const $inputTo = $(inputToSelector);
+    const $inputFrom = this.root.find(inputFromSelector);
+    const $inputTo = this.root.find(inputToSelector);
+    const $widget = this.root.find(widgetSelector);
     const inputFromValue = $inputFrom.val();
     const parsedFromDate = this.validateDate(inputFromValue) && $.datepicker.parseDate(this.cache.dateFormat, inputFromValue);
 
     if (clearValue) {
       $inputTo.val('').trigger('change');
     }
-    parsedFromDate && $(widgetSelector).datepicker('setDate', parsedFromDate);
+    parsedFromDate && $widget.datepicker('setDate', parsedFromDate);
   }
 
   initValue = (date) => {
     if (date) {
       const widgetSelector = `.${this.cache.widgetSelectorId}`;
+      const $widget = this.root.find(widgetSelector);
       const isValidDateObj = date instanceof Date && moment(date).isValid();
       const isValidDateStr = date && this.validateDate(date);
       const value = isValidDateObj ? moment(date).format(this.cache.inputFormat) : isValidDateStr ? date : '';
@@ -612,10 +621,10 @@ class DatePicker {
       if (!isValidDateObj && !isValidDateStr) {
         throw WrongInitDateError;
       } else {
-        $(widgetSelector).datepicker('setDate', parsedDate);
-        const newDate = moment($(widgetSelector).datepicker('getDate')).format(this.cache.inputFormat);
+        $widget.datepicker('setDate', parsedDate);
+        const newDate = moment($widget.datepicker('getDate')).format(this.cache.inputFormat);
         this.onSelect(newDate);
-        $(widgetSelector).datepicker('refresh');
+        $widget.datepicker('refresh');
       }
     }
   }
@@ -633,11 +642,11 @@ class DatePicker {
   }
 
   bindEvents() {
-    const widgetSelector = `.${this.cache.widgetSelectorId}`;
     this.appendElements();
     this.appendIcons();
     this.disableToDate();
-    $(widgetSelector).datepicker(this.cache.config);
+    this.root.find(`.${this.cache.widgetSelectorId}`)
+      .datepicker(this.cache.config);
     this.clearDateSelection();
     this.initValues();
     this.focusFromDate();
