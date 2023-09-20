@@ -24,9 +24,8 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_C
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_INFO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.TAX;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.TOTAL_AMOUNT;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.VENDOR;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
-
+import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,7 +84,7 @@ public class PaymentDetailsModel {
 	private String country;
 
 	@ValueMapValue
-	private String vendor;
+	private String supplier;
 
 	@ValueMapValue
 	private String supplierCode;
@@ -166,7 +165,7 @@ public class PaymentDetailsModel {
 		i18KeyMap.put(COMPANY, getCompany());
 		i18KeyMap.put(COMPANY_CODE, getCompanyCode());
 		i18KeyMap.put(COUNTRY, getCountry());
-		i18KeyMap.put(VENDOR, getVendor());
+		i18KeyMap.put(SUPPLIER, getSupplier());
 		i18KeyMap.put(SUPPLIER_CODE, getSupplierCode());
 		i18KeyMap.put(TOTAL_AMOUNT, getTotalAmount());
 		i18KeyMap.put(TAX, getTax());
@@ -181,7 +180,7 @@ public class PaymentDetailsModel {
 		i18KeyMap.put(EMPTY_PAYMENT_DETAILS, getEmptyPaymentDetails());
 		i18KeyMap.put(FETCH_ERROR, getFetchError());
 		i18KeyMap.put(MULTI_PO_NO, getMultiPoNo());
-		i18KeyMap.put(EXPORT_TO_PDF, getMultiPoNo());
+		i18KeyMap.put(EXPORT_TO_PDF, getExportToPDF());
 		
 		
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
@@ -273,14 +272,6 @@ public class PaymentDetailsModel {
 
 	public void setCountry(String country) {
 		this.country = country;
-	}
-
-	public String getVendor() {
-		return vendor;
-	}
-
-	public void setVendor(String vendor) {
-		this.vendor = vendor;
 	}
 
 	public String getSupplierCode() {
@@ -433,6 +424,14 @@ public class PaymentDetailsModel {
 
 	public void setExportToPDF(String exportToPDF) {
 		this.exportToPDF = exportToPDF;
+	}
+
+	public String getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
 	}
 	
 }

@@ -3,20 +3,16 @@ package com.tetrapak.supplierportal.core.servlets;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.AUTHTOKEN;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DOCUMENT_REFERENCE_ID;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.ERROR_MESSAGE;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESULT;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
-
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESPONSE_STATUS_OK;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Objects;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.Header;
-import org.apache.http.HeaderIterator;
-import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -29,8 +25,14 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.itextpdf.text.DocumentException;
+import com.tetrapak.supplierportal.core.bean.PaymentDetailResponse;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.models.PaymentDetailsModel;
 import com.tetrapak.supplierportal.core.services.PaymentInvoiceDownloadService;
 import com.tetrapak.supplierportal.core.utils.HttpUtil;
 
@@ -41,7 +43,8 @@ import com.tetrapak.supplierportal.core.utils.HttpUtil;
  */
 @Component(service = Servlet.class, property = {
 		Constants.SERVICE_DESCRIPTION + "=Payment Invoice Export To PDF Generator Servlet",
-		"sling.servlet.methods=" + HttpConstants.METHOD_GET, "sling.servlet.paths=" + "/bin/supportal/invoice/export",
+		"sling.servlet.methods=" + HttpConstants.METHOD_GET,
+		"sling.servlet.paths=" + "/bin/supportal/invoice/export",
 		"sling.servlet.extensions=" + SupplierPortalConstants.PDF })
 public class PaymentInvoiceExportServlet extends SlingSafeMethodsServlet {
 
@@ -67,50 +70,42 @@ public class PaymentInvoiceExportServlet extends SlingSafeMethodsServlet {
 			documentReferenceId = xssAPI.encodeForHTML(documentReferenceId);
 		}
 
-		String authTokenStr = getAuthToken(request, response);
-		if(StringUtils.isBlank(authTokenStr)) {
-			return ;
-		}
-		
-		HttpResponse httpResponse = null;
-		try {
-			httpResponse = service.preparePdf(authTokenStr, documentReferenceId);
-
-			if (null == httpResponse) {
-				JsonObject jsonResponse = new JsonObject();
-				jsonResponse.addProperty(STATUS_CODE, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-				jsonResponse.addProperty(ERROR_MESSAGE,
-						"Http response is null While Preparing Payment Invoice Details PDF");
-				HttpUtil.writeJsonResponse(response, jsonResponse);
-				return;
-			}
-			HeaderIterator headerItr = httpResponse.headerIterator();
-			while (headerItr.hasNext()) {
-				Header apiRespHeader = headerItr.nextHeader();
-				response.setHeader(apiRespHeader.getName(), apiRespHeader.getValue());
-			}
-			httpResponse.getEntity().writeTo(response.getOutputStream());
-
-		} catch (IOException | URISyntaxException ex) {
-			LOGGER.error("Exception In PaymentInvoiceExportServlet {}", ex);
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			JsonObject jsonResponse = new JsonObject();
-			jsonResponse.addProperty(ERROR_MESSAGE, "Exception In PaymentInvoiceExportServlet " + ex.getMessage());
-			HttpUtil.writeJsonResponse(response, jsonResponse);
-		}
-	}
-
-	private String getAuthToken(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+		String authTokenStr;
 		Cookie authToken = request.getCookie(AUTHTOKEN);
 		if (Objects.nonNull(authToken)) {
-			return xssAPI.encodeForHTML(authToken.getValue());
+			authTokenStr = xssAPI.encodeForHTML(authToken.getValue());
 		} else {
 			LOGGER.error("Auth token is invalid! {}");
 			response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
 			JsonObject jsonResponse = new JsonObject();
 			jsonResponse.addProperty(ERROR_MESSAGE, "Auth token is invalid!" + request.getRequestPathInfo());
 			HttpUtil.writeJsonResponse(response, jsonResponse);
-			return null;
+			return;
 		}
+
+		JsonObject jsonResponse = service.retrievePaymentDetails(authTokenStr, documentReferenceId);
+		JsonElement statusResponse = jsonResponse.get(STATUS_CODE);
+
+        boolean flag = false;
+        PaymentDetailsModel paymentDetailsModel = request.getResource().adaptTo(PaymentDetailsModel.class);
+
+        if (null == paymentDetailsModel) {
+            LOGGER.error("FinancialStatementModel is null!");
+        }else if (!RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
+            LOGGER.error("Unable to retrieve response from API got status code:{}", statusResponse.toString());
+        } else {
+        	GsonBuilder builder = new GsonBuilder();
+            Gson gson = builder.create();
+        	JsonElement resultsResponse = jsonResponse.get(RESULT);
+        	PaymentDetailResponse results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), PaymentDetailResponse.class);
+        	flag = service.preparePdf(results, request, response, paymentDetailsModel);
+        }
+        
+        if (!flag) {
+            LOGGER.error("Financial results file download failed!");
+            HttpUtil.sendErrorMessage(response);
+        }
 	}
+
+	
 }

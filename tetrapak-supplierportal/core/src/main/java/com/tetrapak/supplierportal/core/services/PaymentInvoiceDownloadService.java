@@ -1,12 +1,18 @@
 package com.tetrapak.supplierportal.core.services;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
-import org.apache.http.HttpResponse;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+
+import com.google.gson.JsonObject;
+import com.tetrapak.supplierportal.core.bean.PaymentDetailResponse;
+import com.tetrapak.supplierportal.core.models.PaymentDetailsModel;
 
 public interface PaymentInvoiceDownloadService {
 	
-	public HttpResponse preparePdf(String authTokenStr, String documentRef) throws IOException,URISyntaxException;
+	JsonObject retrievePaymentDetails(String authTokenStr, String documentRef) throws IOException;
+	
+	boolean preparePdf(PaymentDetailResponse paymentDetails, SlingHttpServletRequest request,SlingHttpServletResponse response,PaymentDetailsModel paymentDetailsModel);
 
 }
