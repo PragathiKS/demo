@@ -99,7 +99,9 @@
                 <div class="tp-pw-anchor-container-primary">
                     <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} js-click-menu-link justify-content-between">
                         <span>${navigationLink.linkText}</span>
-                        <i class="icon-Arrow_Right_pw"></i>
+                        <sly data-sly-test="${navigationLink.megaMenuPath}">
+                            <i class="icon-Arrow_Right_pw"></i>
+                        </sly>    
                     </a>
                 </div>
             </sly>
