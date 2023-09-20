@@ -1,14 +1,18 @@
 package com.tetrapak.supplierportal.core.utils;
 
-import com.google.gson.JsonObject;
-import org.apache.sling.api.SlingHttpServletResponse;
-
 import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.apache.sling.api.SlingHttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 
 /**
@@ -70,5 +74,37 @@ public final class HttpUtil {
         response.setContentType("application/json");
         response.getWriter().write(jsonResponse.toString());
     }
+    
+    /**
+     * Method to get String data without escape characters \n and \
+     *
+     * @param result json element
+     * @return result string
+     */
+    public static String getStringFromJsonWithoutEscape(JsonElement result) {
+        String resultString = result.toString();
+        resultString = resultString.replaceAll("\\\\n", "");
+        resultString = resultString.replaceAll("\\\\", "");
+        resultString = StringUtils.substringAfter(resultString, "\"");
+        resultString = StringUtils.substringBeforeLast(resultString, "\"");
+        return resultString;
+    }
+    
+    /**
+     * Method to return send error message
+     *
+     * @param response response
+     */
+    public static void sendErrorMessage(SlingHttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        try {
+            JsonObject obj = new JsonObject();
+            obj.addProperty("errorMsg", "Some internal server error occurred while processing the request!");
+            HttpUtil.writeJsonResponse(response, obj);
+        } catch (IOException e) {
+            LOGGER.error("IOException: ", e);
+        }
+    }
+
 
 }

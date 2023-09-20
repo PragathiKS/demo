@@ -234,6 +234,9 @@ public final class SupplierPortalConstants {
     public static final String AUTHTOKEN = "authToken";
 
     public static final String ERROR_MESSAGE = "errorMsg";
+    
+    /** The Constant RESPONSE_STATUS_OK. */
+    public static final String RESPONSE_STATUS_OK = "200";
 
     /**
      * Instantiates a new customer hub constants.
