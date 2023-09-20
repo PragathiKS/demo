@@ -407,8 +407,10 @@ class Headerv2 {
       };
 
       $link.on('click', () => {
-        hideOtherMegaMenus();
-        showMegaMenu();
+        if ($link.attr('href') === undefined) {
+          hideOtherMegaMenus();
+          showMegaMenu();
+        }
       });
 
     });
