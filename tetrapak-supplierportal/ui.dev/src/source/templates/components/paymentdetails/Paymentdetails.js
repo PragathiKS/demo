@@ -79,8 +79,14 @@ class Paymentdetails {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    const { documentreferenceid } = this.getUrlQueryParams();
-    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}`;
+    const { documentreferenceid, fromdatetime = '', todatetime = '' } = this.getUrlQueryParams();
+    let url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}`;
+    if(fromdatetime){
+      url = `${url}&fromdatetime=${fromdatetime}`;
+    }
+    if(todatetime){
+      url = `${url}&todatetime=${todatetime}`;
+    }
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
     return [paymentApiPromise];
   }
