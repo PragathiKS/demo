@@ -146,7 +146,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: $zindex-anchor-menu;
+    z-index: $zindex-header;
     padding: $padding-zero;
     border-bottom: 1px solid $color-mercury;
 
@@ -168,15 +168,15 @@
     }
     &.top-anchor-menu {
         top: 64px;
-        @media #{$desktop}{
+        @media #{$desktop} {
             top: 144px;
         }
     }
 }
-       
+
 .pw-anchor-menu-mobile {
     @include padding($padding-md $padding-l);
-    @media #{$desktop}{
+    @media #{$desktop} {
         display: none;
     }
     border-top: 1px solid $color-mercury;

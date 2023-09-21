@@ -6,7 +6,6 @@
     align-items: stretch;
     flex-direction: column;
     padding-top: $margin-xl;
-    padding-bottom: 48px;
     @media #{$mobile} {
         padding-top: $padding-zero;
     }
@@ -36,7 +35,7 @@
 
 .tp-pw-megamenucolumn > div {
     &:last-of-type {
-        padding-bottom: $margin-l;
+        padding-bottom: $margin-xxxl;
         @media #{$mobile} {
             padding-bottom: $padding-zero;
         }
