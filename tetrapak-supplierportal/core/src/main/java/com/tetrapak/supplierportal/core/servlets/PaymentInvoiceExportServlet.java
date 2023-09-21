@@ -98,7 +98,7 @@ public class PaymentInvoiceExportServlet extends SlingSafeMethodsServlet {
             Gson gson = builder.create();
         	JsonElement resultsResponse = jsonResponse.get(RESULT);
         	PaymentDetailResponse results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), PaymentDetailResponse.class);
-        	flag = service.preparePdf(results, request, response, paymentDetailsModel);
+        	flag = service.preparePdf(null, request, response, paymentDetailsModel);
         }
         
         if (!flag) {

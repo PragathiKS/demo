@@ -89,4 +89,6 @@ public class I18Constants {
 	
 	public static final String EXPORT_TO_PDF = "exportToPDF";
 	
+	public static final String CODE = "code";
+	
 }

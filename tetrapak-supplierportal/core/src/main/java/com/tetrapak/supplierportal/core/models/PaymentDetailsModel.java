@@ -26,6 +26,7 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.TAX;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.TOTAL_AMOUNT;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.CODE;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -137,6 +138,9 @@ public class PaymentDetailsModel {
 	@ValueMapValue
 	private String exportToPDF;
 	
+	@ValueMapValue
+	private String code;
+	
 
 	/** The is publish environment. */
 	private boolean isPublishEnvironment = Boolean.FALSE;
@@ -181,7 +185,7 @@ public class PaymentDetailsModel {
 		i18KeyMap.put(FETCH_ERROR, getFetchError());
 		i18KeyMap.put(MULTI_PO_NO, getMultiPoNo());
 		i18KeyMap.put(EXPORT_TO_PDF, getExportToPDF());
-		
+		i18KeyMap.put(CODE, getCode());
 		
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -432,6 +436,14 @@ public class PaymentDetailsModel {
 
 	public void setSupplier(String supplier) {
 		this.supplier = supplier;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 }
