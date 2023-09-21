@@ -8,6 +8,7 @@ class AllPayments {
 
   constructor({ el }) {
     this.root = el;
+    this.roots = $(el);
     this.cache = {};
   }
 
@@ -63,6 +64,12 @@ class AllPayments {
         else if(e.target.closest('.js-all-payments__table-summary__sort')) {
           self.sortAction(e.target);
         }
+      });
+      this.roots.on('click', '.tp-all-payments__table-summary__row',  (e) => {
+        const id = $(e.currentTarget).find('td').eq(8).text().trim();
+        const paymentDetailsURL = this.cache.paymentApi.getAttribute('data-payment-details-url');
+        const url = `${paymentDetailsURL}?documentreferenceid=${id}`;
+        window.open(url, '_blank');
       });
     }
   }

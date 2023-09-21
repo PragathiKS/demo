@@ -11,11 +11,6 @@ class Paymentdetails {
   cache = {};
   initCache() {
     /* Initialize selector cache here */
-    /**
-     * Use "this.root" to find elements within current component
-     * Example:
-     * this.cache.$submitBtn = this.root.find('.js-submit-btn');
-     */
     this.cache.configJson = this.root.find('.js-payment-details__config').text();
     this.cache.detailsApi = this.root.data('details-api');
     this.cache.exportToPdfURL = this.root.data('export-pdf-url');
@@ -26,25 +21,11 @@ class Paymentdetails {
     this.cache.spinner = this.root.find('.tp-spinner');
     this.cache.header = this.root.find('.tp-payment-details__header-actions');
     this.cache.headerAction = this.root.find('.tp-payment-details__header-action-wrapper');
-    this.cache.data = {};
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) {
       this.cache.i18nKeys = {};
       logger.error(e);
-    }
-  }
-  getActiveCountryCode = () => {
-    try {
-      const { countryData } = this.cache;
-      const activeCountry = countryData.find(e => e.isChecked);
-      if (activeCountry) {
-        return activeCountry.countryCode;
-      } else {
-        throw Error('Couldn\'t get active country');
-      }
-    } catch (err) {
-      logger.error(err.message);
     }
   }
   getUrlQueryParams() {
@@ -79,14 +60,9 @@ class Paymentdetails {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    const { documentreferenceid, fromdatetime = '', todatetime = '' } = this.getUrlQueryParams();
-    let url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}`;
-    if(fromdatetime){
-      url = `${url}&fromdatetime=${fromdatetime}`;
-    }
-    if(todatetime){
-      url = `${url}&todatetime=${todatetime}`;
-    }
+    const { documentreferenceid} = this.getUrlQueryParams();
+    // TODO: Need to remove fromdate and todate query param. these are added only for testing purpose.
+    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&fromdatetime=2023-07-01T00:00:00&todatetime=2023-07-30T00:00:00`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
     return [paymentApiPromise];
   }
@@ -102,7 +78,6 @@ class Paymentdetails {
   }
   renderPaymentDetailsData(data, isFetchError = false){
     const { i18nKeys } = this.cache;
-    // i18nKeys = JSON.parse(i18nKeys);
     const isPaymentData = Object.keys(data).length > 0;
     if (isPaymentData) {
       render.fn({
