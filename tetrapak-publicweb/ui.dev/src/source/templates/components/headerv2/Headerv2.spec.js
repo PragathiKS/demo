@@ -61,7 +61,7 @@ describe('Headerv2', function () {
   });
 
   it('should call searchIconClick on click', function (done) {
-    $('.js-submenu-mobile-icon').addClass('icon-Close_pw').removeClass('icon-Burger_pw');
+    $('.js-submenu-mobile-icon').addClass('icon-Close_pw').removeClass('icon-Burgerv3_pw');
     $('.tp-pw-headerv2-search-box-toggle').trigger('click');
     expect(this.headerv2.searchIconClick.called).to.be.true;
     done();
@@ -74,14 +74,14 @@ describe('Headerv2', function () {
   });
 
   it('should call openMobileMenu on click', function (done) {
-    $('.tp-pw-headerv2-search-box-toggle > i').addClass('icon-Close_pw').removeClass('icon-Search_pw');;
+    $('.tp-pw-headerv2-search-box-toggle > i').addClass('icon-Close_pw').removeClass('icon-Searchv2_pw');;
     $('.js-submenu-mobile-icon').trigger('click');
     expect(this.headerv2.openMobileMenu.called).to.be.true;
     done();
   });
 
   it('should call openMobileMenu on close button click', function (done) {
-    $('.js-submenu-mobile-icon').addClass('icon-Close_pw').removeClass('icon-Burger_pw');
+    $('.js-submenu-mobile-icon').addClass('icon-Close_pw').removeClass('icon-Burgerv3_pw');
     $('.js-submenu-mobile-icon').trigger('click');
     expect(this.headerv2.openMobileMenu.called).to.be.true;
     done();
@@ -132,9 +132,9 @@ describe('Headerv2', function () {
   });
 
   it('should close mega menu on window resize', function (done) {
-    $('.submenu-mobile-icon').addClass('icon-Close_pw').removeClass('icon-Burger_pw');;
+    $('.submenu-mobile-icon').addClass('icon-Close_pw').removeClass('icon-Burgerv3_pw');;
     $(window).trigger('resize');
-    expect($('.submenu-mobile-icon').hasClass('icon-Burger_pw')).to.be.true;
+    expect($('.submenu-mobile-icon').hasClass('icon-Burgerv3_pw')).to.be.true;
     done();
   });
 

@@ -58,11 +58,11 @@
                                 data-link-section="Header Navigation" 
                                 data-link-name="Internal Search icon" 
                                 href="#">
-                                <i class="icon-Search_pw"></i>
+                                <i class="icon-Searchv2_pw"></i>
                             </a>
                         </sly>
                     </div>
-                    <i class="submenu-mobile-icon js-submenu-mobile-icon icon-Burger_pw"></i>
+                    <i class="submenu-mobile-icon js-submenu-mobile-icon icon-Burgerv3_pw"></i>
                 </div>
             </div>
             <div class="tp-pw-headerv2-second-row">
@@ -95,23 +95,27 @@
             </div>
         </nav>
         <div class="tp-pw-headerv2-mobile-secondary-navigation-menu">
-            <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
-                <div class="tp-pw-anchor-container-primary">
-                    <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} js-click-menu-link justify-content-between">
-                        <span>${navigationLink.linkText}</span>
-                        <sly data-sly-test="${navigationLink.megaMenuPath}">
-                            <i class="icon-Arrow_Right_pw"></i>
-                        </sly>    
-                    </a>
-                </div>
-            </sly>
-            <sly data-sly-list.navigationLink="${data.secondaryNavigationLinks}">
-                <div class="tp-pw-anchor-container-secondary">
-                    <a href="${navigationLink.linkUrl}" target="_blank" class="secondary">
-                        ${navigationLink.linkText}
-                    </a>
-                </div>
-            </sly>
+            <div class="primary-link-container">
+                <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
+                    <div class="tp-pw-anchor-container-primary">
+                        <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} js-click-menu-link justify-content-between primary-link">
+                            <span>${navigationLink.linkText}</span>
+                            <sly data-sly-test="${navigationLink.megaMenuPath}">
+                                <i class="icon-Arrow_Right_pw"></i>
+                            </sly>    
+                        </a>
+                    </div>
+                </sly>
+            </div>
+            <div class="secondary-link-container">
+                <sly data-sly-list.navigationLink="${data.secondaryNavigationLinks}">
+                    <div class="tp-pw-anchor-container-secondary">
+                        <a href="${navigationLink.linkUrl}" target="_blank" class="secondary-link">
+                            ${navigationLink.linkText}
+                        </a>
+                    </div>
+                </sly>
+            </div>
             <sly data-sly-test="${data.marketList.markets.size >= 1}">
                 <sly data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
                     <div class="tp-pw-headerv2-selector-container">
