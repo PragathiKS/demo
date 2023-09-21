@@ -81,7 +81,7 @@
         sling:message="Supplier Code"/>
     <sp.paymentDetails.withholdingtax
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Withholding Taxes (show currency)"/>
+        sling:message="Withholding Taxes"/>
     <sp.requestform.ariba.email.error.label
         cq:lastReplicated="{Date}2023-03-22T06:39:52.772Z"
         cq:lastReplicatedBy="surbhi.gupta"

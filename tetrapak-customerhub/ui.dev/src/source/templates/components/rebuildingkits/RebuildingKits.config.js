@@ -47,7 +47,7 @@ const config = {
       i18nKeyTooltip: 'machineSystemToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: false,
+      showFilterByDefault: true,
       filterType: 'checkbox',
       apiKey: 'machinesystems',
       queryParam: 'machinesystem'
@@ -89,7 +89,7 @@ const config = {
       i18nKeyTooltip: 'rkDescToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: false,
+      showFilterByDefault: true,
       filterType: 'text',
       queryParam: 'rkdesc'
     },
@@ -119,7 +119,7 @@ const config = {
       i18nKeyTooltip: 'implStatusDateToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: false
+      showFilterByDefault: true
     },
     {
       key: 'rkGeneralNumber',
@@ -127,7 +127,7 @@ const config = {
       i18nKeyTooltip: 'generalRkNumberToolTip',
       showColumnDisabled: false,
       showColumnByDefault: true,
-      showFilterByDefault: false,
+      showFilterByDefault: true,
       filterType: 'text',
       queryParam: 'rkgeneralnumber'
     },
@@ -148,7 +148,7 @@ const config = {
       i18nKeyTooltip: 'releaseDateToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: false,
+      showFilterByDefault: true,
       filterType: 'date-range',
       queryParam: ['releasedatestart', 'releasedateend']
     },
@@ -158,7 +158,7 @@ const config = {
       i18nKeyTooltip: 'releaseDateToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: false,
+      showFilterByDefault: true,
       filterType: 'date-range',
       queryParam: ['planneddatestart', 'planneddateend']
     },
@@ -168,7 +168,7 @@ const config = {
       i18nKeyTooltip: 'implDeadlineToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: false,
+      showFilterByDefault: true,
       filterType: 'date-range',
       queryParam: ['impldeadlinestart', 'impldeadlineend']
     },
@@ -200,6 +200,14 @@ const config = {
       i18nKeyTooltip: 'orderToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
+      showFilterByDefault: true
+    },
+    {
+      key: 'equipmentNumber',
+      i18nKey: 'equipmentNumber',
+      i18nKeyTooltip: 'equipmentNumberToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: true,
       showFilterByDefault: false
     }
   ]
