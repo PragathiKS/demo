@@ -42,7 +42,7 @@ body.scrollOff {
 }
 .tp-pw-headerv2-megamenu {
     @media #{$desktop} {
-        margin: 0 auto;
+        margin: $margin-zero auto;
     }
     &.hidden {
         display: none;
@@ -174,7 +174,7 @@ body.scrollOff {
     .tp-pw-headerv2-search-wrapper {
         text-align: right;
         margin-left: $margin-xxxl;
-        margin-right: 0;
+        margin-right: $margin-zero;
         @media #{$mobile} {
             margin-right: $spacing-small;
         }
@@ -384,11 +384,11 @@ body.scrollOff {
                 align-items: center;
                 &.tp-container {
                     @media #{$i-pad} {
-                        padding: 0;
+                        padding: $padding-zero;
                     }
                     @media #{$mobile} {
-                        padding-left: 0;
-                        padding-right: 0;
+                        padding-left: $padding-zero;
+                        padding-right: $padding-zero;
                     }
                 }
             }
@@ -493,8 +493,8 @@ body.scrollOff {
                     @include padding($spacing-small 0 $spacing-small 0);
                     @include hyperlink($font-baseline, $margin-xxxl);
                     white-space: nowrap;
-                    padding-left: 0;
-                    margin-right: 48px;
+                    padding-left: $padding-zero;
+                    margin-right: $margin-xxxl;
 
                     &.active {
                         text-decoration: none;
