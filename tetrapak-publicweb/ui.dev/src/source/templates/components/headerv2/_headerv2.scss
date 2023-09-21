@@ -359,6 +359,15 @@ body.scrollOff {
                 width: 100%;
                 justify-content: space-between;
                 align-items: center;
+                &.tp-container {
+                    @media #{$i-pad} {
+                        padding: 0;
+                    }
+                    @media #{$mobile} {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
             }
 
             .tp-pw-headerv2-logo {
@@ -446,6 +455,11 @@ body.scrollOff {
             align-items: center;
             @media #{$mobile} {
                 display: none;
+            }
+            &.tp-container {
+                @media #{$i-pad} {
+                    @include padding(0 $padding-xxxl);
+                }
             }
 
             .tp-pw-headerv2-main-navigation {
