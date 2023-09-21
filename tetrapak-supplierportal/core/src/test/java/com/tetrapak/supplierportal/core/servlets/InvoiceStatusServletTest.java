@@ -52,7 +52,7 @@ public class InvoiceStatusServletTest {
 		MockitoAnnotations.initMocks(this);
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty(STATUS_CODE, 200);
-		Map<String, List<Integer>> map = new HashMap<>();
+		Map<String, List<String>> map = new HashMap<>();
 		when(service.invoiceStatusCodeMap()).thenReturn(map);
 	}
 

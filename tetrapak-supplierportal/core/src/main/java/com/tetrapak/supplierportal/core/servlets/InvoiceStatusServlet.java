@@ -41,7 +41,7 @@ public class InvoiceStatusServlet extends SlingSafeMethodsServlet {
 	@Override
 	protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
 			throws ServletException, IOException {
-		Map<String, List<Integer>> map = service.invoiceStatusCodeMap();
+		Map<String, List<String>> map = service.invoiceStatusCodeMap();
 		String jsonString = gson.toJson(map);
 		response.setContentType(SupplierPortalConstants.APPLICATION_JSON);
 		response.getWriter().write(jsonString);
