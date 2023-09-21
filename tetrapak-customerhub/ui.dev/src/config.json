@@ -212,6 +212,12 @@
         "name": "datepicker",
         "enforce": true,
         "chunks": "all"
+      },
+      "filteredtable": {
+        "testMultiple": true,
+        "name": "filteredtable",
+        "enforce": true,
+        "chunks": "all"
       }
     },
     "componentGroups": {
@@ -284,6 +290,9 @@
       ],
       "datepicker": [
         "source/templates/components/datepicker/"
+      ],
+      "filteredtable": [
+        "source/templates/components/filteredtable/"
       ]
     },
     "handlebars": {

@@ -1,0 +1,474 @@
+{
+  "meta": {
+    "count": 500,
+    "skip": 0,
+    "total": 8,
+    "version": "1"
+  },
+  "data": [
+    {
+      "id": 8000015238,
+      "equipmentNumber": 8000015238,
+      "equipmentName": "HS Horiz. Flow Wrapping CM/HHS by Meurer",
+      "equipmentNameSub": "HS Horiz. Flow Wrapping CM/HHS by Meurer",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_DE",
+      "equipmentTypeDesc": "CE Distribution Eq",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "78036/00629",
+      "permanentVolumeConversion": false,
+      "position": "0060",
+      "machineSystemCode": "OTHER",
+      "machineSystem": "CE Other",
+      "material": " 688946-0100",
+      "materialDesc": "HS Horiz. Flow Wrapping CM/HHS by Meurer",
+      "manufacturerModelNumber": "HS HORIZ. FLOW WRAPP",
+      "manufacturerSerialNumber": "2/368083/21",
+      "superiorEquipment": "",
+      "superiorEquipmentName": "",
+      "superiorEquipmentSerialNumber": "",
+      "manufacturer": "MEURER",
+      "manufacturerCountry": "DE",
+      "manufacturerCountryName": "Germany",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "E",
+      "equipmentCategoryDesc": "External equipment (3rd Party)",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/8000015238?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8000015239,
+      "equipmentNumber": 8000015239,
+      "equipmentName": "HS Tray and WA Packer CM/HTW by Meurer",
+      "equipmentNameSub": "HS Tray and WA Packer CM/HTW by Meurer",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_DE",
+      "equipmentTypeDesc": "CE Distribution Eq",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "2/368084/21",
+      "permanentVolumeConversion": false,
+      "position": "0050",
+      "machineSystemCode": "OTHER",
+      "machineSystem": "CE Other",
+      "material": " 688933-0100",
+      "materialDesc": "HS Tray and WA Packer CM/HTW by Meurer",
+      "manufacturerModelNumber": "HS TRAY&WA PACKER",
+      "manufacturerSerialNumber": "2/368084/21",
+      "superiorEquipment": "",
+      "superiorEquipmentName": "",
+      "superiorEquipmentSerialNumber": "",
+      "manufacturer": "MEURER",
+      "manufacturerCountry": "DE",
+      "manufacturerCountryName": "Germany",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "E",
+      "equipmentCategoryDesc": "External equipment (3rd Party)",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/8000015239?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9000254086,
+      "equipmentNumber": 9000254086,
+      "equipmentName": "ACHX-080V TBA200S RIGHT",
+      "equipmentNameSub": "ACHX-080V TBA200S RIGHT",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_DE",
+      "equipmentTypeDesc": "CE Distribution Eq",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "78036/00629",
+      "permanentVolumeConversion": false,
+      "position": "0030",
+      "machineSystemCode": "ACHX",
+      "machineSystem": "CE Accumulator Helix",
+      "material": " 663651-0800",
+      "materialDesc": "Accumulator Helix 30 by Hartness",
+      "manufacturerModelNumber": "ACHX",
+      "manufacturerSerialNumber": "",
+      "superiorEquipment": "",
+      "superiorEquipmentName": "",
+      "superiorEquipmentSerialNumber": "",
+      "manufacturer": "HARTNESS",
+      "manufacturerCountry": "US",
+      "manufacturerCountryName": "United States",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "S",
+      "equipmentCategoryDesc": "Customer equipment",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/9000254086?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9000255299,
+      "equipmentNumber": 9000255299,
+      "equipmentName": "TP A3/S-050V TBA200S",
+      "equipmentNameSub": "TP A3/S-050V TBA200S",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_FM",
+      "equipmentTypeDesc": "CE Filling Machines",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "21232/00244",
+      "permanentVolumeConversion": false,
+      "position": "0010",
+      "machineSystemCode": "TP A3/S",
+      "machineSystem": "CE Tetra Pak A3/Speed",
+      "material": " 648576-0500",
+      "materialDesc": "Filling Machine Tetra Pak A3/Speed",
+      "manufacturerModelNumber": "TP A3/S",
+      "manufacturerSerialNumber": "",
+      "superiorEquipment": "",
+      "superiorEquipmentName": "",
+      "superiorEquipmentSerialNumber": "",
+      "manufacturer": "TP PACKAGING SOLUTIONS S.P.A.",
+      "manufacturerCountry": "IT",
+      "manufacturerCountryName": "Italy",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "S",
+      "equipmentCategoryDesc": "Customer equipment",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/9000255299?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9000255877,
+      "equipmentNumber": 9000255877,
+      "equipmentName": "OK CV FM-020V",
+      "equipmentNameSub": "OK CV FM-020V",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_OPTION",
+      "equipmentTypeDesc": "CE Optional Kit",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "22438/00055",
+      "permanentVolumeConversion": false,
+      "position": "0020",
+      "machineSystemCode": "OK CV FM",
+      "machineSystem": "CE Optional Kit CV FM",
+      "material": "3069594-0200",
+      "materialDesc": "OK Printer Domino",
+      "manufacturerModelNumber": "PRINTER DOMINO",
+      "manufacturerSerialNumber": "",
+      "superiorEquipment": "",
+      "superiorEquipmentName": "",
+      "superiorEquipmentSerialNumber": "",
+      "manufacturer": "TP PACKAGING SOLUTIONS S.P.A.",
+      "manufacturerCountry": "IT",
+      "manufacturerCountryName": "Italy",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "S",
+      "equipmentCategoryDesc": "Customer equipment",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/9000255877?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9000255988,
+      "equipmentNumber": 9000255988,
+      "equipmentName": "LC 40-010V",
+      "equipmentNameSub": "LC 40-010V",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_DE",
+      "equipmentTypeDesc": "CE Distribution Eq",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "75981/00499",
+      "permanentVolumeConversion": false,
+      "position": "0070",
+      "machineSystemCode": "LC 40",
+      "machineSystem": "CE Line Controller 40",
+      "material": " 611673-0100",
+      "materialDesc": "Tetra Pak® Line Controller 40",
+      "manufacturerModelNumber": "LC 40",
+      "manufacturerSerialNumber": "",
+      "superiorEquipment": "",
+      "superiorEquipmentName": "",
+      "superiorEquipmentSerialNumber": "",
+      "manufacturer": "TP PACKAGING SOLUTIONS S.P.A.",
+      "manufacturerCountry": "IT",
+      "manufacturerCountryName": "Italy",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "S",
+      "equipmentCategoryDesc": "Customer equipment",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/9000255988?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9000256106,
+      "equipmentNumber": 9000256106,
+      "equipmentName": "SA 30-050V TBA200S STRGHT 4,U,165",
+      "equipmentNameSub": "SA 30-050V TBA200S STRGHT 4,U,165",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_DE",
+      "equipmentTypeDesc": "CE Distribution Eq",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "75979/00509",
+      "permanentVolumeConversion": false,
+      "position": "0040",
+      "machineSystemCode": "SA 30",
+      "machineSystem": "CE Straw Applicator 30",
+      "material": " 663350-0500",
+      "materialDesc": "Straw Applicator 30 by Tetra Pak",
+      "manufacturerModelNumber": "SA 30",
+      "manufacturerSerialNumber": "",
+      "superiorEquipment": "",
+      "superiorEquipmentName": "",
+      "superiorEquipmentSerialNumber": "",
+      "manufacturer": "TP PACKAGING SOLUTIONS S.P.A.",
+      "manufacturerCountry": "IT",
+      "manufacturerCountryName": "Italy",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "S",
+      "equipmentCategoryDesc": "Customer equipment",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/9000256106?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9000256107,
+      "equipmentNumber": 9000256107,
+      "equipmentName": "Bent foil treater",
+      "equipmentNameSub": "SA 30-050V TBA200S STRGHT 4,U,165",
+      "countryCode": "DE",
+      "countryName": "Germany",
+      "customer": "Almil AG - POLLING - 91318",
+      "customerNumber": "91318",
+      "site": "ALMIL AG  POL",
+      "siteDesc": "Almil AG, Polling",
+      "customerName": "Almil AG",
+      "location": "POLLING",
+      "lineCode": "DEC-ALMIL AG  POL-LN H3",
+      "lineName": "Polling, Line H3, TPA3/S TBA200S",
+      "equipmentStatus": "STCU",
+      "equipmentStatusDesc": "Stopped at Customer",
+      "equipmentType": "CE_OPTION",
+      "equipmentTypeDesc": "CE Optional Kit",
+      "businessType": "Packaging",
+      "functionalLocation": "DEC-ALMIL AG  POL-LN H3",
+      "functionalLocationDesc": "Polling, Line H3, TPA3/S TBA200S",
+      "serialNumber": "78087/00096",
+      "permanentVolumeConversion": false,
+      "position": "0041",
+      "machineSystemCode": "BFT",
+      "machineSystem": "CE Bended Foil Treater",
+      "material": "2643050-0500",
+      "materialDesc": "Bent foil treater",
+      "manufacturerModelNumber": "BFT",
+      "manufacturerSerialNumber": "",
+      "superiorEquipment": "9000256106",
+      "superiorEquipmentName": "SA 30-050V TBA200S STRGHT 4,U,165",
+      "superiorEquipmentSerialNumber": "75979/00509",
+      "manufacturer": "TP PACKAGING SOLUTIONS AB",
+      "manufacturerCountry": "SE",
+      "manufacturerCountryName": "Sweden",
+      "constructionYear": "2021",
+      "customerWarrantyStartDate": "2021-07-19",
+      "customerWarrantyEndDate": "2022-07-18",
+      "equipmentCategory": "S",
+      "equipmentCategoryDesc": "Customer equipment",
+      "eofsConfirmationDate": "",
+      "eofsValidFromDate": "",
+      "_rel": [
+        {
+          "rel": "self",
+          "href": [
+            {
+              "uri": "/installedbase/equipments/9000256107?version=1",
+              "verbs": [
+                "GET"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

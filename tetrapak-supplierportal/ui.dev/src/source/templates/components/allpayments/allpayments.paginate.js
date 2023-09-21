@@ -40,12 +40,10 @@ export const _paginate = (totalItems, currentPage, pageSize, maxPages) => {
   const endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
 
   // create an array of pages
-  const allPages = Array.from(Array(endPage + 1 - startPage).keys()).map(
-    (i) => startPage + i
-  );
+  const allPages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
 
   const pagesHbsArr = [];
-  allPages.forEach((page) => {
+  allPages.forEach(page => {
     const pageObj = {
       isPage: true,
       isSelected: page === currentPage,

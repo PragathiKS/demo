@@ -53,6 +53,7 @@ describe('InactivityDialog', function () {
     done();
   });
   it('should logout session on click of logout button', function (done) {
+    window.open = function () { return window; }
     $('.js-inactivity-modal__logout').trigger('click');
     expect(this.logoutSpy.called).to.be.true;
     done();

@@ -174,3 +174,63 @@ export const loader = (target, appendMode) => {
     return new Loader(loading);
   }
 };
+
+/**
+ * Returns max safe integer
+ */
+export const getMaxSafeInteger = () => (Number.MAX_SAFE_INTEGER || 9007199254740991);
+
+/**
+ * Checks if current environment is localhost
+ */
+export const isLocalhost = () => ($('#isDummyLayout').val() === 'true');
+
+/**
+ * Checks if current page is iframe
+ */
+export const isCurrentPageIframe = () => ((window.location !== window.parent.location) && (window.frameElement.getAttribute('id') !== 'ContentFrame'));
+
+/**
+ * Replaces placeholders in query string with values
+ * @param {string} queryString Query string
+ * @param {any[]|object} replaceMap Replacement list or map
+ */
+export const resolveQuery = (queryString, replaceMap) => {
+  let keyRegex;
+
+  // Replace the replaceable data
+  if (Array.isArray(replaceMap)) {
+    replaceMap.forEach(function (value, index) {
+      keyRegex = new RegExp(`\\{${index}\\}`, 'g');
+      queryString = queryString.replace(keyRegex, value);
+    });
+  } else if (typeof replaceMap === 'object' && replaceMap !== null) {
+    Object.keys(replaceMap).forEach(function (key) {
+      keyRegex = new RegExp(`\\{${key}\\}`, 'g');
+      queryString = queryString.replace(keyRegex, replaceMap[key]);
+    });
+  }
+  return queryString;
+};
+
+/**
+ * Returns the value of i18n key
+ * @param {string} key I18n key
+ * @param {string[]} replaceList Variable replacement list
+ * @param {object} hash Helper hash object
+ */
+export const getI18n = (key, replaceList, hash) => {
+  let variables = [];
+  if (!Array.isArray(replaceList)) {
+    hash = replaceList;
+    replaceList = [];
+  }
+  if (hash && typeof hash.replaceKeys === 'string') {
+    variables = hash.replaceKeys.split(',');
+    key = resolveQuery(key, variables);
+  }
+  if (window.Granite && window.Granite.I18n) {
+    return window.Granite.I18n.get(key, replaceList);
+  }
+  return key;
+};

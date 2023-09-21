@@ -21,7 +21,7 @@
            </a>
         </sly>
 
-        <sly data-sly-test.columnNumbers="${data.numberOfColumns}"/>
+        <sly data-sly-test.columnNumbers="${data.numberOfColumns ? data.numberOfColumns : '3'}"/>
         <sly data-sly-test.teaserSize="${data.teaserList.size}"/>
         <sly data-sly-test.showCarousal="${(data.enableCarousel && teaserSize > 3) ? 'true':'false'}"/>
         <div data-paren-link-title="${data.heading}" class="${showCarousal == 'true' ? 'owl-carousel' : ''} tp-teaser__details row no-gutters" data-sly-list.child="${data.teaserList}" auto_locator="carouselTeaser" >

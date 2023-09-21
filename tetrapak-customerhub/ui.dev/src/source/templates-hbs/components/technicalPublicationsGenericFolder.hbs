@@ -3,6 +3,7 @@
         <thead class="tp-tech-pub__thead-primary">
         <tr>
             {{#if isCountriesStep}}
+                <th></th>
                 <th>{{i18n key=this.i18nKeys.country}}</th>
             {{/if}}
             {{#if isCountryStep}}
@@ -32,8 +33,20 @@
             {{#if isFolderDetailsStep}}
                 <th class="tp-tech-pub__table-icon"></th>
                 <th>{{i18n key=this.i18nKeys.documentNumber}}</th>
+                {{#if renderDescription}}
+                    <th>{{i18n key=this.i18nKeys.description}}</th>
+                {{/if}}
                 <th>{{i18n key=this.i18nKeys.documentType}}</th>
+                {{#if renderIssueDate}}
+                    <th>{{i18n key=this.i18nKeys.issueDate}}</th>
+                {{/if}}
                 <th>{{i18n key=this.i18nKeys.serialNumber}}</th>
+                {{#if renderRKNumber}}
+                    <th>{{i18n key=this.i18nKeys.rebuildingKitNumber}}</th>
+                {{/if}}
+                {{#if renderRKName}}
+                    <th>{{i18n key=this.i18nKeys.rebuildingKitName}}</th>
+                {{/if}}
             {{/if}}
            
         </tr>
@@ -43,6 +56,11 @@
             {{#each folderData}}
             <tr>
                 {{#if ../isCountriesStep}}
+                    <td class="tp-tech-pub__table-icon">
+                        <span>
+                            <i class="icon icon-Folder"></i>
+                        </span>
+                    </td>
                      <td>
                         <button type="button"
                                 class="tp-tech-pub__folder-btn js-tech-pub__folder-btn"
@@ -137,8 +155,20 @@
                     <td>
                         <a href="{{this.location}}" class="tpatom-link tpatom-link--transparent" target="_blank">{{this.docNo}}</a>
                     </td>
+                    {{#if ../renderDescription}}
+                        <td>{{this.name}}</td>
+                    {{/if}}
                     <td>{{this.typeCode}}</td>
+                    {{#if ../renderIssueDate}}
+                        <td>{{this.issueDate}}</td>
+                    {{/if}}
                     <td>{{../serialNumber}}</td>
+                    {{#if ../renderRKNumber}}
+                        <td>{{this.rkNumber}}</td>
+                    {{/if}}
+                    {{#if ../renderRKName}}
+                        <td>{{this.rkName}}</td>
+                    {{/if}}
                 {{/if}}
             </tr>
         {{/each}}

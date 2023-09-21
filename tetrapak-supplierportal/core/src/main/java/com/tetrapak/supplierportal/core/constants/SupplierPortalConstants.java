@@ -187,6 +187,42 @@ public final class SupplierPortalConstants {
 
     /** The Constant DOMAINSCRIPT. */
     public static final String DOMAINSCRIPT = "domainScript";
+    
+    /** The Constant STATUSCODE. */
+    public static final String STATUS_CODE = "status_code";
+
+    public static final String ACCEPT = "Accept";
+    
+    public static final String AUTHORIZATION = "Authorization";
+    
+    public static final String APPLICATION_JSON = "application/json";
+    
+    public static final String GRANT_TYPE = "grant_type";
+    
+    public static final String TOKEN = "token";
+    
+    public static final String BASIC  = "Basic ";
+    
+    public static final String GRANT_TYPE_VALUE  = "urn:ietf:params:oauth:grant-type:token-exchange";
+    
+    public static final String UTF_8  = "UTF-8";
+    
+    public static final String CONTENT_TYPE = "Content-Type";
+    
+    public static final String APPLICATION_URL_ENCODED = "application/x-www-form-urlencoded";
+
+    public static final String AUTH_TOKEN = "auth-token";
+    
+    /** The Constant EXCEL_DOWNLOAD_EXTENSION. */
+    public static final String EXCEL_DOWNLOAD_EXTENSION = ".download.excel";
+    
+    /** The Constant PATH_SEPARATOR. */
+    public static final String PATH_SEPARATOR = "/";
+    
+    public static final String FILTERS_MAPPING = "sp-filters";
+    
+    public static final String INVOICE_MAPPING = "sp-invoices";
+
 
     /**
      * Instantiates a new customer hub constants.

@@ -1,0 +1,5069 @@
+{
+    "meta": {
+      "count": 254,
+      "total": 254,
+      "version": "1"
+    },
+    "data": [
+      {
+        "countryCode": "GS",
+        "countryName": "Sth Sandwich Is",
+        "language": "EN",
+        "nationalityName": "",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ZR",
+        "countryName": "Democ.Rep.Congo",
+        "language": "EN",
+        "nationalityName": "Congolese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ZR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NE",
+        "countryName": "Niger",
+        "language": "EN",
+        "nationalityName": "Nigerois",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NP",
+        "countryName": "Nepal",
+        "language": "EN",
+        "nationalityName": "Nepalese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NR",
+        "countryName": "Nauru",
+        "language": "EN",
+        "nationalityName": "Nauruian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "OM",
+        "countryName": "Oman",
+        "language": "EN",
+        "nationalityName": "Omani",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/OM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PK",
+        "countryName": "Pakistan",
+        "language": "EN",
+        "nationalityName": "Pakistani",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AT",
+        "countryName": "Austria",
+        "language": "EN",
+        "nationalityName": "Austrian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AU",
+        "countryName": "Australia",
+        "language": "EN",
+        "nationalityName": "Australian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CH",
+        "countryName": "Switzerland",
+        "language": "EN",
+        "nationalityName": "Swiss",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CZ",
+        "countryName": "Czech Republic",
+        "language": "EN",
+        "nationalityName": "Czech",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "language": "EN",
+        "nationalityName": "German",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/DE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "DK",
+        "countryName": "Denmark",
+        "language": "EN",
+        "nationalityName": "Danish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/DK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ES",
+        "countryName": "Spain",
+        "language": "EN",
+        "nationalityName": "espagnol",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ES?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "FI",
+        "countryName": "Finland",
+        "language": "EN",
+        "nationalityName": "Finnish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/FI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "FR",
+        "countryName": "France",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/FR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GB?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IT",
+        "countryName": "Italy",
+        "language": "EN",
+        "nationalityName": "Italian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KN",
+        "countryName": "St Kitts&Nevis",
+        "language": "EN",
+        "nationalityName": "From St.Kitts",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KW",
+        "countryName": "Kuwait",
+        "language": "EN",
+        "nationalityName": "Kuwaiti",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MY",
+        "countryName": "Malaysia",
+        "language": "EN",
+        "nationalityName": "Malaysian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MZ",
+        "countryName": "Mozambique",
+        "language": "EN",
+        "nationalityName": "Mozambican",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NA",
+        "countryName": "Namibia",
+        "language": "EN",
+        "nationalityName": "Namibian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NC",
+        "countryName": "New Caledonia",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NF",
+        "countryName": "Norfolk Island",
+        "language": "EN",
+        "nationalityName": "Norfolk Island",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NG",
+        "countryName": "Nigeria",
+        "language": "EN",
+        "nationalityName": "Nigerian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NL",
+        "countryName": "Netherlands",
+        "language": "EN",
+        "nationalityName": "Dutch",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NO",
+        "countryName": "Norway",
+        "language": "EN",
+        "nationalityName": "Norwegian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NU",
+        "countryName": "Niue",
+        "language": "EN",
+        "nationalityName": "Niue Islands",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NZ",
+        "countryName": "New Zealand",
+        "language": "EN",
+        "nationalityName": "New Zealand",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PG",
+        "countryName": "Pap. New Guinea",
+        "language": "EN",
+        "nationalityName": "Pap.New Guinea",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PH",
+        "countryName": "Philippines",
+        "language": "EN",
+        "nationalityName": "Philippine",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PT",
+        "countryName": "Portugal",
+        "language": "EN",
+        "nationalityName": "Portuguese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SE",
+        "countryName": "Sweden",
+        "language": "EN",
+        "nationalityName": "Swedish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "STL",
+        "countryName": "stateless",
+        "language": "EN",
+        "nationalityName": "stateless",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/STL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IM",
+        "countryName": "Isle of Man",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "VU",
+        "countryName": "Vanuatu",
+        "language": "EN",
+        "nationalityName": "Vanuatese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/VU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "XI",
+        "countryName": "Palestine",
+        "language": "EN",
+        "nationalityName": "Palestinian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/XI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "YT",
+        "countryName": "Mayotte",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/YT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AI",
+        "countryName": "Anguilla",
+        "language": "EN",
+        "nationalityName": "Anguilla",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AO",
+        "countryName": "Angola",
+        "language": "EN",
+        "nationalityName": "Angolan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AW",
+        "countryName": "Aruba",
+        "language": "EN",
+        "nationalityName": "Arubanic",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BB",
+        "countryName": "Barbados",
+        "language": "EN",
+        "nationalityName": "Barbadan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BB?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BI",
+        "countryName": "Burundi",
+        "language": "EN",
+        "nationalityName": "Burundi",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BJ",
+        "countryName": "Benin",
+        "language": "EN",
+        "nationalityName": "Beninese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BJ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BW",
+        "countryName": "Botswana",
+        "language": "EN",
+        "nationalityName": "Botswanan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BZ",
+        "countryName": "Belize",
+        "language": "EN",
+        "nationalityName": "Belizean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CC",
+        "countryName": "Cocos Islands",
+        "language": "EN",
+        "nationalityName": "Australian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CD",
+        "countryName": "Democ.Rep.Congo",
+        "language": "EN",
+        "nationalityName": "Congolese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CD?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CG",
+        "countryName": "Congo",
+        "language": "EN",
+        "nationalityName": "Congolese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GA",
+        "countryName": "Gabon",
+        "language": "EN",
+        "nationalityName": "Gabonese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GH",
+        "countryName": "Ghana",
+        "language": "EN",
+        "nationalityName": "Ghanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GI",
+        "countryName": "Gibraltar",
+        "language": "EN",
+        "nationalityName": "Gibraltar",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GT",
+        "countryName": "Guatemala",
+        "language": "EN",
+        "nationalityName": "Guatemalan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GU",
+        "countryName": "Guam",
+        "language": "EN",
+        "nationalityName": "American",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GY",
+        "countryName": "Guyana",
+        "language": "EN",
+        "nationalityName": "Guyanese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "HM",
+        "countryName": "Heard/McDon.Isl",
+        "language": "EN",
+        "nationalityName": "Heard/McDon.Isl",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/HM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "HN",
+        "countryName": "Honduras",
+        "language": "EN",
+        "nationalityName": "Honduran",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/HN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "HT",
+        "countryName": "Haiti",
+        "language": "EN",
+        "nationalityName": "Haitian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/HT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IR",
+        "countryName": "Iran",
+        "language": "EN",
+        "nationalityName": "Iranian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KI",
+        "countryName": "Kiribati",
+        "language": "EN",
+        "nationalityName": "Kiribati",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LI",
+        "countryName": "Liechtenstein",
+        "language": "EN",
+        "nationalityName": "Liechtenstein",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LK",
+        "countryName": "Sri Lanka",
+        "language": "EN",
+        "nationalityName": "Sri Lankan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LS",
+        "countryName": "Lesotho",
+        "language": "EN",
+        "nationalityName": "Lesothan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ML",
+        "countryName": "Mali",
+        "language": "EN",
+        "nationalityName": "Malian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ML?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MM",
+        "countryName": "Myanmar",
+        "language": "EN",
+        "nationalityName": "Myanmar",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MS",
+        "countryName": "Montserrat",
+        "language": "EN",
+        "nationalityName": "Montserrat",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MT",
+        "countryName": "Malta",
+        "language": "EN",
+        "nationalityName": "Maltese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MU",
+        "countryName": "Mauritius",
+        "language": "EN",
+        "nationalityName": "Mauritian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MW",
+        "countryName": "Malawi",
+        "language": "EN",
+        "nationalityName": "Malawian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PA",
+        "countryName": "Panama",
+        "language": "EN",
+        "nationalityName": "Panamanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PE",
+        "countryName": "Peru",
+        "language": "EN",
+        "nationalityName": "Peruvian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PS",
+        "countryName": "Palestine",
+        "language": "EN",
+        "nationalityName": "Palestinian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PW",
+        "countryName": "Palau",
+        "language": "EN",
+        "nationalityName": "Palau",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SD",
+        "countryName": "Sudan",
+        "language": "EN",
+        "nationalityName": "Sudanese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SD?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SL",
+        "countryName": "Sierra Leone",
+        "language": "EN",
+        "nationalityName": "Sierra Leonean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SM",
+        "countryName": "San Marino",
+        "language": "EN",
+        "nationalityName": "San Marinese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SN",
+        "countryName": "Senegal",
+        "language": "EN",
+        "nationalityName": "Senegalese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SO",
+        "countryName": "Somalia",
+        "language": "EN",
+        "nationalityName": "Somalian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SV",
+        "countryName": "El Salvador",
+        "language": "EN",
+        "nationalityName": "Salvdorean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SV?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TG",
+        "countryName": "Togo",
+        "language": "EN",
+        "nationalityName": "Togolese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TO",
+        "countryName": "Tonga",
+        "language": "EN",
+        "nationalityName": "Tongan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TV",
+        "countryName": "Tuvalu",
+        "language": "EN",
+        "nationalityName": "Tuvaluese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TV?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "UG",
+        "countryName": "Uganda",
+        "language": "EN",
+        "nationalityName": "Ugandan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/UG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "US",
+        "countryName": "United States",
+        "language": "EN",
+        "nationalityName": "American",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/US?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "UY",
+        "countryName": "Uruguay",
+        "language": "EN",
+        "nationalityName": "Uruguayan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/UY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "UZ",
+        "countryName": "Uzbekistan",
+        "language": "EN",
+        "nationalityName": "Uzbekistani",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/UZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "VA",
+        "countryName": "Holy See",
+        "language": "EN",
+        "nationalityName": "Vatican City",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/VA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "VC",
+        "countryName": "St. Vincent&Gr.",
+        "language": "EN",
+        "nationalityName": "Vincentian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/VC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "VE",
+        "countryName": "Venezuela",
+        "language": "EN",
+        "nationalityName": "Venezuelan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/VE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "VG",
+        "countryName": "Brit.Virgin Is.",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/VG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "VI",
+        "countryName": "US Virgin Is.",
+        "language": "EN",
+        "nationalityName": "American",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/VI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "VN",
+        "countryName": "Viet Nam",
+        "language": "EN",
+        "nationalityName": "Vietnamese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/VN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "WF",
+        "countryName": "Wallis&Futuna",
+        "language": "EN",
+        "nationalityName": "Wallis,Futuna",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/WF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "WS",
+        "countryName": "Samoa",
+        "language": "EN",
+        "nationalityName": "Samoan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/WS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "XX",
+        "countryName": "Northern Cyprus",
+        "language": "EN",
+        "nationalityName": "Turkish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/XX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "YE",
+        "countryName": "Yemen",
+        "language": "EN",
+        "nationalityName": "Yemeni",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/YE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "YU",
+        "countryName": "Yugoslavia",
+        "language": "EN",
+        "nationalityName": "Serbian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/YU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ZA",
+        "countryName": "South Africa",
+        "language": "EN",
+        "nationalityName": "South African",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ZA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ZM",
+        "countryName": "Zambia",
+        "language": "EN",
+        "nationalityName": "Zambian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ZM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ZW",
+        "countryName": "Zimbabwe",
+        "language": "EN",
+        "nationalityName": "Zimbabwean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ZW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AD",
+        "countryName": "Andorra",
+        "language": "EN",
+        "nationalityName": "Andorran",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AD?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AE",
+        "countryName": "Utd.Arab Emir.",
+        "language": "EN",
+        "nationalityName": "Unit.Arab Emir.",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AF",
+        "countryName": "Afghanistan",
+        "language": "EN",
+        "nationalityName": "afghani",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AG",
+        "countryName": "Antigua&Barbuda",
+        "language": "EN",
+        "nationalityName": "Antiguan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AL",
+        "countryName": "Albania",
+        "language": "EN",
+        "nationalityName": "Albanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AM",
+        "countryName": "Armenia",
+        "language": "EN",
+        "nationalityName": "Armenian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AN",
+        "countryName": "Dutch Antilles",
+        "language": "EN",
+        "nationalityName": "Dutch",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AQ",
+        "countryName": "Antarctica",
+        "language": "EN",
+        "nationalityName": "Antarctica",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AQ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AR",
+        "countryName": "Argentina",
+        "language": "EN",
+        "nationalityName": "Argentinian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AS",
+        "countryName": "American Samoa",
+        "language": "EN",
+        "nationalityName": "Samoan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "AZ",
+        "countryName": "Azerbaijan",
+        "language": "EN",
+        "nationalityName": "azerbaijani",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/AZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BA",
+        "countryName": "Bosnia&Herz.",
+        "language": "EN",
+        "nationalityName": "Bosnia-Herz.",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BD",
+        "countryName": "Bangladesh",
+        "language": "EN",
+        "nationalityName": "Bangladesh",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BD?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BE",
+        "countryName": "Belgium",
+        "language": "EN",
+        "nationalityName": "Belgian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BF",
+        "countryName": "Burkina Faso",
+        "language": "EN",
+        "nationalityName": "Burkina-Faso",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BG",
+        "countryName": "Bulgaria",
+        "language": "EN",
+        "nationalityName": "Bulgarian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BM",
+        "countryName": "Bermuda",
+        "language": "EN",
+        "nationalityName": "Bermudan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BN",
+        "countryName": "Brunei Darussa.",
+        "language": "EN",
+        "nationalityName": "Brunei",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BO",
+        "countryName": "Bolivia",
+        "language": "EN",
+        "nationalityName": "Bolivian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BS",
+        "countryName": "Bahamas",
+        "language": "EN",
+        "nationalityName": "Bahamas",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BT",
+        "countryName": "Bhutan",
+        "language": "EN",
+        "nationalityName": "Bhutanese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BV",
+        "countryName": "Bouvet Island",
+        "language": "EN",
+        "nationalityName": "Bouvet Island",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BV?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BY",
+        "countryName": "Belarus",
+        "language": "EN",
+        "nationalityName": "White Russia",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CA",
+        "countryName": "Canada",
+        "language": "EN",
+        "nationalityName": "Canadian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CF",
+        "countryName": "Central Afr.Rep",
+        "language": "EN",
+        "nationalityName": "Central African",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CI",
+        "countryName": "Ivory Coast",
+        "language": "EN",
+        "nationalityName": "Ivory Coast",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CK",
+        "countryName": "Cook Islands",
+        "language": "EN",
+        "nationalityName": "Cook Islands",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CL",
+        "countryName": "Chile",
+        "language": "EN",
+        "nationalityName": "Chilean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CM",
+        "countryName": "Cameroon",
+        "language": "EN",
+        "nationalityName": "Cameroonian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CN",
+        "countryName": "China",
+        "language": "EN",
+        "nationalityName": "Chinese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CO",
+        "countryName": "Colombia",
+        "language": "EN",
+        "nationalityName": "Columbian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CR",
+        "countryName": "Costa Rica",
+        "language": "EN",
+        "nationalityName": "Costa Rican",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CU",
+        "countryName": "Cuba",
+        "language": "EN",
+        "nationalityName": "Cuban",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CV",
+        "countryName": "Cape Verde",
+        "language": "EN",
+        "nationalityName": "Cape Verdian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CV?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CX",
+        "countryName": "Christmas Islnd",
+        "language": "EN",
+        "nationalityName": "Australian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CY",
+        "countryName": "Cyprus",
+        "language": "EN",
+        "nationalityName": "Cypriot",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "DJ",
+        "countryName": "Djibouti",
+        "language": "EN",
+        "nationalityName": "Djiboutian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/DJ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "DM",
+        "countryName": "Dominica",
+        "language": "EN",
+        "nationalityName": "Dominican",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/DM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "DO",
+        "countryName": "Dominican Rep.",
+        "language": "EN",
+        "nationalityName": "Dominican",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/DO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "DZ",
+        "countryName": "Algeria",
+        "language": "EN",
+        "nationalityName": "Algerian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/DZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "EC",
+        "countryName": "Ecuador",
+        "language": "EN",
+        "nationalityName": "Ecuadorian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/EC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "EE",
+        "countryName": "Estonia",
+        "language": "EN",
+        "nationalityName": "Estonian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/EE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "EG",
+        "countryName": "Egypt",
+        "language": "EN",
+        "nationalityName": "Egyptian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/EG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "EH",
+        "countryName": "Western Sahara",
+        "language": "EN",
+        "nationalityName": "Western Sahara",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/EH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ER",
+        "countryName": "Eritrea",
+        "language": "EN",
+        "nationalityName": "Eritrean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ER?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ET",
+        "countryName": "Ethiopia",
+        "language": "EN",
+        "nationalityName": "Ethiopian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ET?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "FJ",
+        "countryName": "Fiji",
+        "language": "EN",
+        "nationalityName": "Fijian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/FJ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "FK",
+        "countryName": "Falkland Islnds",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/FK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "FM",
+        "countryName": "Micronesia",
+        "language": "EN",
+        "nationalityName": "Micronesian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/FM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "FO",
+        "countryName": "Faroe Islands",
+        "language": "EN",
+        "nationalityName": "Danish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/FO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GD",
+        "countryName": "Grenada",
+        "language": "EN",
+        "nationalityName": "Grenadian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GD?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GE",
+        "countryName": "Georgia",
+        "language": "EN",
+        "nationalityName": "Georgian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GF",
+        "countryName": "French Guiana",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GL",
+        "countryName": "Greenland",
+        "language": "EN",
+        "nationalityName": "Danish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GM",
+        "countryName": "Gambia",
+        "language": "EN",
+        "nationalityName": "Gambian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GN",
+        "countryName": "Guinea",
+        "language": "EN",
+        "nationalityName": "Guinean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GP",
+        "countryName": "Guadeloupe",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GQ",
+        "countryName": "Equatorial Guin",
+        "language": "EN",
+        "nationalityName": "Equatorial Guin",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GQ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GR",
+        "countryName": "Greece",
+        "language": "EN",
+        "nationalityName": "Greek",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GW",
+        "countryName": "Guinea-Bissau",
+        "language": "EN",
+        "nationalityName": "Guinea-Bissau",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "HK",
+        "countryName": "Hong Kong",
+        "language": "EN",
+        "nationalityName": "Hong Kong",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/HK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "HR",
+        "countryName": "Croatia",
+        "language": "EN",
+        "nationalityName": "Croatian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/HR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ID",
+        "countryName": "Indonesia",
+        "language": "EN",
+        "nationalityName": "Indonesian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ID?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IE",
+        "countryName": "Ireland",
+        "language": "EN",
+        "nationalityName": "Irish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IL",
+        "countryName": "Israel",
+        "language": "EN",
+        "nationalityName": "Israeli",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IN",
+        "countryName": "India",
+        "language": "EN",
+        "nationalityName": "Indian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IO",
+        "countryName": "Brit.Ind.Oc.Ter",
+        "language": "EN",
+        "nationalityName": "Brit.Ind.Oc.Ter",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IQ",
+        "countryName": "Iraq",
+        "language": "EN",
+        "nationalityName": "Iraqi",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IQ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "IS",
+        "countryName": "Iceland",
+        "language": "EN",
+        "nationalityName": "Icelandic",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/IS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "JM",
+        "countryName": "Jamaica",
+        "language": "EN",
+        "nationalityName": "Jamaican",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/JM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "JO",
+        "countryName": "Jordan",
+        "language": "EN",
+        "nationalityName": "Jordanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/JO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "JP",
+        "countryName": "Japan",
+        "language": "EN",
+        "nationalityName": "Japanese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/JP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KE",
+        "countryName": "Kenya",
+        "language": "EN",
+        "nationalityName": "Kenyan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KG",
+        "countryName": "Kyrgyzstan",
+        "language": "EN",
+        "nationalityName": "Kyrgyzstani",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KH",
+        "countryName": "Cambodia",
+        "language": "EN",
+        "nationalityName": "Cambodian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KM",
+        "countryName": "Comoros",
+        "language": "EN",
+        "nationalityName": "Comoran",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KP",
+        "countryName": "North Korea",
+        "language": "EN",
+        "nationalityName": "Korean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KR",
+        "countryName": "Korea, Rep. of",
+        "language": "EN",
+        "nationalityName": "Korean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KY",
+        "countryName": "Cayman Islands",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "KZ",
+        "countryName": "Kazakhstan",
+        "language": "EN",
+        "nationalityName": "Kazakh",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/KZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LA",
+        "countryName": "Lao PDR",
+        "language": "EN",
+        "nationalityName": "Laotian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LB",
+        "countryName": "Lebanon",
+        "language": "EN",
+        "nationalityName": "Lebanese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LB?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LC",
+        "countryName": "Saint Lucia",
+        "language": "EN",
+        "nationalityName": "Lucian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LR",
+        "countryName": "Liberia",
+        "language": "EN",
+        "nationalityName": "Liberian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LT",
+        "countryName": "Lithuania",
+        "language": "EN",
+        "nationalityName": "Lithuanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LU",
+        "countryName": "Luxembourg",
+        "language": "EN",
+        "nationalityName": "Luxembourgian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LV",
+        "countryName": "Latvia",
+        "language": "EN",
+        "nationalityName": "Latvian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LV?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "LY",
+        "countryName": "Libya",
+        "language": "EN",
+        "nationalityName": "Libyan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/LY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MA",
+        "countryName": "Morocco",
+        "language": "EN",
+        "nationalityName": "Moroccan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MC",
+        "countryName": "Monaco",
+        "language": "EN",
+        "nationalityName": "Monegasque",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MD",
+        "countryName": "Moldova",
+        "language": "EN",
+        "nationalityName": "Moldavian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MD?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MG",
+        "countryName": "Madagascar",
+        "language": "EN",
+        "nationalityName": "Madagascan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MH",
+        "countryName": "Marshall Islnds",
+        "language": "EN",
+        "nationalityName": "Marshall Islnds",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MN",
+        "countryName": "Mongolia",
+        "language": "EN",
+        "nationalityName": "Mongolian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MO",
+        "countryName": "Macau",
+        "language": "EN",
+        "nationalityName": "Portuguese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MP",
+        "countryName": "N.Mariana Islnd",
+        "language": "EN",
+        "nationalityName": "Marianian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MQ",
+        "countryName": "Martinique",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MQ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MR",
+        "countryName": "Mauritania",
+        "language": "EN",
+        "nationalityName": "Mauretanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MV",
+        "countryName": "Maldives",
+        "language": "EN",
+        "nationalityName": "Maldivian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MV?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MX",
+        "countryName": "Mexico",
+        "language": "EN",
+        "nationalityName": "Mexican",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MX?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "NI",
+        "countryName": "Nicaragua",
+        "language": "EN",
+        "nationalityName": "Nicaraguan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/NI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PF",
+        "countryName": "Frenc.Polynesia",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PF?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PL",
+        "countryName": "Poland",
+        "language": "EN",
+        "nationalityName": "Polish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PL?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PM",
+        "countryName": "St.Pier&Miquel.",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PN",
+        "countryName": "Pitcairn Islnds",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PR",
+        "countryName": "Puerto Rico",
+        "language": "EN",
+        "nationalityName": "American",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "PY",
+        "countryName": "Paraguay",
+        "language": "EN",
+        "nationalityName": "Paraguayan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/PY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "QA",
+        "countryName": "Qatar",
+        "language": "EN",
+        "nationalityName": "Qatar",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/QA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "RE",
+        "countryName": "Réunion",
+        "language": "EN",
+        "nationalityName": "French",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/RE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "RO",
+        "countryName": "Romania",
+        "language": "EN",
+        "nationalityName": "Romanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/RO?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "RU",
+        "countryName": "Russian Fed.",
+        "language": "EN",
+        "nationalityName": "Russian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/RU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "RW",
+        "countryName": "Rwanda",
+        "language": "EN",
+        "nationalityName": "Rwandan",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/RW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SA",
+        "countryName": "Saudi Arabia",
+        "language": "EN",
+        "nationalityName": "Saudi Arabian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SB",
+        "countryName": "Solomon Islands",
+        "language": "EN",
+        "nationalityName": "Solomonese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SB?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SC",
+        "countryName": "Seychelles",
+        "language": "EN",
+        "nationalityName": "Seychellian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SG",
+        "countryName": "Singapore",
+        "language": "EN",
+        "nationalityName": "Singaporean",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SH",
+        "countryName": "Saint Helena",
+        "language": "EN",
+        "nationalityName": "St. Helena",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SI",
+        "countryName": "Slovenia",
+        "language": "EN",
+        "nationalityName": "Slovenian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SI?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SJ",
+        "countryName": "Svalbard&J May.",
+        "language": "EN",
+        "nationalityName": "Norwegian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SJ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SK",
+        "countryName": "Slovakia",
+        "language": "EN",
+        "nationalityName": "Slovakian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SR",
+        "countryName": "Suriname",
+        "language": "EN",
+        "nationalityName": "Surinamese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SS",
+        "countryName": "South Sudan",
+        "language": "EN",
+        "nationalityName": "South Sudanese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ST",
+        "countryName": "S.Tome&Principe",
+        "language": "EN",
+        "nationalityName": "Santomeic",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ST?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SY",
+        "countryName": "Syria Arab Rep.",
+        "language": "EN",
+        "nationalityName": "Syrian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SY?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "SZ",
+        "countryName": "Swaziland",
+        "language": "EN",
+        "nationalityName": "Swazi",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/SZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TC",
+        "countryName": "Turks&Caicos Is",
+        "language": "EN",
+        "nationalityName": "Turksh Caicosin",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TD",
+        "countryName": "Chad",
+        "language": "EN",
+        "nationalityName": "Chadian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TD?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TH",
+        "countryName": "Thailand",
+        "language": "EN",
+        "nationalityName": "Thai",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TJ",
+        "countryName": "Tajikistan",
+        "language": "EN",
+        "nationalityName": "Tajikstani",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TJ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TK",
+        "countryName": "Tokelau",
+        "language": "EN",
+        "nationalityName": "Tokelau Islands",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TM",
+        "countryName": "Turkmenistan",
+        "language": "EN",
+        "nationalityName": "Turkmenian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TN",
+        "countryName": "Tunisia",
+        "language": "EN",
+        "nationalityName": "Tunisian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TN?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TP",
+        "countryName": "East Timor",
+        "language": "EN",
+        "nationalityName": "East Timor",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TP?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TR",
+        "countryName": "Turkey",
+        "language": "EN",
+        "nationalityName": "Turkish",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TT",
+        "countryName": "Trinidad&Tobago",
+        "language": "EN",
+        "nationalityName": "f. Trinidad & T",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TT?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TW",
+        "countryName": "Taiwan",
+        "language": "EN",
+        "nationalityName": "Taiwanese",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TW?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "TZ",
+        "countryName": "Tanzania",
+        "language": "EN",
+        "nationalityName": "Tanzanian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/TZ?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "UA",
+        "countryName": "Ukraine",
+        "language": "EN",
+        "nationalityName": "Ukrainian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/UA?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "UM",
+        "countryName": "Minor Outl.Isl.",
+        "language": "EN",
+        "nationalityName": "Minor Outl.Isl.",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/UM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "JE",
+        "countryName": "Jersey",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/JE?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "GG",
+        "countryName": "Guernsey",
+        "language": "EN",
+        "nationalityName": "British",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/GG?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "XM",
+        "countryName": "Montenegro",
+        "language": "EN",
+        "nationalityName": "",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/XM?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "XS",
+        "countryName": "Serbia (DNT)",
+        "language": "EN",
+        "nationalityName": "",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/XS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BH",
+        "countryName": "Bahrain",
+        "language": "EN",
+        "nationalityName": "Bharaini",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BH?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "CS",
+        "countryName": "Serbia&Monteneg",
+        "language": "EN",
+        "nationalityName": "",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/CS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "HU",
+        "countryName": "Hungary",
+        "language": "EN",
+        "nationalityName": "Hungarian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/HU?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ME",
+        "countryName": "Montenegro",
+        "language": "EN",
+        "nationalityName": "",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ME?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "MK",
+        "countryName": "North Macedonia",
+        "language": "EN",
+        "nationalityName": "Macedonian",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/MK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "XK",
+        "countryName": "Kosovo",
+        "language": "EN",
+        "nationalityName": "",
+        "nationalityLongName": "",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/XK?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "ZC",
+        "countryName": "Curacao",
+        "language": "EN",
+        "nationalityName": "Netherlands Ant",
+        "nationalityLongName": "Netherlands Antillean",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/ZC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "BR",
+        "countryName": "Brazil",
+        "language": "EN",
+        "nationalityName": "Brazilian",
+        "nationalityLongName": "Brazilian",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/BR?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "countryCode": "RS",
+        "countryName": "Serbia",
+        "language": "EN",
+        "nationalityName": "Serbia",
+        "nationalityLongName": "Serbian",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/countries/RS?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

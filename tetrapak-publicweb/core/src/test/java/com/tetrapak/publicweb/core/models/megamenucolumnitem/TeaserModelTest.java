@@ -43,5 +43,6 @@ public class TeaserModelTest {
         assertEquals("<p>Teaser Description</p>", model.getDescription());
         assertEquals("/content/dam/tetrapak/media-box/global/en/Tetra-Pak-Chocolate-Enrober-M2.jpg", model.getImagePath());
         assertEquals("Tetra Pak", model.getImageAltText());
+        assertEquals("/content/tetrapak/publicweb/lang-masters/en/home", model.getImageLink());
     }
 }
