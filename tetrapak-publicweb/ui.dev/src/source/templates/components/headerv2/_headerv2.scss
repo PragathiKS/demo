@@ -83,20 +83,20 @@
 
         .tp-pw-headerv2-back-row-back-button {
             color: $color-tundora;
-            font-size: 16px;
+            font-size: $font-sm;
             i {
                 &::before {
                     transform: rotate(180deg);
                 }
             }
             .tp-pw-headerv2-back-row-back-text {
-                padding-left: 8px;
+                padding-left: $padding-sm;
             }
         }
 
         .tp-pw-headerv2-back-row-close-button {
             float: right;
-            font-size: 16px;
+            font-size: $font-normal;
         }
     }
 }
@@ -198,26 +198,52 @@
             &:last-of-type {
                 border-bottom: 0;
             }
+            .primary-link {
+                display: flex;
+                color: $color-congress-blue;
+                font-size: $font-baseline;
+                padding: $padding-md 0;
+                box-sizing: border-box;
+                width: 100%;
+                justify-content: flex-start;
+                align-items: center;
+                background-color: $color-white;
+            }
         }
 
         .tp-pw-anchor-container-secondary {
             background-color: $color-wild-sand;
             padding: 0 $padding-md;
-        }
-
-        a {
-            display: flex;
-            color: $color-congress-blue;
-            font-size: $font-baseline;
-            padding: $padding-md 0;
-            box-sizing: border-box;
-            width: 100%;
-            justify-content: flex-start;
-            align-items: center;
-            background-color: $color-white;
-            &.secondary {
+            &:first-of-type {
+                padding-top: $padding-sm;
+            }
+            &:last-of-type {
+                .secondary-link {
+                    display: flex;
+                    color: $color-congress-blue;
+                    font-size: $font-baseline;
+                    padding: $padding-md 0;
+                    box-sizing: border-box;
+                    width: 100%;
+                    justify-content: flex-start;
+                    align-items: center;
+                    background-color: $color-wild-sand;
+                    border-bottom: 0;
+                    padding-bottom: $padding-l;
+                }
+            }
+            .secondary-link {
+                display: flex;
+                color: $color-congress-blue;
+                font-size: $font-baseline;
+                padding: $padding-md 0;
+                box-sizing: border-box;
+                width: 100%;
+                justify-content: flex-start;
+                align-items: center;
                 background-color: $color-wild-sand;
                 border-bottom: 0;
+                padding-bottom: 0;
             }
         }
 
@@ -273,6 +299,16 @@
         .tp-pw-headerv2-selector-container {
             background-color: $color-wild-sand;
             padding: 0 $padding-md;
+            a {
+                display: flex;
+                color: $color-congress-blue;
+                font-size: $font-baseline;
+                padding: $padding-md 0;
+                box-sizing: border-box;
+                width: 100%;
+                justify-content: flex-start;
+                align-items: center;
+            }
         }
 
         .tp-pw-headerv2-market-selector {
@@ -328,7 +364,8 @@
                     margin-bottom: -20px;
                 }
             }
-            i.icon-Search_pw,
+
+            i.icon-Searchv2_pw,
             i.icon-Close_pw {
                 font-size: 20px;
                 line-height: 20px;

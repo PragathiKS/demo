@@ -19,7 +19,7 @@
     }
 
     @media #{$mobile} {
-        padding: $padding-md;
+        padding: $padding-md $padding-md $padding-sm;
         .tp-pw-accordion-header {
             display: flex;
             justify-content: space-between;
