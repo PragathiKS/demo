@@ -137,29 +137,12 @@ body.scrollOff {
     }
 }
 .tp-pw-headerv2__container {
-
-    // @media #{$mobile} {
-    //     height: $header-height-mobile * 1px; // header height converted to px
-    //     .header-items {
-    //         height: $header-height-mobile * 1px; // header height converted to px
-    //     }
-    // }
-
-
     @media #{$desktop} {
         height: 144px;
         position: fixed;
         top: 0;
         background-color:  $color-white;
     }
-    // @media #{$i-pad} {
-    //     @include padding(0 3px 0);
-    //     position: static;
-    //     height: $header-height-mobile * 1px; // header height converted to px
-    //     .header-items {
-    //         height: $header-height-mobile * 1px; // header height converted to px
-    //     }
-    // }
 }
 .tp-pw-headerv2 {
     display: flex;
