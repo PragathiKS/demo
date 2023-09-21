@@ -43,7 +43,7 @@ public class InvoiceStatusServiceImplTest {
 
 	@Test
 	public void invoiceStatusCodeMappings() throws IOException {
-		Map<String, List<Integer>> map = service.invoiceStatusCodeMap();
+		Map<String, List<String>> map = service.invoiceStatusCodeMap();
 		Assert.assertNotNull(map);
 	}
 }
