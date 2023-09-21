@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';

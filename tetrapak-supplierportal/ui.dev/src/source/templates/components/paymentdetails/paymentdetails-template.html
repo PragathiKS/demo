@@ -32,7 +32,7 @@
               <div class="tp-payment-details__header-action icons">
                 <input type="hidden" id="downloadCsvServletUrl" name="downloadCsvServletUrl" value="${data.downloadCsvServletUrl}" />
                 <sly data-sly-use.btnRef="/apps/commons/components/atoms/buttonlink/buttonlink-template.html"
-                data-sly-call="${btnRef.buttonlink_template @text='data.exportToPDF',modifier='second',baseClass='tp-button-link',iconClass='icon-PDF action-icon',className='tp-payment-details__action-button',jsClass='js-payment-details__export-pdf-action'}" />
+                data-sly-call="${btnRef.buttonlink_template @text='sp.paymentDetails.exportToPDF',modifier='second',baseClass='tp-button-link',iconClass='icon-PDF action-icon',className='tp-payment-details__action-button',jsClass='js-payment-details__export-pdf-action'}" />
             </div>
           </div>
         </div>
