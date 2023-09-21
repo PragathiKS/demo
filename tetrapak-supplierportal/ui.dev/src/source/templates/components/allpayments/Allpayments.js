@@ -160,20 +160,15 @@ class AllPayments {
     return apiUrlRequest;
   }
 
-  getStatusName = (statusCode, statusName, clearingDate) => {
+  getStatusName = (statusCode) => {
     const data = this.cache.statusMapping;
 
     if (statusCode) {
-      statusCode = Number(statusCode);
-
       for (const key in data) {
         if (data[key].includes(statusCode)) {
           return key;
         }
       }
-    }
-    if (statusName === 'Paid' ||  clearingDate !== '') {
-      return getI18n(this.cache.i18nKeys['paid']);
     }
 
     return '';
@@ -214,7 +209,7 @@ class AllPayments {
             withholdingTaxAmmount: (item.withholdingTaxAmmount) ? `${item.withholdingTaxAmmount  } ${  item.transactionCurrency}` : item.withholdingTaxAmmount,
             amountInTransactionCurrency: (item.amountInTransactionCurrency) ? `${item.amountInTransactionCurrency  } ${  item.transactionCurrency}`: item.amountInTransactionCurrency,
             purchasingDocuments: (item.purchasingDocuments.length > 1) ? getI18n(this.cache.i18nKeys['multiPoNo']):  item.purchasingDocuments,
-            invoiceStatusCode: this.getStatusName(item.invoiceStatusCode, item.invoiceStatusName, item.clearingDate)
+            invoiceStatusCode: this.getStatusName(item.invoiceStatusCode)
           }));
 
           this.cache.meta = response[0].meta;
