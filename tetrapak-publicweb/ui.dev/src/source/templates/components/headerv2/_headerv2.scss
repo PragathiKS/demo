@@ -204,7 +204,7 @@ body.scrollOff {
                 display: flex;
                 color: $color-congress-blue;
                 font-size: $font-baseline;
-                padding: $padding-md 0;
+                padding: $padding-md $padding-zero;
                 box-sizing: border-box;
                 width: 100%;
                 justify-content: flex-start;
@@ -224,7 +224,7 @@ body.scrollOff {
                     display: flex;
                     color: $color-congress-blue;
                     font-size: $font-baseline;
-                    padding: $padding-md 0;
+                    padding: $padding-md $padding-zero;
                     box-sizing: border-box;
                     width: 100%;
                     justify-content: flex-start;
@@ -238,7 +238,7 @@ body.scrollOff {
                 display: flex;
                 color: $color-congress-blue;
                 font-size: $font-baseline;
-                padding: $padding-md 0;
+                padding: $padding-md $padding-zero;
                 box-sizing: border-box;
                 width: 100%;
                 justify-content: flex-start;
