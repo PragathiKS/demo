@@ -36,10 +36,14 @@
         color: $color-congress-blue;
     }
 }
+
 body.scrollOff {
     overflow: hidden;
 }
 .tp-pw-headerv2-megamenu {
+    @media #{$desktop} {
+        margin: $margin-zero auto;
+    }
     &.hidden {
         display: none;
     }
@@ -132,18 +136,27 @@ body.scrollOff {
         }
     }
 }
-
+.tp-pw-headerv2__container {
+    @media #{$desktop} {
+        height: 144px;
+        position: fixed;
+        top: 0;
+        background-color:  $color-white;
+    }
+}
 .tp-pw-headerv2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 143px;
 
     @media #{$mobile} {
         position: fixed;
         top: 0;
         z-index: $zindex-nav;
+        height: 64px;
     }
     &__backdrop {
         position: fixed;
@@ -160,7 +173,8 @@ body.scrollOff {
 
     .tp-pw-headerv2-search-wrapper {
         text-align: right;
-        margin-right: $margin-xxxl;
+        margin-left: $margin-xxxl;
+        margin-right: $margin-zero;
         @media #{$mobile} {
             margin-right: $spacing-small;
         }
@@ -323,6 +337,22 @@ body.scrollOff {
                 display: none;
             }
 
+            .first-row-nav {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                &.tp-container {
+                    @media #{$i-pad} {
+                        padding: $padding-zero;
+                    }
+                    @media #{$mobile} {
+                        padding-left: $padding-zero;
+                        padding-right: $padding-zero;
+                    }
+                }
+            }
+
             .tp-pw-headerv2-logo {
                 img {
                     height: 80px;
@@ -409,6 +439,11 @@ body.scrollOff {
             @media #{$mobile} {
                 display: none;
             }
+            &.tp-container {
+                @media #{$i-pad} {
+                    @include padding(0 $padding-xxxl);
+                }
+            }
 
             .tp-pw-headerv2-main-navigation {
                 display: flex;
@@ -418,9 +453,11 @@ body.scrollOff {
                     @include padding($spacing-small 0 $spacing-small 0);
                     @include hyperlink($font-baseline, $margin-xxxl);
                     white-space: nowrap;
+                    padding-left: $padding-zero;
+                    margin-right: $margin-xxxl;
 
                     &.active {
-                        text-decoration: underline;
+                        text-decoration: none;
                     }
                 }
             }
@@ -445,5 +482,8 @@ body.scrollOff {
                 @include dropdown(116px, auto);
             }
         }
+    }
+    .scrollUp {
+        transform: translateY(-144px);
     }
 }

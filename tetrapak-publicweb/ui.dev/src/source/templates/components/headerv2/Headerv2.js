@@ -416,7 +416,34 @@ class Headerv2 {
     });
   }
 
+throttleScroll = function () {
+  let currentScroll;
+  let currentScrollTop = 0;
+  let isScrolling = true;
+  const navbar = $('nav');
+  $(window).on('scroll', function () {
+    if(isScrolling === true) {
+      const scrollTop = $(window).scrollTop();
+      const navheight = navbar.height();
+      currentScrollTop = scrollTop;
+      if (currentScroll < currentScrollTop && scrollTop > navheight + navheight) {
+        navbar.addClass('scrollUp');
+        navbar.removeClass('scrollDown');
+      } else if (currentScroll > currentScrollTop && !(scrollTop <= navheight)) {
+        navbar.removeClass('scrollUp');
+        navbar.addClass('scrollDown');
+      }
+      currentScroll = currentScrollTop;
+      isScrolling = false;
+      setTimeout(() => {
+        isScrolling = true;
+      }, 1000);
+    }
+  });
+};
+
   bindEvents = () => {
+    this.throttleScroll();
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
     this.bindSubmenuMobileOpenEvent();
@@ -425,6 +452,10 @@ class Headerv2 {
     this.setBackdropPosition();
     this.bindSearchIconClickEvent();
     this.bindMegaMenuLinkMobileClickEvent();
+    if(isDesktopMode) {
+      const headerWidth = $('.first-row-nav').outerWidth();
+      $('.tp-pw-headerv2-megamenu').css('width', headerWidth - 96);
+    }
   }
 
   buildMegaMenu = () => {
@@ -440,6 +471,7 @@ class Headerv2 {
     this.initCache();
     this.bindEvents();
     this.buildMegaMenu();
+   
   }
 }
 
