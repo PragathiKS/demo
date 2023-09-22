@@ -35,7 +35,7 @@
 
 .tp-pw-megamenucolumn > div {
     &:last-of-type {
-        padding-bottom: $margin-l;
+        padding-bottom: $margin-xxxl;
         @media #{$mobile} {
             padding-bottom: $padding-zero;
         }

@@ -27,6 +27,9 @@
             text-decoration: none;
             font-weight: 500;
             line-height: $font-l;
+            @media #{$small-desktop} {
+                font-size: $font-sm;
+            }
 
             &:hover {
                 color: $color-bright-blue;

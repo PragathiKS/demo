@@ -1,7 +1,9 @@
 <sly data-sly-template.megamenuteaser_template="${@data, flag}">
     <div data-module="MegaMenuTeaser" class="tp-pw-megamenuteaser">
         <a class="tp-pw-megamenuteaser__image-link" href="${data.imageLink}">
+            <div class="tp-pw-megamenuteaser__image-link--gradient">
             <img src="${data.imagePath}" alt="${data.imageAltText}" />
+            </div>
             <div class="tp-pw-megamenuteaser__header-wrapper">
                 <h2>${data.title}</h2>
                 <div class="tp-pw-megamenuteaser__description">
