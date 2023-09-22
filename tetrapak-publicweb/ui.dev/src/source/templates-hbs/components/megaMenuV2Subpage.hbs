@@ -286,7 +286,9 @@
 	{{/if}}
     {{#if col3.columnItems.teaser}}
     <div class="tp-pw-megamenuteaser">
-        <img src="{{col3.columnItems.teaser.imagePath}}" alt="{{col3.columnItems.teaser.imageAltText}}" />
+        <div class="tp-pw-megamenuteaser__image-link--gradient">
+            <img src="{{col3.columnItems.teaser.imagePath}}" alt="{{col3.columnItems.teaser.imageAltText}}" />
+        </div>
         <div class="tp-pw-megamenuteaser__header-wrapper">
             {{#if col3.columnItems.teaser.imageLink}}
             <a href="{{col3.columnItems.teaser.imageLink}}">
