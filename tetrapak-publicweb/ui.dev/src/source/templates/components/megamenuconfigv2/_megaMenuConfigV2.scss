@@ -6,7 +6,7 @@
     box-sizing: border-box;
     position: fixed;
     top: auto;
-    z-index: $zindex-nav-flyout;
+    z-index: $zindex-anchor-menu;
     flex-direction: column;
 
     @media #{$desktop} {
