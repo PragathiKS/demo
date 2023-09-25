@@ -21,6 +21,7 @@ class Paymentdetails {
     this.cache.spinner = this.root.find('.tp-spinner');
     this.cache.header = this.root.find('.tp-payment-details__header-actions');
     this.cache.headerAction = this.root.find('.tp-payment-details__header-action-wrapper');
+    this.cache.mobileHeadersActions = this.root.find('.js-mobile-header-actions');
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) {
@@ -49,6 +50,13 @@ class Paymentdetails {
     // Download PDF
     this.root.on('click', '.js-payment-details__export-pdf-action',  () => {
       this.downloadPDf();
+    });
+    this.cache.mobileHeadersActions.on('click', () => {
+      if($('.tp-payment-details__header-actions').hasClass('show')){
+        $('.tp-payment-details__header-actions').removeClass('show');
+      } else {
+        $('.tp-payment-details__header-actions').addClass('show');
+      }
     });
   }
   getApiPromise = (authData) => {
@@ -86,7 +94,6 @@ class Paymentdetails {
         target: this.cache.content,
         hidden: false
       });
-      this.cache.header.addClass('show');
     }
     else {
       render.fn({

@@ -79,64 +79,64 @@
     {{#if_noteq paymentData.amountInTransactionCurrency ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">{{i18n key=i18nKeys.totalAmount}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">{{paymentData.amountInTransactionCurrency}} {{paymentData.transactionCurrency}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="subsectionTitle">{{paymentData.amountInTransactionCurrency}} {{paymentData.transactionCurrency}}</div>
     </div>
     {{/if_noteq}}
     {{!-- {{#if_noteq paymentData.tax ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.tax}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.tax}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.tax}}</div>
     </div>
     {{/if_noteq}} --}}
     {{#if_noteq paymentData.withholdingTaxAmmount ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.withHoldingTax}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.withholdingTaxAmmount}} {{paymentData.transactionCurrency}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.withholdingTaxAmmount}} {{paymentData.transactionCurrency}}</div>
     </div>
     {{/if_noteq}}
     {{!-- {{#if_noteq paymentData.netPayable ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.netPayable}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.netPayable}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.netPayable}}</div>
     </div>
     {{/if_noteq}} --}}
     {{#if_noteq paymentData.paymentTerms ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.paymentTerm}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.paymentTerms}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.paymentTerms}}</div>
     </div>
     {{/if_noteq}}
     {{#if_noteq paymentData.clearingDate ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.paidDate}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.clearingDate}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.clearingDate}}</div>
     </div>
     {{else}}
     {{#if_noteq paymentData.dueCalculationBaseDate ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.dueDate}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.dueCalculationBaseDate}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.dueCalculationBaseDate}}</div>
     </div>
     {{/if_noteq}}
     {{/if_noteq}}
     {{#if_noteq paymentData.bankAccount ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.bankAccount}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.bankAccount}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.bankAccount}}</div>
     </div>
     {{/if_noteq}}
     {{#if_noteq paymentData.paymentMethod ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.paymentMethod}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">{{paymentData.paymentMethod}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">{{paymentData.paymentMethod}}</div>
     </div>
     {{/if_noteq}}
     {{#if_noteq paymentData.purchasingDocuments ""}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.poNo}}</div>
-        <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataValue">
+        <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">
         {{#each paymentData.purchasingDocuments}}
-        <div class="tp-payment-details__details-cell-multiple-col" auto_locator="moreEquipmentDataValue">{{this}}</div>
+        <span class="tp-payment-details__details-cell-multiple-col" auto_locator="moreEquipmentDataValue">{{this}}{{#unless @last}},{{/unless}}</span>
         {{/each}}
         </div>
     </div>
