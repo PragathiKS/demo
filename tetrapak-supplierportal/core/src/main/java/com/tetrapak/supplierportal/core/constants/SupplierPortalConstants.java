@@ -223,7 +223,7 @@ public final class SupplierPortalConstants {
     
     public static final String INVOICE_MAPPING = "sp-invoices";
     
-    public static final String EXPORT_TO_PDFURL = "/bin/supportal/invoice/export";
+    public static final String EXPORT_TO_PDFURL = ".download.pdf";
 
     public static final String BEARER  = "Bearer ";
     

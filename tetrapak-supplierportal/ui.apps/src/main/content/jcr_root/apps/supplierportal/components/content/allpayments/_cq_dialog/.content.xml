@@ -162,6 +162,12 @@
                                 fieldLabel="Paid (i18N key)"
                                 name="./paid"
                                 required="true"/>
+							<paymentDetailsURL
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Payment Details URL (i18N key)"
+                                name="./paymentDetailsURL"
+                                required="true"/>
                         </items>
                     </column1>
                 </items>
