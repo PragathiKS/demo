@@ -249,6 +249,14 @@ public final class SupplierPortalConstants {
     public static final String TO_DATE_TIME = "todatetime";
     
     public static final String FROM_DATE_TIME = "fromdatetime";
+    
+    public static final String NOTOSERIFCJKSC_LIGHT = "NotoSerifCJKsc-Light.otf";
+    
+    public static final String NOTOSERIFCJKSC_BOLD = "NotoSerifCJKsc-Bold.otf";
+    
+    public static final String NOTOSERIF_LIGHT = "NotoSerif-Light.ttf";
+    
+    public static final String NOTOSERIF_BOLD = "NotoSerif-Bold.ttf";
 
     /**
      * Instantiates a new customer hub constants.

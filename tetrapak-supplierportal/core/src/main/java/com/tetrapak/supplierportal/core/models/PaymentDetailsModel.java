@@ -376,10 +376,7 @@ public class PaymentDetailsModel {
 		return exportToPdfURL;
 	}
 
-	public void setExportToPdfURL(String exportToPdfURL) {
-		this.exportToPdfURL = exportToPdfURL;
-	}
-
+	
 	public String getViewPaymentDataUrl() {
 		return viewPaymentDataUrl;
 	}
@@ -442,6 +439,14 @@ public class PaymentDetailsModel {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	public Resource getResource() {
+		return resource;
+	}
+
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 	
 }

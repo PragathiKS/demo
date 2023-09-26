@@ -17,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -30,7 +31,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.tetrapak.supplierportal.core.bean.PaymentDetailResponse;
@@ -79,11 +79,15 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 		String fromDate = request.getParameter(FROM_DATE_TIME);
 		String toDate = request.getParameter(TO_DATE_TIME);
 		String documentReferenceId = request.getParameter(DOCUMENT_REFERENCE_ID);
-		if (Objects.isNull(documentReferenceId)) {
+		if (StringUtils.isBlank(documentReferenceId) || StringUtils.isBlank(fromDate)
+				|| StringUtils.isBlank(toDate)  ) {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
-			response.getWriter().write("Document Reference Id Is Missing.");
+			response.getWriter().write("Invalid Input. FromDate OR ToDate OR DocumentReferenceId  Missing.");
+			return;
 		} else {
 			documentReferenceId = xssAPI.encodeForHTML(documentReferenceId);
+			fromDate = xssAPI.encodeForHTML(fromDate);
+			toDate = xssAPI.encodeForHTML(toDate);
 		}
 
 		String authTokenStr;
@@ -115,10 +119,9 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
         	if(Objects.nonNull(results) && CollectionUtils.isNotEmpty(results.getData())) {
         		flag = service.preparePdf(results.getData().get(0), request, response, paymentDetailsModel);
         	}
-        }
-        
+        }        
         if (!flag) {
-            LOGGER.error("Financial results file download failed!");
+            LOGGER.error("PaymentDetails results Pdf file download failed!");
             HttpUtil.sendErrorMessage(response);
         }
 	}

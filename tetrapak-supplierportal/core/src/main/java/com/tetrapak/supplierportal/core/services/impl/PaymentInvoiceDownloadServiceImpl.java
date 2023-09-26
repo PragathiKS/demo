@@ -19,7 +19,10 @@ import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.TO_DATE_TIME;
-
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.NOTOSERIF_BOLD;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.NOTOSERIF_LIGHT;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.NOTOSERIFCJKSC_BOLD;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.NOTOSERIFCJKSC_LIGHT;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -27,7 +30,6 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -38,18 +40,15 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.Resource;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.adobe.granite.asset.api.Asset;
 import com.google.gson.JsonObject;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Image;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.RectangleReadOnly;
@@ -61,8 +60,10 @@ import com.tetrapak.supplierportal.core.models.PaymentDetailsModel;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
 import com.tetrapak.supplierportal.core.services.PaymentInvoiceDownloadService;
 import com.tetrapak.supplierportal.core.services.UrlService;
+import com.tetrapak.supplierportal.core.utils.FontUtil;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 import com.tetrapak.supplierportal.core.utils.HttpUtil;
+import com.tetrapak.supplierportal.core.utils.PDFUtil;
 
 /**
  * Impl class for Payment Invoice Download Service
@@ -83,11 +84,12 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 	@Reference
 	private UrlService urlService;
 
-	private final Font titleFont = new Font();
-	private final Font keyFont = new Font();
-	private final Font valueFont = new Font();
+	private Font titleFont;
+	private Font keyFont;
+	private Font valueFont;
 	private PaymentDetailsModel paymentDetailsModel;
-
+	
+	
 	private HttpGet createRequest(final String apiURL, final String authTokenStr, final String fromDate,
 			final String toDate, final String docReferId) throws UnsupportedEncodingException, URISyntaxException {
 		HttpGet getRequest = new HttpGet(apiURL);
@@ -135,23 +137,17 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		com.itextpdf.text.Document document = new com.itextpdf.text.Document(new RectangleReadOnly(620.0F, 842.0F));
 		this.paymentDetailsModel = paymentDetailsModel;
 		String language = GlobalUtil.getLanguage(request);
-		setUpFonts();
+		
 		String fileName = paymentDetails.getDocumentReferenceID() + "-" + LocalDate.now();
 		response.setContentType(APPLICATION_PDF);
 		response.setHeader(CONTENT_DISPOSITION, ATTACHMENT_FILENAME + fileName + PDF_EXT);
 		try {
+			setUpFonts(language);
 			PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
 			document.open();
 			document.add(new Chunk(EMPTY_STRING));
-			String imageFile = "/content/dam/tetrapak/tetra-pak-two-liner.png";
-			Resource resource = request.getResourceResolver().resolve(imageFile);
-			Asset asset = resource.adaptTo(Asset.class);
-			LOGGER.info("Image File Path {}",asset.getPath());
-			Image image = Image.getInstance(asset.getPath());
-			image.scaleAbsolute(150, 80);
-			image.setAlignment(Image.ALIGN_RIGHT);
-			document.add(image);
-
+			PDFUtil.drawImage(document, urlService.getImagesUrl() , 180, 69);
+			
 			PdfPTable table = new PdfPTable(2);
 			float[] columnWidths = new float[] { 35f, 65f };
 			table.setWidths(columnWidths);
@@ -165,18 +161,37 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			document.add(table);
 			document.close();
 			return true;
-		} catch (IOException | DocumentException e) {
+		} catch (Exception e) {
 			LOGGER.error("Exception while preparing PDF File ", e);
 			return false;
 		}
 	}
 
-	private void setUpFonts() {
-		titleFont.setStyle(Font.BOLD);
+	private void setUpFonts(String language) throws IOException, DocumentException {
+		final String FONT_RESOURCES = urlService.getFontsUrl();
+		try {
+			switch (language) {
+			case "zh":
+				keyFont = FontUtil.getScFont(FONT_RESOURCES + NOTOSERIFCJKSC_LIGHT);
+				titleFont = FontUtil.getScFontBold(FONT_RESOURCES + NOTOSERIFCJKSC_BOLD);
+				valueFont = FontUtil.getScFontBold(FONT_RESOURCES + NOTOSERIFCJKSC_BOLD);
+				break;
+			default:
+				keyFont = FontUtil.getEnFont(FONT_RESOURCES + NOTOSERIF_LIGHT);
+				titleFont = FontUtil.getEnFontBold(FONT_RESOURCES + NOTOSERIF_BOLD);
+				valueFont = FontUtil.getEnFontBold(FONT_RESOURCES + NOTOSERIF_BOLD);
+				break;
+			}
+		} catch (IOException | DocumentException e) {
+			LOGGER.error("Unable to set Up Font: ", e);
+			throw e;
+		}
 		titleFont.setSize(15);
 		keyFont.setSize(12);
-		valueFont.setStyle(Font.BOLD);
 		valueFont.setSize(12);
+		keyFont.setColor(BaseColor.DARK_GRAY);
+		titleFont.setColor(BaseColor.DARK_GRAY);
+		valueFont.setColor(BaseColor.DARK_GRAY);
 	}
 
 	private void populateInvoiceInformation(PaymentDetails paymentDetails, PdfPTable table,
