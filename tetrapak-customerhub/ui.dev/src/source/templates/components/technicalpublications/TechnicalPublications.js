@@ -29,31 +29,31 @@ function _getFolderData(stepKey, options) {
 
   switch (stepKey) {
     case 'countries': {
-      apiUrl = `${countriesApi}?sort=asc`;
+      apiUrl = countriesApi;
       break;
     }
     case 'country': {
-      apiUrl = `${customerApi}?countrycodes=${country.value}&count=1500&sort=asc`;
+      apiUrl = `${customerApi}?countrycodes=${country.value}&count=1500&sort=customer asc`;
       break;
     }
     case 'customer': {
-      apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}&sort=asc`;
+      apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}&sort=lineDescription asc`;
       break;
     }
     case 'line': {
-      apiUrl = `${equipmentApi}?skip=0&countrycodes=${country.value}&customerNumber=${customer.value}&linecodes=${line.value}&results=extended&sort=asc`;
+      apiUrl = `${equipmentApi}?skip=0&countrycodes=${country.value}&customerNumber=${customer.value}&linecodes=${line.value}&results=extended&sort=lineName asc`;
       break;
     }
     case 'lineFolders': {
       const value = `${lineFolders.value}`;
       serialNumber = value.split('/');
-      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}&sort=asc`;
+      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
       break;
     }
     case 'folderDetails': {
       const value = `${folderDetails.value}`;
       serialNumber = value.split(',')[1].split('/');
-      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}&sort=asc`;
+      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
       break;
     }
     default: {
@@ -110,34 +110,8 @@ function _getFolderData(stepKey, options) {
         let srNo = '';
         let docType = '';
 
-        switch (stepKey) {
-          case 'countries': {
-            finalData.sort((A, B) => A.countryName.toLowerCase() <= B.countryName.toLowerCase() ? -1 : 1);
-            break;
-          }
-          case 'country': {
-            finalData.sort((A, B) => A.customer.toLowerCase() <= B.customer.toLowerCase() ? -1 : 1);
-            break;
-          }
-          case 'customer': {
-            finalData.sort((A, B) => A.lineDescription.toLowerCase() <= B.lineDescription.toLowerCase() ? -1 : 1);
-            break;
-          }
-          case 'line': {
-            finalData.sort((A, B) => A.lineName.toLowerCase() <= B.lineName.toLowerCase() ? -1 : 1);
-            break;
-          }
-          case 'lineFolders': {
-            finalData.sort((A, B) => A.typeCode.toLowerCase() <= B.typeCode.toLowerCase() ? -1 : 1);
-            break;
-          }
-          case 'folderDetails': {
-            finalData.sort((A, B) => A.typeCode.toLowerCase() <= B.typeCode.toLowerCase() ? -1 : 1);
-            break;
-          }
-          default: {
-            break;
-          }
+        if (stepKey === 'countries') {
+          finalData.sort((A, B) => A.countryName.toLowerCase() <= B.countryName.toLowerCase() ? -1 : 1);
         }
 
         if(stepKey === 'line') {

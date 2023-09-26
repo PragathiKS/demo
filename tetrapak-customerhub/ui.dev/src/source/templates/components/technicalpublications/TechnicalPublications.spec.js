@@ -170,7 +170,7 @@ describe("TechnicalPublications", function () {
 
     expect(innerHeaderText).to.equal('cuhu.technicalpublications.documentNumber');
     expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
-    expect(renderedLinkLabels.includes('3638775-0101')).to.be.true;
+    expect(renderedLinkLabels.includes('3526594-0107')).to.be.true;
 
     done();
   });
@@ -186,7 +186,7 @@ describe("TechnicalPublications", function () {
 
     expect(innerHeaderText).to.equal('cuhu.technicalpublications.country');
     expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
-    expect(renderedBtnLabels.includes('Sweden')).to.be.true;
+    expect(renderedBtnLabels.includes('Germany')).to.be.true;
     
     done();
   })
