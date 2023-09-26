@@ -345,12 +345,16 @@
             align-items: center;
             border-bottom: 1px solid $color-mercury;
             box-sizing: border-box;
-            padding: $spacing-big $padding-xxxl;
+            padding: $spacing-big $padding-zero;
 
             @media #{$mobile} {
                 padding: $spacing-small;
                 height: $header-height-mobile * 1px;
                 border-bottom: 0;
+            }
+
+            @media #{$i-pad} {
+                padding: $spacing-big $padding-xxxl;
             }
 
             &.hidden {

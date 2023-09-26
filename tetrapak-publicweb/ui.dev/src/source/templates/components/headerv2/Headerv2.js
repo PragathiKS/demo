@@ -427,6 +427,16 @@ class Headerv2 {
     this.setBackdropPosition();
     this.bindSearchIconClickEvent();
     this.bindMegaMenuLinkMobileClickEvent();
+    if(isDesktopMode) {
+      const headerWidth = $('.first-row-nav').outerWidth();
+      if ($(window).outerWidth() <= 1366) {
+        $('.tp-pw-headerv2-megamenu').css('width', headerWidth);
+        $('.tp-pw-megamenuconfigv2').css('width', headerWidth);
+      } else {
+        $('.tp-pw-headerv2-megamenu').css('width', headerWidth - 96);
+        $('.tp-pw-megamenuconfigv2').css('width', headerWidth - 96);
+      }
+    }
   }
 
   buildMegaMenu = () => {
