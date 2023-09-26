@@ -38,10 +38,11 @@ class Paymentdetails {
     return params;
   }
   downloadPDf = () => {
+    const { documentreferenceid} = this.getUrlQueryParams();
     auth.getToken(() => {
       file.get({
         extension: 'pdf',
-        url: this.cache.exportToPdfURL,
+        url: `${this.cache.exportToPdfURL}?documentreferenceid=${documentreferenceid}&fromdatetime=2023-07-01T00:00:00&todatetime=2023-07-30T00:00:00`,
         method: ajaxMethods.GET
       });
     });
