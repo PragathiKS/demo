@@ -4,6 +4,7 @@
 	/clientheaders {
 		$include "/etc/httpd/conf.dispatcher.d/clientheaders/ams_author_clientheaders.any"
 		$include "/etc/httpd/conf.dispatcher.d/clientheaders/ams_common_clientheaders.any"
+		$include "/etc/httpd/conf.dispatcher.d/clientheaders/ams_author_preview_clientheaders.any"
 	}
 	## hostname globbing for farm selection (virtual domain addressing)
 	/virtualhosts {
