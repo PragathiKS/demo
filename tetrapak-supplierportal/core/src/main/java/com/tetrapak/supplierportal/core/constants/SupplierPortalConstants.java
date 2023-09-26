@@ -237,6 +237,26 @@ public final class SupplierPortalConstants {
     
     /** The Constant RESPONSE_STATUS_OK. */
     public static final String RESPONSE_STATUS_OK = "200";
+    
+    public static final String APPLICATION_PDF = "application/pdf";
+    
+    public static final String CONTENT_DISPOSITION =  "Content-disposition";
+    
+    public static final String ATTACHMENT_FILENAME = "attachment; filename=";
+    
+    public static final String PDF_EXT = ".pdf";
+    
+    public static final String TO_DATE_TIME = "todatetime";
+    
+    public static final String FROM_DATE_TIME = "fromdatetime";
+    
+    public static final String NOTOSERIFCJKSC_LIGHT = "NotoSerifCJKsc-Light.otf";
+    
+    public static final String NOTOSERIFCJKSC_BOLD = "NotoSerifCJKsc-Bold.otf";
+    
+    public static final String NOTOSERIF_LIGHT = "NotoSerif-Light.ttf";
+    
+    public static final String NOTOSERIF_BOLD = "NotoSerif-Bold.ttf";
 
     /**
      * Instantiates a new customer hub constants.

@@ -1,6 +1,7 @@
 package com.tetrapak.supplierportal.core.models;
 
 import static com.tetrapak.supplierportal.core.constants.I18Constants.BANK_ACCOUNT;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_INFO;
@@ -20,18 +21,15 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_ME
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_TERM;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_INFO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.TAX;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.TOTAL_AMOUNT;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.CODE;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.PostConstruct;
-
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -45,7 +43,7 @@ import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 
-@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class PaymentDetailsModel {
 	
 	/**
@@ -378,10 +376,7 @@ public class PaymentDetailsModel {
 		return exportToPdfURL;
 	}
 
-	public void setExportToPdfURL(String exportToPdfURL) {
-		this.exportToPdfURL = exportToPdfURL;
-	}
-
+	
 	public String getViewPaymentDataUrl() {
 		return viewPaymentDataUrl;
 	}
@@ -444,6 +439,14 @@ public class PaymentDetailsModel {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	public Resource getResource() {
+		return resource;
+	}
+
+	public void setResource(Resource resource) {
+		this.resource = resource;
 	}
 	
 }

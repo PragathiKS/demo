@@ -85,8 +85,6 @@ public final class HttpUtil {
         String resultString = result.toString();
         resultString = resultString.replaceAll("\\\\n", "");
         resultString = resultString.replaceAll("\\\\", "");
-        resultString = StringUtils.substringAfter(resultString, "\"");
-        resultString = StringUtils.substringBeforeLast(resultString, "\"");
         return resultString;
     }
     
