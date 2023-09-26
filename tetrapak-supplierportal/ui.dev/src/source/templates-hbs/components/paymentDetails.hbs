@@ -132,6 +132,7 @@
     </div>
     {{/if_noteq}}
     {{#if_noteq paymentData.purchasingDocuments ""}}
+    {{#if paymentData.purchasingDocuments.length}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="moreEquipmentDataKey">{{i18n key=i18nKeys.poNo}}</div>
         <div class="tp-payment-details__info-cell-2" auto_locator="moreEquipmentDataValue">
@@ -140,6 +141,7 @@
         {{/each}}
         </div>
     </div>
+    {{/if}}
     {{/if_noteq}}
 </div>
 {{/if}}
