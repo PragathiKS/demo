@@ -91,4 +91,6 @@ public class I18Constants {
 	
 	public static final String CODE = "code";
 	
+	public static final String PAYMENT_DETAILS_URL = "paymentDetailsURL";
+	
 }
