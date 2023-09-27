@@ -565,20 +565,10 @@ class Softconversion {
   }
 
   getFormHandler() {
-    const {softconversionapi, requestPayload, $componentName } = this.cache;
-
-    const countryCookie = storageUtil.getCookie('countryValue');
-    const site = requestPayload[`site_country_${$componentName}`];
+    const { softconversionapi } = this.cache;
     const pardotUrl = softconversionapi.data('softconversion-pardot-url');
-    const chinapardotUrl = softconversionapi.data('softconversion-china-pardot-url');
     const countryData = {};
-    if(site ==='cn' || countryCookie ==='China') {
-      countryData['isChina'] = true;
-      countryData['formHandler'] = chinapardotUrl;
-    } else {
-      countryData['isChina'] = false;
-      countryData['formHandler'] = pardotUrl;
-    }
+    countryData['formHandler'] = pardotUrl;
     return countryData;
   }
 

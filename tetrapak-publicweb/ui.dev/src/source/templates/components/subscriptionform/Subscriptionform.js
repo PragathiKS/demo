@@ -244,18 +244,10 @@ class Subscriptionform {
   }
 
   getFormHandler() {
-    const { requestPayload, businessformapi } = this.cache;
+    const { businessformapi } = this.cache;
     const pardotURL = businessformapi.data('sf-pardot-url');
-    const chinapardotURL = businessformapi.data('sf-china-pardot-url');
-    const countryCode = businessformapi.data('sf-countrycode');
     const countryData = {};
-    if(requestPayload.country === 'China' || countryCode ==='cn') {
-      countryData['isChina'] = true;
-      countryData['formHandler'] = chinapardotURL;
-    } else {
-      countryData['isChina'] = false;
-      countryData['formHandler'] = pardotURL;
-    }
+    countryData['formHandler'] = pardotURL;
     return countryData;
   }
 
