@@ -74,14 +74,14 @@
                   data-paren-link-title="${data.heading}:${child.title}"
                   data-anchor-type="${dataLinkSectionCTAText}"
                   >
-                  <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon ${child.pwButtonTheme == 'secondary' ? 'icon-Arrow_Right_pw':'icon-Circle_Arrow_Right_pw'}"></i></span>
+                  <span class="tpatom-link__text sly-text">${child.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
               </a>
             </div>
           </div>
         </div>
         <div data-sly-test="${data.linkPath && data.linkPath!='#'}" class="tp-teaser__seeAllLink text-center" auto_locator="viewMoreLink">
           <a href="${data.linkPath}" class="tpatom-link tpatom-link--transparent">
-            <span class="tpatom-link__text sly-text">${data.linkLabel}</span><span class="nowrap-text">&#8288;<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
+            <span class="tpatom-link__text sly-text">${data.linkLabel}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
           </a>
         </div>
       </section>
