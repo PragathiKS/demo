@@ -29,6 +29,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -353,71 +354,65 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		emptyCell.setColspan(2);
 		table.addCell(emptyCell);
 
-		String totalAmti18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getTotalAmount(), language);
-		PdfPCell totAmtIncl = new PdfPCell(new Phrase(totalAmti18n, keyFont));
-		totAmtIncl.setBorder(Rectangle.NO_BORDER);
-		table.addCell(totAmtIncl);
-		PdfPCell totAmtInclVal = new PdfPCell(new Phrase(paymentDetails.getAmountInTransactionCurrency(), valueFont));
-		totAmtInclVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(totAmtInclVal);
+		if (StringUtils.isNotBlank(paymentDetails.getAmountInTransactionCurrency())) {
+			String totalAmti18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getTotalAmount(), language);
+			PdfPCell totAmtIncl = new PdfPCell(new Phrase(totalAmti18n, keyFont));
+			totAmtIncl.setBorder(Rectangle.NO_BORDER);
+			table.addCell(totAmtIncl);
+			PdfPCell totAmtInclVal = new PdfPCell(
+					new Phrase(paymentDetails.getAmountInTransactionCurrency(), valueFont));
+			totAmtInclVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(totAmtInclVal);
+		}
 
-		String taxi18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getTax(), language);
-		PdfPCell tax = new PdfPCell(new Phrase(taxi18n, keyFont));
-		tax.setBorder(Rectangle.NO_BORDER);
-		table.addCell(tax);
-		PdfPCell taxVal = new PdfPCell(new Phrase(EMPTY_STRING, valueFont));
-		taxVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(taxVal);
+		if (StringUtils.isNotBlank(paymentDetails.getPaymentTerms())) {
+			String paymntTerm = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getPaymentTerm(), language);
+			PdfPCell payTerm = new PdfPCell(new Phrase(paymntTerm, keyFont));
+			payTerm.setBorder(Rectangle.NO_BORDER);
+			table.addCell(payTerm);
+			PdfPCell payTermVal = new PdfPCell(new Phrase(paymentDetails.getPaymentTerms(), valueFont));
+			payTermVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(payTermVal);
+		}
 
-		String netPayable = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getNetPayable(), language);
-		PdfPCell netPay = new PdfPCell(new Phrase(netPayable, keyFont));
-		netPay.setBorder(Rectangle.NO_BORDER);
-		table.addCell(netPay);
-		PdfPCell netPayVal = new PdfPCell(new Phrase(EMPTY_STRING, valueFont));
-		netPayVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(netPayVal);
+		if (StringUtils.isNotBlank(paymentDetails.getDueCalculationBaseDate())) {
+			String dueDatei18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getDueDate(), language);
+			PdfPCell dueDate = new PdfPCell(new Phrase(dueDatei18n, keyFont));
+			dueDate.setBorder(Rectangle.NO_BORDER);
+			table.addCell(dueDate);
+			PdfPCell dueDateVal = new PdfPCell(new Phrase(paymentDetails.getDueCalculationBaseDate(), valueFont));
+			dueDateVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(dueDateVal);
+		}
 
-		String paymntTerm = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getPaymentTerm(), language);
-		PdfPCell payTerm = new PdfPCell(new Phrase(paymntTerm, keyFont));
-		payTerm.setBorder(Rectangle.NO_BORDER);
-		table.addCell(payTerm);
-		PdfPCell payTermVal = new PdfPCell(new Phrase(paymentDetails.getPaymentTerms(), valueFont));
-		payTermVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(payTermVal);
+		if (StringUtils.isNotBlank(paymentDetails.getPaymentMethod())) {
+			String paymentMethod = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getPaymentMethod(), language);
+			PdfPCell payMethod = new PdfPCell(new Phrase(paymentMethod, keyFont));
+			payMethod.setBorder(Rectangle.NO_BORDER);
+			table.addCell(payMethod);
+			PdfPCell payMethodVal = new PdfPCell(new Phrase(paymentDetails.getPaymentMethod(), valueFont));
+			payMethodVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(payMethodVal);
+		}
 
-		String dueDatei18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getDueDate(), language);
-		PdfPCell dueDate = new PdfPCell(new Phrase(dueDatei18n, keyFont));
-		dueDate.setBorder(Rectangle.NO_BORDER);
-		table.addCell(dueDate);
-		PdfPCell dueDateVal = new PdfPCell(new Phrase(paymentDetails.getDueCalculationBaseDate(), valueFont));
-		dueDateVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(dueDateVal);
+		if (Objects.nonNull(paymentDetails.getPurchasingDocuments())
+				&& paymentDetails.getPurchasingDocuments().length > 0) {
+			String ponoi18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getTax(), language);
+			PdfPCell pono = new PdfPCell(new Phrase(ponoi18n, keyFont));
+			pono.setBorder(Rectangle.NO_BORDER);
+			table.addCell(pono);
+			String ponos = Arrays.stream(paymentDetails.getPurchasingDocuments()).boxed().map(String::valueOf)
+					.collect(Collectors.joining(COMMA));
 
-		String paymentMethod = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getPaymentMethod(), language);
-		PdfPCell payMethod = new PdfPCell(new Phrase(paymentMethod, keyFont));
-		payMethod.setBorder(Rectangle.NO_BORDER);
-		table.addCell(payMethod);
-		PdfPCell payMethodVal = new PdfPCell(new Phrase(paymentDetails.getPaymentMethod(), valueFont));
-		payMethodVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(payMethodVal);
-
-		String ponoi18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getTax(), language);
-		PdfPCell pono = new PdfPCell(new Phrase(ponoi18n, keyFont));
-		pono.setBorder(Rectangle.NO_BORDER);
-		table.addCell(pono);
-		String ponos = Arrays.stream(paymentDetails.getPurchasingDocuments()).boxed().map(String::valueOf)
-				.collect(Collectors.joining(COMMA));
-
-		PdfPCell ponoVal = new PdfPCell(new Phrase(ponos, valueFont));
-		ponoVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(ponoVal);
+			PdfPCell ponoVal = new PdfPCell(new Phrase(ponos, valueFont));
+			ponoVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(ponoVal);
+		}
 	}
 
 }
