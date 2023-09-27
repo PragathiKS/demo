@@ -51,6 +51,8 @@ public class MediaLinkModelTest {
     public void testValue() {
         assertEquals("Heading", model.getHeading());
         assertEquals("headingDesc", model.getHeadingDesc());
+        assertEquals(true, model.getShowImage());
+        assertEquals("mediaLink", model.getImageAspectRatio());
         assertEquals("mediaLink01", model.getAnchorId());
         assertEquals("Anchor  title", model.getAnchorTitle());
         assertEquals("grayscale-white", model.getPwTheme());
@@ -69,5 +71,11 @@ public class MediaLinkModelTest {
         assertEquals("linkDesc", model.getColumnOneList().get(0).getLinkDesc());
         assertEquals("linkDesc", model.getColumnTwoList().get(0).getLinkDesc());
         assertEquals("linkDesc", model.getColumnThreeList().get(0).getLinkDesc());
+        assertEquals("/content/dam/tetrapak/products/pxp/fillingmachines/test1.png", model.getColumnOneList().get(0).getFileReference());
+        assertEquals("/content/dam/tetrapak/products/pxp/fillingmachines/test2.png", model.getColumnTwoList().get(0).getFileReference());
+        assertEquals("/content/dam/tetrapak/products/pxp/fillingmachines/test3.png", model.getColumnThreeList().get(0).getFileReference());
+        assertEquals("Alternative Text 1", model.getColumnOneList().get(0).getAlt());
+        assertEquals("Alternative Text 2", model.getColumnTwoList().get(0).getAlt());
+        assertEquals("Alternative Text 3", model.getColumnThreeList().get(0).getAlt());
     }
 }
