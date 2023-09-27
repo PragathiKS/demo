@@ -1,5 +1,8 @@
 package com.tetrapak.supplierportal.core.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentDetails {
 
 

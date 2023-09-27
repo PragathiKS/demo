@@ -20,7 +20,7 @@ public class UrlServiceImpl implements UrlService {
 
 	private UrlServiceConfig config;
 
-	@ObjectClassDefinition(name = "URL Service Configuration for fonts and images", description = "URL Service Configuration for fonts and images")
+	@ObjectClassDefinition(name = "SupplierPortal Fonts And Images URL Service Configuration", description = "URL Service Configuration for fonts and images")
 	@interface UrlServiceConfig {
 
 		/**

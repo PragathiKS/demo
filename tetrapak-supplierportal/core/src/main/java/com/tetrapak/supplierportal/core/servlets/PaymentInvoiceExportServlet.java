@@ -3,11 +3,9 @@ package com.tetrapak.supplierportal.core.servlets;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.AUTHTOKEN;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DOCUMENT_REFERENCE_ID;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.ERROR_MESSAGE;
-import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.FROM_DATE_TIME;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESPONSE_STATUS_OK;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESULT;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
-import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.TO_DATE_TIME;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -76,18 +74,13 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
 		LOGGER.debug("HTTP GET request from Payment Invoice Export Servlet");
 		
-		String fromDate = request.getParameter(FROM_DATE_TIME);
-		String toDate = request.getParameter(TO_DATE_TIME);
 		String documentReferenceId = request.getParameter(DOCUMENT_REFERENCE_ID);
-		if (StringUtils.isBlank(documentReferenceId) || StringUtils.isBlank(fromDate)
-				|| StringUtils.isBlank(toDate)  ) {
+		if (StringUtils.isBlank(documentReferenceId)) {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
-			response.getWriter().write("Invalid Input. FromDate OR ToDate OR DocumentReferenceId  Missing.");
+			response.getWriter().write("Invalid Input.DocumentReferenceId  Missing.");
 			return;
 		} else {
 			documentReferenceId = xssAPI.encodeForHTML(documentReferenceId);
-			fromDate = xssAPI.encodeForHTML(fromDate);
-			toDate = xssAPI.encodeForHTML(toDate);
 		}
 
 		String authTokenStr;
@@ -103,7 +96,7 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 			return;
 		}
 
-		JsonObject jsonResponse = service.retrievePaymentDetails(authTokenStr, fromDate, toDate, documentReferenceId);
+		JsonObject jsonResponse = service.retrievePaymentDetails(authTokenStr,documentReferenceId);
 		JsonElement statusResponse = jsonResponse.get(STATUS_CODE);
 
         boolean flag = false;

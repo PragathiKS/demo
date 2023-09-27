@@ -32,10 +32,6 @@ public class PaymentInvoiceDownloadServiceImplTest {
 	private static final String APIGEE_SERVICE_URL = "https://api-mig.tetrapak.com";
 	private static final String APIGEE_MAPPINGS = "token-generator:bin/customerhub/token-generator";
 	
-	private static final String TO_DATE_TIME = "2023-07-30T00:00:00";
-
-	private static final String FROM_DATE_TIME = "2023-07-01T00:00:00";
-
 	private static final String DOCUMENT_REFERENCE_ID = "79124499";
 
 	private static final String AUTHTOKEN = "authToken";
@@ -66,7 +62,7 @@ public class PaymentInvoiceDownloadServiceImplTest {
     public void retrievePaymentDetails() throws IOException {
     	when(apiGeeService.getApigeeServiceUrl()).thenReturn(APIGEE_SERVICE_URL);
     	when(apiGeeService.getApiMappings()).thenReturn(new String[] {APIGEE_MAPPINGS});
-    	JsonObject  jsonObj = impl.retrievePaymentDetails(AUTHTOKEN,FROM_DATE_TIME , TO_DATE_TIME, DOCUMENT_REFERENCE_ID);
+    	JsonObject  jsonObj = impl.retrievePaymentDetails(AUTHTOKEN,DOCUMENT_REFERENCE_ID);
     	assertNotNull(jsonObj);
     	assertEquals(200, jsonObj.get(STATUS_CODE).getAsInt());
     }
@@ -75,7 +71,7 @@ public class PaymentInvoiceDownloadServiceImplTest {
     public void retrievePaymentDetailsWhenUriIsNotValid() throws IOException {
     	when(apiGeeService.getApigeeServiceUrl()).thenReturn("--");
     	when(apiGeeService.getApiMappings()).thenReturn(new String[] {APIGEE_MAPPINGS});
-    	JsonObject  jsonObj = impl.retrievePaymentDetails(AUTHTOKEN,FROM_DATE_TIME , TO_DATE_TIME, DOCUMENT_REFERENCE_ID);
+    	JsonObject  jsonObj = impl.retrievePaymentDetails(AUTHTOKEN,DOCUMENT_REFERENCE_ID);
     	assertNotNull(jsonObj);
     	assertEquals(500, jsonObj.get(STATUS_CODE).getAsInt());
     }

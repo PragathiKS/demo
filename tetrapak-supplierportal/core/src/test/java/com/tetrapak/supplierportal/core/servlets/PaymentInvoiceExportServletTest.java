@@ -43,10 +43,6 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 @RunWith(MockitoJUnitRunner.class)
 public class PaymentInvoiceExportServletTest {
 
-	private static final String TO_DATE_TIME = "todatetime";
-
-	private static final String FROM_DATE_TIME = "fromdatetime";
-
 	private static final String DOCUMENT_REFERENCE_ID = "documentreferenceid";
 
 	private static final String AUTHTOKEN = "authToken";
@@ -91,45 +87,22 @@ public class PaymentInvoiceExportServletTest {
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty(STATUS_CODE, 200);
 		when(service.preparePdf(any(), any(), any(), any())).thenReturn(true);
-		when(service.retrievePaymentDetails(anyString(), anyString(), anyString(), anyString()))
+		when(service.retrievePaymentDetails(anyString(), anyString()))
 				.thenReturn(jsonResponse);
 	}
 
 	@Test
 	public void doGetWhenDocRefIdMissing() throws IOException, ServletException {
 		Map<String, Object> map = new HashMap<>();
-		map.put(FROM_DATE_TIME, "2023-07-01T00:00:00");
-		map.put(TO_DATE_TIME, "2023-07-30T00:00:00");
 		request.setParameterMap(map);
 		servlet.doGet(request, response);
 		assertEquals("Status should be ok ", HttpStatus.SC_BAD_REQUEST, response.getStatus());
 	}
 
-	@Test
-	public void doGetWhenToDateMissing() throws IOException, ServletException {
-		Map<String, Object> map = new HashMap<>();
-		map.put(FROM_DATE_TIME, "2023-07-01T00:00:00");
-		map.put(DOCUMENT_REFERENCE_ID, "12345678");
-		request.setParameterMap(map);
-		servlet.doGet(request, response);
-		assertEquals("Status should be ok ", HttpStatus.SC_BAD_REQUEST, response.getStatus());
-	}
-
-	@Test
-	public void doGetWhenFromDateMissing() throws IOException, ServletException {
-		Map<String, Object> map = new HashMap<>();
-		map.put(TO_DATE_TIME, "2023-07-01T00:00:00");
-		map.put(DOCUMENT_REFERENCE_ID, "12345678");
-		request.setParameterMap(map);
-		servlet.doGet(request, response);
-		assertEquals("Status should be ok ", HttpStatus.SC_BAD_REQUEST, response.getStatus());
-	}
 
 	@Test
 	public void doGetWhenAuthTokenMissing() throws IOException, ServletException {
 		Map<String, Object> map = new HashMap<>();
-		map.put(FROM_DATE_TIME, "2023-07-01T00:00:00");
-		map.put(TO_DATE_TIME, "2023-07-01T00:00:00");
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
 		Mockito.when(request.getCookie(AUTHTOKEN)).thenReturn(null);
 		request.setParameterMap(map);
@@ -140,8 +113,6 @@ public class PaymentInvoiceExportServletTest {
 	@Test
 	public void doGetWhenModelIsNull() throws IOException, ServletException {
 		Map<String, Object> map = new HashMap<>();
-		map.put(FROM_DATE_TIME, "2023-07-01T00:00:00");
-		map.put(TO_DATE_TIME, "2023-07-01T00:00:00");
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
 		request.setParameterMap(map);
 		servlet.doGet(request, response);
@@ -151,15 +122,13 @@ public class PaymentInvoiceExportServletTest {
 	@Test
 	public void doGetWhenStatusIsNot200() throws IOException, ServletException {
 		Map<String, Object> map = new HashMap<>();
-		map.put(FROM_DATE_TIME, "2023-07-01T00:00:00");
-		map.put(TO_DATE_TIME, "2023-07-01T00:00:00");
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
 		request.setParameterMap(map);
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty(STATUS_CODE, 400);
 		when(request.getResource()).thenReturn(resource);
 		when(resource.adaptTo(PaymentDetailsModel.class)).thenReturn(model);
-		when(service.retrievePaymentDetails(anyString(), anyString(), anyString(), anyString()))
+		when(service.retrievePaymentDetails(anyString(), anyString()))
 				.thenReturn(jsonResponse);
 		servlet.doGet(request, response);
 		assertEquals("Status should be ok ", HttpStatus.SC_INTERNAL_SERVER_ERROR, response.getStatus());
@@ -168,8 +137,6 @@ public class PaymentInvoiceExportServletTest {
 	@Test
 	public void doGet() throws IOException, ServletException, URISyntaxException {
 		Map<String, Object> map = new HashMap<>();
-		map.put(FROM_DATE_TIME, "2023-07-01T00:00:00");
-		map.put(TO_DATE_TIME, "2023-07-01T00:00:00");
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
 		request.setParameterMap(map);
 		when(request.getResource()).thenReturn(resource);
@@ -180,7 +147,7 @@ public class PaymentInvoiceExportServletTest {
 		JsonElement element = gson.fromJson(content, JsonElement.class);
 		JsonObject jsonObj = element.getAsJsonObject();
 		jsonObj.addProperty(STATUS_CODE, 200);
-		when(service.retrievePaymentDetails(anyString(), anyString(), anyString(), anyString())).thenReturn(jsonObj);
+		when(service.retrievePaymentDetails(anyString(),anyString())).thenReturn(jsonObj);
 		servlet.doGet(request, response);
 		assertEquals("Status should be ok ", HttpStatus.SC_OK, response.getStatus());
 	}

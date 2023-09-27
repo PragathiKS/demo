@@ -82,9 +82,11 @@ public final class HttpUtil {
      * @return result string
      */
     public static String getStringFromJsonWithoutEscape(JsonElement result) {
-        String resultString = result.toString();
+    	String resultString = result.toString();
         resultString = resultString.replaceAll("\\\\n", "");
         resultString = resultString.replaceAll("\\\\", "");
+        resultString = StringUtils.substringAfter(resultString, "\"");
+        resultString = StringUtils.substringBeforeLast(resultString, "\"");
         return resultString;
     }
     
