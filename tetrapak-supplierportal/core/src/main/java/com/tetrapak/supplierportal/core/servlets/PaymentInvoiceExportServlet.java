@@ -52,7 +52,7 @@ import com.tetrapak.supplierportal.core.utils.HttpUtil;
 public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 
 	@Reference
-	private PaymentInvoiceDownloadService service;
+	private PaymentInvoiceDownloadService paymentInvoiceDownloadSevice;
 
 	/** The XSSAPI */
 	@Reference
@@ -96,7 +96,7 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 			return;
 		}
 
-		JsonObject jsonResponse = service.retrievePaymentDetails(authTokenStr,documentReferenceId);
+		JsonObject jsonResponse = paymentInvoiceDownloadSevice.retrievePaymentDetails(authTokenStr,documentReferenceId);
 		JsonElement statusResponse = jsonResponse.get(STATUS_CODE);
 
         boolean flag = false;
@@ -110,7 +110,7 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
         	JsonElement resultsResponse = jsonResponse.get(RESULT);
         	PaymentDetailResponse results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), PaymentDetailResponse.class);
         	if(Objects.nonNull(results) && CollectionUtils.isNotEmpty(results.getData())) {
-        		flag = service.preparePdf(results.getData().get(0), request, response, paymentDetailsModel);
+        		flag = paymentInvoiceDownloadSevice.preparePdf(results.getData().get(0), request, response, paymentDetailsModel);
         	}
         }        
         if (!flag) {

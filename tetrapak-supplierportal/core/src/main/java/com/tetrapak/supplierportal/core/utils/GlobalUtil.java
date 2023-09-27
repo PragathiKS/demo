@@ -298,7 +298,7 @@ public final class GlobalUtil {
 	 * @return language
 	 */
 	public static String getLanguage(SlingHttpServletRequest request) {
-		Cookie languageCookie = request.getCookie("lang-code");
+		Cookie languageCookie = request.getCookie(SupplierPortalConstants.LANG_CODE);
 		if (null != languageCookie) {
 			return languageCookie.getValue();
 		}

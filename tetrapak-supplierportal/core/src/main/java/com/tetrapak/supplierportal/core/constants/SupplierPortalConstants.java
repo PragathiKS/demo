@@ -259,6 +259,8 @@ public final class SupplierPortalConstants {
     public static final String NOTOSERIF_BOLD = "NotoSerif-Bold.ttf";
     
     public static final String COUNT = "count";
+    
+    public static final String LANG_CODE = "lang-code";
 
     /**
      * Instantiates a new customer hub constants.
