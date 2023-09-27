@@ -70,17 +70,10 @@ class Businessinquiryform {
   }
 
   getFormHandler() {
-    const { requestPayload, $countryOrigin } = this.cache;
     const befPardotURL = this.cache.businessformapi.data('bef-pardoturl');
-    const chinabefPardotURL = this.cache.businessformapi.data('china-bef-pardoturl');
     const countryData = {};
-    if(requestPayload.country === 'China' || $countryOrigin ==='cn') {
-      countryData['isChina'] = true;
-      countryData['formHandler'] = chinabefPardotURL;
-    } else {
-      countryData['isChina'] = false;
-      countryData['formHandler'] = befPardotURL;
-    }
+
+    countryData['formHandler'] = befPardotURL;
     return countryData;
   }
 
