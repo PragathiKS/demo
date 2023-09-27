@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const makeLoad = function (label, formName) {
+export const makeLoad = function (label, formName, countryData) {
   const formObj = {
     formName: formName,
     formStep: 'Step 1',
     formType: label,
     areaofInterest: '',
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {
@@ -16,12 +17,13 @@ export const makeLoad = function (label, formName) {
   trackAnalytics(formObj, 'form', 'formload', undefined, false, eventObj);
 };
 
-export const changeStepNext = function (formName, formStep, formType, areaofInterest, dataObj) {
+export const changeStepNext = function (formName, formStep, formType, areaofInterest, dataObj, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {
@@ -39,12 +41,13 @@ export const changeStepNext = function (formName, formStep, formType, areaofInte
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const changeStepPrev = function (formName, formStep, formType, areaofInterest) {
+export const changeStepPrev = function (formName, formStep, formType, areaofInterest, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {
@@ -54,12 +57,13 @@ export const changeStepPrev = function (formName, formStep, formType, areaofInte
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const changeStepError = function (formName, formStep, formType, areaofInterest, dataObj, errorObj={}) {
+export const changeStepError = function (formName, formStep, formType, areaofInterest, dataObj, errorObj={}, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: [],
     formError:errorObj
   };
@@ -78,13 +82,14 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-export const loadThankYou = function (formName, formStep, areaofInterest, dataObj) {
+export const loadThankYou = function (formName, formStep, areaofInterest, dataObj, countryData) {
   const formTitle = $('.heading-summary h4').text().trim();
   const formObj = {
     formName: formName,
     formStep: formStep,
     formType: formTitle,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {
