@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
@@ -9,7 +8,6 @@ class AllPayments {
 
   constructor({ el }) {
     this.root = el;
-    this.roots = $(el);
     this.cache = {};
   }
 
@@ -65,12 +63,13 @@ class AllPayments {
         else if(e.target.closest('.js-all-payments__table-summary__sort')) {
           self.sortAction(e.target);
         }
-      });
-      this.roots.on('click', '.tp-all-payments__table-summary__row',  (e) => {
-        const id = $(e.currentTarget).find('td').eq(8).text().trim();
-        const paymentDetailsURL = this.cache.paymentApi.getAttribute('data-payment-details-url');
-        const url = `${paymentDetailsURL}?documentreferenceid=${id}`;
-        window.open(url, '_blank');
+        else if(e.target.closest('.tp-all-payments__table-summary__row')){
+          const row = e.target.closest('.tp-all-payments__table-summary__row');
+          const id = row.querySelector('[data-key="documentReferenceID"]').textContent.trim();
+          const paymentDetailsURL = self.cache.paymentApi.getAttribute('data-payment-details-url');
+          const url = `${paymentDetailsURL}?documentreferenceid=${id}`;
+          window.open(url, '_blank');
+        }
       });
     }
   }

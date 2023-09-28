@@ -1,14 +1,3 @@
-// .tp-all-payments  {
-//     i.icon {
-//         color: $color-candy-apple-red;
-//     }
-//     &.icon {
-//         color: inherit;
-//     }
-//     &.icon-PDF {
-//         color: $color-candy-apple-red;
-//     }
-// }
 .tp-payment-details {
     @include margin-bottom($margin-md);
     &__container {
@@ -22,7 +11,7 @@
 
         &__bold {
             @include margin-right($margin-sm);
-            font-weight: 700;
+            font-weight: $font-weight-bold;
         }
 
         @media #{$mobile} {
@@ -117,7 +106,7 @@
     &__info-line {
         @include margin-bottom($margin-md);
         display: flex;
-        font-weight: 500;
+        font-weight: $font-weight-normal;
 
         &--error {
             border: 1px solid $color-alert;
@@ -155,7 +144,7 @@
 
     &__info-cell-2 {
         @include line-height($font-l, $font-baseline);
-        font-weight: 700;
+        font-weight: $font-weight-bold;
         width: 71%;
 
         @media #{$mobile} {
@@ -192,13 +181,13 @@
 
     &__details-cell {
         @include line-height($font-l, $font-baseline);
-        font-weight: 500;
+        font-weight: $font-weight-normal;
         &:first-child {
             @include width(310px);
 
             @media #{$mobile} {
                 @include line-height($font-l, $font-baseline);
-                font-weight: 500;
+                font-weight: $font-weight-normal;
                 width: 100%;
             }
         }

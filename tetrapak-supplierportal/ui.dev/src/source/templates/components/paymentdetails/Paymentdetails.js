@@ -73,7 +73,7 @@ class Paymentdetails {
     // TODO: Need to remove count query param. these are added only for testing purpose.
     const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
-    return [paymentApiPromise];
+    return paymentApiPromise;
   }
   showLoader = (isShow) => {
     if (isShow) {
@@ -110,10 +110,10 @@ class Paymentdetails {
   renderPaymentDetails = () => {
     this.showLoader(true);
     auth.getToken(({ data: authData }) => {
-      Promise.all(this.getApiPromise(authData))
+      this.getApiPromise(authData)
         .then(response => {
           this.showLoader(false);
-          const paymentData = response[0]?.data[0] || {};
+          const paymentData = response?.data[0] || {};
           this.renderPaymentDetailsData(paymentData);
         })
         .catch(() => {

@@ -71,6 +71,19 @@ describe('Paymentdetails', function () {
     expect(this.paymentdetails.downloadPDf.called).to.be.true;
   });
 
+  it('should call mobile view handler', async function(){
+    fetchStub.resolves({ json: () => Promise.resolve(paymentDetailsData)});
+    this.paymentdetails.init();
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-mobile-header-actions').dispatchEvent(evt);
+    expect(document.querySelector('.tp-payment-details__header-actions')).to.exist;
+  });
+
   it('should show the no data found if there is no response', async function(){
     const emptyResult = {
       'meta': {
