@@ -4,6 +4,9 @@ import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import org.apache.http.HttpStatus;
 import org.apache.sling.testing.mock.sling.ResourceResolverType;
@@ -29,6 +32,7 @@ import io.wcm.testing.mock.aem.junit.AemContext;
 @RunWith(MockitoJUnitRunner.class)
 public class APIGEETokenGeneratorServletTest {
 	
+	
 	@InjectMocks
 	private APIGEETokenGeneratorServlet servlet;
 	
@@ -53,7 +57,7 @@ public class APIGEETokenGeneratorServletTest {
 	
 	@Before
     public void setup() throws IOException {
-		 MockitoAnnotations.initMocks(this);
+		 MockitoAnnotations.initMocks(this);		 
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty(STATUS_CODE, 200);
 		when(apigeeService.retrieveAPIGEEToken(Matchers.anyString())).thenReturn(jsonResponse);

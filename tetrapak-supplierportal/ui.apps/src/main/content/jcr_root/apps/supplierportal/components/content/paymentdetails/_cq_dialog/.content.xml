@@ -18,17 +18,41 @@
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         maximized="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
-                            <invoiceno
+                            <invoiceInfo
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Invoice Information (i18N key)"
+                                name="./invoiceInfo"
+                                required="true"/>
+                            <companyInfo
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Company Information (i18N key)"
+                                name="./companyInfo"
+                                required="true"/>
+                            <supplierInfo
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Supplier Informtaion (i18N key)"
+                                name="./supplierInfo"
+                                required="true"/>
+                            <details
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Details (i18N key)"
+                                name="./details"
+                                required="true"/>
+                            <invoiceNo
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Invoice No (i18N key)"
                                 name="./invoiceNo"
                                 required="true"/>
-                            <invoiceDate
+                            <date
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Invoice Date (i18N key)"
-                                name="./invoiceDate"
+                                fieldLabel="Date (i18N key)"
+                                name="./date"
                                 required="true"/>
                             <status
                                 jcr:primaryType="nt:unstructured"
@@ -45,7 +69,7 @@
                             <companyCode
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Company Code (i18N key)"
+                                fieldLabel="Company Code(i18N key)"
                                 name="./companyCode"
                                 required="true"/>
                             <country
@@ -57,26 +81,68 @@
                             <supplier
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Supplier(i18N key)"
+                                fieldLabel="Supplier (i18N key)"
                                 name="./supplier"
                                 required="true"/>
                             <supplierCode
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Supplier Code(i18N key)"
+                                fieldLabel="Supplier Code (i18N key)"
                                 name="./supplierCode"
                                 required="true"/>
-                            <withholdingtax
+                            <totalAmount
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="With Holding Tax(i18N key)"
-                                name="./withHoldingTax"
+                                fieldLabel="Total Amount (i18N key)"
+                                name="./totalAmount"
+                                required="true"/>
+                            <tax
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Tax (i18N key)"
+                                name="./tax"
+                                required="true"/>
+                            <withHoldingTaxes
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="With Holding Taxes (i18N key)"
+                                name="./withHoldingTaxes"
+                                required="true"/>
+                            <netPayable
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Net Payable (i18N key)"
+                                name="./netPayable"
+                                required="true"/>
+                            <paymentTerm
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Payment Term (i18N key)"
+                                name="./paymentTerm"
                                 required="true"/>
                             <dueDate
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Due Date(i18N key)"
+                                fieldLabel="Due Date (i18N key)"
                                 name="./dueDate"
+                                required="true"/>
+                            <paidDate
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Paid Date (i18N key)"
+                                name="./paidDate"
+                                required="true"/>
+                            <bankAccount
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Bank Account (i18N key)"
+                                name="./bankAccount"
+                                required="true"/>
+                            <paymentMethod
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Payment Method (i18N key)"
+                                name="./paymentMethod"
                                 required="true"/>
                             <poNo
                                 jcr:primaryType="nt:unstructured"
@@ -84,89 +150,35 @@
                                 fieldLabel="Po No (i18N key)"
                                 name="./poNo"
                                 required="true"/>
-                            <amountIncludingTaxes
+                            <emptyPaymentDetails
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Amount Including Taxes &#xa; (i18N key)"
-                                name="./amountIncludingTaxes"
+                                fieldLabel="Empty Payment Details (i18N key)"
+                                name="./emptyPaymentDetails"
                                 required="true"/>
-                            <reset
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Reset (i18N key)"
-                                name="./reset"
-                                required="true"/>
-                            <results
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Results (i18N key)"
-                                name="./results"
-                                required="true"/>
-                            <pagination
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Pagination (i18N key)"
-                                name="./pagination"
-                                required="true"/>
-                            <noDataFound
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="No Data Found (i18N key)"
-                                name="./noDataFound"
-                                required="true"/>
-                            <paginationFirst
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Pagination First (i18N key)"
-                                name="./paginationFirst"
-                                required="true"/>
-                            <paginationLast
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Pagination Last (i18N key)"
-                                name="./paginationLast"
-                                required="true"/>
-                            <allPaymentsHeading
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="All Payments Heading (i18N key)"
-                                name="./allPaymentsHeading"
-                                required="true"/>
-                            <fetcherror
+                            <fetchError
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Fetch Error (i18N key)"
-                                name="./fetcherror"
+                                name="./fetchError"
                                 required="true"/>
-                            <multipono
+                            <multiPoNo
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Multiple Po Number (i18N key)"
-                                name="./multipono"
+                                fieldLabel="Multi Po No (i18N key)"
+                                name="./multiPoNo"
                                 required="true"/>
-                            <paginationprev
+                            <exportToPDF
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Previous (i18N key)"
-                                name="./paginationPrev"
+                                fieldLabel="Export To PDF (i18N key)"
+                                name="./exportToPDF"
                                 required="true"/>
-                            <paginationnext
+                            <code
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Next (i18N key)"
-                                name="./paginationNext"
-                                required="true"/>
-                            <paid
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Paid (i18N key)"
-                                name="./paid"
-                                required="true"/>
-							<paymentDetailsURL
-                                jcr:primaryType="nt:unstructured"
-                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                fieldLabel="Payment Details URL (i18N key)"
-                                name="./paymentDetailsURL"
+                                fieldLabel="Code (i18N key)"
+                                name="./code"
                                 required="true"/>
                         </items>
                     </column1>

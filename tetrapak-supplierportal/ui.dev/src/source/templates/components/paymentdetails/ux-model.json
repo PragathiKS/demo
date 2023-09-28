@@ -1,0 +1,7 @@
+{
+  "heading": "Invoice information",
+  "viewPaymentDataUrl": "http://localhost:3001/supplierpayments/invoices",
+  "exportToPdfURL": "/content/tetrapak/supplierportal/global/en/payment-details/jcr:content/root/responsivegrid/paymentdetails/bin/supportal/invoice/export",
+  "isPublishEnvironment": true,
+  "i18nKeys": "{\"date\":\"sp.paymentdetails.date\",\"country\":\"sp.paymentDetails.country\",\"netPayable\":\"sp.paymentdetails.netPayable\",\"dueDate\":\"sp.paymentDetails.dueDate\",\"supplierCode\":\"sp.paymentDetails.supplierCode\",\"supplierInfo\":\"sp.paymentdetails.supplierInformtaion\",\"paidDate\":\"sp.paymentdetails.paidDate\",\"poNo\":\"sp.paymentDetails.poNo\",\"details\":\"sp.paymentdetails.details\",\"company\":\"sp.paymentDetails.company\",\"invoiceNo\":\"sp.paymentdetails.invoiceNo\",\"companyCode\":\"sp.paymentDetails.companyCode\",\"bankAccount\":\"sp.paymentdetails.bankAccount\",\"invoiceInfo\":\"sp.paymentDetails.invoiceInformation\",\"fetchError\":\"sp.paymentdetails.fetcherror\",\"withHoldingTax\":\"sp.paymentdetails.withHoldingTaxes\",\"exportToPDF\":\"sp.paymentdetails.multipono\",\"companyInfo\":\"sp.paymentdetails.companyInformation\",\"tax\":\"sp.paymentdetails.tax\",\"totalAmount\":\"sp.paymentdetails.totalAmount\",\"emptyPaymentDetails\":\"sp.paymentdetails.emptyPaymentDetails\",\"multiPoNo\":\"sp.paymentdetails.multipono\",\"paymentMethod\":\"sp.paymentdetails.paymentMethod\",\"paymentTerm\":\"sp.paymentdetails.paymentTerm\",\"status\":\"sp.paymentdetails.status\"}"
+}
