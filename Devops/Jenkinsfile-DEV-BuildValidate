@@ -1,0 +1,111 @@
+@Library('jenkins-pipeline-library') _
+
+pipeline {
+    agent {
+        node {
+            label 'cfe-deploy'
+        }
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+    }
+
+    environment {
+        build_id_number = ""
+        build_commons = true
+        build_pubweb = true
+        build_mtp = true
+        build_tlaval = true
+        build_supplier = true
+    }
+
+    stages {
+        stage('Build & Test Projects') {
+            agent {
+                dockerfile {
+                    args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
+                    label 'cfe-deploy'
+                }
+            }
+            failFast true
+            steps {
+                script {
+                    def now = new Date()
+                    def formattedDate = now.format("yyyyMMddHHmm")
+                    build_id_number = formattedDate
+		        }
+                script {
+                    def GIT_DIFF = sh (
+                        script: 'git diff --name-only HEAD HEAD~5',
+                        returnStdout: true
+                    ).trim()
+                    
+                    build_mtp = GIT_DIFF.contains('tetrapak-customerhub'))
+                    build_pubweb = GIT_DIFF.contains('tetrapak-customerhub')) 
+                    build_tlaval = GIT_DIFF.contains('tetra-laval'))
+                    build_supplier = GIT_DIFF.contains('tetrapak-supplierportal'))
+                    if (GIT_DIFF.contains('tetrapak-commons')) {
+                        build_commons = true
+                        build_pubweb = true
+                        build_mtp = true
+                        build_tlaval = true
+                        build_supplier = true
+                    }
+                }
+                script {
+                    if (build_commons) {
+                        build(appname: "commons")
+                    }
+                    
+                    parallel(
+                        "Build Customerhub": {
+                            if (build_mtp) {
+                                build(appname: "customerhub")
+                            }
+                        },
+                        "Build Publicweb": {
+                            if (build_pubweb) {
+                                build(appname: "publicweb")
+                            }
+                        },
+                        "Build Supplierportal": {
+                            if (build_supplier) {
+                                build(appname: "supplierportal")
+                            }
+                        },
+                        "Build Tetralaval": {
+                            if (build_tlaval) {
+                                buildlaval()
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
+def build(Map map) {
+    dir("tetrapak-${map.appname}") {
+        sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
+        sh "npm cache clean --force"                    
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+        {                       
+            sh label: "Build ${map.appname}", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+            junit testResults: "ui.dev/src/coverage/*karma-report.xml", healthScaleFactor: 10.0
+        }
+    }
+}
+
+def buildlaval() {
+    dir("tetra-laval") {
+        sh "rm -rf ui.frontend/node_modules && rm -rf ui.frontend/package-lock.json"
+        sh "npm cache clean --force"
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+        {
+            sh label:"Build tetra-laval", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+            junit testResults: "ui.frontend/src/coverage/*karma-report.xml", healthScaleFactor: 10.0
+        }
+    }
+}
