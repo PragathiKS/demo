@@ -132,7 +132,7 @@
 
     &__info-cell-1 {
         @include line-height($font-l, $font-baseline);
-        @include width(110px);
+        @include width(90px);
         @include margin-right($margin-l);
         flex-shrink: 0;
 

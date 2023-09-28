@@ -41,7 +41,7 @@
             {{/if_noteq}}
             {{#if_noteq paymentData.companyCode ""}}
             <div class="tp-payment-details__info-line">
-                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.companyCode}}</div>
+                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.code}}</div>
                 <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.companyCode}}</div>
             </div>
             {{/if_noteq}}
@@ -64,7 +64,7 @@
             {{/if_noteq}}
             {{#if_noteq paymentData.supplier ""}}
             <div class="tp-payment-details__info-line">
-                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.supplierCode}}</div>
+                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.code}}</div>
                 <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.supplier}}</div>
             </div>
             {{/if_noteq}}
