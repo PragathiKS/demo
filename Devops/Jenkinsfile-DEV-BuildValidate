@@ -41,10 +41,10 @@ pipeline {
                         returnStdout: true
                     ).trim()
                     
-                    build_mtp = GIT_DIFF.contains('tetrapak-customerhub'))
-                    build_pubweb = GIT_DIFF.contains('tetrapak-customerhub')) 
-                    build_tlaval = GIT_DIFF.contains('tetra-laval'))
-                    build_supplier = GIT_DIFF.contains('tetrapak-supplierportal'))
+                    build_mtp = GIT_DIFF.contains('tetrapak-customerhub')
+                    build_pubweb = GIT_DIFF.contains('tetrapak-publicweb') 
+                    build_tlaval = GIT_DIFF.contains('tetra-laval')
+                    build_supplier = GIT_DIFF.contains('tetrapak-supplierportal')
                     if (GIT_DIFF.contains('tetrapak-commons')) {
                         build_commons = true
                         build_pubweb = true
