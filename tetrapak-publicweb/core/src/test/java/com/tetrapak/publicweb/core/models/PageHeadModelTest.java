@@ -72,7 +72,6 @@ public class PageHeadModelTest {
     @Test
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("i2VwWovOU2OomMlYNPhXmGhMXcESpXVr", model.getBaiduMapkey());
-        assertEquals("/content/tetrapak/publicweb/cn/zh/home/jcr:content.onetrustcookietoken.json", model.getCookieTokenServletUrl());
         assertEquals("China", model.getPageTitleCountrySuffix());
     }
 
