@@ -13,34 +13,22 @@ pipeline {
 
     environment {
         build_id_number = ""
-        build_commons = true
-        build_pubweb = true
-        build_mtp = true
-        build_tlaval = true
-        build_supplier = true
+        build_commons = false
+        build_pubweb = false
+        build_mtp = false
+        build_tlaval = false
+        build_supplier = false
     }
 
     stages {
-        stage('Build & Test Projects') {
-            agent {
-                dockerfile {
-                    args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
-                    label 'cfe-deploy'
-                }
-            }
-            failFast true
+        stage('Identify Build Scope') {
             steps {
-                script {
-                    def now = new Date()
-                    def formattedDate = now.format("yyyyMMddHHmm")
-                    build_id_number = formattedDate
-		        }
                 script {
                     def GIT_DIFF = sh (
                         script: 'git diff --name-only HEAD HEAD~5',
                         returnStdout: true
                     ).trim()
-                    
+                    echo "${GIT_DIFF}"
                     build_mtp = GIT_DIFF.contains('tetrapak-customerhub')
                     build_pubweb = GIT_DIFF.contains('tetrapak-publicweb') 
                     build_tlaval = GIT_DIFF.contains('tetra-laval')
@@ -53,6 +41,25 @@ pipeline {
                         build_supplier = true
                     }
                 }
+            }
+        }
+        stage('Build & Test Projects') {
+            when { expression { return  (build_commons | build_pubweb | build_mtp | build_tlaval | build_supplier) } } 
+            agent {
+                dockerfile {
+                    args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
+                    label 'cfe-deploy'
+                }
+            }
+
+            failFast true
+            steps {
+                script {
+                    def now = new Date()
+                    def formattedDate = now.format("yyyyMMddHHmm")
+                    build_id_number = formattedDate
+		        }
+                
                 script {
                     if (build_commons) {
                         build(appname: "commons")
