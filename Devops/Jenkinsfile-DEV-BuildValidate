@@ -125,6 +125,8 @@ def buildlaval() {
             }
         }
         finally {
+            sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
+            sh "npm cache clean --force"  
             sh label: "Clean Project Cache", script: "mvn clean"
         }
     }
