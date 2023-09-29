@@ -1003,6 +1003,8 @@ public final class CustomerHubConstants {
     /** Comments Placeholder */
     public static final String COMMENTS_PLACEHOLDER = "commentsPlaceholder";
 
+    /** Parts group */
+    public static final String PARTS_GROUP = "cuhu_parts";
 
     /**
      * Instantiates a new customer hub constants.
