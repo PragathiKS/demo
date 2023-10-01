@@ -18,11 +18,11 @@
         }
     }
 
-    &__info-card-col {
+    &__info-card-row {
         @include margin-bottom($margin-xxl);
-
-        @media #{mobile} {
-            @include margin-bottom($margin-l);
+        display: flex;
+        @media #{$mobile} {
+            flex-direction: column;
         }
     }
 
@@ -33,15 +33,59 @@
         border-radius: $border-radius;
         height: 100%;
         flex-direction: column;
+        margin: 0 $padding-md 0 $padding-md;
 
-        @media #{mobile} {
+        @media #{$mobile} {
             @include padding($padding-md);
+            margin: 0 $padding-md 0 $padding-md;
         }
 
         h3 {
             @include padding-bottom($padding-md);
             @include margin-bottom($margin-l);
             border-bottom: 1px solid $color-mercury;
+        }
+    }
+
+    &__info-links {
+        flex-grow: 1;
+        padding: 0 $padding-l 0 0;
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-l);
+            padding: 0 $padding-md 0 $padding-md;
+        }
+
+        &__item {
+            @include padding($padding-l);
+            background-color: $color-wild-sand;
+            border-radius: $border-radius;
+
+            @media #{$mobile} {
+                @include padding($padding-md);
+            }
+
+            h4 {
+                @include padding-bottom($padding-md);
+                @include margin-bottom($margin-l);
+                border-bottom: 1px solid $color-mercury;
+                font-weight: 700;
+            }
+
+            &__link {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                a {
+                    color: $color-congress-blue;
+                    margin-right: $padding-xs;
+                    font-weight: 500;
+                }
+                i {
+                    color: $color-congress-blue;
+                    font-weight: 500;
+                }
+            }
         }
     }
 

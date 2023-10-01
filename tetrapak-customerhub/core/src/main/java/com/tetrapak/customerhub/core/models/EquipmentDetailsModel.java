@@ -194,6 +194,12 @@ public class EquipmentDetailsModel {
     private String equipmentCategory;
 
     /**
+     * The equipment category.
+     */
+    @Inject
+    private String mappedTechnicalPublicationUrl;
+
+    /**
      * The eofs confirmation date.
      */
     @Inject
@@ -718,7 +724,8 @@ public class EquipmentDetailsModel {
 	 * @return mapped url.
 	 */
 	public String getMappedTechnicalPublicationUrl() {
-		return LinkUtil.getValidLink(resource, techPubPath);
+        mappedTechnicalPublicationUrl = LinkUtil.getValidLink(resource, techPubPath);
+		return mappedTechnicalPublicationUrl;
 	}
 
     /**

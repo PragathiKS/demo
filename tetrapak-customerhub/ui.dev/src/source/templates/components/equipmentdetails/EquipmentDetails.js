@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
@@ -100,6 +102,8 @@ function _renderEquipmentDetails() {
       $this.cache.$spinner.addClass('d-none');
     });
   });
+  
+  console.log($('.js-equipment-details__info-links'));
 }
 
 function  _renderEquipInfoCard(view) {
@@ -126,6 +130,7 @@ function  _renderEquipInfoCard(view) {
 }
 
 function  _renderEquipUpdateModal() {
+  console.log(`_renderEquipUpdateModal`)
   const { $modal, i18nKeys } = this.cache;
 
   render.fn({
