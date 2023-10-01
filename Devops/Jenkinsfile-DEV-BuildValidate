@@ -14,11 +14,11 @@ pipeline {
 
     environment {
         build_id_number = ""
-        build_commons = false
-        build_pubweb = false
-        build_mtp = false
-        build_tlaval = false
-        build_supplier = false
+        boolean build_commons = false
+        boolean build_pubweb = false
+        boolean build_mtp = false
+        boolean build_tlaval = false
+        boolean build_supplier = false
     }
 
     stages {
@@ -47,13 +47,18 @@ pipeline {
         stage('Build & Test Projects') {
             when { 
                 beforeAgent true
-                expression { return (build_commons || build_pubweb || build_mtp || build_tlaval || build_supplier) } 
+                anyOf {
+                    expression { return build_commons == true }
+                    expression { return build_pubweb == true }
+                    expression { return build_mtp == true }
+                    expression { return build_tlaval == true }
+                    expression { return build_supplier == true }
+                }
             } 
             agent {
                 dockerfile {
                     args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
                     label 'cfe-deploy'
-                    reuseNode true
                 }
             }
             failFast true
@@ -65,28 +70,28 @@ pipeline {
 		        }
                 
                 script {
-                    if (build_commons) {
+                    if (build_commons == true) {
                         build(appname: "commons")
                     }
                     
                     parallel(
                         "Build Customerhub": {
-                            if (build_mtp) {
+                            if (build_mtp == true) {
                                 build(appname: "customerhub")
                             }
                         },
                         "Build Publicweb": {
-                            if (build_pubweb) {
+                            if (build_pubweb == true) {
                                 build(appname: "publicweb")
                             }
                         },
                         "Build Supplierportal": {
-                            if (build_supplier) {
+                            if (build_supplier == true) {
                                 build(appname: "supplierportal")
                             }
                         },
                         "Build Tetralaval": {
-                            if (build_tlaval) {
+                            if (build_tlaval == true) {
                                 buildlaval()
                             }
                         }
@@ -96,6 +101,7 @@ pipeline {
             post {
                 cleanup {
                     sh label: "clean log4j from .m2 cache", script: "rm -rf ~/.m2/repository/log4j/*"
+                    sh "sudo git gc --force"
                 }
             }
         }
@@ -115,19 +121,12 @@ def build(Map map) {
 
 def buildlaval() {
     dir("tetra-laval") {
-        try {
-            sh "rm -rf ui.frontend/node_modules && rm -rf ui.frontend/package-lock.json"
-            sh "npm cache clean --force"
-            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
-            {
-                sh label:"Build tetra-laval", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
-                junit testResults: "ui.frontend/src/coverage/*karma-report.xml", healthScaleFactor: 10.0
-            }
-        }
-        finally {
-            sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
-            sh "npm cache clean --force"  
-            sh label: "Clean Project Cache", script: "mvn clean"
+        sh "rm -rf ui.frontend/node_modules && rm -rf ui.frontend/package-lock.json"
+        sh "npm cache clean --force"
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+        {
+            sh label:"Build tetra-laval", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+            junit testResults: "ui.frontend/src/coverage/*karma-report.xml", healthScaleFactor: 10.0
         }
     }
 }
