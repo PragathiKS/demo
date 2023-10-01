@@ -72,8 +72,15 @@ pipeline {
                 script {
                     if (build_commons == true) {
                         build(appname: "commons")
+                    } else {
+					    dir('tetrapak-commons') {
+					        sh "npm install --prefix ui.dev/src"
+						    sh "npm rebuild node-sass"
+						}
+					}
+                    if (!build_pubweb) {
+                        sh "npm install --prefix tetrapak-publicweb/ui.dev/src"
                     }
-                    
                     parallel(
                         "Build Customerhub": {
                             if (build_mtp == true) {
