@@ -4,7 +4,7 @@ pipeline {
     agent {
         node {
             label 'cfe-deploy'
-            customWorkspace "../jenkins/workspace/CFE/${env.BUILD_TAG}"
+            customWorkspace "../jenkins/workspace/CFE/${env.JOB_NAME}-${env.BUILD_NUMBER}"
         }
     }
 
@@ -59,6 +59,7 @@ pipeline {
                 dockerfile {
                     args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
                     label 'cfe-deploy'
+                    customWorkspace "./workspace/CFE/${env.JOB_NAME}-${env.BUILD_NUMBER}@2"
                 }
             }
             failFast true
