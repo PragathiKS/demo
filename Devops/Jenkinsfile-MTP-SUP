@@ -125,7 +125,7 @@ def deploySup() {
                             booleanParam(name: 'DeployMyTetrapak', value: true),
                             string(name: 'Snapshot_MyTetrapak', value: build_id_number)]
     if (params.Build_Commons)  {
-        deploy_job_params << booleanParam(name: 'DeployCommons', value: true)]
+        deploy_job_params << booleanParam(name: 'DeployCommons', value: true)
         deploy_job_params << string(name: 'Snapshot_Commons', value: build_id_number)
     }
     build job: 'CFE/CFE-Deploy',
