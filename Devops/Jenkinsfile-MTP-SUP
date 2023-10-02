@@ -91,14 +91,6 @@ pipeline {
                 }
             }
         }
-        
-        stage('SUP Env Cache Clear') {
-            steps {
-                script {
-                    cacheflush()
-                }
-            }
-        }
     }
 }
 
@@ -130,15 +122,6 @@ def deploySup() {
     }
     build job: 'CFE/CFE-Deploy',
         parameters: deploy_job_params,
-        wait: true
-}
-
-def cacheflush() {
-    build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: 'SUP')], wait: true
-
-    build job: 'CFE/CFE-Cdn-Cache',
-        parameters: [string(name: 'Environment', value: 'SUP'),
-                    booleanParam(name: 'Customerhub', value: true)],
         wait: true
 }
 
