@@ -46,6 +46,7 @@ import com.tetrapak.publicweb.core.utils.PageUtil;
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/tr/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/ja/**/jcr:content",
                 ResourceChangeListener.PATHS + "=" + "glob:/content/tetrapak/publicweb/lang-masters/pt/**/jcr:content",
+                ResourceChangeListener.PATHS + "=" + "glob:/content/experience-fragments/publicweb/**/jcr:content",
                 ResourceChangeListener.CHANGES + "=" + "CHANGED",
                 ResourceChangeListener.PROPERTY_NAMES_HINT + "=cq:ctTranslated",
                 ResourceChangeListener.PROPERTY_NAMES_HINT + "=cq:lastModified"
