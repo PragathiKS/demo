@@ -99,7 +99,7 @@ pipeline {
                 }
             }
         }
-}
+    }
 }
 
 def buildandsonar() {
@@ -139,7 +139,7 @@ def cacheflush() {
     build job: 'CFE/CFE-Cdn-Cache',
         parameters: [string(name: 'Environment', value: 'SUP'),
                     booleanParam(name: 'Customerhub', value: true)],
-        wait: true       
+        wait: true
 }
 
 def sonarreport() {
