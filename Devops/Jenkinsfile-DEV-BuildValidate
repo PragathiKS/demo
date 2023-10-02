@@ -99,6 +99,7 @@ pipeline {
                         "Build Tetralaval": {
                             if (build_tlaval == true) {
                                 buildlaval()
+                                
                             }
                         }
                     )
@@ -120,7 +121,10 @@ def build(Map map) {
         sh "npm cache clean --force"                    
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']]) {                       
             sh label: "Build ${map.appname}", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
-            junit testResults: "ui.dev/src/coverage/*karma-report.xml", healthScaleFactor: 10.0
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false,
+                                    keepAll: false, reportDir: 'ui.dev/src/coverage',
+                                    reportFiles: 'index.html', reportName: "KarmaReport-${map.appname}",
+                                    reportTitles: ''])
         }
     }
 }
@@ -132,7 +136,10 @@ def buildlaval() {
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
         {
             sh label:"Build tetra-laval", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
-            junit testResults: "ui.frontend/src/coverage/*karma-report.xml", healthScaleFactor: 10.0
+            publishHTML([allowMissing: true, alwaysLinkToLastBuild: false,
+                                    keepAll: false, reportDir: 'ui.frontend/src/coverage',
+                                    reportFiles: 'index.html', reportName: 'KarmaReport-TetraLaval',
+                                    reportTitles: ''])
         }
     }
 }
