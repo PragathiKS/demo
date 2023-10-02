@@ -4,6 +4,7 @@ pipeline {
     agent {
         node {
             label 'cfe-deploy'
+            customWorkspace "../jenkins/workspace/CFE/${env.BUILD_TAG}"
         }
     }
 
@@ -99,7 +100,6 @@ pipeline {
                         "Build Tetralaval": {
                             if (build_tlaval == true) {
                                 buildlaval()
-                                
                             }
                         }
                     )
