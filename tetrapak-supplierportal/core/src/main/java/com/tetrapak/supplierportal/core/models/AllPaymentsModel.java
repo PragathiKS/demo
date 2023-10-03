@@ -24,6 +24,7 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_DETAILS_URL;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +43,7 @@ import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
+import com.tetrapak.supplierportal.core.utils.LinkUtil;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class AllPaymentsModel {
@@ -143,6 +145,9 @@ public class AllPaymentsModel {
 	
 	@ValueMapValue
 	private String paid;
+	
+	@ValueMapValue
+	private String paymentDetailsURL;
 	
 
 	public Resource getResource() {
@@ -372,6 +377,8 @@ public class AllPaymentsModel {
 		i18KeyMap.put(PAGINATION_NEXT, getPaginationNext());
 		i18KeyMap.put(PAGINATION_PREV, getPaginationPrev());
 		i18KeyMap.put(PAID, getPaid());
+		i18KeyMap.put(PAYMENT_DETAILS_URL, getPaymentDetailsURL());
+		
 
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -384,7 +391,7 @@ public class AllPaymentsModel {
 				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.FILTERS_MAPPING);
 
 		allPaymentsApi = service.getApigeeServiceUrl()
-				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.INVOICE_MAPPING);
+				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.INVOICE_MAPPING); 
 	}
 
 	public String getI18nKeys() {
@@ -433,5 +440,14 @@ public class AllPaymentsModel {
 
 	public void setPaid(String paid) {
 		this.paid = paid;
-	}	
+	}
+	
+
+	/**
+	 * Get valid url to Payment Details URL
+	 * @return mapped url.
+	 */
+	public String getPaymentDetailsURL() {
+		return LinkUtil.getValidLink(resource, paymentDetailsURL);
+	}
 }

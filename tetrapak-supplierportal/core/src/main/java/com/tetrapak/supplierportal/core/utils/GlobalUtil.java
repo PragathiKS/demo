@@ -1,10 +1,13 @@
 package com.tetrapak.supplierportal.core.utils;
 
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
-import com.tetrapak.supplierportal.core.services.APIGEEService;
-import com.tetrapak.supplierportal.core.services.CookieDataDomainScriptService;
-import com.tetrapak.supplierportal.core.services.UserPreferenceService;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Objects;
+
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.http.Cookie;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.api.security.user.Authorizable;
 import org.apache.jackrabbit.api.security.user.UserManager;
@@ -13,21 +16,21 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.settings.SlingSettingsService;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceReference;
-import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.servlet.http.Cookie;
-import java.util.Iterator;
-import java.util.Objects;
+import com.day.cq.i18n.I18n;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
+import com.tetrapak.supplierportal.core.services.APIGEEService;
+import com.tetrapak.supplierportal.core.services.CookieDataDomainScriptService;
+import com.tetrapak.supplierportal.core.services.UserPreferenceService;
 
 /**
  * This is a global util class to access globally common utility methods.
@@ -286,6 +289,34 @@ public final class GlobalUtil {
      */
     public static String[] getApiMappings(APIGEEService apigeeService) {
         return null != apigeeService ? apigeeService.getApiMappings() : null;
+    }
+    
+	/**
+	 * Method to get language from cookie.
+	 *
+	 * @param request sling request
+	 * @return language
+	 */
+	public static String getLanguage(SlingHttpServletRequest request) {
+		Cookie languageCookie = request.getCookie(SupplierPortalConstants.LANG_CODE);
+		if (null != languageCookie) {
+			return languageCookie.getValue();
+		}
+		return SupplierPortalConstants.DEFAULT_LOCALE;
+	}
+	
+	/**
+     * The method provides the i18n value provided the following parameters.
+     *
+     * @param request  request
+     * @param prefix   prefix
+     * @param key      key
+     * @param language language
+     * @return value
+     */
+    public static String getI18nValueForThisLanguage(SlingHttpServletRequest request, String prefix, String key, String language) {
+        I18n i18n = new I18n(request.getResourceBundle(new Locale(language.substring(0, 2), StringUtils.substringAfter(language, "_"))));
+        return i18n.get(prefix + key);
     }
 
 }

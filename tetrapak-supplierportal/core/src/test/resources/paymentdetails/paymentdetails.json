@@ -1,0 +1,44 @@
+{
+   "jcr:primaryType":"cq:Page",
+   "jcr:content":{
+      "jcr:primaryType":"cq:PageContent",
+      "root":{
+         "jcr:primaryType":"nt:unstructured",
+         "sling:resourceType":"wcm/foundation/components/responsivegrid",
+         "responsivegrid":{
+            "jcr:primaryType":"nt:unstructured",
+            "sling:resourceType":"wcm/foundation/components/responsivegrid",
+            "paymentdetails":{
+               "jcr:primaryType":"nt:unstructured",
+               "invoiceInfo":"sp.paymentdetails.invoiceInformation",
+			   "companyInfo": "sp.paymentdetails.companyInformation",
+				 "supplierInfo":"sp.paymentDetails.supplierInformtaion",
+				 "details":"sp.paymentDetails.details",
+				 "invoiceNo":"sp.paymentDetails.invoiceNo",
+				 "date":"sp.paymentDetails.date",
+				 "status":"sp.paymentDetails.status",
+				 "company":"sp.paymentDetails.company",
+				 "companyCode":"sp.paymentDetails.companyCode",
+				 "country":"sp.paymentDetails.country",
+				 "vendor":"sp.paymentDetails.vendor",
+				 "supplierCode":"sp.paymentDetails.supplierCode",
+				 "totalAmount":"sp.paymentDetails.totalAmount",
+				 "tax":"sp.paymentDetails.tax",
+				 "withHoldingTaxes":"sp.paymentDetails.withHoldingTaxes",
+				 "netPayable":"sp.paymentDetails.netPayable",
+				 "paymentTerm":"sp.paymentDetails.paymentTerm",
+				 "dueDate":"sp.paymentDetails.dueDate",
+				 "paidDate":"sp.paymentDetails.paidDate",
+				 "bankAccount":"sp.paymentDetails.bankAccount",
+				 "paymentMethod":"sp.paymentDetails.paymentMethod",
+				 "poNo": "sp.paymentDetails.poNo",
+				 "emptyPaymentDetails":"sp.paymentDetails.poNo",
+				 "exportToPdfURL":"/bin/supportal/invoice/export",
+				 "viewPaymentDataUrl":"https://api-mig.tetrapak.com/supplierpayments/invoices",
+				 "fetchError":"sp.paymentdetails.fetcherror",
+				 "multiPoNo":"sp.paymentdetails.multipono"
+            }
+         }
+      }
+   }
+}
