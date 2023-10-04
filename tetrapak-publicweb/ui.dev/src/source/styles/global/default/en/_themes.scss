@@ -12,7 +12,7 @@ body {
     font-style: normal;
     position: relative;
     @media #{$desktop} {
-    margin-left: -20px;
+    margin-left: -($margin-twenty);
     }
 }
 .bannercontainer {
