@@ -41,6 +41,7 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
+import com.tetrapak.supplierportal.core.services.InvoiceStatusService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -143,6 +144,11 @@ public class AllPaymentsModel {
 	
 	@ValueMapValue
 	private String paid;
+	
+	@OSGiService
+	private InvoiceStatusService invoiceStatusService;
+	
+	private int paymentsFromToDateGapInMonths;
 	
 
 	public Resource getResource() {
@@ -385,6 +391,8 @@ public class AllPaymentsModel {
 
 		allPaymentsApi = service.getApigeeServiceUrl()
 				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.INVOICE_MAPPING);
+		
+		paymentsFromToDateGapInMonths = invoiceStatusService.getFromToDateGapInMonthsVal();
 	}
 
 	public String getI18nKeys() {
@@ -433,5 +441,13 @@ public class AllPaymentsModel {
 
 	public void setPaid(String paid) {
 		this.paid = paid;
-	}	
+	}
+
+	public int getPaymentsFromToDateGapInMonths() {
+		return paymentsFromToDateGapInMonths;
+	}
+
+	public void setPaymentsFromToDateGapInMonths(int paymentsFromToDateGapInMonths) {
+		this.paymentsFromToDateGapInMonths = paymentsFromToDateGapInMonths;
+	}
 }

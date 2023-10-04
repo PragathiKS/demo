@@ -38,6 +38,7 @@ public class InvoiceStatusServiceImplTest {
 		MockitoAnnotations.initMocks(this);
 		Map<String, Object> _config = new HashMap<>();
 		_config.put("invoiceStatusCodeMappings", INVOICE_CODE_MAPPINGS);
+		_config.put("paymentsFromToDateGapInMonths", 3);
 		aemContext.registerInjectActivateService(service, _config);
 	}
 
@@ -45,5 +46,11 @@ public class InvoiceStatusServiceImplTest {
 	public void invoiceStatusCodeMappings() throws IOException {
 		Map<String, List<String>> map = service.invoiceStatusCodeMap();
 		Assert.assertNotNull(map);
+	}
+	
+	@Test
+	public void getFromToDateGapInMonthsVal() throws IOException {
+		int value = service.getFromToDateGapInMonthsVal();
+		Assert.assertEquals(3, value);
 	}
 }
