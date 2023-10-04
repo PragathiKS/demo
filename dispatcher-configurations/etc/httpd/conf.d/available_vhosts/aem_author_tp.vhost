@@ -3,6 +3,7 @@
 PassEnv DISP_ID
 
 <VirtualHost *:80>
+	AllowEncodedSlashes On
         ServerName      "author"
         ServerAlias     ${AUTHOR_DEFAULT_HOSTNAME}
         ## Use a special doc root that doesn't overlap publish doc roots or it wont fetch from author each time and authors wont see their changes

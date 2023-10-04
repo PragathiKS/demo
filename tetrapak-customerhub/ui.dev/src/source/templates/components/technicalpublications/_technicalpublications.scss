@@ -2,7 +2,7 @@
     &__table-wrap {
         @media #{$mobile} {
             overflow-x: auto;
-        }     
+        }
     }
     &__header {
         &-wrapper {
@@ -47,6 +47,13 @@
         display: inline;
         font-weight: 500;
 
+
+        a {
+            @media #{$mobile} {
+                display: inline;
+            }
+        }
+
         .js-tech-pub {
             &__bc-btn {
                 @include margin-bottom($margin-xs);
@@ -77,10 +84,6 @@
             font-weight: 500;
         }
 
-        td {
-            font-weight: 400;
-        }
-
         tr {
             &:first-of-type {
                 border-bottom: 1px solid $color-mercury;
@@ -88,6 +91,7 @@
         }
 
         td {
+            font-weight: 400;
             border-bottom: 1px solid $color-mercury;
             button {
                 @media #{$mobile} {
@@ -99,9 +103,13 @@
             }
         }
         &-icon {
-            color: $color-congress-blue;
             font-size: $font-baseline;
             width: 50px;
+            span {
+                i {
+                    color: $color-congress-blue;
+                }
+            }
         }
     }
 

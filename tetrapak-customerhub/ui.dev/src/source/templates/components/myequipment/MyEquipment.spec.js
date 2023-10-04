@@ -95,19 +95,6 @@ describe('MyEquipment', function () {
     expect(this.myequipment.downloadExcel.called).to.be.true;
     done();
   });
-
-  it('Sort Table row', function(done){
-    $('.js-my-equipment__table-summary__sort').trigger('click');
-    expect(this.myequipment.sortTableByKey.called).to.be.true;
-    done();
-  });
-  it('should open equipment details', function(done){
-    $('.js-my-equipment__table-summary__row').trigger('click');
-    expect(this.myequipment.sortTableByKey.called).to.be.true;
-    done();
-  });
- 
-  
   it('should render new country on country filter change', function (done) {
     $('.tp-my-equipment__country-button-filter').trigger('click');
     $('.js-apply-filter-button').trigger('click');

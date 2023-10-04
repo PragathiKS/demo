@@ -1,3 +1,7 @@
+.pw-anchor-main {
+    width: 100%;
+    background-color: $color-white;
+}
 .pw-anchor-menu {
     @include padding(0 $padding-xxxl);
     background-color: $color-white;
@@ -104,8 +108,7 @@
 
         &.tp-container {
             @include padding(0);
-            @include margin($margin-l auto $margin-zero auto);
-            max-width: 100%;
+            @include margin($margin-zero auto $margin-zero auto);
         }
         .pw-anchor-menu-list {
             @include padding(0);
@@ -146,7 +149,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: $zindex-anchor-menu;
+    z-index: $zindex-header;
     padding: $padding-zero;
     border-bottom: 1px solid $color-mercury;
 
@@ -166,11 +169,17 @@
         }
     
     }
+    &.top-anchor-menu {
+        top: 64px;
+        @media #{$desktop} {
+            top: 142px;
+        }
+    }
 }
-       
+
 .pw-anchor-menu-mobile {
     @include padding($padding-md $padding-l);
-    @media #{$desktop}{
+    @media #{$desktop} {
         display: none;
     }
     border-top: 1px solid $color-mercury;

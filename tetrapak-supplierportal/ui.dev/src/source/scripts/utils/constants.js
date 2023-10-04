@@ -40,3 +40,7 @@ export const EVT_TOKEN_REFRESH = 'token.refresh';
 export const EVT_REFRESH_INITIATE = 'refresh.initiate';
 export const EVT_POST_REFRESH = 'refresh.post';
 export const EVT_IFRAME_TIMEOUT = 'iframeevents.timeout';
+
+export const INVALID_CONFIG = 'Invalid configuration';
+export const INVALID_STREAM = 'Stream is invalid';
+export const FILEEXT_EMPTY = 'File extension is required';

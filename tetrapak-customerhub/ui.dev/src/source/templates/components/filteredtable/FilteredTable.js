@@ -548,7 +548,7 @@ class FilteredTable {
     const { i18nKeys } = this.cache.data;
     const target = this.cache.elements.$filterForm;
 
-    const _getFormTemplateData = () => this.cache.data.tableConfig.map((row) => ({
+    const _getFormTemplateData = () => this.cache.data.tableConfig.map((row) => row.key === 'equipmentNumber' ? null: ({
       option: row.key,
       optionDisplayText: this.cache.data.i18nKeys[row.i18nKey],
       isChecked: this.cache.variables.filters.visibleColumns.includes(row.key),
@@ -628,46 +628,48 @@ class FilteredTable {
     const filters = this.cache.data.tableConfig
       .filter((item) => !!item.queryParam)
       .map((item) => {
-        const _getFilterCount = () => {
-          const { values } = this.cache.variables.filters;
-          const value = values[item.queryParam];
-
-          switch (item.filterType) {
-            case FILTER_TYPE_TEXT:
-            case FILTER_TYPE_RADIO: {
-              return value ? 1 : 0;
+        if(item.key !== 'equipmentNumber') {
+          const _getFilterCount = () => {
+            const { values } = this.cache.variables.filters;
+            const value = values[item.queryParam];
+  
+            switch (item.filterType) {
+              case FILTER_TYPE_TEXT:
+              case FILTER_TYPE_RADIO: {
+                return value ? 1 : 0;
+              }
+              case FILTER_TYPE_CHECKBOX:
+              case FILTER_TYPE_CHECKBOX_GROUP: {
+                return value ? value.length : 0;
+              }
+              case FILTER_TYPE_DATE: {
+                const dateStart = values[item.queryParam[0]];
+                return dateStart ? 1 : 0;
+              }
+              case FILTER_TYPE_DATE_RANGE: {
+                const dateStart = values[item.queryParam[0]];
+                const dateEnd = values[item.queryParam[1]];
+                return dateStart && dateEnd ? 1 : 0;
+              }
+              default: {
+                break;
+              }
             }
-            case FILTER_TYPE_CHECKBOX:
-            case FILTER_TYPE_CHECKBOX_GROUP: {
-              return value ? value.length : 0;
-            }
-            case FILTER_TYPE_DATE: {
-              const dateStart = values[item.queryParam[0]];
-              return dateStart ? 1 : 0;
-            }
-            case FILTER_TYPE_DATE_RANGE: {
-              const dateStart = values[item.queryParam[0]];
-              const dateEnd = values[item.queryParam[1]];
-              return dateStart && dateEnd ? 1 : 0;
-            }
-            default: {
-              break;
-            }
-          }
-        };
-        const filterCount = _getFilterCount();
-        const showFilterClass = item.showFilterByDefault ?
-          '' : this.cache.classes.hideFilterByDefaultClass;
-        const activeClass = filterCount ?
-          ' active' : '';
-        const className = `${showFilterClass}${activeClass}`;
-
-        return {
-          label: getI18n(this.cache.data.i18nKeys[item.i18nKey]),
-          class: className,
-          key: item.key,
-          filterCount
-        };
+          };
+          const filterCount = _getFilterCount();
+          const showFilterClass = item.showFilterByDefault ?
+            '' : this.cache.classes.hideFilterByDefaultClass;
+          const activeClass = filterCount ?
+            ' active' : '';
+          const className = `${showFilterClass}${activeClass}`;
+  
+          return {
+            label: getI18n(this.cache.data.i18nKeys[item.i18nKey]),
+            class: className,
+            key: item.key,
+            filterCount
+          };
+        }
       });
 
     render.fn({
@@ -863,6 +865,7 @@ class FilteredTable {
             itemRowClass: 'tp-filtered-table__table-summary__row:not(".tp-filtered-table__table-summary__rowheading")',
             resetColumnsClass: 'js-tp-filtered-table__set-default-button',
             rkNumberClass: 'tpmol-table__key-rkNumber',
+            equipmentNumberClass: 'tpmol-table__key-equipmentNumber',
             paginationNumberClass: 'js-page-number',
             paginationClass: 'js-tbl-pagination',
             paginationLockClass: 'pagination-lock'
@@ -1027,8 +1030,9 @@ class FilteredTable {
     this.root.on('click', `.${this.cache.classes.itemRowClass}`,  (e) => {
       const clickLink = $(e.currentTarget);
       const rkNumber = clickLink.find(`.${this.cache.classes.rkNumberClass}`).text();
+      const equipmentNumber = clickLink.find(`.${this.cache.classes.equipmentNumberClass}`).text();
       const equipmentDetailsUrl = this.cache.api.details;
-      window.open(`${equipmentDetailsUrl}?rkNumber=${rkNumber}`, '_blank');
+      window.open(`${equipmentDetailsUrl}?rkNumber=${rkNumber}&equipment=${equipmentNumber}`, '_blank');
     });
   }
 

@@ -1,8 +1,9 @@
 <sly data-sly-template.headerv2_template="${@data, flag}">
     <header class="tp-pw-headerv2 js-tp-pw-headerv2 font-fixing ${wcmmode.edit ? 'wcmmode-edit': ''}" data-module="Headerv2">
         <div class="tp-pw-headerv2__backdrop hidden"></div>
-        <nav>
+        <nav class="tp-pw-headerv2__container">
             <div class="tp-pw-headerv2-first-row">
+                <div class="tp-container first-row-nav">
                 <div class="tp-pw-headerv2-logo">
                     <a 
                         data-sly-test="${data.logoLink}"
@@ -58,14 +59,15 @@
                                 data-link-section="Header Navigation" 
                                 data-link-name="Internal Search icon" 
                                 href="#">
-                                <i class="icon-Search_pw"></i>
+                                <i class="icon-Searchv2_pw"></i>
                             </a>
                         </sly>
                     </div>
-                    <i class="submenu-mobile-icon js-submenu-mobile-icon icon-Burger_pw"></i>
+                    <i class="submenu-mobile-icon js-submenu-mobile-icon icon-Burgerv3_pw"></i>
                 </div>
             </div>
-            <div class="tp-pw-headerv2-second-row">
+        </div>
+            <div class="tp-pw-headerv2-second-row tp-container">
                 <div class="tp-pw-headerv2-main-navigation">
                     <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
                         <a 
@@ -95,21 +97,27 @@
             </div>
         </nav>
         <div class="tp-pw-headerv2-mobile-secondary-navigation-menu">
-            <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
-                <div class="tp-pw-anchor-container-primary">
-                    <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} js-click-menu-link justify-content-between">
-                        <span>${navigationLink.linkText}</span>
-                        <i class="icon-Arrow_Right_pw"></i>
-                    </a>
-                </div>
-            </sly>
-            <sly data-sly-list.navigationLink="${data.secondaryNavigationLinks}">
-                <div class="tp-pw-anchor-container-secondary">
-                    <a href="${navigationLink.linkUrl}" target="_blank" class="secondary">
-                        ${navigationLink.linkText}
-                    </a>
-                </div>
-            </sly>
+            <div class="primary-link-container">
+                <sly data-sly-list.navigationLink="${data.mainNavigationLinks}">
+                    <div class="tp-pw-anchor-container-primary">
+                        <a href="${navigationLink.linkUrl}" target="_blank" class="js-megamenulink-${navigationLinkList.index} js-click-menu-link justify-content-between primary-link">
+                            <span>${navigationLink.linkText}</span>
+                            <sly data-sly-test="${navigationLink.megaMenuPath}">
+                                <i class="icon-Arrow_Right_pw"></i>
+                            </sly>    
+                        </a>
+                    </div>
+                </sly>
+            </div>
+            <div class="secondary-link-container">
+                <sly data-sly-list.navigationLink="${data.secondaryNavigationLinks}">
+                    <div class="tp-pw-anchor-container-secondary">
+                        <a href="${navigationLink.linkUrl}" target="_blank" class="secondary-link">
+                            ${navigationLink.linkText}
+                        </a>
+                    </div>
+                </sly>
+            </div>
             <sly data-sly-test="${data.marketList.markets.size >= 1}">
                 <sly data-sly-test.concatenatLanguage="${'{0}{1}{2}' @ format=['(', data.currentLanguage, ')']}">
                     <div class="tp-pw-headerv2-selector-container">
@@ -157,7 +165,7 @@
         <div class="tp-pw-headerv2-megamenu-mobile hidden tp-pw-megamenu-mobile-subpage-${navigationLinkList.index}">
             <div class="tp-pw-headerv2-back-row">
                 <button class="tp-pw-headerv2-back-row-back-button" aria-label="mobile naviagtion back button" title="mobile naviagtion back button">
-                    <i class="icon icon-Arrow_Right_pw"></i><span class="tp-pw-headerv2-back-row-back-text">Back</span>
+                    <i class="icon icon-Arrow_Right_pw"></i><span class="tp-pw-headerv2-back-row-back-text">${'pw.megamenu.mobile.backText' @ i18n}</span>
                 </button>
                 <button class="tp-pw-headerv2-back-row-close-button" aria-label="mobile naviagtion close button" title="mobile naviagtion close button">
                     <i class="icon icon-Close_pw"></i>

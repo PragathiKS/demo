@@ -127,6 +127,12 @@
         "enforce": true,
         "chunks": "all"
       },
+      "paymentdetails": {
+        "testMultiple": true,
+        "name": "paymentdetails",
+        "enforce": true,
+        "chunks": "all"
+      },
       "allpayments": {
         "testMultiple": true,
         "name": "allpayments",
@@ -149,6 +155,9 @@
         "source/templates/components/languageselector/",
         "source/templates/components/supportrequest/",
         "source/templates/components/chatbot/"
+      ],
+      "paymentdetails": [
+        "source/templates/components/paymentdetails/"
       ],
       "allpayments": [
         "source/templates/components/allpayments/"

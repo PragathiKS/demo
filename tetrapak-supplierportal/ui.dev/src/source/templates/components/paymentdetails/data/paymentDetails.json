@@ -1,0 +1,37 @@
+{
+  "meta": {
+      "count": 500,
+      "skip": 0,
+      "total": 1,
+      "version": "1"
+  },
+  "data": [
+      {
+          "companyCode": "0111",
+          "documentDate": "2023-07-26",
+          "withholdingTaxCode": null,
+          "withholdingTaxAmmount": null,
+          "postingDate": "2023-07-26",
+          "documentReferenceID": "79126801",
+          "invoiceStatusCode": "18",
+          "invoiceStatusName": "Blocked",
+          "transactionCurrency": "EUR",
+          "assignmentReference": "20230726",
+          "companyName": "TP Technical Service AB",
+          "companyCountry": "SE",
+          "amountInTransactionCurrency": "750.00",
+          "supplierName": "Alfa Laval Kolding AS",
+          "bankAccount": "",
+          "accountingDocument": "23000011",
+          "supplier": "387",
+          "dueCalculationBaseDate": "2023-07-26",
+          "clearingDate": "2023-07-26",
+          "paymentTerms": "TLN",
+          "paymentMethod": "",
+          "purchasingDocuments": [
+              "900090189",
+              "900090190"
+          ]
+      }
+  ]
+}

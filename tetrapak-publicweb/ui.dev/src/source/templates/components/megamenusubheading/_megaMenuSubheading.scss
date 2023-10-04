@@ -6,12 +6,18 @@
         justify-content: flex-start;
         align-items: center;
         text-decoration: none;
+        &:hover {
+            color: $color-sky-blue;
+        }
     }
     h3 {
         color: $color-tundora;
         text-transform: uppercase;
         font-weight: bold;
         font-size: $font-sm;
+        &:hover {
+            color: $color-sky-blue;
+        }
     }
     i {
         color: $color-tundora;
@@ -20,7 +26,7 @@
     }
 
     @media #{$mobile} {
-        padding: $padding-md;
+        padding: $padding-md $padding-md $padding-sm;
         .tp-pw-accordion-header {
             display: flex;
             justify-content: space-between;
