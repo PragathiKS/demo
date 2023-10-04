@@ -1034,8 +1034,12 @@ class MyEquipment {
                   this.cache.$serialNumberFilterLabel.text(`${getI18n(this.cache.i18nKeys['serialNumber'])}: ${1}`);
                 }
               }
+              this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], false);
             }
-            this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], false);
+            else
+            {
+              this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], true);
+            }
             this.toggleRemoveAllFilters(true);
           }
           else {
