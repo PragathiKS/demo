@@ -138,7 +138,7 @@ body.scrollOff {
 }
 .tp-pw-headerv2__container {
     @media #{$desktop} {
-        height: 144px;
+        height: 143px;
         position: fixed;
         top: 0;
         background-color:  $color-white;
@@ -523,7 +523,7 @@ body.scrollOff {
             }
         }
     }
-    .scrollUp {
+    &.scrollUp {
         transform: translateY(-144px);
     }
 }
