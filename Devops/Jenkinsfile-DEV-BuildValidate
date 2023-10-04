@@ -153,6 +153,5 @@ def publishReports(Map map) {
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false,
                             keepAll: false, reportDir: "${proj_dir}/core/target/site/jacoco",
                             reportFiles: 'index.html', reportName: "JaCoco-Coverage-Report-${map.appname}",
-                            reportTitles: ''])
-    junit testResults: "${proj_dir}/core/target/site/jacoco/*.xml" 
+                            reportTitles: '']) 
 }
