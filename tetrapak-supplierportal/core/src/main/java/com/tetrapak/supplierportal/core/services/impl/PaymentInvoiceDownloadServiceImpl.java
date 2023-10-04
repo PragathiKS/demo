@@ -402,7 +402,7 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		if (Objects.nonNull(paymentDetails.getPurchasingDocuments())
 				&& paymentDetails.getPurchasingDocuments().length > 0) {
 			String ponoi18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-					paymentDetailsModel.getTax(), language);
+					paymentDetailsModel.getPoNo(), language);
 			PdfPCell pono = new PdfPCell(new Phrase(ponoi18n, keyFont));
 			pono.setBorder(Rectangle.NO_BORDER);
 			table.addCell(pono);
