@@ -171,7 +171,7 @@ class AllPayments {
     //let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}`;
 
     if (activeSortData) {
-      apiUrlRequest += `&sort=${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder}`;
+      apiUrlRequest += `&sort=${activeSortData.sortedByKey} ${activeSortData.sortOrder}`;
     } else {
       apiUrlRequest += `&sort=${defaultSortParams}`;
     }
