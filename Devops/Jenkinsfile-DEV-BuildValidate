@@ -81,8 +81,7 @@ pipeline {
 					}
                     if (build_pubweb == true) {
                         verify(appname: "publicweb")
-                    }
-                    else !build_pubweb {
+                    } else {
                         sh "npm install --prefix tetrapak-publicweb/ui.dev/src"
                     }
                     
@@ -99,7 +98,7 @@ pipeline {
                         },
                         "Build Tetralaval": {
                             if (build_tlaval == true) {
-                                buildlaval()
+                                verifylaval()
                             }
                         }
                     )
@@ -129,13 +128,13 @@ def verify(Map map) {
     publishReports(appname: map.appname)
 }
 
-def buildlaval() {
+def verifylaval() {
     dir("tetra-laval") {
         sh "rm -rf ui.frontend/node_modules && rm -rf ui.frontend/package-lock.json"
         sh "npm cache clean --force"
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
         {
-            sh label:"Build tetra-laval", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+            sh label:"Build tetra-laval", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} verify -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
         }
     }
     publishReports(appname: "tetra-laval")
