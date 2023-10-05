@@ -1,0 +1,134 @@
+@Library('jenkins-pipeline-library') _
+
+pipeline {
+    agent {
+        node {
+            label 'cfe-deploy'
+        }
+    }
+    
+    parameters {
+        booleanParam defaultValue: true,
+            description: 'Please check in case you want to build Commons Module', 
+            name: 'Build_Commons'
+        booleanParam defaultValue: true,
+            description: 'Please uncheck in case you do not want to perform sonar analysis',
+            name: 'Sonar_Analysis'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '30'))
+        disableConcurrentBuilds()
+    }
+
+    environment {
+        sonar_url = "https://sonarcloud.io"
+        login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
+        build_id_number = ""
+    }
+
+    stages {
+        stage('init-build-Number') {
+            steps {
+                script {
+                    def now = new Date()
+                    def formattedDate
+                    formattedDate = now.format("yyyyMMddHHmm")
+                    build_id_number = formattedDate
+                    echo "build_id_number = ${build_id_number}-SNAPSHOT"
+		        }
+            }
+        }
+
+        stage('Build and Sonar analysis') {
+            agent {
+                dockerfile {
+                    args "-v ${env.HOME}/.m2:/root/.m2 --tmpfs /.npm -u root:root"
+                    label 'cfe-deploy'
+                }
+            }
+            steps {
+                script {
+                    if (params.Build_Commons) {
+                        appname = "commons"
+                        buildandsonar()
+                    }
+                    else {
+					    dir('tetrapak-commons') {
+					        sh "npm install --prefix ui.dev/src"
+						    sh "npm rebuild node-sass"
+						}
+					}
+                }
+                
+                script {
+                    dir('tetrapak-publicweb') {
+                        sh "npm install --prefix ui.dev/src"
+                    }
+                    appname = "customerhub"
+                    buildandsonar()
+                }
+
+                script {
+                    publishHTML([allowMissing: true, alwaysLinkToLastBuild:
+                                false, keepAll: true,
+                                reportDir: 'tetrapak-customerhub/ui.dev/src/coverage',
+                                reportFiles: 'index.html',
+                                reportName: 'KarmaReport-MTP', reportTitles: ''])
+                }
+            }
+            post {
+                cleanup {
+                    sh label: "clean log4j from .m2 cache", script: "rm -rf ~/.m2/repository/log4j/*"
+                }
+            }
+        }
+
+        stage('Author and Publisher Deployment') {
+            steps {
+                script {
+                    deploySup()
+                }
+            }
+        }
+    }
+}
+
+def buildandsonar() {
+    echo "Build ${appname}"
+    dir("tetrapak-${appname}") {
+        sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
+        sh "npm cache clean --force"                    
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']])
+        {                       
+            sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
+            if (!params.Sonar_Analysis) {
+                echo "Skipping Sonar execution for ${appname} module"
+            } else {
+                sh "mvn sonar:sonar -Dsonar.issuesReport.html.enable=true -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sonarreport()
+            }
+        }
+    }
+}
+
+def deploySup() {  
+    def deploy_job_params = [string(name: 'Environment', value: 'SUP'), 
+                            booleanParam(name: 'DeployMyTetrapak', value: true),
+                            string(name: 'Snapshot_MyTetrapak', value: build_id_number)]
+    if (params.Build_Commons)  {
+        deploy_job_params << booleanParam(name: 'DeployCommons', value: true)
+        deploy_job_params << string(name: 'Snapshot_Commons', value: build_id_number)
+    }
+    build job: 'CFE/CFE-Deploy',
+        parameters: deploy_job_params,
+        wait: true
+}
+
+def sonarreport() {
+    echo "Publishing Sonar report"
+    sh 'mkdir -p reports'
+    sh 'chmod -R 777 reports'
+    sh 'echo "<html> <br /> <p style="font-size:30px"> <a href="https://sonarcloud.io/organizations/tetrapak-smartsales/projects" target="_top">Sonarcloud Report</a> <br /> </p> </html>" > reports/sonarreport.html'
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'sonarreport.html', reportName: 'SonarCloud Report', reportTitles: ''])
+}

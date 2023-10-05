@@ -424,24 +424,24 @@ throttleScroll = function () {
   let currentScroll;
   let currentScrollTop = 0;
   let isScrolling = true;
-  const navbar = $('nav');
+  const header = $('header');
   $(window).on('scroll', function () {
     if(isScrolling === true) {
       const scrollTop = $(window).scrollTop();
-      const navheight = navbar.height();
+      const headerHeight = header.height();
       currentScrollTop = scrollTop;
-      if (currentScroll < currentScrollTop && scrollTop > navheight + navheight) {
-        navbar.addClass('scrollUp');
-        navbar.removeClass('scrollDown');
-      } else if (currentScroll > currentScrollTop && !(scrollTop <= navheight)) {
-        navbar.removeClass('scrollUp');
-        navbar.addClass('scrollDown');
+      if (currentScroll < currentScrollTop && scrollTop > headerHeight + headerHeight) {
+        header.addClass('scrollUp');
+        header.removeClass('scrollDown');
+      } else if (currentScroll > currentScrollTop && !(scrollTop <= headerHeight)) {
+        header.removeClass('scrollUp');
+        header.addClass('scrollDown');
       }
       currentScroll = currentScrollTop;
       isScrolling = false;
       setTimeout(() => {
         isScrolling = true;
-      }, 1000);
+      }, 500);
     }
   });
 };

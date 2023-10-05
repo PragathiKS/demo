@@ -55,4 +55,8 @@ public class InvoiceStatusServiceImpl implements InvoiceStatusService {
 		}
 		return map;
 	}
+    
+    public int getFromToDateGapInMonthsVal() {
+    	return Integer.parseInt(this.config.paymentsFromToDateGapInMonths());
+    }
 }
