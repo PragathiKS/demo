@@ -72,7 +72,7 @@ pipeline {
                 
                 script {
                     if (build_commons == true) {
-                        build(appname: "commons")
+                        verify(appname: "commons")
                     } else {
 					    dir('tetrapak-commons') {
 					        sh "npm install --prefix ui.dev/src"
@@ -80,7 +80,7 @@ pipeline {
 						}
 					}
                     if (build_pubweb == true) {
-                        build(appname: "publicweb")
+                        verify(appname: "publicweb")
                     }
                     else !build_pubweb {
                         sh "npm install --prefix tetrapak-publicweb/ui.dev/src"
@@ -89,12 +89,12 @@ pipeline {
                     parallel(
                         "Build Customerhub": {
                             if (build_mtp == true) {
-                                build(appname: "customerhub")
+                                verify(appname: "customerhub")
                             }
                         },
                         "Build Supplierportal": {
                             if (build_supplier == true) {
-                                build(appname: "supplierportal")
+                                verify(appname: "supplierportal")
                             }
                         },
                         "Build Tetralaval": {
@@ -110,16 +110,20 @@ pipeline {
     post {
         cleanup {
             sh label: "clean log4j from .m2 cache", script: "sudo rm -rf ~/.m2/repository/log4j/*"
+            build job:'CFE/Jenkins-Maintenance-Work',
+            parameters: [string(name: 'purge_dirs', value: "${env.WORKSPACE}"), string(name: 'delay', value: '10')],
+            wait: false,
+            propagate:false
         }
     }
 }
 
-def build(Map map) {
+def verify(Map map) {
     dir("tetrapak-${map.appname}") {
         sh "rm -rf ui.dev/src/node_modules && rm -rf ui.dev/src/package-lock.json"
         sh "npm cache clean --force"                    
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'tetrapak-artifactory-publish-creds', usernameVariable: 'artifactuser', passwordVariable: 'artifactpassword']]) {                       
-            sh label: "Build ${map.appname}", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"                         
+            sh label: "Build ${map.appname}", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} verify -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"                         
         }
     }
     publishReports(appname: map.appname)
