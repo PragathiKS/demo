@@ -62,7 +62,7 @@ pipeline {
                     reuseNode true
                 }
             }
-            failFast true
+            
             steps {
                 script {
                     def now = new Date()
@@ -79,18 +79,17 @@ pipeline {
 						    sh "npm rebuild node-sass"
 						}
 					}
-                    if (!build_pubweb) {
+                    if (build_pubweb == true) {
+                        build(appname: "publicweb")
+                    }
+                    else !build_pubweb {
                         sh "npm install --prefix tetrapak-publicweb/ui.dev/src"
                     }
+                    
                     parallel(
                         "Build Customerhub": {
                             if (build_mtp == true) {
                                 build(appname: "customerhub")
-                            }
-                        },
-                        "Build Publicweb": {
-                            if (build_pubweb == true) {
-                                build(appname: "publicweb")
                             }
                         },
                         "Build Supplierportal": {
