@@ -13,23 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <sly data-sly-use.headerGlobalUtil="com.tetrapak.customerhub.core.utils.GlobalUtil"></sly>
-   
+    <sly data-sly-test="${headerGlobalUtil.isPublish}">
       <script type="text/javascript">
         var cuoneTrustValue = '${pageHeadModel.cookieTokenServletUrl @ context="unsafe"}';
       </script>
-   
+   </sly>
  
-
-    
-      <!-- <script>
-        var OneTrust = {
-          dataSubjectParams: {
-            id: '',
-            isAnonymous: false,
-            token: ''
-          }
-        }
-      </script> -->
+   <sly data-sly-test="${headerGlobalUtil.isPublish && headerGlobalUtil.dataDomainScript}">
       <script type="text/javascript">
             var uidValue,isCookieExist;
             function setCookie(cname, cvalue, exdays) {
@@ -91,11 +81,13 @@
         //# sourceURL=cookieDebug.js
       </script>
   
-  
+ </sly>
+ <sly data-sly-test="${headerGlobalUtil.isPublish && headerGlobalUtil.dataDomainScript}"> 
       <script src="https://cdn.cookielaw.org/consent/${headerGlobalUtil.dataDomainScript}/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${headerGlobalUtil.dataDomainScript}" ></script>
         <script type="text/javascript">
           function OptanonWrapper() { }
       </script>
+  </sly>
  
     <sly data-sly-include="customheaderlibs.html"></sly>
     <sly data-sly-call="${headlibRenderer.headlibs @
