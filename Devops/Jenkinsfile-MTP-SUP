@@ -90,7 +90,7 @@ pipeline {
     }
     post {
         cleanup {
-            sh label: "clean log4j from .m2 cache", script: "rm -rf ~/.m2/repository/log4j/*"
+            sh label: "clean log4j from .m2 cache", script: "sudo rm -rf ~/.m2/repository/log4j/*"
             cleanWs deleteDirs: true, disableDeferredWipeout: true, notFailBuild: true
         }
     }
