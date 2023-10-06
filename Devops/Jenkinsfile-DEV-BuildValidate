@@ -4,7 +4,6 @@ pipeline {
     agent {
         node {
             label 'cfe-deploy'
-            customWorkspace "workspace/CFE/${env.JOB_NAME}-${env.BUILD_NUMBER}"
         }
     }
 
@@ -109,10 +108,7 @@ pipeline {
     post {
         cleanup {
             sh label: "clean log4j from .m2 cache", script: "sudo rm -rf ~/.m2/repository/log4j/*"
-            build job:'CFE/Jenkins-Maintenance-Work',
-            parameters: [string(name: 'purge_dirs', value: "${env.WORKSPACE}"), string(name: 'delay', value: '10')],
-            wait: false,
-            propagate:false
+            cleanWs deleteDirs: true
         }
     }
 }
@@ -137,13 +133,12 @@ def verifylaval() {
             sh label:"Build tetra-laval", script: "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} verify -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
         }
     }
-    publishReports(appname: "tetra-laval")
 }
 
 def publishReports(Map map) {
     def ui_dev_dir_path = (map.appname != 'tetra-laval') ? "ui.dev" : 'ui.frontend'
     def proj_dir = (map.appname != 'tetra-laval') ? "tetrapak-${map.appname}" : map.appname
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false,
+    publishHTML([allowMissing: true, alwaysLinkToLastBuild: false,
                                     keepAll: false, reportDir: "${proj_dir}/${ui_dev_dir_path}/src/coverage",
                                     reportFiles: 'index.html', reportName: "Coverage-Report-${map.appname}",
                                     reportTitles: ''])
@@ -152,7 +147,7 @@ def publishReports(Map map) {
     // Surefire Reports
     junit testResults: "${proj_dir}/core/target/surefire-reports/TEST-*.xml"
     // Jacoco Coverage Report
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false,
+    publishHTML([allowMissing: true, alwaysLinkToLastBuild: false,
                             keepAll: false, reportDir: "${proj_dir}/core/target/site/jacoco",
                             reportFiles: 'index.html', reportName: "JaCoco-Coverage-Report-${map.appname}",
                             reportTitles: '']) 
