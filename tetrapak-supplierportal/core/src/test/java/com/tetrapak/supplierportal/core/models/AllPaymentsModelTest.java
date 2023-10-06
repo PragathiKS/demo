@@ -81,6 +81,10 @@ public class AllPaymentsModelTest {
 	    model.setI18nKeys(RESOURCE_PATH);
 	    model.setResource(null);
 	    model.setSlingSettingsService(null);
+	    model.setApplyFilter("sp.paymentDetails.applyFilter");
+	    model.setColumns("sp.paymentDetails.columns");
+	    model.setShowHideColumns("sp.paymentDetails.showHideColumns");
+	    model.setSelectAll("sp.paymentDetails.selectAll");
 	}
 	
 	/**
@@ -120,7 +124,10 @@ public class AllPaymentsModelTest {
 		assertEquals("sp.paymentDetails.supplier", model.getSupplier());
 		assertEquals("sp.paymentDetails.supplierCode", model.getSupplierCode());
 		assertEquals("sp.paymentDetails.withholdingtax", model.getWithHoldingTax());	
-		
+		assertEquals("sp.paymentDetails.showHideColumns", model.getShowHideColumns());	
+		assertEquals("sp.paymentDetails.columns", model.getColumns());	
+		assertEquals("sp.paymentDetails.selectAll", model.getSelectAll());	
+		assertEquals("sp.paymentDetails.applyFilter", model.getApplyFilter());			
 	}
 	
 	
