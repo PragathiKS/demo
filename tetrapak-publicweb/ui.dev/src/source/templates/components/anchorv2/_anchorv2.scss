@@ -81,11 +81,10 @@
         box-shadow: 0 4px 16px $shadow;
         border-radius: 4px;
         padding: $padding-eighteen $padding-l;
-        li {
-            text-align: center;
-        }
 
-        a,
+        a {
+            padding-bottom: 0.6em;
+        }
         button {
             padding: 0.6em;
         }
