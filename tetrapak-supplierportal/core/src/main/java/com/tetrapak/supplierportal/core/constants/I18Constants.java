@@ -93,4 +93,12 @@ public class I18Constants {
 	
 	public static final String PAYMENT_DETAILS_URL = "paymentDetailsURL";
 	
+	public static final String COLUMNS = "columns";
+	
+	public static final String SELECT_ALL = "selectAll";
+	
+	public static final String SHOWHIDE_COLUMNS = "showHideColumns";
+	
+	public static final String APPLY_FILTER = "applyFilter";
+	
 }
