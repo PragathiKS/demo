@@ -50,7 +50,6 @@ class AllPayments {
       config: this.root.querySelector('.js-all-payments__config'),
       searchResults: this.root.querySelector('.tp-all-payments__search-count'),
       table: this.root.querySelector('.tp-all-payments__table_wrapper'),
-      // modal: this.roots.parent().find('.js-filter-modal'),
       $modal: this.roots.parent().find('.js-filter-modal'),
       allPaymentCustomizeTableAction: this.root.querySelector('.js-all-payments__customise-table-action'),
       headerAction: this.root.querySelector('.tp-all-payments__header-actions'),
@@ -89,7 +88,7 @@ class AllPayments {
         else if(e.target.closest('.js-all-payments__table-summary__sort')) {
           self.sortAction(e.target);
         }
-        else if(e.target.closest('.tp-all-payments__table-summary__row')){
+        else if(e.target.closest('.tp-all-payments__table-summary__body .tp-all-payments__table-summary__row')){
           const row = e.target.closest('.tp-all-payments__table-summary__row');
           const id = row.querySelector('[data-key="documentReferenceID"]').textContent.trim();
           const paymentDetailsURL = self.cache.paymentApi.getAttribute('data-payment-details-url');
@@ -101,11 +100,11 @@ class AllPayments {
     allPaymentCustomizeTableAction.addEventListener('click', () => {
       const groupedFilterOptions = [];
       groupedFilterOptions.push({
-        selectAllLabel: 'Select all', // i18nKeys['selectAll'],
+        selectAllLabel: i18nKeys['selectAll'],
         options: self.cache.customisableTableHeaders,
         isChecked: !self.cache.customisableTableHeaders.some(filterOption => filterOption.isChecked === false)
       });
-      self.renderFilterForm(groupedFilterOptions, { activeForm:'customise-table',header:i18nKeys['showHideColumns'],singleButton:true });
+      self.renderFilterForm(groupedFilterOptions, { activeForm:'customise-table',header:i18nKeys['columns'],singleButton:true });
       headerAction.classList.remove('show');
     });
     this.roots.on('change', '.js-tp-all-payments-filter-group-checkbox', (e) => {

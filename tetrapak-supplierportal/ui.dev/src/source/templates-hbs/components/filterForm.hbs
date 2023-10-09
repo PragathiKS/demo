@@ -6,7 +6,6 @@
             </div>
             <button type="button" auto_locator="closebtnOverlay"
                     class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn" data-dismiss="modal">
-                <span class="sr-only">Close</span>
             </button>
         </div>
         <div class='modal-body tp-modal-body tp-all-payments__modal-body'>
@@ -16,16 +15,14 @@
                         uniqueKey=this.selectAllLabel
                         baseClass="tp-all-payments__type-group-option js-tp-all-payments-type-group-option"
                         autoLocatorCheckbox=@root.autoLocatorCheckbox
-                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                        jsMyEquipmentFilter="js-tp-all-payments-filter-group-checkbox js-tp-all-payments-filter-checkbox"}}
+                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText}}
 
                         <div class="tp-all-payments-filter-options tp-all-payments-group-filter-options">
                             {{#each this.options}}
                                 {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
                                     uniqueKey=option
                                     autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                    jsMyEquipmentFilter="js-tp-all-payments-filter-checkbox"}}
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText}}
                             {{/each}}
                         </div>
                 {{/each}}
