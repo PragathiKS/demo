@@ -6,7 +6,7 @@ export const DOCUMENT_TYPES = [
   'IM',
   'EM',
   'SPC',
-  'SPC-Kit',
+  'KIT',
   'CM',
   'RM',
   'UP'

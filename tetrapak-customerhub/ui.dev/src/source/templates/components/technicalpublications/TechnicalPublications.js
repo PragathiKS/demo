@@ -170,8 +170,8 @@ function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
 
   const renderIssueDate = ['SPC'].includes(typeCode);
   const renderDescription = ['TEM', 'CM'].includes(typeCode);
-  const renderRKNumber = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
-  const renderRKName = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
+  const renderRKNumber = ['RM', 'UP', 'KIT'].includes(typeCode);
+  const renderRKName = ['RM', 'UP', 'KIT'].includes(typeCode);
 
   let data = [...folderData];
 
