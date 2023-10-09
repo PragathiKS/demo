@@ -415,8 +415,8 @@ body.scrollOff {
                 }
                 @media #{$mobile} {
                     color: $color-congress-blue;
-                    font-size: 16px;
-                    line-height: 16px;
+                    font-size: $font-m-md;
+                    line-height: $font-m-md;
                 }
             }
 
