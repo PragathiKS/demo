@@ -99,6 +99,9 @@ pipeline {
         always {
             sendNotifications(currentBuild.currentResult)
         }
+        cleanup {
+            cleanWs deleteDirs: true, disableDeferredWipeout: true, notFailBuild: true
+        }
     }
 }
 
