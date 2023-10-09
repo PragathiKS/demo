@@ -53,7 +53,8 @@ class AllPayments {
       $modal: this.roots.parent().find('.js-filter-modal'),
       allPaymentCustomizeTableAction: this.root.querySelector('.js-all-payments__customise-table-action'),
       headerAction: this.root.querySelector('.tp-all-payments__header-actions'),
-      mobileHeadersActions: this.root.querySelector('.js-mobile-header-actions')
+      mobileHeadersActions: this.root.querySelector('.js-mobile-header-actions'),
+      filterButton: this.root.querySelector('.js-apply-filter-button')
     };
     this.cache = {...config, ...selector};
     this.cache.tableData = [];
@@ -67,15 +68,15 @@ class AllPayments {
     const { table, i18nKeys, allPaymentCustomizeTableAction, headerAction, mobileHeadersActions } =  this.cache;
     const self = this;
     this.cache.customisableTableHeaders = [
-      {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:false,index:0},
-      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:false,index:1},
-      {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:false,index:2},
+      {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:0},
+      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:1},
+      {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:2},
       {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:3},
       {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:4},
-      {key:'amountInTransactionCurrency',option:'amountIncludingTaxes',optionDisplayText:i18nKeys['amountIncludingTaxes'],isChecked:false,index:5},
+      {key:'amountInTransactionCurrency',option:'amountIncludingTaxes',optionDisplayText:i18nKeys['amountIncludingTaxes'],isChecked:true,index:5},
       {key:'withholdingTaxAmmount',option:'withHoldingTax',optionDisplayText:i18nKeys['withHoldingTax'],isChecked:false,index:6},
-      {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:false,index:7},
-      {key:'documentReferenceID',option:'invoiceNo',optionDisplayText:i18nKeys['invoiceNo'],isChecked:false,index:8},
+      {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:7},
+      {key:'documentReferenceID',option:'invoiceNo',optionDisplayText:i18nKeys['invoiceNo'],isDisabled:true,isChecked:true,index:8},
       {key:'supplierName',option:'supplier',optionDisplayText:i18nKeys['supplier'],isChecked:false,index:9},
       {key:'supplier',option:'supplierCode',optionDisplayText:i18nKeys['supplierCode'],isChecked:false,index:10},
       {key:'purchasingDocuments',option:'poNo',optionDisplayText:i18nKeys['poNo'],isChecked:false,index:11}
@@ -114,6 +115,7 @@ class AllPayments {
       $checkboxGroupInputs.each((index, item) => {
         $(item).prop('checked', $currentTarget.is(':checked'));
       });
+
     });
     this.roots.on('change', '.tp-all-payments-group-filter-options .js-tp-all-payments-filter-checkbox', (e) => {
       const $currentTarget = $(e.target);
@@ -123,6 +125,7 @@ class AllPayments {
         $thisGroupAllCheckbox.prop('checked', false);
       }
     });
+
     this.roots.on('click', '.js-apply-filter-button',  () => {
       this.applyFilter();
     });
@@ -153,7 +156,7 @@ class AllPayments {
     if(filterData?.length > 0){
       filterData.forEach(item => {
         const {isChecked,key} = item;
-        if(isChecked){
+        if(!isChecked){
           showHideFilterFieldList.push(key);
         }
       });
@@ -172,13 +175,8 @@ class AllPayments {
         meta:this.cache.meta
       };
       this.renderPaginationTableData(tableData);
-      // this.cache.$modal.modal('hide');
       return;
     }
-
-    // All other filters
-    // this.cache.$modal.modal('hide');
-    // this.toggleRemoveAllFilters(true);
   }
 
   renderFilterForm = (data, formDetail, $filterBtn) => {
