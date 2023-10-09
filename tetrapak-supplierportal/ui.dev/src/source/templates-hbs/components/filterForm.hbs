@@ -15,14 +15,16 @@
                         uniqueKey=this.selectAllLabel
                         baseClass="tp-all-payments__type-group-option js-tp-all-payments-type-group-option"
                         autoLocatorCheckbox=@root.autoLocatorCheckbox
-                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText}}
+                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                        jsMyEquipmentFilter="js-tp-all-payments-filter-group-checkbox js-tp-all-payments-filter-checkbox"}}
 
                         <div class="tp-all-payments-filter-options tp-all-payments-group-filter-options">
                             {{#each this.options}}
                                 {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
                                     uniqueKey=option
                                     autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText}}
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                    jsMyEquipmentFilter="js-tp-all-payments-filter-checkbox"}}
                             {{/each}}
                         </div>
                 {{/each}}

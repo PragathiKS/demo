@@ -88,7 +88,7 @@ class AllPayments {
         else if(e.target.closest('.js-all-payments__table-summary__sort')) {
           self.sortAction(e.target);
         }
-        else if(e.target.closest('.tp-all-payments__table-summary__body .tp-all-payments__table-summary__row')){
+        else if(e.target.closest('.tp-all-payments__table-summary__row')){
           const row = e.target.closest('.tp-all-payments__table-summary__row');
           const id = row.querySelector('[data-key="documentReferenceID"]').textContent.trim();
           const paymentDetailsURL = self.cache.paymentApi.getAttribute('data-payment-details-url');
