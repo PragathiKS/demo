@@ -74,10 +74,20 @@
     }
 
     &__table {
+        table-layout: fixed;
+        @media #{$mobile} {
+            table-layout: auto;
+        }
         th,
         td {
             @include padding($padding-md);
             color: $color-tundora;
+            white-space: normal;
+            word-wrap: break-word;
+            @media #{$mobile} {
+                white-space: auto;
+                word-wrap: auto;
+            }
         }
 
         th {

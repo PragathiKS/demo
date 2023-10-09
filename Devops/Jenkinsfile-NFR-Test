@@ -193,6 +193,10 @@ pipeline {
                 notifyTestStatus()
             }
         }
+        cleanup {
+            cleanWs deleteDirs: true, disableDeferredWipeout: true, notFailBuild: true,
+                patterns: [[pattern: 'reports_*.zip', type: 'EXCLUDE']])
+        }
     }
 }
 
