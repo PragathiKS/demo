@@ -71,7 +71,7 @@ class Paymentdetails {
     };
     const { documentreferenceid} = this.getUrlQueryParams();
     // TODO: Need to remove count query param. these are added only for testing purpose.
-    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1`;
+    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1&fromdatetime=2023-07-01T00:00:00&todatetime=2023-07-30T00:00:00`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
     return paymentApiPromise;
   }
