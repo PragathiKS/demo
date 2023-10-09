@@ -3,8 +3,6 @@ package com.tetrapak.commons.core.servlets;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.tetrapak.commons.core.constants.CommonsConstants;
-import io.fusionauth.jwt.domain.JWT;
-import io.fusionauth.jwt.rsa.RSASigner;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -18,7 +16,7 @@ import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import io.fusionauth.jwt.Signer;
+
 
 import javax.jcr.Session;
 import javax.servlet.Servlet;
@@ -41,7 +39,6 @@ import java.util.UUID;
         property = {Constants.SERVICE_DESCRIPTION + "=One Trust Cookie Jwt Token Servlet",
                 "sling.servlet.methods=" + HttpConstants.METHOD_GET,
                 "sling.servlet.selectors=" + "onetrustcookietoken", "sling.servlet.extensions=" + "json",
-                "sling.servlet.resourceTypes=" + "publicweb/components/structure/pages/page",
                 "sling.servlet.resourceTypes=" + "customerhub/components/structure/page"})
 @Designate(ocd = OneTrustCookieJwtTokenServlet.Config.class)
 public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
@@ -92,7 +89,6 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
         JsonObject jsonResponse = new JsonObject();
         try {
             if (Files.exists(Paths.get(this.oneTrustPrivateKeyPath))) {
-                Signer signer = RSASigner.newSHA256Signer(new String(Files.readAllBytes(Paths.get(this.oneTrustPrivateKeyPath))));
                 String uniqueUserId;
                 if(request.getRequestPathInfo().toString().contains(CommonsConstants.CUSTOMER_HUB)) {
                 	Session session = request.getResourceResolver().adaptTo(Session.class);
@@ -108,20 +104,15 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
     	                uniqueUserId = Objects.requireNonNull(request.getRequestParameter(CommonsConstants.USER_ID)).toString();
     	            }
                 }
-    	            JWT jwt = new JWT().setSubject(String.valueOf(uniqueUserId));
-    	            final String encodedJWT = JWT.getEncoder().encode(jwt, signer);
-    	            LOGGER.debug("encodedJWT {} ", encodedJWT);
-    	            jsonResponse.addProperty("uid", uniqueUserId);
-    	            jsonResponse.addProperty("jwt", encodedJWT);
+                jsonResponse.addProperty("uid", uniqueUserId);
+
              } else {
                 LOGGER.debug("Configured One Trust Private key Path {}  does not exists", this.oneTrustPrivateKeyPath);
                 jsonResponse.addProperty("uid", StringUtils.EMPTY);
-                jsonResponse.addProperty("jwt", StringUtils.EMPTY);
             }
         } catch (NoSuchAlgorithmException e) {
         	LOGGER.error("Unable to get instance of SHA256: {}", e.getMessage());
         	jsonResponse.addProperty("uid", StringUtils.EMPTY);
-            jsonResponse.addProperty("jwt", StringUtils.EMPTY);
         }
         response.setStatus(HttpServletResponse.SC_OK);
         writer.print(new Gson().toJson(jsonResponse));
@@ -136,7 +127,6 @@ public class OneTrustCookieJwtTokenServlet extends SlingAllMethodsServlet {
      */
     @Activate
     protected void activate(final Config config) {
-        LOGGER.debug("OneTrust Cookie JWT token Servlet activated");
         this.oneTrustPrivateKeyPath = config.oneTrustPrivatekeyPath();
     }
     
