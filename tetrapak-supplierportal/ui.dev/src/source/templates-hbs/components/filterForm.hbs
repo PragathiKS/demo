@@ -1,0 +1,42 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
+    <div class="modal-content tp-all-payments__modal-content tp-modal-content">
+        <div class="modal-header tpmol-modal-header">
+            <div class="js-all-payments__modal-header tp-all-payments__modal-header" auto_locator="headlineOverlay">
+                {{i18n key=header}}
+            </div>
+            <button type="button" auto_locator="closebtnOverlay"
+                    class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn" data-dismiss="modal">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        <div class='modal-body tp-modal-body tp-all-payments__modal-body'>
+            {{#if isShowHideColumn}}
+                {{#each formData}}
+                    {{> atoms/checkbox/checkbox value=this.selectAllLabel text=this.selectAllLabel check=isChecked disabled=isDisabled
+                        uniqueKey=this.selectAllLabel
+                        baseClass="tp-all-payments__type-group-option js-tp-all-payments-type-group-option"
+                        autoLocatorCheckbox=@root.autoLocatorCheckbox
+                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                        jsMyEquipmentFilter="js-tp-all-payments-filter-group-checkbox js-tp-all-payments-filter-checkbox"}}
+
+                        <div class="tp-all-payments-filter-options tp-all-payments-group-filter-options">
+                            {{#each this.options}}
+                                {{> atoms/checkbox/checkbox value=option text=optionDisplayText check=isChecked disabled=isDisabled
+                                    uniqueKey=option
+                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                    jsMyEquipmentFilter="js-tp-all-payments-filter-checkbox"}}
+                            {{/each}}
+                        </div>
+                {{/each}}
+            {{/if}}
+        </div>
+        <div class="modal-footer tpmol-modal-footer tp-all-payments__modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
+                <span class="tpatom-btn__text sly-text">
+                    {{i18n key=applyFilter}}
+                </span>
+            </button>
+        </div>
+    </div>
+</div>

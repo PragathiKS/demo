@@ -15,6 +15,16 @@ $color-red: #ff0000;
         border-top: 1px solid $color-congress-blue;
         border-bottom: 1px solid $color-congress-blue;
     }
+    input {
+        &[type='checkbox'] {
+            &:checked ~ .tpatom-checkbox__icon {
+                border: 1px solid $color-congress-blue;
+                &::before {
+                    color: $color-congress-blue;
+                }
+            }
+        }
+    }
 
     &__table {
         table {
@@ -112,5 +122,169 @@ $color-red: #ff0000;
     .tpatom-loader {
         @include padding($padding-md);
         text-align: center;
+    }
+    .tpatom-checkbox__label,
+    .tpatom-radio__label {
+        @include margin-bottom($margin-md);
+    }
+
+    .tpatom-checkbox__text {
+        color: $color-black;
+    }
+    &__type-group-option {
+        & + .tp-all-payments-filter-options {
+            @include margin-left($margin-md);
+            @include margin-bottom($margin-md);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    &__filter-button {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-md);
+        @include margin-right($margin-sm);
+        @include margin-bottom($margin-md);
+        border: 1px solid $color-congress-blue;
+        color: $color-congress-blue;
+        box-sizing: border-box;
+        border-radius: 22px;
+        font-weight: 500;
+        &:hover {
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
+            &.active {
+                font-weight: 700;
+                background-color: $color-wild-sand;
+            }
+        }
+        &.active {
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
+            font-weight: 700;
+            background-color: $color-wild-sand;
+        }
+    }
+    &__modal-header {
+        @include font-size($font-l);
+        @include line-height($font-xl, $font-l);
+        color: $color-black;
+    }
+    &__modal-content {
+        max-height: 80vh;
+
+        @media #{$desktop} {
+            max-height: 640px;
+        }
+        .modal-header {
+            border-bottom: 0;
+        }
+    }
+    &__modal-body {
+        @include padding($padding-zero $padding-l);
+        overflow-y: auto;
+
+        .tpatom-checkbox {
+            &:last-child {
+                .tpatom-checkbox__label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .tpatom-radio {
+            &:last-child {
+                .tpatom-radio__label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    &__modal-footer {
+        flex-wrap: wrap;
+        border-top: 0;
+        display: flex;
+        justify-content: flex-start;
+    }
+    &__header-wrapper {
+        @include margin-bottom($margin-l);
+        display: flex;
+        justify-content: space-between;
+    }
+    &__header-action-text {
+        @media #{$mobile} {
+            @include font-size($font-baseline);
+            @include line-height($font-sm, $font-baseline);
+        }
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        color: $color-congress-blue;
+    }
+    &__header-action-wrapper {
+        position: relative;
+    }
+
+    &__header-mobile {
+        display: flex;
+    }
+
+    &__header-actions {
+        display: none;
+        &.show {
+            @media #{$mobile} {
+                @include padding($padding-l);
+                border: solid 1px $color-mercury;
+                display: flex;
+                position: absolute;
+                right: 0;
+                background: $color-wild-sand;
+                box-shadow: 0 4px 16px rgba($color-black, 0.1);
+                border-radius: 4px;
+                min-width: 256px;
+                z-index: 9999;
+            }
+        }
+    }
+    &__header-actionicons {
+        position: relative;
+        @media #{$desktop} {
+            display: flex;
+        }
+    }
+    &__action-button {
+        display: flex;
+        cursor: pointer;
+        &:hover * {
+            color: $color-sky-blue;
+        }
+        &.second {
+            @include margin-top(12px);
+            @include margin-bottom($margin-md);
+            @media #{$desktop} {
+                @include margin-top($margin-zero);
+                @include margin-bottom($margin-zero);
+            }
+        }
+    }
+    .action-icon {
+        @include padding-right($padding-sm);
+        display: flex;
+    }
+    @media #{$desktop} {
+        &__header-mobile {
+            display: none;
+        }
+        &__header-actions {
+            display: flex;
+        }
+        &__action-button {
+            display: flex;
+            line-height: 40px;
+            align-items: center;
+            cursor: pointer;
+            &:not(:last-child) {
+                @include margin-right($margin-md);
+            }
+        }
     }
 }
