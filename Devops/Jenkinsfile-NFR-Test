@@ -194,8 +194,7 @@ pipeline {
             }
         }
         cleanup {
-            cleanWs deleteDirs: true, disableDeferredWipeout: true, notFailBuild: true,
-                patterns: [[pattern: 'reports_*.zip', type: 'EXCLUDE']])
+            cleanWs deleteDirs: true, notFailBuild: true, patterns: [[pattern: 'reports_*.zip', type: 'EXCLUDE']])
         }
     }
 }
