@@ -7,6 +7,19 @@ import { ajaxMethods } from '../../../scripts/utils/constants';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import { isMobile } from '../../../scripts/common/common';
+
+
+function getTimeoutBasedOnNetwork() {
+  if(!window.navigator?.connection) {
+    return 3000;
+  }
+  if(window.navigator?.connection?.effectiveType === '2g') {
+    return 5000;
+  } else if(window.navigator?.connection?.effectiveType === '3g') {
+    return 2000;
+  }
+  return 1000;
+}
 class FindMyOffice {
   constructor({ el }) {
     this.root = $(el);
@@ -17,7 +30,7 @@ class FindMyOffice {
     this.cache.map = {};
     this.cache.bMap = null;
     this.cache.bMapMarker = null;
-    this.cache.isChinaLocale = window.location.href.indexOf('zh-cn') === -1 ? false:true;
+    this.cache.isChinaLocale = window.location.href.indexOf('cn') === -1 ? false:true;
     this.cache.googleMaps = '';
     this.cache.officesList = [];
     this.cache.officesNameList = [];
@@ -37,6 +50,7 @@ class FindMyOffice {
       '.js-pw-form__dropdown__city .js-pw-form__dropdown__city-text'
     ).text();
     this.cache.googleApi = this.root.find('.js-google-api');
+    this.cache.baiduMapApi = this.root.find('.js-baidu-map-api');
     this.cache.hiddenElement = this.root.find('.js-hidden-element');
     this.cache.linkSectionElement = this.root.find(
       '.js-pw-find-my-office__wrapper'
@@ -50,6 +64,18 @@ class FindMyOffice {
     }
   };
 
+  loadBaiduMapScript() {
+    const baiduMapKey = this.cache.baiduMapApi.data('baidu-map-key');
+    window.BMAP_PROTOCOL = 'https'; 
+    const date = new Date();
+    window.BMap_loadScriptTime = (date).getTime(); 
+    const script = document.createElement('script');
+    const t = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2,0)}${date.getDate().toString().padStart(2,0)}${date.getHours().toString().padStart(2,0)}${date.getMinutes().toString().padStart(2,0)}${date.getSeconds().toString().padStart(2,0)}`;
+    script.src = `https://api.map.baidu.com/getscript?v=3.0&ak=${baiduMapKey}&services=&t=${t}`;
+    script.onload = this.initBaiduMap;
+    document.head.appendChild(script);
+  }
+
   bindEvents() {
     const googleApiKey = this.cache.googleApi.data('google-api-key');
     if (!this.cache.isChinaLocale) {
@@ -59,7 +85,23 @@ class FindMyOffice {
       }).then(this.handleGoogleMapApi);
     } else {
       this.getOfficesList();
-      this.initBaiduMap();
+      setTimeout(() => {
+        const { country } = window.OneTrust ? window.OneTrust.getGeolocationData() : { country: '' };
+        if(country === 'CN' || window.OptanonActiveGroups.includes('4')) {
+          this.loadBaiduMapScript();
+        }
+
+        $('#accept-recommended-btn-handler, #onetrust-accept-btn-handler').on('click', () => {
+          this.loadBaiduMapScript();
+        });
+
+        $('.save-preference-btn-handler').on('click', () => {
+          if(country === 'CN' || window.OptanonActiveGroups.includes('4')) {
+            this.loadBaiduMapScript();
+          }
+        });        
+
+      },getTimeoutBasedOnNetwork());
     }
     this.root.on('click', '.js-localSiteUrl', this.goToLocalSite);
   }
@@ -393,6 +435,11 @@ class FindMyOffice {
     if (this.cache.cities.length > 0) {
       $('.js-pw-form__dropdown__city').removeAttr('disabled');
       $('.js-pw-find-my-office__form-group__label').removeClass('opacity');
+      this.getOfficesName();
+      this.renderCitiesOfficesList();
+    }
+    else {
+      this.setCityInitialState();
       this.getOfficesName();
       this.renderCitiesOfficesList();
     }

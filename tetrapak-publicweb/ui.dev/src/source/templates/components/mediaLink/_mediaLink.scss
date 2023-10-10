@@ -30,10 +30,16 @@
                 font-weight: 700;
             }
         }
+        p {
+            @include margin-top($margin-l);
+            @include font-size($font-baseline);
+            @include line-height($font-md, $font-baseline);
+            font-weight: 400;
+        }
     }
 
     &__subheading {
-        @include margin-bottom($margin-md);
+        @include margin-bottom($margin-l);
         @include min-height(24px);
         h4 {
             @include padding-left($padding-zero);
@@ -67,15 +73,32 @@
             }
         }
     }
+    &__wrapper {
+        @include padding($padding-md $padding-zero);
+        display: flex;
+        border-bottom: 1px solid $color-mercury;
+        p {
+            display: none;
+            @media #{$desktop} {
+                @include margin-top(-$margin-sm);
+                @include margin-bottom($margin-md);
+                display: block;
+            }
+        }
+    }
+    &__content {
+        flex: 1;
+    }
+    &__image {
+        margin-right: $margin-md;
+    }
     &__link.tpatom-link--transparent {
-        @include min-height(56px);
         @include line-height(24px, 14px);
         @include font-size(14px);
         display: flex;
+        margin-bottom: $margin-md;
         justify-content: space-between;
-        border-bottom: 1px solid $color-mercury;
         span {
-            @include margin($margin-md);
             @media #{$desktop} {
                 @include margin-left($margin-zero);
             }
@@ -85,16 +108,16 @@
         i.icon {
             @include margin-left(16px);
             @include margin-right(16px);
-            @include margin-top(16px);
             display: inline-block;
             line-height: 24px;
             &::before {
+                font-size: $font-normal;
                 height: 16px;
                 width: 16px;
             }
         }
         .icon.icon-Circle_Arrow_Right_pw {
-            @include margin-top(16px);
+            @include margin-top(0);
             @include padding-right(16px);
             line-height: 24px;
         }

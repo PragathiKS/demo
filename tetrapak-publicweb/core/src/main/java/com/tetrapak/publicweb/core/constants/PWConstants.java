@@ -448,6 +448,12 @@ public final class PWConstants {
     /** The Constant NOINDEX_PROPERTY. */
     public static final String NOINDEX_PROPERTY = "noIndex";
 
+    /** The Constant NOFOLLOW_PROPERTY. */
+    public static final String NOFOLLOW_PROPERTY = "noFollow";
+
+    /** The Constant HIDEINSEARCH_PROPERTY. */
+    public static final String HIDEINSEARCH_PROPERTY = "hideInSearch";
+
 	/** Constant TETRA_LAVAL_CONTENT_PATH */
     public static final String TETRA_LAVAL_CONTENT_PATH = "/content/tetralaval";
     
@@ -495,6 +501,9 @@ public final class PWConstants {
     
     /** The Constant TEXT_VIDEO. */
     public static final String TEXT_VIDEO = "textVideo";
+    
+    /**Country Name Property */
+    public static final String PROP_COUNTRY_NAME = "countryName";
 
     /** The Constant TYPE. */
     public static final String TYPE = "type";

@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import $ from 'jquery';
 import 'bootstrap';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
@@ -7,7 +5,7 @@ import { getI18n } from '../../../scripts/common/common';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { _hideShowAllFiltersAnalytics, _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
+import { _addFilterAnalytics, _removeFilterAnalytics, _paginationAnalytics, _customizeTableBtnAnalytics, _addShowHideFilterAnalytics, _removeAllFiltersAnalytics, _trackEquipmentLinkClick } from './MyEquipment.analytics';
 import file from '../../../scripts/utils/file';
 import { _paginate } from './MyEquipment.paginate';
 import { _remapFilterProperty, _buildQueryUrl, _getFormattedCountryData, _remapFilterOptionKey } from './MyEquipment.utils';
@@ -105,7 +103,6 @@ class MyEquipment {
     this.cache.$searchResults = this.root.find('.tp-my-equipment__search-count');
     this.cache.$myEquipmentCustomizeTableAction = this.root.find('.js-my-equipment__customise-table-action');
     this.cache.$mobileHeadersActions = this.root.find('.js-mobile-header-actions');
-    this.cache.$showHideAllFiltersBtn = this.root.find('.js-tp-my-equipment__show-hide-all-button');
     this.cache.$removeAllFiltersBtn = this.root.find('.js-tp-my-equipment__remove-all-button');
     this.cache.configJson = this.root.find('.js-my-equipment__config').text();
     this.cache.$spinner = this.root.find('.tp-spinner');
@@ -264,10 +261,6 @@ class MyEquipment {
       this.toggleRemoveAllFilters(false);
     });
 
-    this.cache.$showHideAllFiltersBtn.on('click', () => {
-      this.showHideAllFilters();
-    });
-
     this.root.on('click', '.js-my-equipment__table-summary__sort',  (e) => {
       const $tHeadBtn = $(e.currentTarget).parent();
       this.sortTableByKey($tHeadBtn);
@@ -359,7 +352,12 @@ class MyEquipment {
   getActiveCountryCode = () => {
     const { countryData } = this.cache;
     const activeCountry = countryData.filter(e => e.isChecked);
-    return activeCountry[0].countryCode;
+    if (activeCountry) {
+      return activeCountry.countryCode;
+    } else {
+      throw Error('Couldn\'t get active country');
+    }
+  //  return 'DE';//activeCountry[0].countryCode;
   }
 
   getAllAvailableFilterVals(filterValuesArr, newCountry, appliedFilter) {
@@ -800,19 +798,6 @@ class MyEquipment {
     this.renderNewPage({'resetSkip': true});
   }
 
-  showHideAllFilters = () => {
-    const $allBtnFilters = this.root.find('.tp-my-equipment__filter-button-all');
-    const showLabel = this.cache.$showHideAllFiltersBtn.data('show-label');
-    const hideLabel = this.cache.$showHideAllFiltersBtn.data('hide-label');
-    const $label = this.cache.$showHideAllFiltersBtn.find('.tpatom-btn__text');
-    const currentLabel = $.trim($label.text());
-
-    _hideShowAllFiltersAnalytics(currentLabel, currentLabel === showLabel ? 'filterShow' : 'filterHide');
-
-    $allBtnFilters.toggle();
-    $label.text(currentLabel === showLabel ? hideLabel : showLabel);
-  }
-
   addCombinedFilter = (activeFilterForm, $filtersCheckbox) => {
     if ($filtersCheckbox.filter(':checked').length > 0) {
       this.cache.combinedFiltersObj[activeFilterForm] = [];
@@ -895,10 +880,10 @@ class MyEquipment {
   }
 
   renderNewPage = ({resetSkip, analyticsAction}) => {
-    const {itemsPerPage, countryData, activeSortData, combinedFiltersObj} = this.cache;
+    const {itemsPerPage, activeSortData, combinedFiltersObj} = this.cache; //countryData
     const equipmentApi = this.cache.equipmentApi.data('list-api');
-    const activeCountry = countryData.filter(e => e.isChecked);
-    const countryCode = activeCountry[0].countryCode;
+    //const activeCountry = countryData.filter(e => e.isChecked);
+    const countryCode = this.getActiveCountryCode();
     let apiUrlRequest = '';
     const filtersQuery = _buildQueryUrl(combinedFiltersObj);
     const skipIndex = resetSkip ? 0 : this.cache.skipIndex;
@@ -1025,6 +1010,7 @@ class MyEquipment {
               this.renderPaginationTableData(tableData);
               this.renderSearchCount();
               this.mapTableColumn();
+              this.showHideAllFilters();
             }).fail(() => {
               this.cache.$content.removeClass('d-none');
               this.cache.$spinner.addClass('d-none');

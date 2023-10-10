@@ -10,6 +10,8 @@ const trackAnalyticsContactUs = (formTrackingObj,eventObj,formVal='formclick') =
     ...formTrackingObj
   };
 
+  formTrackingObj.formName = `Contact | ${formTrackingObj.formName}`;
+
   eventObj = {
     ...eventObj,
     event:'Contact us form'

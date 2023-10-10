@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
@@ -22,7 +23,7 @@ import com.tetrapak.publicweb.core.utils.LinkUtils;
 @Model(adaptables = SlingHttpServletRequest.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class MediaLinkModel {
 
-    /** The request. */
+	/** The request. */
     @SlingObject
     private SlingHttpServletRequest request;
 
@@ -30,6 +31,18 @@ public class MediaLinkModel {
     @ValueMapValue
     private String heading;
 
+    /** The heading Description. */
+    @ValueMapValue
+    private String headingDesc;
+
+    /** The enable show image. */
+    @ValueMapValue @Default(values = "false")
+    private Boolean showImage;
+    
+    /** The Image aspect Ratio. */
+    @ValueMapValue @Default(values = "mediaLink")
+    private String imageAspectRatio;
+    
     /** The anchor id. */
     @ValueMapValue
     private String anchorId;
@@ -49,7 +62,7 @@ public class MediaLinkModel {
     /** The column two title. */
     @ValueMapValue
     private String columnTwoTitle;
-
+    
     /** The column three title. */
     @ValueMapValue
     private String columnThreeTitle;
@@ -78,6 +91,33 @@ public class MediaLinkModel {
         return heading;
     }
 
+    /**
+     * Gets the headingDesc
+     * 
+     * @return headingDesc
+     */
+    public String getHeadingDesc() {
+		return headingDesc;
+	}
+
+    /**
+     * Gets the show image.
+     *
+     * @return the show image
+     */
+    public Boolean getShowImage() {
+        return showImage;
+    }
+       
+    /**
+     * Gets the image aspect ratio.
+     *
+     * @return the image aspect ratio.
+     */
+    public String getImageAspectRatio() {
+        return imageAspectRatio;
+    }
+	
     /**
      * Gets the anchor id.
      *

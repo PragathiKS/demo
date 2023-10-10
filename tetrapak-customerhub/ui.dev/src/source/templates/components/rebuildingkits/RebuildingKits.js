@@ -2,7 +2,6 @@ import $ from 'jquery';
 import 'bootstrap';
 import auth from '../../../scripts/utils/auth';
 import file from '../../../scripts/utils/file';
-import logger from '../../../scripts/utils/logger';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { _paginationAnalytics, _customizeTableBtnAnalytics } from './RebuildingKits.analytics';
@@ -11,6 +10,7 @@ import { _hideShowAllFiltersAnalytics , _addFilterAnalytics, _removeFilterAnalyt
 import { _remapFilterProperty, _buildQueryUrl } from './RebuildingKits.utils';
 import { _getFormattedCountryData, _remapFilterOptionKey } from '../myequipment/MyEquipment.utils';
 import { render } from '../../../scripts/utils/render';
+import { logger } from '../../../scripts/utils/logger';
 import { getI18n } from '../../../scripts/common/common';
 import { _paginate } from './RebuildingKits.paginate';
 import { _buildTableRows, _mapHeadings } from './RebuildingKits.table';
@@ -154,7 +154,6 @@ class RebuildingKits {
     const optionValueKey = filterByProperty;
     const filterOptionsArr = [];
     let filterOptionsDatasource = [];
-
     const allAvailableApiFilterCheckboxes = [...allApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
     const currentSelectionApiFilterCheckboxes = [...currentApiFilterValsObj[_remapFilterProperty(filterByProperty)]];
 
@@ -211,7 +210,7 @@ class RebuildingKits {
           hidden: false
         },
         () => {
-          this.hideShowColums();
+          this.hideShowColumns();
           $(function () {
             $('[data-toggle="tooltip"]').tooltip();
           });
@@ -220,7 +219,7 @@ class RebuildingKits {
     }
   };
 
-  hideShowColums = () => {
+  hideShowColumns = () => {
     const { customisableTableHeaders } = this.cache;
     for(const i in customisableTableHeaders){
       if(!customisableTableHeaders[i].isChecked){
@@ -562,14 +561,7 @@ class RebuildingKits {
       }
 
       case 'customise-table':{
-        filterData = this.cache.customisableTableHeaders;
-        $filtersCheckbox.each(function(index) {
-          if ($(this).is(':checked')) {
-            filterData[index].isChecked = true;
-          } else {
-            filterData[index].isChecked = false;
-          }
-        });
+        this.onCustomizeTableColumn($filtersCheckbox, options);
         break;
       }
 
@@ -642,6 +634,24 @@ class RebuildingKits {
         break;
       }
     }
+  }
+
+  onCustomizeTableColumn = ($filtersCheckbox, options) => {
+    let filterData = [];
+    filterData = this.cache.customisableTableHeaders;
+    if (options && options.removeFilter) {
+      // reset default
+      $filtersCheckbox.each(function(index) {
+        $(this).prop('checked', filterData[index].isChecked);
+      });
+    }
+    $filtersCheckbox.each(function(index) {
+      if ($(this).is(':checked')) {
+        filterData[index].isChecked = true;
+      } else {
+        filterData[index].isChecked = false;
+      }
+    });
   }
 
   deleteFilterValue = (key) => {
@@ -742,6 +752,18 @@ class RebuildingKits {
                 this.checkActiveFilterSets(filterVal, res.data);
               }
             }
+            const rkStatuses = [];
+            if (filterVal === 'rkstatuses') {
+              res.data.forEach(function (data) {
+                for (const [key, value] of Object.entries(data)) {
+                  if (key === 'rebuildingKitStatus') {
+                    data['rkStatus'] = value;
+                  }
+                }
+                rkStatuses.push(data);
+              });
+              this.cache.allApiFilterValsObj[filterVal] = rkStatuses;
+            }
           });
       });
     });
@@ -836,8 +858,8 @@ class RebuildingKits {
       } else {
         throw Error('Couldn\'t get active country');
       }
-    } catch {
-      logger?.error('Couldn\'t get active country');
+    } catch (err) {
+      logger.error(err.message);
     }
   }
 
@@ -889,32 +911,34 @@ class RebuildingKits {
     $('.js-apply-filter-button').prop('disabled', true);
   }
 
+  setDefaultTableHeaders = () => {
+    this.cache.customisableTableHeaders = [
+      {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:1,isDisabled:false},
+      {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:2,isDisabled:false},
+      {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:3,isDisabled:false},
+      {key:RK_MACHINE_SYSTEM,option:RK_MACHINE_SYSTEM,optionDisplayText:this.cache.i18nKeys[RK_I18N_MACHINE_SYSTEM],isChecked:false,index:4,isDisabled:false},
+      {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:5,isDisabled:true},
+      {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:true,index:6,isDisabled:false},
+      {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:7,isDisabled:true},
+      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:true,index:8,isDisabled:false},
+      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:9,isDisabled:false},
+      {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:10,isDisabled:false},
+      {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:11,isDisabled:false},
+      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:12,isDisabled:false},
+      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:13,isDisabled:false},
+      {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:14,isDisabled:false},
+      {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:15,isDisabled:false},
+      {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:16,isDisabled:false},
+      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:17,isDisabled:false},
+      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:18,isDisabled:false},
+      {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:19,isDisabled:false}
+    ];
+  }
+
   bindEvents = () => {
     const $this = this;
     const {$modal,i18nKeys,$rkCustomizeTableAction, $mobileHeadersActions } = this.cache;
-
-    this.cache.customisableTableHeaders = [
-      {key:RK_COUNTRY_CODE,option:RK_COUNTRY_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_COUNTRY_CODE],isChecked:false,index:0,isDisabled:false},
-      {key:RK_LINE_CODE,option:RK_LINE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_LINE_CODE],isChecked:true,index:1,isDisabled:false},
-      {key:RK_EQ_DESC,option:RK_EQ_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_DESC],isChecked:true,index:2,isDisabled:false},
-      {key:RK_MACHINE_SYSTEM,option:RK_MACHINE_SYSTEM,optionDisplayText:this.cache.i18nKeys[RK_I18N_MACHINE_SYSTEM],isChecked:false,index:3,isDisabled:false},
-      {key:RK_SERIAL_NUMBER,option:RK_SERIAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_SERIAL_NUMBER],isChecked:true,index:4,isDisabled:true},
-      {key:RK_EQ_STATUS,option:RK_EQ_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_EQ_STATUS],isChecked:false,index:5,isDisabled:false},
-      {key:RK_NUMBER,option:RK_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_NUMBER],isChecked:true,index:6,isDisabled:true},
-      {key:RK_DESC,option:RK_DESC,optionDisplayText:this.cache.i18nKeys[RK_I18N_DESC],isChecked:true,index:7,isDisabled:false},
-      {key:RK_IMPL_STATUS,option:RK_IMPL_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS],isChecked:true,index:8,isDisabled:false},
-      {key:RK_IMPL_DATE,option:RK_IMPL_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DATE],isChecked:false,index:9,isDisabled:false},
-      {key:RK_IMPL_STATUS_DATE,option:RK_IMPL_STATUS_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_STATUS_DATE],isChecked:false,index:10,isDisabled:false},
-      {key:RK_GENERAL_NUMBER,option:RK_GENERAL_NUMBER,optionDisplayText:this.cache.i18nKeys[RK_I18N_GENERAL_NUMBER],isChecked:false,index:11,isDisabled:false},
-      {key:RK_TYPE_CODE,option:RK_TYPE_CODE,optionDisplayText:this.cache.i18nKeys[RK_I18N_TYPE_CODE],isChecked:false,index:12,isDisabled:false},
-      {key:RK_RELEASE_DATE,option:RK_RELEASE_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_RELEASE_DATE],isChecked:false,index:13,isDisabled:false},
-      {key:RK_PLANNED_DATE,option:RK_PLANNED_DATE,optionDisplayText:this.cache.i18nKeys[RK_I18N_PLANNED_DATE],isChecked:false,index:14,isDisabled:false},
-      {key:RK_IMPL_DEADLINE,option:RK_IMPL_DEADLINE,optionDisplayText:this.cache.i18nKeys[RK_I18N_IMPL_DEADLINE],isChecked:false,index:15,isDisabled:false},
-      {key:RK_STATUS,option:RK_STATUS,optionDisplayText:this.cache.i18nKeys[RK_I18N_STATUS],isChecked:false,index:16,isDisabled:false},
-      {key:RK_HANDLING,option:RK_HANDLING,optionDisplayText:this.cache.i18nKeys[RK_I18N_HANDLING],isChecked:false,index:17,isDisabled:false},
-      {key:RK_ORDER,option:RK_ORDER,optionDisplayText:this.cache.i18nKeys[RK_I18N_ORDER],isChecked:false,index:18,isDisabled:false}
-    ];
-
+    this.setDefaultTableHeaders();
     const getNOfOptions = (keyCode) => {
       const data = this.cache.filterModalData[keyCode];
       if (data) {
@@ -998,7 +1022,7 @@ class RebuildingKits {
     });
 
     this.cache.$rkStatusFilterLabel.on('click', () => {
-      this.cache.filterModalData['rkStatus'] = this.getFilterModalData('rebuildingKitStatus');
+      this.cache.filterModalData['rkStatus'] = this.getFilterModalData('rkStatus');
       const formDetail = {activeForm:'rkStatus',header:i18nKeys['rkStatus'],maxFiltersSelection:getNOfOptions('rkStatus')};
       this.renderFilterForm(this.cache.filterModalData['rkStatus'], formDetail, this.cache.$rkStatusFilterLabel);
       $modal.modal();
@@ -1092,6 +1116,11 @@ class RebuildingKits {
       $('.tp-rk__header-actions').removeClass('show');
       $modal.modal();
       _customizeTableBtnAnalytics($rkCustomizeTableAction);
+    });
+
+    this.root.on('click', '.js-tp-rk__set-default-button',  () => {
+      this.setDefaultTableHeaders();
+      this.applyFilter({removeFilter:true});
     });
 
     $mobileHeadersActions.on('click', () => {

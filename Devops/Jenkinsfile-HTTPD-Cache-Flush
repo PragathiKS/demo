@@ -1,9 +1,11 @@
+@Library('jenkins-pipeline-library') _
+
 pipeline {
     agent {
-                node {
-                label 'cfe-deploy'
+        node {
+            label 'cfe-deploy'
         }
-}
+    }
     
     parameters {
         choice choices: ['DEV', 'QA', 'STAGE', 'SUP'], description: '', name: 'ENVIRONMENT'
@@ -16,49 +18,42 @@ pipeline {
 
     stages {
         stage('Set HTTP Cache environment') {
-
             steps {
                 script {                    
                     if (params.ENVIRONMENT == "QA") {
-
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-                }
-                    }
-                    
+                        withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                        {
+                            sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.82.1.35 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                        }
+                    }  
                 }
 
                 script {
                     if (params.ENVIRONMENT == "DEV") {
-
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-                }
+                        withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                        {
+                            sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                        }
                     }
                 }
                 
                 script {
                     if (params.ENVIRONMENT == "STAGE") {
-
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-                }
+                        withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')]) {
+                            sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                            sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                        }
                     }
                 }
                 script {
                     if (params.ENVIRONMENT == "SUP") {
-
-                    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-                    {
-                    sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.50.198.70 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-                }
+                        withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
+                        {
+                            sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.50.198.70 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
+                        }
                     }
                 }			
             }
         }
-        }
-        }
+    }
+}

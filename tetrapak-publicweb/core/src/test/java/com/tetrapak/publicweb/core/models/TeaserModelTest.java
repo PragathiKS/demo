@@ -154,7 +154,9 @@ public class TeaserModelTest {
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
 
-        assertEquals("Heading", model.getHeading());
+        assertEquals("This is heading of teaser", model.getHeading());
+        assertEquals("This is description of Teaser", model.getDescription());
+        assertEquals("4", model.getNumberOfColumns());        
         assertEquals("View All", model.getLinkLabel());
         assertEquals("/content/tetrapak/publicweb/lang-masters/en/search.html", model.getLinkPath());
         assertEquals("grayscale-white", model.getPwTheme());
@@ -206,7 +208,10 @@ public class TeaserModelTest {
         resource = context.currentResource(RESOURCE);
         model = request.adaptTo(modelClass);
 
+        assertEquals("This is heading of teaser", model.getHeading());
+        assertEquals("This is description of Teaser", model.getDescription());
         assertEquals(true, model.getDisplayDate());
+        assertEquals("4", model.getNumberOfColumns());   
 
         assertEquals("Solutions", model.getTeaserList().get(0).getTitle());
         assertEquals("Solution Desc", model.getTeaserList().get(0).getDescription());

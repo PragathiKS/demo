@@ -171,7 +171,9 @@
         "source/templates/components/socialsidebar/",
         "source/templates/components/stories/",
         "source/templates/components/anchormenu/",
-        "source/templates/components/anchorv2/"
+        "source/templates/components/anchorv2/",
+        "source/templates/components/searchlanding/",
+        "source/templates/components/accordion/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"

@@ -72,3 +72,6 @@
 /0064 { /type "allow" /method "POST" /url "/*/root/responsivegrid/*.pardotsubscription.json" }
 
 
+
+## Allow GET Requests
+/0065 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/searchlanding*" } # SMAR-32164

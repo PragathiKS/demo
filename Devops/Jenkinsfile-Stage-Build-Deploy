@@ -20,6 +20,11 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
         disableConcurrentBuilds()
         parallelsAlwaysFailFast()
+        office365ConnectorWebhooks([[
+            name: 'Office 365',
+            startNotification: true,
+            url: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1"
+        ]])
     }
 
     environment {
@@ -109,6 +114,12 @@ pipeline {
                     cacheflush()
                 }
             }
+        }
+    }
+    
+    post {
+        always {
+            sendNotifications(currentBuild.currentResult)
         }
     }
 }
@@ -261,10 +272,7 @@ pipeline {
     }
 
     def cacheflush() {
-        echo "Starting Stage Dispatcher Cache Clear"
-        withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-        {
-            sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 20.56.128.106 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-            sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 51.124.104.113 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-        }
+        build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: 'STAGE')], wait: true
+
+        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: 'STAGE'), booleanParam(name: 'Publicweb', value: params.Build_Publicweb), booleanParam(name: 'Customerhub', value: params.Build_MyTetraPak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.Build_Tetralaval), booleanParam(name: 'Supplierportal', value: params.Build_Supplierportal)], wait: true 
     }

@@ -5,6 +5,7 @@ import com.day.cq.wcm.api.LanguageManager;
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.models.RebuildingKitDetailsModel;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.RebuildingKitsDetailsService;
 import com.tetrapak.customerhub.core.services.config.RebuildingKitsEmailConfiguration;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
@@ -60,6 +61,9 @@ public class RebuildingKitsEmailServiceImplTest {
 	/** The model. */
 	private RebuildingKitDetailsModel model;
 
+	@Mock
+	private RebuildingKitsDetailsService rebuildingKitsDetailsService;
+
 	@Spy
 	@InjectMocks
 	private RebuildingKitsEmailServiceImpl rebuildingKitsEmailService = new RebuildingKitsEmailServiceImpl() ;
@@ -70,6 +74,7 @@ public class RebuildingKitsEmailServiceImplTest {
 		aemContext.registerService(EmailService.class,emailService);
 		aemContext.registerService(LanguageManager.class,languageManager);
 		aemContext.registerService(APIGEEService.class, apigeeService);
+		aemContext.registerService(RebuildingKitsDetailsService.class, rebuildingKitsDetailsService);
 		when(configuration.isRebuildingKitsEmailServiceEnabled()).thenReturn(true);
 		when(apigeeService.getApiMappings()).thenReturn(new String[]{"rebuildingkits-rebuildingkitdetails:installedbase/rebuildingkits"});
 		aemContext.registerService( RebuildingKitsEmailServiceImpl.class,rebuildingKitsEmailService);

@@ -1,6 +1,6 @@
 <sly data-sly-template.findMyOffice_template="${@data, flag}">
   <div id="${data.anchorId}" title="${data.anchorTitle}" data-module="FindMyOffice" auto_locator="fmoOrganism">
-    <div class="hidden-element js-google-api js-i18-value" data-google-api-key="${data.googleApiKey}"
+    <div class="hidden-element js-google-api js-baidu-map-api js-i18-value" data-google-api-key="${data.googleApiKey}" data-baidu-map-key="${data.baiduMapKey}"
       data-google-api-servlet="${data.servletPath}">${"pw.findMyOffice.goToLocalSite" @i18n}</div>
     <div class="hidden-element js-hidden-element">${"pw.findMyOffice.viewLargerMap" @i18n}</div>
     <div class="pw-container pw-find-my-office pw-theme--${data.pwTheme}">
@@ -13,12 +13,12 @@
             data-sly-call="${title.heading_h1_template @ headingText=data.heading, variant='regular'}" />
           </div>
           <div class="pw-find-my-office__form-group__field country-field"><label
-              class="pw-find-my-office__form-group__label" for="country" auto_locator="countryLabelCard">${"pw.form.label.country" @i18n}</label>
+              class="pw-find-my-office__form-group__label" for="country" auto_locator="countryLabelCard">${data.countryLabel}</label>
             <div class="pw-form__dropdown dropdown text-left" auto_locator="countryValueCard">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__country js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                 type="button" title='' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><span
-                  class="js-pw-form__dropdown__country-text">${"pw.form.label.countryPlaceholder" @i18n}</span>
+                  class="js-pw-form__dropdown__country-text">${data.countryDropdownLabel}</span>
                 <i class="icon icon-Arrow_Right_pw"></i></button>
               <ul role="menu" class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__country-select">
               </ul>
@@ -27,12 +27,12 @@
           <div
             class="pw-find-my-office__form-group__field pw-find-my-office__form-group__city-field js-pw-find-my-office__form-group__city-field">
             <label class="pw-find-my-office__form-group__label js-pw-find-my-office__form-group__label"
-              for="country" auto_locator="officeLabelCard">${"pw.form.label.office" @i18n}</label>
+              for="country" auto_locator="officeLabelCard">${data.officeLabel}</label>
             <div class="pw-form__dropdown dropdown text-left" auto_locator="officeValueCard">
               <button
                 class="btn dropdown-toggle js-pw-form__dropdown__city js-pw-form__dropdown__toggle pw-form__dropdown__toggle category__toggle text-left"
                 type="button" title='' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><span
-                  class="js-pw-form__dropdown__city-text">${"pw.form.label.officePlaceholder" @i18n}</span>
+                  class="js-pw-form__dropdown__city-text">${data.officeDropdownLabel}</span>
                 <i class="icon icon-Arrow_Right_pw"></i></button>
               <ul role="menu" class="dropdown-menu pw-form__dropdown__menu js-pw-form__dropdown__city-select">
               </ul>

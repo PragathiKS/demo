@@ -74,6 +74,7 @@
                                                 fieldDescription="Pick the most important areas/keywords"
                                                 fieldLabel="Tags"
                                                 multiple="{Boolean}true"
+												required="{Boolean}true"
                                                 name="./cq:tags">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
@@ -102,7 +103,7 @@
                                                 <granite:rendercondition
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType = "commons/renderconditions/allowgroups"
-                                                    allowedGroups="[administrators]"/>
+                                                    allowedGroups="[administrators,pw-global-super-users]"/>
                                             </hideinnav>
                                             <charset
                                                 jcr:primaryType="nt:unstructured"
@@ -126,6 +127,7 @@
                                                 allowBulkEdit="{Boolean}true"
                                                 fieldLabel="Navigation Title"
                                                 name="./navTitle"
+												required="{Boolean}true"
                                                 renderReadOnly="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
@@ -140,6 +142,7 @@
                                                 fieldLabel="Description"
                                                 maxlength="{Long}160"
                                                 name="./jcr:description"
+												required="{Boolean}true"
                                                 renderReadOnly="{Boolean}true">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
@@ -381,8 +384,7 @@
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldDescription="Text available for the visitor"
                                                 fieldLabel="Link Text"
-                                                name="./linkText"
-												required="{Boolean}true">
+                                                name="./linkText">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="linkText"/>
@@ -394,8 +396,7 @@
                                                 fieldDescription="Link to destination URL"
                                                 fieldLabel="Link Path"
                                                 name="./linkPath"
-                                                rootPath="/content"
-												required="{Boolean}true">
+                                                rootPath="/content">
                                                 <granite:data
                                                     jcr:primaryType="nt:unstructured"
                                                     cq-msm-lockable="linkPath"/>
