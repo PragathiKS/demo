@@ -1,3 +1,5 @@
+// sass-lint:disable-all
+
 .pw-megamenu {
     visibility: hidden;
     top: 80px;
@@ -554,10 +556,16 @@
         }
     }
 }
-.pw-megamenu .col-side-links .list-side-links li a:hover {
+.pw-megamenu .col-side-links .list-side-links li {
     color: $color-sky-blue;
 }
-.pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw {
+a {
+  &:hover {
+    color: $color-sky-blue;
+  }
+}
+.pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw,
+.pw-megamenu .col-side-links .icon-Arrow_Right_pw {
     display: none;
     margin-left: $margin-sm;
     vertical-align: middle;
@@ -565,7 +573,7 @@
         display: inline-block;
         position: relative;
         margin-right: -10px;
-        top: -8px;
+        top: 0;
     }
     @media #{$i-pad} {
         display: none;
