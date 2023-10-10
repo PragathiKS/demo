@@ -1,0 +1,26 @@
+.pw-search-result-head {
+    padding-bottom: $padding-l;
+    .result-title {
+        color: $color-tundora;
+        font-size: $font-xxl;
+        font-weight: 700;
+        line-height: $padding-xxxl;
+        margin-bottom: $margin-l;
+
+    }
+    .result-description {
+        color: $color-tundora;
+        font-size: $font-baseline;
+        font-weight: 400;
+        line-height: $font-l;
+    }
+}
+
+.pw-search-landing-container {
+    .pw-container {
+        margin-top: $margin-zero;
+        .pw-search-results {
+            padding-top: $padding-zero;
+        }
+    }
+}

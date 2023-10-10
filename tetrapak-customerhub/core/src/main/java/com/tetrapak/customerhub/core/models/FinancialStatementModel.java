@@ -105,6 +105,12 @@ public class FinancialStatementModel {
     @Inject
     private String noCustomerErrorText;
 
+    @Inject
+    private String placeholderForCustomerSearchText; 
+
+     @Inject
+    private String noDataFoundForCustomerSearch; 
+
     @OSGiService
     private SlingSettingsService slingSettingsService;
 
@@ -214,6 +220,14 @@ public class FinancialStatementModel {
         return noCustomerErrorText;
     }
 
+    public String getPlaceholderForCustomerSearchText() {
+        return placeholderForCustomerSearchText;
+    }
+
+     public String getNoDataFoundForCustomerSearch() {
+        return noDataFoundForCustomerSearch;
+    }
+
     public String getI18nKeys() {
         return i18nKeys;
     }
@@ -262,6 +276,8 @@ public class FinancialStatementModel {
         i18KeyMap.put("dateRangePlaceholder", getDateRangePlaceholder());
         i18KeyMap.put("dateRangeErrorLabel", getDateRangeErrorLabel());
         i18KeyMap.put("noCustomerErrorText", getNoCustomerErrorText());
+        i18KeyMap.put("placeholderForCustomerSearchText", getPlaceholderForCustomerSearchText());
+        i18KeyMap.put("noDataFoundForCustomerSearch", getNoDataFoundForCustomerSearch());
         i18KeyMap.put("apiErrorCodes", GlobalUtil.getApiErrorCodes(resource));
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;

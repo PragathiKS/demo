@@ -16,7 +16,7 @@ import org.mockito.*;
 
 import com.tetrapak.customerhub.core.mock.CuhuCoreAemContext;
 import com.tetrapak.customerhub.core.services.APIGEEService;
-
+import com.tetrapak.customerhub.core.services.RebuildingKitsDetailsService;
 import io.wcm.testing.mock.aem.junit.AemContext;
 
 import javax.servlet.http.Cookie;
@@ -47,6 +47,9 @@ public class RebuildingKitDetailsModelTest {
 	@Mock
 	private APIGEEService apigeeService;
 
+	@Mock
+	private RebuildingKitsDetailsService rebuildingKitsDetailsService;
+
 
 	/**
 	 * Sets the up.
@@ -55,9 +58,10 @@ public class RebuildingKitDetailsModelTest {
 	public void setUp () {
 		MockitoAnnotations.initMocks(this);
         aemContext.registerService(APIGEEService.class, apigeeService);
+		aemContext.registerService(RebuildingKitsDetailsService.class, rebuildingKitsDetailsService);
 		aemContext.runMode("publish");
         when(apigeeService.getApigeeServiceUrl()).thenReturn(new String("https://api-dev.tetrapak.com"));
-        when(apigeeService.getApiMappings()).thenReturn(new String[]{"rebuildingkits-rebuildingkitdetails:installedbase/rebuildingkits","technicalbulletins:technicalbulletins"});
+        when(apigeeService.getApiMappings()).thenReturn(new String[]{"rebuildingkits-rebuildingkitdetails:installedbase/rebuildingkits","rebuildingkits-implstatuslist:installedbase/rebuildingkits/implstatuses","technicalbulletins:technicalbulletins"});
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		aemContext.request().setResource(resource);
 		model = aemContext.request().adaptTo(RebuildingKitDetailsModel.class);
@@ -79,6 +83,7 @@ public class RebuildingKitDetailsModelTest {
 	@Test
 	public void testLabeli18NKeys() {
 		assertEquals("cuhu.rebuildingkits.rkAndEquipmentInformation",model.getRkAndEquipmentInformation());
+		assertEquals("cuhu.rebuildingkits.viewInEBizButton",model.getViewInEBizButton());
 		assertEquals("cuhu.rebuildingkits.countryLocation",model.getCountryLocation());
 		assertEquals("cuhu.rebuildingkits.functionalLocation",model.getFunctionalLocation());
 		assertEquals("cuhu.rebuildingkits.equipmentMaterial",model.getEquipmentMaterial());
@@ -122,6 +127,7 @@ public class RebuildingKitDetailsModelTest {
 	@Test
 	public void testApi() {
 		assertTrue(model.getRebuildingKitDetailsApi().contains("installedbase/rebuildingkits"));
+		assertTrue(model.getRebuildingKitImplStatusListApi().contains("installedbase/rebuildingkits"));
 		assertTrue(model.getTechnicalBulletinApi().contains("technicalbulletins"));
 	}
 

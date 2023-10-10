@@ -1,0 +1,93 @@
+{
+   "jcr:primaryType":"cq:Page",
+   "jcr:createdBy":"admin",
+   "jcr:created":"Mon Mar 06 2023 14:42:16 GMT+0100",
+   "jcr:content":{
+      "jcr:primaryType":"cq:PageContent",
+      "jcr:createdBy":"admin",
+      "mobileOverviewLabel":"Overview",
+      "jcr:title":"Events Landing Page",
+      "cq:template":"/conf/publicweb/settings/wcm/templates/event",
+      "altText":"ui",
+      "imagePath":"uiu",
+      "disableEnvelope":"false",
+      "pwButtonTheme":"link",
+      "jcr:created":"Mon Mar 06 2023 14:42:16 GMT+0100",
+      "cq:lastModified":"Tue Mar 07 2023 10:49:27 GMT+0100",
+      "titleSuffix":"Tetra Pak",
+      "hideInSearch@Delete":"true",
+      "hideInNav":"true",
+      "cq:tags":[
+         "tetrapak:about-tetra-pak",
+         "tetrapak:material-type/events"
+      ],
+      "linkPath":"uiu",
+      "linkText":"ui",
+      "sling:resourceType":"publicweb/components/structure/pages/sectionmenupage",
+      "cq:lastModifiedBy":"admin",
+      "root":{
+         "jcr:primaryType":"nt:unstructured",
+         "sling:resourceType":"wcm/foundation/components/responsivegrid",
+         "responsivegrid":{
+            "jcr:primaryType":"nt:unstructured",
+            "sling:resourceType":"wcm/foundation/components/responsivegrid",
+            "breadcrumb":{
+               "jcr:primaryType":"nt:unstructured",
+               "jcr:createdBy":"admin",
+               "jcr:lastModifiedBy":"admin",
+               "jcr:created":"Thu Jun 18 2020 10:33:02 GMT+0000",
+               "jcr:lastModified":"Thu Jun 18 2020 10:33:02 GMT+0000",
+               "sling:resourceType":"publicweb/components/content/breadcrumb"
+            },
+            "richtext":{
+               "jcr:primaryType":"nt:unstructured",
+               "jcr:createdBy":"admin",
+               "jcr:lastModifiedBy":"admin",
+               "jcr:created":"Thu Jun 18 2020 10:33:09 GMT+0000",
+               "jcr:lastModified":"Thu Jun 18 2020 10:33:09 GMT+0000",
+               "sling:resourceType":"publicweb/components/content/richtext",
+               "topSpacing":"topmargin",
+               "pwPadding":"zero"
+            },
+            "image":{
+               "jcr:primaryType":"nt:unstructured",
+               "jcr:createdBy":"admin",
+               "jcr:lastModifiedBy":"admin",
+               "jcr:created":"Thu Jun 18 2020 10:33:12 GMT+0000",
+               "jcr:lastModified":"Thu Jun 18 2020 10:33:12 GMT+0000",
+               "sling:resourceType":"publicweb/components/content/image",
+               "pwPadding":"zero"
+            },
+            "richtext_2067461171":{
+               "jcr:primaryType":"nt:unstructured",
+               "jcr:createdBy":"admin",
+               "jcr:lastModifiedBy":"admin",
+               "jcr:created":"Thu Jun 18 2020 10:33:27 GMT+0000",
+               "jcr:lastModified":"Thu Jun 18 2020 10:33:27 GMT+0000",
+               "sling:resourceType":"publicweb/components/content/richtext",
+               "topSpacing":"nomargin",
+               "pwPadding":"zero"
+            },
+            "medialink":{
+               "jcr:primaryType":"nt:unstructured",
+               "jcr:createdBy":"admin",
+               "jcr:lastModifiedBy":"admin",
+               "jcr:created":"Thu Jun 18 2020 10:33:34 GMT+0000",
+               "jcr:lastModified":"Thu Jun 18 2020 10:33:34 GMT+0000",
+               "sling:resourceType":"publicweb/components/content/mediaLink"
+            },
+            "searchlanding":{
+               "jcr:primaryType":"nt:unstructured",
+               "jcr:createdBy":"admin",
+               "description":"Looking for a previous event or information for a specific Tetra Pak event? Use the search field or filtering options below to find events on topics related to our business and products.",
+               "jcr:lastModifiedBy":"admin",
+               "jcr:created":"Tue Mar 07 2023 10:47:38 GMT+0100",
+               "heading":"Tetra Pak event archive",
+               "jcr:lastModified":"Tue Mar 07 2023 10:49:27 GMT+0100",
+               "sling:resourceType":"publicweb/components/content/searchlanding",
+               "type":"events"
+            }
+         }
+      }
+   }
+}

@@ -1,11 +1,11 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const subscriptionAnalytics = function (formName, dataObj, eventType, trackingKey, errorObj=[]) {
+export const subscriptionAnalytics = function (formName, dataObj, eventType, trackingKey, errorObj=[], countryData) {
   const formObj = {
     formName: formName,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
-
   if(Object.keys(dataObj).length > 0) {
     Object.keys(dataObj).forEach(i => {
       if(dataObj[i]) {

@@ -8,8 +8,8 @@ pipeline {
     }
     
     triggers {
-        cron('H 1 * * 1-5')
-     }
+        cron('H 0 * * 1-5')
+    }
     
     parameters {
         booleanParam defaultValue: true, description: 'Please check in case you want to build Commons Module', name: 'Build_Commons'
@@ -18,20 +18,23 @@ pipeline {
 	    booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
 	    booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
-        booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'Pa11y_Execution'
-        booleanParam defaultValue: false, description: 'Please uncheck in case you do not want to execute the pipeline with all Tools', name: 'ZAP_Run'
-
     }
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
+        office365ConnectorWebhooks([[
+            name: 'Office 365',
+            startNotification: true,
+            url: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1"
+        ]])
     }
 
     environment {
         sonar_url = "https://sonarcloud.io"
         login_token = "2354fbb990d5494aad3c578f2c9dd65147d01e02"
         build_id_number = ""
+        docker_workspace_dir = ""
     }
 
     stages {
@@ -54,7 +57,6 @@ pipeline {
                     label 'cfe-deploy'
                 }
             }
-
             steps {
                 script {
                     if (params.Build_Commons) {
@@ -99,6 +101,11 @@ pipeline {
                         buildandsonarsupplier()
                     }
                 }
+                script {
+                    warnError(message: "Publish Coverage report with error") {
+                        publishCoverageReport()
+                    }
+                }
             }
         }
 
@@ -122,74 +129,14 @@ pipeline {
                 }
             }
         }
-
-        stage('Karma, Pa11y Execution') {            
-            steps {
-                script {
-                    warnError(message: "Karma, Pa11y Execution failed with error") {
-                        if (!params.Pa11y_Execution) {
-                            echo "Skipping Tools Execution"
-                        }
-                        else {
-                            if (params.Build_MyTetraPak) {
-                                appname = "customerhub"
-                                karmatest() 
-                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
-                                pallycuhuscript()
-                            }
-                            if (params.Build_Publicweb) {
-                                appname = "publicweb"
-                                karmatest()
-                                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
-                                pallypwscript()
-                            }
-                        }
-                    
-                        if (params.Sonar_Analysis) {
-                            sonarreport()
-                        }
-                    }
-                    
-                }
-            }
-        }
-        stage('Zap Tools Execution') {        
-            steps {
-                script {
-                    if (params.ZAP_Run) {
-                        warnError(message: "Zap Tools Execution failed with error") {
-                            zaptest()
-                            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: "zap-${appname}", reportFiles: 'zap.html', reportName: "ZAPReport-${appname}", reportTitles: '']) 
-                        }           					
-                    }
-                }
-            } 
-        }
-
-        stage('Sitespeed Execution') {        
-            steps {
-                script {
-                    if (!params.Pa11y_Execution) {
-                        echo "Skipping Sitespeed Execution for Desktop"                
-                    }
-                    else {
-                        if (params.Build_MyTetraPak) {
-                            sitespeedcuhu()
-                        }
-                        if (params.Build_Publicweb) {
-                            sitespeedpw()                  
-                        }
-                    }
-                }
-            } 
-        }
-
 }
 
 //Post notification in MS Teams
     post {
         always {
-            sendNotifications(currentBuild.currentResult)
+            script {
+                notifyBuildStatus()
+            }
         }
     }
 }
@@ -205,7 +152,8 @@ def buildandsonar() {
             if (!params.Sonar_Analysis) {
                 echo "Skipping Sonar execution for ${appname} module"
             } else {
-                sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sh "mvn sonar:sonar -Dsonar.issuesReport.html.enable=true -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sonarreport()
             }
         }
     }
@@ -223,6 +171,7 @@ def buildandsonarsupplier() {
                     echo "Skipping Sonar execution for ${appname} module"
                 } else {
                     sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                    sonarreport()
                 }
             }
         }
@@ -237,14 +186,14 @@ def buildandsonarlaval() {
         {
             sh "mvn clean -s settings.xml -Dartuser=${artifactuser} -Dartpassword=${artifactpassword} install deploy -Pminify -Dbuildversion=1.0.0-DEV${build_id_number}-SNAPSHOT"
             if (!params.Sonar_Analysis) {
-                    echo "Skipping Sonar execution for ${appname} module"
-                } else {
-                    sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                echo "Skipping Sonar execution for ${appname} module"
+            } else {
+                sh "mvn sonar:sonar -Dsonar.organization=tetrapak-smartsales   -Dsonar.host.url=${sonar_url} -Dsonar.buildbreaker.skip=true -Dsonar.login=${login_token} -Dsonar.branch=tetrapack-${appname}  -Dsonar.languages=java,js,css  -Dsonar.test.exclusions=**/core/src/test/**  -Dbuildversion=${build_id_number}-SNAPSHOT"
+                sonarreport()
             }
         }
     }
 }
-
 
 def devdeployment() {  
     if (params.Build_Commons)  {
@@ -343,100 +292,29 @@ def publishdeploy() {
     sh label: 'Installing New Package on publish', script: "curl -k -u ${username}:${password} -F force=true '${publish_url}/crx/packmgr/service.jsp?cmd=inst&name=${packageName}&group=${repoName}'  && sleep 60"
 }
 
-def karmatest() {
+def publishCoverageReport() {
     if (params.Build_MyTetraPak) {
         reportname = "Karma Report - MyTetrapak"
-        def karmapath_cuhu = "${env.WORKSPACE}/tetrapak-customerhub/ui.dev/src/coverage"
-        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r ${karmapath_cuhu} ${appname}"
+        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r tetrapak-customerhub/ui.dev/src/coverage customerhub"
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'customerhub', reportFiles: 'index.html', reportName: 'KarmaReport-MyTetraPak', reportTitles: ''])
     }
     if (params.Build_Publicweb) {
-        echo "Publising karma Test Report- Publicweb"
         reportname = "Karma Report - Publicweb"
-        def karmapath_pw = "${env.WORKSPACE}/tetrapak-publicweb/ui.dev/src/coverage"
-        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r ${karmapath_pw} ${appname}"
+        sh label: "Publising karma Test Report- MyTetrapak", script: "cp -r tetrapak-publicweb/ui.dev/src/coverage publicweb"
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'publicweb', reportFiles: 'index.html', reportName: 'KarmaReport-Publicweb', reportTitles: ''])
     }
-}
-
-def zaptest() {
-    def test_url_pally_zap_pw = "https://www-dev.tetrapak.com/"
-    echo "Starting Zap Test Run- ${appname}"
-    sh 'sudo docker ps -a'
-    sh 'if docker ps | grep zap; then echo "ZAP is running, initiating stop and remove" && sudo docker stop zap && sudo docker rm zap ; else echo "stopped"; fi'
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 -e LANG=C.UTF-8 --detach --name zap -u zap -v "$(pwd)/reports":/zap/reports/:rw owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0  -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true -config api.disablekey=true'  
-    sleep 30
-    echo "Starting ZAP test Run on ${appname} Urls"
-    sh "docker exec  zap zap-cli spider ${test_url_pally_zap_pw}"
-    sh 'docker exec  zap zap-cli report -f html -o zap.html'
-    sh "mkdir -p zap-${appname}"
-    sh "docker cp zap:zap/zap.html zap-${appname}"
-    sh 'sudo docker stop zap'
-    sh 'sudo docker rm zap'
-}
-
-
-def sitespeedcuhu() {
-    test_url_cuhu = "https://mypages-dev.tetrapak.com/dashboard.html"
-    echo "Starting Sitespeed-Desktop Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_cuhu}" -b firefox --outputFolder sitespeed_desktop'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-Desktop', reportTitles: ''])
-
-    echo "Starting Sitespeed-Mobile Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_cuhu}" -b firefox --outputFolder sitespeed_mobile'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-Mobile', reportTitles: ''])
-
-    echo "Starting Sitespeed-IPAD Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_cuhu}" -b firefox --outputFolder sitespeed_ipad'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-MyTetraPak-IPad', reportTitles: ''])
-}
-
-def sitespeedpw() {
-    test_url_pw = "https://www-dev.tetrapak.com"
-    echo "Starting Sitespeed-Desktop Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io "${test_url_pw}" -b firefox --outputFolder sitespeed_desktop'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_desktop', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Desktop', reportTitles: ''])
-
-    echo "Starting Sitespeed-Mobile Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --mobile "${test_url_pw}" -b firefox --outputFolder sitespeed_mobile'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_mobile', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-Mobile', reportTitles: ''])
-
-    echo "Starting Sitespeed-IPAD Test Run for ${appname}"
-    sh 'docker run --add-host tetrapak-dev65.adobecqms.net:52.142.237.145 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10" "${test_url_pw}" -b firefox --outputFolder sitespeed_ipad'
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'sitespeed_ipad', reportFiles: 'index.html', reportName: 'SitespeedReport-PublicWeb-IPad', reportTitles: ''])
-}                        
-
-def pallycuhuscript() {
-    echo "Starting pa11y test Run on CustomerHub Urls"
-    reportname = "Pa11y Report - CustomerHub"
-    sh 'chmod 777 Devops/PallyReportCuhu.sh'
-    sh 'sh -x Devops/PallyReportCuhu.sh'
-    sh 'mkdir -p pally-customerHub'
-    sh 'mv PallyReportCuhu.html pally-customerHub/PallyReportCuhu.html' 
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-customerHub', reportFiles: 'PallyReportCuhu.html', reportName: 'PallyReport-MyTetraPak', reportTitles: ''])
-}
-
-def pallypwscript() {
-    echo "Starting pa11y test Run on PublicWeb Urls"
-    reportname = "Pa11y Report - publicweb"
-    sh 'chmod 777 Devops/PallyReportPubWeb.sh'
-    sh 'sh -x Devops/PallyReportPubWeb.sh'
-    sh 'mkdir -p pally-publicWeb'
-    sh 'mv PallyReportPublicWeb.html pally-publicWeb/PallyReportPublicWeb.html' 
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'pally-publicWeb', reportFiles: 'PallyReportPublicWeb.html', reportName: 'PallyReport-PublicWeb', reportTitles: ''])
-                                        
 }
 
 def cacheflush() {
-    echo "Starting Dev Dispatcher Cache Clear"
-    withCredentials([sshUserPrivateKey(credentialsId: 'cacheFlushDev', keyFileVariable: 'SSHKEY', passphraseVariable: '', usernameVariable: 'SSHUSER')])
-    {
-        sh 'ssh -o "StrictHostKeyChecking=no" -i ${SSHKEY} 40.113.160.27 -l tetrapak -tt "sh -x /usr/local/bin/cache_clear.sh"'
-    }        
+    build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: 'DEV')], wait: true
+
+    build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: 'DEV'), booleanParam(name: 'Publicweb', value: params.Build_Publicweb), booleanParam(name: 'Customerhub', value: params.Build_MyTetraPak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.Build_Tetralaval), booleanParam(name: 'Supplierportal', value: params.Build_Supplierportal)], wait: true       
 }
 
 def sonarreport() {
     echo "Publishing Sonar report"
-    sh 'sudo mkdir -p reports'
-    sh 'sudo chmod -R 777 reports'
+    sh 'mkdir -p reports'
+    sh 'chmod -R 777 reports'
     sh 'echo "<html> <br /> <p style="font-size:30px"> <a href="https://sonarcloud.io/organizations/tetrapak-smartsales/projects" target="_top">Sonarcloud Report</a> <br /> </p> </html>" > reports/sonarreport.html'
     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'reports', reportFiles: 'sonarreport.html', reportName: 'SonarCloud Report', reportTitles: ''])
 }
@@ -447,4 +325,37 @@ def devartifactdownloadlaval() {
         sh "curl -LO -k -k -u ${artifactuser}:${artifactpassword} https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
         echo "https://tetrapak.jfrog.io/tetrapak/libs-snapshot-local/${repoName}/${packageName}/${fileName}/${packageName}-${fileName}.zip"
     }
+}
+
+def notifyBuildStatus() {
+    switch (currentBuild.result) {
+        case "SUCCESS":
+            message = "${currentBuild.fullDisplayName} - build and deploy status - **SUCCESS**."
+            facts = [[name: "Build Version", template: "1.0.0-DEV${build_id_number}-SNAPSHOT"],
+                        [name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"]]
+            color = "33cc33"
+            break
+        case "FAILURE":
+            message = "${currentBuild.fullDisplayName} failed with ERROR !!"
+            facts = [[name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ff0000"
+            break
+        case "UNSTABLE":
+            message = "${currentBuild.fullDisplayName} completed successfully but generated few warnings."
+            facts =  [[name: "Build Version", template: "1.0.0-DEV${build_id_number}-SNAPSHOT"],
+                        [name: "Completed In", template: "${currentBuild.durationString.minus(' and counting')}"],
+                        [name: "Workspace", template: "${env.WORKSPACE}"]]
+            color = "ffcc00"
+            break
+        default:
+            message = "${currentBuild.fullDisplayName} - Not Built or Aborted."
+            facts = []
+            color = "b3b3b3"
+            break
+        }
+    facts << [name: "Build URL", template: "${currentBuild.absoluteUrl}"]
+    office365ConnectorSend webhookUrl: "https://tetrapak.webhook.office.com/webhookb2/53b8ede5-b02a-49e6-9ed1-5086cb59ca39@d2d2794a-61cc-4823-9690-8e288fd554cc/IncomingWebhook/178ca49866bd49ffa589e2339c07fe64/fa27bbed-fdda-4ecd-97e8-d8f572ab24d1",
+            message: message,
+            factDefinitions: facts
+            color: color
 }

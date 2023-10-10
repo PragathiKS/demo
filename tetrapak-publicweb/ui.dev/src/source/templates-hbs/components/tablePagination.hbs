@@ -1,0 +1,68 @@
+<div class="tp-tbl-pagination js-tbl-pagination" aria-live="polite">
+    <div class="tp-tbl-pagination__container clearfix">
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__first float-left"
+                jsClass="js-page-number"
+                disabled=prevDisabled
+                data-page-number=1
+                data-skip=0
+                preIconClass="icon-Chevron_Right_pw icon-Chevron_Right_pw icon-left"
+                hideText=false
+                text="cuhu.pagination.first"}}
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__btn tp-tbl-pagination__prev float-left"
+                jsClass="js-page-number"
+                disabled=prevDisabled
+                data-page-number=prevPage
+                data-skip=prevSkip
+                preIconClass="icon-Chevron_Right_pw icon-left"
+                hideText=true
+                text="cuhu.pagination.prev"}}
+        {{#each pages}}
+            {{#if isPage}}
+                {{#if isSelected}}
+                    {{> atoms/buttons/button/button
+                            modifier="pagination"
+                            className="tp-tbl-pagination__btn float-left active"
+                            jsClass="js-page-number"
+                            data-page-number=pageNumber
+                            text=pageNumber}}
+                {{else}}
+                    {{> atoms/buttons/button/button
+                            modifier="pagination"
+                            className="tp-tbl-pagination__btn tp-tbl-pagination__direct float-left"
+                            jsClass="js-page-number"
+                            data-page-number=pageNumber
+                            data-skip=skip
+                            text=pageNumber}}
+                {{/if}}
+            {{/if}}
+            {{#if isEllipsis}}
+                <span class="tp-tbl-pagination__ellipsis float-left">&hellip;</span>
+            {{/if}}
+        {{/each}}
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__btn tp-tbl-pagination__next float-left"
+                jsClass="js-page-number"
+                disabled=nextDisabled
+                data-page-number=nextPage
+                data-skip=nextSkip
+                iconClass="icon-Chevron_Right_pw"
+                hideText=true
+                text="cuhu.pagination.next"}}
+        {{> atoms/buttons/button/button
+                modifier="pagination"
+                className="tp-tbl-pagination__last float-left"
+                jsClass="js-page-number"
+                disabled=nextDisabled
+                data-page-number=totalPages
+                data-skip=lastSkip
+                iconClass="icon-Chevron_Right_pw"
+                hideText=false
+                text="cuhu.pagination.last"}}
+    </div>
+
+</div>

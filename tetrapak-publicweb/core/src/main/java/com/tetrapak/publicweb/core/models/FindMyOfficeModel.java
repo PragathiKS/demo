@@ -8,6 +8,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import com.tetrapak.publicweb.core.services.BaiduMapService;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
 /**
@@ -35,7 +36,29 @@ public class FindMyOfficeModel {
 
     /** The find my office service impl. */
     @Inject
+    private BaiduMapService baiduMapService;
+
+    /** The find my office service impl. */
+    @Inject
     private FindMyOfficeService findMyOfficeService;
+    
+    @ValueMapValue
+    private String countryCFPath;
+    
+    @ValueMapValue
+    private String countryLabel;
+    
+    @ValueMapValue
+    private String officeCFPath;
+    
+    @ValueMapValue
+    private String officeLabel;
+    
+    @ValueMapValue
+    private String countryDropdownLabel;
+    
+    @ValueMapValue
+    private String officeDropdownLabel;
 
     /**
      * Gets the heading.
@@ -82,4 +105,37 @@ public class FindMyOfficeModel {
         return findMyOfficeService.getGoogleApiKey();
     }
 
+    /**
+     * Gets the Baidu Map key values.
+     *
+     * @return the Baidu Map key values
+     */
+    public String getBaiduMapKey() {
+        return baiduMapService.getBaiduMapKey();
+    }
+
+	public String getCountryCFPath() {
+		return countryCFPath;
+	}
+
+	public String getCountryLabel() {
+		return countryLabel;
+	}
+
+	public String getOfficeCFPath() {
+		return officeCFPath;
+	}
+
+	public String getOfficeLabel() {
+		return officeLabel;
+	}
+
+	public String getCountryDropdownLabel() {
+		return countryDropdownLabel;
+	}
+
+	public String getOfficeDropdownLabel() {
+		return officeDropdownLabel;
+	}
+	
 }

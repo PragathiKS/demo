@@ -1,5 +1,7 @@
 package com.tetrapak.customerhub.core.services;
 
+import com.google.gson.JsonObject;
+import com.tetrapak.customerhub.core.beans.rebuildingkits.ImplementationStatusUpdateBean;
 import com.tetrapak.customerhub.core.beans.rebuildingkits.RebuildingKits;
 import java.util.List;
 
@@ -21,4 +23,6 @@ public interface RebuildingKitsApiService {
 	 * @return int
 	 */
 	int getNoOfRecordsCount();
+
+	JsonObject updateImplementationStatus(String token, String emailId, ImplementationStatusUpdateBean bean);
 }

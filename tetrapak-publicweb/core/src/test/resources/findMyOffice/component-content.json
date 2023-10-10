@@ -1,0 +1,15 @@
+{
+"jcr:primaryType": "nt:unstructured",
+"jcr:createdBy": "elisabet.jonsdottir",
+"officeDropdownLabel": "Select Recycler Offices",
+"jcr:lastModifiedBy": "admin",
+"officeLabel": "Recycler Offices",
+"countryDropdownLabel": "Choose your Country or Region",
+"jcr:created": "Mon Jul 13 2020 12:17:37 GMT+0000",
+"heading": "Find your local office",
+"jcr:lastModified": "Fri Aug 18 2023 12:04:05 GMT+0200",
+"sling:resourceType": "publicweb/components/content/findMyOffice",
+"officeCFPath": "/content/dam/tetrapak/publicweb/contentfragment/offices",
+"countryLabel": "Country or Region",
+"countryCFPath": "/content/dam/tetrapak/publicweb/contentfragment/countries"
+}

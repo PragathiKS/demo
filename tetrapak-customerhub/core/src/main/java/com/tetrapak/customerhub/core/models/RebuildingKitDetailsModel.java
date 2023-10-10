@@ -3,6 +3,7 @@ package com.tetrapak.customerhub.core.models;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -21,6 +22,8 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.google.gson.Gson;
 import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
+import com.tetrapak.customerhub.core.services.UserPreferenceService;
+import com.tetrapak.customerhub.core.services.RebuildingKitsDetailsService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
 
 /**
@@ -63,6 +66,12 @@ public class RebuildingKitDetailsModel {
 	 */
     @ValueMapValue
     private String rkAndEquipmentInformation;
+
+    /**
+	 * The view In E Biz Button
+	 */
+    @ValueMapValue
+    private String viewInEBizButton;
 	
 	/**
 	 * The Country Location
@@ -105,6 +114,60 @@ public class RebuildingKitDetailsModel {
 	 */
     @ValueMapValue
     private String reportImplementationStatus;
+
+    /**
+	 * The rKModalReportHeading
+	 */
+    @ValueMapValue
+    private String rKModalReportHeading;
+
+    /**
+	 * The Dropdown Placeholder
+	 */
+    @ValueMapValue
+    private String dropdownPlaceholder;
+
+    /**
+	 * The Status Label
+	 */
+    @ValueMapValue
+    private String statusLabel;
+
+    /**
+	 * The Date Label
+	 */
+    @ValueMapValue
+    private String dateLabel;
+
+    /**
+	 * The Comments Label
+	 */
+    @ValueMapValue
+    private String commentsLabel;
+
+    /**
+	 * The Comments Placeholder
+	 */
+    @ValueMapValue
+    private String commentsPlaceholder;
+
+    /**
+	 * The Make Update
+	 */
+    @ValueMapValue
+    private String makeUpdate;
+
+    /**
+	 * The RK Report Thank you title
+	 */
+    @ValueMapValue
+    private String rkReportThankyoutitle;
+
+    /**
+	 * The RK Report Thank you Description
+	 */
+    @ValueMapValue
+    private String rkReportThankyoudesc;
 
     /**
 	 * The RK Note
@@ -262,6 +325,11 @@ public class RebuildingKitDetailsModel {
 	 * The rebuildingKitDetailsApi
 	 */
     private String rebuildingKitDetailsApi;
+
+    /**
+	 * The rebuildingKitImplStatusListApi
+	 */
+    private String rebuildingKitImplStatusListApi;
     
 	/**
 	 * The technicalBulletinApi
@@ -280,10 +348,22 @@ public class RebuildingKitDetailsModel {
     @OSGiService
     private APIGEEService service;
 
+    @OSGiService
+    private UserPreferenceService userPreferenceService;
+
+    @OSGiService
+    private RebuildingKitsDetailsService rebuildingKitsDetailsService;
+
     /**
      * The is publish environment.
      */
     private boolean isPublishEnvironment = Boolean.FALSE;
+
+    /**
+     * This is boolean parts access.
+     */
+    private boolean isPartsAccess = Boolean.FALSE;
+
 
     private String userNameValue;
 
@@ -291,19 +371,21 @@ public class RebuildingKitDetailsModel {
 
     private String emailApiUrl;
 
+    private String partsExternalUrl;
     /**
      * init method.
      */
     @PostConstruct protected void init() throws UnsupportedEncodingException {
         Map<String, Object> i18KeyMap = new HashMap<>();
         i18KeyMap.put(CustomerHubConstants.RK_AND_EQUIPMENT_INFORMATION, getRkAndEquipmentInformation());
+         i18KeyMap.put(CustomerHubConstants.VIEW_IN_E_BIZ_BUTTON, getViewInEBizButton());
         i18KeyMap.put(CustomerHubConstants.COUNTRY_LOCATION, getCountryLocation());
         i18KeyMap.put(CustomerHubConstants.FUNCTIONAL_LOCATION, getFunctionalLocation());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MATERIAL, getEquipmentMaterial());
         i18KeyMap.put(CustomerHubConstants.STATU_EQUIPMENT_TYPE, getStatusEquipmentType());
         i18KeyMap.put(CustomerHubConstants.IMPLEMENTATION_STATUS_DATE, getImplementationStatusDate());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STRUCTURE, getEquipmentStructure());
-        i18KeyMap.put(CustomerHubConstants.REPOST_IMPLEMENTATION_STATUS, getReportImplementationStatus());
+        i18KeyMap.put(CustomerHubConstants.REPORT_IMPLEMENTATION_STATUS, getReportImplementationStatus());
         i18KeyMap.put(CustomerHubConstants.RK_NOTE, getRkNote());
         i18KeyMap.put(CustomerHubConstants.RK_NOTE_VALUE, getRkNoteValue());
         i18KeyMap.put(CustomerHubConstants.RK_FILES, getRkFiles());
@@ -328,6 +410,21 @@ public class RebuildingKitDetailsModel {
         i18KeyMap.put(CustomerHubConstants.CTI_TRANSLATION_DROPDOWN_ERROR, getRkReqCtiDropdownError());
         i18KeyMap.put(CustomerHubConstants.CTI_REQUEST_TEXT, getRkRequestCTIText());
         i18KeyMap.put(CustomerHubConstants.CTI_WHAT_LANGUAGE_REQUIRED_TEXT, getRkReqWhatLanguageWantText());
+        i18KeyMap.put(CustomerHubConstants.RK_MODAL_REPORT_HEADING, getRKModalReportHeading());
+        i18KeyMap.put(CustomerHubConstants.DROPDOWN_PLACEHOLDER, getDropdownPlaceholder());
+        i18KeyMap.put(CustomerHubConstants.STATUS_LABEL, getStatusLabel());
+        i18KeyMap.put(CustomerHubConstants.DATE_LABEL, getDateLabel());
+        i18KeyMap.put(CustomerHubConstants.COMMENTS_LABEL, getCommentsLabel());
+        i18KeyMap.put(CustomerHubConstants.COMMENTS_PLACEHOLDER, getCommentsPlaceholder());
+        i18KeyMap.put(CustomerHubConstants.MAKE_UPDATE, getMakeUpdate());
+        i18KeyMap.put(CustomerHubConstants.RK_REPORT_THANKYOU_TITLE, getRKReportThankyoutitle());
+        i18KeyMap.put(CustomerHubConstants.RK_REPORT_THANKYOU_DESC, getRKReportThankyoudesc());
+        List<String> userGroups = GlobalUtil.getCustomerGroups(request);
+        String selectedLanguage = GlobalUtil.getSelectedLanguage(request, userPreferenceService);
+        this.partsExternalUrl = rebuildingKitsDetailsService.getEbizUrl(selectedLanguage , userGroups);
+        if (userGroups.contains(CustomerHubConstants.PARTS_GROUP)) {
+            isPartsAccess = Boolean.TRUE;
+        }
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
         }
@@ -343,6 +440,9 @@ public class RebuildingKitDetailsModel {
 
         rebuildingKitDetailsApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.RK_DETAILS_API);
+
+        rebuildingKitImplStatusListApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
+                .getSelectedApiMapping(service, CustomerHubConstants.RK_IMPL_STATUSLIST_API);
 
         technicalBulletinApi = service.getApigeeServiceUrl() + CustomerHubConstants.PATH_SEPARATOR + GlobalUtil
                 .getSelectedApiMapping(service, CustomerHubConstants.TECHNICAL_BULLETIN_API);
@@ -378,6 +478,15 @@ public class RebuildingKitDetailsModel {
      */
 	public String getRkAndEquipmentInformation() {
 		return rkAndEquipmentInformation;
+	}
+
+     /**
+     * Gets the viewInEBizButton.
+     *
+     * @return the viewInEBizButton
+     */
+	public String getViewInEBizButton() {
+		return viewInEBizButton;
 	}
 
     /**
@@ -442,6 +551,87 @@ public class RebuildingKitDetailsModel {
      */
 	public String getReportImplementationStatus() {
 		return reportImplementationStatus;
+	}
+
+    /**
+     * Gets the rKModalReportHeading.
+     *
+     * @return the rKModalReportHeading
+     */
+	public String getRKModalReportHeading() {
+		return rKModalReportHeading;
+	}
+
+    /**
+     * Gets the dropdownPlaceholder.
+     *
+     * @return the dropdownPlaceholder
+     */
+	public String getDropdownPlaceholder() {
+		return dropdownPlaceholder;
+	}
+
+    /**
+     * Gets the statusLabel.
+     *
+     * @return the statusLabel
+     */
+	public String getStatusLabel() {
+		return statusLabel;
+	}
+
+    /**
+     * Gets the dateLabel.
+     *
+     * @return the dateLabel
+     */
+	public String getDateLabel() {
+		return dateLabel;
+	}
+
+    /**
+     * Gets the commentsLabel.
+     *
+     * @return the commentsLabel
+     */
+	public String getCommentsLabel() {
+		return commentsLabel;
+	}
+
+    /**
+     * Gets the commentsPlaceholder.
+     *
+     * @return the commentsPlaceholder
+     */
+	public String getCommentsPlaceholder() {
+		return commentsPlaceholder;
+	}
+
+    /**
+     * Gets the makeUpdate.
+     *
+     * @return the makeUpdate
+     */
+	public String getMakeUpdate() {
+		return makeUpdate;
+	}
+
+    /**
+     * Gets the rKReportThankyoutitle.
+     *
+     * @return the rKReportThankyoutitle
+     */
+	public String getRKReportThankyoutitle() {
+		return rkReportThankyoutitle;
+	}
+
+    /**
+     * Gets the rKReportThankyoudesc.
+     *
+     * @return the rKReportThankyoudesc
+     */
+	public String getRKReportThankyoudesc() {
+		return rkReportThankyoudesc;
 	}
 
     /**
@@ -605,6 +795,15 @@ public class RebuildingKitDetailsModel {
 	public String getRebuildingKitDetailsApi() {
 		return rebuildingKitDetailsApi;
 	}
+
+    /**
+     * Gets the Rebuilding Kit Status_List API.
+     *
+     * @return the rebuildingKitImplStatusListApi
+     */
+	public String getRebuildingKitImplStatusListApi() {
+		return rebuildingKitImplStatusListApi;
+	}
 	
     /**
      * Gets the Technical Bulletin API.
@@ -705,5 +904,17 @@ public class RebuildingKitDetailsModel {
 
     public String getRkReqWhatLanguageWantText() {
         return rkReqWhatLanguageWantText;
+    }
+
+    public String getMappedResourcePath() {
+        return resource.getPath();
+    }
+
+    public String getPartsExternalUrl() {
+        return partsExternalUrl;
+    }
+
+    public boolean isPartsAccess() {
+        return isPartsAccess;
     }
 }

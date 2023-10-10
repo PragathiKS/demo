@@ -10,6 +10,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.tetralaval.constants.TLConstants;
+import com.tetralaval.services.CookieDataDomainScriptService;
+import com.tetralaval.utils.GlobalUtil;
 import com.tetralaval.utils.PageUtil;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -76,6 +78,9 @@ public class AdobeAnalyticsModel {
             String.valueOf(HttpServletResponse.SC_NOT_FOUND),
             String.valueOf(HttpServletResponse.SC_INTERNAL_SERVER_ERROR)
     };
+    
+    /** The data domain script. */
+    private String dataDomainScript = StringUtils.EMPTY;
 
     /** SlingHttpServletRequest */
     @SlingObject
@@ -84,6 +89,10 @@ public class AdobeAnalyticsModel {
     /** SlingSettingsService */
     @OSGiService
     private SlingSettingsService slingSettingsService;
+    
+    /** The cookieDataDomainScriptService. */
+    @OSGiService
+    private CookieDataDomainScriptService cookieDataDomainScriptService;
 
     private Map<String, String> errorTypesMap;
 
@@ -112,6 +121,9 @@ public class AdobeAnalyticsModel {
             node = resource.adaptTo(Node.class);
             updateRunMode();
             buildAnalyticsData();
+            if(GlobalUtil.isPublish()){
+                updateCookieParameters();
+            }
         } catch (RepositoryException re) {
             LOGGER.error("Error during initialization Adobe Analytics = {}", re.getMessage(), re);
         }
@@ -173,6 +185,38 @@ public class AdobeAnalyticsModel {
                 .replace(TLConstants.HTML_EXTENSION, StringUtils.EMPTY);
         return Arrays.stream(path.split(TLConstants.SLASH)).filter(s -> !s.equals(StringUtils.EMPTY))
                 .skip(SKIP_NUMBER).collect(Collectors.toList());
+    }
+    
+    /**
+     * This method will update the cookie parameters
+     */
+    private void updateCookieParameters(){
+    	 String applicationName;
+    	 Page currentPage = PageUtil.getCurrentPage(resource);
+         if (currentPage.getAbsoluteParent(1).getName().equalsIgnoreCase(TLConstants.SITE_NAME)){
+              applicationName=currentPage.getAbsoluteParent(1).getName();
+          } else {
+             applicationName=currentPage.getAbsoluteParent(2).getName();
+         }
+         if(!applicationName.isEmpty()) {
+             String[] cookieParamArray = cookieDataDomainScriptService.getCookieDomainScriptConfig();
+             for(String param :cookieParamArray){
+                 if(param.contains(applicationName)){
+                     final String domainAbbreviationJsonString = param.split("=")[1];
+                     dataDomainScript=GlobalUtil.getKeyValueFromStringArray(domainAbbreviationJsonString, TLConstants.DOMAINSCRIPT);
+                     break;
+                 }
+             }
+         }
+        }
+    
+    /**
+     * Checks if is publisher.
+     *
+     * @return the boolean
+     */
+    public Boolean isPublisher() {
+        return GlobalUtil.isPublish();
     }
 
     /**
@@ -379,5 +423,9 @@ public class AdobeAnalyticsModel {
      */
     public String getData() {
         return this.data;
+    }
+    
+    public String getDataDomainScript(){
+        return dataDomainScript;
     }
 }

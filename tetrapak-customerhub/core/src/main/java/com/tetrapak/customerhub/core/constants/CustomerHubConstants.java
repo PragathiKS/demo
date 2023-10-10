@@ -372,6 +372,9 @@ public final class CustomerHubConstants {
     /** The Constant HIDE_AND_SHOW_CTA. */
     public static final String HIDE_AND_SHOW_CTA = "hideAndShowCta";
 
+    /** The Constant SET_DEFAULT_FILTER_CTA. */
+    public static final String SET_DEFAULT_FILTER_CTA = "setDefaultFilterCTA";
+
     /** The Constant NO_DATA_FOUND. */
     public static final String NO_DATA_FOUND = "noDataFound";
 
@@ -667,7 +670,8 @@ public final class CustomerHubConstants {
     public static final String VALUE = "Value";
 
     /** The Constant VALUE. */
-    public static final String CONTENT_ROOT_PATH = "/content/tetrapak/customerhub/global";
+    public static final String CONTENT_ROOT_PATH
+            = "/content/tetrapak/customerhub/global";
 
     /** The Constant HOME_PAGE_REL_PATH. */
     public static final String HOME_PAGE_REL_PATH = "dashboard";
@@ -689,6 +693,9 @@ public final class CustomerHubConstants {
     
     /** The Constant DOMAINSCRIPT. */
     public static final String DOMAINSCRIPT = "domainScript";
+
+    /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
+    public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
 
     /** The constant DATA_ROOT_PATH. */
     public static final String DATA_ROOT_PATH = "/jcr:content/data/master";
@@ -712,7 +719,15 @@ public final class CustomerHubConstants {
     /** The constant REBUILDING_KITS_DETAILS_RESOURCE_TYPE. */
     public static final String REBUILDING_KITS_DETAILS_RESOURCE_TYPE = "customerhub/components/content/rebuildingkitdetails";
 
-    /** The Constant for REBUILDING_KITS **/
+    /** The Constant Rebuildingkits modal report header . */
+    public static final String RK_MODAL_REPORT_HEADING = "rKModalReportHeading";
+
+    /** REBUIlDING_KITS REPORT THANK_YOU TITLE */
+    public static final String RK_REPORT_THANKYOU_TITLE = "rkReportThankyoutitle";
+
+    /** REBUILDING_KITS REPORT THANK_YOU DESCRIPTION */
+    public static final String RK_REPORT_THANKYOU_DESC = "rkReportThankyoudesc";
+
     /** The Constant for REBUILDING_KITS **/
     public static final String REBUILDING_KITS = "rebuildingKits";
 
@@ -874,6 +889,9 @@ public final class CustomerHubConstants {
     
     /** The Constant RK & EQUIPMENT_INFORMATION. */
     public static final String RK_AND_EQUIPMENT_INFORMATION = "rkAndEquipmentInformation";
+
+     /** The Constant View in E Business Button. */
+    public static final String VIEW_IN_E_BIZ_BUTTON = "viewInEBizButton";
     
     /** The Constant Country Location */
     public static final String COUNTRY_LOCATION = "countryLocation";
@@ -894,7 +912,10 @@ public final class CustomerHubConstants {
     public static final String EQUIPMENT_STRUCTURE = "equipmentStructure";
     
     /** The Constant Report Implementation Status */
-    public static final String REPOST_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+    public static final String REPORT_IMPLEMENTATION_STATUS = "reportImplementationStatus";
+
+    /** The Constant Make Update */
+    public static final String MAKE_UPDATE = "makeUpdate";
     
     /** The Constant RK Note */
     public static final String RK_NOTE = "rkNote";
@@ -925,16 +946,16 @@ public final class CustomerHubConstants {
     
     /** The Constant Rebuilding Kit Details API. */
     public static final String RK_DETAILS_API = "rebuildingkits-rebuildingkitdetails";
+
+    /** The Constant Rebuilding Kit Implementation Status_List API. */
+    public static final String RK_IMPL_STATUSLIST_API = "rebuildingkits-implstatuslist";
     
     /** The Technical Bulleting API. */
     public static final String TECHNICAL_BULLETIN_API = "technicalbulletins";
 
     /** Anchor Link Target New Tab*/
     public static final String LINK_TARGET_NEWTAB = "_blank";
-    
-    /** The Constant ADDITIONAL_LANGUAGE_PREFERENCES. */
-    public static final String ADDITIONAL_LANGUAGE_PREFERENCES = "additionalLanguagePreference";
-    
+
     /** Anchor Link Target New Tab*/
     public static final String REQUEST_NEW_CTI_TRANSLATION = "rkReqCtiNewTranslation";
 
@@ -956,7 +977,34 @@ public final class CustomerHubConstants {
     /** Anchor Link Target New Tab*/
     public static final String CTI_WHAT_LANGUAGE_REQUIRED_TEXT = "rkReqWhatLanguageWantText";
 
+    /** One Trust Token Servlet Url */
+    public static final String ONETRUST_TOKEN_SERVLET_URL= ".onetrustcookietoken.json";
 
+    public static final String RK_MANDATORY_KITS_TEXT = "rkMandatoryKitsText";
+
+    public static final String READ_GL_USER = "readGenericListsUser";
+
+    public static final String ENGLISH_LANGUAGE = "en";
+
+    public static final String RK_LIABILITY_CONDITIONS_TITLE = "Liability Conditions";
+
+    /** Dropdown Placeholder */
+    public static final String DROPDOWN_PLACEHOLDER = "dropdownPlaceholder";
+
+    /** Status Label */
+    public static final String STATUS_LABEL = "statusLabel";
+
+    /** Date Label */
+    public static final String DATE_LABEL = "dateLabel";
+
+    /** Comments Label */
+    public static final String COMMENTS_LABEL = "commentsLabel";
+
+    /** Comments Placeholder */
+    public static final String COMMENTS_PLACEHOLDER = "commentsPlaceholder";
+
+    /** Parts group */
+    public static final String PARTS_GROUP = "cuhu_parts";
 
     /**
      * Instantiates a new customer hub constants.

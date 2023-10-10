@@ -39,6 +39,7 @@ describe('Rebuildingkitdetails', function () {
     this.renderCtiDocumentsSpy = sinon.spy(this.rebuildingkitDetails, 'renderCtiDocuments');
     this.renderRebuildingKitDetailsBottomSpy = sinon.spy(this.rebuildingkitDetails, 'renderRebuildingKitDetailsBottom');
     this.changePreferredLanguageSpy = sinon.spy(this.rebuildingkitDetails, 'changePreferredLanguage');
+    this.bindFormChangeEventsSpy = sinon.spy(this.rebuildingkitDetails, 'bindFormChangeEvents');
     this.renderSpy = sinon.spy(render, 'fn');
     this.ajaxStub = sinon.stub(ajaxWrapper, 'getXhrObj');
     const apiResponse = {data :[{...rebuildingkitDetailsData.data[0],...rebuildingkitCtiData.data[0]}]};
@@ -60,6 +61,7 @@ describe('Rebuildingkitdetails', function () {
     this.getRebuildingKitDetailsSpy.restore();
     this.renderRebuildingKitDetailsSpy.restore();
     this.changePreferredLanguageSpy.restore();
+    this.bindFormChangeEventsSpy.restore();
     this.getCtiDocumentsSpy.restore();
     this.renderCtiDocumentsSpy.restore();
     this.renderSpy.restore();
@@ -125,6 +127,12 @@ describe('Rebuildingkitdetails', function () {
       e.preventDefault();
     });
     expect($('.js-rk-cti-modal').hasClass('show')).to.be.false;
+    done();
+  });
+  
+  it('should open report implementation status modal', function (done) {
+    $('.js-rebuilding-details__update').trigger('click');
+    expect($('.tp-rk-report-modal').hasClass('show')).to.be.true;
     done();
   });
 });

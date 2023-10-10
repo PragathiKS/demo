@@ -199,6 +199,41 @@ function _setSelectedCustomer(key, noReset) {
 }
 
 /**
+ *  Filter the customer list
+*/
+function _filterCustomerBySearchText() {
+  
+  const $this = this;
+  const searchText=$(this.cache.customSearchText).val();  
+ 
+  const customerDataAfterSearch = $this.cache.data.customerData.filter((el) => el.customerNumber.toLowerCase().includes(searchText.toLowerCase()) || el.customerName.toLowerCase().includes(searchText.toLowerCase()) ||  el.info.city.toLowerCase().includes(searchText.toLowerCase()));  
+  
+  customerDataAfterSearch.forEach(customerOb => {
+    customerOb.key = customerOb.customerNumber;
+    customerOb.desc = `${customerOb.customerNumber} - ${customerOb.customerName} - ${customerOb.info.city}`;
+  });
+
+  if (customerDataAfterSearch.length === 0) {
+    render.fn({
+      template: 'dropdownCustomSearchOptions',
+      data: {
+        noDataMessage: true,
+        noDataFound: $this.cache.i18nKeys['noDataFoundForCustomerSearch']
+      },
+      target: '.tpatom-dropdown-custom-item'     
+    });
+  }
+  else
+  {
+    render.fn({
+      template: 'dropdownCustomSearchOptions',
+      target: '.tpatom-dropdown-custom-item',
+      data: customerDataAfterSearch
+    });  
+  }
+}
+
+/**
  * Renders filters
  */
 function _renderFilters() {
@@ -525,6 +560,7 @@ class FinancialStatement {
   cache = {};
   initCache() {
     this.cache.configJson = this.root.find('.js-financial-statement__config').text();
+    this.cache.customSearchText='.js-financial-statement__dropdown-custom-search-text';
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
       this.cache.servletUrl = this.root.find('#downloadPdfExcelServletUrl').val();
@@ -603,6 +639,11 @@ class FinancialStatement {
         const [, noReset] = arguments;
         $this.setSelectedCustomer($(this).data('key'), noReset);
       })
+      .on('keyup',this.cache.customSearchText, function (e) {        
+        if(e.which !== 13){//Enter key pressed
+          $this.filterCustomerBySearchText();
+        }
+      })
       .on(EVT_DROPDOWN_CHANGE, '.js-financial-statement__status', function () {
         const self = $(this);
         const currentTarget = self.parents('.js-custom-dropdown').find(`li>a[data-key="${self.data('key')}"]`);
@@ -624,7 +665,7 @@ class FinancialStatement {
         if (isIOS()) {
           self.root.trigger(EVT_FINANCIAL_ANALYTICS, ['reset', resetLinkText]);
         }
-      })
+      })     
       .on('input', '.js-financial-statement__date-range-input', this, this.validateDateRange);
     this.root.parents('.js-financials').on(EVT_FINANCIAL_FILEDOWNLOAD, this, this.downloadPdfExcel);
   }
@@ -641,6 +682,10 @@ class FinancialStatement {
   setSelectedCustomer() {
     return _setSelectedCustomer.apply(this, arguments);
   }
+  filterCustomerBySearchText() {
+    return _filterCustomerBySearchText.apply(this);
+  }
+
   populateResults(e) {
     const self = e.data;
     const $this = $(this);

@@ -1,0 +1,19 @@
+<sly data-sly-template.searchlanding_template="${@data, flag}">
+    <div data-module="Searchlanding">
+        <div class="pw-container">
+            <div class="pw-search-result-head pw-theme--grayscale-white pw-padding--regular pw-margin--regular" 
+            data-type="${data.type}" data-servlet="${data.servletPath}">
+                <div class="row no-gutters">
+                    <div class="col-lg-9 margin-auto">
+                        <h1 class="result-title">${data.heading}</h1>
+                        <p class="result-description">${data.description}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/* Component HTML code goes here */-->
+        <div class="pw-search-landing-container js-searchLanding-data"
+            data-sly-resource="${'searchresults' @ resourceType='publicweb/components/content/searchresults'}"
+        /> 
+    </div>
+</sly>

@@ -557,7 +557,8 @@
 .pw-megamenu .col-side-links .list-side-links li a:hover {
     color: $color-sky-blue;
 }
-.pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw {
+.pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw,
+.pw-megamenu .col-side-links .icon-Arrow_Right_pw {
     display: none;
     margin-left: $margin-sm;
     vertical-align: middle;
@@ -565,7 +566,7 @@
         display: inline-block;
         position: relative;
         margin-right: -10px;
-        top: -8px;
+        top: 0;
     }
     @media #{$i-pad} {
         display: none;

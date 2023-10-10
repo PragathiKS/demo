@@ -26,7 +26,11 @@ const isInternalUrl = url => {
     'https://www-dev.tetralaval.com/',
     'https://www-qa.tetralaval.com/',
     'https://www-stage.tetralaval.com/',
-    'https://www.tetralaval.com/'
+    'https://www.tetralaval.com/',
+    'https://editor-guide-dev.tetrapak.com/',
+    'https://editor-guide-qa.tetrapak.com/',
+    'https://editor-guide-stage.tetrapak.com/',
+    'https://editor-guide.tetrapak.com/'
   ];
 
   for (var i = 0; i < setOfInternalUrl.length; i++) {
@@ -86,7 +90,7 @@ export default () => {
         const iconEl = $(this).find('i.icon')[0];
         // external link flag
         const iconExternal = $(this).find('i.icon.is-external')[0];
-        $(iconEl).removeClass('icon-Circle_Arrow_Right_pw');
+        $(iconEl).removeClass('icon-Arrow_Right_pw');
         if (isDownloable(thisHref)) {
           $(iconEl).addClass('icon-Download');
           $(this).attr('target', '_blank');
@@ -102,7 +106,7 @@ export default () => {
           if ($(this).hasClass('tpatom-link--primary')) {
             $(iconEl).addClass('icon-Arrow_Right_pw');
           } else {
-            $(iconEl).addClass('icon-Circle_Arrow_Right_pw');
+            $(iconEl).addClass('icon-Arrow_Right_pw');
           }
           $(this).attr('target', '_self');
         }

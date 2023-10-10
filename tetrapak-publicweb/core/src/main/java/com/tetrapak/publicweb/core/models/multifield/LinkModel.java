@@ -23,9 +23,21 @@ public class LinkModel {
     /** The Link url. */
     @ValueMapValue
     private String linkUrl;
+    
+    /** The Link Desc. */
+    @ValueMapValue
+    private String linkDesc;
 
     /** The asset name. */
     private String assetName;
+
+    /** The file reference. */
+    @ValueMapValue
+    private String fileReference;
+
+    /** The alt. */
+    @ValueMapValue
+    private String alt;
 
     /** The Constant FORWARD_SLASH. */
     private static final String FORWARD_SLASH = "/";
@@ -47,6 +59,25 @@ public class LinkModel {
      */
     public void setLinkLabel(String linkLabel) {
         this.linkLabel = linkLabel;
+    }
+    
+    /**
+     * Gets the link Desc.
+     *
+     * @return the link Desc
+     */
+    public String getLinkDesc() {
+        return linkDesc;
+    }
+
+    /**
+     * Sets the link Desc.
+     *
+     * @param linkDesc
+     *            the new link Desc
+     */
+    public void setLinkDesc(String linkDesc) {
+        this.linkDesc = linkDesc;
     }
 
     /**
@@ -79,6 +110,24 @@ public class LinkModel {
             assetName = StringUtils.substringAfterLast(linkUrl, FORWARD_SLASH);
         }
         return assetName;
+    }
+
+     /**
+     * Gets the file reference.
+     *
+     * @return the file reference
+     */
+    public String getFileReference() {
+        return fileReference;
+    }
+
+    /**
+     * Gets the alt.
+     *
+     * @return the alt
+     */
+    public String getAlt() {
+        return alt;
     }
 
 }

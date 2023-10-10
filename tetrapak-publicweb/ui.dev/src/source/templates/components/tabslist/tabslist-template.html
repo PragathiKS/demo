@@ -65,7 +65,7 @@
                     <sly data-sly-test="${tab.videoSource == 'youtube'}">
                       <sly data-sly-use.digitalDataModel="com.tetrapak.publicweb.core.models.PageLoadAnalyticsModel"></sly>
                       <!-- youtube video -->
-                      <div data-sly-test="${tab.youtubeEmbedURL}" class="pw-text-video__video tpatom-youtube pw-tablist__media-wrapper">
+                      <div data-sly-test="${tab.youtubeEmbedURL}" class="pw-text-video__video pw-text-video__video-youTube tpatom-youtube pw-tablist__media-wrapper">
                         <sly data-sly-test="${!digitalDataModel.isPublisher}">
                           <iframe title="${noval}" class="tpatom-yt-player js-yt-player"
                                   src="${tab.youtubeEmbedURL}?enablejsapi=1" frameborder="0"
@@ -149,7 +149,7 @@
                       data-button-link-type="${tab.pwButtonTheme}" data-asset-name="${tab.assetName}"
                       data-video-name="${videoName}" data-tab-type="${tab.tabType}" data-alt-text="${tab.alt}"
                       data-tab-title="${tab.title}">
-                      <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon${variant != 'transparent' ? ' icon-Arrow_Right_pw' : ' icon-Circle_Arrow_Right_pw'}"></i></span>
+                      <span class="tpatom-link__text sly-text">${tab.linkText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw "></i></span>
                     </a>
                     <!-- </sly> -->
                   </sly>
@@ -166,7 +166,7 @@
                   data-link-name="${data.readMoreText}"
                   data-button-link-type="link" data-asset-name="${data.assetName}" data-tab-title="${data.heading}"
                   data-tab-type="">
-                  <span class="tpatom-link__text sly-text">${data.readMoreText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Circle_Arrow_Right_pw"></i></span>
+                  <span class="tpatom-link__text sly-text">${data.readMoreText @ context='html'}</span><span class="nowrap-text">&#8288;<i class="icon icon-Arrow_Right_pw"></i></span>
                 </a>
               </div>
             </sly>
