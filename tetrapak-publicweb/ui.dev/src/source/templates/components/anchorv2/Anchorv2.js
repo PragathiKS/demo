@@ -158,7 +158,7 @@ class Anchorv2 {
       $anchorMenu[0].classList.remove('sticky-anchor-menu');
       $anchorMenu[0].classList.add('tp-container');
     }
-    if ($('nav').hasClass('scrollDown')) {
+    if ($('header').hasClass('scrollDown')) {
       // Then add class close to trigger div
       $('.sticky-anchor-menu').addClass('top-anchor-menu');
     } else {
