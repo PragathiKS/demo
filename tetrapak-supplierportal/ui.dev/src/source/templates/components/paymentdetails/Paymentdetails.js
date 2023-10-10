@@ -43,7 +43,7 @@ class Paymentdetails {
     auth.getToken(() => {
       file.get({
         extension: 'pdf',
-        url: `${this.cache.exportToPdfURL}?documentreferenceid=${documentreferenceid}&fromdatetime=2023-07-01T00:00:00&todatetime=2023-07-30T00:00:00`,
+        url: `${this.cache.exportToPdfURL}?documentreferenceid=${documentreferenceid}`,
         method: ajaxMethods.GET
       });
     });
