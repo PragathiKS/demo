@@ -13,6 +13,7 @@ class Paymentdetails {
     /* Initialize selector cache here */
     this.cache.configJson = this.root.find('.js-payment-details__config').text();
     this.cache.detailsApi = this.root.data('details-api');
+    this.cache.dateRange = this.root.data('date-range');
     this.cache.exportToPdfURL = this.root.data('export-pdf-url');
     this.cache.contentWrapper = this.root.find(
       '.tp-payment-details-content'
@@ -60,6 +61,15 @@ class Paymentdetails {
       }
     });
   }
+  getFilterDateRange = (month) => {
+    const currentDate = new Date();
+    const monthsAgo = new Date(currentDate.getFullYear(), currentDate.getMonth() - Number(month), currentDate.getDate());
+
+    // Format the date as a string (YYYY-MM-DDTHH:MM:SS)
+    const formattedDate = `&fromdatetime=${monthsAgo.toISOString().slice(0, 11)}00:00:00&todatetime=${currentDate.toISOString().slice(0, 19)}`;
+
+    return formattedDate;
+  }
   getApiPromise = (authData) => {
     const fetchHeaderOption = {
       method: 'GET',
@@ -70,8 +80,9 @@ class Paymentdetails {
       }
     };
     const { documentreferenceid} = this.getUrlQueryParams();
+    const dateRange = this.getFilterDateRange(this.cache.dateRange);
     // TODO: Need to remove count query param. these are added only for testing purpose.
-    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1&fromdatetime=2023-07-01T00:00:00&todatetime=2023-07-30T00:00:00`;
+    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1${dateRange}`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
     return paymentApiPromise;
   }
