@@ -4,7 +4,7 @@ import { render } from './render';
 
 function toggleVideoContent(noVideo) {
   if (noVideo === ',1,' || noVideo === ',1,2,') {
-    $('.pw-text-video__video').css('display', 'none');
+    $('.pw-text-video__video-youTube').css('display', 'none');
     if (!$('.pw-text-video_content').children().length) {
       render.fn({
         template: 'noVideoContent',
@@ -15,7 +15,7 @@ function toggleVideoContent(noVideo) {
     }
     $('.pw-text-video__novideo').css('display', 'block');
   } else {
-    $('.pw-text-video__video').css('display', 'block');
+    $('.pw-text-video__video-youTube').css('display', 'block');
     $('.pw-text-video__novideo').css('display', 'none');
   }
 }
@@ -53,7 +53,7 @@ export default {
       $('#accept-recommended-btn-handler, #onetrust-accept-btn-handler').on(
         'click',
         () => {
-          $('.pw-text-video__video').css('display', 'block');
+          $('.pw-text-video__video-youTube').css('display', 'block');
           $('.pw-text-video__novideo').css('display', 'none');
         }
       );

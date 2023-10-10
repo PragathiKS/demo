@@ -37,6 +37,7 @@ class Softconversion {
     this.cache.$positionField = this.root.find('.position-field');
     this.cache.$functionField = this.root.find('.function-field');
     this.cache.$userType = 1;
+    this.cache.$preFix = 'Download | ';
 
     this.cache.requestPayload = {};
     this.cache.requestPayload['typeOfVisitor']='';
@@ -154,6 +155,7 @@ class Softconversion {
   }
 
   notMeBtnHandler = () => {
+    const $this = this;
     const { $userUnknown, $partiallyUser } = this.cache;
     isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'normal');
     $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
@@ -168,7 +170,8 @@ class Softconversion {
     $(`#cf-step-1-${this.cache.$componentName}`, this.root).addClass('active');
 
     // do the analytics call for not me
-    changeStepNext('Welcome back', { 'return Type': $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    const $formName = $this.cache.$preFix + 'Welcome back';
+    changeStepNext($formName, { 'return Type': $(`.notmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent, $this.getFormHandler());
 
     // reset the input values for all fields
     this.cache.inputFields.each(function(){
@@ -193,6 +196,7 @@ class Softconversion {
   }
 
   yesMeBtnHandler = () => {
+    const $this = this;
     const { $userUnknown, $partiallyUser } = this.cache;
     const userType = parseInt(storageUtil.getCookie('userType'), 10);
     if(userType === 1) {
@@ -266,10 +270,12 @@ class Softconversion {
     }
 
     // do the analytics call for yes its me
-    changeStepNext('Welcome back', { 'return Type': $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent);
+    const $formName = $this.cache.$preFix + 'Welcome back';
+    changeStepNext($formName, { 'return Type': $(`.yesmebtn-${this.cache.$componentName}[type=button]`).text().trim()}, this.cache.$parentComponent, $this.getFormHandler());
   }
 
   submitForm = () => {
+    const $this = this;
     const servletPath = this.cache.softconversionapi.data('softconversion-api-url');
     const pardotUrl = this.cache.softconversionapi.data('softconversion-pardot-url');
     const chinapardotUrl = this.cache.softconversionapi.data('softconversion-china-pardot-url');
@@ -375,7 +381,7 @@ class Softconversion {
     isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
 
     // Analytics Tracking
-    loadDownloadReady(this.mainHeading, dataObj, this.cache.$parentComponent);
+    loadDownloadReady(this.cache.$preFix+this.mainHeading, dataObj, this.cache.$parentComponent, $this.getFormHandler());
   }
 
   getPageURL() {
@@ -512,7 +518,7 @@ class Softconversion {
       if (isvalid) {
         self.submitForm();
       } else if(!isvalid && target ===`#cf-step-downloadReady-${$componentName}`) {
-        changeStepError(self.mainHeading, 'Step 1', self.step1heading, {}, $parentComponent, errObj);
+        changeStepError(self.cache.$preFix+self.mainHeading, 'Step 1', self.step1heading, {}, $parentComponent, errObj, self.getFormHandler());
       }
     });
 
@@ -536,16 +542,17 @@ class Softconversion {
 
   showPopup = () => {
     const $this = this;
+    const $formName = $this.cache.$preFix+$this.mainHeading;
     const visitorMail = storageUtil.getCookie('visitor-mail');
     if(visitorMail) {
-      makeLoad('welcome back', $this.mainHeading, this.cache.$parentComponent, 'welcome back:formstart');
+      makeLoad('welcome back', $formName, this.cache.$parentComponent, 'welcome back:formstart', $this.getFormHandler());
       $(`#visitor-email-${this.cache.$componentName}`).text(visitorMail).css('font-weight', 900);
       $(`.heading_${this.cache.$componentName}`, this.root).text('');
       $(`.tab-pane.tab-${this.cache.$componentName}`, this.root).removeClass('active');
       $(`#cf-step-welcomeback-${this.cache.$componentName}`, this.root).addClass('active');
       isMobileMode() &&  $(`.pw-sf_body_${this.cache.$componentName}`).css('align-items', 'center');
-    }else{
-      makeLoad($this.step1heading, $this.mainHeading, this.cache.$parentComponent, 'formstart');
+    } else {
+      makeLoad($this.step1heading, $formName, this.cache.$parentComponent, 'formstart', $this.getFormHandler());
     }
 
     const { $modal } = $this.cache;
@@ -555,6 +562,14 @@ class Softconversion {
   hidePopUp = () => {
     const $this = this;
     $this.root.modal('hide');
+  }
+
+  getFormHandler() {
+    const { softconversionapi } = this.cache;
+    const pardotUrl = softconversionapi.data('softconversion-pardot-url');
+    const countryData = {};
+    countryData['formHandler'] = pardotUrl;
+    return countryData;
   }
 
   init() {

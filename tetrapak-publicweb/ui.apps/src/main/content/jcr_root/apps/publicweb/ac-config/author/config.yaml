@@ -61,6 +61,12 @@
           privileges: jcr:read,jcr:readAccessControl
           repGlob: /jcr:content
 
+        - path: /content/dam/tetrapak/media-box
+          permission: allow
+          actions: read
+          privileges:
+          repGlob:
+
         - path: /conf/publicweb/settings/wcm
           permission: allow
           actions: read

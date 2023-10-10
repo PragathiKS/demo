@@ -1,8 +1,9 @@
 import { trackAnalytics } from '../../../scripts/utils/analytics';
 
-export const makeLoad = function (label, formName, parentComponent, eventType='formstart') {
+export const makeLoad = function (label, formName, parentComponent, eventType='formstart', countryData) {
   const formObj = {
     formName: formName,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {
@@ -13,9 +14,10 @@ export const makeLoad = function (label, formName, parentComponent, eventType='f
 };
 
 
-export const changeStepNext = function (formName, dataObj, parentComponent) {
+export const changeStepNext = function (formName, dataObj, parentComponent, countryData) {
   const formObj = {
     formName: formName,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {
@@ -34,11 +36,12 @@ export const changeStepNext = function (formName, dataObj, parentComponent) {
 };
 
 
-export const changeStepPrev = function (formName, formStep, formType, parentComponent) {
+export const changeStepPrev = function (formName, formStep, formType, parentComponent, countryData) {
   const formObj = {
     formName: formName,
     formStep: formStep,
     formType: formType,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {
@@ -49,9 +52,10 @@ export const changeStepPrev = function (formName, formStep, formType, parentComp
 };
 
 
-export const changeStepError = function (formName, formStep, formType, dataObj, parentComponent, errorObj={}) {
+export const changeStepError = function (formName, formStep, formType, dataObj, parentComponent, errorObj={}, countryData) {
   const formObj = {
     formName: formName,
+    formIdGlobal: countryData.formHandler,
     formField: [],
     formError:errorObj
   };
@@ -70,11 +74,10 @@ export const changeStepError = function (formName, formStep, formType, dataObj, 
   trackAnalytics(formObj, 'form', 'formclick', undefined, false, eventObj);
 };
 
-
-
-export const loadDownloadReady = function (formName, dataObj, parentComponent) {
+export const loadDownloadReady = function (formName, dataObj, parentComponent, countryData) {
   const formObj = {
     formName: formName,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
   const eventObj = {

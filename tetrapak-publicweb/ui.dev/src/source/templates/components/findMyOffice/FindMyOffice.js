@@ -438,6 +438,11 @@ class FindMyOffice {
       this.getOfficesName();
       this.renderCitiesOfficesList();
     }
+    else {
+      this.setCityInitialState();
+      this.getOfficesName();
+      this.renderCitiesOfficesList();
+    }
   };
 
   getOfficesName = () => {

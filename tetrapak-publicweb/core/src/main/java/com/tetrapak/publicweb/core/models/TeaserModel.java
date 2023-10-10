@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -15,9 +16,9 @@ import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.annotations.Default;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import com.tetrapak.publicweb.core.models.multifield.ManualModel;
 import com.tetrapak.publicweb.core.models.multifield.SemiAutomaticModel;
@@ -49,7 +50,7 @@ public class TeaserModel {
     private String description;
 
     /** The number Of Columns. */
-    @ValueMapValue
+    @ValueMapValue @Default(values = "3")
     private String numberOfColumns;
 
     /** The content type. */
@@ -156,9 +157,10 @@ public class TeaserModel {
 	 */
 	public void getManualList() {
 		if (manualList != null && !manualList.isEmpty()) {
-			manualList.stream()
-					.forEach(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)));
-			teaserList.addAll(manualList);
+            teaserList = manualList.stream()
+                    .filter(model-> !model.isHideInTeaser())
+                    .peek(model -> model.setLinkPath(LinkUtils.sanitizeLink(model.getLinkPath(), request)))
+                    .collect(Collectors.toList());
 		}
 	}
 

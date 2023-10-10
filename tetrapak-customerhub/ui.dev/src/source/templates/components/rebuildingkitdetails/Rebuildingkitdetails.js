@@ -26,20 +26,15 @@ function _renderRebuildingKitDetailsBottom() {
 function _renderRebuildingKitDetails({ isNotConfirmed }) {
   const $this = this;
   const { $rebuildingData } = $this.cache;
-  const { i18nKeys } = $this.cache;
+  const { i18nKeys,isPartsAccess,eBusinessUrl } = $this.cache;
   
   render.fn({
     template: 'rebuildingkitDetails',
     target: $this.cache.$content,
-    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData, isNotConfirmed }
+    data: { i18nKeys: i18nKeys, rebuildingData: $rebuildingData, isNotConfirmed,isPartsAccess:isPartsAccess,eBusinessUrl:eBusinessUrl }
   });
   $('.js-rebuilding-details__update').on('click', function() {
     $this.renderRebuildingKitReportModal();
-  });
-  $('.js-rebuilding-details__view-e-business-btn').on('click', function() {
-    const rkNumbner=$this.cache.$rebuildingData.rkNumber;
-    const eBusinessUrl=$this.cache.eBusinessUrl;
-    window.open(`${eBusinessUrl}/${rkNumbner}`, '_blank');   
   });
 }
 
@@ -174,6 +169,7 @@ function  _renderRebuildingKitReportModal() {
           target: '.js-update-modal'
         });
         $reportModal.modal('show');
+        $this.bindFormChangeEvents();
       })
       .fail((e) => {
         logger.error(e);
@@ -452,6 +448,22 @@ function _getRebuildingKitDetails() {
   });
 }
 
+function _bindFormChangeEvents() {
+  const $form = this.root.find('.tp-rk-report__modal-content');
+  const $updateBtn = $form.find('.js-rk-make-update');
+  $('select', $form).each((_, item) => {
+    $(item).on('input change', () => { 
+      if (item.id === 'status') {
+        if (item.value !== '') {
+          $updateBtn.removeAttr('disabled');
+        } else {
+          $updateBtn.attr('disabled', 'disabled');
+        }
+      }
+    });
+  });
+}
+
 class Rebuildingkitdetails {
   constructor({ el }) {
     this.root = $(el);
@@ -471,6 +483,7 @@ class Rebuildingkitdetails {
     this.cache.apiCTI = this.root.data('cti-api');
     this.cache.apiRequestCTI = this.root.data('request-cti-api');
     this.cache.eBusinessUrl=this.root.data('e-business-url');
+    this.cache.isPartsAccess=this.root.data('is-parts-access');
     this.cache.$content = this.root.find('.js-rebuilding-details__content');
     this.cache.$contenbottom = this.root.find(
       '.js-rebuilding-details__contentbottom'
@@ -578,6 +591,9 @@ class Rebuildingkitdetails {
   }
   submitCTIemail() {
     return _submitCTIemail.apply(this, arguments);
+  }
+  bindFormChangeEvents() {
+    return _bindFormChangeEvents.apply(this, arguments);
   }
 
   bindEvents() {

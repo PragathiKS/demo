@@ -16,10 +16,15 @@
     &__heading {
         @include font-size($font-l);
         @include line-height($padding-xl, $font-m-xl);
+
         @media #{$desktop} {
             @include font-size($font-xl);
             @include line-height($padding-xxl, $font-xl);
             font-weight: $bold-weight;
+        }
+
+        @media #{$mobile} {
+            word-break: break-all;
         }
     }
 
@@ -27,6 +32,7 @@
         @include font-size($font-sm);
         line-height: $font-m-xl;
         margin-top: $margin-md;
+
         @media #{$desktop} {
             @include font-size($font-baseline);
             line-height: $font-l;
@@ -71,8 +77,10 @@
                     padding-right: 0;
                     padding-top: 0;
                 }
+
                 .tp-teaser {
                     padding-left: 0;
+
                     &__details {
                         div {
                             &:first-child {
@@ -82,10 +90,12 @@
                     }
                 }
             }
+
             @media #{$mobile} {
                 .tp-teaser {
                     padding: 0;
                     margin: 0;
+
                     .carousal-wrapper {
                         padding-bottom: $padding-sm;
                     }
@@ -95,12 +105,12 @@
 
         div {
             @include padding($padding-l $margin-xl $padding-l $padding-zero);
-
         }
 
         &:first-of-type {
             @include margin-top($margin-md);
         }
+
         .icon-Arrow_Right_pw {
             @include width($spacing-big-half);
             @include height($spacing-big-half);
@@ -122,9 +132,11 @@
             .tp-accordion__event-title {
                 font-weight: $medium-weight;
             }
+
             .icon-Arrow_Right_pw {
                 transform: rotate(90deg);
             }
+
             @media #{$mobile} {
                 border-color: $color-mercury;
             }
