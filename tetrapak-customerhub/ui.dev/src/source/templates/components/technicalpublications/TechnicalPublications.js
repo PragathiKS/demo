@@ -33,15 +33,15 @@ function _getFolderData(stepKey, options) {
       break;
     }
     case 'country': {
-      apiUrl = `${customerApi}?countrycodes=${country.value}&count=1500`;
+      apiUrl = `${customerApi}?countrycodes=${country.value}&count=1500&sort=customer asc`;
       break;
     }
     case 'customer': {
-      apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}`;
+      apiUrl = `${lineApi}?countrycodes=${country.value}&customerNumber=${customer.value}&sort=lineDescription asc`;
       break;
     }
     case 'line': {
-      apiUrl = `${equipmentApi}?skip=0&countrycodes=${country.value}&customerNumber=${customer.value}&linecodes=${line.value}&results=extended`;
+      apiUrl = `${equipmentApi}?skip=0&countrycodes=${country.value}&customerNumber=${customer.value}&linecodes=${line.value}&results=extended&sort=lineName asc`;
       break;
     }
     case 'lineFolders': {
@@ -110,6 +110,10 @@ function _getFolderData(stepKey, options) {
         let srNo = '';
         let docType = '';
 
+        if (stepKey === 'countries') {
+          finalData.sort((A, B) => A.countryName.toLowerCase() <= B.countryName.toLowerCase() ? -1 : 1);
+        }
+
         if(stepKey === 'line') {
           finalData = res.data.filter(data => data.serialNumber !== '');
         }
@@ -166,8 +170,8 @@ function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
 
   const renderIssueDate = ['SPC'].includes(typeCode);
   const renderDescription = ['TEM', 'CM'].includes(typeCode);
-  const renderRKNumber = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
-  const renderRKName = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
+  const renderRKNumber = ['RM', 'UP', 'KIT'].includes(typeCode);
+  const renderRKName = ['RM', 'UP', 'KIT'].includes(typeCode);
 
   let data = [...folderData];
 

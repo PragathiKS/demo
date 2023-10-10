@@ -7,13 +7,9 @@ export const makeLoad = function (label, formName, countryData) {
     formStep: 'Step 1',
     formType: label,
     areaofInterest: '',
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
-  if(countryData.isChina) {
-    formObj['formIdChina'] = countryData.formHandler;
-  } else {
-    formObj['formIdGlobal'] = countryData.formHandler;
-  }
   const eventObj = {
     eventType: 'formstart',
     event: 'Hard Conversion Form'
@@ -27,13 +23,9 @@ export const changeStepNext = function (formName, formStep, formType, areaofInte
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
-  if(countryData.isChina) {
-    formObj['formIdChina'] = countryData.formHandler;
-  } else {
-    formObj['formIdGlobal'] = countryData.formHandler;
-  }
   const eventObj = {
     eventType: `${formStep} Next`,
     event: 'Hard Conversion Form'
@@ -55,13 +47,9 @@ export const changeStepPrev = function (formName, formStep, formType, areaofInte
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
-  if(countryData.isChina) {
-    formObj['formIdChina'] = countryData.formHandler;
-  } else {
-    formObj['formIdGlobal'] = countryData.formHandler;
-  }
   const eventObj = {
     eventType: `${formStep} previous`,
     event: 'Hard Conversion Form'
@@ -75,14 +63,10 @@ export const changeStepError = function (formName, formStep, formType, areaofInt
     formStep: formStep,
     formType: formType,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: [],
     formError:errorObj
   };
-  if(countryData.isChina) {
-    formObj['formIdChina'] = countryData.formHandler;
-  } else {
-    formObj['formIdGlobal'] = countryData.formHandler;
-  }
   const eventObj = {
     eventType: 'formerror',
     event: 'Hard Conversion Form'
@@ -105,13 +89,9 @@ export const loadThankYou = function (formName, formStep, areaofInterest, dataOb
     formStep: formStep,
     formType: formTitle,
     areaofInterest: areaofInterest,
+    formIdGlobal: countryData.formHandler,
     formField: []
   };
-  if(countryData.isChina) {
-    formObj['formIdChina'] = countryData.formHandler;
-  } else {
-    formObj['formIdGlobal'] = countryData.formHandler;
-  }
   const eventObj = {
     eventType: 'formcomplete',
     event: 'Hard Conversion Form'

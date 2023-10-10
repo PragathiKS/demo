@@ -59,7 +59,7 @@ class Headerv2 {
     //Check if submenu page opened
     if ($subMenuIcon.hasClass('icon-Close_pw')) {
       $subMenu.toggle(false);
-      $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+      $subMenuIcon.addClass('icon-Burgerv3_pw').removeClass('icon-Close_pw');
       const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
       checkActiveOverlay(activeOverlay);
     }
@@ -86,8 +86,8 @@ class Headerv2 {
         trackAnalytics(dataObj, 'linkClick', 'linkClick', undefined, false, eventObj);
       }
     }
-    else if (this.cache.$elements.searchIcon.children('i').hasClass('icon-Search_pw')) {
-      this.cache.$elements.searchIcon.children('i').removeClass('icon-Search_pw');
+    else if (this.cache.$elements.searchIcon.children('i').hasClass('icon-Searchv2_pw')) {
+      this.cache.$elements.searchIcon.children('i').removeClass('icon-Searchv2_pw');
       this.cache.$elements.searchIcon.children('i').addClass('icon-Close_pw');
       $('.js-search-bar-input').val('');
       $searchBarWrapper.addClass('show');
@@ -110,7 +110,7 @@ class Headerv2 {
     else {
       //Close search
       $searchBarWrapper.removeClass('show');
-      this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Searchv2_pw');
       this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
       $('body').css('overflow','auto');
     }
@@ -139,7 +139,7 @@ class Headerv2 {
       //Check if submenu page opened
       if ($subMenuIcon.hasClass('icon-Close_pw')) {
         $subMenu.toggle(false);
-        $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+        $subMenuIcon.addClass('icon-Burgerv3_pw').removeClass('icon-Close_pw');
         const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
         checkActiveOverlay(activeOverlay);
       }
@@ -230,16 +230,16 @@ class Headerv2 {
     if(this.cache.$elements.searchIcon.children('i').hasClass('icon-Close_pw')) {
       const $searchBarWrapper = $('.tp-pw-headerv2-searchbar-wrapper');
       $searchBarWrapper.removeClass('show');
-      this.cache.$elements.searchIcon.children('i').addClass('icon-Search_pw');
+      this.cache.$elements.searchIcon.children('i').addClass('icon-Searchv2_pw');
       this.cache.$elements.searchIcon.children('i').removeClass('icon-Close_pw');
     }
 
     $subMenu.toggle();
-    if ($subMenuIcon.hasClass('icon-Burger_pw')) {
-      $subMenuIcon.addClass('icon-Close_pw').removeClass('icon-Burger_pw');
+    if ($subMenuIcon.hasClass('icon-Burgerv3_pw')) {
+      $subMenuIcon.addClass('icon-Close_pw').removeClass('icon-Burgerv3_pw');
       $('body').css('overflow','hidden');
     } else {
-      $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+      $subMenuIcon.addClass('icon-Burgerv3_pw').removeClass('icon-Close_pw');
       // check if other overlay is active
       const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
       checkActiveOverlay(activeOverlay);
@@ -314,12 +314,16 @@ class Headerv2 {
       });
 
       $link.on('mouseenter', () => {
-        hideOtherMegaMenus();
-        showMegaMenu();
+        if ($link.attr('href') === undefined) {
+          hideOtherMegaMenus();
+          showMegaMenu();
+        }
       });
 
       $megaMenu.on('mouseenter', () => {
-        showMegaMenu();
+        if ($megaMenu.attr('href') === undefined) {
+          showMegaMenu();
+        }
       });
 
       $megaMenu.on('mouseleave', () => {
@@ -339,7 +343,7 @@ class Headerv2 {
 
   bindMegaMenuLinkMobileClickEvent = () => {
     const { $subMenu, $subMenuIcon, megaMenuPaths } = this.cache;
-    const linksSelector = `.tp-pw-headerv2-mobile-secondary-navigation-menu > .tp-pw-anchor-container-primary > a`;
+    const linksSelector = `.tp-pw-headerv2-mobile-secondary-navigation-menu > .primary-link-container > .tp-pw-anchor-container-primary > a`;
 
     this.root.find(linksSelector).each(function(index) {
       const getMegaMenuSelector = (megaMenuSelectorIndex) => `.tp-pw-megamenu-mobile-subpage-${megaMenuSelectorIndex}`;
@@ -383,7 +387,7 @@ class Headerv2 {
             setTimeout(() => {
               $('.tp-pw-headerv2-megamenu-mobile').addClass('hidden');
               $subMenu.toggle(false);
-              $subMenuIcon.addClass('icon-Burger_pw').removeClass('icon-Close_pw');
+              $subMenuIcon.addClass('icon-Burgerv3_pw').removeClass('icon-Close_pw');
               // check if other overlay is active
               const activeOverlay = ['.tp-pw-headerv2-mobile-secondary-navigation-menu'];
               checkActiveOverlay(activeOverlay);
@@ -416,7 +420,34 @@ class Headerv2 {
     });
   }
 
+throttleScroll = function () {
+  let currentScroll;
+  let currentScrollTop = 0;
+  let isScrolling = true;
+  const header = $('header');
+  $(window).on('scroll', function () {
+    if(isScrolling === true) {
+      const scrollTop = $(window).scrollTop();
+      const headerHeight = header.height();
+      currentScrollTop = scrollTop;
+      if (currentScroll < currentScrollTop && scrollTop > headerHeight + headerHeight) {
+        header.addClass('scrollUp');
+        header.removeClass('scrollDown');
+      } else if (currentScroll > currentScrollTop && !(scrollTop <= headerHeight)) {
+        header.removeClass('scrollUp');
+        header.addClass('scrollDown');
+      }
+      currentScroll = currentScrollTop;
+      isScrolling = false;
+      setTimeout(() => {
+        isScrolling = true;
+      }, 500);
+    }
+  });
+};
+
   bindEvents = () => {
+    this.throttleScroll();
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
     this.bindSubmenuMobileOpenEvent();
@@ -425,6 +456,16 @@ class Headerv2 {
     this.setBackdropPosition();
     this.bindSearchIconClickEvent();
     this.bindMegaMenuLinkMobileClickEvent();
+    if(isDesktopMode) {
+      const headerWidth = $('.first-row-nav').outerWidth();
+      if ($(window).outerWidth() <= 1366) {
+        $('.tp-pw-headerv2-megamenu').css('width', headerWidth);
+        $('.tp-pw-megamenuconfigv2').css('width', headerWidth);
+      } else {
+        $('.tp-pw-headerv2-megamenu').css('width', headerWidth - 96);
+        $('.tp-pw-megamenuconfigv2').css('width', headerWidth - 96);
+      }
+    }
   }
 
   buildMegaMenu = () => {
@@ -440,6 +481,7 @@ class Headerv2 {
     this.initCache();
     this.bindEvents();
     this.buildMegaMenu();
+   
   }
 }
 

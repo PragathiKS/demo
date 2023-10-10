@@ -21,6 +21,12 @@
                 margin: 0 $padding-xxxl $padding-md;
                 font-size: $font-l;
             }
+            &:hover {
+                color: $color-sky-blue;
+            }
+        }
+        &:hover {
+            color: $color-sky-blue;
         }
     }
 }

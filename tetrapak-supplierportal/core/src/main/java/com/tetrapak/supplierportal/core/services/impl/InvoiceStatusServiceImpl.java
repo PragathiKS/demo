@@ -42,17 +42,21 @@ public class InvoiceStatusServiceImpl implements InvoiceStatusService {
     }
 
     @Override
-	public Map<String, List<Integer>> invoiceStatusCodeMap(){
-		Map<String, List<Integer>> map = new HashMap<>();
+	public Map<String, List<String>> invoiceStatusCodeMap(){
+		Map<String, List<String>> map = new HashMap<>();
 		String[] mappings = config.invoiceStatusCodeMappings();
 		if(Objects.nonNull(mappings)) {
 		 for(String mapping : mappings) {
 			 String[] invoiceMap = mapping.split(HYPHEN);
-			 List<Integer> list = Arrays.asList(invoiceMap[1].split(COLON)).stream().map(Integer::parseInt).collect(Collectors.toList());
+			 List<String> list = Arrays.asList(invoiceMap[1].split(COLON)).stream().collect(Collectors.toList());
 			 LOGGER.info("Invoice Status Description:{}, values:{}",invoiceMap[0], list);
 			 map.put(invoiceMap[0], list);
 		 }
 		}
 		return map;
 	}
+    
+    public int getFromToDateGapInMonthsVal() {
+    	return Integer.parseInt(this.config.paymentsFromToDateGapInMonths());
+    }
 }

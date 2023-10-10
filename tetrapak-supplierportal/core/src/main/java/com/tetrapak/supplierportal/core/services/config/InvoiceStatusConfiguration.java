@@ -19,4 +19,12 @@ public @interface InvoiceStatusConfiguration {
      */
    @AttributeDefinition(name = "Invoice Status Code Mappings", description = "Invoice Status Code Mappings", type = AttributeType.STRING)
    public String[] invoiceStatusCodeMappings();
+   
+   /**
+    * AllPayments From To Date Gap In Months
+    *
+    * @return Payments From To Date Gap In Months
+    */
+  @AttributeDefinition(name = "Payments From To Date Gap In Months", description = "Payments From To Date Gap In Months", type = AttributeType.STRING)
+  public String paymentsFromToDateGapInMonths();
 }

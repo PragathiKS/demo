@@ -3,6 +3,7 @@
           jcr:primaryType="sling:OsgiConfig"
           contentPathForCDNCacheInvalidation="/content/tetrapak/publicweb"
           damPathForCDNCacheInvalidation="/content/dam/tetrapak"
+		  xfPathForCDNCacheInvalidation="/content/experience-fragments/publicweb"
           domainForCDN="http://www-qa.tetrapak.com"
 		  urlMapping="[/es-ar=/ar/es,/en-au=/au/en,/fr-be=/be/fr,/pt-br=/br/pt,/en-ca=/ca/en,/fr-ca=/ca/fr,/fr-ch=/ch/fr,/es-cl=/cl/es,/zh-cn=/cn/zh,/es-co=/co/es,/en-cz=/cz/en,/de=/de/de,/es-ec=/ec/es,/es-es=/es/es,/en-fi=/fi/en,/fr-fr=/fr/fr,/en-gr=/gr/en,/en-hr=/hr/en,/en-hu=/hu/en,/en-id=/id/en,/en-ie=/ie/en,/en-in=/in/en,/en-ir=/ir/en,/it-it=/it/it,/ja-jp=/jp/ja,/en-kr=/kr/en,/en-lv=/lv/en,/es-mx=/mx/es,/en-my=/my/en,/en-nl=/nl/en,/en-no=/no/en,/es=/cac/es,/es-pe=/pe/es,/en-ph=/ph/en,/en-pk=/pk/en,/en-pl=/pl/en,/pt-pt=/pt/pt,/es-py=/py/es,/en-ro=/ro/en,/en-rs=/rs/en,/en-sa=/sa/en,/sv-se=/se/sv_se,/en-sg=/sg/en,/en-sk=/sk/en,/en-th=/th/en,/tr-tr=/tr/tr,/en-tw=/tw/en,/en-uk=/uk/en,/en-us=/us/en,/es-ve=/ve/es,/en-vn=/vn/en,/en-za=/za/en,/ru=/ru/ru,/maghreb=/maghreb/fr,/es-pa=/pa/es,/en-gb=/gb/en]"
 		  dsDomainForCDN="http://design-qa.tetrapak.com"
