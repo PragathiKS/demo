@@ -10,7 +10,9 @@ import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.CONTENT_DISPOSITION;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.CONTENT_TYPE;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.COUNT;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DATE_FORMAT;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DOCUMENT_REFERENCE_ID;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.FROM_DATE_TIME;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.INVOICE_MAPPING;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.NOTOSERIFCJKSC_BOLD;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.NOTOSERIFCJKSC_LIGHT;
@@ -22,12 +24,15 @@ import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESULT;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.TO_DATE_TIME;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -61,6 +66,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.tetrapak.supplierportal.core.bean.PaymentDetails;
 import com.tetrapak.supplierportal.core.models.PaymentDetailsModel;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
+import com.tetrapak.supplierportal.core.services.InvoiceStatusService;
 import com.tetrapak.supplierportal.core.services.PaymentInvoiceDownloadService;
 import com.tetrapak.supplierportal.core.services.UrlService;
 import com.tetrapak.supplierportal.core.utils.FontUtil;
@@ -86,6 +92,9 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 
 	@Reference
 	private UrlService urlService;
+	
+	@Reference
+	private InvoiceStatusService invoiceStatusService;
 
 	private Font titleFont;
 	private Font keyFont;
@@ -93,16 +102,22 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 	private PaymentDetailsModel paymentDetailsModel;
 	
 	
-	private HttpGet createRequest(final String apiURL, final String authTokenStr,
-			final String docReferId) throws UnsupportedEncodingException, URISyntaxException {
+	private HttpGet createRequest(final String apiURL, final String authTokenStr, final String docReferId)
+			throws UnsupportedEncodingException, URISyntaxException {
 		HttpGet getRequest = new HttpGet(apiURL);
 		getRequest.addHeader(AUTHORIZATION, BEARER + authTokenStr);
 		getRequest.addHeader(CONTENT_TYPE, APPLICATION_URL_ENCODED);
 		getRequest.addHeader(ACCEPT, APPLICATION_JSON);
+		int fromToDateGapInMonths = invoiceStatusService.getFromToDateGapInMonthsVal();
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+		LocalDateTime toDate = LocalDateTime.now();
+		LocalDateTime fromDate = toDate.minusMonths(fromToDateGapInMonths);
+		String toDateStr = toDate.format(dateTimeFormatter);
+		String fromDateStr = fromDate.format(dateTimeFormatter);
 
-		URI uri = new URIBuilder(getRequest.getURI())
-				.addParameter(DOCUMENT_REFERENCE_ID, docReferId)
-				.addParameter(COUNT, "1").build();
+		URI uri = new URIBuilder(getRequest.getURI()).addParameter(DOCUMENT_REFERENCE_ID, docReferId)
+				.addParameter(COUNT, "1").addParameter(FROM_DATE_TIME, fromDateStr)
+				.addParameter(TO_DATE_TIME, toDateStr).build();
 		((HttpRequestBase) getRequest).setURI(uri);
 		return getRequest;
 	}
@@ -414,5 +429,4 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			table.addCell(ponoVal);
 		}
 	}
-
 }

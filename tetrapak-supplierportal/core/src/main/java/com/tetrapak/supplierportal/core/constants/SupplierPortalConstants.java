@@ -261,6 +261,8 @@ public final class SupplierPortalConstants {
     public static final String COUNT = "count";
     
     public static final String LANG_CODE = "lang-code";
+    
+    public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     /**
      * Instantiates a new customer hub constants.

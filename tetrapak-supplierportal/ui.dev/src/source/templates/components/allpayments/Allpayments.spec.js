@@ -222,7 +222,7 @@ describe('Allpayments', function () {
       cancelable: true,
       view: window
     });
-    document.querySelector('.tp-all-payments__table-summary__row').dispatchEvent(evt);
+    document.querySelector('.tp-all-payments__table-summary__body .tp-all-payments__table-summary__row').dispatchEvent(evt);
     expect(windowStub.called).to.be.true;
   })
   it('should render filter form', async function() {
