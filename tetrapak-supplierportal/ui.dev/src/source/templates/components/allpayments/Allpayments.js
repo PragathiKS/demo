@@ -3,6 +3,7 @@ import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
 import {  _paginationAnalytics } from './allpayments.analytics';
 import { getI18n } from '../../../scripts/common/common';
+import { getFilterDateRange } from '../../../scripts/utils/dateRange';
 
 class AllPayments {
 
@@ -150,23 +151,13 @@ class AllPayments {
     }
   }
 
-  getFilterDateRange = (month) => {
-    const currentDate = new Date();
-    const monthsAgo = new Date(currentDate.getFullYear(), currentDate.getMonth() - Number(month), currentDate.getDate());
-
-    // Format the date as a string (YYYY-MM-DDTHH:MM:SS)
-    const formattedDate = `&fromdatetime=${monthsAgo.toISOString().slice(0, 11)}00:00:00&todatetime=${currentDate.toISOString().slice(0, 19)}`;
-
-    return formattedDate;
-  }
-
   getPaymentApiUrl = () => {
     const paymentApi = this.cache.paymentApi.getAttribute('data-list-api'),
       dataRange = this.cache.paymentApi.getAttribute('data-date-range');
     const { itemsPerPage, skipIndex, activeSortData } = this.cache;
 
     // TODO: Need to remove this. For testing purpose we add this from date time.
-    let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${this.getFilterDateRange(dataRange)}`;
+    let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${getFilterDateRange(dataRange)}`;
     //let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}`;
 
     if (activeSortData) {

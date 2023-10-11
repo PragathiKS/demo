@@ -4,6 +4,7 @@ import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import auth from '../../../scripts/utils/auth';
 import file from '../../../scripts/utils/file';
+import { getFilterDateRange } from '../../../scripts/utils/dateRange';
 class Paymentdetails {
   constructor({ el }) {
     this.root = $(el);
@@ -61,15 +62,6 @@ class Paymentdetails {
       }
     });
   }
-  getFilterDateRange = (month) => {
-    const currentDate = new Date();
-    const monthsAgo = new Date(currentDate.getFullYear(), currentDate.getMonth() - Number(month), currentDate.getDate());
-
-    // Format the date as a string (YYYY-MM-DDTHH:MM:SS)
-    const formattedDate = `&fromdatetime=${monthsAgo.toISOString().slice(0, 11)}00:00:00&todatetime=${currentDate.toISOString().slice(0, 19)}`;
-
-    return formattedDate;
-  }
   getApiPromise = (authData) => {
     const fetchHeaderOption = {
       method: 'GET',
@@ -80,7 +72,7 @@ class Paymentdetails {
       }
     };
     const { documentreferenceid} = this.getUrlQueryParams();
-    const dateRange = this.getFilterDateRange(this.cache.dateRange);
+    const dateRange = getFilterDateRange(this.cache.dateRange);
     // TODO: Need to remove count query param. these are added only for testing purpose.
     const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1${dateRange}`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
