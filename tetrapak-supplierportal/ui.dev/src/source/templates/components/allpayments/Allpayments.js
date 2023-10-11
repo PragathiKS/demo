@@ -16,7 +16,7 @@ class AllPayments {
 
   initCache() {
     const config = {
-      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusCode', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
+      showFields: ['invoiceStatusCode', 'documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
       sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplierName', 'supplier'],
       currentPageNumber: 1,
       itemsPerPage: 25,
@@ -24,6 +24,7 @@ class AllPayments {
       skipIndex: 0,
       maxPages: 3,
       i18nkeysMap: {
+        'invoiceStatusCode': 'status',
         'documentDate': 'invoiceDate',
         'dueCalculationBaseDate': 'dueDate',
         'companyName': 'company',
@@ -31,7 +32,6 @@ class AllPayments {
         'companyCountry': 'country',
         'amountInTransactionCurrency': 'amountIncludingTaxes',
         'withholdingTaxAmmount': 'withHoldingTax',
-        'invoiceStatusCode': 'status',
         'documentReferenceID': 'invoiceNo',
         'supplierName': 'supplier',
         'supplier': 'supplierCode',
@@ -68,15 +68,15 @@ class AllPayments {
     const { table, i18nKeys, allPaymentCustomizeTableAction, headerAction, mobileHeadersActions } =  this.cache;
     const self = this;
     this.cache.customisableTableHeaders = [
-      {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:0},
-      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:1},
-      {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:2},
-      {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:3},
-      {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:4},
-      {key:'amountInTransactionCurrency',option:'amountIncludingTaxes',optionDisplayText:i18nKeys['amountIncludingTaxes'],isChecked:true,index:5},
-      {key:'withholdingTaxAmmount',option:'withHoldingTax',optionDisplayText:i18nKeys['withHoldingTax'],isChecked:false,index:6},
-      {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:7},
-      {key:'documentReferenceID',option:'invoiceNo',optionDisplayText:i18nKeys['invoiceNo'],isDisabled:true,isChecked:true,index:8},
+      {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:0},
+      {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:1},
+      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:2},
+      {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:3},
+      {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:4},
+      {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:5},
+      {key:'amountInTransactionCurrency',option:'amountIncludingTaxes',optionDisplayText:i18nKeys['amountIncludingTaxes'],isChecked:true,index:6},
+      {key:'withholdingTaxAmmount',option:'withHoldingTax',optionDisplayText:i18nKeys['withHoldingTax'],isChecked:false,index:7},
+      {key:'documentReferenceID',option:'invoiceNo',optionDisplayText:i18nKeys['invoiceNo'],isChecked:true,isDisabled:true,index:8},
       {key:'supplierName',option:'supplier',optionDisplayText:i18nKeys['supplier'],isChecked:false,index:9},
       {key:'supplier',option:'supplierCode',optionDisplayText:i18nKeys['supplierCode'],isChecked:false,index:10},
       {key:'purchasingDocuments',option:'poNo',optionDisplayText:i18nKeys['poNo'],isChecked:false,index:11}
