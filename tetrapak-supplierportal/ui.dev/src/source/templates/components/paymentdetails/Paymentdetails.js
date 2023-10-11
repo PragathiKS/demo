@@ -4,6 +4,7 @@ import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import auth from '../../../scripts/utils/auth';
 import file from '../../../scripts/utils/file';
+import { getFilterDateRange } from '../../../scripts/utils/dateRange';
 class Paymentdetails {
   constructor({ el }) {
     this.root = $(el);
@@ -13,6 +14,7 @@ class Paymentdetails {
     /* Initialize selector cache here */
     this.cache.configJson = this.root.find('.js-payment-details__config').text();
     this.cache.detailsApi = this.root.data('details-api');
+    this.cache.dateRange = this.root.data('date-range');
     this.cache.exportToPdfURL = this.root.data('export-pdf-url');
     this.cache.contentWrapper = this.root.find(
       '.tp-payment-details-content'
@@ -42,7 +44,7 @@ class Paymentdetails {
     auth.getToken(() => {
       file.get({
         extension: 'pdf',
-        url: `${this.cache.exportToPdfURL}?documentreferenceid=${documentreferenceid}&fromdatetime=2023-07-01T00:00:00&todatetime=2023-07-30T00:00:00`,
+        url: `${this.cache.exportToPdfURL}?documentreferenceid=${documentreferenceid}`,
         method: ajaxMethods.GET
       });
     });
@@ -70,8 +72,9 @@ class Paymentdetails {
       }
     };
     const { documentreferenceid} = this.getUrlQueryParams();
+    const dateRange = getFilterDateRange(this.cache.dateRange);
     // TODO: Need to remove count query param. these are added only for testing purpose.
-    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1`;
+    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1${dateRange}`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
     return paymentApiPromise;
   }
