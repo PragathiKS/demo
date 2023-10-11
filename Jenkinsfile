@@ -4,7 +4,7 @@ pipeline{
         stage ('one')
         steps {
             scripts {
-                sh 'echo 'Hi
+                sh echo 'Hi'
             }
         }
     }
