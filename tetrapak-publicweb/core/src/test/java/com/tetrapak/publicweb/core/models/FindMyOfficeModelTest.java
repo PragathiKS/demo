@@ -63,5 +63,11 @@ public class FindMyOfficeModelTest {
         assertEquals("Heading", model.getHeading());
         assertEquals("/content/publicweb/en/jcr:content/findMyOffice.json", model.getServletPath());
         assertEquals("AIzaSyC1w2gKCuwiRCsgqBR9RnSbWNuFvI5lryQ", model.getGoogleApiKey());
+        assertEquals("/content/dam/tetrapak/publicweb/contentfragment/offices", model.getOfficeCFPath());
+        assertEquals("Country or Region", model.getCountryLabel());
+        assertEquals("/content/dam/tetrapak/publicweb/contentfragment/countries", model.getCountryCFPath());
+        assertEquals("Recycler Offices", model.getOfficeLabel());
+        assertEquals("Choose your Country or Region", model.getCountryDropdownLabel());
+        assertEquals("Select Recycler Offices", model.getOfficeDropdownLabel());
     }
 }

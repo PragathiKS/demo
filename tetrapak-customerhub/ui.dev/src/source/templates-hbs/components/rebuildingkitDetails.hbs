@@ -1,12 +1,18 @@
 <h1><span>{{rebuildingData.serialNumber}}</span>&nbsp;{{rebuildingData.equipmentDesc}}&nbsp;|&nbsp;{{rebuildingData.rkNumber}}&nbsp;{{rebuildingData.rkDesc}}
 </h1>
 
-<div class="row tp-rebuilding-details__view-e-business-button-row d-none">
-
-    {{> atoms/buttons/button/button text=i18nKeys.viewInEBizButton modifier="primary" 
-    className="tp-rebuilding-details__view-e-business-btn" jsClass="js-rebuilding-details__view-e-business-btn" 
-    iconClass="icon-Trolley" dataLocator="rebuilding-details__view-e-business-btn" }}
-
+<div class="row tp-rebuilding-details__view-e-business-button-row d-none"> 
+ {{#if isPartsAccess}}
+  <a href="{{eBusinessUrl}}/{{rebuildingData.rkNumber}}" target="_blank" class="tpatom-btn tpatom-btn--primary tp-rebuilding-details__view-e-business-btn" auto_locator="rebuilding-details__view-e-business-btn">
+          {{i18n key=i18nKeys.viewInEBizButton}}
+          <i class="icon icon-Trolley"></i>
+    </a>
+  {{else}} 
+       <a href="{{eBusinessUrl}}" target="_blank" class="tpatom-btn tpatom-btn--primary tp-rebuilding-details__view-e-business-btn" auto_locator="rebuilding-details__view-e-business-btn">
+          {{i18n key=i18nKeys.viewInEBizButton}}
+          <i class="icon icon-Trolley"></i>
+    </a>
+ {{/if}}
 </div>
 
  

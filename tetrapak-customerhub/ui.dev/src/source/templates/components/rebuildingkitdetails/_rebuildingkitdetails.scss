@@ -9,7 +9,8 @@
 .tp-rebuilding-details {
     &__view-e-business-button-row{
         @include margin-bottom($margin-md);
-        button{
+
+        a {
             @include margin-left($margin-md);
         }
        

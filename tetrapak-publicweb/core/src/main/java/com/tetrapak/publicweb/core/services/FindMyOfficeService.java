@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.sling.api.resource.ResourceResolver;
 
 import com.tetrapak.publicweb.core.beans.CountryBean;
+import com.tetrapak.publicweb.core.models.FindMyOfficeModel;
 
 /**
  * The Interface FindMyOfficeService.
@@ -18,7 +19,7 @@ public interface FindMyOfficeService {
      *            the resource resolver
      * @return the find my office data
      */
-    Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver);
+    Map<String, CountryBean> getFindMyOfficeData(ResourceResolver resourceResolver, FindMyOfficeModel findMyOfficeModel);
     
     /**
      * Gets the corporate office list.

@@ -9,6 +9,7 @@ import javax.servlet.Servlet;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tetrapak.publicweb.core.beans.CountryBean;
+import com.tetrapak.publicweb.core.models.FindMyOfficeModel;
 import com.tetrapak.publicweb.core.services.FindMyOfficeService;
 
 /**
@@ -52,8 +54,9 @@ public class FindMyOfficeServlet extends SlingSafeMethodsServlet {
     @Override
     protected void doGet(final SlingHttpServletRequest request, final SlingHttpServletResponse resp) {
         final ResourceResolver resolver = request.getResourceResolver();
+        FindMyOfficeModel findMyOfficeModel = request.getResource().adaptTo(FindMyOfficeModel.class);
         final Map<String, CountryBean> treeMap = new TreeMap<String, CountryBean>(
-                findMyOfficeService.getFindMyOfficeData(resolver));
+                findMyOfficeService.getFindMyOfficeData(resolver, findMyOfficeModel));
         Map<String, CountryBean> fullMap = new LinkedHashMap<>();
         fullMap.putAll(findMyOfficeService.getCorporateOfficeList());
         fullMap.putAll(treeMap);

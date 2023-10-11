@@ -41,6 +41,24 @@ public class FindMyOfficeModel {
     /** The find my office service impl. */
     @Inject
     private FindMyOfficeService findMyOfficeService;
+    
+    @ValueMapValue
+    private String countryCFPath;
+    
+    @ValueMapValue
+    private String countryLabel;
+    
+    @ValueMapValue
+    private String officeCFPath;
+    
+    @ValueMapValue
+    private String officeLabel;
+    
+    @ValueMapValue
+    private String countryDropdownLabel;
+    
+    @ValueMapValue
+    private String officeDropdownLabel;
 
     /**
      * Gets the heading.
@@ -96,4 +114,28 @@ public class FindMyOfficeModel {
         return baiduMapService.getBaiduMapKey();
     }
 
+	public String getCountryCFPath() {
+		return countryCFPath;
+	}
+
+	public String getCountryLabel() {
+		return countryLabel;
+	}
+
+	public String getOfficeCFPath() {
+		return officeCFPath;
+	}
+
+	public String getOfficeLabel() {
+		return officeLabel;
+	}
+
+	public String getCountryDropdownLabel() {
+		return countryDropdownLabel;
+	}
+
+	public String getOfficeDropdownLabel() {
+		return officeDropdownLabel;
+	}
+	
 }
