@@ -68,14 +68,14 @@ class AllPayments {
     const { table, i18nKeys, allPaymentCustomizeTableAction, headerAction, mobileHeadersActions } =  this.cache;
     const self = this;
     this.cache.customisableTableHeaders = [
-      {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:7},
-      {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:0},
-      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:1},
-      {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:2},
-      {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:3},
-      {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:4},
-      {key:'amountInTransactionCurrency',option:'amountIncludingTaxes',optionDisplayText:i18nKeys['amountIncludingTaxes'],isChecked:true,index:5},
-      {key:'withholdingTaxAmmount',option:'withHoldingTax',optionDisplayText:i18nKeys['withHoldingTax'],isChecked:false,index:6},
+      {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:0},
+      {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:1},
+      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:2},
+      {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:3},
+      {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:4},
+      {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:5},
+      {key:'amountInTransactionCurrency',option:'amountIncludingTaxes',optionDisplayText:i18nKeys['amountIncludingTaxes'],isChecked:true,index:6},
+      {key:'withholdingTaxAmmount',option:'withHoldingTax',optionDisplayText:i18nKeys['withHoldingTax'],isChecked:false,index:7},
       {key:'documentReferenceID',option:'invoiceNo',optionDisplayText:i18nKeys['invoiceNo'],isChecked:true,isDisabled:true,index:8},
       {key:'supplierName',option:'supplier',optionDisplayText:i18nKeys['supplier'],isChecked:false,index:9},
       {key:'supplier',option:'supplierCode',optionDisplayText:i18nKeys['supplierCode'],isChecked:false,index:10},
