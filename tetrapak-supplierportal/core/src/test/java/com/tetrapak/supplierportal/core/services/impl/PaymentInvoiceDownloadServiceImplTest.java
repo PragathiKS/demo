@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
 import com.tetrapak.supplierportal.core.bean.PaymentDetailResponse;
 import com.tetrapak.supplierportal.core.models.PaymentDetailsModel;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
+import com.tetrapak.supplierportal.core.services.InvoiceStatusService;
 import com.tetrapak.supplierportal.core.services.UrlService;
 import com.tetrapak.supplierportal.core.utils.HttpUtil;
 @RunWith(MockitoJUnitRunner.class)
@@ -50,6 +51,9 @@ public class PaymentInvoiceDownloadServiceImplTest {
 
     @Mock
 	private UrlService urlService;
+    
+    @Mock
+    private InvoiceStatusService invoiceStatusService;
 
     @InjectMocks
     private PaymentInvoiceDownloadServiceImpl impl;
@@ -62,6 +66,7 @@ public class PaymentInvoiceDownloadServiceImplTest {
     public void retrievePaymentDetails() throws IOException {
     	when(apiGeeService.getApigeeServiceUrl()).thenReturn(APIGEE_SERVICE_URL);
     	when(apiGeeService.getApiMappings()).thenReturn(new String[] {APIGEE_MAPPINGS});
+    	when(invoiceStatusService.getFromToDateGapInMonthsVal()).thenReturn(12);
     	JsonObject  jsonObj = impl.retrievePaymentDetails(AUTHTOKEN,DOCUMENT_REFERENCE_ID);
     	assertNotNull(jsonObj);
     	assertEquals(200, jsonObj.get(STATUS_CODE).getAsInt());
