@@ -18,7 +18,8 @@ const config = {
       isCountry: true,
       filterType: 'radio',
       apiKey: 'countries',
-      queryParam: 'countrycodes'
+      queryParam: 'countrycodes',
+      hiddenByDefault: false
     },
     {
       key: 'lineCode',
@@ -29,7 +30,8 @@ const config = {
       showFilterByDefault: true,
       filterType: 'checkbox',
       apiKey: 'lines',
-      queryParam: 'linecode'
+      queryParam: 'linecode',
+      hiddenByDefault: false
     },
     {
       key: 'equipmentDesc',
@@ -39,18 +41,8 @@ const config = {
       showColumnByDefault: true,
       showFilterByDefault: true,
       filterType: 'text',
-      queryParam: 'equipmentdesc'
-    },
-    {
-      key: 'machineSystem',
-      i18nKey: 'machineSystem',
-      i18nKeyTooltip: 'machineSystemToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: false,
-      showFilterByDefault: true,
-      filterType: 'checkbox',
-      apiKey: 'machinesystems',
-      queryParam: 'machinesystem'
+      queryParam: 'equipmentdesc',
+      hiddenByDefault: false
     },
     {
       key: 'serialNumber',
@@ -60,18 +52,8 @@ const config = {
       showColumnByDefault: true,
       showFilterByDefault: true,
       filterType: 'text',
-      queryParam: 'serialnumber'
-    },
-    {
-      key: 'equipmentStatus',
-      i18nKey: 'equipmentStatus',
-      i18nKeyTooltip: 'equipmentStatusToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: true,
-      showFilterByDefault: false,
-      filterType: 'checkbox',
-      apiKey: 'equipmentstatuses',
-      queryparam: 'equipmentstatus'
+      queryParam: 'serialnumber',
+      hiddenByDefault: false
     },
     {
       key: 'rkNumber',
@@ -81,17 +63,19 @@ const config = {
       showColumnByDefault: true,
       showFilterByDefault: true,
       filterType: 'text',
-      queryParam: 'rknumber'
+      queryParam: 'rknumber',
+      hiddenByDefault: false
     },
     {
       key: 'rkDesc',
       i18nKey: 'rkDesc',
       i18nKeyTooltip: 'rkDescToolTip',
       showColumnDisabled: false,
-      showColumnByDefault: false,
+      showColumnByDefault: true,
       showFilterByDefault: true,
       filterType: 'text',
-      queryParam: 'rkdesc'
+      queryParam: 'rkdesc',
+      hiddenByDefault: false
     },
     {
       key: 'implStatus',
@@ -102,7 +86,68 @@ const config = {
       showFilterByDefault: true,
       filterType: 'checkbox',
       apiKey: 'implstatuses',
-      queryparam: 'implstatus'
+      queryParam: 'implstatus',
+      hiddenByDefault: false
+    },
+    {
+      key: 'machineSystem',
+      i18nKey: 'machineSystem',
+      i18nKeyTooltip: 'machineSystemToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: false,
+      showFilterByDefault: false,
+      filterType: 'checkbox',
+      apiKey: 'machinesystems',
+      queryParam: 'machinesystem',
+      hiddenByDefault: true
+    },
+    {
+      key: 'equipmentStatus',
+      i18nKey: 'equipmentStatus',
+      i18nKeyTooltip: 'equipmentStatusToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: true,
+      showFilterByDefault: false,
+      filterType: 'checkbox',
+      apiKey: 'equipmentstatuses',
+      queryParam: 'equipmentstatus',
+      hiddenByDefault: true
+    },
+    {
+      key: 'rkTypeCode',
+      i18nKey: 'rkType',
+      i18nKeyTooltip: 'rkTypeToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: false,
+      showFilterByDefault: true,
+      filterType: 'checkbox',
+      apiKey: 'rktypes',
+      queryParam: 'rktypecode',
+      hiddenByDefault: false
+    },
+    {
+      key: 'rebuildingKitStatus',
+      i18nKey: 'rkStatus',
+      i18nKeyTooltip: 'rkStatusToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: false,
+      showFilterByDefault: true,
+      filterType: 'checkbox',
+      apiKey: 'rkstatuses',
+      queryParam: 'rkstatus',
+      hiddenByDefault: false
+    },
+    {
+      key: 'rkHandling',
+      i18nKey: 'rkHandling',
+      i18nKeyTooltip: 'rkHandlingToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: false,
+      showFilterByDefault: true,
+      filterType: 'checkbox',
+      apiKey: 'rkhandlings',
+      queryParam: 'rkhandling',
+      hiddenByDefault: false
     },
     {
       key: 'implDate',
@@ -119,48 +164,8 @@ const config = {
       i18nKeyTooltip: 'implStatusDateToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: true
-    },
-    {
-      key: 'rkGeneralNumber',
-      i18nKey: 'generalRkNumber',
-      i18nKeyTooltip: 'generalRkNumberToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: false,
-      showFilterByDefault: true,
-      filterType: 'text',
-      queryParam: 'rkgeneralnumber'
-    },
-    {
-      key: 'rkTypeCode',
-      i18nKey: 'rkType',
-      i18nKeyTooltip: 'rkTypeToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: false,
-      showFilterByDefault: true,
-      filterType: 'checkbox',
-      apiKey: 'rktypes',
-      queryparam: 'rktypecode'
-    },
-    {
-      key: 'releaseDate',
-      i18nKey: 'releaseDate',
-      i18nKeyTooltip: 'releaseDateToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: false,
-      showFilterByDefault: true,
-      filterType: 'date-range',
-      queryParam: ['releasedatestart', 'releasedateend']
-    },
-    {
-      key: 'plannedDate',
-      i18nKey: 'plannedDate',
-      i18nKeyTooltip: 'releaseDateToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: false,
-      showFilterByDefault: true,
-      filterType: 'date-range',
-      queryParam: ['planneddatestart', 'planneddateend']
+      showFilterByDefault: false,
+      hiddenByDefault: true
     },
     {
       key: 'implDeadline',
@@ -168,31 +173,43 @@ const config = {
       i18nKeyTooltip: 'implDeadlineToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: true,
+      showFilterByDefault: false,
       filterType: 'date-range',
-      queryParam: ['impldeadlinestart', 'impldeadlineend']
+      queryParam: ['impldeadlinestart', 'impldeadlineend'],
+      hiddenByDefault: true
     },
     {
-      key: 'rebuildingKitStatus',
-      i18nKey: 'rkStatus',
-      i18nKeyTooltip: 'rkStatusToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: true,
-      showFilterByDefault: true,
-      filterType: 'checkbox',
-      apiKey: 'rkstatuses',
-      queryParam: 'rkstatus'
-    },
-    {
-      key: 'rkHandling',
-      i18nKey: 'rkHandling',
-      i18nKeyTooltip: 'rkHandlingToolTip',
+      key: 'plannedDate',
+      i18nKey: 'plannedDate',
+      i18nKeyTooltip: 'releaseDateToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: true,
-      filterType: 'checkbox',
-      apiKey: 'rkhandlings',
-      queryParam: 'rkhandling'
+      showFilterByDefault: false,
+      filterType: 'date-range',
+      queryParam: ['planneddatestart', 'planneddateend'],
+      hiddenByDefault: true
+    },
+    {
+      key: 'releaseDate',
+      i18nKey: 'releaseDate',
+      i18nKeyTooltip: 'releaseDateToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: false,
+      showFilterByDefault: false,
+      filterType: 'date-range',
+      queryParam: ['releasedatestart', 'releasedateend'],
+      hiddenByDefault: true
+    },
+    {
+      key: 'rkGeneralNumber',
+      i18nKey: 'generalRkNumber',
+      i18nKeyTooltip: 'generalRkNumberToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: false,
+      showFilterByDefault: false,
+      filterType: 'text',
+      queryParam: 'rkgeneralnumber',
+      hiddenByDefault: true
     },
     {
       key: 'order',
@@ -200,19 +217,9 @@ const config = {
       i18nKeyTooltip: 'orderToolTip',
       showColumnDisabled: false,
       showColumnByDefault: false,
-      showFilterByDefault: true
+      showFilterByDefault: false,
+      hiddenByDefault: true
     }
   ]
 };
-/*
-,
-    {
-      key: 'equipmentNumber',
-      i18nKey: 'equipmentNumber',
-      i18nKeyTooltip: 'equipmentNumberToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: true,
-      showFilterByDefault: false
-    }
-*/
 export default config;
