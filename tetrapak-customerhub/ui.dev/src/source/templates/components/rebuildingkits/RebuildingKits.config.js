@@ -106,7 +106,7 @@ const config = {
       i18nKey: 'equipmentStatus',
       i18nKeyTooltip: 'equipmentStatusToolTip',
       showColumnDisabled: false,
-      showColumnByDefault: true,
+      showColumnByDefault: false,
       showFilterByDefault: false,
       filterType: 'checkbox',
       apiKey: 'equipmentstatuses',
