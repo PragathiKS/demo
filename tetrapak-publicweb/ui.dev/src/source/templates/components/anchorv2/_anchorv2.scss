@@ -1,3 +1,7 @@
+.pw-anchor-main {
+    width: 100%;
+    background-color: $color-white;
+}
 .pw-anchor-menu {
     @include padding(0 $padding-xxxl);
     background-color: $color-white;
@@ -77,13 +81,12 @@
         box-shadow: 0 4px 16px $shadow;
         border-radius: 4px;
         padding: $padding-eighteen $padding-l;
-        li {
-            text-align: center;
-        }
 
-        a,
+        a {
+            padding-bottom: $padding-sm;
+        }
         button {
-            padding: 0.6em;
+            padding: $padding-sm;
         }
     }
 
@@ -104,8 +107,7 @@
 
         &.tp-container {
             @include padding(0);
-            @include margin($margin-l auto $margin-zero auto);
-            max-width: 100%;
+            @include margin($margin-zero auto $margin-zero auto);
         }
         .pw-anchor-menu-list {
             @include padding(0);
@@ -169,7 +171,7 @@
     &.top-anchor-menu {
         top: 64px;
         @media #{$desktop} {
-            top: 144px;
+            top: 142px;
         }
     }
 }

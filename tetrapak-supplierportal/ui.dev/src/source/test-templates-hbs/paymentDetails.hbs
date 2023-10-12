@@ -1,0 +1,133 @@
+  <div
+    data-module="Paymentdetails"
+    class="tp-card tp-all-payments tp-payment-details js-payment-details clearfix"
+    data-src_isPublishEnvironment="${data.isPublishEnvironment @ context='text'}"
+    data-details-api="https://api-dev.tetrapak.com/supplierpayments/invoices"
+    data-export-pdf-url="/content/tetrapak/supplierportal/global/en/payment-details/jcr:content/root/responsivegrid/paymentdetails/bin/supportal/invoice/export"
+    data-date-range="12"
+  >
+  <code class="d-none js-payment-details__config">{"date":"sp.paymentdetails.date","country":"sp.paymentDetails.country","netPayable":"sp.paymentdetails.netPayable","dueDate":"sp.paymentDetails.dueDate","supplierCode":"sp.paymentDetails.supplierCode","supplierInfo":"sp.paymentdetails.supplierInformtaion","paidDate":"sp.paymentdetails.paidDate","poNo":"sp.paymentDetails.poNo","details":"sp.paymentdetails.details","company":"sp.paymentDetails.company","invoiceNo":"sp.paymentdetails.invoiceNo","companyCode":"sp.paymentDetails.companyCode","bankAccount":"sp.paymentdetails.bankAccount","invoiceInfo":"sp.paymentDetails.invoiceInformation","fetchError":"sp.paymentdetails.fetcherror","withHoldingTax":"sp.paymentdetails.withHoldingTaxes","exportToPDF":"sp.paymentdetails.multipono","companyInfo":"sp.paymentdetails.companyInformation","tax":"sp.paymentdetails.tax","totalAmount":"sp.paymentdetails.totalAmount","emptyPaymentDetails":"sp.paymentdetails.emptyPaymentDetails","multiPoNo":"sp.paymentdetails.multipono","paymentMethod":"sp.paymentdetails.paymentMethod","paymentTerm":"sp.paymentdetails.paymentTerm","status":"sp.paymentdetails.status"}</code>
+  <!--Loading -->
+  <div class="tp-spinner d-none">
+    <div class="tpatom-loader js-loader">
+    <div class="tpatom-loading-anim"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+  </div>
+  <!-- Content Container -->
+  <div class="d-none tp-payment-details-content">
+    <div class="tp-payment-details__header-wrapper">
+        <h2 class="tp-payment-details__heading js-payment-details__heading">
+          Invoice Information
+        </h2>
+
+        <!-- Actions -->
+        <div class="tp-payment-details__header-action-wrapper">
+            <div class="tp-payment-details__header-mobile">
+              <button class="tp-next-btn js-mobile-header-actions">
+                <i class="icon icon-Three_Dot">
+                </i>
+              </button>
+            </div>
+            <div class="tp-payment-details__header-actions">
+              <div class="tp-payment-details__header-action icons">
+              <input type="hidden" id="downloadCsvServletUrl" name="downloadCsvServletUrl">
+              <button class="tpatom-btn tp-button-link js-payment-details__export-pdf-action tpatom-btn--second tp-payment-details__action-button">
+              <i class="icon icon-PDF action-icon"></i>
+             <span class="tpatom-btn__text sly-text">Export to pdf</span>
+             </button>
+           </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="tp-payment-details__content-wrapper"><div class="row tp-payment-details__info-card-row">
+    <div class="col-sm-12 col-12 tp-payment-details__info-card-col">
+        <div class="tp-payment-details__info-line">
+            <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Invoice No.</div>
+            <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">79126801</div>
+        </div>
+        <div class="tp-payment-details__info-line">
+            <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Date</div>
+            <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">2023-07-26</div>
+        </div>
+        <div class="tp-payment-details__info-line">
+            <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Status</div>
+            <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">Blocked</div>
+        </div>
+    </div>
+</div>
+<div class="row tp-payment-details__info-card-row">
+<div class="col-lg-4 col-md-6 col-sm-6 col-12 tp-payment-details__info-card-col">
+<div class="tp-payment-details__info-card js-payment-details__info-card">
+            <h3 auto_locator="sectionTitle">Company information</h3>
+            <div class="tp-payment-details__info-line">
+                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Company</div>
+                <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">TP Technical Service AB</div>
+            </div>
+            <div class="tp-payment-details__info-line">
+                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Code</div>
+                <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">0111</div>
+            </div>
+            <div class="tp-payment-details__info-line">
+                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Country</div>
+                <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">SE</div>
+            </div>
+        </div>
+</div>
+<div class="col-lg-4 col-md-6 col-sm-6 col-12 tp-payment-details__info-card-col">
+<div class="tp-payment-details__info-card js-payment-details__info-card">
+            <h3 auto_locator="sectionTitle">Supplier information</h3>
+            <div class="tp-payment-details__info-line">
+                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Vendor</div>
+                <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">Alfa Laval Kolding AS</div>
+            </div>
+            <div class="tp-payment-details__info-line">
+                <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">Code</div>
+                <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">387</div>
+            </div>
+        </div>
+</div>
+</div>
+<div class="tp-payment-details__details-row">
+    <h4 class="tp-payment-details__details-row-title" auto_locator="subsectionTitle">Details</h4>
+    <div class="tp-payment-details__details-line">
+        <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">Total Amount incl. Taxes</div>
+        <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">750.00 EUR</div>
+    </div>
+    <div class="tp-payment-details__details-line">
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">Tax</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataValue">750.00 EUR</div>
+    </div>
+    <div class="tp-payment-details__details-line">
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">Withholding Taxes</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataValue"> EUR</div>
+    </div>
+    <div class="tp-payment-details__details-line">
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">Net Payable</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataValue">750.00 EUR</div>
+    </div>
+    <div class="tp-payment-details__details-line">
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">Payment Term</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataValue">TLN</div>
+    </div>
+    <div class="tp-payment-details__details-line">
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">Paid date</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataValue">2023-07-26</div>
+    </div>
+    <div class="tp-payment-details__details-line">
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">PO No.</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataValue">
+        <div class="tp-payment-details__details-cell-multiple-col" auto_locator="paymentDetailsSectionDataValue">900090189</div>
+        <div class="tp-payment-details__details-cell-multiple-col" auto_locator="paymentDetailsSectionDataValue">900090190</div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+  </div>

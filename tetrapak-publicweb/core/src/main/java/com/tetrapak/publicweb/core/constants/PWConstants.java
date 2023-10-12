@@ -545,6 +545,8 @@ public final class PWConstants {
 
     public static final String MEGAMENU_CONFIGURATION_RESOURCE_PATH = "contentPath";
 
+    public static final String PUBLICWEB_XF_PATH = "/content/experience-fragments/publicweb";
+
     /**
      * Instantiates a new PW constants.
      */

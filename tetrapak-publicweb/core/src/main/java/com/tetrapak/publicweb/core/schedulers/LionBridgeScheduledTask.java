@@ -18,6 +18,9 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.ServletException;
 
+import com.day.cq.replication.ReplicationActionType;
+import com.day.cq.replication.ReplicationException;
+import com.day.cq.replication.Replicator;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -43,6 +46,8 @@ import com.tetrapak.publicweb.core.services.config.LBConfig;
 import com.tetrapak.publicweb.core.utils.GlobalUtil;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import com.tetrapak.publicweb.core.utils.ResourceUtil;
+
+import static com.tetrapak.publicweb.core.constants.PWConstants.PUBLICWEB_XF_PATH;
 
 /**
  * The Class LionBridgeScheduledTask.
@@ -74,6 +79,9 @@ public class LionBridgeScheduledTask implements Runnable {
     @Reference
     private LiveRelationshipManager liveRelManager;
 
+    @Reference
+    private Replicator replicator;
+
     /** The Constant LOGGER. */
     private static final Logger LOGGER = LoggerFactory.getLogger(LionBridgeScheduledTask.class);
 
@@ -85,8 +93,12 @@ public class LionBridgeScheduledTask implements Runnable {
     
     /** The set of LB page processed. */
     private Set<String> pagesProcessed;
+
+    private Set<String> xfsProcessed;
     
     List<String> deleteResourcesList;
+
+    private Map<String,String> lbResourceToXFMapping;
 
     /**
      * Run.
@@ -99,6 +111,7 @@ public class LionBridgeScheduledTask implements Runnable {
             else return 0;
         };
         lbResourceToPageMapping = new HashMap<>();
+        lbResourceToXFMapping = new HashMap<>();
         LOGGER.debug("{{LionBridgeScheduledTask started}}");
         try (final ResourceResolver resolver = GlobalUtil.getResourceResolverFromSubService(resolverFactory)) {
             Resource lbTranslationRes = resolver.getResource(PWConstants.LB_TRANSLATED_PAGES_NODE);
@@ -127,6 +140,9 @@ public class LionBridgeScheduledTask implements Runnable {
                     .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,(e1,e2)->e1,LinkedHashMap::new));
                     createRolloutAndActivate(resolver, sortedLbResourceToPageMapping);
                 }
+                if (!lbResourceToXFMapping.isEmpty()) {
+                    activateXFs(resolver, lbResourceToXFMapping);
+                }
                 if (!deleteResourcesList.isEmpty()) {
                     deleteResources(resolver, deleteResourcesList);
                 }
@@ -135,6 +151,26 @@ public class LionBridgeScheduledTask implements Runnable {
             LOGGER.debug("{{LionBridgeScheduledTask ended}}");
         }
 
+    }
+
+    private void activateXFs(ResourceResolver resolver, Map<String, String> lbResourceToXFMapping) {
+        xfsProcessed = new HashSet<String>();
+        lbResourceToXFMapping.forEach(
+                (lbNode, translatedPagePath) -> {
+                    try {
+                        if(resolver.getResource(translatedPagePath) != null && !xfsProcessed.contains(translatedPagePath)) {
+                            LOGGER.info("LionBridgeScheduledTask activate XF {}", translatedPagePath);
+                            Session session = resolver.adaptTo(Session.class);
+                            replicator.replicate(session, ReplicationActionType.ACTIVATE, translatedPagePath);
+                            LOGGER.debug("{} ,Replicated", translatedPagePath);
+                        }
+                        deleteResourcesList.add(lbNode);
+                        xfsProcessed.add(translatedPagePath);
+                    }catch (UnsupportedOperationException | ReplicationException e) {
+                        LOGGER.error("An error occurred while activating XF", e);
+                    }
+                }
+        );
     }
 
     /**
@@ -146,8 +182,14 @@ public class LionBridgeScheduledTask implements Runnable {
     public void pagesToRolloutAndActivate(final ResourceResolver resolver, final Resource lbChildResource) {
         if (lbChildResource.getValueMap().containsKey(PWConstants.LB_TRANSLATED_PROP)) {
             String translatedPage = lbChildResource.getValueMap().get(PWConstants.LB_TRANSLATED_PROP).toString();
-            LOGGER.info("LionBridgeScheduledTask pagesToRolloutAndActivate on page {}", translatedPage);
-            lbResourceToPageMapping.put(lbChildResource.getPath(), translatedPage);
+            if(translatedPage.startsWith(PUBLICWEB_XF_PATH)){
+                LOGGER.info("LionBridgeScheduledTask XFs to activate {}", translatedPage);
+                lbResourceToXFMapping.put(lbChildResource.getPath(), translatedPage);
+            }else{
+                LOGGER.info("LionBridgeScheduledTask pagesToRolloutAndActivate on page {}", translatedPage);
+                lbResourceToPageMapping.put(lbChildResource.getPath(), translatedPage);
+            }
+
         }
     }
 

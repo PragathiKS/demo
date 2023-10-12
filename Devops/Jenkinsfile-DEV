@@ -55,6 +55,7 @@ pipeline {
                 dockerfile {
                     args "-v ${env.HOME}/.m2:/root/.m2    --tmpfs /.npm -u root:root"
                     label 'cfe-deploy'
+                    reuseNode true
                 }
             }
             steps {
@@ -107,11 +108,6 @@ pipeline {
                     }
                 }
             }
-            post {
-                cleanup {
-                    sh label: "clean log4j from .m2 cache", script: "rm -rf ~/.m2/repository/log4j/*"
-                }
-            }
         }
 
         stage('Author and Publisher Deployment') {
@@ -142,6 +138,10 @@ pipeline {
             script {
                 notifyBuildStatus()
             }
+        }
+        cleanup {
+            sh label: "clean log4j from .m2 cache", script: "sudo rm -rf ~/.m2/repository/log4j/*"
+            cleanWs deleteDirs: true, notFailBuild: true
         }
     }
 }

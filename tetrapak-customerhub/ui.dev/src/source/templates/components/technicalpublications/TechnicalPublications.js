@@ -21,7 +21,7 @@ function _getFolderData(stepKey, options) {
   } = $this.cache;
   const { folderNavData, apiDataObj } = $this.cache;
   const { country, customer, line, lineFolders, folderDetails } = folderNavData;
-  const { isBreadcrumbNav } = options;
+  const { isBreadcrumbNav, useOriginalSerialNumber } = options;
   let apiUrl;
   let serialNumber;
 
@@ -46,14 +46,22 @@ function _getFolderData(stepKey, options) {
     }
     case 'lineFolders': {
       const value = `${lineFolders.value}`;
-      serialNumber = value.split('/');
-      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
+      const valueParts = value.split('/');
+      
+      serialNumber = useOriginalSerialNumber ? 
+        value : `${valueParts[0]}%2F${valueParts[1]}`;
+      apiUrl = `${techPubApi}/${serialNumber}`;
+      
       break;
     }
     case 'folderDetails': {
       const value = `${folderDetails.value}`;
-      serialNumber = value.split(',')[1].split('/');
-      apiUrl = `${techPubApi}/${serialNumber[0]}%2F${serialNumber[1]}`;
+      const valueParts = value.split(',')[1].split('/');
+
+      serialNumber = useOriginalSerialNumber ? 
+        value : `${valueParts[0]}%2F${valueParts[1]}`;
+      apiUrl = `${techPubApi}/${serialNumber}`;
+
       break;
     }
     default: {
@@ -114,9 +122,37 @@ function _getFolderData(stepKey, options) {
           finalData.sort((A, B) => A.countryName.toLowerCase() <= B.countryName.toLowerCase() ? -1 : 1);
         }
 
-        if(stepKey === 'line') {
-          finalData = res.data.filter(data => data.serialNumber !== '');
+        if (stepKey === 'customer') {
+          let plantDocsLine;
+          finalData = res.data.filter((docLine) => {
+            if (docLine.lineDescription === 'PLANT DOCUMENTATION') {           
+              plantDocsLine = ({
+                ...docLine,
+                lineDescription: this.cache.plantDocsLabel
+              });
+              return false;
+            }
+            return true;
+          });
+          if (plantDocsLine) {
+            finalData.unshift(plantDocsLine);
+          }
         }
+
+        if(stepKey === 'line') {
+          finalData = res.data
+            .filter(data => data.serialNumber !== '')
+            .map(docLine => {
+              if (docLine.lineName === 'PLANT DOCUMENTATION') {
+                return ({
+                  ...docLine,
+                  lineName: this.cache.plantDocLabel
+                });
+              }
+              return docLine;
+            });
+        }
+        
         if(stepKey === 'lineFolders') {
           const docData = [];
           const docObj = {};
@@ -170,8 +206,8 @@ function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
 
   const renderIssueDate = ['SPC'].includes(typeCode);
   const renderDescription = ['TEM', 'CM'].includes(typeCode);
-  const renderRKNumber = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
-  const renderRKName = ['RM', 'UP', 'SPC-Kit'].includes(typeCode);
+  const renderRKNumber = ['RM', 'UP', 'KIT'].includes(typeCode);
+  const renderRKName = ['RM', 'UP', 'KIT'].includes(typeCode);
 
   let data = [...folderData];
 
@@ -297,6 +333,16 @@ class TechnicalPublications {
     this.cache.searchResults = this.root.find('.js-tech-pub__search-count');
     this.cache.techPubApiResults = null;
 
+    /*
+      Below values are used for both the Plant Documentation labeling and for checking whether given document is a Plant Documentation.
+      Contrary to other lineNames, Plant Documentation doesn't require additional formatting for serial number, 
+      hence we have to filter it out. 
+    */
+    this.cache.plantDocsLabel = this.cache.i18nKeys.plantDocumentations ? 
+      getI18n(this.cache.i18nKeys.plantDocumentations) : 'Plant Documents';
+    this.cache.plantDocLabel = this.cache.i18nKeys.plantDocumentation ? 
+      getI18n(this.cache.i18nKeys.plantDocumentation) : 'Plant Documentation';
+
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
       countries: {},
@@ -351,6 +397,10 @@ class TechnicalPublications {
       const $btn = $(e.currentTarget);
       const currentStep = $btn.data('current-step');
       const nextFolder = $btn.data('next-folder');
+      const label = $btn.text().trim();
+      const useOriginalSerialNumber = 
+        label === this.cache.plantDocsLabel || 
+        label === this.cache.plantDocLabel;
 
       if (currentStep === 'countries') {
         const countryId = $btn.data('country-id');
@@ -392,7 +442,10 @@ class TechnicalPublications {
         $this.setFolderNavData(nextFolder, serialCode, folderDescription);
       }
 
-      $this.getFolderData(nextFolder, {isBreadcrumbNav: false});
+      $this.getFolderData(nextFolder, {
+        isBreadcrumbNav: false,
+        useOriginalSerialNumber
+      });
     });
 
     this.root.on('click', '.js-tech-pub__bc-btn',  (e) => {

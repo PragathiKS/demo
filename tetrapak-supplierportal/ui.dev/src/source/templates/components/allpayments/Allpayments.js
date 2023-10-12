@@ -1,27 +1,30 @@
+import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
 import {  _paginationAnalytics } from './allpayments.analytics';
 import { getI18n } from '../../../scripts/common/common';
+import { getFilterDateRange } from '../../../scripts/utils/dateRange';
 
 class AllPayments {
 
   constructor({ el }) {
     this.root = el;
+    this.roots = $(el);
     this.cache = {};
   }
 
   initCache() {
     const config = {
-      showFields: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'invoiceStatusCode', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
+      showFields: ['invoiceStatusCode', 'documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
       sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplierName', 'supplier'],
       currentPageNumber: 1,
-      itemsPerPage: 10,
+      itemsPerPage: 25,
       activePage: 1,
       skipIndex: 0,
-      defaultSortParams: 'documentReferenceID%20asc',
       maxPages: 3,
       i18nkeysMap: {
+        'invoiceStatusCode': 'status',
         'documentDate': 'invoiceDate',
         'dueCalculationBaseDate': 'dueDate',
         'companyName': 'company',
@@ -29,13 +32,16 @@ class AllPayments {
         'companyCountry': 'country',
         'amountInTransactionCurrency': 'amountIncludingTaxes',
         'withholdingTaxAmmount': 'withHoldingTax',
-        'invoiceStatusCode': 'status',
         'documentReferenceID': 'invoiceNo',
         'supplierName': 'supplier',
         'supplier': 'supplierCode',
         'purchasingDocuments': 'poNo'
       },
-      statusMapping: {}
+      statusMapping: {},
+      customisableTableHeaders: [],
+      hideColumns: [],
+      activeFilterForm: 'invoiceDate',
+      $activeFilterBtn: {}
     };
     const selector = {
       paymentApi: this.root.querySelector('.js-payment-api'),
@@ -43,7 +49,12 @@ class AllPayments {
       content: this.root.querySelector('.tp-payment-content'),
       config: this.root.querySelector('.js-all-payments__config'),
       searchResults: this.root.querySelector('.tp-all-payments__search-count'),
-      table: this.root.querySelector('.tp-all-payments__table_wrapper')
+      table: this.root.querySelector('.tp-all-payments__table_wrapper'),
+      $modal: this.roots.parent().find('.js-filter-modal'),
+      allPaymentCustomizeTableAction: this.root.querySelector('.js-all-payments__customise-table-action'),
+      headerAction: this.root.querySelector('.tp-all-payments__header-actions'),
+      mobileHeadersActions: this.root.querySelector('.js-mobile-header-actions'),
+      filterButton: this.root.querySelector('.js-apply-filter-button')
     };
     this.cache = {...config, ...selector};
     this.cache.tableData = [];
@@ -54,17 +65,141 @@ class AllPayments {
   }
 
   bindEvents() {
-    if(this.cache.table) {
-      const self = this;
-      this.cache.table.addEventListener('click', function(e) {
+    const { table, i18nKeys, allPaymentCustomizeTableAction, headerAction, mobileHeadersActions } =  this.cache;
+    const self = this;
+    this.cache.customisableTableHeaders = [
+      {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:0},
+      {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:1},
+      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:2},
+      {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:3},
+      {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:4},
+      {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:5},
+      {key:'amountInTransactionCurrency',option:'amountIncludingTaxes',optionDisplayText:i18nKeys['amountIncludingTaxes'],isChecked:true,index:6},
+      {key:'withholdingTaxAmmount',option:'withHoldingTax',optionDisplayText:i18nKeys['withHoldingTax'],isChecked:false,index:7},
+      {key:'documentReferenceID',option:'invoiceNo',optionDisplayText:i18nKeys['invoiceNo'],isChecked:true,isDisabled:true,index:8},
+      {key:'supplierName',option:'supplier',optionDisplayText:i18nKeys['supplier'],isChecked:false,index:9},
+      {key:'supplier',option:'supplierCode',optionDisplayText:i18nKeys['supplierCode'],isChecked:false,index:10},
+      {key:'purchasingDocuments',option:'poNo',optionDisplayText:i18nKeys['poNo'],isChecked:false,index:11}
+    ];
+    if(table) {
+      table.addEventListener('click', function(e) {
         if (e.target.closest('.js-page-number') && !e.target.classList.contains('active')) {
           self.paginationAction(e.target);
         }
         else if(e.target.closest('.js-all-payments__table-summary__sort')) {
           self.sortAction(e.target);
         }
+        else if(e.target.closest('.tp-all-payments__table-summary__body .tp-all-payments__table-summary__row')){
+          const row = e.target.closest('.tp-all-payments__table-summary__row');
+          const id = row.querySelector('[data-key="documentReferenceID"]').textContent.trim();
+          const paymentDetailsURL = self.cache.paymentApi.getAttribute('data-payment-details-url');
+          const url = `${paymentDetailsURL}?documentreferenceid=${id}`;
+          window.open(url, '_blank');
+        }
       });
     }
+    allPaymentCustomizeTableAction.addEventListener('click', () => {
+      const groupedFilterOptions = [];
+      groupedFilterOptions.push({
+        selectAllLabel: i18nKeys['selectAll'],
+        options: self.cache.customisableTableHeaders,
+        isChecked: !self.cache.customisableTableHeaders.some(filterOption => filterOption.isChecked === false)
+      });
+      self.renderFilterForm(groupedFilterOptions, { activeForm:'customise-table',header:i18nKeys['columns'],singleButton:true });
+      headerAction.classList.remove('show');
+    });
+    this.roots.on('change', '.js-tp-all-payments-filter-group-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $currentTargetWrapper = $currentTarget.parents('.tp-all-payments__type-group-option');
+      const $checkboxGroupInputs = $currentTargetWrapper.next().find('.tpatom-checkbox__input').not(':disabled');
+      $checkboxGroupInputs.each((index, item) => {
+        $(item).prop('checked', $currentTarget.is(':checked'));
+      });
+
+    });
+    this.roots.on('change', '.tp-all-payments-group-filter-options .js-tp-all-payments-filter-checkbox', (e) => {
+      const $currentTarget = $(e.target);
+      const $thisGroupAllWrapper = $currentTarget.parents('.tp-all-payments-group-filter-options').prev();
+      const $thisGroupAllCheckbox = $thisGroupAllWrapper.find('.js-tp-all-payments-filter-group-checkbox');
+      if (!$currentTarget.is(':checked')) {
+        $thisGroupAllCheckbox.prop('checked', false);
+      }
+    });
+
+    this.roots.on('click', '.js-apply-filter-button',  () => {
+      this.applyFilter();
+    });
+    mobileHeadersActions.addEventListener('click', () => {
+      const isShow = headerAction.classList.contains('show');
+      if (isShow) {
+        headerAction.classList.remove('show');
+      }
+      else {
+        headerAction.classList.add('show');
+      }
+    });
+  }
+
+  getCheckboxFilterData = () => {
+    const $filtersCheckbox = this.roots.find('.js-tp-all-payments-filter-checkbox:not(.js-tp-all-payments-filter-group-checkbox)');
+    const filterData = this.cache.customisableTableHeaders;
+    if($filtersCheckbox){
+      $filtersCheckbox.each(function(index) {
+        if ($(this).is(':checked')) {
+          filterData[index].isChecked = true;
+        } else {
+          filterData[index].isChecked = false;
+        }
+      });
+    }
+    const showHideFilterFieldList = [];
+    if(filterData?.length > 0){
+      filterData.forEach(item => {
+        const {isChecked,key} = item;
+        if(!isChecked){
+          showHideFilterFieldList.push(key);
+        }
+      });
+    }
+    return { filterData, showHideFilterFieldList };
+  }
+
+  applyFilter = () => {
+    const { activeFilterForm } = this.cache;
+    // if show/hide columns
+    if (activeFilterForm === 'customise-table') { // other type of filter change
+      const tableData = {
+        summary: this.getTableBodyData(),
+        summaryHeadings: this.getHeaderData(),
+        i18nKeys:this.cache.i18nKeys,
+        meta:this.cache.meta
+      };
+      this.renderPaginationTableData(tableData);
+      return;
+    }
+  }
+
+  renderFilterForm = (data, formDetail, $filterBtn) => {
+    const { i18nKeys } = this.cache;
+    render.fn({
+      template: 'filterForm',
+      data: {
+        header: formDetail.header,
+        formData: data,
+        isShowHideColumn: true,
+        ...i18nKeys,
+        singleButton: formDetail.singleButton === true ? true : false,
+        customiseTable: formDetail.activeForm === 'customise-table' ? true : false,
+        autoLocatorModal: `${formDetail.activeForm}Overlay`,
+        autoLocatorInput: `${formDetail.activeForm}InputBox`,
+        autoLocatorCheckbox: `${formDetail.activeForm}FilterCheckboxOverlay`,
+        autoLocatorCheckboxText: `${formDetail.activeForm}FilterItemOverlay`
+      },
+      target: '.tp-all-payments__filter-form',
+      hidden: false
+    });
+    this.cache.activeFilterForm = formDetail.activeForm;
+    this.cache.$activeFilterBtn = $filterBtn;
   }
 
   sortAction = (target) => {
@@ -98,8 +233,17 @@ class AllPayments {
     }
   }
 
+  getFilterShowList = () => {
+    let showFields = this.cache.showFields;
+    const { showHideFilterFieldList } = this.getCheckboxFilterData();
+    if(showHideFilterFieldList?.length > 0){
+      showFields = showFields.filter( ( item ) => !showHideFilterFieldList.includes( item ) );
+    }
+    return showFields;
+  }
+
   getTableBodyData = () => {
-    const showFields = this.cache.showFields;
+    const showFields = this.getFilterShowList();
     const data = this.cache.tableData.map((summary) => {
       const dataObject = {
         row: []
@@ -122,8 +266,8 @@ class AllPayments {
   getHeaderData = () => {
     const sortByKey = this.cache.activeSortData && this.cache.activeSortData.sortedByKey;
     const sortOrder = this.cache.activeSortData && this.cache.activeSortData.sortOrder;
-
-    return this.cache.showFields.map(key => ({
+    const showFields = this.getFilterShowList();
+    return showFields.map(key => ({
       key,
       myEquipment: true,
       isSortable: this.cache.sortableKeys.includes(key),
@@ -145,18 +289,18 @@ class AllPayments {
   }
 
   getPaymentApiUrl = () => {
-    const paymentApi = this.cache.paymentApi.getAttribute('data-list-api');
-    const { itemsPerPage, skipIndex, activeSortData, defaultSortParams } = this.cache;
+    const paymentApi = this.cache.paymentApi.getAttribute('data-list-api'),
+      dataRange = this.cache.paymentApi.getAttribute('data-date-range');
+    const { itemsPerPage, skipIndex, activeSortData } = this.cache;
 
     // TODO: Need to remove this. For testing purpose we add this from date time.
-    let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}&fromdatetime=2023-07-01T00:00:00&todatetime=2023-07-30T00:00:00`;
+    let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${getFilterDateRange(dataRange)}`;
     //let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}`;
 
     if (activeSortData) {
-      apiUrlRequest += `&sort=${activeSortData.sortedByKey.toLowerCase()} ${activeSortData.sortOrder}`;
-    } else {
-      apiUrlRequest += `&sort=${defaultSortParams}`;
+      apiUrlRequest += `&sort=${activeSortData.sortedByKey} ${activeSortData.sortOrder}`;
     }
+
     return apiUrlRequest;
   }
 

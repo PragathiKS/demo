@@ -222,7 +222,47 @@ public final class SupplierPortalConstants {
     public static final String FILTERS_MAPPING = "sp-filters";
     
     public static final String INVOICE_MAPPING = "sp-invoices";
+    
+    public static final String EXPORT_TO_PDFURL = ".download.pdf";
 
+    public static final String BEARER  = "Bearer ";
+    
+    public static final String PDF = "pdf";
+    
+    public static final String DOCUMENT_REFERENCE_ID = "documentreferenceid"; 
+    
+    public static final String AUTHTOKEN = "authToken";
+
+    public static final String ERROR_MESSAGE = "errorMsg";
+    
+    /** The Constant RESPONSE_STATUS_OK. */
+    public static final String RESPONSE_STATUS_OK = "200";
+    
+    public static final String APPLICATION_PDF = "application/pdf";
+    
+    public static final String CONTENT_DISPOSITION =  "Content-disposition";
+    
+    public static final String ATTACHMENT_FILENAME = "attachment; filename=";
+    
+    public static final String PDF_EXT = ".pdf";
+    
+    public static final String TO_DATE_TIME = "todatetime";
+    
+    public static final String FROM_DATE_TIME = "fromdatetime";
+    
+    public static final String NOTOSERIFCJKSC_LIGHT = "NotoSerifCJKsc-Light.otf";
+    
+    public static final String NOTOSERIFCJKSC_BOLD = "NotoSerifCJKsc-Bold.otf";
+    
+    public static final String NOTOSERIF_LIGHT = "NotoSerif-Light.ttf";
+    
+    public static final String NOTOSERIF_BOLD = "NotoSerif-Bold.ttf";
+    
+    public static final String COUNT = "count";
+    
+    public static final String LANG_CODE = "lang-code";
+    
+    public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     /**
      * Instantiates a new customer hub constants.

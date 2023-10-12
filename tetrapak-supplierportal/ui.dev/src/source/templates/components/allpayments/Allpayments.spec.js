@@ -6,12 +6,11 @@ import statusMappingData from './data/statusmapping.json';
 
 describe('Allpayments', function () {
   let fetchStub;
+  let windowStub;
   const statusApiUrl = '/content/tetrapak/supplierportal/global/en/testpagenew/jcr:content/root/responsivegrid/allpayments.invoice.status.json';
-
   beforeEach(function () {
     this.enableTimeouts(false);
     document.body.innerHTML = allpaymentsTmpl();
-
     this.allpayments = new Allpayments({
       el: document.body.querySelector('.tp-all-payments')
     });
@@ -23,6 +22,8 @@ describe('Allpayments', function () {
     this.getPaymentApiUrlSpy = sinon.spy(this.allpayments, 'getPaymentApiUrl');
     this.sortActionSpy = sinon.spy(this.allpayments, 'sortAction');
     this.renderErrorTemplateSpy = sinon.spy(this.allpayments, 'renderErrorTemplate');
+    this.renderFilterFormSpy = sinon.spy(this.allpayments, 'renderFilterForm');
+    this.applyFilterSpy = sinon.spy(this.allpayments, 'applyFilter');
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
       data: {
         access_token: 'fLW1l1EA38xjklTrTa5MAN7GFmo2',
@@ -33,6 +34,7 @@ describe('Allpayments', function () {
 
     fetchStub = sinon.stub(window, 'fetch');
     fetchStub.withArgs(statusApiUrl).resolves({ json: sinon.stub().resolves(statusMappingData) });
+    windowStub = sinon.stub(window, 'open');
   });
 
   afterEach(function () {
@@ -43,8 +45,11 @@ describe('Allpayments', function () {
     this.tokenStub.restore();
     this.paginationActionSpy.restore();
     this.renderErrorTemplateSpy.restore();
+    this.renderFilterFormSpy.restore();
+    this.applyFilterSpy.restore();
     fetchStub.restore();
     sinon.restore();
+    windowStub.restore();
   });
 
   it('should initialize', async function(){
@@ -206,5 +211,83 @@ describe('Allpayments', function () {
     } catch (error) {
       expect(this.allpayments.renderErrorTemplate.called).to.be.true;
     }
+  });
+  it('should handle show hide link', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.tp-all-payments__table-summary__body .tp-all-payments__table-summary__row').dispatchEvent(evt);
+    expect(windowStub.called).to.be.true;
+  })
+  it('should render filter form', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-all-payments__customise-table-action').dispatchEvent(evt);
+    expect(this.allpayments.renderFilterForm.called).to.be.true;
+  })
+  it('should handle checkout groupe change event', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+
+    const evt = new MouseEvent('change', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-tp-all-payments-filter-group-checkbox').dispatchEvent(evt);
+    expect(document.querySelectorAll('.tpatom-checkbox__input')).to.exist;
+  });
+  it('should handle checkbox item change event', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+
+    const evt = new MouseEvent('change', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.tp-all-payments-group-filter-options .js-tp-all-payments-filter-checkbox').dispatchEvent(evt);
+    expect(document.querySelectorAll('.tpatom-checkbox__text js-checkbox__text')).to.exist;
+  });
+  it('should handle apply filter button', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-apply-filter-button').dispatchEvent(evt);
+    expect(this.allpayments.applyFilter.called).to.be.true;
+  });
+  it('should handle apply filter button', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-mobile-header-actions').dispatchEvent(evt);
+    expect(document.querySelector('.tp-all-payments__header-actions')).to.exist;
   });
 });

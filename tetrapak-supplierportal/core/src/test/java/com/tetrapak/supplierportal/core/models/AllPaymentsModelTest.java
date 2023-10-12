@@ -8,8 +8,10 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.tetrapak.supplierportal.core.mock.MockAPIGEEServiceImpl;
+import com.tetrapak.supplierportal.core.mock.MockInvoiceStatusServiceImpl;
 import com.tetrapak.supplierportal.core.mock.SupplierPortalCoreAemContext;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
+import com.tetrapak.supplierportal.core.services.InvoiceStatusService;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -34,13 +36,18 @@ public class AllPaymentsModelTest {
 	/** The apigeeService. */
 	private APIGEEService apigeeService;
 	
+	/** The invoiceStatusService. */
+	private InvoiceStatusService invoiceStatusService;;
+	
 	/**
 	 * Sets the up.
 	 */
 	@Before
 	public void setUp () {
 	    apigeeService = new MockAPIGEEServiceImpl();
+	    invoiceStatusService = new MockInvoiceStatusServiceImpl();
         aemContext.registerService(APIGEEService.class, apigeeService);
+        aemContext.registerService(InvoiceStatusService.class, invoiceStatusService);
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		model = resource.adaptTo(AllPaymentsModel.class);
 		model.setPublishEnvironment(true);
@@ -74,6 +81,10 @@ public class AllPaymentsModelTest {
 	    model.setI18nKeys(RESOURCE_PATH);
 	    model.setResource(null);
 	    model.setSlingSettingsService(null);
+	    model.setApplyFilter("sp.paymentDetails.applyFilter");
+	    model.setColumns("sp.paymentDetails.columns");
+	    model.setShowHideColumns("sp.paymentDetails.showHideColumns");
+	    model.setSelectAll("sp.paymentDetails.selectAll");
 	}
 	
 	/**
@@ -92,6 +103,7 @@ public class AllPaymentsModelTest {
 		assertNull(model.getSlingSettingsService());
 		assertNotNull(model.getI18nKeys());
 		assertNull(model.getResource());
+		assertEquals(3,model.getPaymentsFromToDateGapInMonths());
 		assertTrue(model.isPublishEnvironment());
 		assertEquals("sp.paymentDetails.amountIncludingTaxes", model.getAmountIncludingTaxes());
 		assertEquals("sp.paymentDetails.allPaymentsHeading", model.getAllPaymentsHeading());
@@ -112,7 +124,10 @@ public class AllPaymentsModelTest {
 		assertEquals("sp.paymentDetails.supplier", model.getSupplier());
 		assertEquals("sp.paymentDetails.supplierCode", model.getSupplierCode());
 		assertEquals("sp.paymentDetails.withholdingtax", model.getWithHoldingTax());	
-		
+		assertEquals("sp.paymentDetails.showHideColumns", model.getShowHideColumns());	
+		assertEquals("sp.paymentDetails.columns", model.getColumns());	
+		assertEquals("sp.paymentDetails.selectAll", model.getSelectAll());	
+		assertEquals("sp.paymentDetails.applyFilter", model.getApplyFilter());			
 	}
 	
 	

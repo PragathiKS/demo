@@ -6,5 +6,7 @@ import java.util.Map;
 public interface InvoiceStatusService {
 
 	Map<String, List<String>> invoiceStatusCodeMap();
+	
+    int getFromToDateGapInMonthsVal();
 
 }

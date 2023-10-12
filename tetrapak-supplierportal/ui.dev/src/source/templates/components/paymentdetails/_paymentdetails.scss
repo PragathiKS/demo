@@ -1,0 +1,228 @@
+.tp-payment-details {
+    @include margin-bottom($margin-md);
+    &__container {
+        color: $color-congress-blue;
+    }
+    &__title {
+        @include line-height($font-xxl, $font-l);
+        @include margin-bottom($margin-l);
+        font-size: $font-xl;
+        font-weight: 400;
+
+        &__bold {
+            @include margin-right($margin-sm);
+            font-weight: $font-weight-bold;
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-md);
+        }
+    }
+    &__heading {
+        @include font-size($font-xl);
+        @include line-height(40px, $font-xl);
+    }
+    &__header-wrapper {
+        @include margin-bottom($margin-l);
+        display: flex;
+        justify-content: space-between;
+    }
+    &__header-action-wrapper {
+        position: relative;
+    }
+    &__header-mobile {
+        display: flex;
+    }
+
+    &__header-actions {
+        display: none;
+        &.show {
+            @media #{$mobile} {
+                @include padding($padding-l);
+                border: solid 1px $color-mercury;
+                display: flex;
+                right: 0;
+                position: absolute;
+                min-width: 256px;
+                box-shadow: 0 4px 16px rgba($color-black, 0.1);
+                border-radius: 4px;
+                background: $color-wild-sand;
+                z-index: 9999;
+            }
+            span {
+                color: $color-tundora;
+            }
+        }
+    }
+    i.icon {
+        color: $color-candy-apple-red;
+    }
+    &__action-button {
+        display: flex;
+        color: $color-congress-blue;
+        cursor: pointer;
+        line-height: 40px;
+        align-items: center;
+        &:hover * {
+            color: $color-sky-blue;
+        }
+        &.second {
+            @include margin-top(12px);
+            @include margin-bottom($margin-md);
+            @media #{$desktop} {
+                @include margin-top($margin-zero);
+                @include margin-bottom($margin-zero);
+            }
+        }
+    }
+
+    &__info-card-col {
+        @include margin-bottom($margin-xxl);
+
+        @media #{mobile} {
+            @include margin-bottom($margin-l);
+        }
+    }
+
+    &__info-card {
+        @include padding($padding-l);
+        display: flex;
+        background-color: $color-wild-sand;
+        border-radius: $border-radius;
+        height: 100%;
+        flex-direction: column;
+
+        @media #{mobile} {
+            @include padding($padding-md);
+        }
+
+        h3 {
+            @include padding-bottom($padding-md);
+            @include margin-bottom($margin-l);
+            border-bottom: 1px solid $color-mercury;
+        }
+    }
+
+    &__info-line {
+        @include margin-bottom($margin-md);
+        display: flex;
+        font-weight: $font-weight-normal;
+
+        &--error {
+            border: 1px solid $color-alert;
+        }
+
+        @media #{$mobile} {
+            display: block;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        i {
+            @include margin-right($margin-md);
+            display: inline-block;
+            color: $color-congress-blue;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    &__info-cell-1 {
+        @include line-height($font-l, $font-baseline);
+        @include width(90px);
+        @include margin-right($margin-l);
+        flex-shrink: 0;
+
+        @media #{$mobile} {
+            @include line-height($font-l, $font-baseline);
+            width: 100%;
+        }
+    }
+
+    &__info-cell-2 {
+        @include line-height($font-l, $font-baseline);
+        font-weight: $font-weight-bold;
+        width: 71%;
+
+        @media #{$mobile} {
+            width: 64%;
+        }
+
+        .error-msg {
+            display: none;
+        }
+    }
+    &__details-row {
+        @include margin-bottom($margin-xl);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__details-row-title {
+        @include margin-bottom($margin-md);
+        @include padding-bottom($padding-sm);
+        border-bottom: 1px solid $color-mercury;
+
+    }
+
+    &__details-line {
+        @include padding($padding-md);
+        display: flex;
+
+        @media #{$mobile} {
+            display: block;
+        }
+    }
+
+    &__details-cell {
+        @include line-height($font-l, $font-baseline);
+        font-weight: $font-weight-normal;
+        &:first-child {
+            @include width(310px);
+
+            @media #{$mobile} {
+                @include line-height($font-l, $font-baseline);
+                font-weight: $font-weight-normal;
+                width: 100%;
+            }
+        }
+    }
+
+    @media #{$desktop} {
+        &__header-mobile {
+            display: none;
+        }
+        &__header-actions {
+            display: flex;
+        }
+        .action-icon {
+            @include padding-right($padding-sm);
+            display: flex;
+        }
+        &__action-button {
+            display: flex;
+            line-height: 40px;
+            align-items: center;
+            color: $color-congress-blue;
+
+            &:not(:last-child) {
+                @include margin-right($margin-md);
+            }
+        }
+        &__flex-container {
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+    .tpatom-loader {
+        @include padding($padding-md);
+        text-align: center;
+    }
+}
+

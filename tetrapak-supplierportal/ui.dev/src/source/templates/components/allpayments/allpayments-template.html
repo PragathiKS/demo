@@ -3,7 +3,7 @@
     <code class="d-none js-all-payments__config">
       ${data.i18nKeys}
     </code>
-    <div class="d-none js-payment-api" data-list-api="${data.allPaymentsApi}"></div>
+    <div class="d-none js-payment-api" data-date-range="${data.paymentsFromToDateGapInMonths}" data-list-api="${data.allPaymentsApi}" data-payment-details-url="${data.paymentDetailsURL}"></div>
     <div class="tp-spinner d-none">
       <div class="tpatom-loader js-loader">
         <sly data-sly-use.tploader="/apps/commons/components/atoms/tploader/tploader-template.html" data-sly-call="${tploader.tploader_template}" />
@@ -14,9 +14,25 @@
         <h2 class="tp-all-payments__heading js-all-payments__heading">
             ${data.allPaymentsHeading @i18n}
         </h2>
+        <div class="tp-all-payments__header-action-wrapper">
+          <div class="tp-all-payments__header-mobile">
+            <button class="tp-next-btn js-mobile-header-actions">
+              <i class="icon icon-Three_Dot">
+              </i>
+            </button>
+          </div>
+          <div class="tp-all-payments__header-actions">
+            <div class="tp-all-payments__header-actionicons">
+              <div class="tp-all-payments__action-button second js-all-payments__customise-table-action">
+                <i class="icon icon-Hide action-icon"></i>
+                <span class="tpatom-btn__text tp-all-payments__header-action-text" data-toggle="modal" data-target="#all-payments-filter-modal">${data.showHideColumns @i18n}</span>
+              </div>
+              </div>
+          </div>
+        </div>
       </div>
       <div class="tp-all-payments__search-count"></div>
-      <div id="equipment-filter-modal" class="modal js-filter-modal tp-modal fade tp-equipment__filter-form" tabindex="-1" aria-hidden="true" role="dialog">
+      <div id="all-payments-filter-modal" class="modal js-filter-modal tp-modal fade tp-all-payments__filter-form" tabindex="-1" aria-hidden="true" role="dialog">
       </div>
       <div class="tp-all-payments__table_wrapper"></div>
     </div>
