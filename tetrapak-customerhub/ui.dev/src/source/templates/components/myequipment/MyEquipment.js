@@ -357,14 +357,8 @@ class MyEquipment {
   getActiveCountryCode = () => {
     const { countryData } = this.cache;
     const activeCountry = countryData.filter(e => e.isChecked);
-    if (activeCountry) {
-      if(activeCountry[0]=== undefined){
-        return activeCountry.countryCode;
-      } else {
-        return activeCountry[0].countryCode;
-      }
-    } else {
-      throw Error('Couldn\'t get active country');
+    if (activeCountry.length > 0) {
+      return activeCountry[0].countryCode;
     }
   //  return 'DE';//activeCountry[0].countryCode;
   }
@@ -423,30 +417,28 @@ class MyEquipment {
   }
 
   renderPaginationTableData = (list) => {
-    if (list.meta) {
-      const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
+    const paginationObj = _paginate(list.meta ? list.meta.total:'null', this.cache.activePage, this.cache.itemsPerPage, 3);
 
-      if (list.summary.length === 0) {
-        render.fn({
-          template: 'myEquipmentTable',
-          data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
-          target: '.tp-my-equipment__table_wrapper',
-          hidden: false
+    if (list.summary.length === 0) {
+      render.fn({
+        template: 'myEquipmentTable',
+        data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
+        target: '.tp-my-equipment__table_wrapper',
+        hidden: false
+      });
+    }
+    else {
+      render.fn({
+        template: 'myEquipmentTable',
+        data: {...list, summary: list.summary, paginationObj: paginationObj },
+        target: '.tp-my-equipment__table_wrapper',
+        hidden: false
+      },() => {
+        this.hideShowColums();
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
         });
-      }
-      else {
-        render.fn({
-          template: 'myEquipmentTable',
-          data: {...list, summary: list.summary, paginationObj: paginationObj },
-          target: '.tp-my-equipment__table_wrapper',
-          hidden: false
-        },() => {
-          this.hideShowColums();
-          $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-          });
-        });
-      }
+      });
     }
   }
 
