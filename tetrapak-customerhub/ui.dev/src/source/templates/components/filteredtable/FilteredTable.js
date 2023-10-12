@@ -626,48 +626,46 @@ class FilteredTable {
     const filters = this.cache.data.tableConfig
       .filter((item) => !!item.queryParam)
       .map((item) => {
-        if(item.key !== 'equipmentNumber') {
-          const _getFilterCount = () => {
-            const { values } = this.cache.variables.filters;
-            const value = values[item.queryParam];
-  
-            switch (item.filterType) {
-              case FILTER_TYPE_TEXT:
-              case FILTER_TYPE_RADIO: {
-                return value ? 1 : 0;
-              }
-              case FILTER_TYPE_CHECKBOX:
-              case FILTER_TYPE_CHECKBOX_GROUP: {
-                return value ? value.length : 0;
-              }
-              case FILTER_TYPE_DATE: {
-                const dateStart = values[item.queryParam[0]];
-                return dateStart ? 1 : 0;
-              }
-              case FILTER_TYPE_DATE_RANGE: {
-                const dateStart = values[item.queryParam[0]];
-                const dateEnd = values[item.queryParam[1]];
-                return dateStart && dateEnd ? 1 : 0;
-              }
-              default: {
-                break;
-              }
+        const _getFilterCount = () => {
+          const { values } = this.cache.variables.filters;
+          const value = values[item.queryParam];
+
+          switch (item.filterType) {
+            case FILTER_TYPE_TEXT:
+            case FILTER_TYPE_RADIO: {
+              return value ? 1 : 0;
             }
-          };
-          const filterCount = _getFilterCount();
-          const showFilterClass = item.showFilterByDefault ?
-            '' : this.cache.classes.hideFilterByDefaultClass;
-          const activeClass = filterCount ?
-            ' active' : '';
-          const className = `${showFilterClass}${activeClass}`;
-  
-          return {
-            label: getI18n(this.cache.data.i18nKeys[item.i18nKey]),
-            class: className,
-            key: item.key,
-            filterCount
-          };
-        }
+            case FILTER_TYPE_CHECKBOX:
+            case FILTER_TYPE_CHECKBOX_GROUP: {
+              return value ? value.length : 0;
+            }
+            case FILTER_TYPE_DATE: {
+              const dateStart = values[item.queryParam[0]];
+              return dateStart ? 1 : 0;
+            }
+            case FILTER_TYPE_DATE_RANGE: {
+              const dateStart = values[item.queryParam[0]];
+              const dateEnd = values[item.queryParam[1]];
+              return dateStart && dateEnd ? 1 : 0;
+            }
+            default: {
+              break;
+            }
+          }
+        };
+        const filterCount = _getFilterCount();
+        const showFilterClass = item.showFilterByDefault ?
+          '' : this.cache.classes.hideFilterByDefaultClass;
+        const activeClass = filterCount ?
+          ' active' : '';
+        const className = `${showFilterClass}${activeClass}`;
+
+        return {
+          label: getI18n(this.cache.data.i18nKeys[item.i18nKey]),
+          class: className,
+          key: item.key,
+          filterCount
+        };
       });
 
     render.fn({
