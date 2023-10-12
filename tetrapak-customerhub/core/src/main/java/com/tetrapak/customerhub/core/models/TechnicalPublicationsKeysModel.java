@@ -70,6 +70,10 @@ public class TechnicalPublicationsKeysModel {
     @ValueMapValue
     private String technicalPublications;
 
+    @Expose
+    @ValueMapValue
+    private String description;
+
     public String getAllFiles() {
 	return allFiles;
     }
@@ -129,5 +133,12 @@ public class TechnicalPublicationsKeysModel {
     public String getTechnicalPublications() {
 	return technicalPublications;
     }
+    
+    /**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
 }
