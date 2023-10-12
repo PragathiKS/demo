@@ -109,7 +109,7 @@ const config = {
       i18nKey: 'implDate',
       i18nKeyTooltip: 'implDateToolTip',
       showColumnDisabled: false,
-      showColumnByDefault: true,
+      showColumnByDefault: false,
       showFilterByDefault: false,
       hiddenByDefault: true
     },
@@ -126,7 +126,7 @@ const config = {
       i18nKey: 'generalRkNumber',
       i18nKeyTooltip: 'generalRkNumberToolTip',
       showColumnDisabled: false,
-      showColumnByDefault: true,
+      showColumnByDefault: false,
       showFilterByDefault: true,
       filterType: 'text',
       queryParam: 'rkgeneralnumber'
@@ -136,7 +136,7 @@ const config = {
       i18nKey: 'rkType',
       i18nKeyTooltip: 'rkTypeToolTip',
       showColumnDisabled: false,
-      showColumnByDefault: true,
+      showColumnByDefault: false,
       showFilterByDefault: true,
       filterType: 'checkbox',
       apiKey: 'rktypes',
@@ -201,7 +201,11 @@ const config = {
       showColumnDisabled: false,
       showColumnByDefault: false,
       showFilterByDefault: true
-    },
+    }
+  ]
+};
+/*
+,
     {
       key: 'equipmentNumber',
       i18nKey: 'equipmentNumber',
@@ -210,7 +214,5 @@ const config = {
       showColumnByDefault: true,
       showFilterByDefault: false
     }
-  ]
-};
-
+*/
 export default config;

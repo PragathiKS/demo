@@ -282,7 +282,7 @@ class FilteredTable {
         }
       ]
     };
-    const keys = ['icon', ...visibleColumnKeys];
+    const keys = ['icon', ...visibleColumnKeys, 'equipmentNumber'];
 
     keys.forEach((key, index) => {
       const value = data[key];
@@ -296,9 +296,7 @@ class FilteredTable {
         dataObject.rowLink = data['id'];
         dataObject.isClickable = true;
       }
-      if (key === 'rkTypeCode') {
-        dataObject.row[0].value = this._getRowIcon(value);
-      }
+      dataObject.row[0].value = this._getRowIcon(data['rkTypeCode']);
     });
 
     return dataObject;
@@ -548,7 +546,7 @@ class FilteredTable {
     const { i18nKeys } = this.cache.data;
     const target = this.cache.elements.$filterForm;
 
-    const _getFormTemplateData = () => this.cache.data.tableConfig.map((row) => row.key === 'equipmentNumber' ? null: ({
+    const _getFormTemplateData = () => this.cache.data.tableConfig.map((row) => ({
       option: row.key,
       optionDisplayText: this.cache.data.i18nKeys[row.i18nKey],
       isChecked: this.cache.variables.filters.visibleColumns.includes(row.key),
