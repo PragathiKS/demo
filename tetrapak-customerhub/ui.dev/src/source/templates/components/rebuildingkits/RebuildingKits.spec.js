@@ -4,7 +4,7 @@ import rebuildingKitsTmpl from "../../../test-templates-hbs/rebuildingkits.hbs";
 import { ajaxWrapper } from "../../../scripts/utils/ajax";
 import auth from "../../../scripts/utils/auth";
 import countries from "./data/countries.json";
-
+import file from '../../../scripts/utils/file';
 
 describe("RebuildingKits", function () {
   const jqRef = {
@@ -44,7 +44,7 @@ describe("RebuildingKits", function () {
         token_type: "BearerToken",
       },
     });
-
+    this.fileStub = sinon.stub(file, 'get').returns(Promise.resolve());
     this.rk.init();
   });
   after(function () {
@@ -59,6 +59,7 @@ describe("RebuildingKits", function () {
     this.downloadCsv.restore();
     this.applyFiltersVisibility.restore();
     this.deleteAllFilters.restore();
+    this.fileStub.restore();
   });
   it("should initialize", function (done) {
     expect(this.rk.init.called).to.be.true;
@@ -81,8 +82,10 @@ describe("RebuildingKits", function () {
   });
   it("should download csv on button click", function (done) {
     $(".js-export-btn").trigger("click");
-    expect(this.rk._downloadCsv.called).to.be.true;
-    done();
+    file.get().then(() => {
+      expect(this.rk._downloadCsv.called).to.be.true;
+      done();
+    });
   });
   it("should apply filters", function (done) {
     $(".tp-filtered-table__functionalLocation-filter").trigger("click");
