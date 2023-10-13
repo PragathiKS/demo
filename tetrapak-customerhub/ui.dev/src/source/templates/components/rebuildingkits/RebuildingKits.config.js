@@ -56,6 +56,18 @@ const config = {
       hiddenByDefault: false
     },
     {
+      key: 'equipmentStatus',
+      i18nKey: 'equipmentStatus',
+      i18nKeyTooltip: 'equipmentStatusToolTip',
+      showColumnDisabled: false,
+      showColumnByDefault: true,
+      showFilterByDefault: false,
+      filterType: 'checkbox',
+      apiKey: 'equipmentstatuses',
+      queryParam: 'equipmentstatus',
+      hiddenByDefault: true
+    },
+    {
       key: 'rkNumber',
       i18nKey: 'rkNumber',
       i18nKeyTooltip: 'rkNumberToolTip',
@@ -99,18 +111,6 @@ const config = {
       filterType: 'checkbox',
       apiKey: 'machinesystems',
       queryParam: 'machinesystem',
-      hiddenByDefault: true
-    },
-    {
-      key: 'equipmentStatus',
-      i18nKey: 'equipmentStatus',
-      i18nKeyTooltip: 'equipmentStatusToolTip',
-      showColumnDisabled: false,
-      showColumnByDefault: false,
-      showFilterByDefault: false,
-      filterType: 'checkbox',
-      apiKey: 'equipmentstatuses',
-      queryParam: 'equipmentstatus',
       hiddenByDefault: true
     },
     {
