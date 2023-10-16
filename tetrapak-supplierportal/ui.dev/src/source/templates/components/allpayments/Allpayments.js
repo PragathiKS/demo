@@ -17,7 +17,7 @@ class AllPayments {
   initCache() {
     const config = {
       showFields: ['invoiceStatusCode', 'documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
-      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplierName', 'supplier'],
+      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplier'],
       currentPageNumber: 1,
       itemsPerPage: 25,
       activePage: 1,
