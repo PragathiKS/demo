@@ -417,28 +417,30 @@ class MyEquipment {
   }
 
   renderPaginationTableData = (list) => {
-    const paginationObj = _paginate(list.meta ? list.meta.total:'null', this.cache.activePage, this.cache.itemsPerPage, 3);
+    if (list.meta) {
+      const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
 
-    if (list.summary.length === 0) {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      });
-    }
-    else {
-      render.fn({
-        template: 'myEquipmentTable',
-        data: {...list, summary: list.summary, paginationObj: paginationObj },
-        target: '.tp-my-equipment__table_wrapper',
-        hidden: false
-      },() => {
-        this.hideShowColums();
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip();
+      if (list.summary.length === 0) {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: { noDataMessage: true, noDataFound: this.cache.i18nKeys['noDataFound']  },
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
         });
-      });
+      }
+      else {
+        render.fn({
+          template: 'myEquipmentTable',
+          data: {...list, summary: list.summary, paginationObj: paginationObj },
+          target: '.tp-my-equipment__table_wrapper',
+          hidden: false
+        },() => {
+          this.hideShowColums();
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+          });
+        });
+      }
     }
   }
 
