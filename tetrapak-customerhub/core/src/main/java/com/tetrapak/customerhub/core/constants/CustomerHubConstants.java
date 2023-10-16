@@ -1081,6 +1081,10 @@ public final class CustomerHubConstants {
 
     public static final String BP_NUMBER = "bpnumber";
 
+    public static final String PART_NUMBER = "partNumber";
+
+    public static final String DIMENSION = "dimension";
+
     private CustomerHubConstants() {
         throw new IllegalStateException("Utility class");
     }

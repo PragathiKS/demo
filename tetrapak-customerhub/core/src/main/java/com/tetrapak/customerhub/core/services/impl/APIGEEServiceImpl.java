@@ -48,5 +48,8 @@ public class APIGEEServiceImpl implements APIGEEService {
         return config.apiMappings();
     }
 
+    @Override public String getConsumerKey() {
+        return config.consumerKey();
+    }
 
 }

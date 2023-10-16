@@ -13,5 +13,7 @@ public interface APIGEEService {
 
     String[] getApiMappings();
 
+    String getConsumerKey();
+
 }
 
