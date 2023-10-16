@@ -73,8 +73,8 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
 		LOGGER.debug("HTTP GET request from Payment Invoice Export Servlet");
-		
-		String documentReferenceId = request.getParameter(DOCUMENT_REFERENCE_ID);
+		JsonObject jsonObj = new JsonObject();
+     	String documentReferenceId = request.getParameter(DOCUMENT_REFERENCE_ID);
 		if (StringUtils.isBlank(documentReferenceId)) {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
 			response.getWriter().write("Invalid Input.DocumentReferenceId  Missing.");
@@ -90,9 +90,9 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 		} else {
 			LOGGER.error("Auth token is invalid! {}");
 			response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
-			JsonObject jsonResponse = new JsonObject();
-			jsonResponse.addProperty(ERROR_MESSAGE, "Auth token is invalid!" + request.getRequestPathInfo());
-			HttpUtil.writeJsonResponse(response, jsonResponse);
+			response.getWriter().write("Invalid Auth Token. Authentication Token Missing.");
+			jsonObj.addProperty(ERROR_MESSAGE, "Auth token is invalid!" + request.getRequestPathInfo());
+			HttpUtil.writeJsonResponse(response, jsonObj);
 			return;
 		}
 
@@ -104,18 +104,23 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 
         if (null == paymentDetailsModel) {
             LOGGER.error("PaymentDetailsModel is null!");
+            jsonObj.addProperty(ERROR_MESSAGE,"PaymentDetailsModel is null!");
         }else if (!RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
             LOGGER.error("Unable to retrieve response from API got status code:{}", statusResponse.toString());
+            jsonObj.addProperty(ERROR_MESSAGE,"Unable to retrieve response from API got status code:"+ statusResponse.toString());
         } else {
         	JsonElement resultsResponse = jsonResponse.get(RESULT);
         	PaymentDetailResponse results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), PaymentDetailResponse.class);
         	if(Objects.nonNull(results) && CollectionUtils.isNotEmpty(results.getData())) {
         		flag = paymentInvoiceDownloadSevice.preparePdf(results.getData().get(0), request, response, paymentDetailsModel);
+        	}else {
+        		LOGGER.error("Invoice Details are missing from Backend Services..!::{}",resultsResponse);
+        		jsonObj.addProperty(ERROR_MESSAGE,"Invoice Details are missing from Backend Services..!::"+ resultsResponse);
         	}
         }        
         if (!flag) {
             LOGGER.error("PaymentDetails results Pdf file download failed!");
-            HttpUtil.sendErrorMessage(response);
+            HttpUtil.writeJsonResponse(response,jsonObj);
         }
 	}
 
