@@ -85,6 +85,18 @@ public class AllPaymentsModelTest {
 	    model.setColumns("sp.paymentDetails.columns");
 	    model.setShowHideColumns("sp.paymentDetails.showHideColumns");
 	    model.setSelectAll("sp.paymentDetails.selectAll");
+	    model.setInvoiceNoTooltip("sp.paymentDetails.invoiceNoTooltip");
+	    model.setInvoiceDateTooltip("sp.paymentDetails.invoiceDateTooltip");
+	    model.setStatusTooltip("sp.paymentDetails.statusTooltip");
+	    model.setCompanyTooltip("sp.paymentDetails.companyTooltip");
+	    model.setCompanyCodeTooltip("sp.paymentDetails.companyCodeTooltip");
+	    model.setCountryTooltip("sp.paymentDetails.countryTooltip");
+	    model.setSupplierTooltip("sp.paymentDetails.supplierTooltip");
+	    model.setSupplierCodeTooltip("sp.paymentDetails.supplierCodeTooltip");
+	    model.setWithHoldingTaxTooltip("sp.paymentDetails.withHoldingTaxTooltip");
+	    model.setDueDateTooltip("sp.paymentDetails.dueDateTooltip");
+	    model.setPoNoTooltip("sp.paymentDetails.poNoTooltip");
+	    model.setAmountIncludingTaxesTooltip("sp.paymentDetails.amountIncludingTaxesTooltip");
 	}
 	
 	/**
@@ -127,7 +139,19 @@ public class AllPaymentsModelTest {
 		assertEquals("sp.paymentDetails.showHideColumns", model.getShowHideColumns());	
 		assertEquals("sp.paymentDetails.columns", model.getColumns());	
 		assertEquals("sp.paymentDetails.selectAll", model.getSelectAll());	
-		assertEquals("sp.paymentDetails.applyFilter", model.getApplyFilter());			
+		assertEquals("sp.paymentDetails.applyFilter", model.getApplyFilter());
+		assertEquals("sp.paymentDetails.invoiceNoTooltip", model.getInvoiceNoTooltip());
+		assertEquals("sp.paymentDetails.invoiceDateTooltip", model.getInvoiceDateTooltip());
+		assertEquals("sp.paymentDetails.statusTooltip", model.getStatusTooltip());
+		assertEquals("sp.paymentDetails.companyTooltip", model.getCompanyTooltip());
+		assertEquals("sp.paymentDetails.companyCodeTooltip", model.getCompanyCodeTooltip());
+		assertEquals("sp.paymentDetails.countryTooltip", model.getCountryTooltip());
+		assertEquals("sp.paymentDetails.supplierTooltip", model.getSupplierTooltip());
+		assertEquals("sp.paymentDetails.supplierCodeTooltip", model.getSupplierCodeTooltip());
+		assertEquals("sp.paymentDetails.withHoldingTaxTooltip", model.getWithHoldingTaxTooltip());
+		assertEquals("sp.paymentDetails.dueDateTooltip", model.getDueDateTooltip());
+		assertEquals("sp.paymentDetails.poNoTooltip", model.getPoNoTooltip());
+		assertEquals("sp.paymentDetails.amountIncludingTaxesTooltip", model.getAmountIncludingTaxesTooltip());
 	}
 	
 	

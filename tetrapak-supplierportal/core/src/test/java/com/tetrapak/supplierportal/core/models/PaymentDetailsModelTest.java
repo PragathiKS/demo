@@ -83,6 +83,16 @@ public class PaymentDetailsModelTest {
 	    model.setSupplierInfo("sp.paymentDetails.supplierInformtaion");
 	    model.setExportToPDF("sp.paymentDetails.exportToPDF");
 	    model.setViewPaymentDataUrl(RESOURCE_PATH);
+	    model.setTotalAmountTooltip("sp.paymentDetails.totalAmountTooltip");
+	    model.setTaxTooltip("sp.paymentDetails.taxTooltip");
+	    model.setWithHoldingTaxesTooltip("sp.paymentDetails.withHoldingTaxesTooltip");
+	    model.setNetPayableTooltip("sp.paymentDetails.netPayableTooltip");
+	    model.setPaymentTermTooltip("sp.paymentDetails.paymentTermTooltip");
+	    model.setDetailsDueDateTooltip("sp.paymentDetails.detailsDueDateTooltip");
+	    model.setPaidDateTooltip("sp.paymentDetails.paidDateTooltip");
+	    model.setBankAccountTooltip("sp.paymentDetails.bankAccountTooltip");
+	    model.setPaymentMethodTooltip("sp.paymentDetails.paymentMethodTooltip");
+	    model.setDetailsPoNoTooltip("sp.paymentDetails.detailsPoNoTooltip");
 	}
 	
 	/**
@@ -128,5 +138,15 @@ public class PaymentDetailsModelTest {
 		assertEquals("sp.paymentDetails.totalAmount", model.getTotalAmount());
 		assertEquals("sp.paymentDetails.withHoldingTaxes", model.getWithHoldingTaxes());
 		assertEquals(3,model.getPaymentsFromToDateGapInMonths());
+		assertEquals("sp.paymentDetails.totalAmountTooltip", model.getTotalAmountTooltip());
+		assertEquals("sp.paymentDetails.taxTooltip", model.getTaxTooltip());
+		assertEquals("sp.paymentDetails.withHoldingTaxesTooltip", model.getWithHoldingTaxesTooltip());
+		assertEquals("sp.paymentDetails.netPayableTooltip", model.getNetPayableTooltip());
+		assertEquals("sp.paymentDetails.paymentTermTooltip", model.getPaymentTermTooltip());
+		assertEquals("sp.paymentDetails.detailsDueDateTooltip", model.getDetailsDueDateTooltip());
+		assertEquals("sp.paymentDetails.paidDateTooltip", model.getPaidDateTooltip());
+		assertEquals("sp.paymentDetails.bankAccountTooltip", model.getBankAccountTooltip());
+		assertEquals("sp.paymentDetails.paymentMethodTooltip", model.getPaymentMethodTooltip());
+		assertEquals("sp.paymentDetails.detailsPoNoTooltip", model.getDetailsPoNoTooltip());
 	}
 }

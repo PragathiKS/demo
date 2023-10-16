@@ -1,6 +1,7 @@
 package com.tetrapak.supplierportal.core.models;
 
 import static com.tetrapak.supplierportal.core.constants.I18Constants.BANK_ACCOUNT;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.BANK_ACCOUNT_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE;
@@ -8,6 +9,8 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_IN
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COUNTRY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.DATE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.DETAILS;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.DETAILS_DUEDATE_TOOLTIP;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.DETAILS_PONO_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.DUE_DATE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.EMPTY_PAYMENT_DETAILS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.EXPORT_TO_PDF;
@@ -16,20 +19,30 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_IN
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.NET_PAYABLE;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.NET_PAYABLE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAID_DATE;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAID_DATE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_METHOD;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_METHOD_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_TERM;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_TERM_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_INFO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.TAX;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.TAX_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.TOTAL_AMOUNT;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.TOTAL_AMOUNT_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAXES_TOOLTIP;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
@@ -159,6 +172,36 @@ public class PaymentDetailsModel {
 	private InvoiceStatusService invoiceStatusService;
 	
 	private int paymentsFromToDateGapInMonths;
+		
+	@ValueMapValue
+	private String totalAmountTooltip;
+	
+	@ValueMapValue
+	private String taxTooltip;
+	
+	@ValueMapValue
+	private String withHoldingTaxesTooltip;
+	
+	@ValueMapValue
+	private String netPayableTooltip;
+	
+	@ValueMapValue
+	private String paymentTermTooltip;
+	
+	@ValueMapValue
+	private String detailsDueDateTooltip;
+	
+	@ValueMapValue
+	private String paidDateTooltip;
+	
+	@ValueMapValue
+	private String bankAccountTooltip;
+	
+	@ValueMapValue
+	private String paymentMethodTooltip;
+	
+	@ValueMapValue
+	private String detailsPoNoTooltip;
 	
 	@PostConstruct
 	public void init() {
@@ -190,6 +233,16 @@ public class PaymentDetailsModel {
 		i18KeyMap.put(MULTI_PO_NO, getMultiPoNo());
 		i18KeyMap.put(EXPORT_TO_PDF, getExportToPDF());
 		i18KeyMap.put(CODE, getCode());
+		i18KeyMap.put(TOTAL_AMOUNT_TOOLTIP, getTotalAmountTooltip());
+		i18KeyMap.put(TAX_TOOLTIP, getTaxTooltip());
+		i18KeyMap.put(WITH_HOLDING_TAXES_TOOLTIP, getWithHoldingTaxesTooltip());
+		i18KeyMap.put(NET_PAYABLE_TOOLTIP, getNetPayableTooltip());
+		i18KeyMap.put(PAYMENT_TERM_TOOLTIP, getPaymentTermTooltip());
+		i18KeyMap.put(DETAILS_DUEDATE_TOOLTIP, getDetailsDueDateTooltip());
+		i18KeyMap.put(PAID_DATE_TOOLTIP, getPaidDateTooltip());
+		i18KeyMap.put(BANK_ACCOUNT_TOOLTIP, getBankAccountTooltip());
+		i18KeyMap.put(PAYMENT_METHOD_TOOLTIP, getPaymentMethodTooltip());
+		i18KeyMap.put(DETAILS_PONO_TOOLTIP, getDetailsPoNoTooltip());
 		
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -464,5 +517,84 @@ public class PaymentDetailsModel {
 	public void setPaymentsFromToDateGapInMonths(int paymentsFromToDateGapInMonths) {
 		this.paymentsFromToDateGapInMonths = paymentsFromToDateGapInMonths;
 	}
-	
+
+	public String getTotalAmountTooltip() {
+		return totalAmountTooltip;
+	}
+
+	public void setTotalAmountTooltip(String totalAmountTooltip) {
+		this.totalAmountTooltip = totalAmountTooltip;
+	}
+
+	public String getTaxTooltip() {
+		return taxTooltip;
+	}
+
+	public void setTaxTooltip(String taxTooltip) {
+		this.taxTooltip = taxTooltip;
+	}
+
+	public String getWithHoldingTaxesTooltip() {
+		return withHoldingTaxesTooltip;
+	}
+
+	public void setWithHoldingTaxesTooltip(String withHoldingTaxesTooltip) {
+		this.withHoldingTaxesTooltip = withHoldingTaxesTooltip;
+	}
+
+	public String getNetPayableTooltip() {
+		return netPayableTooltip;
+	}
+
+	public void setNetPayableTooltip(String netPayableTooltip) {
+		this.netPayableTooltip = netPayableTooltip;
+	}
+
+	public String getPaymentTermTooltip() {
+		return paymentTermTooltip;
+	}
+
+	public void setPaymentTermTooltip(String paymentTermTooltip) {
+		this.paymentTermTooltip = paymentTermTooltip;
+	}
+
+	public String getDetailsDueDateTooltip() {
+		return detailsDueDateTooltip;
+	}
+
+	public void setDetailsDueDateTooltip(String detailsDueDateTooltip) {
+		this.detailsDueDateTooltip = detailsDueDateTooltip;
+	}
+
+	public String getPaidDateTooltip() {
+		return paidDateTooltip;
+	}
+
+	public void setPaidDateTooltip(String paidDateTooltip) {
+		this.paidDateTooltip = paidDateTooltip;
+	}
+
+	public String getBankAccountTooltip() {
+		return bankAccountTooltip;
+	}
+
+	public void setBankAccountTooltip(String bankAccountTooltip) {
+		this.bankAccountTooltip = bankAccountTooltip;
+	}
+
+	public String getPaymentMethodTooltip() {
+		return paymentMethodTooltip;
+	}
+
+	public void setPaymentMethodTooltip(String paymentMethodTooltip) {
+		this.paymentMethodTooltip = paymentMethodTooltip;
+	}
+
+	public String getDetailsPoNoTooltip() {
+		return detailsPoNoTooltip;
+	}
+
+	public void setDetailsPoNoTooltip(String detailsPoNoTooltip) {
+		this.detailsPoNoTooltip = detailsPoNoTooltip;
+	}
 }
