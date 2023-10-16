@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.servlets;
 
 import com.tetrapak.customerhub.core.beans.spareparts.ImageLinks;
+import com.tetrapak.customerhub.core.beans.spareparts.ImageResponse;
 import com.tetrapak.customerhub.core.beans.spareparts.SparePart;
 import com.tetrapak.customerhub.core.services.SparePartsService;
 import org.apache.commons.lang3.StringUtils;
@@ -57,35 +58,15 @@ public class GetEbizProductImageServlet extends SlingSafeMethodsServlet {
             response.getWriter().write("Bad Request");
             return;
         }
-        ImageLinks imageLinks = sparePartsService.getImageLinks(dimension,partNumber);
-        if(imageLinks!=null){
-            ArrayList<SparePart> parts = imageLinks.getParts();
-            if(parts.isEmpty()){
-                LOGGER.error("Empty parts from response");
-                response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("System Error");
-                return;
-            }
-            String imageLink = parts.get(0).getUrl();
-            if(StringUtils.isBlank(imageLink)){
-                LOGGER.error("Empty image link from response");
-                response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("System Error");
-                return;
-            }
-            HttpResponse httpResponse = sparePartsService.getImage(imageLink);
-            if(httpResponse!=null){
-                MimetypesFileTypeMap fileTypeMap = new MimetypesFileTypeMap();
-                String mimeType = fileTypeMap.getContentType(StringUtils.substringAfterLast(imageLink,"/"));
-                response.setContentType(mimeType);
-                httpResponse.getEntity().writeTo(response.getOutputStream());
-            }else{
-                LOGGER.error("Error from Image response");
-                response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
-                response.getWriter().write("System Error");
-            }
-        }else{
-            LOGGER.error("Error from Image Links response");
+
+        ImageResponse imageResponse = sparePartsService.getImage(dimension,partNumber);
+        if(imageResponse!=null){
+            MimetypesFileTypeMap fileTypeMap = new MimetypesFileTypeMap();
+            String mimeType = fileTypeMap.getContentType(StringUtils.substringAfterLast(imageResponse.getImageLink(),"/"));
+            response.setContentType(mimeType);
+            imageResponse.getHttpResponse().getEntity().writeTo(response.getOutputStream());
+        }else {
+            LOGGER.error("Error from Image response");
             response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("System Error");
         }
