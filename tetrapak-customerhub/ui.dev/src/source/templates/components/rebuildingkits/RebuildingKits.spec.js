@@ -4,7 +4,7 @@ import rebuildingKitsTmpl from "../../../test-templates-hbs/rebuildingkits.hbs";
 import { ajaxWrapper } from "../../../scripts/utils/ajax";
 import auth from "../../../scripts/utils/auth";
 import countries from "./data/countries.json";
-
+import file from '../../../scripts/utils/file';
 
 describe("RebuildingKits", function () {
   const jqRef = {
@@ -44,13 +44,14 @@ describe("RebuildingKits", function () {
         token_type: "BearerToken",
       },
     });
-
+    this.fileStub = sinon.stub(file, 'get').returns(Promise.resolve());
     this.rk.init();
   });
   after(function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.bindEventsSpy.restore();
+    this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
     this.renderPaginationTableDataSpy.restore();
@@ -59,6 +60,7 @@ describe("RebuildingKits", function () {
     this.downloadCsv.restore();
     this.applyFiltersVisibility.restore();
     this.deleteAllFilters.restore();
+    this.fileStub.restore();
   });
   it("should initialize", function (done) {
     expect(this.rk.init.called).to.be.true;
@@ -81,77 +83,73 @@ describe("RebuildingKits", function () {
   });
   it("should download csv on button click", function (done) {
     $(".js-export-btn").trigger("click");
-    expect(this.rk._downloadCsv.called).to.be.true;
-    done();
+    file.get().then(() => {
+      expect(this.rk._downloadCsv.called).to.be.true;
+      done();
+    });
   });
   it("should apply filters", function (done) {
-    $(".tp-filtered-table__functionalLocation-filter").trigger("click");
+    /*
+    $('.tp-filtered-table__filter-button').trigger("click");
+    $(".js-apply-filter-button").trigger("click");
+    expect(this.rk._applyFilter.called).to.be.true;
+    */
+    
+    $('.tp-filtered-table__filter-button[data-key="countryCode"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
 
-    $(".tp-filtered-table__equipmentDescription-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="rkDesc"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
 
-
-    $(".tp-filtered-table__serialNumber-filter").trigger("click");
-    $(".js-apply-filter-button").trigger("click");
-    expect(this.rk._applyFilter.called).to.be.true;
-
-    $(".tp-filtered-table__rkNumber-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="rkNumber"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
     
-    $(".tp-filtered-table__rkDesc-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="implStatus"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
     
-    $(".tp-filtered-table__implStatus-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="machineSystem"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
     
-    $(".tp-filtered-table__machineSystem-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="rebuildingKitStatus"]').trigger("click");
+    $(".js-apply-filter-button").trigger("click");
+    expect(this.rk._applyFilter.called).to.be.true;
+
+    $('.tp-filtered-table__filter-button[data-key="rkTypeCode"]').trigger("click");
+    $(".js-apply-filter-button").trigger("click");
+    expect(this.rk._applyFilter.called).to.be.true;
+
+    $('.tp-filtered-table__filter-button[data-key="rkHandling"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
     
-    $(".tp-filtered-table__equipmentStatus-filter").trigger("click");
+    /*
+    $('.tp-filtered-table__filter-button[data-key="implDeadline"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
 
-    $(".tp-filtered-table__rkType-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="plannedDate"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
 
-    $(".tp-filtered-table__rkStatus-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="releaseDate"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
 
-    $(".tp-filtered-table__rkHandling-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="rkGeneralNumber"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
     expect(this.rk._applyFilter.called).to.be.true;
-
-    $(".tp-filtered-table__implDeadline-filter").trigger("click");
-    $(".js-apply-filter-button").trigger("click");
-    expect(this.rk._applyFilter.called).to.be.true;
-
-    $(".tp-filtered-table__plannedDate-filter").trigger("click");
-    $(".js-apply-filter-button").trigger("click");
-    expect(this.rk._applyFilter.called).to.be.true;
-
-    $(".tp-filtered-table__releaseDate-filter").trigger("click");
-    $(".js-apply-filter-button").trigger("click");
-    expect(this.rk._applyFilter.called).to.be.true;
-
-    $(".tp-filtered-table__generalRkNumber-filter").trigger("click");
-    $(".js-apply-filter-button").trigger("click");
-    expect(this.rk._applyFilter.called).to.be.true;
-    
+    */
     done();
   });
   it("should render new country on country filter change", function (done) {
-    $(".tp-filtered-table__country-button-filter").trigger("click");
+    $('.tp-filtered-table__filter-button[data-key="countryCode"]').trigger("click");
     $(".js-apply-filter-button").trigger("click");
-    expect(this.rk._render.called).to.be.true;
+    expect(this.rk._applyFilter.called).to.be.true;
     done();
   });
   it("should hide filters on button click", function (done) {

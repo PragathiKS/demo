@@ -2,6 +2,8 @@ package com.tetrapak.supplierportal.core.models;
 
 import static com.tetrapak.supplierportal.core.constants.I18Constants.ALL_PAYMENTS_HEADING;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.AMOUNT_INCLUDING_TAXES;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.APPLY_FILTER;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.COLUMNS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COUNTRY;
@@ -17,14 +19,16 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_NEXT;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_PREV;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAID;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_DETAILS_URL;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.RESET;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.RESULTS;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.SELECT_ALL;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.SHOWHIDE_COLUMNS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_DETAILS_URL;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -154,6 +158,18 @@ public class AllPaymentsModel {
 
 	@ValueMapValue
 	private String paymentDetailsURL;
+	
+	@ValueMapValue
+	private String showHideColumns;
+	
+	@ValueMapValue
+	private String columns;
+	
+	@ValueMapValue
+	private String selectAll;
+	
+	@ValueMapValue
+	private String applyFilter;
 	
 
 	public Resource getResource() {
@@ -384,7 +400,10 @@ public class AllPaymentsModel {
 		i18KeyMap.put(PAGINATION_PREV, getPaginationPrev());
 		i18KeyMap.put(PAID, getPaid());
 		i18KeyMap.put(PAYMENT_DETAILS_URL, getPaymentDetailsURL());
-		
+		i18KeyMap.put(COLUMNS, getColumns());
+		i18KeyMap.put(SHOWHIDE_COLUMNS, getShowHideColumns());
+		i18KeyMap.put(SELECT_ALL, getSelectAll());
+		i18KeyMap.put(APPLY_FILTER, getApplyFilter());
 
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -465,5 +484,37 @@ public class AllPaymentsModel {
 	 */
 	public String getPaymentDetailsURL() {
 		return LinkUtil.getValidLink(resource, paymentDetailsURL);
+	}
+
+	public String getShowHideColumns() {
+		return showHideColumns;
+	}
+
+	public void setShowHideColumns(String showHideColumns) {
+		this.showHideColumns = showHideColumns;
+	}
+
+	public String getColumns() {
+		return columns;
+	}
+
+	public void setColumns(String columns) {
+		this.columns = columns;
+	}
+
+	public String getSelectAll() {
+		return selectAll;
+	}
+
+	public void setSelectAll(String selectAll) {
+		this.selectAll = selectAll;
+	}
+
+	public String getApplyFilter() {
+		return applyFilter;
+	}
+
+	public void setApplyFilter(String applyFilter) {
+		this.applyFilter = applyFilter;
 	}
 }

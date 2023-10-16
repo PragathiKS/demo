@@ -168,7 +168,31 @@
                                 fieldLabel="Payment Details URL"
                                 name="./paymentDetailsURL"
                                 required="true"
-                                rootPath="/content/tetrapak/supplierportal"/>
+								rootPath="/content/tetrapak/supplierportal"/>
+							<showHideColumns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Show Hide Columns (i18N key)"
+                                name="./showHideColumns"
+                                required="true"/>
+							<columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Columns (i18N key)"
+                                name="./columns"
+                                required="true"/>
+							<selectAll
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Select All (i18N key)"
+                                name="./selectAll"
+                                required="true"/>
+							<applyFilter
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Apply Filter (i18N key)"
+                                name="./applyFilter"
+                                required="true"/>
                         </items>
                     </column1>
                 </items>

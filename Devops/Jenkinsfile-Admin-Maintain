@@ -1,0 +1,47 @@
+@Library('jenkins-pipeline-library') _
+pipeline {
+    agent {
+        node {
+            label 'cfe-deploy'
+            customWorkspace "workspace/maintenance"
+        }
+    }
+
+    triggers {
+        cron('H 21 * * 6-7')
+    }
+
+    parameters {
+        text(name: 'purge_dirs', defaultValue: '/home/jenkinsadmin/jenkins/jenkins/workspace/CFE', description: 'Directories to purge')
+        string(name: 'delay', defaultValue: '0', description: 'Delay before purge (in seconds)')
+        booleanParam defaultValue: false, description: 'Should we prune docker to have some extra space?', name: 'docker_prune'
+    }
+    stages {
+        stage("Purge Directories") {
+            steps {
+                script {
+                    sleep params.delay
+                    def paths = params.purge_dirs.split("\n")
+                    for (path in paths) {
+                        sh "sudo rm -rf ${path}/*"
+                    }
+                    sh "sudo df -h"
+                }
+            }
+        }
+        stage("Docker prune") {
+            when { expression { return params.docker_prune } }
+            steps {
+                script {
+                    sh "docker system prune -f"
+                    sh "sudo df -h"
+                }
+            }
+        }
+    }
+    post {
+        cleanup {
+            cleanWs deleteDirs: true, notFailBuild: true
+        }
+    }
+}

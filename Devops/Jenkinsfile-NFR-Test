@@ -8,7 +8,7 @@ pipeline {
     }
     
     triggers {
-        cron('H H(21-23) * * 7')
+        cron('H H(22-23) 1 * *') // Runs between 10PM - 11 PM on First of each month
     }
     
     parameters {
@@ -192,6 +192,9 @@ pipeline {
             script {
                 notifyTestStatus()
             }
+        }
+        cleanup {
+            cleanWs deleteDirs: true, notFailBuild: true, patterns: [[pattern: 'reports_*.zip', type: 'EXCLUDE']])
         }
     }
 }

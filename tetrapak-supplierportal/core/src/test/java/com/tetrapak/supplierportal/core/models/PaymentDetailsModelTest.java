@@ -10,8 +10,10 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import com.tetrapak.supplierportal.core.mock.MockAPIGEEServiceImpl;
+import com.tetrapak.supplierportal.core.mock.MockInvoiceStatusServiceImpl;
 import com.tetrapak.supplierportal.core.mock.SupplierPortalCoreAemContext;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
+import com.tetrapak.supplierportal.core.services.InvoiceStatusService;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 
@@ -36,13 +38,18 @@ public class PaymentDetailsModelTest {
 	/** The apigeeService. */
 	private APIGEEService apigeeService;
 	
+	/** The invoiceStatusService. */
+	private InvoiceStatusService invoiceStatusService;
+	
 	/**
 	 * Sets the up.
 	 */
 	@Before
 	public void setUp () {
 	    apigeeService = new MockAPIGEEServiceImpl();
+	    invoiceStatusService = new MockInvoiceStatusServiceImpl();
         aemContext.registerService(APIGEEService.class, apigeeService);
+        aemContext.registerService(InvoiceStatusService.class, invoiceStatusService);
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		model = resource.adaptTo(PaymentDetailsModel.class);
 		model.setResource(resource);
@@ -120,6 +127,6 @@ public class PaymentDetailsModelTest {
 		assertEquals("sp.paymentDetails.tax", model.getTax());
 		assertEquals("sp.paymentDetails.totalAmount", model.getTotalAmount());
 		assertEquals("sp.paymentDetails.withHoldingTaxes", model.getWithHoldingTaxes());
-		
+		assertEquals(3,model.getPaymentsFromToDateGapInMonths());
 	}
 }

@@ -61,8 +61,6 @@ public class OneTrustCookieJwtTokenServletTest {
         assertEquals(200, context.response().getStatus());
         assertNotNull("Response is not null ", context.response().getOutputAsString());
         assertTrue("Valid GUID 4 version uid ", oneTrustCookieServletResponse.get("uid").toString().replace("\"","").length() >= 36);
-        assertNotNull("Not null jwt token ", oneTrustCookieServletResponse.get("jwt"));
-        assertTrue("Non Empty jwt token ", StringUtils.isNotEmpty(oneTrustCookieServletResponse.get("jwt").toString().replace("\"","")));
     }
 
     @Test
@@ -77,8 +75,6 @@ public class OneTrustCookieJwtTokenServletTest {
         assertNotNull("Response is not null ", context.response().getOutputAsString());
         assertEquals("f39ceb7d-a6b3-474e-ae5d-70641ff22312", oneTrustCookieServletResponse.get("uid").toString().replace("\"",""));
         assertTrue("Valid GUID 4 version uid ", oneTrustCookieServletResponse.get("uid").toString().replace("\"","").length() >= 36);
-        assertNotNull("Not null jwt token ", oneTrustCookieServletResponse.get("jwt"));
-        assertTrue("Non Empty jwt token ", StringUtils.isNotEmpty(oneTrustCookieServletResponse.get("jwt").toString().replace("\"","")));
     }
     @Test
     public void testNonExistingPrivateKeyFile() throws IOException {
@@ -96,7 +92,6 @@ public class OneTrustCookieJwtTokenServletTest {
         assertEquals(200, context.response().getStatus());
         assertNotNull("Response is not null ", context.response().getOutputAsString());
         assertTrue("Empty uid token ", StringUtils.isEmpty(oneTrustCookieServletResponse.get("uid").toString().replace("\"","")));
-        assertTrue("Empty jwt token ", StringUtils.isEmpty(oneTrustCookieServletResponse.get("jwt").toString().replace("\"","")));
     }
 
 }

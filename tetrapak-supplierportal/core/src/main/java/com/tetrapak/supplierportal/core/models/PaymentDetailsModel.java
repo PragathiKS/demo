@@ -41,6 +41,7 @@ import org.apache.sling.settings.SlingSettingsService;
 import com.google.gson.Gson;
 import com.tetrapak.supplierportal.core.constants.SupplierPortalConstants;
 import com.tetrapak.supplierportal.core.services.APIGEEService;
+import com.tetrapak.supplierportal.core.services.InvoiceStatusService;
 import com.tetrapak.supplierportal.core.utils.GlobalUtil;
 
 @Model(adaptables = {Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
@@ -154,6 +155,11 @@ public class PaymentDetailsModel {
 	@OSGiService
 	private SlingSettingsService slingSettingsService;
 	
+	@OSGiService
+	private InvoiceStatusService invoiceStatusService;
+	
+	private int paymentsFromToDateGapInMonths;
+	
 	@PostConstruct
 	public void init() {
 		Map<String, Object> i18KeyMap = new HashMap<>();
@@ -194,6 +200,8 @@ public class PaymentDetailsModel {
 
 		viewPaymentDataUrl = service.getApigeeServiceUrl()
 				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.INVOICE_MAPPING);
+		
+		paymentsFromToDateGapInMonths = invoiceStatusService.getFromToDateGapInMonthsVal();
 	}
 
 	public String getInvoiceInfo() {
@@ -447,6 +455,14 @@ public class PaymentDetailsModel {
 
 	public void setResource(Resource resource) {
 		this.resource = resource;
+	}
+	
+	public int getPaymentsFromToDateGapInMonths() {
+		return paymentsFromToDateGapInMonths;
+	}
+
+	public void setPaymentsFromToDateGapInMonths(int paymentsFromToDateGapInMonths) {
+		this.paymentsFromToDateGapInMonths = paymentsFromToDateGapInMonths;
 	}
 	
 }
