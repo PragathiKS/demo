@@ -51,6 +51,7 @@ describe("RebuildingKits", function () {
     $(document.body).empty();
     this.initSpy.restore();
     this.bindEventsSpy.restore();
+    this.renderSpy.restore();
     this.ajaxStub.restore();
     this.tokenStub.restore();
     this.renderPaginationTableDataSpy.restore();
