@@ -265,13 +265,15 @@ class FilteredTable {
     $datePickerInput.length && $datePickerInput.trigger('focus');
   }
 
-  _getRowIcon = (rkTypeCode) => {
-    if(rkTypeCode.startsWith('A')) {
-      return 'Mandatory_Kit';
-    } else if(rkTypeCode.startsWith('B')) {
-      return 'Trolley';
+  _getRowIcon = (rkTypeCode='') => {
+    if(rkTypeCode) {
+      if(rkTypeCode.startsWith('A')) {
+        return 'Mandatory_Kit';
+      } else if(rkTypeCode.startsWith('B')) {
+        return 'Trolley';
+      }
+      return '';
     }
-    return '';
   }
 
   _buildTableRow = (data, visibleColumnKeys) => {
