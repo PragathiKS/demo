@@ -120,6 +120,7 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
         }        
         if (!flag) {
             LOGGER.error("PaymentDetails results Pdf file download failed!");
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             HttpUtil.writeJsonResponse(response,jsonObj);
         }
 	}
