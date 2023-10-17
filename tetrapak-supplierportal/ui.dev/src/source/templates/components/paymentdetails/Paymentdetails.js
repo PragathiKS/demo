@@ -50,15 +50,24 @@ class Paymentdetails {
     });
   }
   bindEvents() {
+    const {header} = this.cache;
     // Download PDF
     this.root.on('click', '.js-payment-details__export-pdf-action',  () => {
       this.downloadPDf();
     });
     this.cache.mobileHeadersActions.on('click', () => {
-      if($('.tp-payment-details__header-actions').hasClass('show')){
-        $('.tp-payment-details__header-actions').removeClass('show');
+      if($(header).hasClass('show')){
+        $(header).removeClass('show');
       } else {
-        $('.tp-payment-details__header-actions').addClass('show');
+        $(header).addClass('show');
+      }
+    });
+    $('body').on('click', (e) => {
+      const $actionBtn = e.target;
+      if(!$($actionBtn).hasClass('icon-Three_Dot')){
+        if($(header).hasClass('show')){
+          $(header).removeClass('show');
+        }
       }
     });
   }
