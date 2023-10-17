@@ -34,6 +34,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -245,15 +247,22 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		dateVal.setBorder(Rectangle.NO_BORDER);
 		table.addCell(dateVal);
 
-		String status = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getStatus(), language);
-		PdfPCell statusKey = new PdfPCell(new Phrase(status, keyFont));
-		statusKey.setBorder(Rectangle.NO_BORDER);
-		table.addCell(statusKey);
-		PdfPCell statusVal = new PdfPCell(new Phrase(paymentDetails.getInvoiceStatusName(), valueFont));
-		statusVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(statusVal);
-
+		
+		Map<String, List<String>> map = invoiceStatusService.invoiceStatusCodeMap();
+		if(null != map && null != map.entrySet()) {
+			map.entrySet().stream().forEach(entry -> {
+				if(entry != null && entry.getValue() != null && entry.getValue().contains(paymentDetails.getInvoiceStatusCode())) {
+					String status = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+							paymentDetailsModel.getStatus(), language);
+					PdfPCell statusKey = new PdfPCell(new Phrase(status, keyFont));
+					statusKey.setBorder(Rectangle.NO_BORDER);
+					table.addCell(statusKey);
+					PdfPCell statusVal = new PdfPCell(new Phrase(entry.getKey(), valueFont));
+					statusVal.setBorder(Rectangle.NO_BORDER);
+					table.addCell(statusVal);
+				}
+			});
+		}
 	}
 
 	private void populateCompanyInformation(PaymentDetails paymentDetails, PdfPTable table,
@@ -376,9 +385,21 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			totAmtIncl.setBorder(Rectangle.NO_BORDER);
 			table.addCell(totAmtIncl);
 			PdfPCell totAmtInclVal = new PdfPCell(
-					new Phrase(paymentDetails.getAmountInTransactionCurrency(), valueFont));
+					new Phrase(paymentDetails.getAmountInTransactionCurrency()+" "+paymentDetails.getTransactionCurrency(), valueFont));
 			totAmtInclVal.setBorder(Rectangle.NO_BORDER);
 			table.addCell(totAmtInclVal);
+		}
+		
+		if (StringUtils.isNotBlank(paymentDetails.getWithholdingTaxAmmount())) {
+			String withHoldingTaxes = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getWithHoldingTaxes(), language);
+			PdfPCell withHoldingTaxesKey = new PdfPCell(new Phrase(withHoldingTaxes, keyFont));
+			withHoldingTaxesKey.setBorder(Rectangle.NO_BORDER);
+			table.addCell(withHoldingTaxesKey);
+			PdfPCell withHoldingTaxesVal = new PdfPCell(
+					new Phrase(paymentDetails.getWithholdingTaxAmmount()+" "+paymentDetails.getTransactionCurrency(), valueFont));
+			withHoldingTaxesVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(withHoldingTaxesVal);
 		}
 
 		if (StringUtils.isNotBlank(paymentDetails.getPaymentTerms())) {
@@ -392,7 +413,17 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			table.addCell(payTermVal);
 		}
 
-		if (StringUtils.isNotBlank(paymentDetails.getDueCalculationBaseDate())) {
+		if (StringUtils.isNotBlank(paymentDetails.getClearingDate())) {
+			String paidDate = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getPaidDate(), language);
+			PdfPCell paidDateKey = new PdfPCell(new Phrase(paidDate, keyFont));
+			paidDateKey.setBorder(Rectangle.NO_BORDER);
+			table.addCell(paidDateKey);
+			PdfPCell paidDateVal = new PdfPCell(new Phrase(paymentDetails.getClearingDate(), valueFont));
+			paidDateVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(paidDateVal);
+		}
+		else if (StringUtils.isNotBlank(paymentDetails.getDueCalculationBaseDate())) {
 			String dueDatei18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
 					paymentDetailsModel.getDueDate(), language);
 			PdfPCell dueDate = new PdfPCell(new Phrase(dueDatei18n, keyFont));
@@ -401,6 +432,17 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			PdfPCell dueDateVal = new PdfPCell(new Phrase(paymentDetails.getDueCalculationBaseDate(), valueFont));
 			dueDateVal.setBorder(Rectangle.NO_BORDER);
 			table.addCell(dueDateVal);
+		}
+		
+		if (StringUtils.isNotBlank(paymentDetails.getBankAccount())) {
+			String bankAccount = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getBankAccount(), language);
+			PdfPCell bankAccountCell = new PdfPCell(new Phrase(bankAccount, keyFont));
+			bankAccountCell.setBorder(Rectangle.NO_BORDER);
+			table.addCell(bankAccountCell);
+			PdfPCell bankAccountVal = new PdfPCell(new Phrase(paymentDetails.getBankAccount(), valueFont));
+			bankAccountVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(bankAccountVal);
 		}
 
 		if (StringUtils.isNotBlank(paymentDetails.getPaymentMethod())) {
