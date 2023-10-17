@@ -352,10 +352,8 @@ class MyEquipment {
   getActiveCountryCode = () => {
     const { countryData } = this.cache;
     const activeCountry = countryData.filter(e => e.isChecked);
-    if (activeCountry) {
-      return activeCountry.countryCode;
-    } else {
-      throw Error('Couldn\'t get active country');
+    if (activeCountry.length > 0) {
+      return activeCountry[0].countryCode;
     }
   //  return 'DE';//activeCountry[0].countryCode;
   }
@@ -412,7 +410,7 @@ class MyEquipment {
   }
 
   renderPaginationTableData = (list) => {
-    const paginationObj = _paginate(list.meta.total, this.cache.activePage, this.cache.itemsPerPage, 3);
+    const paginationObj = _paginate(list.meta ? list.meta.total:'null', this.cache.activePage, this.cache.itemsPerPage, 3);
 
     if (list.summary.length === 0) {
       render.fn({
