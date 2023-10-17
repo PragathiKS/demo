@@ -92,17 +92,33 @@ class Paymentdetails {
     const { i18nKeys } = this.cache;
     const isPaymentData = Object.keys(data).length > 0;
     if (isPaymentData) {
+      const showToolTip = {
+        totalAmountTooltip: i18nKeys['totalAmountTooltip']?.trim() || '',
+        taxTooltip: i18nKeys['taxTooltip']?.trim() || '',
+        withHoldingTaxesTooltip: i18nKeys['withHoldingTaxesTooltip']?.trim() || '',
+        netPayableTooltip: i18nKeys['netPayableTooltip']?.trim() || '',
+        paymentTermTooltip: i18nKeys['paymentTermTooltip']?.trim() || '',
+        detailsDueDateTooltip: i18nKeys['detailsDueDateTooltip']?.trim() || '',
+        paidDateTooltip: i18nKeys['paidDateTooltip']?.trim() || '',
+        bankAccountTooltip: i18nKeys['bankAccountTooltip']?.trim() || '',
+        paymentMethodTooltip: i18nKeys['paymentMethodTooltip']?.trim() || '',
+        detailsPoNoTooltip: i18nKeys['detailsPoNoTooltip']?.trim() || ''
+      };
       render.fn({
         template: 'paymentDetails',
-        data: {paymentData: data, isError: false, i18nKeys, isFetchError  },
+        data: {paymentData: data, isError: false, i18nKeys, isFetchError, showToolTip  },
         target: this.cache.content,
         hidden: false
+      }, () => {
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       });
     }
     else {
       render.fn({
         template: 'paymentDetails',
-        data: { paymentData: data, isError: true, i18nKeys, isFetchError },
+        data: { paymentData: data, isError: true, i18nKeys, isFetchError, showToolTip: {} },
         target: this.cache.content,
         hidden: false
       });
