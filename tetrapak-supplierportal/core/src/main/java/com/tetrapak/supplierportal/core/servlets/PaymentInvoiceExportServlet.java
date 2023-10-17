@@ -2,7 +2,6 @@ package com.tetrapak.supplierportal.core.servlets;
 
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.AUTHTOKEN;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DOCUMENT_REFERENCE_ID;
-import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.ERROR_MESSAGE;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESPONSE_STATUS_OK;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESULT;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
@@ -91,8 +90,8 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 			LOGGER.error("Auth token is invalid! {}");
 			response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
 			response.getWriter().write("Invalid Auth Token. Authentication Token Missing.");
-			jsonObj.addProperty(ERROR_MESSAGE, "Auth token is invalid!" + request.getRequestPathInfo());
-			HttpUtil.writeJsonResponse(response, jsonObj);
+			HttpUtil.setJsonResponse(jsonObj, "Auth token is invalid!" + request.getRequestPathInfo(), 1001);
+			HttpUtil.sendErrorMessage(response);
 			return;
 		}
 
@@ -104,10 +103,10 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 
         if (null == paymentDetailsModel) {
             LOGGER.error("PaymentDetailsModel is null!");
-            jsonObj.addProperty(ERROR_MESSAGE,"PaymentDetailsModel is null!");
+            HttpUtil.setJsonResponse(jsonObj, "PaymentDetailsModel is null!", 1002);
         }else if (!RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
             LOGGER.error("Unable to retrieve response from API got status code:{}", statusResponse.toString());
-            jsonObj.addProperty(ERROR_MESSAGE,"Unable to retrieve response from API got status code:"+ statusResponse.toString());
+            HttpUtil.setJsonResponse(jsonObj, "Unable to retrieve response from API got status code:"+ statusResponse.toString(), 1003);
         } else {
         	JsonElement resultsResponse = jsonResponse.get(RESULT);
         	PaymentDetailResponse results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), PaymentDetailResponse.class);
@@ -115,13 +114,13 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
         		flag = paymentInvoiceDownloadSevice.preparePdf(results.getData().get(0), request, response, paymentDetailsModel);
         	}else {
         		LOGGER.error("Invoice Details are missing from Backend Services..!::{}",resultsResponse);
-        		jsonObj.addProperty(ERROR_MESSAGE,"Invoice Details are missing from Backend Services..!::"+ resultsResponse);
+        		HttpUtil.setJsonResponse(jsonObj, "Invoice Details are missing from Backend Services..!::"+ resultsResponse, 1003);
         	}
         }        
         if (!flag) {
             LOGGER.error("PaymentDetails results Pdf file download failed!");
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            HttpUtil.writeJsonResponse(response,jsonObj);
+            HttpUtil.sendErrorMessage(response);
         }
 	}
 
