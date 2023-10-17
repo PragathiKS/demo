@@ -1,10 +1,12 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.spareparts.ImageLinks;
 import com.tetrapak.customerhub.core.beans.spareparts.ImageResponse;
 import com.tetrapak.customerhub.core.beans.spareparts.SparePart;
 import com.tetrapak.customerhub.core.services.RebuildingKitsApiService;
 import com.tetrapak.customerhub.core.services.SparePartsService;
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -82,7 +84,7 @@ public class GetEbizProductImageServletTest {
         when(sparePart.getUrl()).thenReturn("https://api-mig.tetrapak.com/spareparts/media/v1/medias/sys_master/images/images/h44/haa/13150358339614/2033-0008-0-1200Wx900H-648Wx486H.jpg");
         when(sparePartsService.getImage(anyString(),anyString())).thenReturn(imageResponse);
         when(imageResponse.getImageLink()).thenReturn("https://api-mig.tetrapak.com/spareparts/media/v1/medias/sys_master/images/images/h44/haa/13150358339614/2033-0008-0-1200Wx900H-648Wx486H.jpg");
-        when(imageResponse.getHttpResponse()).thenReturn(httpResponse);
+        when(imageResponse.getBinaryResponse()).thenReturn(httpResponse);
         when((httpResponse.getEntity())).thenReturn(httpEntity);
         servlet.doGet(request, response);
         Mockito.verify(response).setContentType("image/jpeg");
@@ -102,9 +104,10 @@ public class GetEbizProductImageServletTest {
     public void testDoGetWithAPIErrors() throws IOException {
         when(request.getParameter("partNumber")).thenReturn("2033-0008");
         when(request.getParameter("dimension")).thenReturn("648Wx486H");
-        when(sparePartsService.getImageLinks(anyString(),anyString())).thenReturn(imageLinks);
-        when(imageLinks.getParts()).thenReturn(spareParts);
-        when(spareParts.isEmpty()).thenReturn(true);
+        when(sparePartsService.getImage(anyString(),anyString())).thenReturn(imageResponse);
+        JsonObject errorResponse = new JsonObject();
+        HttpUtil.setJsonResponse(errorResponse,"Error from Images API",HttpStatus.SC_INTERNAL_SERVER_ERROR);
+        when(imageResponse.getErrorResponse()).thenReturn(errorResponse);
         when(response.getWriter()).thenReturn(mockPrintWriter);
         servlet.doGet(request, response);
         Mockito.verify(response,times(0)).getOutputStream();

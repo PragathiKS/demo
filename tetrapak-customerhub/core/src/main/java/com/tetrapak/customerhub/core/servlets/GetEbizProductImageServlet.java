@@ -64,16 +64,14 @@ public class GetEbizProductImageServlet extends SlingSafeMethodsServlet {
         }
 
         ImageResponse imageResponse = sparePartsService.getImage(dimension,partNumber);
-        if(imageResponse!=null){
+        if(imageResponse.getBinaryResponse()!=null){
             MimetypesFileTypeMap fileTypeMap = new MimetypesFileTypeMap();
             String mimeType = fileTypeMap.getContentType(StringUtils.substringAfterLast(imageResponse.getImageLink(),"/"));
             response.setContentType(mimeType);
-            imageResponse.getHttpResponse().getEntity().writeTo(response.getOutputStream());
+            imageResponse.getBinaryResponse().getEntity().writeTo(response.getOutputStream());
         }else {
             LOGGER.error("Error from Image response");
-            JsonObject jsonObject = new JsonObject();
-            HttpUtil.setJsonResponse(jsonObject,"System Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
-            HttpUtil.writeJsonResponse(response,jsonObject);
+            HttpUtil.writeJsonResponse(response,imageResponse.getErrorResponse());
         }
     }
 }

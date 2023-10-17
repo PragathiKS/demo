@@ -1,6 +1,7 @@
 package com.tetrapak.customerhub.core.services.impl;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.spareparts.ImageLinks;
 import com.tetrapak.customerhub.core.beans.spareparts.ImageResponse;
 import com.tetrapak.customerhub.core.beans.spareparts.SparePart;
@@ -8,6 +9,7 @@ import com.tetrapak.customerhub.core.constants.CustomerHubConstants;
 import com.tetrapak.customerhub.core.services.APIGEEService;
 import com.tetrapak.customerhub.core.services.SparePartsService;
 import com.tetrapak.customerhub.core.utils.GlobalUtil;
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.sling.servlets.post.JSONResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
@@ -77,32 +80,48 @@ public class SparePartsServiceImpl implements SparePartsService {
     }
 
     @Override
-    public ImageResponse getImage(String dimension, String partNumber) {
+    public ImageResponse getImage(String dimension, String partNumber) throws IOException {
         ImageLinks imageLinks = getImageLinks(dimension,partNumber);
         if(imageLinks!=null){
             ArrayList<SparePart> parts = imageLinks.getParts();
             if(parts.isEmpty()){
                 LOGGER.error("Empty parts from response");
-                return null;
+                JsonObject jsonObject = new JsonObject();
+                HttpUtil.setJsonResponse(jsonObject,"Parts is empty",HttpStatus.SC_INTERNAL_SERVER_ERROR);
+                ImageResponse imageResponse = new ImageResponse();
+                imageResponse.setErrorResponse(jsonObject);
+                return imageResponse;
             }
             String imageLink = parts.get(0).getUrl();
             if(StringUtils.isBlank(imageLink)){
                 LOGGER.error("Empty image link from response");
-                return null;
+                JsonObject jsonObject = new JsonObject();
+                HttpUtil.setJsonResponse(jsonObject,"Empty image link from response",HttpStatus.SC_INTERNAL_SERVER_ERROR);
+                ImageResponse imageResponse = new ImageResponse();
+                imageResponse.setErrorResponse(jsonObject);
+                return imageResponse;
             }
             HttpResponse httpResponse = getImage(imageLink);
-            if(httpResponse!=null){
+            if(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
                 ImageResponse imageResponse = new ImageResponse();
                 imageResponse.setImageLink(imageLink);
-                imageResponse.setHttpResponse(httpResponse);
+                imageResponse.setBinaryResponse(httpResponse);
                 return imageResponse;
             }else {
                 LOGGER.error("Error from Image response");
-                return null;
+                JsonObject jsonObject = new JsonObject();
+                HttpUtil.setJsonResponse(jsonObject,httpResponse);
+                ImageResponse imageResponse = new ImageResponse();
+                imageResponse.setErrorResponse(jsonObject);
+                return imageResponse;
             }
         }else{
             LOGGER.error("Error from Image Links response");
-            return null;
+            JsonObject jsonObject = new JsonObject();
+            HttpUtil.setJsonResponse(jsonObject,"Error from Image Links API",HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            ImageResponse imageResponse = new ImageResponse();
+            imageResponse.setErrorResponse(jsonObject);
+            return imageResponse;
         }
     }
 }

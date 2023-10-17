@@ -1,12 +1,23 @@
 package com.tetrapak.customerhub.core.beans.spareparts;
 
+import com.google.gson.JsonObject;
 import org.apache.http.HttpResponse;
 
 public class ImageResponse {
 
     private String imageLink;
 
-    private HttpResponse httpResponse;
+    private HttpResponse binaryResponse;
+
+    public HttpResponse getBinaryResponse() {
+        return binaryResponse;
+    }
+
+    public void setBinaryResponse(HttpResponse binaryResponse) {
+        this.binaryResponse = binaryResponse;
+    }
+
+    private JsonObject errorResponse;
 
     public String getImageLink() {
         return imageLink;
@@ -16,11 +27,11 @@ public class ImageResponse {
         this.imageLink = imageLink;
     }
 
-    public HttpResponse getHttpResponse() {
-        return httpResponse;
+    public JsonObject getErrorResponse() {
+        return errorResponse;
     }
 
-    public void setHttpResponse(HttpResponse httpResponse) {
-        this.httpResponse = httpResponse;
+    public void setErrorResponse(JsonObject errorResponse) {
+        this.errorResponse = errorResponse;
     }
 }
