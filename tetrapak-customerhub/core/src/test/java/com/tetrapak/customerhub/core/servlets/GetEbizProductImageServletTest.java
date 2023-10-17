@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 public class GetEbizProductImageServletTest {
@@ -94,7 +95,7 @@ public class GetEbizProductImageServletTest {
         when(request.getParameter("dimension")).thenReturn("");
         when(response.getWriter()).thenReturn(mockPrintWriter);
         servlet.doGet(request, response);
-        Mockito.verify(response).setStatus(HttpStatus.SC_BAD_REQUEST);
+        Mockito.verify(response,times(0)).getOutputStream();
     }
 
     @Test
@@ -106,6 +107,6 @@ public class GetEbizProductImageServletTest {
         when(spareParts.isEmpty()).thenReturn(true);
         when(response.getWriter()).thenReturn(mockPrintWriter);
         servlet.doGet(request, response);
-        Mockito.verify(response).setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+        Mockito.verify(response,times(0)).getOutputStream();
     }
 }

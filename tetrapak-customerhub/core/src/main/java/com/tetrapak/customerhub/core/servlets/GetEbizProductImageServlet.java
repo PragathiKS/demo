@@ -1,9 +1,11 @@
 package com.tetrapak.customerhub.core.servlets;
 
+import com.google.gson.JsonObject;
 import com.tetrapak.customerhub.core.beans.spareparts.ImageLinks;
 import com.tetrapak.customerhub.core.beans.spareparts.ImageResponse;
 import com.tetrapak.customerhub.core.beans.spareparts.SparePart;
 import com.tetrapak.customerhub.core.services.SparePartsService;
+import com.tetrapak.customerhub.core.utils.HttpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.apache.sling.servlets.post.JSONResponse;
 import org.apache.sling.xss.XSSAPI;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -54,8 +57,9 @@ public class GetEbizProductImageServlet extends SlingSafeMethodsServlet {
         String dimension = request.getParameter(DIMENSION);
         if(StringUtils.isBlank(partNumber) || StringUtils.isBlank(dimension)){
             LOGGER.error("Part number or dimension is blank");
-            response.setStatus(HttpStatus.SC_BAD_REQUEST);
-            response.getWriter().write("Bad Request");
+            JsonObject jsonObject = new JsonObject();
+            HttpUtil.setJsonResponse(jsonObject,"Bad Request", HttpStatus.SC_BAD_REQUEST);
+            HttpUtil.writeJsonResponse(response,jsonObject);
             return;
         }
 
@@ -67,8 +71,9 @@ public class GetEbizProductImageServlet extends SlingSafeMethodsServlet {
             imageResponse.getHttpResponse().getEntity().writeTo(response.getOutputStream());
         }else {
             LOGGER.error("Error from Image response");
-            response.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("System Error");
+            JsonObject jsonObject = new JsonObject();
+            HttpUtil.setJsonResponse(jsonObject,"System Error", HttpStatus.SC_INTERNAL_SERVER_ERROR);
+            HttpUtil.writeJsonResponse(response,jsonObject);
         }
     }
 }
