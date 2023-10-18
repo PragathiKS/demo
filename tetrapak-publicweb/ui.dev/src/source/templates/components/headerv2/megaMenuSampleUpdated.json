@@ -1,0 +1,288 @@
+{
+    "numberOfColumns":3,
+    "col1":{
+       "columnItems":{
+          "heading":{
+             "jcr:primaryType":"nt:unstructured",
+             "jcr:createdBy":"admin",
+             "jcr:lastModifiedBy":"admin",
+             "jcr:created":1692095128256,
+             "heading":"Some Heading",
+             "jcr:lastModified":1692095240056,
+             "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/heading"
+          },
+          "description":{
+             "jcr:primaryType":"nt:unstructured",
+             "jcr:createdBy":"admin",
+             "jcr:lastModifiedBy":"admin",
+             "jcr:created":1692095131302,
+             "text":"\u003Cp\u003ESome Description\u003C/p\u003E\r",
+             "jcr:lastModified":1692095247974,
+             "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/description",
+             "textIsRich":"true"
+          },
+          "megaMenuAccordions":[
+            {
+               "subHeadings":{
+                  "navigationlinks":{
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "jcr:created":1692173161007,
+                     "jcr:lastModified":1692173175949,
+                     "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/navigationlinks",
+                     "navLinks":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "item0":{
+                           "jcr:primaryType":"nt:unstructured",
+                           "linkLabel":"Processing",
+                           "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                           "linkDescription":"Hello",
+                           "linkIconClass":"icon-Dairy_cow_pw"
+                        },
+                       "item1":{
+                           "jcr:primaryType":"nt:unstructured",
+                           "linkLabel":"Processing 2 1st sub",
+                           "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                           "linkDescription":"Hello 2",
+                           "linkIconClass":"icon-Powder_pw"
+                        },
+                        "item2":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "linkLabel":"Processing 3 1st sub",
+                            "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                            "linkDescription":"Hello 3",
+                            "linkIconClass":"icon-Beverages_icon_pw"
+                         }
+                     }
+                  },
+                  "subheading":{
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "jcr:created":1692173134302,
+                     "jcr:lastModified":1692173145479,
+                     "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading",
+                     "subheading":"This is another subheading",
+                     "subheadingOverviewText":"Overview Text",
+                     "subheadingURL":"https://www.google.com"
+                  }
+               }
+            }
+         ]
+       },
+       "bgColor":null
+    },
+    "col2":{
+       "columnItems":{
+        "megaMenuAccordions":[
+            {
+               "subHeadings":{
+                  "navigationlinks":{
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "jcr:created":1692173161007,
+                     "jcr:lastModified":1692173175949,
+                     "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/navigationlinks",
+                     "navLinks":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "item0":{
+                           "jcr:primaryType":"nt:unstructured",
+                           "linkLabel":"Processing",
+                           "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                           "linkDescription":"Hello"
+                        },
+                       "item1":{
+                           "jcr:primaryType":"nt:unstructured",
+                           "linkLabel":"Processing 2 1st sub",
+                           "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                           "linkDescription":"Hello 2"
+                        },
+                        "item2":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "linkLabel":"Processing 3 1st sub",
+                            "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                            "linkDescription":"Hello 3"
+                         }
+                     }
+                  },
+                  "subheading":{
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "jcr:created":1692173134302,
+                     "jcr:lastModified":1692173145479,
+                     "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading",
+                     "subheading":"This is another subheading",
+                     "subheadingOverviewText":"Overview Text",
+                     "subheadingURL":"https://www.google.com"
+                  }
+               }
+            },
+            {
+               "subHeadings":{
+                  "subheading":{
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "jcr:created":1692188149161,
+                     "jcr:lastModified":1692188157694,
+                     "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading",
+                     "subheading":"Hello Another",
+                     "subheadingOverviewText":"Overview Text",
+                     "subheadingURL":"https://www.google.com"
+                  },
+                  "description":{
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "jcr:created":1692188165277,
+                     "text":"\u003Cp\u003EThis is another sub\u003C/p\u003E\r\n",
+                     "jcr:lastModified":1692188175299,
+                     "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/description",
+                     "textIsRich":"true"
+                  },
+                  "navigationlinks":{
+                    "jcr:primaryType":"nt:unstructured",
+                    "jcr:createdBy":"admin",
+                    "jcr:lastModifiedBy":"admin",
+                    "jcr:created":1692173161007,
+                    "jcr:lastModified":1692173175949,
+                    "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/navigationlinks",
+                    "navLinks":{
+                       "jcr:primaryType":"nt:unstructured",
+                       "item0":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "linkLabel":"Processing col2 1",
+                          "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                          "linkDescription":"Hello"
+                       },
+                      "item1":{
+                          "jcr:primaryType":"nt:unstructured",
+                          "linkLabel":"Processing col2 2",
+                          "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                          "linkDescription":"Hello 2"
+                       }
+                    }
+                 }
+               }
+            }
+         ]
+       },
+       "bgColor":"grey"
+    },
+    "col4":{
+        "columnItems":{
+         "megaMenuAccordions":[
+             {
+                "subHeadings":{
+                   "navigationlinks":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "jcr:createdBy":"admin",
+                      "jcr:lastModifiedBy":"admin",
+                      "jcr:created":1692173161007,
+                      "jcr:lastModified":1692173175949,
+                      "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/navigationlinks",
+                      "navLinks":{
+                         "jcr:primaryType":"nt:unstructured",
+                         "item0":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "linkLabel":"Processing",
+                            "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                            "linkDescription":"Hello"
+                         },
+                        "item1":{
+                            "jcr:primaryType":"nt:unstructured",
+                            "linkLabel":"Processing 2 1st sub",
+                            "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                            "linkDescription":"Hello 2"
+                         },
+                         "item2":{
+                             "jcr:primaryType":"nt:unstructured",
+                             "linkLabel":"Processing 3 1st sub",
+                             "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                             "linkDescription":"Hello 3"
+                          }
+                      }
+                   },
+                   "subheading":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "jcr:createdBy":"admin",
+                      "jcr:lastModifiedBy":"admin",
+                      "jcr:created":1692173134302,
+                      "jcr:lastModified":1692173145479,
+                      "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading",
+                      "subheading":"This is another subheading"
+                   }
+                }
+             },
+             {
+                "subHeadings":{
+                   "subheading":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "jcr:createdBy":"admin",
+                      "jcr:lastModifiedBy":"admin",
+                      "jcr:created":1692188149161,
+                      "jcr:lastModified":1692188157694,
+                      "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/subheading",
+                      "subheading":"Hello Another"
+                   },
+                   "description":{
+                      "jcr:primaryType":"nt:unstructured",
+                      "jcr:createdBy":"admin",
+                      "jcr:lastModifiedBy":"admin",
+                      "jcr:created":1692188165277,
+                      "text":"\u003Cp\u003EThis is another sub\u003C/p\u003E\r\n",
+                      "jcr:lastModified":1692188175299,
+                      "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/description",
+                      "textIsRich":"true"
+                   },
+                   "navigationlinks":{
+                     "jcr:primaryType":"nt:unstructured",
+                     "jcr:createdBy":"admin",
+                     "jcr:lastModifiedBy":"admin",
+                     "jcr:created":1692173161007,
+                     "jcr:lastModified":1692173175949,
+                     "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/navigationlinks",
+                     "navLinks":{
+                        "jcr:primaryType":"nt:unstructured",
+                        "item0":{
+                           "jcr:primaryType":"nt:unstructured",
+                           "linkLabel":"Processing col4 1",
+                           "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                           "linkDescription":"Hello"
+                        },
+                       "item1":{
+                           "jcr:primaryType":"nt:unstructured",
+                           "linkLabel":"Processing col4 2",
+                           "linkUrl":"/content/tetrapak/publicweb/lang-masters/en/home",
+                           "linkDescription":"Hello 2"
+                        }
+                     }
+                  }
+                }
+             }
+          ]
+        },
+        "bgColor":"grey"
+     },
+    "col3":{
+       "columnItems":{
+          "megaMenuAccordions":[
+             
+          ],
+          "teaser":{
+             "jcr:primaryType":"nt:unstructured",
+             "jcr:createdBy":"admin",
+             "jcr:lastModifiedBy":"admin",
+             "jcr:created":1692095192140,
+             "title":"Hello World",
+             "jcr:lastModified":1692095216921,
+             "sling:resourceType":"publicweb/components/structure/megamenucolumnitems/teaser",
+             "textIsRich":"true"
+          }
+       },
+       "bgColor":null
+    }
+ }

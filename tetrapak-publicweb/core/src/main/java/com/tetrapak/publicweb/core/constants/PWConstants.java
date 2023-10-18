@@ -535,6 +535,18 @@ public final class PWConstants {
     /** The Constant WCM_COMMAND_ENDPOINT. */
     public static final String WCM_COMMAND_ENDPOINT = "/bin/wcmcommand";
 
+    public static final String ICON_CSS_CLASS_PREFIX="icon-";
+
+    public static final String MEGAMENU_SUBHEADING_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/subheading";
+
+    public static final String MEGAMENU_HEADING_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/heading";
+
+    public static final String MEGAMENU_CONFIGURATION_DIALOG_SELECTED_COLUMNS = "columns";
+
+    public static final String MEGAMENU_CONFIGURATION_RESOURCE_PATH = "contentPath";
+
+    public static final String PUBLICWEB_XF_PATH = "/content/experience-fragments/publicweb";
+
     /**
      * Instantiates a new PW constants.
      */

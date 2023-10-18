@@ -17,6 +17,7 @@ class Footer {
   bindEvents() {
     this.initCache();
     this.cache.toTopLink.on('click', this.goToTop);
+    $('header').removeClass('scrollUp');
     const {$footerLink} = this.cache;
     const $this = this;
     // Footer Social Media Click
@@ -84,9 +85,10 @@ class Footer {
   }
   goToTop(e) {
     e.preventDefault();
+    $('header').removeClass('scrollUp');
     $global.animate({ scrollTop: 0 }, 700);
-    return false;
-  }
+    $('header').removeClass('scrollUp');
+    return false;  }
 
   isExternal(thisHref){
     return isExternal(thisHref);

@@ -1,0 +1,411 @@
+{
+    "logoLink": "http://www.google.com",
+    "logoAlt": "Logo",
+    "logoImagePath": "/content/dam/tetrapak/publicweb/logo/en/tetra-pak-two-liner.png",
+    "marketSelectorDisabled": false,
+    "displayCurrentLanguage": true,
+    "loginLabel": "My Tetra Pak",
+    "loginLink": "http://mytetrapak.com",
+    "searchPage": "/content/tetrapak/publicweb/lang-masters/en/search",
+    "currentMarket": "Sweden",
+    "currentLanguage": "English",
+    "secondaryNavigationLinks": [
+      {
+        "linkText": "Career",
+        "linkUrl": "http://www.google.com"
+      },
+      {
+        "linkText": "Media",
+        "linkUrl": "http://www.google.com"
+      },
+      {
+        "linkText": "Suppliers",
+        "linkUrl": "http://www.google.com"
+      },
+      {
+        "linkText": "Contact Us",
+        "linkUrl": "http://www.google.com"
+      }
+    ],
+    "mainNavigationLinks": [
+      {
+        "linkText": "Solutions",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
+      },
+      {
+        "linkText": "Innovation",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
+      },
+      {
+        "linkText": "Sustainability",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
+      },
+      {
+        "linkText": "About Tetra Pak",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
+      },
+      {
+        "linkText": "One more link 1",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
+      },
+      {
+        "linkText": "One more link 2",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
+      },
+      {
+        "linkText": "One more link 3",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
+      },
+      {
+        "linkText": "One more link 4",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master1.html"
+      },
+      {
+        "linkText": "One more link 5",
+        "linkUrl": "http://www.google.com",
+        "megaMenuPath": "/content/experience-fragments/publicweb/en/solutions-mega-menu/master.html"
+      }
+    ],
+    "marketList": {
+      "marketTitle": "Choose your market",
+      "col1End": 11,
+      "col2Start": 12,
+      "col2End": 22,
+      "col3Start": 23,
+      "col3End": 33,
+      "col4Start": 34,
+      "col4End": 42,
+      "globalMarketPath": "/content/tetrapak/publicweb/gb/en/home.html",
+      "markets": [
+        {
+          "marketName": "TetraPak Global",
+          "languages": [
+            {
+              "languageIndex": 1,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/gb/en/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Morocco, Tunisia, Algeria",
+          "languages": [
+            {
+              "languageIndex": 2,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/mta/en/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 3,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 4,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 5,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 6,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 7,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 8,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 9,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 10,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 11,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 12,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 13,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 14,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 15,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 16,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 17,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 18,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 19,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 20,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 21,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 22,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 23,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 24,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 25,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 26,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 27,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 28,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 29,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 30,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 31,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 32,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 33,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 34,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 35,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 36,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 37,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 38,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 39,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 40,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        },
+        {
+          "marketName": "Canada",
+          "languages": [
+            {
+              "languageIndex": 41,
+              "languageName": "English",
+              "linkPath": "/content/tetrapak/publicweb/ca/en/home.html"
+            },
+            {
+              "languageIndex": 42,
+              "languageName": "French",
+              "linkPath": "/content/tetrapak/publicweb/ca/fr/home.html"
+            }
+          ]
+        }
+      ]
+    }
+}
+  

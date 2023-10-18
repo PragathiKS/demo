@@ -1,0 +1,1 @@
+export const HEADER_MIN_MARGIN = 129;
