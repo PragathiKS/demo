@@ -22,6 +22,7 @@ class AllPayments {
       itemsPerPage: 25,
       activePage: 1,
       skipIndex: 0,
+      defaultSortParams: 'documentDate%20desc',
       maxPages: 3,
       i18nkeysMap: {
         'invoiceStatusCode': 'status',
@@ -291,7 +292,7 @@ class AllPayments {
   getPaymentApiUrl = () => {
     const paymentApi = this.cache.paymentApi.getAttribute('data-list-api'),
       dataRange = this.cache.paymentApi.getAttribute('data-date-range');
-    const { itemsPerPage, skipIndex, activeSortData } = this.cache;
+    const { itemsPerPage, skipIndex, activeSortData, defaultSortParams } = this.cache;
 
     // TODO: Need to remove this. For testing purpose we add this from date time.
     let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${getFilterDateRange(dataRange)}`;
@@ -299,6 +300,9 @@ class AllPayments {
 
     if (activeSortData) {
       apiUrlRequest += `&sort=${activeSortData.sortedByKey} ${activeSortData.sortOrder}`;
+    }
+    else {
+      apiUrlRequest += `&sort=${defaultSortParams}`;
     }
 
     return apiUrlRequest;
