@@ -234,5 +234,9 @@
             <groupId>biz.aQute.bnd</groupId>
             <artifactId>bndlib</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+        </dependency>
     </dependencies>
 </project>

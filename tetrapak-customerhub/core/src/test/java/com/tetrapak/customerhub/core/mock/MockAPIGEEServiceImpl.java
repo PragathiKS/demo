@@ -22,4 +22,8 @@ public class MockAPIGEEServiceImpl implements APIGEEService {
     public String[] getApiMappings() {
         return new String[]{"token-generator:bin/customerhub/token-generator","auth-token:/oauth2/v2/token","orderingcard:orders/history","ordersearch:orders/summary","orderdetails-parts:orders/details/parts","orderdetails-packmat:orders/details/packmat","financialstatement-filter:finance/statements/summary","financialstatement-results:finance/statements","financialstatement-invoice:content/billingdocuments","maintenance-filter:mock/materials/equipments/installations","maintenance-events:orders/service/events","maintenancecard:orders/service/events","documents-filter:mock/materials/equipments/installations","documents:techpub/search","aip-product-details:productinformation/categories/1234/products","aip-learning-history:application/vmware/learningplatform/transcripts"};
     }
+
+    @Override public String getConsumerKey() {
+        return "iyrBxL1yeztoTE3BXmkMOPe7ztl1B80X";
+    }
 }
