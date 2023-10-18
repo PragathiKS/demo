@@ -1,0 +1,13 @@
+<sly data-sly-template.megamenucolumn_template="${@data, flag}">
+    <div data-module="MegaMenuColumn" class="tp-pw-megamenucolumn ${data.bgColor || 'white'}-bg">
+        <sly data-sly-list.item="${data.items}">
+            <div class="tp-pw-megamenucolumn__item--${item.name}">
+                <sly data-sly-resource="${item.name}"></sly>
+            </div>
+        </sly>
+        <sly 
+            data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+            data-sly-test="${wcmmode.edit || wcmmode.preview}">
+        </sly>
+    </div>
+</sly>

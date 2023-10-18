@@ -334,7 +334,16 @@ public class CDNCacheInvalidationServiceImpl implements CDNCacheInvalidationServ
         } else if (StringUtils.isNotBlank(path) && (path.startsWith(PWConstants.TETRA_LAVAL_CONTENT_PATH)
                 || path.startsWith(PWConstants.TETRA_LAVAL_CONTENT_DAM_PATH))) {
             purgeTetraLavalCache(purgeDirs);
+        } else if(StringUtils.isNotBlank(path) && (path.startsWith(config.xfPathForCDNCacheInvalidation()))){
+            purgeXFCache(purgeDirs);
         }
+    }
+
+    private void purgeXFCache(final JsonArray purgeDirs) {
+        final String contentPath = config.domainForCDN() + PWConstants.SLASH;
+        LOGGER.debug("XF content path {}", contentPath);
+        purgeDirs.add(contentPath);
+        directoryToBePurged = contentPath;
     }
 
     /**

@@ -105,7 +105,6 @@
     }
     @media #{$i-pad} {
         position: static;
-        height: calc(100vh - #{$header-height-mobile * 1px});
         .tp-container {
             @include padding($padding-l $padding-md);
         }
@@ -117,9 +116,6 @@
                 width: 100%;
             }
             .input-box {
-                @include border-radius($border-radius);
-                @include padding(10px $padding-md);
-                border: 1px solid $color-boulder;
                 display: flex;
                 justify-content: space-between;
                 input {

@@ -89,4 +89,10 @@ public @interface CDNCacheInvalidationServiceConfig {
             type = AttributeType.STRING)
     String tetraLavalDomainForCDN();
 
+    @AttributeDefinition(
+            name = "XF Path",
+            description = "Experience Fragments Path for CDN Cache Invalidation, For example : /content/experience-fragments/publicweb",
+            type = AttributeType.STRING)
+    String xfPathForCDNCacheInvalidation();
+
 }

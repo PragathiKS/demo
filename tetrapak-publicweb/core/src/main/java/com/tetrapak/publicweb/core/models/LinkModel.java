@@ -45,4 +45,8 @@ public class LinkModel {
     public void setLinkUrl(String linkUrl) {
         this.linkUrl = linkUrl;
     }
+
+    public void setLinkText(String linkText) {
+        this.linkText = linkText;
+    }
 }

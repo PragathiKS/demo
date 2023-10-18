@@ -173,7 +173,15 @@
         "source/templates/components/anchormenu/",
         "source/templates/components/anchorv2/",
         "source/templates/components/searchlanding/",
-        "source/templates/components/accordion/"
+        "source/templates/components/accordion/",
+        "source/templates/components/headerv2/",
+        "source/templates/components/megamenuconfigv2/",
+        "source/templates/components/megamenucolumn/",
+        "source/templates/components/megamenuheading/",
+        "source/templates/components/megamenudescription/",
+        "source/templates/components/megamenunavigationlinks/",
+        "source/templates/components/megamenuteaser/",
+        "source/templates/components/megamenusubheading/"
       ],
       "anlyticscode": [
         "source/templates/components/analyticscode/"

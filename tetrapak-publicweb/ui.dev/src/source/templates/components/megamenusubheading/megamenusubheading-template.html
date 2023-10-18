@@ -1,0 +1,13 @@
+<sly data-sly-template.megamenusubheading_template="${@data, flag}">
+    <div data-module="MegaMenuSubheading" class="tp-pw-megamenusubheading">
+        <sly data-sly-test="${data.subheadingURL}">
+            <a href="${data.subheadingURL}">
+                <h3>${data.subheading}</h3>
+                <i class="icon-Chevron_Right_pw tp_icon"></i>
+            </a>
+        </sly>
+        <sly data-sly-test="${!data.subheadingURL}">
+            <h3>${data.subheading}</h3>
+        </sly>
+    </div>
+</sly>

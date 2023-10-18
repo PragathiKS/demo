@@ -1,0 +1,87 @@
+.tp-pw-megamenusubheading {
+    padding: 0 $padding-xxxl;
+    margin-bottom: $font-xxs;
+    a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-decoration: none;
+        &:hover {
+            color: $color-sky-blue;
+        }
+    }
+    h3 {
+        color: $color-tundora;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: $font-sm;
+        &:hover {
+            color: $color-sky-blue;
+        }
+    }
+    i {
+        color: $color-tundora;
+        margin: 0 $padding-sm;
+        font-size: $font-sm;
+    }
+
+    @media #{$mobile} {
+        padding: $padding-md $padding-md $padding-sm;
+        .tp-pw-accordion-header {
+            display: flex;
+            justify-content: space-between;
+            line-height: $font-sm;
+            h3 {
+                color: $color-tundora;
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: $font-sm;
+            }
+            i.icon {
+                color: $color-tundora;
+                margin: 0 $padding-sm;
+                font-size: $font-sm;
+                &::before {
+                    transform: rotate(-90deg);
+                }
+            }
+            &.collapsed > i.icon {
+                color: $color-tundora;
+                margin: 0 $padding-sm;
+                font-size: $font-sm;
+                &::before {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+}
+
+.tp-pw-megamenusubheading-overviewlink {
+    @media #{$desktop} {
+        display: none;
+    }
+    display: flex;
+    padding: 0 $padding-md $padding-md;
+    a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-decoration: none;
+        font-size: $font-m-sm;
+        font-weight: 500;
+    }
+
+    i.icon {
+        color: $color-congress-blue;
+        margin: 0 $padding-sm;
+        font-size: $font-sm;
+        line-height: $font-l;
+    }
+}
+
+.tp-pw-megamenusubheading-separator {
+    height: 1px;
+    background-color: $color-mercury;
+    margin: 0 $padding-md;
+}

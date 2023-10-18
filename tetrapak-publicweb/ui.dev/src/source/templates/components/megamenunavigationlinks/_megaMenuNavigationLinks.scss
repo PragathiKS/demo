@@ -1,0 +1,51 @@
+.tp-pw-megamenunavigationlinks {
+    padding: $padding-zero $padding-xxxl;
+    @media #{$mobile} {
+        padding: $padding-zero $padding-md;
+    }
+    &__item {
+        margin-bottom: $padding-md;
+        @media #{$mobile} {
+            margin-bottom: $padding-zero;
+            padding: $padding-md $padding-zero $padding-zero;
+            &.nav-link-bottom-border {
+                padding-bottom: $padding-md;
+                border-bottom: 1px solid $color-mercury;
+            }
+        }
+        &:last-of-type {
+            margin-bottom: $padding-zero;
+            @media #{$mobile} {
+                margin-bottom: $padding-md;
+                border-bottom: $padding-zero;
+            }
+        }
+        a {
+            color: $color-congress-blue;
+            cursor: pointer;
+            font-size: $font-baseline;
+            text-decoration: none;
+            font-weight: 500;
+            line-height: $font-l;
+            @media #{$small-desktop} {
+                font-size: $font-sm;
+            }
+
+            &:hover {
+                color: $color-bright-blue;
+            }
+        }
+        p {
+            color: $color-tundora;
+            margin: $padding-zero;
+            font-size: $font-sm;
+            font-weight: 500;
+            line-height: $font-m-md;
+        }
+        i {
+            color: $color-congress-blue;
+            margin-right: $padding-sm;
+            font-size: $font-normal;
+        }
+    }
+}

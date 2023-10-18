@@ -90,6 +90,7 @@ $padding-sm: 8px;
 $padding-md: 16px;
 $padding-eighteen: 18px;
 $padding-twenty: 20px;
+$padding-eighteen: 18px;
 $padding-l: 24px;
 $padding-twenty-eight: 28px;
 $padding-xl: 32px;
@@ -129,7 +130,7 @@ $uppercase : uppercase ;
 $shadow: rgba(0, 0, 0, 0.1);
 
 // mobile sticky header hight
-$header-height-mobile: 62;
+$header-height-mobile: 64;
 
 // mobile sticky section hight
 $section-menu-height-mobile: 56;
@@ -143,3 +144,9 @@ $anchor-menu-indicator-height: 2px;
 $normal-weight:400;
 $medium-weight:500;
 $bold-weight:700;
+
+
+// hex - shadow
+$dialog-shadow-color: #0000001A;
+$submenu-shadow-color: #000000;
+$overlay-color: rgba(0,0,0,0.5);
