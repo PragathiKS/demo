@@ -357,14 +357,8 @@ class MyEquipment {
   getActiveCountryCode = () => {
     const { countryData } = this.cache;
     const activeCountry = countryData.filter(e => e.isChecked);
-    if (activeCountry) {
-      if(activeCountry[0]=== undefined){
-        return activeCountry.countryCode;
-      } else {
-        return activeCountry[0].countryCode;
-      }
-    } else {
-      throw Error('Couldn\'t get active country');
+    if (activeCountry.length > 0) {
+      return activeCountry[0].countryCode;
     }
   //  return 'DE';//activeCountry[0].countryCode;
   }
