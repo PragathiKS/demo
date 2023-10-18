@@ -1,17 +1,15 @@
-/* eslint-disable */
-
 import $ from 'jquery';
 import 'bootstrap';
 import { render } from '../../../scripts/utils/render';
 import auth from '../../../scripts/utils/auth';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
-import {ajaxMethods} from '../../../scripts/utils/constants';
-import {logger} from '../../../scripts/utils/logger';
+import { ajaxMethods } from '../../../scripts/utils/constants';
+import { logger } from '../../../scripts/utils/logger';
 import { trackFormStart, trackFormStepComplete, trackFormComplete, trackFormCancel, trackFormError, trackLinkClick, trackBreadcrumbLinkClick } from './EquipmentDetails.analytics';
 
 export const getUrlQueryParams = (url) => {
   const params = {};
-  url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(_, key, value) {
+  url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (_, key, value) {
     return params[key] = value;
   });
   return params;
@@ -36,27 +34,63 @@ function _renderEquipInfoCardWithData() {
         },
         showLoader: true
       }), ajaxWrapper.getXhrObj({
-      url: this.cache.statusApi,
-      method: ajaxMethods.GET,
-      cache: true,
-      dataType: 'json',
-      contentType: 'application/json',
-      beforeSend(jqXHR) {
-        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      },
-      showLoader: true
-    })).then((res1, res2) => {
-      this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName, selected: countryCode === this.cache.data.countryCode }));
-      this.cache.equipmentStatuses = res2[0].data.map(({ equipmentStatus, equipmentStatusDesc }) => ({ key: equipmentStatus, desc: equipmentStatusDesc, selected: equipmentStatus === this.cache.data.equipmentStatus }));
-      this.cache.$spinner.addClass('d-none');
-      this.cache.$content.removeClass('d-none');
-      this.renderEquipInfoCard({update: true});
-    }).fail(() => {
-      this.cache.$content.removeClass('d-none');
-      this.cache.$spinner.addClass('d-none');
-    });
+        url: this.cache.statusApi,
+        method: ajaxMethods.GET,
+        cache: true,
+        dataType: 'json',
+        contentType: 'application/json',
+        beforeSend(jqXHR) {
+          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        },
+        showLoader: true
+      })).then((res1, res2) => {
+        this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName, selected: countryCode === this.cache.data.countryCode }));
+        this.cache.equipmentStatuses = res2[0].data.map(({ equipmentStatus, equipmentStatusDesc }) => ({ key: equipmentStatus, desc: equipmentStatusDesc, selected: equipmentStatus === this.cache.data.equipmentStatus }));
+        this.cache.$spinner.addClass('d-none');
+        this.cache.$content.removeClass('d-none');
+        this.renderEquipInfoCard({ update: true });
+      }).fail(() => {
+        this.cache.$content.removeClass('d-none');
+        this.cache.$spinner.addClass('d-none');
+      });
   });
+}
+
+function _getTechPubListURL(baseURL, equipData) {
+  let finalURL = baseURL;
+
+  Object.keys(equipData).forEach((key) => {
+    const value = equipData[key];
+
+    switch (key) {
+      case 'countryCode': {
+        finalURL += `?country=${value}`;
+        break;
+      }
+      case 'lineCode': {
+        finalURL += `&line=${value}`;
+        break;
+      }
+      case 'customerNumber': {
+        finalURL += `&customer=${value}`;
+        break;
+      }
+      case 'material': {
+        finalURL += `&material=${value}`;
+        break;
+      }
+      case 'manufacturerSerialNumber': {
+        finalURL += `&manufacturerSerialNumber=${value}`;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  });
+
+  return finalURL;
 }
 
 /**
@@ -82,7 +116,7 @@ function _renderEquipmentDetails() {
         cancellable: true
       },
       beforeRender(data) {
-        const { i18nKeys } = $this.cache;
+        const { i18nKeys, techPubListURL } = $this.cache;
 
         if (!data) {
           this.data = data = {
@@ -92,8 +126,11 @@ function _renderEquipmentDetails() {
           };
           data.isError = true;
         } else {
-          data.equipData = data.data[0];
+          const equipData = data.data[0];
+
+          data.equipData = equipData;
           data.i18nKeys = i18nKeys;
+          data.techPubListURL = _getTechPubListURL(techPubListURL, equipData);
           $this.cache.data = { id, ...data.equipData };
         }
       }
@@ -102,11 +139,9 @@ function _renderEquipmentDetails() {
       $this.cache.$spinner.addClass('d-none');
     });
   });
-  
-  console.log($('.js-equipment-details__info-links'));
 }
 
-function  _renderEquipInfoCard(view) {
+function _renderEquipInfoCard(view) {
   const $this = this;
   const { countryData, equipmentStatuses, data, i18nKeys } = this.cache;
 
@@ -129,8 +164,7 @@ function  _renderEquipInfoCard(view) {
   }
 }
 
-function  _renderEquipUpdateModal() {
-  console.log(`_renderEquipUpdateModal`)
+function _renderEquipUpdateModal() {
   const { $modal, i18nKeys } = this.cache;
 
   render.fn({
@@ -151,7 +185,7 @@ function  _renderEquipUpdateModal() {
 // clear all text inputs when country dropdown value changes
 function _clearFieldsOnCountryChange($form) {
   $form.find('input:not([id="equipmentTypeDesc"]), textarea').val('');
-  if($form.find('#equipmentStatus option[value="EXPO"]').length > 0){
+  if ($form.find('#equipmentStatus option[value="EXPO"]').length > 0) {
     $form.find('select[id="equipmentStatus"]').val('EXPO');
   }
 }
@@ -174,9 +208,9 @@ function _bindFormChangeEvents() {
       }
     });
 
-    if(['INPUT', 'TEXTAREA'].includes(item.nodeName)) {
+    if (['INPUT', 'TEXTAREA'].includes(item.nodeName)) {
       $(item).on('blur', () => {
-        if($(item).val()) {
+        if ($(item).val()) {
           const sanitized = item.value.replace(/<\/?script>|[<>]/gm, '');
           $(item).val(sanitized);
           this.removeErrorMsg(item);
@@ -199,6 +233,7 @@ class EquipmentDetails {
     this.cache.statusApi = this.root.data('status-api');
     this.cache.submitApi = this.root.data('submit-api');
     this.cache.equipmetListURL = this.root.data('equipment-list-url');
+    this.cache.techPubListURL = this.root.data('techpub-list-url');
     this.cache.$contentWrapper = this.root.find('.tp-equipment-details__content-wrapper');
     this.cache.$content = this.root.find('.js-equipment-details__content');
     this.cache.$spinner = this.root.find('.tp-spinner');
@@ -232,7 +267,7 @@ class EquipmentDetails {
 
     this.root.on('click', '.js-equipment-details__cancel', () => {
       this.trackFormCancel(this.cache.formName, 'Step 1', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
-      this.renderEquipInfoCard({view: true});
+      this.renderEquipInfoCard({ view: true });
     });
 
     this.root.on('click', '.tp-equipment-details__back-btn', () => {
@@ -291,7 +326,7 @@ class EquipmentDetails {
       this.renderEquipUpdateModal();
     });
 
-    this.root.on('click', '.js-equipment-details__req-make-update',  () => {
+    this.root.on('click', '.js-equipment-details__req-make-update', () => {
       this.cache.$spinner.removeClass('d-none');
       const submitApi = this.cache.submitApi;
       this.showDisabledButton();
@@ -311,7 +346,7 @@ class EquipmentDetails {
             showLoader: true
           }).done(res => {
             this.cache.$spinner.addClass('d-none');
-            if(![200, 201].includes(res.status)) {
+            if (![200, 201].includes(res.status)) {
               $('.js-equipment-details__error').removeClass('d-none');
               return;
             }
@@ -321,7 +356,7 @@ class EquipmentDetails {
             const trackingFormData = this.getFormFieldsArr(this.cache.formFields);
             this.trackFormComplete($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`, trackingFormData);
             this.removeDisabledButton();
-            this.renderEquipInfoCard({confirmed: true});
+            this.renderEquipInfoCard({ confirmed: true });
           }).fail(() => {
             this.removeDisabledButton();
             this.cache.$content.removeClass('d-none');
@@ -330,7 +365,7 @@ class EquipmentDetails {
       });
     });
 
-    this.root.on('click', '.js-close-btn, .js-equipment-details__conf-cancel',  () => {
+    this.root.on('click', '.js-close-btn, .js-equipment-details__conf-cancel', () => {
       const $heading = $('.js-update-modal').find('.tp-equipment-details__modal-header').find('h2').text().trim();
       this.trackFormCancel($heading, 'Step 2', `${this.cache.data.equipmentName} - ${this.cache.data.serialNumber}`);
       this.cache.$modal.modal('hide');
@@ -348,8 +383,8 @@ class EquipmentDetails {
     $('input, textarea, select', $form).each((_, item) => {
       const closestEle = $(item).closest('.js-equipment-details__form-element');
       const fieldLabel = $(closestEle).find('.tp-equipment-details__info-cell-1');
-      const formfield = fieldLabel.length > 0 ? $(fieldLabel).text().trim(): $(closestEle).find('label').text().trim();
-      const fieldValue = $(item).is('select') ? $(item).find('option:selected').text():$(item).val();
+      const formfield = fieldLabel.length > 0 ? $(fieldLabel).text().trim() : $(closestEle).find('label').text().trim();
+      const fieldValue = $(item).is('select') ? $(item).find('option:selected').text() : $(item).val();
       $formFields.push({
         formFieldName: formfield,
         formFieldValue: fieldValue
@@ -362,7 +397,7 @@ class EquipmentDetails {
   trackFormStart() {
     const $this = this;
     const { data } = $this.cache;
-    setTimeout(function() {
+    setTimeout(function () {
       $this.cache.formName = $('.js-equipment-details__info-card').find('h3').text().trim();
       trackFormStart($this.cache.formName, 'Step 1', `${data.equipmentName} - ${data.serialNumber}`);
     }, 700);
@@ -388,13 +423,13 @@ class EquipmentDetails {
     trackFormError(formName, step, equipment, formErrors);
   }
 
-  showDisabledButton(){
+  showDisabledButton() {
     const buttonName = this.root.find('.js-equipment-details__req-make-update');
-    buttonName.attr('disabled','disabled');
+    buttonName.attr('disabled', 'disabled');
     buttonName.append('<i class="icon icon-Loader"></i>');
   }
 
-  removeDisabledButton(){
+  removeDisabledButton() {
     this.root.find('.js-equipment-details__req-make-update').removeAttr('disabled');
     this.root.find('.js-equipment-details__req-make-update i').remove();
   }
@@ -414,7 +449,7 @@ class EquipmentDetails {
     $(el).closest('.js-equipment-details__form-element').removeClass('tp-equipment-details__form-element--error');
   }
 
-  renderEquipInfoCardWithData(){
+  renderEquipInfoCardWithData() {
     return _renderEquipInfoCardWithData.apply(this, arguments);
   }
 

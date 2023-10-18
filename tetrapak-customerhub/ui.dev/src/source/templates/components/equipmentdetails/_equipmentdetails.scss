@@ -33,11 +33,11 @@
         border-radius: $border-radius;
         height: 100%;
         flex-direction: column;
-        margin: 0 $padding-md 0 $padding-md;
+        margin: 0 $padding-md;
 
         @media #{$mobile} {
             @include padding($padding-md);
-            margin: 0 $padding-md 0 $padding-md;
+            margin: 0 $padding-md;
         }
 
         h3 {
@@ -53,7 +53,7 @@
 
         @media #{$mobile} {
             @include margin-bottom($margin-l);
-            padding: 0 $padding-md 0 $padding-md;
+            padding: 0 $padding-md;
         }
 
         &__item {
@@ -78,7 +78,7 @@
                 align-items: center;
                 a {
                     color: $color-congress-blue;
-                    margin-right: $padding-xs;
+                    margin-right: $margin-sm;
                     font-weight: 500;
                 }
                 i {
