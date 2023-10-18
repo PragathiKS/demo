@@ -88,6 +88,7 @@ $padding-xxs: 2px;
 $padding-xs: 4px;
 $padding-sm: 8px;
 $padding-md: 16px;
+$padding-eighteen: 18px;
 $padding-twenty: 20px;
 $padding-eighteen: 18px;
 $padding-l: 24px;
@@ -137,13 +138,13 @@ $section-menu-height-mobile: 56;
 // sticky-view-height
 $sticky-view-height: $header-height-mobile + $section-menu-height-mobile;
 
+// achor menu indicator
+$anchor-menu-indicator-height: 2px;
 // font weights
 $normal-weight:400;
 $medium-weight:500;
 $bold-weight:700;
 
-// achor menu indicator
-$anchor-menu-indicator-height: 2px;
 
 // hex - shadow
 $dialog-shadow-color: #0000001A;

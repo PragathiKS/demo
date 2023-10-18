@@ -59,6 +59,16 @@ export const isDesktopMode = () => !isMobileOrTabletMode();
 export const isTabletOrDesktopMode = () => (isTabletMode() || isDesktopMode());
 
 /**
+ * Checks if current screen mode is mobile
+ */
+export const isMobileScreenMode = () => ($(window).outerWidth() < 1024);
+
+/**
+ * Checks if current screen mode is desktop
+ */
+export const isDesktopScreenMode = () => !isMobileScreenMode();
+
+/**
  * Checks if author mode is enabled
  */
 export const isAuthorMode = () => {
@@ -80,10 +90,18 @@ export const isCallable = (param) => (typeof param === 'function');
  */
 export const scrollToElement = (callback, selector = document.body, duration = 500) => {
   let executed = false;
-  let stickyViewHeight = $('.tp-pw-header__container').outerHeight();
-
+  let stickyViewHeight = 0;
+  if($('tp-pw-header__container').length > 0) {
+    stickyViewHeight = $('.tp-pw-header__container').outerHeight();
+  }
+  if($('.js-tp-pw-headerv2').length > 0) {
+    stickyViewHeight = stickyViewHeight + $('.js-tp-pw-headerv2').outerHeight();
+  }
   if($('.sticky-section-menu').length > 0){
     stickyViewHeight = stickyViewHeight + $('.sticky-section-menu .js-pw-navigation').outerHeight();
+  }
+  if($('.sticky-anchor-menu').length > 0){
+    stickyViewHeight = stickyViewHeight + $('.sticky-anchor-menu').outerHeight();
   }
 
   $global.animate(

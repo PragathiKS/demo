@@ -1,0 +1,44 @@
+{
+    "anchorDetailList": [
+      {
+        "anchorId":"Title01",
+        "anchorTitle": "Introduction"
+      },
+       {
+        "anchorId":"home02",
+        "anchorTitle": "Features"
+      },
+      {
+        "anchorId":"Title03",
+        "anchorTitle": "Options"
+      },
+      {
+        "anchorId":"home04",
+        "anchorTitle": "Package Type"
+      },
+      {
+        "anchorId":"home05",
+        "anchorTitle": "Cases"
+      },
+      {
+        "anchorId":"anchor06",
+        "anchorTitle": "Anchor 6"
+      },
+      {
+        "anchorId":"anchor07",
+        "anchorTitle": "Anchor 7"
+      },
+      {
+        "anchorId":"anchor08",
+        "anchorTitle": "Anchor 8"
+      },
+      {
+        "anchorId":"anchor09",
+        "anchorTitle": "Anchor 9"
+      },
+      {
+        "anchorId":"anchor10",
+        "anchorTitle": "Anchor 10"
+      }
+    ] 
+}

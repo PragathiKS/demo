@@ -559,6 +559,11 @@
 .pw-megamenu .col-side-links .list-side-links li {
     color: $color-sky-blue;
 }
+a {
+  &:hover {
+    color: $color-sky-blue;
+  }
+}
 .pw-megamenu .col-side-links .icon-Circle_Arrow_Right_pw,
 .pw-megamenu .col-side-links .icon-Arrow_Right_pw {
     display: none;
