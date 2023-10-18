@@ -390,14 +390,14 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			table.addCell(totAmtInclVal);
 		}
 		
-		if (StringUtils.isNotBlank(paymentDetails.getWithholdingTaxAmmount())) {
+		if (StringUtils.isNotBlank(paymentDetails.getWithholdingTaxAmount())) {
 			String withHoldingTaxes = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
 					paymentDetailsModel.getWithHoldingTaxes(), language);
 			PdfPCell withHoldingTaxesKey = new PdfPCell(new Phrase(withHoldingTaxes, keyFont));
 			withHoldingTaxesKey.setBorder(Rectangle.NO_BORDER);
 			table.addCell(withHoldingTaxesKey);
 			PdfPCell withHoldingTaxesVal = new PdfPCell(
-					new Phrase(paymentDetails.getWithholdingTaxAmmount()+" "+paymentDetails.getTransactionCurrency(), valueFont));
+					new Phrase(paymentDetails.getWithholdingTaxAmount()+" "+paymentDetails.getTransactionCurrency(), valueFont));
 			withHoldingTaxesVal.setBorder(Rectangle.NO_BORDER);
 			table.addCell(withHoldingTaxesVal);
 		}

@@ -12,7 +12,7 @@ public class PaymentDetails {
 	
 	private String withholdingTaxCode;
 	
-	private String withholdingTaxAmmount;
+	private String withholdingTaxAmount;
 	
 	private String postingDate;
 	
@@ -74,12 +74,12 @@ public class PaymentDetails {
 		this.withholdingTaxCode = withholdingTaxCode;
 	}
 
-	public String getWithholdingTaxAmmount() {
-		return withholdingTaxAmmount;
+	public String getWithholdingTaxAmount() {
+		return withholdingTaxAmount;
 	}
 
-	public void setWithholdingTaxAmmount(String withholdingTaxAmmount) {
-		this.withholdingTaxAmmount = withholdingTaxAmmount;
+	public void setWithholdingTaxAmount(String withholdingTaxAmount) {
+		this.withholdingTaxAmount = withholdingTaxAmount;
 	}
 
 	public String getPostingDate() {
