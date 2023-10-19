@@ -1,11 +1,145 @@
 import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
-import {ajaxWrapper} from '../../../scripts/utils/ajax';
-import {ajaxMethods} from '../../../scripts/utils/constants';
-import {logger} from '../../../scripts/utils/logger';
-import {render} from '../../../scripts/utils/render';
-import {getI18n} from '../../../scripts/common/common';
+import { ajaxWrapper } from '../../../scripts/utils/ajax';
+import { ajaxMethods } from '../../../scripts/utils/constants';
+import { logger } from '../../../scripts/utils/logger';
+import { render } from '../../../scripts/utils/render';
+import { getI18n } from '../../../scripts/common/common';
 import { DOCUMENT_TYPES } from './constants';
+
+
+function _getURLParams() {
+  let queryString = window.location.search;
+
+  queryString = queryString.slice(1);
+
+  const queryParams = queryString.split('&');
+  const params = {};
+
+  for (let i = 0; i < queryParams.length; i++) {
+    const pair = queryParams[i].split('=');
+    const key = decodeURIComponent(pair[0]);
+    const value = decodeURIComponent(pair[1]);
+    params[key] = value;
+  }
+
+  return params;
+}
+
+function _mapKeyToURL(stepKey, finalData) {
+  const $this = this;
+  const params = _getURLParams();
+
+  switch (stepKey) {
+    case 'countries': {
+      const value = params['country'];
+      if (value) {
+        const match = finalData.find(({ countryCode }) => countryCode === value);
+        if (match) {
+          $this.navigateToStep(stepKey, 'country', match['countryCode'], match['countryName']);
+        }
+      }
+      break;
+    }
+    case 'country': {
+      const value = params['customer'];
+      if (value) {
+        const match = finalData.find(({ customerNumber }) => customerNumber === value);
+        if (match) {
+          $this.navigateToStep(stepKey, 'customer', match['customerNumber'], match['customer']);
+        }
+      }
+      break;
+    }
+    case 'customer': {
+      const value = params['line'];
+      if (value) {
+        const match = finalData.find(({ lineCode }) => lineCode === value);
+        if (match) {
+          $this.navigateToStep(stepKey, 'line', match['lineCode'], match['lineDescription']);
+        }
+      }
+      break;
+    }
+    case 'line': {
+      const manufacturerSerialNumberParam = params['manufacturerSerialNumber'];
+      const materialParam = params['material'];
+
+      if (manufacturerSerialNumberParam && materialParam) {
+        const match = finalData.find(({ manufacturerSerialNumber, material }) =>
+          manufacturerSerialNumber === manufacturerSerialNumberParam &&
+          material === materialParam
+        );
+        if (match) {
+          $this.navigateToStep(stepKey, 'lineFolders', match['manufacturerSerialNumber'], match['lineName']);
+        }
+      }
+
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+}
+
+function _addQueryParam(paramName, paramValue) {
+  const queryString = window.location.search.slice(1);
+
+  const params = {};
+  queryString.split('&').forEach(function (param) {
+    var keyValue = param.split('=');
+    var key = decodeURIComponent(keyValue[0]);
+    var value = decodeURIComponent(keyValue[1]);
+    params[key] = value;
+  });
+
+  params[paramName] = paramValue;
+
+  const newQueryString = Object.keys(params)
+    .map(function (key) {
+      if (!!key && !!params[key] && params[key] !== 'undefined') {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+      }
+      return false;
+    })
+    .filter(el => !!el)
+    .join('&');
+
+  const newUrl = window.location.pathname + '?' + newQueryString;
+
+  window.history.replaceState({}, document.title, newUrl);
+}
+
+function _removeQueryParams(paramNames) {
+  const queryString = window.location.search.slice(1);
+  const params = {};
+
+  queryString.split('&').forEach(function (param) {
+    var keyValue = param.split('=');
+    var key = decodeURIComponent(keyValue[0]);
+    var value = decodeURIComponent(keyValue[1]);
+    params[key] = value;
+  });
+
+  paramNames.forEach((paramName) => {
+    delete params[paramName];
+  });
+
+  const newQueryString = Object.keys(params)
+    .map(function (key) {
+      if (!!key && !!params[key] && params[key] !== 'undefined') {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+      }
+      return false;
+    })
+    .filter(el => !!el)
+    .join('&');
+
+  const newUrl = window.location.pathname + '?' + newQueryString;
+
+  window.history.replaceState({}, document.title, newUrl);
+}
 
 function _getFolderData(stepKey, options) {
   const $this = this;
@@ -47,18 +181,18 @@ function _getFolderData(stepKey, options) {
     case 'lineFolders': {
       const value = `${lineFolders.value}`;
       const valueParts = value.split('/');
-      
-      serialNumber = useOriginalSerialNumber ? 
+
+      serialNumber = useOriginalSerialNumber ?
         value : `${valueParts[0]}%2F${valueParts[1]}`;
       apiUrl = `${techPubApi}/${serialNumber}`;
-      
+
       break;
     }
     case 'folderDetails': {
       const value = `${folderDetails.value}`;
       const valueParts = value.split(',')[1].split('/');
 
-      serialNumber = useOriginalSerialNumber ? 
+      serialNumber = useOriginalSerialNumber ?
         value : `${valueParts[0]}%2F${valueParts[1]}`;
       apiUrl = `${techPubApi}/${serialNumber}`;
 
@@ -125,7 +259,7 @@ function _getFolderData(stepKey, options) {
         if (stepKey === 'customer') {
           let plantDocsLine;
           finalData = res.data.filter((docLine) => {
-            if (docLine.lineDescription === 'PLANT DOCUMENTATION') {           
+            if (docLine.lineDescription === 'PLANT DOCUMENTATION') {
               plantDocsLine = ({
                 ...docLine,
                 lineDescription: this.cache.plantDocsLabel
@@ -139,7 +273,7 @@ function _getFolderData(stepKey, options) {
           }
         }
 
-        if(stepKey === 'line') {
+        if (stepKey === 'line') {
           finalData = res.data
             .filter(data => data.serialNumber !== '')
             .map(docLine => {
@@ -152,17 +286,17 @@ function _getFolderData(stepKey, options) {
               return docLine;
             });
         }
-        
-        if(stepKey === 'lineFolders') {
+
+        if (stepKey === 'lineFolders') {
           const docData = [];
           const docObj = {};
 
           // Filter Data by Document Type
-          res.data.forEach(function(data) {
+          res.data.forEach(function (data) {
             docObj[data.typeCode] = `${data.typeCode} - ${data.type}`;
           });
 
-          Object.keys(docObj).forEach(function(docType) {
+          Object.keys(docObj).forEach(function (docType) {
             const docObject = {
               docType,
               'docTitle': docObj[docType],
@@ -171,10 +305,10 @@ function _getFolderData(stepKey, options) {
             docData.push(docObject);
           });
 
-          finalData = docData.filter(function(data){
+          finalData = docData.filter(function (data) {
             const isValidDocType = DOCUMENT_TYPES.includes(data.docType);
 
-            if(isValidDocType) {
+            if (isValidDocType) {
               return data;
             }
           });
@@ -194,6 +328,7 @@ function _getFolderData(stepKey, options) {
         $this.renderFolderData(stepKey, finalData, srNo, docType);
         $this.renderBreadcrumbs(stepKey);
         $this.setApiData(stepKey, finalData);
+        $this.mapKeyToURL(stepKey, finalData);
       }).fail((e) => {
         logger.error(e);
       });
@@ -338,9 +473,9 @@ class TechnicalPublications {
       Contrary to other lineNames, Plant Documentation doesn't require additional formatting for serial number, 
       hence we have to filter it out. 
     */
-    this.cache.plantDocsLabel = this.cache.i18nKeys.plantDocumentations ? 
+    this.cache.plantDocsLabel = this.cache.i18nKeys.plantDocumentations ?
       getI18n(this.cache.i18nKeys.plantDocumentations) : 'Plant Documents';
-    this.cache.plantDocLabel = this.cache.i18nKeys.plantDocumentation ? 
+    this.cache.plantDocLabel = this.cache.i18nKeys.plantDocumentation ?
       getI18n(this.cache.i18nKeys.plantDocumentation) : 'Plant Documentation';
 
     // save state of API data responses for backwards breadcrumb navigation
@@ -391,64 +526,117 @@ class TechnicalPublications {
     this.cache.techPubApiResults = value;
   }
 
+  navigateToStep(currentKey, nextKey, value, text, label) {
+    switch (currentKey) {
+      case 'countries':
+      case 'country':
+      case 'customer':
+      case 'line': {
+        this.setFolderNavData(nextKey, value, text);
+        this.setTechPubApiResults(null);
+        break;
+      }
+      case 'lineFolders':
+      case 'folderDetails': {
+        this.setFolderNavData(nextKey, value, text);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+
+    const useOriginalSerialNumber = label === this.cache.plantDocLabel || label === this.cache.plantDocsLabel;
+
+    this.getFolderData(nextKey, {
+      isBreadcrumbNav: false,
+      useOriginalSerialNumber
+    });
+  }
+
   bindEvents() {
-    this.root.on('click', '.js-tech-pub__folder-btn',  (e) => {
-      const $this = this;
+    this.root.on('click', '.js-tech-pub__folder-btn', (e) => {
       const $btn = $(e.currentTarget);
       const currentStep = $btn.data('current-step');
       const nextFolder = $btn.data('next-folder');
       const label = $btn.text().trim();
-      const useOriginalSerialNumber = 
-        label === this.cache.plantDocsLabel || 
-        label === this.cache.plantDocLabel;
 
-      if (currentStep === 'countries') {
-        const countryId = $btn.data('country-id');
-        const countryName = $btn.data('country-name');
-        $this.setFolderNavData(nextFolder, countryId, countryName);
-        $this.setTechPubApiResults(null);
+      let value;
+      let text;
+
+      switch (currentStep) {
+        case 'countries': {
+          value = $btn.data('country-id');
+          text = $btn.data('country-name');
+          _removeQueryParams([
+            'country',
+            'customer',
+            'line',
+            'manufacturerSerialNumber',
+            'material'
+          ]);
+          _addQueryParam('country', value);
+          break;
+        }
+        case 'country': {
+          value = $btn.data('customer-number');
+          text = $btn.data('customer');
+          _removeQueryParams([
+            'customer',
+            'line',
+            'manufacturerSerialNumber',
+            'material'
+          ]);
+          _addQueryParam('customer', value);
+          break;
+        }
+        case 'customer': {
+          value = $btn.data('line-code');
+          text = $btn.data('line-description');
+          _removeQueryParams([
+            'line',
+            'manufacturerSerialNumber',
+            'material'
+          ]);
+          _addQueryParam('line', value);
+          break;
+        }
+        case 'line': {
+          value = $btn.data('line-code');
+          text = $btn.data('line-description');
+          _removeQueryParams([
+            'manufacturerSerialNumber',
+            'material'
+          ]);
+          break;
+        }
+        case 'lineFolders': {
+          value = $btn.data('folder-code');
+          text = $btn.data('folder-description');
+          _removeQueryParams([
+            'manufacturerSerialNumber',
+            'material'
+          ]);
+          break;
+        }
+        case 'folderDetails': {
+          value = $btn.data('serial-code');
+          text = $btn.data('folder-description');
+          _removeQueryParams([
+            'manufacturerSerialNumber',
+            'material'
+          ]);
+          break;
+        }
+        default: {
+          break;
+        }
       }
 
-      if (currentStep === 'country') {
-        const customerNumber = $btn.data('customer-number');
-        const customer = $btn.data('customer');
-        $this.setFolderNavData(nextFolder, customerNumber, customer);
-        $this.setTechPubApiResults(null);
-      }
-
-      if (currentStep === 'customer') {
-        const lineCode = $btn.data('line-code');
-        const lineDescription = $btn.data('line-description');
-        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
-        $this.setTechPubApiResults(null);
-      }
-
-      if (currentStep === 'line') {
-        const lineCode = $btn.data('line-code');
-        const lineDescription = $btn.data('line-description');
-        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
-        $this.setTechPubApiResults(null);
-      }
-
-      if (currentStep === 'lineFolders') {
-        const lineCode = $btn.data('folder-code');
-        const lineDescription = $btn.data('folder-description');
-        $this.setFolderNavData(nextFolder, lineCode, lineDescription);
-      }
-
-      if (currentStep === 'folderDetails') {
-        const serialCode = $btn.data('serial-code');
-        const folderDescription = $btn.data('folder-description');
-        $this.setFolderNavData(nextFolder, serialCode, folderDescription);
-      }
-
-      $this.getFolderData(nextFolder, {
-        isBreadcrumbNav: false,
-        useOriginalSerialNumber
-      });
+      this.navigateToStep(currentStep, nextFolder, value, text, label);
     });
 
-    this.root.on('click', '.js-tech-pub__bc-btn',  (e) => {
+    this.root.on('click', '.js-tech-pub__bc-btn', (e) => {
       const $this = this;
       const $btn = $(e.currentTarget);
       const targetStep = $btn.data('step');
@@ -476,7 +664,7 @@ class TechnicalPublications {
         }
       });
 
-      $this.getFolderData(targetStep, {isBreadcrumbNav: true});
+      $this.getFolderData(targetStep, { isBreadcrumbNav: true });
     });
   }
 
@@ -504,6 +692,10 @@ class TechnicalPublications {
     return _showSpinner.apply(this, arguments);
   }
 
+  mapKeyToURL() {
+    return _mapKeyToURL.apply(this, arguments);
+  }
+
   extractRKDetails(data) {
     return data.map((doc) => {
       const { name, optionsAndKits } = doc;
@@ -527,7 +719,7 @@ class TechnicalPublications {
   init() {
     this.initCache();
     this.bindEvents();
-    this.getFolderData('countries', {isBreadcrumbNav: false});
+    this.getFolderData('countries', { isBreadcrumbNav: false });
   }
 }
 

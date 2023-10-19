@@ -438,6 +438,12 @@ public final class CustomerHubConstants {
     /** The Constant THANK_YOU_LABEL . */
     public static final String EQUIPMENT_STATUS_UPDATE_DESCRIPTION = "equipmentDetails-statusUpdateDescription";
 
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_DETAIL_TECH_PUB_CARD_HEADING = "equipmentDetails-techpubcardheading";
+    
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_DETAIL_TECH_PUB_CARD_LINK_LABEL = "equipmentDetails-techpubcardlinklabel";
+
     /** The Constant NEW_EQUIPMENT_TITLE. */
     public static final String NEW_EQUIPMENT_TITLE = "title";
 
