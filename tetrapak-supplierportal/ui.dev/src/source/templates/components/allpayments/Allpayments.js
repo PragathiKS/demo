@@ -16,8 +16,8 @@ class AllPayments {
 
   initCache() {
     const config = {
-      showFields: ['invoiceStatusCode', 'documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
-      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplier'],
+      showFields: ['invoiceStatusCode', 'documentDate', 'planningDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
+      sortableKeys: ['documentDate', 'planningDate', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplier'],
       currentPageNumber: 1,
       itemsPerPage: 25,
       activePage: 1,
@@ -27,7 +27,7 @@ class AllPayments {
       i18nkeysMap: {
         'invoiceStatusCode': 'status',
         'documentDate': 'invoiceDate',
-        'dueCalculationBaseDate': 'dueDate',
+        'planningDate': 'dueDate',
         'companyName': 'company',
         'companyCode': 'companyCode',
         'companyCountry': 'country',
