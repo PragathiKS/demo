@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 class AllPaymentsTag {
   constructor (cache, root) {
     this.cache = cache;

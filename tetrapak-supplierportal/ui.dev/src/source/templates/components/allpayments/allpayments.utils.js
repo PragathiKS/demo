@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 /**
  * Get Default Date Range as 90 days
  */

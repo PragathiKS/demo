@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 import InputMask from 'inputmask';
 import { DEFAULT_DATE_INPUT_MASK, DEFAULT_DATE_INPUT_FORMAT } from '../../../scripts/utils/constants';
 import {_isValidDate, _isDateLessThanOrEqualToToday, _isToDateGreaterThanFromDate} from './allpayments.utils';
