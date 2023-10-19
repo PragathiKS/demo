@@ -194,6 +194,12 @@ public class EquipmentDetailsModel {
     private String equipmentCategory;
 
     /**
+     * The equipment category.
+     */
+    @Inject
+    private String mappedTechnicalPublicationUrl;
+
+    /**
      * The eofs confirmation date.
      */
     @Inject
@@ -284,6 +290,18 @@ public class EquipmentDetailsModel {
      */
     @Inject
     private String statusUpdateDescription;
+
+    /**
+     * The Technical Publication Card Heading.
+     */
+    @Inject
+    private String techPubCardHeading;
+    
+    /**
+     * The Technical Publication Card Link Label.
+     */
+    @Inject
+    private String techPubCardLinkLabel;
 
     /**
      * The sling settings service.
@@ -712,13 +730,28 @@ public class EquipmentDetailsModel {
 	public String getMappedMyEquipmentUrl() {
 		return LinkUtil.getValidLink(resource, myEqipmentPath);
 	}
+
+    /**
+	 * @return the techPubCardHeading
+	 */
+	public String getTechPubCardHeading() {
+		return techPubCardHeading;
+	}
+
+	/**
+	 * @return the techPubCardLinkLabel
+	 */
+	public String getTechPubCardLinkLabel() {
+		return techPubCardLinkLabel;
+	}
 	
 	/**
 	 * Get valid url to Technical Publication
 	 * @return mapped url.
 	 */
 	public String getMappedTechnicalPublicationUrl() {
-		return LinkUtil.getValidLink(resource, techPubPath);
+        mappedTechnicalPublicationUrl = LinkUtil.getValidLink(resource, techPubPath);
+		return mappedTechnicalPublicationUrl;
 	}
 
     /**
@@ -763,6 +796,8 @@ public class EquipmentDetailsModel {
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_MODAL_CONFIRM_TEXT, getModalConfirmText());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STATUS_UPDATE_HEADING, getStatusUpdateHeading());
         i18KeyMap.put(CustomerHubConstants.EQUIPMENT_STATUS_UPDATE_DESCRIPTION, getStatusUpdateDescription());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_DETAIL_TECH_PUB_CARD_HEADING, getTechPubCardHeading());
+        i18KeyMap.put(CustomerHubConstants.EQUIPMENT_DETAIL_TECH_PUB_CARD_LINK_LABEL, getTechPubCardLinkLabel());
 
         if (slingSettingsService.getRunModes().contains("publish")) {
             isPublishEnvironment = Boolean.TRUE;
