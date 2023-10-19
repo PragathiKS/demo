@@ -49,6 +49,8 @@ public class PaymentDetails {
 	private String paymentMethod;
 	
 	private int[] purchasingDocuments;
+	
+	private String planningDate;
 
 	public String getCompanyCode() {
 		return companyCode;
@@ -225,4 +227,13 @@ public class PaymentDetails {
 	public void setPurchasingDocuments(int[] purchasingDocuments) {
 		this.purchasingDocuments = purchasingDocuments;
 	}
+
+	public String getPlanningDate() {
+		return planningDate;
+	}
+
+	public void setPlanningDate(String planningDate) {
+		this.planningDate = planningDate;
+	}
+	
 }
