@@ -136,11 +136,11 @@
     </div>
     {{/if_noteq}}
     {{else}}
-    {{#if_noteq paymentData.dueCalculationBaseDate ""}}
-    {{#if_noteq paymentData.dueCalculationBaseDate null}}
+    {{#if_noteq paymentData.planningDate ""}}
+    {{#if_noteq paymentData.planningDate null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.dueDate}}</div>
-        <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.dueCalculationBaseDate}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.planningDate}}</div>
     </div>
     {{/if_noteq}}
     {{/if_noteq}}
