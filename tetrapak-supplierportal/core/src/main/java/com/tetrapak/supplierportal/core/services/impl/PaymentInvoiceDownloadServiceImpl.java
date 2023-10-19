@@ -438,13 +438,13 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			paidDateVal.setBorder(Rectangle.NO_BORDER);
 			table.addCell(paidDateVal);
 		}
-		else if (StringUtils.isNotBlank(paymentDetails.getDueCalculationBaseDate())) {
+		else if (StringUtils.isNotBlank(paymentDetails.getPlanningDate())) {
 			String dueDatei18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
 					paymentDetailsModel.getDueDate(), language);
 			PdfPCell dueDate = new PdfPCell(new Phrase(dueDatei18n, keyFont));
 			dueDate.setBorder(Rectangle.NO_BORDER);
 			table.addCell(dueDate);
-			PdfPCell dueDateVal = new PdfPCell(new Phrase(paymentDetails.getDueCalculationBaseDate(), valueFont));
+			PdfPCell dueDateVal = new PdfPCell(new Phrase(paymentDetails.getPlanningDate(), valueFont));
 			dueDateVal.setBorder(Rectangle.NO_BORDER);
 			table.addCell(dueDateVal);
 		}
