@@ -7,10 +7,6 @@ pipeline {
         }
     }
 
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '10'))
-    }
-
     environment {
         build_id_number = ""
         boolean build_commons = false
@@ -108,7 +104,7 @@ pipeline {
     post {
         cleanup {
             sh label: "clean log4j from .m2 cache", script: "sudo rm -rf ~/.m2/repository/log4j/*"
-            cleanWs deleteDirs: true, disableDeferredWipeout: true
+            cleanWs deleteDirs: true, notFailBuild: true
         }
     }
 }

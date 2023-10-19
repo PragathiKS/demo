@@ -160,8 +160,6 @@ public class PaymentDetailsModel {
 	
 	private int paymentsFromToDateGapInMonths;
 	
-	private String invoiceStatusCodeUrl;
-	
 	@PostConstruct
 	public void init() {
 		Map<String, Object> i18KeyMap = new HashMap<>();
@@ -204,8 +202,6 @@ public class PaymentDetailsModel {
 				+ GlobalUtil.getSelectedApiMapping(service, SupplierPortalConstants.INVOICE_MAPPING);
 		
 		paymentsFromToDateGapInMonths = invoiceStatusService.getFromToDateGapInMonthsVal();
-		
-		invoiceStatusCodeUrl =  SupplierPortalConstants.INVOICE_STATUS_URI;
 	}
 
 	public String getInvoiceInfo() {
@@ -467,14 +463,6 @@ public class PaymentDetailsModel {
 
 	public void setPaymentsFromToDateGapInMonths(int paymentsFromToDateGapInMonths) {
 		this.paymentsFromToDateGapInMonths = paymentsFromToDateGapInMonths;
-	}
-
-	public String getInvoiceStatusCodeUrl() {
-		return invoiceStatusCodeUrl;
-	}
-
-	public void setInvoiceStatusCodeUrl(String invoiceStatusCodeUrl) {
-		this.invoiceStatusCodeUrl = invoiceStatusCodeUrl;
 	}
 	
 }

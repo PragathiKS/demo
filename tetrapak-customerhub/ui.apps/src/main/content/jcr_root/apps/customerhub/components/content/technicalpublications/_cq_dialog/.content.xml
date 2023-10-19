@@ -105,7 +105,13 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Serial Number Label (i18N key)"
                                 name="./serialNumber"
-                                required="true"/>   
+                                required="true"/>
+                              <description
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Description (i18N key)"
+                                name="./description"
+                                required="true"/> 
                         </items>
                     </column>
                 </items>

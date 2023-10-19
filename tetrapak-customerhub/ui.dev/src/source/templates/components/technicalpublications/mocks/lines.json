@@ -5657,6 +5657,24 @@
             ]
           }
         ]
+      },
+      {
+        "id": "ZAP-CLOVER SA QNB-Z_DOC",
+        "lineCode": "ZAP-CLOVER SA QNB-Z_DOC",
+        "lineDescription": "PLANT DOCUMENTATION",
+        "_rel": [
+          {
+            "rel": "self",
+            "href": [
+              {
+                "uri": "/installedbase/equipments/lines/ZAP-CLOVER%20SA%20QNB-Z_DOC?version=1",
+                "verbs": [
+                  "GET"
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   }

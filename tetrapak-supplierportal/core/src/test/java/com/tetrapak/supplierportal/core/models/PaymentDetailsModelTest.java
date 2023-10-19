@@ -83,7 +83,6 @@ public class PaymentDetailsModelTest {
 	    model.setSupplierInfo("sp.paymentDetails.supplierInformtaion");
 	    model.setExportToPDF("sp.paymentDetails.exportToPDF");
 	    model.setViewPaymentDataUrl(RESOURCE_PATH);
-	    model.setInvoiceStatusCodeUrl(RESOURCE_PATH);
 	}
 	
 	/**
@@ -129,6 +128,5 @@ public class PaymentDetailsModelTest {
 		assertEquals("sp.paymentDetails.totalAmount", model.getTotalAmount());
 		assertEquals("sp.paymentDetails.withHoldingTaxes", model.getWithHoldingTaxes());
 		assertEquals(3,model.getPaymentsFromToDateGapInMonths());
-		assertEquals(RESOURCE_PATH,model.getInvoiceStatusCodeUrl());
 	}
 }
