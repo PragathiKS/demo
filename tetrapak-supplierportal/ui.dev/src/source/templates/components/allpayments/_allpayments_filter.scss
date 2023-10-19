@@ -1,0 +1,198 @@
+.tp-all-payments {
+    .tp-all-payments-filter & {
+        // Modal Style
+        &__modal-content {
+            max-height: 80vh;
+
+            @media #{$desktop} {
+                max-height: 640px;
+            }
+            .tp-close-btn {
+                @include top(9px);
+                @include right(9px);
+                @include padding(0);
+                @include font-size($font-normal);
+                color: $color-text;
+                position: absolute;
+                z-index: $zindex-p;
+            }
+        }
+
+        &__modal-body {
+            @include padding($padding-zero $padding-l $padding-l $padding-l);
+            overflow-y: auto;
+
+            .tpatom-checkbox {
+                &__label {
+                    @include margin-bottom($margin-md);
+                }
+                &:last-child {
+                    .tpatom-checkbox__label {
+                        margin-bottom: 0;
+                    }
+                }
+                &__text {
+                    color: $color-black;
+                }
+            }
+
+            .tpatom-radio {
+                &__label {
+                    @include margin-bottom($margin-md);
+                }
+                &:nth-child(2) {
+                    .tpatom-radio__label {
+                        margin-bottom: 0;
+                    }
+                }
+                &__icon {
+                    @include width(20px);
+                    @include height(20px);
+                    @include border-radius(20px);
+                    display: inline-block;
+                    position: relative;
+
+                    &::before {
+                        @include width(8px);
+                        @include height(8px);
+                        @include border-radius(10px);
+                        transform: translate(-50%, -50%);
+                        top: 50%;
+                        position: absolute;
+                        left: 50%;
+                        content: '';
+                        background: $color-congress-blue;
+                    }
+                }
+            }
+        }
+
+        &__modal-footer {
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start;
+
+            &.tpmol-modal-footer {
+                @include padding($padding-l);
+                border-top: 1px solid $color-mercury;
+            }
+        }
+
+        &__modal-header {
+            @include font-size($font-l);
+            @include line-height($font-xl, $font-l);
+            color: $color-black;
+        }
+
+        &__apply-button {
+            @include font-size($font-baseline);
+            @include line-height($font-l, $font-baseline);
+            @include padding($padding-sm $padding-md);
+
+            span {
+                vertical-align: baseline;
+            }
+        }
+    }
+
+    &__reset-button {
+        color: $color-congress-blue;
+
+        &:hover {
+            color: $color-sky-blue;
+            .icon {
+                color: $color-sky-blue;
+            }
+        }
+
+        @media #{$mobile} {
+            @include margin-bottom($margin-sm);
+        }
+    }
+
+    &__filter-button {
+        @include font-size($font-baseline);
+        @include line-height($font-l, $font-baseline);
+        @include padding($padding-sm $padding-md);
+        @include margin-right($margin-sm);
+        @include margin-bottom($margin-md);
+        border: 1px solid $color-congress-blue;
+        color: $color-congress-blue;
+        box-sizing: border-box;
+        border-radius: 22px;
+        font-weight: 500;
+        &:hover {
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
+            &.active {
+                font-weight: 700;
+                background-color: $color-wild-sand;
+            }
+            &:disabled {
+                box-shadow: none;
+            }
+        }
+        &.active {
+            box-shadow: inset 0 0 0 1px $color-congress-blue;
+            font-weight: 700;
+            background-color: $color-wild-sand;
+            &:disabled {
+                box-shadow: none;
+            }
+        }
+        &:disabled {
+            color: $color-boulder;
+            border-color: $color-mercury;
+            cursor: default;
+        }
+    }
+
+    &__filter-select-count {
+        @include font-size($font-sm);
+        @include line-height($font-l, $font-m-sm);
+        @include padding-top($padding-sm);
+        @include margin($margin-zero);
+        color: $color-tundora;
+        font-weight: $font-weight-normal;
+    }
+
+    //tag container
+    &__tag {
+        @include padding($padding-xs $padding-md);
+        @include margin-right($margin-sm);
+        @include margin-bottom($margin-md);
+        @include line-height($font-l, $font-m-sm);
+        @include font-size($font-xs);
+        display: inline-block;
+        color: $color-congress-blue;
+        cursor: default;
+        background-color: $color-wild-sand;
+        border-radius: 20px;
+        font-weight: $font-weight-normal;
+
+        .tpatom-btn__text {
+            @include padding-right($padding-xs);
+        }
+        .icon-Close_new {
+            @include font-size($font-xxxs);
+        }
+        &:not(:disabled) {
+            cursor: default;
+        }
+        &.active-tag {
+            cursor: pointer;
+        }
+    }
+
+    &__date-range-wrapper {
+        @include margin-top($margin-zero);
+        height: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out, height 0.5s, margin-top 0.5s;
+
+        &.show {
+            @include margin-top($margin-md);
+            height: 68px;
+            opacity: 1;
+        }
+    }
+}

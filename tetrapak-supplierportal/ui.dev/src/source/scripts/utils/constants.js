@@ -44,3 +44,6 @@ export const EVT_IFRAME_TIMEOUT = 'iframeevents.timeout';
 export const INVALID_CONFIG = 'Invalid configuration';
 export const INVALID_STREAM = 'Stream is invalid';
 export const FILEEXT_EMPTY = 'File extension is required';
+
+export const DEFAULT_DATE_INPUT_MASK = '9999-99-99';
+export const DEFAULT_DATE_INPUT_FORMAT= 'YYYY-MM-DD';

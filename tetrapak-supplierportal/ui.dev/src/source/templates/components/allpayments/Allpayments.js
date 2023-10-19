@@ -4,7 +4,9 @@ import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
 import {  _paginationAnalytics } from './allpayments.analytics';
 import { getI18n } from '../../../scripts/common/common';
-import { getFilterDateRange } from '../../../scripts/utils/dateRange';
+// import { getFilterDateRange } from '../../../scripts/utils/dateRange';
+import AllPaymentsFilter from './allpayments.filter';
+import config from './allpayments.config';
 
 class AllPayments {
 
@@ -15,34 +17,7 @@ class AllPayments {
   }
 
   initCache() {
-    const config = {
-      showFields: ['invoiceStatusCode', 'documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
-      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplierName', 'supplier'],
-      currentPageNumber: 1,
-      itemsPerPage: 25,
-      activePage: 1,
-      skipIndex: 0,
-      maxPages: 3,
-      i18nkeysMap: {
-        'invoiceStatusCode': 'status',
-        'documentDate': 'invoiceDate',
-        'dueCalculationBaseDate': 'dueDate',
-        'companyName': 'company',
-        'companyCode': 'companyCode',
-        'companyCountry': 'country',
-        'amountInTransactionCurrency': 'amountIncludingTaxes',
-        'withholdingTaxAmmount': 'withHoldingTax',
-        'documentReferenceID': 'invoiceNo',
-        'supplierName': 'supplier',
-        'supplier': 'supplierCode',
-        'purchasingDocuments': 'poNo'
-      },
-      statusMapping: {},
-      customisableTableHeaders: [],
-      hideColumns: [],
-      activeFilterForm: 'invoiceDate',
-      $activeFilterBtn: {}
-    };
+    this.cache = {...config};
     const selector = {
       paymentApi: this.root.querySelector('.js-payment-api'),
       spinner: this.root.querySelector('.tp-spinner'),
@@ -57,11 +32,20 @@ class AllPayments {
       filterButton: this.root.querySelector('.js-apply-filter-button')
     };
     this.cache = {...config, ...selector};
-    this.cache.tableData = [];
-    this.cache.activeSortData = null;
-    this.cache.i18nKeys = JSON.parse(this.cache.config.textContent);
-    this.cache.statusApiUrl = this.root.getAttribute('data-status-api');
-    this.cache.authData = {};
+    this.cache = {
+      ...this.cache,
+      statusMapping: {},
+      tableData: [],
+      activeSortData: null,
+      i18nKeys: JSON.parse(this.cache.config.textContent),
+      statusApiUrl: this.root.getAttribute('data-status-api'),
+      authData: {},
+      activeFilterForm: '',
+      $activeFilterBtn: {},
+      customisableTableHeaders: [],
+      hideColumns: []
+    };
+    this.allPaymentsFilter = new AllPaymentsFilter(this.cache, this.root);
   }
 
   bindEvents() {
@@ -138,6 +122,10 @@ class AllPayments {
         headerAction.classList.add('show');
       }
     });
+    this.root.addEventListener('FilterChanged', () => {
+      self.renderPayment();
+    });
+    this.allPaymentsFilter.bindEvents();
   }
 
   getCheckboxFilterData = () => {
@@ -289,16 +277,20 @@ class AllPayments {
   }
 
   getPaymentApiUrl = () => {
-    const paymentApi = this.cache.paymentApi.getAttribute('data-list-api'),
-      dataRange = this.cache.paymentApi.getAttribute('data-date-range');
-    const { itemsPerPage, skipIndex, activeSortData } = this.cache;
+    const paymentApi = this.cache.paymentApi.getAttribute('data-list-api');
+    // dataRange = this.cache.paymentApi.getAttribute('data-date-range');
+    const { itemsPerPage, skipIndex, activeSortData, defaultSortParams } = this.cache;
 
     // TODO: Need to remove this. For testing purpose we add this from date time.
-    let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${getFilterDateRange(dataRange)}`;
-    //let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}`;
+    // let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${getFilterDateRange(dataRange)}`;
+    let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}`;
+    apiUrlRequest += `&${this.allPaymentsFilter.getFilterQueryString()}`;
 
     if (activeSortData) {
       apiUrlRequest += `&sort=${activeSortData.sortedByKey} ${activeSortData.sortOrder}`;
+    }
+    else {
+      apiUrlRequest += `&sort=${defaultSortParams}`;
     }
 
     return apiUrlRequest;
@@ -334,7 +326,7 @@ class AllPayments {
       statusApiPromise = fetch(this.cache.statusApiUrl).then(resp => resp.json());
     }
 
-    return [paymentApiPromise, statusApiPromise];
+    return [paymentApiPromise, statusApiPromise, this.allPaymentsFilter.getAllFilters(authData)];
   }
 
   renderPayment = () => {

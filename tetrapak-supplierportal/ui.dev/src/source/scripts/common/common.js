@@ -2,7 +2,7 @@ import $ from 'jquery';
 import { trackAnalytics } from '../utils/analytics';
 import { templates } from '../utils/templates';
 import LZStorage from 'lzstorage';
-
+import Handlebars from 'handlebars';
 
 // Initialize storage utility
 export const storageUtil = new LZStorage();
@@ -234,3 +234,8 @@ export const getI18n = (key, replaceList, hash) => {
   }
   return key;
 };
+
+export const sanitize = (input) => Handlebars.escapeExpression(input);
+
+export const isMobileMode = () => ($(window).outerWidth() < 768);
+

@@ -1,0 +1,57 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog tp-all-payments-filter" auto_locator="invoiceDates">
+    <div class="modal-content tp-all-payments__modal-content tp-modal-content">
+        <div class="modal-header tpmol-modal-header">
+            <div class="js-all-payments__modal-header tp-all-payments__modal-header" auto_locator="headlineOverlay">
+                Invoice Date
+            </div>
+            <button type="button" auto_locator="closebtnOverlay" class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn" data-dismiss="modal">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        <div class="modal-body tp-modal-body tp-all-payments__modal-body">
+                    <div class="tp-all-payments-filter-options">
+                                <div class="tpatom-radio">
+                                    <label class="tpatom-radio__label clearfix" for="tpatomRadiolast90Days">
+                                        <input type="radio" class="tpatom-radio__input float-left" id="tpatomRadiolast90Days" value="last90Days" checked="checked" name="invoiceDatesRadio" auto_locator="invoiceDatesFilterCheckboxOverlay">
+                                        <i class="tpatom-radio__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-radio__text js-radio__text" auto_locator="invoiceDatesFilterItemOverlay">last90Days</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-radio">
+                                    <label class="tpatom-radio__label clearfix" for="tpatomRadioother">
+                                        <input type="radio" class="tpatom-radio__input float-left" id="tpatomRadioother" value="other" name="invoiceDatesRadio" auto_locator="invoiceDatesFilterCheckboxOverlay">
+                                        <i class="tpatom-radio__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-radio__text js-radio__text" auto_locator="invoiceDatesFilterItemOverlay">other</span>
+                                    </label>
+                                </div>
+                            <div class="tp-all-payments__date-range-wrapper js-data-range-wrapper ">
+                                <div class="tpatom-date-range js-date-range-wrapper">
+                                  <div class="tpatom-date-range__input-wrapper js-date-range-input-wrapper">
+                                    <label class="tpatom-date-range__input-label">undefined
+                                        <input class="tpatom-input-box__input js-date-range js-date-range-input-from" placeholder="YYYY-MM-DD" autofocus="autofocus" inputmode="text">
+                                        <i class="icon-Close_new js-date-range-clear-icon"></i>
+                                    </label>
+                                    <div class="tpatom-date-range__input-error js-date-range-error js-date-range-from-error hide">undefined</div>
+                                  </div>
+                                  <div class="tpatom-date-range__input-wrapper js-date-range-input-wrapper">
+                                    <label class="tpatom-date-range__input-label">undefined
+                                        <input class="tpatom-input-box__input js-date-range js-date-range-input-to" placeholder="YYYY-MM-DD" inputmode="text">
+                                        <i class="icon-Close_new js-date-range-clear-icon"></i>
+                                    </label>
+                                    <div class="tpatom-date-range__input-error js-date-range-error js-date-range-to-error hide">undefined</div>
+                                  </div>
+                                </div>
+                            </div>
+
+                    </div>
+        </div>
+        <div class="modal-footer tpmol-modal-footer tp-all-payments__modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
+                <span class="tpatom-btn__text sly-text">
+                    undefined
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
+
