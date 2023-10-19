@@ -16,6 +16,9 @@
     <sp.paymentDetails.allPaymentsHeading
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Payments"/>
+	<sp.paymentdetails.applyFilter
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Apply Filter"/>
     <sp.paymentDetails.amountIncludingTaxes
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Amount Including Taxes"/>
@@ -25,6 +28,9 @@
     <sp.paymentDetails.code
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Code"/>
+	<sp.paymentDetails.columns
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Columns"/>
     <sp.paymentDetails.company
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Company"/>
@@ -112,6 +118,12 @@
     <sp.paymentDetails.status
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Invoice Status"/>
+	<sp.paymentDetails.selectAll
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Select All"/>
+	<sp.paymentDetails.showHideColumns
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Show Hide Columns"/>
     <sp.paymentDetails.supplier
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Supplier"/>

@@ -15,9 +15,139 @@
         <h2 class="tp-all-payments__heading js-all-payments__heading">
             Payments
         </h2>
+        <div class="tp-all-payments__header-action-wrapper">
+          <div class="tp-all-payments__header-mobile">
+            <button class="tp-next-btn js-mobile-header-actions">
+              <i class="icon icon-Three_Dot">
+              </i>
+            </button>
+          </div>
+          <div class="tp-all-payments__header-actions">
+            <div class="tp-all-payments__header-actionicons">
+              <div class="tp-all-payments__action-button second js-all-payments__customise-table-action">
+                <i class="icon icon-Hide action-icon"></i>
+                <span class="tpatom-btn__text tp-all-payments__header-action-text" data-toggle="modal" data-target="#all-payments-filter-modal">Show/Hide Columns</span>
+              </div>
+              </div>
+          </div>
+        </div>
       </div>
       <div class="tp-all-payments__search-count">18 Results</div>
       <div id="equipment-filter-modal" class="modal js-filter-modal tp-modal fade tp-equipment__filter-form" tabindex="-1" aria-hidden="true" role="dialog">
+      <div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="customise-tableOverlay">
+    <div class="modal-content tp-all-payments__modal-content tp-modal-content">
+        <div class="modal-header tpmol-modal-header">
+            <div class="js-all-payments__modal-header tp-all-payments__modal-header" auto_locator="headlineOverlay">
+                Columns
+            </div>
+            <button type="button" auto_locator="closebtnOverlay" class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn" data-dismiss="modal">
+            </button>
+        </div>
+        <div class="modal-body tp-modal-body tp-all-payments__modal-body">
+                    <div class="tpatom-checkbox tp-all-payments__type-group-option js-tp-all-payments-type-group-option">
+                        <label class="tpatom-checkbox__label clearfix" for="tpatomChecksp.paymentDetails.selectAll">
+                            <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-group-checkbox js-tp-all-payments-filter-checkbox" id="tpatomChecksp.paymentDetails.selectAll" value="sp.paymentDetails.selectAll" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                            <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Select All</span>
+                        </label>
+                    </div>
+
+                        <div class="tp-all-payments-filter-options tp-all-payments-group-filter-options">
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckinvoiceDate">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckinvoiceDate" value="invoiceDate" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Invoice Date</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckdueDate">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckdueDate" value="dueDate" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Due Date</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckcompany">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckcompany" value="company" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Company</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckcompanyCode">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckcompanyCode" value="companyCode" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Company Code</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckcountry">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckcountry" value="country" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Country</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckamountIncludingTaxes">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckamountIncludingTaxes" value="amountIncludingTaxes" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Amount Including Taxes</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckwithHoldingTax">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckwithHoldingTax" value="withHoldingTax" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Withholding Taxes</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckstatus">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckstatus" value="status" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Invoice Status</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckinvoiceNo">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckinvoiceNo" value="invoiceNo" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Invoice No</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomChecksupplier">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomChecksupplier" value="supplier" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Supplier</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomChecksupplierCode">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomChecksupplierCode" value="supplierCode" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">Supplier Code</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-checkbox">
+                                    <label class="tpatom-checkbox__label clearfix" for="tpatomCheckpoNo">
+                                        <input type="checkbox" class="tpatom-checkbox__input float-left js-tp-all-payments-filter-checkbox" id="tpatomCheckpoNo" value="poNo" checked="checked" auto_locator="customise-tableFilterCheckboxOverlay">
+                                        <i class="tpatom-checkbox__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-checkbox__text js-checkbox__text" auto_locator="customise-tableFilterItemOverlay">PO NO</span>
+                                    </label>
+                                </div>
+                        </div>
+        </div>
+        <div class="modal-footer tpmol-modal-footer tp-all-payments__modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
+                <span class="tpatom-btn__text sly-text">
+                    Apply Filter
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
       </div>
       <div class="tp-all-payments__table_wrapper"><div class="tp-all-payments__table custom-scrollbar-horizontal on">
         <table class="tpmol-table tp-all-payments__table-summary__table js-all-payments__table-summary__table">
