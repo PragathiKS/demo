@@ -45,7 +45,7 @@ class AllPayments {
         'companyCode': 'companyCodeTooltip',
         'companyCountry': 'countryTooltip',
         'amountInTransactionCurrency': 'amountIncludingTaxesTooltip',
-        'withholdingTaxAmmount': 'withholdingtaxTooltip',
+        'withholdingTaxAmmount': 'withHoldingTaxTooltip',
         'documentReferenceID': 'invoiceNoTooltip',
         'supplierName': 'supplierTooltip',
         'supplier': 'supplierCodeTooltip',
