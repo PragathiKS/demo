@@ -229,39 +229,44 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		emptyCell.setColspan(2);
 		table.addCell(emptyCell);
 
-		String invoiceNo = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getInvoiceNo(), language);
-		PdfPCell invoiceNoK = new PdfPCell(new Phrase(invoiceNo, keyFont));
-		invoiceNoK.setBorder(Rectangle.NO_BORDER);
-		table.addCell(invoiceNoK);
-		PdfPCell invoiceNoV = new PdfPCell(new Phrase(paymentDetails.getDocumentReferenceID(), valueFont));
-		invoiceNoV.setBorder(Rectangle.NO_BORDER);
-		table.addCell(invoiceNoV);
+		if (StringUtils.isNotBlank(paymentDetails.getDocumentReferenceID())) {
+			String invoiceNo = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getInvoiceNo(), language);
+			PdfPCell invoiceNoK = new PdfPCell(new Phrase(invoiceNo, keyFont));
+			invoiceNoK.setBorder(Rectangle.NO_BORDER);
+			table.addCell(invoiceNoK);
+			PdfPCell invoiceNoV = new PdfPCell(new Phrase(paymentDetails.getDocumentReferenceID(), valueFont));
+			invoiceNoV.setBorder(Rectangle.NO_BORDER);
+			table.addCell(invoiceNoV);
+		}
 
-		String date = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY, paymentDetailsModel.getDate(),
-				language);
-		PdfPCell dateKey = new PdfPCell(new Phrase(date, keyFont));
-		dateKey.setBorder(Rectangle.NO_BORDER);
-		table.addCell(dateKey);
-		PdfPCell dateVal = new PdfPCell(new Phrase(paymentDetails.getDocumentDate(), valueFont));
-		dateVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(dateVal);
+		if (StringUtils.isNotBlank(paymentDetails.getDocumentDate())) {
+			String date = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY, paymentDetailsModel.getDate(),
+					language);
+			PdfPCell dateKey = new PdfPCell(new Phrase(date, keyFont));
+			dateKey.setBorder(Rectangle.NO_BORDER);
+			table.addCell(dateKey);
+			PdfPCell dateVal = new PdfPCell(new Phrase(paymentDetails.getDocumentDate(), valueFont));
+			dateVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(dateVal);
+		}
 
-		
-		Map<String, List<String>> map = invoiceStatusService.invoiceStatusCodeMap();
-		if(null != map && null != map.entrySet()) {
-			map.entrySet().stream().forEach(entry -> {
-				if(entry != null && entry.getValue() != null && entry.getValue().contains(paymentDetails.getInvoiceStatusCode())) {
-					String status = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-							paymentDetailsModel.getStatus(), language);
-					PdfPCell statusKey = new PdfPCell(new Phrase(status, keyFont));
-					statusKey.setBorder(Rectangle.NO_BORDER);
-					table.addCell(statusKey);
-					PdfPCell statusVal = new PdfPCell(new Phrase(entry.getKey(), valueFont));
-					statusVal.setBorder(Rectangle.NO_BORDER);
-					table.addCell(statusVal);
-				}
-			});
+		if (StringUtils.isNotBlank(paymentDetails.getInvoiceStatusCode())) {
+			Map<String, List<String>> map = invoiceStatusService.invoiceStatusCodeMap();
+			if(null != map && null != map.entrySet()) {
+				map.entrySet().stream().forEach(entry -> {
+					if(entry != null && entry.getValue() != null && entry.getValue().contains(paymentDetails.getInvoiceStatusCode())) {
+						String status = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+								paymentDetailsModel.getStatus(), language);
+						PdfPCell statusKey = new PdfPCell(new Phrase(status, keyFont));
+						statusKey.setBorder(Rectangle.NO_BORDER);
+						table.addCell(statusKey);
+						PdfPCell statusVal = new PdfPCell(new Phrase(entry.getKey(), valueFont));
+						statusVal.setBorder(Rectangle.NO_BORDER);
+						table.addCell(statusVal);
+					}
+				});
+			}
 		}
 	}
 
@@ -287,32 +292,38 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		emptyCell.setColspan(2);
 		table.addCell(emptyCell);
 
-		String companyKey = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getCompany(), language);
-		PdfPCell company = new PdfPCell(new Phrase(companyKey, keyFont));
-		company.setBorder(Rectangle.NO_BORDER);
-		table.addCell(company);
-		PdfPCell companyVal = new PdfPCell(new Phrase(paymentDetails.getCompanyName(), valueFont));
-		companyVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(companyVal);
+		if (StringUtils.isNotBlank(paymentDetails.getCompanyName())) {
+			String companyKey = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getCompany(), language);
+			PdfPCell company = new PdfPCell(new Phrase(companyKey, keyFont));
+			company.setBorder(Rectangle.NO_BORDER);
+			table.addCell(company);
+			PdfPCell companyVal = new PdfPCell(new Phrase(paymentDetails.getCompanyName(), valueFont));
+			companyVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(companyVal);
+		}
 
-		String code = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY, paymentDetailsModel.getCode(),
-				language);
-		PdfPCell codeKey = new PdfPCell(new Phrase(code, keyFont));
-		codeKey.setBorder(Rectangle.NO_BORDER);
-		table.addCell(codeKey);
-		PdfPCell codeVal = new PdfPCell(new Phrase(paymentDetails.getCompanyCode(), valueFont));
-		codeVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(codeVal);
+		if (StringUtils.isNotBlank(paymentDetails.getCompanyCode())) {
+			String code = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY, paymentDetailsModel.getCode(),
+					language);
+			PdfPCell codeKey = new PdfPCell(new Phrase(code, keyFont));
+			codeKey.setBorder(Rectangle.NO_BORDER);
+			table.addCell(codeKey);
+			PdfPCell codeVal = new PdfPCell(new Phrase(paymentDetails.getCompanyCode(), valueFont));
+			codeVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(codeVal);
+		}
 
-		String country = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getCountry(), language);
-		PdfPCell countryKey = new PdfPCell(new Phrase(country, keyFont));
-		countryKey.setBorder(Rectangle.NO_BORDER);
-		table.addCell(countryKey);
-		PdfPCell countryVal = new PdfPCell(new Phrase(paymentDetails.getCompanyCountry(), valueFont));
-		countryVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(countryVal);
+		if (StringUtils.isNotBlank(paymentDetails.getCompanyCountry())) {
+			String country = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getCountry(), language);
+			PdfPCell countryKey = new PdfPCell(new Phrase(country, keyFont));
+			countryKey.setBorder(Rectangle.NO_BORDER);
+			table.addCell(countryKey);
+			PdfPCell countryVal = new PdfPCell(new Phrase(paymentDetails.getCompanyCountry(), valueFont));
+			countryVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(countryVal);
+		}
 	}
 
 	private void populateSupplierInformation(PaymentDetails paymentDetails, PdfPTable table,
@@ -337,23 +348,27 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		emptyCell.setColspan(2);
 		table.addCell(emptyCell);
 
-		String supplier = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getSupplier(), language);
-		PdfPCell supplierKey = new PdfPCell(new Phrase(supplier, keyFont));
-		supplierKey.setBorder(Rectangle.NO_BORDER);
-		table.addCell(supplierKey);
-		PdfPCell supplierVal = new PdfPCell(new Phrase(paymentDetails.getSupplierName(), valueFont));
-		supplierVal.setBorder(Rectangle.NO_BORDER);
-		table.addCell(supplierVal);
+		if (StringUtils.isNotBlank(paymentDetails.getSupplierName())) {
+			String supplier = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getSupplier(), language);
+			PdfPCell supplierKey = new PdfPCell(new Phrase(supplier, keyFont));
+			supplierKey.setBorder(Rectangle.NO_BORDER);
+			table.addCell(supplierKey);
+			PdfPCell supplierVal = new PdfPCell(new Phrase(paymentDetails.getSupplierName(), valueFont));
+			supplierVal.setBorder(Rectangle.NO_BORDER);
+			table.addCell(supplierVal);
+		}
 
-		String codei18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
-				paymentDetailsModel.getCode(), language);
-		PdfPCell code = new PdfPCell(new Phrase(codei18n, keyFont));
-		code.setBorder(Rectangle.NO_BORDER);
-		table.addCell(code);
-		PdfPCell codeValue = new PdfPCell(new Phrase(paymentDetails.getSupplier(), valueFont));
-		codeValue.setBorder(Rectangle.NO_BORDER);
-		table.addCell(codeValue);
+		if (StringUtils.isNotBlank(paymentDetails.getSupplier())) {
+			String codei18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+					paymentDetailsModel.getCode(), language);
+			PdfPCell code = new PdfPCell(new Phrase(codei18n, keyFont));
+			code.setBorder(Rectangle.NO_BORDER);
+			table.addCell(code);
+			PdfPCell codeValue = new PdfPCell(new Phrase(paymentDetails.getSupplier(), valueFont));
+			codeValue.setBorder(Rectangle.NO_BORDER);
+			table.addCell(codeValue);
+		}
 	}
 
 	private void populateDetailsSection(PaymentDetails paymentDetails, PdfPTable table, SlingHttpServletRequest request,
