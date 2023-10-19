@@ -34,26 +34,26 @@ function _renderEquipInfoCardWithData() {
         },
         showLoader: true
       }), ajaxWrapper.getXhrObj({
-        url: this.cache.statusApi,
-        method: ajaxMethods.GET,
-        cache: true,
-        dataType: 'json',
-        contentType: 'application/json',
-        beforeSend(jqXHR) {
-          jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
-          jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        },
-        showLoader: true
-      })).then((res1, res2) => {
-        this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName, selected: countryCode === this.cache.data.countryCode }));
-        this.cache.equipmentStatuses = res2[0].data.map(({ equipmentStatus, equipmentStatusDesc }) => ({ key: equipmentStatus, desc: equipmentStatusDesc, selected: equipmentStatus === this.cache.data.equipmentStatus }));
-        this.cache.$spinner.addClass('d-none');
-        this.cache.$content.removeClass('d-none');
-        this.renderEquipInfoCard({ update: true });
-      }).fail(() => {
-        this.cache.$content.removeClass('d-none');
-        this.cache.$spinner.addClass('d-none');
-      });
+      url: this.cache.statusApi,
+      method: ajaxMethods.GET,
+      cache: true,
+      dataType: 'json',
+      contentType: 'application/json',
+      beforeSend(jqXHR) {
+        jqXHR.setRequestHeader('Authorization', `Bearer ${authData.access_token}`);
+        jqXHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      },
+      showLoader: true
+    })).then((res1, res2) => {
+      this.cache.countryData = res1[0].data.map(({ countryCode, countryName }) => ({ key: countryCode, desc: countryName, selected: countryCode === this.cache.data.countryCode }));
+      this.cache.equipmentStatuses = res2[0].data.map(({ equipmentStatus, equipmentStatusDesc }) => ({ key: equipmentStatus, desc: equipmentStatusDesc, selected: equipmentStatus === this.cache.data.equipmentStatus }));
+      this.cache.$spinner.addClass('d-none');
+      this.cache.$content.removeClass('d-none');
+      this.renderEquipInfoCard({ update: true });
+    }).fail(() => {
+      this.cache.$content.removeClass('d-none');
+      this.cache.$spinner.addClass('d-none');
+    });
   });
 }
 
