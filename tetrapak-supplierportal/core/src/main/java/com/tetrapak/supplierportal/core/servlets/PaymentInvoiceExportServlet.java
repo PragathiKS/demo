@@ -2,7 +2,6 @@ package com.tetrapak.supplierportal.core.servlets;
 
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.AUTHTOKEN;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DOCUMENT_REFERENCE_ID;
-import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.ERROR_MESSAGE;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESPONSE_STATUS_OK;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESULT;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
@@ -73,8 +72,8 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 	@Override
 	protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
 		LOGGER.debug("HTTP GET request from Payment Invoice Export Servlet");
-		
-		String documentReferenceId = request.getParameter(DOCUMENT_REFERENCE_ID);
+		JsonObject jsonObj = new JsonObject();
+     	String documentReferenceId = request.getParameter(DOCUMENT_REFERENCE_ID);
 		if (StringUtils.isBlank(documentReferenceId)) {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
 			response.getWriter().write("Invalid Input.DocumentReferenceId  Missing.");
@@ -90,9 +89,9 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 		} else {
 			LOGGER.error("Auth token is invalid! {}");
 			response.setStatus(HttpServletResponse.SC_LENGTH_REQUIRED);
-			JsonObject jsonResponse = new JsonObject();
-			jsonResponse.addProperty(ERROR_MESSAGE, "Auth token is invalid!" + request.getRequestPathInfo());
-			HttpUtil.writeJsonResponse(response, jsonResponse);
+			response.getWriter().write("Invalid Auth Token. Authentication Token Missing.");
+			HttpUtil.setJsonResponse(jsonObj, "Auth token is invalid!" + request.getRequestPathInfo(), 1001);
+			HttpUtil.sendErrorMessage(response);
 			return;
 		}
 
@@ -104,17 +103,23 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 
         if (null == paymentDetailsModel) {
             LOGGER.error("PaymentDetailsModel is null!");
+            HttpUtil.setJsonResponse(jsonObj, "PaymentDetailsModel is null!", 1002);
         }else if (!RESPONSE_STATUS_OK.equalsIgnoreCase(statusResponse.toString())) {
             LOGGER.error("Unable to retrieve response from API got status code:{}", statusResponse.toString());
+            HttpUtil.setJsonResponse(jsonObj, "Unable to retrieve response from API got status code:"+ statusResponse.toString(), 1003);
         } else {
         	JsonElement resultsResponse = jsonResponse.get(RESULT);
         	PaymentDetailResponse results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), PaymentDetailResponse.class);
         	if(Objects.nonNull(results) && CollectionUtils.isNotEmpty(results.getData())) {
         		flag = paymentInvoiceDownloadSevice.preparePdf(results.getData().get(0), request, response, paymentDetailsModel);
+        	}else {
+        		LOGGER.error("Invoice Details are missing from Backend Services..!::{}",resultsResponse);
+        		HttpUtil.setJsonResponse(jsonObj, "Invoice Details are missing from Backend Services..!::"+ resultsResponse, 1003);
         	}
         }        
         if (!flag) {
             LOGGER.error("PaymentDetails results Pdf file download failed!");
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             HttpUtil.sendErrorMessage(response);
         }
 	}

@@ -25,6 +25,7 @@ import com.tetrapak.supplierportal.core.services.InvoiceStatusService;
 		Constants.SERVICE_DESCRIPTION + "=" + "Servlet to get the Invoice Status",
 		ServletResolverConstants.SLING_SERVLET_METHODS + "=" + HttpConstants.METHOD_GET,
 		ServletResolverConstants.SLING_SERVLET_RESOURCE_TYPES + "=" + "supplierportal/components/content/allpayments",
+		ServletResolverConstants.SLING_SERVLET_RESOURCE_TYPES + "=" + "supplierportal/components/content/paymentdetails",
 		ServletResolverConstants.SLING_SERVLET_SELECTORS + "=" + "invoice.status" })
 public class InvoiceStatusServlet extends SlingSafeMethodsServlet {
 

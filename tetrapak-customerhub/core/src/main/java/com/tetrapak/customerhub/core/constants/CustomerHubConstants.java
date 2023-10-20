@@ -438,6 +438,12 @@ public final class CustomerHubConstants {
     /** The Constant THANK_YOU_LABEL . */
     public static final String EQUIPMENT_STATUS_UPDATE_DESCRIPTION = "equipmentDetails-statusUpdateDescription";
 
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_DETAIL_TECH_PUB_CARD_HEADING = "equipmentDetails-techpubcardheading";
+    
+    /** The Constant THANK_YOU_LABEL . */
+    public static final String EQUIPMENT_DETAIL_TECH_PUB_CARD_LINK_LABEL = "equipmentDetails-techpubcardlinklabel";
+
     /** The Constant NEW_EQUIPMENT_TITLE. */
     public static final String NEW_EQUIPMENT_TITLE = "title";
 
@@ -1080,6 +1086,18 @@ public final class CustomerHubConstants {
 	public static final String PBI_COOKIE_EMBEDTOKEN ="pbi-accesstoken";
 
     public static final String BP_NUMBER = "bpnumber";
+
+    public static final String PART_NUMBER = "partNumber";
+
+    public static final String DIMENSION = "dimension";
+
+    public static final String SPARE_PARTS_MEDIA_LINKS = "sparepartsmedialinks";
+
+    public static final String DIMENSIONS_PARAM = "dimensions";
+
+    public static final String PART_NUMBERS_PARAM = "partNumbers";
+
+    public static final String CONSUMER_KEY = "ConsumerKey";
 
     private CustomerHubConstants() {
         throw new IllegalStateException("Utility class");

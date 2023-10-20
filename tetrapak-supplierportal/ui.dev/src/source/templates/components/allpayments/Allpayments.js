@@ -16,17 +16,18 @@ class AllPayments {
 
   initCache() {
     const config = {
-      showFields: ['invoiceStatusCode', 'documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
-      sortableKeys: ['documentDate', 'dueCalculationBaseDate', 'companyName', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplierName', 'supplier'],
+      showFields: ['invoiceStatusCode', 'documentDate', 'planningDate', 'companyName', 'companyCode','companyCountry', 'amountInTransactionCurrency', 'withholdingTaxAmmount', 'documentReferenceID', 'supplierName', 'supplier', 'purchasingDocuments'],
+      sortableKeys: ['documentDate', 'planningDate', 'companyCode', 'companyCountry', 'amountInTransactionCurrency', 'documentReferenceID', 'supplier'],
       currentPageNumber: 1,
       itemsPerPage: 25,
       activePage: 1,
       skipIndex: 0,
+      defaultSortParams: 'documentDate%20desc',
       maxPages: 3,
       i18nkeysMap: {
         'invoiceStatusCode': 'status',
         'documentDate': 'invoiceDate',
-        'dueCalculationBaseDate': 'dueDate',
+        'planningDate': 'dueDate',
         'companyName': 'company',
         'companyCode': 'companyCode',
         'companyCountry': 'country',
@@ -84,7 +85,7 @@ class AllPayments {
     this.cache.customisableTableHeaders = [
       {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:0},
       {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:1},
-      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:2},
+      {key:'planningDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:2},
       {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:3},
       {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:4},
       {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:5},
@@ -150,6 +151,14 @@ class AllPayments {
       }
       else {
         headerAction.classList.add('show');
+      }
+    });
+    $('body').on('click', (e) => {
+      const $actionBtn = e.target;
+      if(!$($actionBtn).hasClass('icon-Three_Dot')){
+        if($(headerAction).hasClass('show')){
+          $(headerAction).removeClass('show');
+        }
       }
     });
   }
@@ -317,7 +326,7 @@ class AllPayments {
   getPaymentApiUrl = () => {
     const paymentApi = this.cache.paymentApi.getAttribute('data-list-api'),
       dataRange = this.cache.paymentApi.getAttribute('data-date-range');
-    const { itemsPerPage, skipIndex, activeSortData } = this.cache;
+    const { itemsPerPage, skipIndex, activeSortData, defaultSortParams } = this.cache;
 
     // TODO: Need to remove this. For testing purpose we add this from date time.
     let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${getFilterDateRange(dataRange)}`;
@@ -325,6 +334,9 @@ class AllPayments {
 
     if (activeSortData) {
       apiUrlRequest += `&sort=${activeSortData.sortedByKey} ${activeSortData.sortOrder}`;
+    }
+    else {
+      apiUrlRequest += `&sort=${defaultSortParams}`;
     }
 
     return apiUrlRequest;

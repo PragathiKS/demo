@@ -107,8 +107,6 @@ class FilteredTable {
     this.cache.variables.filters.data = {
       [countryConfig.apiKey]: countryData
     };
-    this.cache.variables.sortData.sortedByKey = false;
-    this.cache.variables.sortData.sortOrder = false;
 
     $filterBtns.each((_index, item) => {
       const initialLabel = $(item).data('label');
@@ -265,13 +263,15 @@ class FilteredTable {
     $datePickerInput.length && $datePickerInput.trigger('focus');
   }
 
-  _getRowIcon = (rkTypeCode) => {
-    if(rkTypeCode.startsWith('A')) {
-      return 'Mandatory_Kit';
-    } else if(rkTypeCode.startsWith('B')) {
-      return 'Trolley';
+  _getRowIcon = (rkTypeCode='') => {
+    if(rkTypeCode) {
+      if(rkTypeCode.startsWith('A')) {
+        return 'Mandatory_Kit';
+      } else if(rkTypeCode.startsWith('B')) {
+        return 'Trolley';
+      }
+      return '';
     }
-    return '';
   }
 
   _buildTableRow = (data, visibleColumnKeys) => {
@@ -710,13 +710,11 @@ class FilteredTable {
   _getApiUrlRequest = () => {
     const { skipIndex, itemsPerPage } = this.cache.variables.pagination;
     const api = this.cache.api.list;
-    const { sortedByKey, sortOrder, sendPosition } = this.cache.variables.sortData;
     const filterUrlParams = this._getFilterUrlParams();
     const skipIndexParam = `skip=${skipIndex}`;
     const countParam = `&count=${itemsPerPage}`;
     const filtersQuery = filterUrlParams ? `&${filterUrlParams}` : '';
-    const sortPosition = sendPosition ? ',position' : '';
-    const sortParam = sortedByKey ? `&${sortedByKey.toLowerCase()} ${sortOrder}${sortPosition}` : '';
+    const sortParam = `&sort=lineCode asc,rkGeneralNumber asc,position asc`;
 
     const apiUrlRequest = `${api}?${skipIndexParam}${countParam}${sortParam}${filtersQuery}`;
 
@@ -893,11 +891,6 @@ class FilteredTable {
               values: {},
               data: {},
               visibleColumns: defaultVisibleColumns
-            },
-            sortData: {
-              sortedByKey: false,
-              sortOrder: false,
-              sendPosition: false
             },
             pagination: {
               skipIndex: 0,
