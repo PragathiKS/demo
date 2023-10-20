@@ -10,22 +10,28 @@
 <div class="row tp-payment-details__info-card-row">
     <div class="col-sm-12 col-12 tp-payment-details__info-card-col">
         {{#if_noteq paymentData.documentReferenceID ""}}
+        {{#if_noteq paymentData.documentReferenceID null}}
         <div class="tp-payment-details__info-line">
             <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.invoiceNo}}</div>
             <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.documentReferenceID}}</div>
         </div>
         {{/if_noteq}}
+        {{/if_noteq}}
         {{#if_noteq paymentData.documentDate ""}}
+        {{#if_noteq paymentData.documentDate null}}
         <div class="tp-payment-details__info-line">
             <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.date}}</div>
             <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.documentDate}}</div>
         </div>
         {{/if_noteq}}
+        {{/if_noteq}}
         {{#if_noteq paymentData.invoiceStatusName ""}}
+        {{#if_noteq paymentData.invoiceStatusName null}}
         <div class="tp-payment-details__info-line">
             <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.status}}</div>
             <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.invoiceStatusName}}</div>
         </div>
+        {{/if_noteq}}
         {{/if_noteq}}
     </div>
 </div>
@@ -34,22 +40,28 @@
 <div class="tp-payment-details__info-card js-payment-details__info-card">
             <h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.companyInfo}}</h3>
             {{#if_noteq paymentData.companyName ""}}
+            {{#if_noteq paymentData.companyName null}}
             <div class="tp-payment-details__info-line">
                 <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.company}}</div>
                 <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.companyName}}</div>
             </div>
             {{/if_noteq}}
+            {{/if_noteq}}
             {{#if_noteq paymentData.companyCode ""}}
+            {{#if_noteq paymentData.companyCode null}}
             <div class="tp-payment-details__info-line">
                 <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.code}}</div>
                 <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.companyCode}}</div>
             </div>
             {{/if_noteq}}
+            {{/if_noteq}}
             {{#if_noteq paymentData.companyCountry ""}}
+            {{#if_noteq paymentData.companyCountry null}}
             <div class="tp-payment-details__info-line">
                 <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.country}}</div>
                 <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.companyCountry}}</div>
             </div>
+            {{/if_noteq}}
             {{/if_noteq}}
         </div>
 </div>
@@ -57,16 +69,20 @@
 <div class="tp-payment-details__info-card js-payment-details__info-card">
             <h3 auto_locator="sectionTitle">{{i18n key=i18nKeys.supplierInfo}}</h3>
             {{#if_noteq paymentData.supplierName ""}}
+            {{#if_noteq paymentData.supplierName null}}
             <div class="tp-payment-details__info-line">
                 <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.supplier}}</div>
                 <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.supplierName}}</div>
             </div>
             {{/if_noteq}}
+            {{/if_noteq}}
             {{#if_noteq paymentData.supplier ""}}
+            {{#if_noteq paymentData.supplier null}}
             <div class="tp-payment-details__info-line">
                 <div class="tp-payment-details__info-cell-1" auto_locator="paymentDetailsDataKey">{{i18n key=i18nKeys.code}}</div>
                 <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsDataValue">{{paymentData.supplier}}</div>
             </div>
+            {{/if_noteq}}
             {{/if_noteq}}
         </div>
 </div>
@@ -77,10 +93,12 @@
 <div class="col-lg-8 col-md-8 col-sm-8 col-12 tp-payment-details__details-row">
     <h4 class="tp-payment-details__details-row-title" auto_locator="subsectionTitle">{{i18n key=i18nKeys.details}}</h4>
     {{#if_noteq paymentData.amountInTransactionCurrency ""}}
+    {{#if_noteq paymentData.amountInTransactionCurrency null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">{{i18n key=i18nKeys.totalAmount}}</div>
         <div class="tp-payment-details__info-cell-2" auto_locator="subsectionTitle">{{paymentData.amountInTransactionCurrency}} {{paymentData.transactionCurrency}}</div>
     </div>
+    {{/if_noteq}}
     {{/if_noteq}}
     {{!-- {{#if_noteq paymentData.tax ""}}
     <div class="tp-payment-details__details-line">
@@ -89,10 +107,12 @@
     </div>
     {{/if_noteq}} --}}
     {{#if_noteq paymentData.withholdingTaxAmmount ""}}
+    {{#if_noteq paymentData.withholdingTaxAmmount null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.withHoldingTax}}</div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.withholdingTaxAmmount}} {{paymentData.transactionCurrency}}</div>
     </div>
+    {{/if_noteq}}
     {{/if_noteq}}
     {{!-- {{#if_noteq paymentData.netPayable ""}}
     <div class="tp-payment-details__details-line">
@@ -101,37 +121,48 @@
     </div>
     {{/if_noteq}} --}}
     {{#if_noteq paymentData.paymentTerms ""}}
+    {{#if_noteq paymentData.paymentTerms null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paymentTerm}}</div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.paymentTerms}}</div>
     </div>
     {{/if_noteq}}
+    {{/if_noteq}}
     {{#if_noteq paymentData.clearingDate ""}}
+    {{#if_noteq paymentData.clearingDate null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paidDate}}</div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.clearingDate}}</div>
     </div>
+    {{/if_noteq}}
     {{else}}
-    {{#if_noteq paymentData.dueCalculationBaseDate ""}}
+    {{#if_noteq paymentData.planningDate ""}}
+    {{#if_noteq paymentData.planningDate null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.dueDate}}</div>
-        <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.dueCalculationBaseDate}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.planningDate}}</div>
     </div>
     {{/if_noteq}}
     {{/if_noteq}}
+    {{/if_noteq}}
     {{#if_noteq paymentData.bankAccount ""}}
+    {{#if_noteq paymentData.bankAccount null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.bankAccount}}</div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.bankAccount}}</div>
     </div>
     {{/if_noteq}}
+    {{/if_noteq}}
     {{#if_noteq paymentData.paymentMethod ""}}
+    {{#if_noteq paymentData.paymentMethod null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paymentMethod}}</div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.paymentMethod}}</div>
     </div>
     {{/if_noteq}}
+    {{/if_noteq}}
     {{#if_noteq paymentData.purchasingDocuments ""}}
+    {{#if_noteq paymentData.purchasingDocuments null}}
     {{#if paymentData.purchasingDocuments.length}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.poNo}}</div>
@@ -142,6 +173,7 @@
         </div>
     </div>
     {{/if}}
+    {{/if_noteq}}
     {{/if_noteq}}
 </div>
 {{/if}}

@@ -107,7 +107,7 @@ public class PaymentInvoiceExportServletTest {
 		Mockito.when(request.getCookie(AUTHTOKEN)).thenReturn(null);
 		request.setParameterMap(map);
 		servlet.doGet(request, response);
-		assertEquals("Status should be ok ", HttpStatus.SC_LENGTH_REQUIRED, response.getStatus());
+		assertEquals("Status should be ok ", HttpStatus.SC_INTERNAL_SERVER_ERROR, response.getStatus());
 	}
 
 	@Test

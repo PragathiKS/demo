@@ -24,6 +24,8 @@ class Paymentdetails {
     this.cache.header = this.root.find('.tp-payment-details__header-actions');
     this.cache.headerAction = this.root.find('.tp-payment-details__header-action-wrapper');
     this.cache.mobileHeadersActions = this.root.find('.js-mobile-header-actions');
+    this.cache.statusApiUrl = this.root.data('status-api');
+    this.cache.statusMapping = {};
     try {
       this.cache.i18nKeys = JSON.parse(this.cache.configJson);
     } catch (e) {
@@ -50,15 +52,24 @@ class Paymentdetails {
     });
   }
   bindEvents() {
+    const {header} = this.cache;
     // Download PDF
     this.root.on('click', '.js-payment-details__export-pdf-action',  () => {
       this.downloadPDf();
     });
     this.cache.mobileHeadersActions.on('click', () => {
-      if($('.tp-payment-details__header-actions').hasClass('show')){
-        $('.tp-payment-details__header-actions').removeClass('show');
+      if($(header).hasClass('show')){
+        $(header).removeClass('show');
       } else {
-        $('.tp-payment-details__header-actions').addClass('show');
+        $(header).addClass('show');
+      }
+    });
+    $('body').on('click', (e) => {
+      const $actionBtn = e.target;
+      if(!$($actionBtn).hasClass('icon-Three_Dot')){
+        if($(header).hasClass('show')){
+          $(header).removeClass('show');
+        }
       }
     });
   }
@@ -76,7 +87,8 @@ class Paymentdetails {
     // TODO: Need to remove count query param. these are added only for testing purpose.
     const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1${dateRange}`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
-    return paymentApiPromise;
+    const statusApiPromise = fetch(this.cache.statusApiUrl).then(resp => resp.json());
+    return [paymentApiPromise, statusApiPromise];
   }
   showLoader = (isShow) => {
     if (isShow) {
@@ -110,14 +122,31 @@ class Paymentdetails {
     }
     this.cache.contentWrapper.removeClass('d-none');
   }
+  getStatusName = (statusCode) => {
+    const data = this.cache.statusMapping;
+
+    if (statusCode) {
+      for (const key in data) {
+        if (data[key].includes(statusCode)) {
+          return key;
+        }
+      }
+    }
+    return '';
+  };
   renderPaymentDetails = () => {
     this.showLoader(true);
     auth.getToken(({ data: authData }) => {
-      this.getApiPromise(authData)
+      Promise.all(this.getApiPromise(authData))
         .then(response => {
           this.showLoader(false);
-          const paymentData = response?.data[0] || {};
-          this.renderPaymentDetailsData(paymentData);
+          const paymentData = response[0]?.data[0] || {};
+          this.cache.statusMapping = response[1];
+          const data = {
+            ...paymentData,
+            invoiceStatusName: this.getStatusName(paymentData?.invoiceStatusCode)
+          };
+          this.renderPaymentDetailsData(data);
         })
         .catch(() => {
           this.showLoader(false);
