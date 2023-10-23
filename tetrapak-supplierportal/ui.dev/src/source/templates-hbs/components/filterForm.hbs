@@ -55,7 +55,7 @@
                                     autoLocatorCheckboxText=@root.autoLocatorCheckboxText
                                 }}
                             {{/each}}
-                            <div class="tp-all-payments__date-range-wrapper js-data-range-wrapper {{#if @root.customDateRange.length}} show {{/if}}">
+                            <div class="tp-all-payments__date-range-wrapper js-data-range-wrapper {{#if @root.isInvoiceDateModal}} {{#if @root.customDateRange.length}} show {{/if}}{{/if}}">
                                 {{> atoms/dateRange/dateRange fromDateVal=customDateRange.[0] toDateVal=customDateRange.[1] }}
                             </div>
 
@@ -77,7 +77,7 @@
             {{/if}}
         </div>
         <div class="modal-footer tpmol-modal-footer tp-all-payments__modal-footer">
-            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button {{#if isFilterModal}}js-apply-filter-button-filter-modal{{/if}} tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
                 <span class="tpatom-btn__text sly-text">
                     {{i18n key=applyFilter}}
                 </span>

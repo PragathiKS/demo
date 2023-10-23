@@ -2,7 +2,7 @@ import $ from 'jquery';
 import auth from '../../../scripts/utils/auth';
 import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
-import {  _paginationAnalytics } from './allpayments.analytics';
+import {  _paginationAnalytics, _filterAnalytics } from './allpayments.analytics';
 import { getI18n } from '../../../scripts/common/common';
 // import { getFilterDateRange } from '../../../scripts/utils/dateRange';
 import AllPaymentsFilter from './allpayments.filter';
@@ -122,8 +122,8 @@ class AllPayments {
         headerAction.classList.add('show');
       }
     });
-    this.root.addEventListener('FilterChanged', () => {
-      self.renderPayment();
+    this.root.addEventListener('FilterChanged', (e) => {
+      self.renderPayment(true, e.detail);
     });
     this.allPaymentsFilter.bindEvents();
   }
@@ -329,7 +329,7 @@ class AllPayments {
     return [paymentApiPromise, statusApiPromise, this.allPaymentsFilter.getAllFilters(authData)];
   }
 
-  renderPayment = () => {
+  renderPayment = (fromFilter, filterData) => {
     this.showLoader(true);
 
     auth.getToken(({ data: authData }) => {
@@ -358,6 +358,9 @@ class AllPayments {
 
           this.renderPaginationTableData(tableData);
           this.renderSearchCount();
+          if (fromFilter) {
+            _filterAnalytics(this.allPaymentsFilter.getFilterQueryString(), filterData.type, this.cache.meta?.total);
+          }
         })
         .catch(() => {
           this.showLoader(false);

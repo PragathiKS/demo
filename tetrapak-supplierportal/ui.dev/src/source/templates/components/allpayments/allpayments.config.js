@@ -49,20 +49,28 @@ const filterConfig = {
     'invoiceDates': ['fromdatetime', 'todatetime'],
     'countries': ['companycountry'],
     'companyCodes': ['companycode'],
-    'documentReferenceIDs': ['documentreferenceid']
+    'documentReferenceIDs': ['documentreferenceid'],
+    'invoiceStatuses': ['status']
   },
   filterModal: {
     'invoiceDates': [],
+    'invoiceStatuses':[],
     'countries': [],
     'companyCodes': [],
     'documentReferenceIDs': []
   },
+  filterModalDisableItemsKeys: [
+    'companyCodes', 'countries'
+  ],
   keyMapping: {
     'documentReferenceIDs': 'documentReferenceID',
+    'invoiceStatuses': 'status',
     'companyCodes': 'companyCode',
     'countries': 'country',
     'other': 'other',
-    'last90Days': 'last90Days'
+    'last90Days': 'last90Days',
+    'posted': 'confirmed',
+    'inprocess': 'other'
   }
 };
 

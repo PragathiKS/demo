@@ -4,8 +4,7 @@ import auth from '../../../scripts/utils/auth';
 import allpaymentData from './data/allpayments.json';
 import statusMappingData from './data/statusmapping.json';
 import allpaymentFilterData from './data/allpaymentsfilter.json';
-import {_getFilterDateRange} from './allpayments.utils';
-import AllPaymentsFilter from './allpayments.filter';
+import AllPaymentsUtils from './allpayments.utils';
 import filterFormTmpl from '../../../test-templates-hbs/filterForm.hbs';
 import filterFormInvoiceDateTmpl from '../../../test-templates-hbs/filterFormInvoiceDate.hbs';
 import filterFormInvoiceNoTmpl from '../../../test-templates-hbs/filterFormInvoiceNo.hbs';
@@ -30,9 +29,8 @@ describe('Allpayments', function () {
     this.allpayments = new Allpayments({
       el: document.body.querySelector('.tp-all-payments')
     });
-    this.allpaymentsFilter = new AllPaymentsFilter({}, document.body.querySelector('.tp-all-payments'));
     this.allPaymentsDateRange = new AllPaymentsDateRange({modal: modalContainer}, document.body.querySelector('.tp-all-payments'));
-
+    this.allPaymentsUtils = new AllPaymentsUtils();
     this.initSpy = sinon.spy(this.allpayments, 'init');
     this.bindEventsSpy = sinon.spy(this.allpayments, 'bindEvents');
     this.renderPaymentSpy = sinon.spy(this.allpayments, 'renderPayment');
@@ -42,11 +40,6 @@ describe('Allpayments', function () {
     this.renderErrorTemplateSpy = sinon.spy(this.allpayments, 'renderErrorTemplate');
     this.renderFilterFormSpy = sinon.spy(this.allpayments, 'renderFilterForm');
     this.applyFilterSpy = sinon.spy(this.allpayments, 'applyFilter');
-    this.resetFilterSpy = sinon.spy(this.allpaymentsFilter, 'resetFilter');
-    this.getAllFilterSpy = sinon.spy(this.allpaymentsFilter, 'getAllFilters');
-    this.getPaymentFiltersApiUrlSpy = sinon.spy(this.allpaymentsFilter, 'getPaymentFiltersApiUrl');
-    this.renderTagsSpy = sinon.spy(this.allpaymentsFilter, 'renderTags');
-    // this.inputMaskUtilSpy = sinon.spy(this.allPaymentsDateRange, 'inputMaskUtil');
     this.tokenStub = sinon.stub(auth, 'getToken').callsArgWith(0, {
       data: {
         access_token: 'fLW1l1EA38xjklTrTa5MAN7GFmo2',
@@ -54,7 +47,7 @@ describe('Allpayments', function () {
         token_type: 'BearerToken'
       }
     });
-    const [fromDate, toDate] = _getFilterDateRange(90, true);
+    const [fromDate, toDate] = this.allPaymentsUtils.getFilterDateRange(90, true);
     filterApiUrl += `?fromdatetime=${fromDate}&todatetime=${toDate}`;
     fetchStub = sinon.stub(window, 'fetch');
     fetchStub.withArgs(statusApiUrl).resolves({ json: sinon.stub().resolves(statusMappingData) });
@@ -72,11 +65,6 @@ describe('Allpayments', function () {
     this.renderErrorTemplateSpy.restore();
     this.renderFilterFormSpy.restore();
     this.applyFilterSpy.restore();
-    this.resetFilterSpy.restore();
-    this.getAllFilterSpy.restore();
-    this.getPaymentFiltersApiUrlSpy.restore();
-    this.renderTagsSpy.restore();
-    // this.inputMaskUtilSpy.restore();
     fetchStub.restore();
     sinon.restore();
     windowStub.restore();

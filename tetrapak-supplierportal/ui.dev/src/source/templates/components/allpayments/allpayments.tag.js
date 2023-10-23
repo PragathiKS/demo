@@ -19,7 +19,11 @@ class AllPaymentsTag {
     this.cache.activeFilter[key] = activeFilter[key];
     this.cache.activeTagFilter = activeTagFilter;
 
-    const customEvent = new CustomEvent('FilterChanged', {});
+    const customEvent = new CustomEvent('FilterChanged', {
+      detail: {
+        type: 'removed'
+      }
+    });
     this.root.dispatchEvent(customEvent);
   }
 

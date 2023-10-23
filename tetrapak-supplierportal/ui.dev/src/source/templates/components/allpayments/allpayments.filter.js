@@ -2,16 +2,15 @@ import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
 import AllPaymentsTag from './allpayments.tag';
 import AllPaymentsDateRange from './allpayments.date-range';
-import {sanitize} from '../../../scripts/common/common';
-import {_getFilterDateRange} from './allpayments.utils';
-// import allpaymentFilterData from './data/allpaymentsfilter.json';
+import {sanitize, isMobileMode} from '../../../scripts/common/common';
+import AllPaymentsUtils from './allpayments.utils';
+import { FILTER_TYPE_TEXT, FILTER_TYPE_RADIO, FILTER_TYPE_CHECKBOX, TRIM_STRING_LENGTH } from './constant';
 
 class AllPaymentsFilter {
-
   constructor (cache, root) {
-    // const self = this;
     this.cache = cache;
     this.root = root;
+    this.allPaymentsUtils = new AllPaymentsUtils();
     const selector = {
       filter: this.root.querySelector('.tp-all-payments__filter-wrapper'),
       modal: this.root.querySelector('.js-filter-modal')
@@ -26,14 +25,24 @@ class AllPaymentsFilter {
       invoiceDateStaticOption: [
         'last90Days', 'other'
       ],
+      invoiceStatusStaticOption: [
+        'posted', 'inprocess'
+      ],
       defaultActiveFilter: {
-        invoiceDates: ['last90Days']
+        invoiceDates: ['last90Days'],
+        invoiceStatuses: ['posted']
       },
       defaultActiveTagFilter: [
         {
           invoiceDates: {
-            val: _getFilterDateRange(90).join(' - '),
-            trimVal: _getFilterDateRange(90).join(' - ')
+            val: this.allPaymentsUtils.getFilterDateRange(90).join(' - '),
+            trimVal: this.trimStringInMobileView(this.allPaymentsUtils.getFilterDateRange(90).join(' - '))
+          }
+        },
+        {
+          invoiceStatuses: {
+            val: 'posted',
+            trimVal: this.trimStringInMobileView(this.cache.i18nKeys[this.cache.keyMapping['posted']])
           }
         }
       ]
@@ -45,6 +54,14 @@ class AllPaymentsFilter {
     this.allPaymentDateRange = new AllPaymentsDateRange(this.cache, this.root);
   }
 
+  trimStringInMobileView = (str) => {
+    if (isMobileMode()) {
+      return this.allPaymentsUtils.trimString(str, TRIM_STRING_LENGTH);
+    }
+
+    return str;
+  }
+
   getFilterQueryString = () => {
     const self = this;
 
@@ -53,7 +70,7 @@ class AllPaymentsFilter {
         const value = this.cache.activeFilter[key];
         if (Array.isArray(value) && value.length > 0) {
           if (value.includes('last90Days')) {
-            const [fromDate, toDate] = _getFilterDateRange(90, true);
+            const [fromDate, toDate] = self.allPaymentsUtils.getFilterDateRange(90, true);
             return `fromdatetime=${fromDate}&todatetime=${toDate}`;
           }
           else if (value.includes('other')) {
@@ -84,66 +101,109 @@ class AllPaymentsFilter {
     this.cache.activeTagFilter = [...this.cache.defaultActiveTagFilter];
     this.cache.customDateRange = [];
 
-    const customEvent = new CustomEvent('FilterChanged', {});
+    const customEvent = new CustomEvent('FilterChanged', {
+      detail: {
+        type: 'reset'
+      }
+    });
     this.root.dispatchEvent(customEvent);
+  }
+
+  setInvoiceDateFilter = (field, activeForm, activeFilter, activeTagFilter) => {
+    const self = this;
+    if(field.checked) {
+      activeFilter[activeForm].push(field.value);
+      activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
+      if(field.value !== 'other') {
+        this.cache.customDateRange = [];
+        activeTagFilter.splice(0, 0, {[activeForm]: {
+          val: self.allPaymentsUtils.getFilterDateRange(90).join(' - '),
+          trimVal: self.trimStringInMobileView(self.allPaymentsUtils.getFilterDateRange(90).join(' - '))
+        }});
+      }
+      else {
+        this.cache.customDateRange = this.allPaymentDateRange.getFilterCustomDateRange();
+        activeTagFilter.splice(0, 0, {[activeForm]: {
+          val: this.cache.customDateRange.join(' - '),
+          trimVal: self.trimStringInMobileView(this.cache.customDateRange.join(' - '))
+        }});
+      }
+    }
+
+    return [activeFilter, activeTagFilter];
+  }
+
+  setInvoiceStatusFilter = (field, activeForm, activeFilter, activeTagFilter) => {
+    if(field.checked) {
+      activeFilter[activeForm].push(field.value);
+      activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
+      activeTagFilter.splice(1, 0, {[activeForm]: {
+        val: field.value,
+        trimVal: this.trimStringInMobileView(this.cache.i18nKeys[this.cache.keyMapping[field.value]])
+      }});
+    }
+
+    return [activeFilter, activeTagFilter];
+  }
+
+  setCompanyCountryFilter = (field, activeForm, activeFilter, activeTagFilter) => {
+    const self = this;
+
+    if (field.checked) {
+      activeFilter[activeForm].push(field.value);
+      if(!activeTagFilter.some(obj => obj[activeForm] && obj[activeForm].val === field.value)) {
+        activeTagFilter.push({[activeForm]: {
+          val: field.value,
+          trimVal: self.trimStringInMobileView(field.value)
+        }});
+      }
+    }
+    else {
+      activeTagFilter = activeTagFilter.filter(obj => !obj[activeForm] || (obj[activeForm] && obj[activeForm].val !== field.value));
+    }
+
+    return [activeFilter, activeTagFilter];
+  }
+
+  setInvoiceNoFilter = (field, activeForm, activeFilter, activeTagFilter) => {
+    if (!field.classList.contains('js-date-range')) {
+      activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
+
+      if (field.value) {
+        const sanitizeVal = sanitize(field.value); // To sanitize the value
+        activeFilter[activeForm].push(sanitizeVal);
+        activeTagFilter.push({[activeForm]: {
+          val: sanitizeVal,
+          trimVal: this.trimStringInMobileView(sanitizeVal)
+        }});
+      }
+    }
+
+    return [activeFilter, activeTagFilter];
   }
 
   applyFilterAction = () => {
     const modal = this.cache.modal,
       activeForm = modal.querySelector('.tp-modal-dialog').getAttribute('auto_locator'),
-      inputFields = modal.querySelectorAll('input'),
-      {activeFilter} = this.cache;
-    let {activeTagFilter} = this.cache;
+      inputFields = modal.querySelectorAll('input');
+    let {activeFilter, activeTagFilter} = this.cache;
 
     this.cache.activeFilter[activeForm] = []; //reset
-
     inputFields.forEach((field) => {
       switch(field.type) {
-      case 'radio':
-        if(field.checked) {
-          activeFilter[activeForm].push(field.value);
-          activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
-          if(field.value !== 'other') {
-            this.cache.customDateRange = [];
-            activeTagFilter.unshift({[activeForm]: {
-              val: _getFilterDateRange(90).join(' - '),
-              trimVal: _getFilterDateRange(90).join(' - ')
-            }});
-          }
-          else {
-            this.cache.customDateRange = this.allPaymentDateRange.getFilterCustomDateRange();
-            activeTagFilter.unshift({[activeForm]: {
-              val: this.cache.customDateRange.join(' - '),
-              trimVal: this.cache.customDateRange.join(' - ')
-            }});
-          }
-        }
-        break;
-      case 'checkbox':
-        if (field.checked) {
-          activeFilter[activeForm].push(field.value);
-          if(!activeTagFilter.some(obj => obj[activeForm] && obj[activeForm].val === field.value)) {
-            activeTagFilter.push({[activeForm]: {
-              val: field.value,
-              trimVal: field.value
-            }});
-          }
+      case FILTER_TYPE_RADIO:
+        if (activeForm === 'invoiceDates') {
+          [activeFilter, activeTagFilter] =  this.setInvoiceDateFilter(field, activeForm, activeFilter, activeTagFilter);
         }
         else {
-          activeTagFilter = activeTagFilter.filter(obj => !obj[activeForm] || (obj[activeForm] && obj[activeForm].val !== field.value));
+          [activeFilter, activeTagFilter] =  this.setInvoiceStatusFilter(field, activeForm, activeFilter, activeTagFilter);
         }
         break;
-      case 'text':
-        if (field.value && !field.classList.contains('js-date-range')) {
-          const sanitizeVal = sanitize(field.value); // To sanitize the value
-          activeFilter[activeForm].push(sanitizeVal);
-
-          activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
-          activeTagFilter.push({[activeForm]: {
-            val: sanitizeVal,
-            trimVal: sanitizeVal
-          }});
-        }
+      case FILTER_TYPE_CHECKBOX:
+        [activeFilter, activeTagFilter] =  this.setCompanyCountryFilter(field, activeForm, activeFilter, activeTagFilter);
+        break;
+      case FILTER_TYPE_TEXT:
+        [activeFilter, activeTagFilter] =  this.setInvoiceNoFilter(field, activeForm, activeFilter, activeTagFilter);
         break;
       default:
         break;
@@ -151,8 +211,16 @@ class AllPaymentsFilter {
     });
     this.cache.activeFilter = activeFilter;
     this.cache.activeTagFilter = activeTagFilter;
+    // eslint-disable-next-line no-console
+    console.log( this.cache.activeFilter);
+    // eslint-disable-next-line no-console
+    console.log( this.cache.activeTagFilter);
 
-    const customEvent = new CustomEvent('FilterChanged', {});
+    const customEvent = new CustomEvent('FilterChanged', {
+      detail: {
+        type: 'added'
+      }
+    });
     this.root.dispatchEvent(customEvent);
   }
 
@@ -164,12 +232,21 @@ class AllPaymentsFilter {
       return self.cache.activeFilter[key];
     }
     else if (target.getAttribute('data-isRadio')) {
-      return self.cache.invoiceDateStaticOption.map((item) => ({
-        isChecked: self.cache.activeFilter[key].includes(item) ? true : false,
-        option: item,
-        // optionDisplayText: item[self.cache.keyMapping[key]] // TODO: with i18nkeys
-        optionDisplayText: item
-      }));
+      if (key === 'invoiceDates') {
+        return self.cache.invoiceDateStaticOption.map((item) => ({
+          isChecked: self.cache.activeFilter[key].includes(item) ? true : false,
+          option: item,
+          optionDisplayText: self.cache.i18nKeys[self.cache.keyMapping[item]]
+
+        }));
+      }
+      else {
+        return self.cache.invoiceStatusStaticOption.map((item) => ({
+          isChecked: self.cache.activeFilter[key].includes(item) ? true : false,
+          option: item,
+          optionDisplayText: self.cache.i18nKeys[self.cache.keyMapping[item]]
+        }));
+      }
     }
     else {
       return self.cache.filterModalData[key].map((item) => ({
@@ -201,15 +278,15 @@ class AllPaymentsFilter {
       autoLocatorCheckbox: `${key}FilterCheckboxOverlay`,
       autoLocatorCheckboxText: `${key}FilterItemOverlay`,
       isFilterModal: true,
-      customDateRange: this.cache.customDateRange
+      customDateRange: this.cache.customDateRange,
+      isInvoiceDateModal: (key === 'invoiceDates') ? true : false
     };
   }
 
   modalClickAction (e) {
-    if (e.target.closest('.js-apply-filter-button')) {
+    if (e.target.closest('.js-apply-filter-button-filter-modal')) {
       this.applyFilterAction();
       $(this.cache.modal).modal('hide');
-      // this.renderTags();
     }
     else if (e.target.closest('.js-date-range-clear-icon')) {
       const filterWrapper = e.target.closest('.js-date-range-input-wrapper'),
@@ -223,7 +300,6 @@ class AllPaymentsFilter {
       $(this.cache.modal).modal('hide');
     }
   }
-
 
   bindEvents() {
     const self = this;
@@ -275,7 +351,7 @@ class AllPaymentsFilter {
     const activeFilter = new Set(this.cache.activeTagFilter.map(item => Object.keys(item)[0])),
       filterWrapper = this.cache.filter,
       buttonElem = filterWrapper.querySelectorAll(`.tp-all-payments__filter-chips button`),
-      filterModalData = this.cache.filterModalData;
+      filterModalData = this.cache.filterModalData, self = this;
 
     buttonElem.forEach((field) => {
       const fieldName = field.getAttribute('data-key');
@@ -284,7 +360,7 @@ class AllPaymentsFilter {
         field.classList.add('active');
       }
       if (Object.keys(filterModalData).length > 0) {
-        if(filterModalData[field] && filterModalData[fieldName].length <= 0) {
+        if(filterModalData[fieldName] && filterModalData[fieldName].length <= 0 && self.cache.filterModalDisableItemsKeys.includes(fieldName)) {
           field.disabled = true;
         }
         else {
@@ -330,12 +406,11 @@ class AllPaymentsFilter {
         self.cache.filterModalData = response.data;
         self.renderTags();
       })
-      .catch(() => {
+      .catch((e) => {
         self.cache.filterModalData = {};
-        // self.cache.filterModalData = allpaymentFilterData.data;
         self.renderTags();
         // eslint-disable-next-line no-console
-        console.log('Filter fetch error');
+        console.log('Filter fetch error', e);
       });
   }
 }

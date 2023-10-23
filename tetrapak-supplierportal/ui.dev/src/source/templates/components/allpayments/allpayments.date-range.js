@@ -1,13 +1,13 @@
 import InputMask from 'inputmask';
-import { DEFAULT_DATE_INPUT_MASK, DEFAULT_DATE_INPUT_FORMAT } from '../../../scripts/utils/constants';
-import {_isValidDate, _isDateLessThanOrEqualToToday, _isToDateGreaterThanFromDate} from './allpayments.utils';
-
+import { DEFAULT_DATE_INPUT_MASK, DEFAULT_DATE_INPUT_FORMAT } from './constant';
+import AllPaymentsUtils from './allpayments.utils';
 
 class AllPaymentsDateRange {
   constructor (cache, root) {
     const self = this;
     this.cache = cache;
     this.root = root;
+    this.allPaymentsUtils = new AllPaymentsUtils();
     this.inputMaskUtil = new InputMask(DEFAULT_DATE_INPUT_MASK, {
       placeholder: DEFAULT_DATE_INPUT_FORMAT,
       clearIncomplete: true,
@@ -36,17 +36,18 @@ class AllPaymentsDateRange {
   validateDateRange = () => {
     const dateWrapper = this.cache.modal.querySelector('.js-date-range-wrapper'),
       fromInput = dateWrapper.querySelector('.js-date-range-input-from').value,
-      toInput = dateWrapper.querySelector('.js-date-range-input-to').value;
+      toInput = dateWrapper.querySelector('.js-date-range-input-to').value,
+      utils = this.allPaymentsUtils;
 
-    if (fromInput && toInput && !_isToDateGreaterThanFromDate(fromInput, toInput)) {
+    if (fromInput && toInput && !utils.isToDateGreaterThanFromDate(fromInput, toInput)) {
       dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
       this.enableFilterApplyBtn(false);
     }
-    else if (fromInput && (!_isValidDate(fromInput) || !_isDateLessThanOrEqualToToday(fromInput))) {
+    else if (fromInput && (!utils.isValidDate(fromInput) || !utils.isDateLessThanOrEqualToToday(fromInput))) {
       dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
       this.enableFilterApplyBtn(false);
     }
-    else if (toInput && (!_isValidDate(toInput) || !_isDateLessThanOrEqualToToday(toInput))) {
+    else if (toInput && (!utils.isValidDate(toInput) || !utils.isDateLessThanOrEqualToToday(toInput))) {
       dateWrapper.querySelector('.js-date-range-to-error').classList.remove('hide');
       this.enableFilterApplyBtn(false);
     }
@@ -121,7 +122,7 @@ class AllPaymentsDateRange {
     const self = this;
 
     this.cache.modal && this.cache.modal.addEventListener('change', function(e) {
-      if (e.target.closest('.tpatom-radio')) {
+      if (e.target.closest('.tp-all-payments-filter[auto_locator="invoiceDates"]') && e.target.closest('.tpatom-radio')) {
         self.toggleDateRange(e);
       }
     });
