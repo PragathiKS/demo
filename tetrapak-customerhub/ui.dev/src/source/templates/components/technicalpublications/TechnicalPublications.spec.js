@@ -134,7 +134,7 @@ describe("TechnicalPublications", function () {
 
     expect(innerHeaderText).to.equal('cuhu.technicalpublications.lineEquipment');
     expect(innerBreadcrumbText).to.equal('cuhu.technicalpublications.allFiles');
-    expect(renderedBtnLabels.includes('Polling, Line H3, TPA3/S TBA200S')).to.be.true;
+    expect(renderedBtnLabels.includes('HS Horiz. Flow Wrapping CM/HHS by Meurer')).to.be.true;
 
     done();
   });

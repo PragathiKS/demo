@@ -4,7 +4,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import { logger } from '../../../scripts/utils/logger';
 import { render } from '../../../scripts/utils/render';
-import { getI18n } from '../../../scripts/common/common';
+import { getI18n, storageUtil } from '../../../scripts/common/common';
 import { DOCUMENT_TYPES } from './constants';
 
 
@@ -99,14 +99,14 @@ function _addQueryParam(paramName, paramValue) {
   const newQueryString = Object.keys(params)
     .map(function (key) {
       if (!!key && !!params[key] && params[key] !== 'undefined') {
-        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+        return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
       }
       return false;
     })
     .filter(el => !!el)
     .join('&');
 
-  const newUrl = window.location.pathname + '?' + newQueryString;
+  const newUrl = `${window.location.pathname}?${newQueryString}`;
 
   window.history.replaceState({}, document.title, newUrl);
 }
@@ -129,19 +129,19 @@ function _removeQueryParams(paramNames) {
   const newQueryString = Object.keys(params)
     .map(function (key) {
       if (!!key && !!params[key] && params[key] !== 'undefined') {
-        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+        return `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`;
       }
       return false;
     })
     .filter(el => !!el)
     .join('&');
 
-  const newUrl = window.location.pathname + '?' + newQueryString;
+  const newUrl = `${window.location.pathname}?${newQueryString}`;
 
   window.history.replaceState({}, document.title, newUrl);
 }
 
-function _getFolderData(stepKey, options) {
+async function _getFolderData(stepKey, options) {
   const $this = this;
   const {
     countriesApi,
@@ -155,7 +155,7 @@ function _getFolderData(stepKey, options) {
   } = $this.cache;
   const { folderNavData, apiDataObj } = $this.cache;
   const { country, customer, line, lineFolders, folderDetails } = folderNavData;
-  const { isBreadcrumbNav, useOriginalSerialNumber } = options;
+  const { isBreadcrumbNav, useOriginalSerialNumber, skipFolderDetails, renderIssueDate } = options;
   let apiUrl;
   let serialNumber;
 
@@ -280,7 +280,7 @@ function _getFolderData(stepKey, options) {
               if (docLine.lineName === 'PLANT DOCUMENTATION') {
                 return ({
                   ...docLine,
-                  lineName: this.cache.plantDocLabel
+                  equipmentName: this.cache.plantDocLabel
                 });
               }
               return docLine;
@@ -288,32 +288,39 @@ function _getFolderData(stepKey, options) {
         }
 
         if (stepKey === 'lineFolders') {
-          const docData = [];
-          const docObj = {};
-
-          // Filter Data by Document Type
-          res.data.forEach(function (data) {
-            docObj[data.typeCode] = `${data.typeCode} - ${data.type}`;
-          });
-
-          Object.keys(docObj).forEach(function (docType) {
-            const docObject = {
-              docType,
-              'docTitle': docObj[docType],
-              'serialNo': lineFolders.value
-            };
-            docData.push(docObject);
-          });
-
-          finalData = docData.filter(function (data) {
-            const isValidDocType = DOCUMENT_TYPES.includes(data.docType);
-
-            if (isValidDocType) {
-              return data;
+          if (skipFolderDetails) {
+            finalData = res.data;
+            if (finalData.length && finalData[0].serials && finalData[0].serials.length) {
+              srNo = finalData[0].serials[0].serialNumber;
             }
-          });
+          } else {
+            const docData = [];
+            const docObj = {};
 
-          $this.setTechPubApiResults(res.data);
+            // Filter Data by Document Type
+            res.data.forEach(function (data) {
+              docObj[data.typeCode] = `${data.typeCode} - ${data.type}`;
+            });
+
+            Object.keys(docObj).forEach(function (docType) {
+              const docObject = {
+                docType,
+                'docTitle': docObj[docType],
+                'serialNo': lineFolders.value
+              };
+              docData.push(docObject);
+            });
+
+            finalData = docData.filter(function (data) {
+              const isValidDocType = DOCUMENT_TYPES.includes(data.docType);
+
+              if (isValidDocType) {
+                return data;
+              }
+            });
+
+            $this.setTechPubApiResults(res.data);
+          }
         }
         if (stepKey === 'folderDetails') {
           const documentType = folderDetails.value.split(',')[0];
@@ -325,7 +332,8 @@ function _getFolderData(stepKey, options) {
           searchResults.show();
           searchResults.text(`${finalData.length} ${searchResultsLabel}`);
         }
-        $this.renderFolderData(stepKey, finalData, srNo, docType);
+
+        $this.renderFolderData(stepKey, finalData, srNo, docType, skipFolderDetails, renderIssueDate);
         $this.renderBreadcrumbs(stepKey);
         $this.setApiData(stepKey, finalData);
         $this.mapKeyToURL(stepKey, finalData);
@@ -335,16 +343,38 @@ function _getFolderData(stepKey, options) {
   });
 }
 
-function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
+function _prepareFolderData(data) {
+  return data.map((el) => {
+    if (
+      el.lineName === 'PLANT DOCUMENTATION' ||
+      el.lineName === 'LINE DOCUMENTATION'
+    ) {
+      el.skipFolderDetails = true;
+    }
+    return el;
+  });
+}
+
+function _renderFolderData(
+  currentStep,
+  folderData,
+  serialNumber,
+  typeCode,
+  skipFolderDetails,
+  forceRenderIssueDate
+) {
   const $this = this;
   const { $folderListingWrapper, i18nKeys } = $this.cache;
 
-  const renderIssueDate = ['SPC'].includes(typeCode);
+  const langCode = storageUtil.getCookie('lang-code');
+
+  const renderIssueDate = forceRenderIssueDate || ['SPC'].includes(typeCode);
   const renderDescription = ['TEM', 'CM'].includes(typeCode);
   const renderRKNumber = ['RM', 'UP', 'KIT'].includes(typeCode);
   const renderRKName = ['RM', 'UP', 'KIT'].includes(typeCode);
 
-  let data = [...folderData];
+
+  let data = $this.prepareFolderData(folderData);
 
   if (renderRKNumber || renderRKName) {
     data = this.extractRKDetails(folderData);
@@ -368,7 +398,9 @@ function _renderFolderData(currentStep, folderData, serialNumber, typeCode) {
       renderIssueDate,
       renderDescription,
       renderRKNumber,
-      renderRKName
+      renderRKName,
+      skipFolderDetails,
+      langCode
     }
   }, () => {
     $this.showSpinner(false);
@@ -470,13 +502,14 @@ class TechnicalPublications {
 
     /*
       Below values are used for both the Plant Documentation labeling and for checking whether given document is a Plant Documentation.
-      Contrary to other lineNames, Plant Documentation doesn't require additional formatting for serial number, 
-      hence we have to filter it out. 
+      Contrary to other lineNames, Plant Documentation doesn't require additional formatting for serial number, hence we have to filter it out.
     */
     this.cache.plantDocsLabel = this.cache.i18nKeys.plantDocumentations ?
       getI18n(this.cache.i18nKeys.plantDocumentations) : 'Plant Documents';
     this.cache.plantDocLabel = this.cache.i18nKeys.plantDocumentation ?
       getI18n(this.cache.i18nKeys.plantDocumentation) : 'Plant Documentation';
+    this.cache.lineDocLabel = this.cache.i18nKeys.lineDocumentation ?
+      getI18n(this.cache.i18nKeys.lineDocumentation) : 'Line Documentation';
 
     // save state of API data responses for backwards breadcrumb navigation
     this.cache.apiDataObj = {
@@ -546,11 +579,23 @@ class TechnicalPublications {
       }
     }
 
-    const useOriginalSerialNumber = label === this.cache.plantDocLabel || label === this.cache.plantDocsLabel;
+    const useOriginalSerialNumber = label === this.cache.plantDocLabel ||
+      label === this.cache.plantDocsLabel ||
+      label === this.cache.lineDocumentation;
+
+    const skipFolderDetails = label === this.cache.plantDocLabel ||
+      label === this.cache.plantDocsLabel ||
+      label === this.cache.lineDocumentation;
+
+    const renderIssueDate = label === this.cache.plantDocLabel ||
+      label === this.cache.plantDocsLabel ||
+      label === this.cache.lineDocumentation;
 
     this.getFolderData(nextKey, {
       isBreadcrumbNav: false,
-      useOriginalSerialNumber
+      useOriginalSerialNumber,
+      skipFolderDetails,
+      renderIssueDate
     });
   }
 
@@ -666,6 +711,10 @@ class TechnicalPublications {
 
       $this.getFolderData(targetStep, { isBreadcrumbNav: true });
     });
+  }
+
+  prepareFolderData() {
+    return _prepareFolderData.apply(this, arguments);
   }
 
   getFolderData() {
