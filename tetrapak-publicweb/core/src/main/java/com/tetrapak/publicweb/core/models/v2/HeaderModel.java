@@ -176,6 +176,13 @@ public class HeaderModel {
         return StringUtils.EMPTY;
     }
 
+    public String getMegaMenuXFSelectors() {
+        if (null != marketPage) {
+            return "content."+marketPage.getName();
+        }
+        return StringUtils.EMPTY;
+    }
+
     /**
      * @return DisplayCurrentLanguage
      */

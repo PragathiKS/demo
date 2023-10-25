@@ -1,10 +1,13 @@
 package com.tetrapak.publicweb.core.models.v2;
 
 import com.day.cq.contentsync.handler.util.RequestResponseFactory;
+import com.day.cq.wcm.api.Page;
 import com.day.cq.wcm.api.WCMMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tetrapak.publicweb.core.models.MegaMenuColumnModel;
+import com.tetrapak.publicweb.core.utils.LinkUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.engine.SlingRequestProcessor;
@@ -13,9 +16,11 @@ import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.Self;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +32,7 @@ import java.util.List;
  * The Class MegaMenuSolutionModel.
  */
 @Model(
-        adaptables = { Resource.class },
+        adaptables = {SlingHttpServletRequest.class, Resource.class},
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL,resourceType = "publicweb/components/structure/megamenuconfigv2")
 @Exporter(name = "jackson", extensions = "json")
 public class MegaMenuConfigModel {
@@ -37,8 +42,14 @@ public class MegaMenuConfigModel {
 
     private String modelJsonPath;
 
-    @Self
+    @Inject
     private Resource resource;
+
+    @Inject
+    private SlingHttpServletRequest request;
+
+    @ScriptVariable
+    private Page currentPage;
 
     @ChildResource
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -77,6 +88,10 @@ public class MegaMenuConfigModel {
     }
 
     public String getModelJsonPath() {
-        return resource.getPath()+".model.json";
+
+        String countryPagePath = LinkUtils.getCountryPath(currentPage.getPath());
+        String market = StringUtils.substringAfterLast(countryPagePath,"/");
+        return request.getResource().getPath()+".mobilemegamenu."+market+".json";
     }
+
 }
