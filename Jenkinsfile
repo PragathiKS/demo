@@ -43,7 +43,7 @@ pipeline {
                     if (params.Build_Publicweb) {
                         appname = "publicweb"
                          echo 'publicweb'
-		    }
+                    }
                     }
                   
                 }
@@ -63,4 +63,3 @@ pipeline {
             }
         }
 }
-
