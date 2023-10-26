@@ -18,7 +18,7 @@
         sling:message=" Payments"/>
     <sp.paymentDetails.amountIncludingTaxes
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Amount Including Taxes"/>
+        sling:message="Amount including taxes"/>
     <sp.paymentDetails.amountIncludingTaxesTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -27,7 +27,7 @@
         sling:message=" Apply Filter"/>
     <sp.paymentDetails.bankAccount
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Bank Account"/>
+        sling:message="Bank account"/>
     <sp.paymentDetails.bankAccountTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -42,7 +42,7 @@
         sling:message=" Company"/>
     <sp.paymentDetails.companyCode
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Company Code"/>
+        sling:message="Company code"/>
     <sp.paymentDetails.companyCodeTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -72,7 +72,7 @@
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.dueDate
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Due Date"/>
+        sling:message="Due date"/>
     <sp.paymentDetails.dueDateTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -87,7 +87,7 @@
         sling:message=" Fetch Error"/>
     <sp.paymentDetails.invoiceDate
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Invoice Date"/>
+        sling:message="Invoice date"/>
     <sp.paymentDetails.invoiceDateTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -96,16 +96,16 @@
         sling:message=" Invoice Information"/>
     <sp.paymentDetails.invoiceNo
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Invoice No"/>
+        sling:message="Invoice No."/>
     <sp.paymentDetails.invoiceNoTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.multipono
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Multiple Po Number"/>
+        sling:message="Multiple Po Number"/>
     <sp.paymentDetails.netPayable
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Net Payable"/>
+        sling:message="Net payable"/>
     <sp.paymentDetails.netPayableTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -132,25 +132,25 @@
         sling:message=" Paid"/>
     <sp.paymentDetails.paidDate
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Paid Date"/>
+        sling:message="Paid date"/>
     <sp.paymentDetails.paidDateTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.paymentMethod
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Payment Method"/>
+        sling:message="Payment method"/>
     <sp.paymentDetails.paymentMethodTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.paymentTerm
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Payment Term"/>
+        sling:message="Payment term"/>
     <sp.paymentDetails.paymentTermTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.poNo
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" PO NO"/>
+        sling:message="PO No."/>
     <sp.paymentDetails.poNoTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -177,7 +177,7 @@
         sling:message=" Supplier"/>
     <sp.paymentDetails.supplierCode
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Supplier Code"/>
+        sling:message="Supplier code"/>
     <sp.paymentDetails.supplierCodeTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
@@ -195,13 +195,13 @@
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.totalAmount
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Total Amount incl. taxes"/>
+        sling:message="Total amount incl. taxes"/>
     <sp.paymentDetails.totalAmountTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.withholdingtax
         jcr:primaryType="sling:MessageEntry"
-        sling:message=" Withholding Taxes"/>
+        sling:message="Withholding taxes"/>
     <sp.paymentDetails.withHoldingTaxesTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
