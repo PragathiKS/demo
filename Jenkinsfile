@@ -1,4 +1,4 @@
-
+ 
 
 pipeline {
     agent any
@@ -7,6 +7,7 @@ pipeline {
             steps {
                echo 'hi'
                 echo 'f1'
+                echo 'main-today'
             }
         }
     }
