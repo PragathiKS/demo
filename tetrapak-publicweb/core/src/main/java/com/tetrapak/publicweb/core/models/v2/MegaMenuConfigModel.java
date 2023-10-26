@@ -28,6 +28,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import static com.tetrapak.publicweb.core.constants.PWConstants.*;
+
 /**
  * The Class MegaMenuSolutionModel.
  */
@@ -90,8 +92,8 @@ public class MegaMenuConfigModel {
     public String getModelJsonPath() {
 
         String countryPagePath = LinkUtils.getCountryPath(currentPage.getPath());
-        String market = StringUtils.substringAfterLast(countryPagePath,"/");
-        return request.getResource().getPath()+".mobilemegamenu."+market+".json";
+        String market = StringUtils.substringAfterLast(countryPagePath,SLASH);
+        return request.getResource().getPath()+DOT+MOBILE_MEGAMENU_SELECTOR+DOT+market+JSON_EXTENSION;
     }
 
 }

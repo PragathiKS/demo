@@ -17,7 +17,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import static com.tetrapak.publicweb.core.constants.PWConstants.LANG_MASTERS;
+import static com.tetrapak.publicweb.core.constants.PWConstants.*;
 
 @Model(adaptables = {SlingHttpServletRequest.class, Resource.class}, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL, resourceType = "publicweb/components/structure/megamenucolumnitems/description")
 @Exporter(name = "jackson", extensions = "json")
@@ -35,17 +35,17 @@ public class DescriptionModel {
     @PostConstruct
     protected void init(){
         if(request!=null && currentPage!=null){
-            if(currentPage.getPath().startsWith("/content/experience-fragments")){
+            if(currentPage.getPath().startsWith(PUBLICWEB_XF_PATH)){
                 String marketSuffix = request.getRequestPathInfo().getSuffix();
                 if(StringUtils.isNotBlank(text) && StringUtils.isNotBlank(marketSuffix)){
                     String market = FilenameUtils.removeExtension(marketSuffix);
-                    market = market.replace("/","");
+                    market = market.replace(SLASH,StringUtils.EMPTY);
                     text = text.replace(LANG_MASTERS,market);
                 }
             }else{
                 String marketPath = LinkUtils.getCountryPath(currentPage.getPath());
                 if(StringUtils.isNotBlank(text) && text.contains(LANG_MASTERS)){
-                    text = text.replace("/content/tetrapak/publicweb/lang-masters",marketPath);
+                    text = text.replace(PUBLICWEB_LANG_MASTERS_PATH,marketPath);
                 }
             }
 
