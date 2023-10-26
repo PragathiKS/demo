@@ -1,0 +1,266 @@
+{
+  "jcrRoot": "app/jcr_root",
+  "appFolder": "app",
+  "sourceFolder": "source",
+  "publishFolder": "app/jcr_root/apps/settings/wcm/designs/plas/clientlibs",
+  "demoFolder": "source/clientlib-format/apps/settings/wcm/designs/plas/clientlibs",
+  "assetFolder": "source/assets",
+  "server": "http://admin:admin@localhost:4502",
+  "aem": {
+    "src": {
+      "atomPath": "<%= config.source %>/templates/atoms",
+      "moleculePath": "<%= config.source %>/templates/molecules",
+      "componentPath": "<%= config.source %>/templates/components",
+      "content": "<%= config.app %>/jcr_root/content/plas-ux/**/.content.xml",
+      "contentXML": "<%= config.app %>/jcr_root/**/.content.xml",
+      "components": "<%= config.app %>/jcr_root/**/*.{html,xml,txt}",
+      "models": "<%= config.app %>/jcr_root/apps/**/*.js",
+      "staticassets": "<%= config.app %>/jcr_root/apps/settings/wcm/**/*.{js,css}",
+      "mediaassets": "<%= config.app %>/jcr_root/**/*.{jpg,mov,png,mp4,svg}",
+      "fontassets": "<%= config.app %>/jcr_root/**/*.{otf,eot,ttf,woff}",
+      "jsonData": "<%= config.app %>/jcr_root/**/*.json"
+    },
+    "target": {
+      "atomPath": "<%= config.app %>/jcr_root/apps/plas/components/atoms",
+      "moleculePath": "<%= config.app %>/jcr_root/apps/plas/components/molecules",
+      "componentPath": "<%= config.app %>/jcr_root/apps/plas/components/content"
+    },
+    "uxContentDescriptor": "plas-ux",
+    "componentGroup": "plas",
+    "componentGroupName": "Plas"
+  },
+  "assemble": {
+    "options": {
+      "layouts": "*.hbs",
+      "layoutdir": "<%= config.source %>/templates/layouts",
+      "data": [
+        "<%= config.source %>/data/*.{json,yml}",
+        "<%= config.source %>/templates/components/{,*/}*.json"
+      ],
+      "partials": [
+        "<%= config.source %>/templates/components/{,*/}*.hbs"
+      ],
+      "collections": [
+        {
+          "name": "components",
+          "inflection": "component",
+          "sortorder": "ascending",
+          "sortby": "datetime"
+        }
+      ],
+      "helpers": [
+        "<%= config.source %>/helpers/*"
+      ],
+      "plugins": [
+        "grunt-tasks/assemble-aem-plugin.js"
+      ]
+    },
+    "pages": {
+      "options": {
+        "aemuxlib": {
+          "contentRoot": "<%= config.app %>/jcr_root/content/plas-ux",
+          "designJcrPath": "/apps/settings/wcm/designs/plas",
+          "jcrFileRoot": "<%= config.app %>/jcr_root/",
+          "wrapJsonData": true
+        }
+      },
+      "files": [
+        {
+          "expand": true,
+          "src": [
+            "<%= config.source %>/templates/components/**/**/**/*.hbs"
+          ],
+          "dest": "<%= config.app %>/jcr_root/apps/plas/components/content"
+        }
+      ]
+    }
+  },
+  "copy": {
+    "jsonData": [
+      {
+        "expand": true,
+        "flatten": true,
+        "cwd": "<%= config.source %>/templates/components/",
+        "src": [
+          "**/data/*.json"
+        ],
+        "dest": "<%= config.app %>/jcr_root/apps/settings/wcm/designs/plas/jsonData"
+      }
+    ]
+  },
+  "webfont": {
+    "src": "<%= config.source %>/assets/icons/*.svg",
+    "target": "<%= config.source %>/clientlib-format/apps/settings/wcm/designs/plas/clientlibs/vendor.publish/iconfonts",
+    "scss": {
+      "target": "<%= config.source %>/assets/styles/common"
+    },
+    "fontFile": "plas-icons",
+    "relativePath": "../iconfonts"
+  },
+  "webpack": {
+    "filePath": "apps/settings/wcm/designs/plas/clientlibs/[name].publish/js/[name].js",
+    "chunkFilePath": "apps/settings/wcm/designs/plas/clientlibs/[name].publish/js/[name].[chunkhash].js",
+    "root": "app/jcr_root",
+    "modes": {
+      "dev": "development",
+      "prod": "development"
+    },
+    "entry": {
+      "global": "source/scripts/core/core.js"
+    },
+    "cacheGroups": {
+      "vendor": {
+        "test": "[\\\\/]node_modules[\\\\/]|[\\\\/]vendor\\.scss",
+        "name": "vendor",
+        "minSize": 0,
+        "chunks": "all"
+      },
+      "common": {
+        "testMultiple": true,
+        "name": "common",
+        "enforce": true,
+        "chunks": "all"
+      },
+      "default_en": {
+        "test": "[\\\\/]default[\\\\/]en[\\\\/]base.scss",
+        "name": "default.en",
+        "enforce": true,
+        "chunks": "all"
+      }
+    },
+    "componentGroups": {
+      "common": [
+        "source/scripts/common/",
+        "source/scripts/utils/",
+        "source/templates/components/header/",
+        "source/templates/components/footer/",
+        "source/templates/components/teaser/",
+        "source/templates/components/mediaLink/",
+        "source/templates/components/textImage/",
+        "source/templates/components/richtext/",
+        "source/templates/components/accordion/",
+        "source/templates/components/leftnavigation/",
+        "source/templates/components/languageselector/",
+        "source/templates/components/supportrequest/",
+        "source/templates/components/chatbot/"
+      ]
+    },
+    "handlebars": {
+      "helpersFolder": "source/scripts/helpers",
+      "commonHelpersFolder": "../../../tetrapak-commons/ui.dev/src/source/scripts/helpers",
+      "currentRelativeFolder": "source/templates-hbs",
+      "commonRelativeFolder": "../../../tetrapak-commons/ui.dev/src/source/templates-hbs"
+    },
+    "fonts": {
+      "fontPath": "apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts"
+    },
+    "clean": "app",
+    "cssPath": "apps/settings/wcm/designs/plas/clientlibs/[name].publish/css/[name].css",
+    "cssChunkPath": "apps/settings/wcm/designs/plas/clientlibs/[name].publish/css/[name].css"
+  },
+  "chunkrename": {
+    "vendor": "apps/settings/wcm/designs/plas/clientlibs/vendor.publish/js/vendor.js",
+    "common": "apps/settings/wcm/designs/plas/clientlibs/common.publish/js/common.js",
+    "default.en": "apps/settings/wcm/designs/plas/clientlibs/default.en.publish/js/default.js"
+  },
+  "clientlibs": {
+    "vendor": {
+      "categories": [
+        "tp.plas.vendor"
+      ],
+      "basePath": "apps/settings/wcm/designs/plas/clientlibs/vendor.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/plas/clientlibs/vendor.publish"
+      ],
+      "dependencies": [
+        "granite.jquery"
+      ]
+    },
+    "global": {
+      "categories": [
+        "tp.plas.global"
+      ],
+      "basePath": "apps/settings/wcm/designs/plas/clientlibs/global.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/plas/clientlibs/global.publish",
+        "apps/settings/wcm/designs/plas/clientlibs/default.en.publish/js",
+        "apps/settings/wcm/designs/plas/clientlibs/common.publish"
+      ]
+    },
+    "default_en": {
+      "categories": [
+        "tp.plas.default.en"
+      ],
+      "basePath": "apps/settings/wcm/designs/plas/clientlibs/default.en.publish",
+      "jsProcessor": [
+        "min:gcc",
+        "obfuscate=true",
+        "languageIn=ECMASCRIPT5",
+        "languageOut=ECMASCRIPT5"
+      ],
+      "paths": [
+        "apps/settings/wcm/designs/plas/clientlibs/default.en.publish/css"
+      ]
+    }
+  },
+  "createComponent": {
+    "componentsFolder": "source/templates/components",
+    "atomsFolder": "source/templates/atoms",
+    "moleculesFolder": "source/templates/molecules"
+  },
+  "watch": {
+    "assemble": {
+      "files": [
+        "<%= config.source %>/templates/components/**/*.hbs",
+        "<%= config.source %>/templates/layouts/**/*.hbs",
+        "<%= config.source %>/templates/components/**/*.json"
+      ],
+      "tasks": [
+        "assemble",
+        "copy:jsonData",
+        "aemdeploy:components",
+        "aemdeploy:models",
+        "aemdeploy:jsonData"
+      ]
+    },
+    "static": {
+      "files": [
+        "<%= config.source %>/scripts/**/*.js",
+        "<%= config.source %>/templates/**/*.js",
+        "<%= config.source %>/styles/*.scss",
+        "<%= config.source %>/templates/components/**/*.scss"
+      ],
+      "tasks": [
+        "shell:lintingDev",
+        "shell:webpackDev",
+        "shell:removeChunkHash",
+        "shell:clientlibify",
+        "copy:jsonData",
+        "assemble",
+        "aemcomponentcopy:uxlib",
+        "aemdeploy"
+      ]
+    },
+    "aem": {
+      "files": [
+        "<%= config.source %>/templates/components/**/*.html"
+      ],
+      "tasks": [
+        "aemcomponentcopy:uxlib",
+        "aemdeploy:components"
+      ]
+    }
+  }
+}

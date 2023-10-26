@@ -1,0 +1,10 @@
+@import '~tpCustomerhub/templates/components/leftnavigation/leftNavigation';
+
+.tp-left-nav {
+    &__overlay {
+        top: 88px;
+        &.color-transform {
+            background-color: transparent;
+        }
+    }
+}

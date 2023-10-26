@@ -1,0 +1,12 @@
+{{#each this}}
+    <div class="tp-support-request__drag-and-drop-file-container">
+        <div class="tp-support-request__drag-and-drop-file-info-container">
+            <i class="icon-Document tp-support-request__drag-and-drop-file-icon tp-support-request__drag-and-drop-file-icon--file"></i>
+            <p class="tp-support-request__drag-and-drop-file-name">{{this.name}} ({{size}})</p>
+        </div>
+        <div class="tp-support-request__drag-and-drop-file-remove-container js-tp-support-request__drag-and-drop-file-remove-container" data-index="{{@key}}">
+            <i class="icon-My_Euipment_Bin_X tp-support-request__drag-and-drop-file-icon tp-support-request__drag-and-drop-file-icon--trash"></i>
+            <p class="tp-support-request__drag-and-drop-file-remove">{{i18n key=this.removeFileLabel}}</p>
+        </div>
+    </div>
+{{/each}}
