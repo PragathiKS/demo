@@ -2,6 +2,7 @@ package com.tetrapak.publicweb.core.models.megamenucolumnitem;
 
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,7 +35,11 @@ public class DescriptionModelTest {
         context.load().json(RESOURCE_CONTENT, TEST_CONTENT_ROOT);
         context.addModelsForClasses(modelClass);
         resource = context.currentResource(RESOURCE_PATH);
-        model = resource.adaptTo(modelClass);
+        MockSlingHttpServletRequest request = context.request();
+        context.request().setPathInfo(RESOURCE_PATH);
+        request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
+        resource = context.currentResource(RESOURCE_PATH);
+        model = request.adaptTo(modelClass);
     }
 
     @Test
