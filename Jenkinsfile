@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage ('Build') {
             steps {
                 script {
                     if (params.Build_Commons) {
