@@ -56,6 +56,7 @@ pipeline {
                     if (params.Build_Supplierportal) {
                         appname = "supplierportal"
                         echo 'supplierportal'
+			    echo 'hi'
                     }
                 }
             }
