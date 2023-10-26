@@ -101,4 +101,47 @@ public class I18Constants {
 	
 	public static final String APPLY_FILTER = "applyFilter";
 	
+	public static final String INVOICE_DATE_TOOLTIP = "invoiceDateTooltip";
+	
+	public static final String DUEDATE_TOOLTIP = "dueDateTooltip";
+	
+	public static final String COMPANY_TOOLTIP = "companyTooltip";
+	
+	public static final String COMPANY_CODE_TOOLTIP = "companyCodeTooltip";
+	
+	public static final String COUNTRY_TOOLTIP = "countryTooltip";
+	
+	public static final String AMOUNT_INCLUDING_TAXES_TOOLTIP = "amountIncludingTaxesTooltip";
+	
+	public static final String WITH_HOLDING_TAX_TOOLTIP = "withHoldingTaxTooltip";
+	
+	public static final String STATUS_TOOLTIP = "statusTooltip";
+	
+	public static final String INVOICE_NO_TOOLTIP = "invoiceNoTooltip";
+	
+	public static final String SUPPLIER_TOOLTIP = "supplierTooltip";
+	
+	public static final String SUPPLIER_CODE_TOOLTIP = "supplierCodeTooltip";
+	
+	public static final String PO_NO_TOOLTIP = "poNoTooltip";	
+	
+	public static final String TOTAL_AMOUNT_TOOLTIP = "totalAmountTooltip";	
+	
+	public static final String TAX_TOOLTIP = "taxTooltip";	
+	
+	public static final String WITH_HOLDING_TAXES_TOOLTIP = "withHoldingTaxesTooltip";	
+	
+	public static final String NET_PAYABLE_TOOLTIP = "netPayableTooltip";	
+	
+	public static final String PAYMENT_TERM_TOOLTIP = "paymentTermTooltip";	
+	
+	public static final String DETAILS_DUEDATE_TOOLTIP = "detailsDueDateTooltip";	
+	
+	public static final String PAID_DATE_TOOLTIP = "paidDateTooltip";	
+	
+	public static final String BANK_ACCOUNT_TOOLTIP = "bankAccountTooltip";	
+	
+	public static final String PAYMENT_METHOD_TOOLTIP = "paymentMethodTooltip";	
+	
+	public static final String DETAILS_PONO_TOOLTIP = "detailsPoNoTooltip";	
 }

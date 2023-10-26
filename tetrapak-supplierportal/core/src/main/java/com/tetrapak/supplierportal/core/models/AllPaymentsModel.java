@@ -2,15 +2,22 @@ package com.tetrapak.supplierportal.core.models;
 
 import static com.tetrapak.supplierportal.core.constants.I18Constants.ALL_PAYMENTS_HEADING;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.AMOUNT_INCLUDING_TAXES;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.AMOUNT_INCLUDING_TAXES_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.APPLY_FILTER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COLUMNS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE_TOOLTIP;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COUNTRY;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.COUNTRY_TOOLTIP;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.DUEDATE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.DUE_DATE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.FETCH_ERROR;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_DATE;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_DATE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_NO;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_NO_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.NO_DATA_FOUND;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION;
@@ -21,14 +28,19 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAID;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAYMENT_DETAILS_URL;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PO_NO;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.PO_NO_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.RESET;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.RESULTS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SELECT_ALL;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SHOWHIDE_COLUMNS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.STATUS_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE_TOOLTIP;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX_TOOLTIP;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -170,6 +182,42 @@ public class AllPaymentsModel {
 	
 	@ValueMapValue
 	private String applyFilter;
+	
+	@ValueMapValue
+	private String invoiceDateTooltip;
+	
+	@ValueMapValue
+	private String dueDateTooltip;
+	
+	@ValueMapValue
+	private String companyTooltip;
+	
+	@ValueMapValue
+	private String companyCodeTooltip;
+	
+	@ValueMapValue
+	private String countryTooltip;
+	
+	@ValueMapValue
+	private String amountIncludingTaxesTooltip;
+	
+	@ValueMapValue
+	private String withHoldingTaxTooltip;
+	
+	@ValueMapValue
+	private String statusTooltip;
+	
+	@ValueMapValue
+	private String invoiceNoTooltip;
+	
+	@ValueMapValue
+	private String supplierTooltip;
+	
+	@ValueMapValue
+	private String supplierCodeTooltip;
+	
+	@ValueMapValue
+	private String poNoTooltip;	
 	
 
 	public Resource getResource() {
@@ -404,6 +452,18 @@ public class AllPaymentsModel {
 		i18KeyMap.put(SHOWHIDE_COLUMNS, getShowHideColumns());
 		i18KeyMap.put(SELECT_ALL, getSelectAll());
 		i18KeyMap.put(APPLY_FILTER, getApplyFilter());
+		i18KeyMap.put(INVOICE_DATE_TOOLTIP, getInvoiceDateTooltip());
+		i18KeyMap.put(DUEDATE_TOOLTIP, getDueDateTooltip());
+		i18KeyMap.put(COMPANY_TOOLTIP, getCompanyTooltip());
+		i18KeyMap.put(COMPANY_CODE_TOOLTIP, getCompanyCodeTooltip());
+		i18KeyMap.put(COUNTRY_TOOLTIP, getCountryTooltip());
+		i18KeyMap.put(AMOUNT_INCLUDING_TAXES_TOOLTIP, getAmountIncludingTaxesTooltip());
+		i18KeyMap.put(WITH_HOLDING_TAX_TOOLTIP, getWithHoldingTaxTooltip());
+		i18KeyMap.put(STATUS_TOOLTIP, getStatusTooltip());
+		i18KeyMap.put(INVOICE_NO_TOOLTIP, getInvoiceNoTooltip());
+		i18KeyMap.put(SUPPLIER_TOOLTIP, getSupplierTooltip());
+		i18KeyMap.put(SUPPLIER_CODE_TOOLTIP, getSupplierCodeTooltip());
+		i18KeyMap.put(PO_NO_TOOLTIP, getPoNoTooltip());
 
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -516,5 +576,101 @@ public class AllPaymentsModel {
 
 	public void setApplyFilter(String applyFilter) {
 		this.applyFilter = applyFilter;
+	}
+
+	public String getInvoiceDateTooltip() {
+		return invoiceDateTooltip;
+	}
+
+	public void setInvoiceDateTooltip(String invoiceDateTooltip) {
+		this.invoiceDateTooltip = invoiceDateTooltip;
+	}
+
+	public String getDueDateTooltip() {
+		return dueDateTooltip;
+	}
+
+	public void setDueDateTooltip(String dueDateTooltip) {
+		this.dueDateTooltip = dueDateTooltip;
+	}
+
+	public String getCompanyTooltip() {
+		return companyTooltip;
+	}
+
+	public void setCompanyTooltip(String companyTooltip) {
+		this.companyTooltip = companyTooltip;
+	}
+
+	public String getCompanyCodeTooltip() {
+		return companyCodeTooltip;
+	}
+
+	public void setCompanyCodeTooltip(String companyCodeTooltip) {
+		this.companyCodeTooltip = companyCodeTooltip;
+	}
+
+	public String getCountryTooltip() {
+		return countryTooltip;
+	}
+
+	public void setCountryTooltip(String countryTooltip) {
+		this.countryTooltip = countryTooltip;
+	}
+
+	public String getAmountIncludingTaxesTooltip() {
+		return amountIncludingTaxesTooltip;
+	}
+
+	public void setAmountIncludingTaxesTooltip(String amountIncludingTaxesTooltip) {
+		this.amountIncludingTaxesTooltip = amountIncludingTaxesTooltip;
+	}
+
+	public String getStatusTooltip() {
+		return statusTooltip;
+	}
+
+	public void setStatusTooltip(String statusTooltip) {
+		this.statusTooltip = statusTooltip;
+	}
+
+	public String getInvoiceNoTooltip() {
+		return invoiceNoTooltip;
+	}
+
+	public void setInvoiceNoTooltip(String invoiceNoTooltip) {
+		this.invoiceNoTooltip = invoiceNoTooltip;
+	}
+
+	public String getSupplierTooltip() {
+		return supplierTooltip;
+	}
+
+	public void setSupplierTooltip(String supplierTooltip) {
+		this.supplierTooltip = supplierTooltip;
+	}
+
+	public String getSupplierCodeTooltip() {
+		return supplierCodeTooltip;
+	}
+
+	public void setSupplierCodeTooltip(String supplierCodeTooltip) {
+		this.supplierCodeTooltip = supplierCodeTooltip;
+	}
+
+	public String getPoNoTooltip() {
+		return poNoTooltip;
+	}
+
+	public void setPoNoTooltip(String poNoTooltip) {
+		this.poNoTooltip = poNoTooltip;
+	}
+
+	public String getWithHoldingTaxTooltip() {
+		return withHoldingTaxTooltip;
+	}
+
+	public void setWithHoldingTaxTooltip(String withHoldingTaxTooltip) {
+		this.withHoldingTaxTooltip = withHoldingTaxTooltip;
 	}
 }
