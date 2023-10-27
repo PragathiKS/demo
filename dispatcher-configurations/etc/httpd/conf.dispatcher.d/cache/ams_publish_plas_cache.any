@@ -16,13 +16,13 @@
         /type "deny"
 }
 /0002 {
-        /glob "/content/tetrapak/customerhub/*.plantmaster.json"
+        /glob "/content/tetrapak/plas/*.plantmaster.json"
         /type "deny"
 }
 
-## Don't cache /content/tetrapak/customerhub
+## Don't cache /content/tetrapak/plas
 /0003 {
-        /glob "/content/tetrapak/customerhub[./]*"
+        /glob "/content/tetrapak/plas[./]*"
         /type "allow"
       }
 
