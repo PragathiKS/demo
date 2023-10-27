@@ -1,6 +1,7 @@
 import InputMask from 'inputmask';
 import { DEFAULT_DATE_INPUT_MASK, DEFAULT_DATE_INPUT_FORMAT } from './constant';
 import AllPaymentsUtils from './allpayments.utils';
+import { getI18n } from '../../../scripts/common/common';
 
 class AllPaymentsDateRange {
   constructor (cache, root) {
@@ -13,8 +14,8 @@ class AllPaymentsDateRange {
       clearIncomplete: true,
       insertMode: false,
       insertModeVisual: false,
-      postValidation: function (value, opts) {
-        if (opts === DEFAULT_DATE_INPUT_FORMAT.length -1) {
+      postValidation: function (value, pos) {
+        if (pos === DEFAULT_DATE_INPUT_FORMAT.length -1 || this.isComplete()) {
           self.validateDateRange();
         }
       }
@@ -40,10 +41,12 @@ class AllPaymentsDateRange {
       utils = this.allPaymentsUtils;
 
     if (fromInput && toInput && !utils.isToDateGreaterThanFromDate(fromInput, toInput)) {
+      dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDateRange']);
       dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
       this.enableFilterApplyBtn(false);
     }
     else if (fromInput && (!utils.isValidDate(fromInput) || !utils.isDateLessThanOrEqualToToday(fromInput))) {
+      dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDate']);
       dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
       this.enableFilterApplyBtn(false);
     }

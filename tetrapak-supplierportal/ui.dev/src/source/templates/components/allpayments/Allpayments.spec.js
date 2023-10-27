@@ -9,6 +9,7 @@ import filterFormTmpl from '../../../test-templates-hbs/filterForm.hbs';
 import filterFormInvoiceDateTmpl from '../../../test-templates-hbs/filterFormInvoiceDate.hbs';
 import filterFormInvoiceNoTmpl from '../../../test-templates-hbs/filterFormInvoiceNo.hbs';
 import filterFormCompanyTmpl from '../../../test-templates-hbs/filterFormCompany.hbs';
+import filterForInvoiceStatusTmpl from '../../../test-templates-hbs/filterFormInvoiceStatus.hbs';
 import AllPaymentsDateRange from './allpayments.date-range';
 
 describe('Allpayments', function () {
@@ -29,7 +30,10 @@ describe('Allpayments', function () {
     this.allpayments = new Allpayments({
       el: document.body.querySelector('.tp-all-payments')
     });
-    this.allPaymentsDateRange = new AllPaymentsDateRange({modal: modalContainer}, document.body.querySelector('.tp-all-payments'));
+    this.allPaymentsDateRange = new AllPaymentsDateRange({modal: modalContainer, i18nKeys: {
+      'invalidDateRange': 'sp.paymentDetails.invalidDateRange',
+      'invalidDate': 'sp.paymentDetails.invalidDate'
+    }}, document.body.querySelector('.tp-all-payments'));
     this.allPaymentsUtils = new AllPaymentsUtils();
     this.initSpy = sinon.spy(this.allpayments, 'init');
     this.bindEventsSpy = sinon.spy(this.allpayments, 'bindEvents');
@@ -387,6 +391,24 @@ describe('Allpayments', function () {
     const modalContainer = document.body.querySelector('.js-filter-modal');
     modalContainer.innerHTML = filterFormInvoiceDateTmpl();
     document.querySelector('#tpatomRadiolast90Days').checked = true;
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.js-apply-filter-button').dispatchEvent(evt);
+    expect(modalContainer.getAttribute('aria-hidden')).to.equal('true');
+  });
+
+  it('Modal popup should be closed when we click on apply filter in invoice status modal', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+    const modalContainer = document.body.querySelector('.js-filter-modal');
+    modalContainer.innerHTML = filterForInvoiceStatusTmpl();
+
+    document.querySelector('#tpatomRadioinprocess').checked = true;
+
     const evt = new MouseEvent('click', {
       bubbles: true,
       cancelable: true,

@@ -211,11 +211,6 @@ class AllPaymentsFilter {
     });
     this.cache.activeFilter = activeFilter;
     this.cache.activeTagFilter = activeTagFilter;
-    // eslint-disable-next-line no-console
-    console.log( this.cache.activeFilter);
-    // eslint-disable-next-line no-console
-    console.log( this.cache.activeTagFilter);
-
     const customEvent = new CustomEvent('FilterChanged', {
       detail: {
         type: 'added'

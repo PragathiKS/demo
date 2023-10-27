@@ -1,0 +1,37 @@
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog tp-all-payments-filter" auto_locator="invoiceStatuses">
+    <div class="modal-content tp-all-payments__modal-content tp-modal-content">
+        <div class="modal-header tpmol-modal-header">
+            <div class="js-all-payments__modal-header tp-all-payments__modal-header" auto_locator="headlineOverlay">
+                Invoice Status
+            </div>
+            <button type="button" auto_locator="closebtnOverlay" class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn" data-dismiss="modal">
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        <div class="modal-body tp-modal-body tp-all-payments__modal-body">
+                    <div class="tp-all-payments-filter-options">
+                                <div class="tpatom-radio">
+                                    <label class="tpatom-radio__label clearfix" for="tpatomRadioposted">
+                                        <input type="radio" class="tpatom-radio__input float-left" id="tpatomRadioposted" value="posted" checked="checked" name="invoiceStatusesRadio" auto_locator="invoiceStatusesFilterCheckboxOverlay">
+                                        <i class="tpatom-radio__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-radio__text js-radio__text" auto_locator="invoiceStatusesFilterItemOverlay">sp.paymentDetails.confirmed</span>
+                                    </label>
+                                </div>
+                                <div class="tpatom-radio">
+                                    <label class="tpatom-radio__label clearfix" for="tpatomRadioinprocess">
+                                        <input type="radio" class="tpatom-radio__input float-left" id="tpatomRadioinprocess" value="inprocess" name="invoiceStatusesRadio" auto_locator="invoiceStatusesFilterCheckboxOverlay">
+                                        <i class="tpatom-radio__icon icon icon-Tick float-left"></i>
+                                            <span class="tpatom-radio__text js-radio__text" auto_locator="invoiceStatusesFilterItemOverlay">sp.paymentDetails.other</span>
+                                    </label>
+                                </div>
+                    </div>
+        </div>
+        <div class="modal-footer tpmol-modal-footer tp-all-payments__modal-footer">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button js-apply-filter-button-filter-modal tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
+                <span class="tpatom-btn__text sly-text">
+                    undefined
+                </span>
+            </button>
+        </div>
+    </div>
+</div>
