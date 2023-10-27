@@ -96,6 +96,14 @@ public class AllPaymentsModelTest {
 	    model.setWithHoldingTaxTooltip("sp.paymentDetails.withHoldingTaxTooltip");
 	    model.setDueDateTooltip("sp.paymentDetails.dueDateTooltip");
 	    model.setPoNoTooltip("sp.paymentDetails.poNoTooltip");
+	    model.setLast90Days("sp.paymentDetails.last90Days");
+	    model.setOther("sp.paymentDetails.other");
+	    model.setFrom("sp.paymentDetails.from");
+	    model.setTo("sp.paymentDetails.to");
+	    model.setInvalidDate("sp.paymentDetails.invalidDate");
+	    model.setInvalidDateRange("sp.paymentDetails.invalidDateRange");
+	    model.setConfirmed("sp.paymentDetails.confirmed");
+	    model.setFilterSelected("sp.paymentDetails.filterSelected");
 	    model.setAmountIncludingTaxesTooltip("sp.paymentDetails.amountIncludingTaxesTooltip");
 	}
 	
@@ -151,6 +159,14 @@ public class AllPaymentsModelTest {
 		assertEquals("sp.paymentDetails.withHoldingTaxTooltip", model.getWithHoldingTaxTooltip());
 		assertEquals("sp.paymentDetails.dueDateTooltip", model.getDueDateTooltip());
 		assertEquals("sp.paymentDetails.poNoTooltip", model.getPoNoTooltip());
+		assertEquals("sp.paymentDetails.last90Days", model.getLast90Days());
+		assertEquals("sp.paymentDetails.other", model.getOther());
+		assertEquals("sp.paymentDetails.from", model.getFrom());
+		assertEquals("sp.paymentDetails.to", model.getTo());
+		assertEquals("sp.paymentDetails.invalidDate", model.getInvalidDate());
+		assertEquals("sp.paymentDetails.invalidDateRange", model.getInvalidDateRange());
+		assertEquals("sp.paymentDetails.confirmed", model.getConfirmed());
+		assertEquals("sp.paymentDetails.filterSelected", model.getFilterSelected());
 		assertEquals("sp.paymentDetails.amountIncludingTaxesTooltip", model.getAmountIncludingTaxesTooltip());
 	}
 	

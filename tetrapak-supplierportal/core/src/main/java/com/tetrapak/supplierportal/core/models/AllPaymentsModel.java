@@ -41,7 +41,7 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_C
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX_TOOLTIP;
-
+import static com.tetrapak.supplierportal.core.constants.I18Constants.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -217,7 +217,31 @@ public class AllPaymentsModel {
 	private String supplierCodeTooltip;
 	
 	@ValueMapValue
-	private String poNoTooltip;	
+	private String poNoTooltip;
+	
+	@ValueMapValue
+	private String last90Days;
+	
+	@ValueMapValue
+	private String other;
+	
+	@ValueMapValue
+	private String from;
+	
+	@ValueMapValue
+	private String to;
+	
+	@ValueMapValue
+	private String invalidDate;
+	
+	@ValueMapValue
+	private String invalidDateRange;
+	
+	@ValueMapValue
+	private String confirmed;
+	
+	@ValueMapValue
+	private String filterSelected;
 	
 
 	public Resource getResource() {
@@ -464,6 +488,14 @@ public class AllPaymentsModel {
 		i18KeyMap.put(SUPPLIER_TOOLTIP, getSupplierTooltip());
 		i18KeyMap.put(SUPPLIER_CODE_TOOLTIP, getSupplierCodeTooltip());
 		i18KeyMap.put(PO_NO_TOOLTIP, getPoNoTooltip());
+		i18KeyMap.put(LAST_90_DAYS, getLast90Days());
+		i18KeyMap.put(OTHER, getOther());
+		i18KeyMap.put(FROM, getFrom());
+		i18KeyMap.put(TO, getTo());
+		i18KeyMap.put(INVALID_DATE, getInvalidDate());
+		i18KeyMap.put(INVALID_DATE_RANGE, getInvalidDateRange());
+		i18KeyMap.put(CONFIRMED, getConfirmed());
+		i18KeyMap.put(FILTER_SELECTED, getFilterSelected());		
 
 		if (slingSettingsService.getRunModes().contains(SupplierPortalConstants.PUBLISH)) {
 			isPublishEnvironment = Boolean.TRUE;
@@ -672,5 +704,77 @@ public class AllPaymentsModel {
 
 	public void setWithHoldingTaxTooltip(String withHoldingTaxTooltip) {
 		this.withHoldingTaxTooltip = withHoldingTaxTooltip;
+	}
+
+	public InvoiceStatusService getInvoiceStatusService() {
+		return invoiceStatusService;
+	}
+
+	public void setInvoiceStatusService(InvoiceStatusService invoiceStatusService) {
+		this.invoiceStatusService = invoiceStatusService;
+	}
+
+	public String getLast90Days() {
+		return last90Days;
+	}
+
+	public void setLast90Days(String last90Days) {
+		this.last90Days = last90Days;
+	}
+
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public String getInvalidDate() {
+		return invalidDate;
+	}
+
+	public void setInvalidDate(String invalidDate) {
+		this.invalidDate = invalidDate;
+	}
+
+	public String getInvalidDateRange() {
+		return invalidDateRange;
+	}
+
+	public void setInvalidDateRange(String invalidDateRange) {
+		this.invalidDateRange = invalidDateRange;
+	}
+
+	public String getConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(String confirmed) {
+		this.confirmed = confirmed;
+	}
+
+	public String getFilterSelected() {
+		return filterSelected;
+	}
+
+	public void setFilterSelected(String filterSelected) {
+		this.filterSelected = filterSelected;
 	}
 }

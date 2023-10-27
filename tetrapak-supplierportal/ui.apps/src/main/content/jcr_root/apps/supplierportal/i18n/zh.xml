@@ -52,6 +52,9 @@
     <sp.paymentDetails.companyTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
+    <sp.paymentDetails.confirmed
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Confirmed"/>
     <sp.paymentDetails.country
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Country"/>
@@ -85,6 +88,18 @@
     <sp.paymentDetails.fetcherror
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Fetch Error"/>
+    <sp.paymentDetails.filterSelected
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Filters Selected"/>
+    <sp.paymentDetails.from
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" From"/>
+    <sp.paymentDetails.invalidDate
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Invalid Date"/>
+    <sp.paymentDetails.invalidDateRange
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Invalid Date Range"/>
     <sp.paymentDetails.invoiceDate
         jcr:primaryType="sling:MessageEntry"
         sling:message="Invoice date"/>
@@ -100,6 +115,9 @@
     <sp.paymentDetails.invoiceNoTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
+    <sp.paymentDetails.last90Days
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Last 90 days"/>
     <sp.paymentDetails.multipono
         jcr:primaryType="sling:MessageEntry"
         sling:message="Multiple Po Number"/>
@@ -112,6 +130,9 @@
     <sp.paymentDetails.noDataFound
         jcr:primaryType="sling:MessageEntry"
         sling:message=" NoDataFound"/>
+    <sp.paymentDetails.other
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" Other"/>
     <sp.paymentDetails.pagination
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Pagination"/>
@@ -193,6 +214,9 @@
     <sp.paymentDetails.taxTooltip
         jcr:primaryType="sling:MessageEntry"
         sling:message=" Lorem ipsum descriptive copy added by admin user in AEM"/>
+    <sp.paymentDetails.to
+        jcr:primaryType="sling:MessageEntry"
+        sling:message=" To"/>
     <sp.paymentDetails.totalAmount
         jcr:primaryType="sling:MessageEntry"
         sling:message="Total amount incl. taxes"/>

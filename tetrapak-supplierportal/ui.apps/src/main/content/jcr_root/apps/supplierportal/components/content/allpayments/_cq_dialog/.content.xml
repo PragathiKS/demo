@@ -168,7 +168,7 @@
                                 fieldLabel="Payment Details URL"
                                 name="./paymentDetailsURL"
                                 required="true"
-								rootPath="/content/tetrapak/supplierportal"/>
+                                rootPath="/content/tetrapak/supplierportal"/>
                             <showHideColumns
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
@@ -274,6 +274,61 @@
                                 required="false"/>
                         </items>
                     </column2>
+                    <column3
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Filter Configuration"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <last90Days
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Last 90 Days(i18N key)"
+                                name="./last90Days"
+                                required="true"/>
+                            <other
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Other (i18N key)"
+                                name="./other"
+                                required="true"/>
+                            <from
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="From (i18N key)"
+                                name="./from"
+                                required="true"/>
+                            <to
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="To (i18N key)"
+                                name="./to"
+                                required="true"/>
+                            <invalidDate
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Invalid Date (i18N key)"
+                                name="./invalidDate"
+                                required="true"/>
+                            <invalidDateRange
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Invalid Date Range(i18N key)"
+                                name="./invalidDateRange"
+                                required="true"/>
+                            <confirmed
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Confirmed(i18N key)"
+                                name="./confirmed"
+                                required="true"/>
+                            <filterSelected
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Filter Selected(i18N key)"
+                                name="./filterSelected"
+                                required="true"/>
+                        </items>
+                    </column3>
                 </items>
             </tabs>
         </items>
