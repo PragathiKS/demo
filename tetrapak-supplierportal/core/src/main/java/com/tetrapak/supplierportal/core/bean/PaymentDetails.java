@@ -12,7 +12,7 @@ public class PaymentDetails {
 	
 	private String withholdingTaxCode;
 	
-	private String withholdingTaxAmmount;
+	private String withholdingTaxAmount;
 	
 	private String postingDate;
 	
@@ -49,6 +49,8 @@ public class PaymentDetails {
 	private String paymentMethod;
 	
 	private int[] purchasingDocuments;
+	
+	private String planningDate;
 
 	public String getCompanyCode() {
 		return companyCode;
@@ -74,12 +76,12 @@ public class PaymentDetails {
 		this.withholdingTaxCode = withholdingTaxCode;
 	}
 
-	public String getWithholdingTaxAmmount() {
-		return withholdingTaxAmmount;
+	public String getWithholdingTaxAmount() {
+		return withholdingTaxAmount;
 	}
 
-	public void setWithholdingTaxAmmount(String withholdingTaxAmmount) {
-		this.withholdingTaxAmmount = withholdingTaxAmmount;
+	public void setWithholdingTaxAmount(String withholdingTaxAmount) {
+		this.withholdingTaxAmount = withholdingTaxAmount;
 	}
 
 	public String getPostingDate() {
@@ -225,4 +227,13 @@ public class PaymentDetails {
 	public void setPurchasingDocuments(int[] purchasingDocuments) {
 		this.purchasingDocuments = purchasingDocuments;
 	}
+
+	public String getPlanningDate() {
+		return planningDate;
+	}
+
+	public void setPlanningDate(String planningDate) {
+		this.planningDate = planningDate;
+	}
+	
 }

@@ -137,6 +137,9 @@
                                                     <TetraPak jcr:primaryType="nt:unstructured"
                                                               text="TetraPak"
                                                               value="icon-TetraPak"/>
+                                                    <Circle_Filled_Tick jcr:primaryType="nt:unstructured"
+                                                                      text="Circle Filled Tick"
+                                                                      value="icon-Circle_filled_Tick"/>                                                    
                                                 </items>
                                             </iconClass>
                                             <errorpages

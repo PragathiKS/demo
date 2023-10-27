@@ -5,7 +5,7 @@ import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 import  filters  from '../../../scripts/utils/filters';
 import countries from './data/countries.json';
-
+import file from '../../../scripts/utils/file';
 
 
 describe('MyEquipment', function () {
@@ -49,6 +49,7 @@ describe('MyEquipment', function () {
         token_type: 'BearerToken'
       }
     });
+    this.fileStub = sinon.stub(file, 'get').returns(Promise.resolve());
     this.myequipment.init();
   });
 
@@ -69,6 +70,7 @@ describe('MyEquipment', function () {
     this.renderNewCountry.restore();
     this.deleteAllFilters.restore();
     this.updateFilterCountValue.restore();
+    this.fileStub.restore();
   });
   it('should initialize', function (done) {
     expect(this.myequipment.init.called).to.be.true;
@@ -92,10 +94,13 @@ describe('MyEquipment', function () {
   });
   it('should download excel on button click', function (done) {
     $('.js-my-equipment__export-excel-action').trigger('click');
-    expect(this.myequipment.downloadExcel.called).to.be.true;
-    done();
+    file.get().then(() => {
+      expect(this.myequipment.downloadExcel.called).to.be.true;
+      done();
+    });
   });
-  it('should render new country on country filter change', function (done) {
+
+   it('should render new country on country filter change', function (done) {
     $('.tp-my-equipment__country-button-filter').trigger('click');
     $('.js-apply-filter-button').trigger('click');
     expect(this.myequipment.renderNewCountry.called).to.be.true;

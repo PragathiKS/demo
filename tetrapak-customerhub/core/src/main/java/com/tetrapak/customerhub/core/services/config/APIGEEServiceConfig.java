@@ -43,4 +43,7 @@ public @interface APIGEEServiceConfig {
      */
     @AttributeDefinition(name = "API Mappings with components", description = "API Mappings with components", type = AttributeType.STRING)
     String[] apiMappings();
+
+    @AttributeDefinition(name = "API GEE Service Consumer Key", description = "API GEE Service Consumer Key", type = AttributeType.STRING)
+    String consumerKey();
 }

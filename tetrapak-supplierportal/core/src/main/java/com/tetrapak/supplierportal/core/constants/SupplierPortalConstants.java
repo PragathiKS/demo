@@ -264,6 +264,7 @@ public final class SupplierPortalConstants {
     
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
+    public static final String INVOICE_STATUS_URI = "supplierportal/components/content/allpayments";
     /**
      * Instantiates a new customer hub constants.
      */

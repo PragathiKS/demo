@@ -133,6 +133,7 @@ $color-red: #ff0000;
     .tpatom-checkbox__text {
         color: $color-black;
     }
+
     &__type-group-option {
         & + .tp-all-payments-filter-options {
             @include margin-left($margin-md);
@@ -289,4 +290,53 @@ $color-red: #ff0000;
             }
         }
     }
+}
+.tooltip.show {
+    opacity: 1;
+}
+.bs-tooltip-bottom {
+    @include padding($padding-sm $padding-zero);
+    .arrow {
+        &::before {
+            border-width: 0 8px 8px;
+            border-bottom-color: $color-wild-sand;
+        }
+    }
+}
+
+.tooltip {
+    .arrow {
+        width: 16px;
+        height: 16px;
+        border-top: 1px solid $color-mercury;
+        border-left: 1px solid $color-mercury;
+        background: $color-wild-sand;
+        transform: rotate(45deg);
+        &::before {
+            display: none;
+        }
+    }
+
+}
+.tooltip-inner {
+    @include font-size($font-sm);
+    @include line-height($font-m-md, $font-sm);
+    @include padding($padding-l);
+    border: 1px solid $color-mercury;
+    color: $color-tundora;
+    font-family: $font-monsterrat;
+    font-size: $font-sm;
+    max-width: 246px;
+    text-align: left;
+    background-color: $color-wild-sand;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.tooltip-header {
+    @include margin-bottom($margin-sm);
+    @include font-size($font-baseline);
+    @include line-height($font-l, $font-baseline);
+    display: block;
+    font-weight: 700;
 }

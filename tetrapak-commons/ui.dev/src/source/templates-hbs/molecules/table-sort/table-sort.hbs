@@ -42,7 +42,7 @@
             {{#each this.row}}
                 <td data-key="{{key}}" class="tpmol-table__cell{{#if ../../baseClass}} {{../../baseClass}}__cell{{/if}}{{#if ../../jsClass}} {{../../jsClass}}__cell {{../../jsClass}}__cell--{{@index}}{{/if}} {{#if_eq key 'equipmentNumber'}}d-none{{/if_eq}}">
                     {{#if_eq key "icon"}}
-                        <i class=" icon-{{value}}"></i>
+                        <i class="icon-{{value}}"></i>
                     {{else}}
                         {{#if isRTE}}
                             {{rte value}} {{!-- Renders safe HTML --}}

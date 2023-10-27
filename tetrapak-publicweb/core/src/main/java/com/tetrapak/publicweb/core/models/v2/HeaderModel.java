@@ -28,6 +28,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import static com.tetrapak.publicweb.core.constants.PWConstants.DOT;
+import static com.tetrapak.publicweb.core.constants.PWConstants.XF_CONTENT_SELECTOR;
+
 /**
  * The Class HeaderModel.
  */
@@ -88,6 +91,8 @@ public class HeaderModel {
 
     private String countryTitle;
 
+    private static final String HEADER_CONFIG_RESOURCE="/jcr:content/root/responsivegrid/headerconfigurationv";
+
     /**
      * Inits the.
      */
@@ -99,7 +104,7 @@ public class HeaderModel {
         if (languagePage != null && languagePage.getParent() != null) {
             marketPage = languagePage.getParent();
         }
-        final String path = rootPath + "/jcr:content/root/responsivegrid/headerconfigurationv";
+        final String path = rootPath + HEADER_CONFIG_RESOURCE;
         final Resource headerConfigurationResource = request.getResourceResolver().getResource(path);
         megaMenuConfigurationModel = NavigationUtil.getMegaMenuConfigurationModel(request, request.getPathInfo());
         if (Objects.nonNull(headerConfigurationResource)) {
@@ -172,6 +177,13 @@ public class HeaderModel {
     public String getCurrentMarket() {
         if (null != marketPage) {
             return marketPage.getTitle();
+        }
+        return StringUtils.EMPTY;
+    }
+
+    public String getMegaMenuXFSelectors() {
+        if (null != marketPage) {
+            return XF_CONTENT_SELECTOR+DOT+marketPage.getName();
         }
         return StringUtils.EMPTY;
     }

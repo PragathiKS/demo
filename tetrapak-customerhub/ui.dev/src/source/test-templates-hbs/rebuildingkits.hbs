@@ -1,6 +1,7 @@
 <div class="tp-card tp-rk" data-src_isPublishEnvironment="true" data-module="RebuildingKits">
     <!--i18ns Keys -->
-    <code class="d-none js-rk__config">{"filtersSelected":"cuhu.rebuildingkits.filtersSelected","country":"cuhu.rebuildingkits.country"}</code>
+    <code
+        class="d-none js-rk__config">{"filtersSelected":"cuhu.rebuildingkits.filtersSelected","country":"cuhu.rebuildingkits.country"}</code>
 
     <!--API List -->
     <div class="d-none js-rk-api" data-country-api="https://api-dev.tetrapak.com/installedbase/rebuildingkits/countries"
@@ -35,5 +36,313 @@
     <input type="hidden" id="downloadCsvServletUrl" name="downloadCsvServletUrl" value="/" />
 
     <!-- Content Container -->
-    <div class="tp-filtered-table"></div>
+    <div class="tp-filtered-table">
+        <div class="tp-filtered-table__content">
+            <div class="tp-filtered-table__header-wrapper">
+                <h2 class="tp-filtered-table__heading js-filtered-table__heading">
+                    Rebuilding Kits
+                </h2>
+
+                <!-- Actions -->
+                <div class="tp-filtered-table__header-action-wrapper">
+                    <div class="tp-filtered-table__header-mobile">
+                        <button class="tp-next-btn js-mobile-header-actions">
+                            <i class="icon icon-Three_Dot">
+                            </i>
+                        </button>
+                    </div>
+                    <div class="tp-filtered-table__header-actions">
+                        <div class="tp-filtered-table__header-actionicons">
+                            <div
+                                class="tp-filtered-table__action-button second js-filtered-table__customise-table-action">
+                                <i class="icon icon-Hide action-icon"></i>
+                                <span class="tpatom-btn__text tp-filtered-table__header-action-text">
+                                    Show/Hide Columns
+                                </span>
+                            </div>
+                            <button
+                                class="tpatom-btn tp-button-link js-export-btn tpatom-btn--primary tp-filtered-table__action-button">
+                                <i class="icon icon-Excel action-icon"></i>
+                                <span class="tpatom-btn__text sly-text">
+                                    Export to CSV
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tp-filtered-table__filter-wrapper">
+                <div class="tp-filtered-table__filter-chips"> <button type="button" data-label="Country +"
+                        data-key="countryCode" class="tp-filtered-table__filter-button  active"
+                        auto_locator="CountryFilter">
+                        Country
+                        : 1
+                    </button>
+                    <button type="button" data-label="Line +" data-key="lineCode"
+                        class="tp-filtered-table__filter-button " auto_locator="LineFilter">
+                        Line
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Description +" data-key="equipmentDesc"
+                        class="tp-filtered-table__filter-button " auto_locator="DescriptionFilter">
+                        Description
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Serial Number +" data-key="serialNumber"
+                        class="tp-filtered-table__filter-button " auto_locator="Serial NumberFilter">
+                        Serial Number
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="RK Number +" data-key="rkNumber"
+                        class="tp-filtered-table__filter-button " auto_locator="RK NumberFilter">
+                        RK Number
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="RK Description +" data-key="rkDesc"
+                        class="tp-filtered-table__filter-button " auto_locator="RK DescriptionFilter">
+                        RK Description
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Impl Status +" data-key="implStatus"
+                        class="tp-filtered-table__filter-button " auto_locator="Impl StatusFilter">
+                        Impl Status
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Machine System +" data-key="machineSystem"
+                        class="tp-filtered-table__filter-button js-hide-filter-by-default"
+                        auto_locator="Machine SystemFilter" style="display: none;">
+                        Machine System
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Status +" data-key="equipmentStatus"
+                        class="tp-filtered-table__filter-button js-hide-filter-by-default" auto_locator="StatusFilter"
+                        style="display: none;">
+                        Status
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="RK Type +" data-key="rkTypeCode"
+                        class="tp-filtered-table__filter-button " auto_locator="RK TypeFilter">
+                        RK Type
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="RK Status +" data-key="rebuildingKitStatus"
+                        class="tp-filtered-table__filter-button " auto_locator="RK StatusFilter">
+                        RK Status
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="RK Handling +" data-key="rkHandling"
+                        class="tp-filtered-table__filter-button " auto_locator="RK HandlingFilter">
+                        RK Handling
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Impl Deadline +" data-key="implDeadline"
+                        class="tp-filtered-table__filter-button js-hide-filter-by-default"
+                        auto_locator="Impl DeadlineFilter" style="display: none;">
+                        Impl Deadline
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Planned Date +" data-key="plannedDate"
+                        class="tp-filtered-table__filter-button js-hide-filter-by-default"
+                        auto_locator="Planned DateFilter" style="display: none;">
+                        Planned Date
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="Release Date +" data-key="releaseDate"
+                        class="tp-filtered-table__filter-button js-hide-filter-by-default"
+                        auto_locator="Release DateFilter" style="display: none;">
+                        Release Date
+                        &nbsp;+
+                    </button>
+                    <button type="button" data-label="General RK Number +" data-key="rkGeneralNumber"
+                        class="tp-filtered-table__filter-button js-hide-filter-by-default"
+                        auto_locator="General RK NumberFilter" style="display: none;">
+                        General RK Number
+                        &nbsp;+
+                    </button>
+                </div>
+                <div>
+                    <button data-show-label="Show all filters" data-hide-label="Reset to default filters"
+                        class="tpatom-btn tp-filtered-table__show-hide-button js-tp-filtered-table__show-hide-all-button"
+                        auto_locator="hideFilter">
+                        <i class="icon icon-Filter"></i>
+                        <span class="tpatom-btn__text sly-text">Show all filters</span>
+                    </button>
+                    <button class="tpatom-btn tp-filtered-table__remove-button js-tp-filtered-table__remove-all-button"
+                        auto_locator="removeFilter" hidden="">
+                        <i class="icon icon-My_Euipment_Bin_X"></i>
+                        <span class="tpatom-btn__text sly-text">
+                            Remove All
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="tp-filtered-table__search-count">2433 search results for selected filter(s)</div>
+
+            <div id="filtered-table-filter-modal"
+                class="modal js-filter-modal tp-modal fade tp-filtered-table__filter-form show" tabindex="-1"
+                role="dialog" aria-modal="true" style="display: block;">
+                <div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="countryCodeOverlay">
+                    <div class="modal-content tp-filtered-table__modal-content tp-modal-content">
+                        <div class="modal-header tpmol-modal-header">
+                            <div class="js-filtered-table__modal-header tp-filtered-table__modal-header"
+                                auto_locator="headlineOverlay">
+                                Country
+                            </div>
+                            <button type="button" auto_locator="closebtnOverlay"
+                                class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn">
+                                <span class="sr-only">Close</span>
+                            </button>
+                        </div>
+                        <div class="modal-body tp-modal-body tp-filtered-table__modal-body">&nbsp;</div>
+                        <div class="modal-footer tpmol-modal-footer tp-filtered-table__modal-footer">
+                            <button
+                                class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-filtered-table__apply-button"
+                                auto_locator="confirmbtnOverlay">
+                                <span class="tpatom-btn__text sly-text">
+                                    Apply Filter
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tp-filtered-table__table_wrapper">
+                <div class="tp-filtered-table__table custom-scrollbar-horizontal on">
+                    <table
+                        class="tpmol-table tp-filtered-table__table-summary__table js-equipment-list__table-summary__table">
+                        <thead
+                            class="tpmol-table__head tp-filtered-table__table-summary__head js-equipment-list__table-summary__head">
+                            <tr
+                                class="tpmol-table__rowheading tp-filtered-table__table-summary__row tp-filtered-table__table-summary__rowheading js-equipment-list__table-summary__rowheading">
+                                <th data-key="icon"
+                                    class="tpmol-table__cellheading  tp-filtered-table__table-summary__cell tp-filtered-table__table-summary__cellheading  js-equipment-list__table-summary__cellheading js-equipment-list__table-summary__cellheading--0">
+                                </th>
+                                <th data-key="lineCode"
+                                    class="tpmol-table__cellheading  tp-filtered-table__table-summary__cell tp-filtered-table__table-summary__cellheading  js-equipment-list__table-summary__cellheading js-equipment-list__table-summary__cellheading--1">
+                                    Line
+                                </th>
+                                <th data-key="equipmentDesc"
+                                    class="tpmol-table__cellheading  tp-filtered-table__table-summary__cell tp-filtered-table__table-summary__cellheading  js-equipment-list__table-summary__cellheading js-equipment-list__table-summary__cellheading--2">
+                                    Description
+                                </th>
+                                <th data-key="serialNumber"
+                                    class="tpmol-table__cellheading  tp-filtered-table__table-summary__cell tp-filtered-table__table-summary__cellheading  js-equipment-list__table-summary__cellheading js-equipment-list__table-summary__cellheading--3">
+                                    Serial Number
+                                </th>
+                                <th data-key="rkNumber"
+                                    class="tpmol-table__cellheading  tp-filtered-table__table-summary__cell tp-filtered-table__table-summary__cellheading  js-equipment-list__table-summary__cellheading js-equipment-list__table-summary__cellheading--4">
+                                    RK Number
+                                </th>
+                                <th data-key="rkDesc"
+                                    class="tpmol-table__cellheading  tp-filtered-table__table-summary__cell tp-filtered-table__table-summary__cellheading  js-equipment-list__table-summary__cellheading js-equipment-list__table-summary__cellheading--5">
+                                    RK Description
+                                </th>
+                                <th data-key="implStatus"
+                                    class="tpmol-table__cellheading  tp-filtered-table__table-summary__cell tp-filtered-table__table-summary__cellheading  js-equipment-list__table-summary__cellheading js-equipment-list__table-summary__cellheading--6">
+                                    Impl Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="tpmol-table__body tp-filtered-table__table-summary__body">
+                            <tr class="tpmol-table__row tp-filtered-table__table-summary__row">
+                                <td data-key="icon"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--0 ">
+                                    <i class="icon-Mandatory_Kit"></i>
+                                </td>
+                                <td data-key="lineCode"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--1 ">
+                                    ATC-MONA OBER OBE-LN 01
+                                    <!-- For Rebuilding Kits Details -->
+                                </td>
+                                <td data-key="equipmentDesc"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--2 ">
+                                    TBA/8-110V TBA1000SQ ST_C
+                                    <!-- For Rebuilding Kits Details -->
+                                </td>
+                                <td data-key="serialNumber"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--3 ">
+                                    15010/00918
+                                    <!-- For Rebuilding Kits Details -->
+                                </td>
+                                <td data-key="rkNumber"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--4 ">
+                                    1285052-0101
+                                    <!-- For Rebuilding Kits Details -->
+                                    <span class="tpmol-table__key-rkNumber d-none">1285052-0101</span>
+                                </td>
+                                <td data-key="rkDesc"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--5 ">
+                                    MKC Knife holder spring
+                                    <!-- For Rebuilding Kits Details -->
+                                </td>
+                                <td data-key="implStatus"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--6 ">
+                                    Pending
+                                    <!-- For Rebuilding Kits Details -->
+                                </td>
+                                <td data-key="equipmentNumber"
+                                    class="tpmol-table__cell tp-filtered-table__table-summary__cell js-equipment-list__table-summary__cell js-equipment-list__table-summary__cell--7 d-none">
+                                    9000017353
+                                    <!-- For Rebuilding Kits Details -->
+                                    <span class="tpmol-table__key-equipmentNumber d-none">9000017353</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tp-tbl-pagination js-tbl-pagination" aria-live="polite">
+                    <div class="tp-tbl-pagination__container clearfix">
+                        <button type="button"
+                            class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__first float-left"
+                            disabled="" data-skip="0" data-page-number="1">
+                            <i class="icon icon-Right_new icon-left"></i>
+                            <span class="tpatom-btn__text">First</span>
+                        </button>
+                        <button type="button"
+                            class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__prev float-left"
+                            disabled="" data-skip="-25" data-page-number="0">
+                            <span class="tpatom-btn__text sr-only">cuhu.pagination.prev</span><i
+                                class="icon icon-Right_new icon-left"></i>
+                        </button>
+                        <button type="button"
+                            class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn float-left active"
+                            data-page-number="1">
+                            <span class="tpatom-btn__text">1</span>
+                        </button>
+                        <button type="button"
+                            class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__direct float-left"
+                            data-skip="25" data-page-number="2">
+                            <span class="tpatom-btn__text">2</span>
+                        </button>
+                        <button type="button"
+                            class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__direct float-left"
+                            data-skip="50" data-page-number="3">
+                            <span class="tpatom-btn__text">3</span>
+                        </button>
+                        <button type="button"
+                            class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__btn tp-tbl-pagination__next float-left"
+                            data-skip="25" data-page-number="2">
+                            <span class="tpatom-btn__text sr-only">Next</span><i class="icon icon-Right_new"></i>
+                        </button>
+                        <button type="button"
+                            class="tpatom-btn tpatom-btn--pagination js-page-number tp-tbl-pagination__last float-left"
+                            data-skip="2425" data-page-number="98">
+                            <span class="tpatom-btn__text">Last</span><i class="icon icon-Right_new"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tp-filtered-table__flex-container">
+                <div class="tp-filtered-table__pagination-container" id="pagination-container"></div>
+                <div class="tp-filtered-table__serial-desc">
+                    <span class="tp-filtered-table__astrick">*</span>
+                    Permanent volume conversion
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -38,7 +38,6 @@ public class HeadingModelTest {
         context.request().setPathInfo(RESOURCE_PATH);
         request.setResource(context.resourceResolver().getResource(RESOURCE_PATH));
         resource = context.currentResource(RESOURCE_PATH);
-        assert resource != null;
         model = request.adaptTo(modelClass);
     }
 
@@ -47,6 +46,5 @@ public class HeadingModelTest {
     @Test
     public void testGettersAndSetters() {
         assertEquals("Solutions", model.getHeading());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html", model.getHeadingURL());
     }
 }

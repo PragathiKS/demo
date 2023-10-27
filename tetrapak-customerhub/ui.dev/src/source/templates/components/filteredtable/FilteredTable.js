@@ -107,8 +107,6 @@ class FilteredTable {
     this.cache.variables.filters.data = {
       [countryConfig.apiKey]: countryData
     };
-    this.cache.variables.sortData.sortedByKey = false;
-    this.cache.variables.sortData.sortOrder = false;
 
     $filterBtns.each((_index, item) => {
       const initialLabel = $(item).data('label');
@@ -265,13 +263,15 @@ class FilteredTable {
     $datePickerInput.length && $datePickerInput.trigger('focus');
   }
 
-  _getRowIcon = (rkTypeCode) => {
-    if(rkTypeCode.startsWith('A')) {
-      return 'Mandatory_Kit';
-    } else if(rkTypeCode.startsWith('B')) {
-      return 'Trolley';
+  _getRowIcon = (rkTypeCode='') => {
+    if(rkTypeCode) {
+      if(rkTypeCode.startsWith('A')) {
+        return 'Mandatory_Kit';
+      } else if(rkTypeCode.startsWith('B')) {
+        return 'Trolley';
+      }
+      return '';
     }
-    return '';
   }
 
   _buildTableRow = (data, visibleColumnKeys) => {
@@ -282,7 +282,7 @@ class FilteredTable {
         }
       ]
     };
-    const keys = ['icon', ...visibleColumnKeys];
+    const keys = ['icon', ...visibleColumnKeys, 'equipmentNumber'];
 
     keys.forEach((key, index) => {
       const value = data[key];
@@ -296,9 +296,7 @@ class FilteredTable {
         dataObject.rowLink = data['id'];
         dataObject.isClickable = true;
       }
-      if (key === 'rkTypeCode') {
-        dataObject.row[0].value = this._getRowIcon(value);
-      }
+      dataObject.row[0].value = this._getRowIcon(data['rkTypeCode']);
     });
 
     return dataObject;
@@ -548,7 +546,7 @@ class FilteredTable {
     const { i18nKeys } = this.cache.data;
     const target = this.cache.elements.$filterForm;
 
-    const _getFormTemplateData = () => this.cache.data.tableConfig.map((row) => row.key === 'equipmentNumber' ? null: ({
+    const _getFormTemplateData = () => this.cache.data.tableConfig.map((row) => ({
       option: row.key,
       optionDisplayText: this.cache.data.i18nKeys[row.i18nKey],
       isChecked: this.cache.variables.filters.visibleColumns.includes(row.key),
@@ -628,48 +626,46 @@ class FilteredTable {
     const filters = this.cache.data.tableConfig
       .filter((item) => !!item.queryParam)
       .map((item) => {
-        if(item.key !== 'equipmentNumber') {
-          const _getFilterCount = () => {
-            const { values } = this.cache.variables.filters;
-            const value = values[item.queryParam];
-  
-            switch (item.filterType) {
-              case FILTER_TYPE_TEXT:
-              case FILTER_TYPE_RADIO: {
-                return value ? 1 : 0;
-              }
-              case FILTER_TYPE_CHECKBOX:
-              case FILTER_TYPE_CHECKBOX_GROUP: {
-                return value ? value.length : 0;
-              }
-              case FILTER_TYPE_DATE: {
-                const dateStart = values[item.queryParam[0]];
-                return dateStart ? 1 : 0;
-              }
-              case FILTER_TYPE_DATE_RANGE: {
-                const dateStart = values[item.queryParam[0]];
-                const dateEnd = values[item.queryParam[1]];
-                return dateStart && dateEnd ? 1 : 0;
-              }
-              default: {
-                break;
-              }
+        const _getFilterCount = () => {
+          const { values } = this.cache.variables.filters;
+          const value = values[item.queryParam];
+
+          switch (item.filterType) {
+            case FILTER_TYPE_TEXT:
+            case FILTER_TYPE_RADIO: {
+              return value ? 1 : 0;
             }
-          };
-          const filterCount = _getFilterCount();
-          const showFilterClass = item.showFilterByDefault ?
-            '' : this.cache.classes.hideFilterByDefaultClass;
-          const activeClass = filterCount ?
-            ' active' : '';
-          const className = `${showFilterClass}${activeClass}`;
-  
-          return {
-            label: getI18n(this.cache.data.i18nKeys[item.i18nKey]),
-            class: className,
-            key: item.key,
-            filterCount
-          };
-        }
+            case FILTER_TYPE_CHECKBOX:
+            case FILTER_TYPE_CHECKBOX_GROUP: {
+              return value ? value.length : 0;
+            }
+            case FILTER_TYPE_DATE: {
+              const dateStart = values[item.queryParam[0]];
+              return dateStart ? 1 : 0;
+            }
+            case FILTER_TYPE_DATE_RANGE: {
+              const dateStart = values[item.queryParam[0]];
+              const dateEnd = values[item.queryParam[1]];
+              return dateStart && dateEnd ? 1 : 0;
+            }
+            default: {
+              break;
+            }
+          }
+        };
+        const filterCount = _getFilterCount();
+        const showFilterClass = item.showFilterByDefault ?
+          '' : this.cache.classes.hideFilterByDefaultClass;
+        const activeClass = filterCount ?
+          ' active' : '';
+        const className = `${showFilterClass}${activeClass}`;
+
+        return {
+          label: getI18n(this.cache.data.i18nKeys[item.i18nKey]),
+          class: className,
+          key: item.key,
+          filterCount
+        };
       });
 
     render.fn({
@@ -714,13 +710,11 @@ class FilteredTable {
   _getApiUrlRequest = () => {
     const { skipIndex, itemsPerPage } = this.cache.variables.pagination;
     const api = this.cache.api.list;
-    const { sortedByKey, sortOrder, sendPosition } = this.cache.variables.sortData;
     const filterUrlParams = this._getFilterUrlParams();
     const skipIndexParam = `skip=${skipIndex}`;
     const countParam = `&count=${itemsPerPage}`;
     const filtersQuery = filterUrlParams ? `&${filterUrlParams}` : '';
-    const sortPosition = sendPosition ? ',position' : '';
-    const sortParam = sortedByKey ? `&${sortedByKey.toLowerCase()} ${sortOrder}${sortPosition}` : '';
+    const sortParam = `&sort=lineCode asc,rkGeneralNumber asc,position asc`;
 
     const apiUrlRequest = `${api}?${skipIndexParam}${countParam}${sortParam}${filtersQuery}`;
 
@@ -897,11 +891,6 @@ class FilteredTable {
               values: {},
               data: {},
               visibleColumns: defaultVisibleColumns
-            },
-            sortData: {
-              sortedByKey: false,
-              sortOrder: false,
-              sendPosition: false
             },
             pagination: {
               skipIndex: 0,

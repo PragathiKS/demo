@@ -2,7 +2,7 @@ const config = {
   showFields: [
     'invoiceStatusCode',
     'documentDate',
-    'dueCalculationBaseDate',
+    'planningDate',
     'companyName',
     'companyCode',
     'companyCountry',
@@ -15,7 +15,7 @@ const config = {
   ],
   sortableKeys: [
     'documentDate',
-    'dueCalculationBaseDate',
+    'planningDate',
     'companyCode',
     'companyCountry',
     'amountInTransactionCurrency',
@@ -29,18 +29,32 @@ const config = {
   skipIndex: 0,
   maxPages: 3,
   i18nkeysMap: {
+    'invoiceStatusCode': 'status',
     'documentDate': 'invoiceDate',
-    'dueCalculationBaseDate': 'dueDate',
+    'planningDate': 'dueDate',
     'companyName': 'company',
     'companyCode': 'companyCode',
     'companyCountry': 'country',
     'amountInTransactionCurrency': 'amountIncludingTaxes',
     'withholdingTaxAmmount': 'withHoldingTax',
-    'invoiceStatusCode': 'status',
     'documentReferenceID': 'invoiceNo',
     'supplierName': 'supplier',
     'supplier': 'supplierCode',
     'purchasingDocuments': 'poNo'
+  },
+  toolTipkeysMap: {
+    'invoiceStatusCode': 'statusTooltip',
+    'documentDate': 'invoiceDateTooltip',
+    'dueCalculationBaseDate': 'dueDateTooltip',
+    'companyName': 'companyTooltip',
+    'companyCode': 'companyCodeTooltip',
+    'companyCountry': 'countryTooltip',
+    'amountInTransactionCurrency': 'amountIncludingTaxesTooltip',
+    'withholdingTaxAmmount': 'withHoldingTaxTooltip',
+    'documentReferenceID': 'invoiceNoTooltip',
+    'supplierName': 'supplierTooltip',
+    'supplier': 'supplierCodeTooltip',
+    'purchasingDocuments': 'poNoTooltip'
   }
 };
 

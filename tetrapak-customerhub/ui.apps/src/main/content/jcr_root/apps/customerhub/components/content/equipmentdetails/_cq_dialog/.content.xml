@@ -203,7 +203,7 @@
                                             fieldLabel="eofsValidFromDate Label (i18N key)"
                                             name="./eofsValidFromDate"
                                             required="true"/>
-                                    <thankYouLabel 
+                                    <thankYouLabel
                                             jcr:primaryType="nt:unstructured"
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldLabel="thankYou Label (i18N key)"
@@ -244,6 +244,18 @@
                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                             fieldLabel="backToEquipmentList Label (i18N key)"
                                             name="./backToEquipmentList"
+                                            required="true" />
+                                    <techPubCardHeading
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Technical Publiction Card Heading (i18N key)"
+                                            name="./techPubCardHeading"
+                                            required="true"/>
+                                   <techPubCardLinkLabel
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Technical Publiction Link Label (i18N key)"
+                                            name="./techPubCardLinkLabel"
                                             required="true"/>
                                 </items>
                             </column>
@@ -266,7 +278,7 @@
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathbrowser"
                                 fieldLabel="Path To Technical Publication Page"
                                 name="./techPubPath"
-                                required="false"/>	
+                                required="false"/>
                         </items>
                     </column1>
                 </items>

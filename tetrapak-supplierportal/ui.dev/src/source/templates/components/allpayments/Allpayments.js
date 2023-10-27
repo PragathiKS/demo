@@ -54,7 +54,7 @@ class AllPayments {
     this.cache.customisableTableHeaders = [
       {key:'invoiceStatusCode',option:'status',optionDisplayText:i18nKeys['status'],isChecked:true,index:0},
       {key:'documentDate',option:'invoiceDate',optionDisplayText:i18nKeys['invoiceDate'],isChecked:true,index:1},
-      {key:'dueCalculationBaseDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:2},
+      {key:'planningDate',option:'dueDate',optionDisplayText:i18nKeys['dueDate'],isChecked:true,index:2},
       {key:'companyName',option:'company',optionDisplayText:i18nKeys['company'],isChecked:true,index:3},
       {key:'companyCode',option:'companyCode',optionDisplayText:i18nKeys['companyCode'],isChecked:false,index:4},
       {key:'companyCountry',option:'country',optionDisplayText:i18nKeys['country'],isChecked:false,index:5},
@@ -120,6 +120,14 @@ class AllPayments {
       }
       else {
         headerAction.classList.add('show');
+      }
+    });
+    $('body').on('click', (e) => {
+      const $actionBtn = e.target;
+      if(!$($actionBtn).hasClass('icon-Three_Dot')){
+        if($(headerAction).hasClass('show')){
+          $(headerAction).removeClass('show');
+        }
       }
     });
     this.root.addEventListener('FilterChanged', (e) => {
@@ -250,6 +258,16 @@ class AllPayments {
     return data;
   };
 
+  getShowToolTipStatus = (key) => {
+    let status = false;
+    const { i18nKeys, toolTipkeysMap } = this.cache;
+    const toolTip = toolTipkeysMap[key];
+    const toolTipKey = i18nKeys[toolTip];
+    if(toolTipKey){
+      status = toolTipKey?.trim()?.length > 0 ? true : false;
+    }
+    return status;
+  }
 
   getHeaderData = () => {
     const sortByKey = this.cache.activeSortData && this.cache.activeSortData.sortedByKey;
@@ -261,7 +279,9 @@ class AllPayments {
       isSortable: this.cache.sortableKeys.includes(key),
       isActiveSort: key === sortByKey,
       sortOrder: sortOrder,
-      i18nKey: this.cache.i18nKeys[this.cache.i18nkeysMap[key]]
+      i18nKey: this.cache.i18nKeys[this.cache.i18nkeysMap[key]],
+      showTooltip: this.getShowToolTipStatus(key),
+      tooltipText: this.cache.i18nKeys[this.cache.toolTipkeysMap[key]]
     }));
   }
 
@@ -393,6 +413,10 @@ class AllPayments {
         data: { noDataMessage: true, noDataFound: getI18n(this.cache.i18nKeys['noDataFound'])},
         target: '.tp-all-payments__table_wrapper',
         hidden: false
+      }, () => {
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       });
     }
     else {
@@ -401,6 +425,10 @@ class AllPayments {
         data: {...list, summary: list.summary, paginationObj: paginationObj },
         target: '.tp-all-payments__table_wrapper',
         hidden: false
+      }, () => {
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       });
     }
   }
