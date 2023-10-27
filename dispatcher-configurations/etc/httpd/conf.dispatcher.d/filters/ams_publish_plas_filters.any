@@ -48,15 +48,3 @@
 /0030 { /type "allow" /path "/saml_login*"}
 /0031 { /type "allow" /method "GET" /url "/bin/tetrapak/*" } ## allow GET for PW services
 
-## Defining rules to access short url and not long urls
-
-/0042 { /type "deny"  /url "/content/tetrapak/plas/content-components/*" }
-/0043 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/*plantmasterlicenses*" }
-/0044 { /type "allow" /method "GET" /url "*/jcr:content/root/responsivegrid/*plantmastertrainings*" }
-
-/0046 { /type "allow" /method "GET" /url "/content/tetrapak/plas/content-components/*/*.assets.json" } ## allow GETS to get keylines json
-/0047 { /type "allow" /method "POST" /url "*/jcr:content/root/responsivegrid/*rebuildingkitdetails*" }
-/0048 { /type "allow" /method "GET" /url "*/root/responsivegrid/*.getpdflinks.json" } ## SMAR-32073
-
-/0049 { /type "allow" /method "POST" /url "*/root/responsivegrid/rebuildingkitdetails.update.json" } ##SMAR-32507
-/0050 { /type "allow" /method "GET" /url "*/jcr:content.onetrustcookietoken.json" } #SMAR-31242, 32497
