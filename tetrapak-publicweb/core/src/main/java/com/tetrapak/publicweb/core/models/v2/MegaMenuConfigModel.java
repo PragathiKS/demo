@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tetrapak.publicweb.core.models.MegaMenuColumnModel;
 import com.tetrapak.publicweb.core.utils.LinkUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -90,9 +91,18 @@ public class MegaMenuConfigModel {
     }
 
     public String getModelJsonPath() {
+        String market = StringUtils.EMPTY;
+        if(currentPage.getPath().startsWith(PUBLICWEB_XF_PATH)){
+            String marketSuffix = request.getRequestPathInfo().getSuffix();
+            if(StringUtils.isNotBlank(marketSuffix)){
+                market = FilenameUtils.removeExtension(marketSuffix);
+                market = market.replace(SLASH,StringUtils.EMPTY);
+            }
+        }else{
+            String marketPath = LinkUtils.getCountryPath(currentPage.getPath());
+            market = StringUtils.substringAfterLast(marketPath,SLASH);
+        }
 
-        String countryPagePath = LinkUtils.getCountryPath(currentPage.getPath());
-        String market = StringUtils.substringAfterLast(countryPagePath,SLASH);
         return request.getResource().getPath()+DOT+MOBILE_MEGAMENU_SELECTOR+DOT+market+JSON_EXTENSION;
     }
 
