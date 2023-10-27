@@ -2,7 +2,7 @@
 ## Collect the dispatchers number
 PassEnv DISP_ID
 
-# Defining Virtual host for plas-stage.tetrapak.com
+# Defining Virtual host for plas-dev.tetrapak.com
 <VirtualHost *:80>
         ServerName   ${PLAS_URL}
         ## Put names of which domains are used for your published site/content here
