@@ -37,6 +37,10 @@ aemStart:
     - 'aemcomponentcopy:uxlib'
     - 'aemdeploy'
 
+icons:
+  tasks:
+    - 'webfont:common_icons'
+    
 default:
   description: "run default task which build the whole application"
   tasks:

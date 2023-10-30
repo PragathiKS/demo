@@ -157,8 +157,7 @@ module.exports = {
       bootstrap: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/bootstrap'),
       handlebars: path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/handlebars/runtime'),
       'core-js': path.resolve('../../../tetrapak-commons/ui.dev/src/node_modules/core-js'),
-      tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source'),
-      tpCustomerhub: path.resolve('../../../tetrapak-customerhub/ui.dev/src/source')
+      tpCommon: path.resolve('../../../tetrapak-commons/ui.dev/src/source')
     }
   }
 }

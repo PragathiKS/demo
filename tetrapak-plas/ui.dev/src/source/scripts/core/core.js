@@ -5,7 +5,6 @@ import './polyfill';
 import bundleImport from '../bundle/imports';
 import bundleImporter from '../bundle/importer';
 import { templates } from '../utils/templates';
-import domReady from '../utils/domReady';
 import './corescss';
 
 $(function () {
@@ -29,5 +28,4 @@ $(function () {
       bundleImporter(args);
     });
   });
-  domReady.init();
 });
