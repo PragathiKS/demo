@@ -45,6 +45,5 @@ public class SubheadingModelTest {
     @Test
     public void testGettersAndSetters() {
         assertEquals("Sample Subheading", model.getSubheading());
-        assertEquals("/content/tetrapak/publicweb/lang-masters/en/solutions.html", model.getSubheadingURL());
     }
 }

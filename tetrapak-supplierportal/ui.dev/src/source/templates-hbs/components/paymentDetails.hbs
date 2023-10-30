@@ -95,35 +95,75 @@
     {{#if_noteq paymentData.amountInTransactionCurrency ""}}
     {{#if_noteq paymentData.amountInTransactionCurrency null}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">{{i18n key=i18nKeys.totalAmount}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">{{i18n key=i18nKeys.totalAmount}}
+            {{#if_noteq showToolTip.totalAmountTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.totalAmount}}</span>
+                <span>{{i18n key=i18nKeys.totalAmountTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="subsectionTitle">{{paymentData.amountInTransactionCurrency}} {{paymentData.transactionCurrency}}</div>
     </div>
     {{/if_noteq}}
     {{/if_noteq}}
     {{!-- {{#if_noteq paymentData.tax ""}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.tax}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.tax}}
+            {{#if_noteq showToolTip.taxTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.tax}}</span>
+                <span>{{i18n key=i18nKeys.taxTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.tax}}</div>
     </div>
     {{/if_noteq}} --}}
     {{#if_noteq paymentData.withholdingTaxAmmount ""}}
     {{#if_noteq paymentData.withholdingTaxAmmount null}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.withHoldingTax}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.withHoldingTax}}
+            {{#if_noteq showToolTip.withHoldingTaxesTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.withHoldingTax}}</span>
+                <span>{{i18n key=i18nKeys.withHoldingTaxesTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.withholdingTaxAmmount}} {{paymentData.transactionCurrency}}</div>
     </div>
     {{/if_noteq}}
     {{/if_noteq}}
     {{!-- {{#if_noteq paymentData.netPayable ""}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.netPayable}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.netPayable}}
+            {{#if_noteq showToolTip.netPayableTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.netPayable}}</span>
+                <span>{{i18n key=i18nKeys.netPayableTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.netPayable}}</div>
     </div>
     {{/if_noteq}} --}}
     {{#if_noteq paymentData.paymentTerms ""}}
     {{#if_noteq paymentData.paymentTerms null}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paymentTerm}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paymentTerm}}
+           {{#if_noteq showToolTip.paymentTermTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.paymentTerm}}</span>
+                <span>{{i18n key=i18nKeys.paymentTermTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.paymentTerms}}</div>
     </div>
     {{/if_noteq}}
@@ -131,7 +171,15 @@
     {{#if_noteq paymentData.clearingDate ""}}
     {{#if_noteq paymentData.clearingDate null}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paidDate}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paidDate}}
+            {{#if_noteq showToolTip.paidDateTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.paidDate}}</span>
+                <span>{{i18n key=i18nKeys.paidDateTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.clearingDate}}</div>
     </div>
     {{/if_noteq}}
@@ -139,7 +187,15 @@
     {{#if_noteq paymentData.planningDate ""}}
     {{#if_noteq paymentData.planningDate null}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.dueDate}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.dueDate}}
+            {{#if_noteq showToolTip.detailsDueDateTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.dueDate}}</span>
+                <span>{{i18n key=i18nKeys.detailsDueDateTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.planningDate}}</div>
     </div>
     {{/if_noteq}}
@@ -148,7 +204,15 @@
     {{#if_noteq paymentData.bankAccount ""}}
     {{#if_noteq paymentData.bankAccount null}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.bankAccount}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.bankAccount}}
+            {{#if_noteq showToolTip.bankAccountTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.bankAccount}}</span>
+                <span>{{i18n key=i18nKeys.bankAccountTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.bankAccount}}</div>
     </div>
     {{/if_noteq}}
@@ -156,7 +220,15 @@
     {{#if_noteq paymentData.paymentMethod ""}}
     {{#if_noteq paymentData.paymentMethod null}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paymentMethod}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.paymentMethod}}
+            {{#if_noteq showToolTip.paymentMethodTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.paymentMethod}}</span>
+                <span>{{i18n key=i18nKeys.paymentMethodTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.paymentMethod}}</div>
     </div>
     {{/if_noteq}}
@@ -165,7 +237,15 @@
     {{#if_noteq paymentData.purchasingDocuments null}}
     {{#if paymentData.purchasingDocuments.length}}
     <div class="tp-payment-details__details-line">
-        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.poNo}}</div>
+        <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.poNo}}
+            {{#if_noteq showToolTip.detailsPoNoTooltip ""}}
+            <button data-html="true" type="button" class="dashed-border" data-toggle="tooltip" data-placement="bottom"
+                title="<span class='tooltip-header'>{{i18n key=i18nKeys.poNo}}</span>
+                <span>{{i18n key=i18nKeys.detailsPoNoTooltip}}</span>">
+                <i class="icon icon-Info"></i>
+            </button>
+            {{/if_noteq}}
+        </div>
         <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">
         {{#each paymentData.purchasingDocuments}}
         <span class="tp-payment-details__details-cell-multiple-col" auto_locator="paymentDetailsSectionDataValue">{{this}}{{#unless @last}},{{/unless}}</span>

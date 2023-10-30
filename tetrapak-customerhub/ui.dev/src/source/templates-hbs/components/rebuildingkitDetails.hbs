@@ -75,8 +75,14 @@
                             key=i18nKeys.equipmentStructure}}</div>
                         <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.equipmentStructure}}
                         </div>
-                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{rebuildingData.permanentVolumeConversion}}
+                        {{#if_eq rebuildingData.permanentVolumeConversion true}}
+                        <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{i18n key=i18nKeys.i18nkeyyes}}
                         </div>
+                         {{/if_eq}}
+                         {{#if_eq rebuildingData.permanentVolumeConversion false}}
+                          <div class="col-lg-4 tp-rebuilding-details__info-cell-two">{{i18n key=i18nKeys.i18nkeyno}}
+                        </div>
+                        {{/if_eq}}
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-xs-12 tp-rebuilding-details__action-wrap">

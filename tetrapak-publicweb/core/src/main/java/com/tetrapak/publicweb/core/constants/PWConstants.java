@@ -541,11 +541,24 @@ public final class PWConstants {
 
     public static final String MEGAMENU_HEADING_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/heading";
 
+    public static final String MEGAMENU_TEASER_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/teaser";
+
+    public static final String MEGAMENU_NAVLINKS_RESOURCETYPE = "publicweb/components/structure/megamenucolumnitems/navigationlinks";
+
     public static final String MEGAMENU_CONFIGURATION_DIALOG_SELECTED_COLUMNS = "columns";
 
     public static final String MEGAMENU_CONFIGURATION_RESOURCE_PATH = "contentPath";
 
     public static final String PUBLICWEB_XF_PATH = "/content/experience-fragments/publicweb";
+
+    public static final String PUBLICWEB_LANG_MASTERS_PATH = "/content/tetrapak/publicweb/lang-masters";
+
+    public static final String XF_CONTENT_SELECTOR = "content";
+
+    public static final String MOBILE_MEGAMENU_SELECTOR = "mobilemegamenu";
+
+    public static final String JSON_EXTENSION = ".json";
+
 
     /**
      * Instantiates a new PW constants.

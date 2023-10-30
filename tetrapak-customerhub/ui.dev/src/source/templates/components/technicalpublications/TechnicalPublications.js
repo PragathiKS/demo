@@ -156,6 +156,9 @@ async function _getFolderData(stepKey, options) {
   const { folderNavData, apiDataObj } = $this.cache;
   const { country, customer, line, lineFolders, folderDetails } = folderNavData;
   const { isBreadcrumbNav, useOriginalSerialNumber, skipFolderDetails, renderIssueDate } = options;
+  const langCode = storageUtil.getCookie('lang-code');
+  const langParam = `lang=${langCode}`;
+
   let apiUrl;
   let serialNumber;
 
@@ -184,7 +187,7 @@ async function _getFolderData(stepKey, options) {
 
       serialNumber = useOriginalSerialNumber ?
         value : `${valueParts[0]}%2F${valueParts[1]}`;
-      apiUrl = `${techPubApi}/${serialNumber}`;
+      apiUrl = `${techPubApi}/${serialNumber}?${langParam}`;
 
       break;
     }
@@ -194,7 +197,7 @@ async function _getFolderData(stepKey, options) {
 
       serialNumber = useOriginalSerialNumber ?
         value : `${valueParts[0]}%2F${valueParts[1]}`;
-      apiUrl = `${techPubApi}/${serialNumber}`;
+      apiUrl = `${techPubApi}/${serialNumber}?${langParam}`;
 
       break;
     }
@@ -366,8 +369,6 @@ function _renderFolderData(
   const $this = this;
   const { $folderListingWrapper, i18nKeys } = $this.cache;
 
-  const langCode = storageUtil.getCookie('lang-code');
-
   const renderIssueDate = forceRenderIssueDate || ['SPC'].includes(typeCode);
   const renderDescription = ['TEM', 'CM'].includes(typeCode);
   const renderRKNumber = ['RM', 'UP', 'KIT'].includes(typeCode);
@@ -399,8 +400,7 @@ function _renderFolderData(
       renderDescription,
       renderRKNumber,
       renderRKName,
-      skipFolderDetails,
-      langCode
+      skipFolderDetails
     }
   }, () => {
     $this.showSpinner(false);

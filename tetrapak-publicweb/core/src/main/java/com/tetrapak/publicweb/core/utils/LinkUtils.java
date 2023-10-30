@@ -1,5 +1,6 @@
 package com.tetrapak.publicweb.core.utils;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.vault.util.Text;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -7,6 +8,8 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import com.adobe.cq.sightly.WCMUsePojo;
 import com.tetrapak.publicweb.core.constants.PWConstants;
 import org.apache.sling.api.resource.Resource;
+
+import static com.tetrapak.publicweb.core.constants.PWConstants.LANG_MASTERS;
 
 /**
  * The Class LinkUtils.
@@ -178,5 +181,22 @@ public class LinkUtils extends WCMUsePojo {
             updatedUrl = path.replaceFirst("^(http[s]?://)", "");
         }
         return updatedUrl;
+    }
+
+    public static String getMarketLinkInXF(String currentPagePath,SlingHttpServletRequest request,String url){
+        if(currentPagePath.startsWith("/content/experience-fragments")){
+            String marketSuffix = request.getRequestPathInfo().getSuffix();
+            if(StringUtils.isNotBlank(url) && StringUtils.isNotBlank(marketSuffix)){
+                String market = FilenameUtils.removeExtension(marketSuffix);
+                market = market.replace("/","");
+                url = url.replace(LANG_MASTERS,market);
+            }
+        }else{
+            String marketPath = getCountryPath(currentPagePath);
+            if(StringUtils.isNotBlank(url) && url.contains(LANG_MASTERS)){
+                url = url.replace("/content/tetrapak/publicweb/lang-masters",marketPath);
+            }
+        }
+        return url;
     }
 }

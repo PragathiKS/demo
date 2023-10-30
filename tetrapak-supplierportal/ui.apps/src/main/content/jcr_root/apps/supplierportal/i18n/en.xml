@@ -13,19 +13,25 @@
     <sp.paymentDetails.allPaymentsHeading
         jcr:primaryType="sling:MessageEntry"
         sling:message="Payments"/>
-	<sp.paymentdetails.applyFilter
-        jcr:primaryType="sling:MessageEntry"
-        sling:message="Apply Filter"/>
     <sp.paymentDetails.amountIncludingTaxes
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Amount Including Taxes"/>
+        sling:message="Amount including taxes"/>
+    <sp.paymentDetails.amountIncludingTaxesTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
+    <sp.paymentDetails.applyFilter
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Apply Filter"/>
     <sp.paymentDetails.bankAccount
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Bank Account"/>
+        sling:message="Bank account"/>
+    <sp.paymentDetails.bankAccountTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.code
         jcr:primaryType="sling:MessageEntry"
         sling:message="Code"/>
-	<sp.paymentDetails.columns
+    <sp.paymentDetails.columns
         jcr:primaryType="sling:MessageEntry"
         sling:message="Columns"/>
     <sp.paymentDetails.company
@@ -33,22 +39,40 @@
         sling:message="Company"/>
     <sp.paymentDetails.companyCode
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Company Code"/>
+        sling:message="Company code"/>
+    <sp.paymentDetails.companyCodeTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.companyInformation
         jcr:primaryType="sling:MessageEntry"
         sling:message="Company Information"/>
+    <sp.paymentDetails.companyTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.country
         jcr:primaryType="sling:MessageEntry"
         sling:message="Country"/>
+    <sp.paymentDetails.countryTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.date
         jcr:primaryType="sling:MessageEntry"
         sling:message="Date"/>
     <sp.paymentDetails.details
         jcr:primaryType="sling:MessageEntry"
         sling:message="Details"/>
+    <sp.paymentDetails.detailsDueDateTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
+    <sp.paymentDetails.detailsPoNoTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.dueDate
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Due Date"/>
+        sling:message="Due date"/>
+    <sp.paymentDetails.dueDateTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.emptyPaymentDetails
         jcr:primaryType="sling:MessageEntry"
         sling:message="Empty Payment Details"/>
@@ -60,19 +84,28 @@
         sling:message="Fetch Error"/>
     <sp.paymentDetails.invoiceDate
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Invoice Date"/>
+        sling:message="Invoice date"/>
+    <sp.paymentDetails.invoiceDateTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.invoiceInformation
         jcr:primaryType="sling:MessageEntry"
         sling:message="Invoice Information"/>
     <sp.paymentDetails.invoiceNo
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Invoice No"/>
+        sling:message="Invoice No."/>
+    <sp.paymentDetails.invoiceNoTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.multipono
         jcr:primaryType="sling:MessageEntry"
         sling:message="Multiple Po Number"/>
     <sp.paymentDetails.netPayable
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Net Payable"/>
+        sling:message="Net payable"/>
+    <sp.paymentDetails.netPayableTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.noDataFound
         jcr:primaryType="sling:MessageEntry"
         sling:message="NoDataFound"/>
@@ -96,49 +129,82 @@
         sling:message="Paid"/>
     <sp.paymentDetails.paidDate
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Paid Date"/>
+        sling:message="Paid date"/>
+    <sp.paymentDetails.paidDateTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.paymentMethod
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Payment Method"/>
+        sling:message="Payment method"/>
+    <sp.paymentDetails.paymentMethodTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.paymentTerm
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Payment Term"/>
+        sling:message="Payment term"/>
+    <sp.paymentDetails.paymentTermTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.poNo
         jcr:primaryType="sling:MessageEntry"
-        sling:message="PO NO"/>
+        sling:message="PO No."/>
+    <sp.paymentDetails.poNoTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.reset
         jcr:primaryType="sling:MessageEntry"
         sling:message="Reset"/>
     <sp.paymentDetails.results
         jcr:primaryType="sling:MessageEntry"
         sling:message="Results"/>
-    <sp.paymentDetails.status
-        jcr:primaryType="sling:MessageEntry"
-        sling:message="Invoice Status"/>
-	<sp.paymentDetails.selectAll
+    <sp.paymentDetails.selectAll
         jcr:primaryType="sling:MessageEntry"
         sling:message="Select All"/>
-	<sp.paymentDetails.showHideColumns
+    <sp.paymentDetails.showHideColumns
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Show Hide Columns"/>
+        sling:message="Show/Hide Columns"/>
+    <sp.paymentDetails.status
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Invoice status"/>
+    <sp.paymentDetails.statusTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.supplier
         jcr:primaryType="sling:MessageEntry"
         sling:message="Supplier"/>
     <sp.paymentDetails.supplierCode
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Supplier Code"/>
+        sling:message="Supplier code"/>
+    <sp.paymentDetails.supplierCodeTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.supplierInformtaion
         jcr:primaryType="sling:MessageEntry"
         sling:message="Supplier Information"/>
+    <sp.paymentDetails.supplierTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.tax
         jcr:primaryType="sling:MessageEntry"
         sling:message="Tax"/>
+    <sp.paymentDetails.taxTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.totalAmount
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Total Amount incl. taxes"/>
+        sling:message="Total amount incl. taxes"/>
+    <sp.paymentDetails.totalAmountTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.paymentDetails.withholdingtax
         jcr:primaryType="sling:MessageEntry"
-        sling:message="Withholding Taxes"/>
+        sling:message="Withholding taxes"/>
+    <sp.paymentDetails.withHoldingTaxesTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
+    <sp.paymentDetails.withHoldingTaxTooltip
+        jcr:primaryType="sling:MessageEntry"
+        sling:message="Lorem ipsum descriptive copy added by admin user in AEM"/>
     <sp.requestform.ariba.email.error.label
         cq:lastReplicated="{Date}2023-03-22T06:39:52.772Z"
         cq:lastReplicatedBy="surbhi.gupta"

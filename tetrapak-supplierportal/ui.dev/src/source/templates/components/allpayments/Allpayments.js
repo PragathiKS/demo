@@ -38,6 +38,20 @@ class AllPayments {
         'supplier': 'supplierCode',
         'purchasingDocuments': 'poNo'
       },
+      toolTipkeysMap: {
+        'invoiceStatusCode': 'statusTooltip',
+        'documentDate': 'invoiceDateTooltip',
+        'dueCalculationBaseDate': 'dueDateTooltip',
+        'companyName': 'companyTooltip',
+        'companyCode': 'companyCodeTooltip',
+        'companyCountry': 'countryTooltip',
+        'amountInTransactionCurrency': 'amountIncludingTaxesTooltip',
+        'withholdingTaxAmmount': 'withHoldingTaxTooltip',
+        'documentReferenceID': 'invoiceNoTooltip',
+        'supplierName': 'supplierTooltip',
+        'supplier': 'supplierCodeTooltip',
+        'purchasingDocuments': 'poNoTooltip'
+      },
       statusMapping: {},
       customisableTableHeaders: [],
       hideColumns: [],
@@ -271,6 +285,16 @@ class AllPayments {
     return data;
   };
 
+  getShowToolTipStatus = (key) => {
+    let status = false;
+    const { i18nKeys, toolTipkeysMap } = this.cache;
+    const toolTip = toolTipkeysMap[key];
+    const toolTipKey = i18nKeys[toolTip];
+    if(toolTipKey){
+      status = toolTipKey?.trim()?.length > 0 ? true : false;
+    }
+    return status;
+  }
 
   getHeaderData = () => {
     const sortByKey = this.cache.activeSortData && this.cache.activeSortData.sortedByKey;
@@ -282,7 +306,9 @@ class AllPayments {
       isSortable: this.cache.sortableKeys.includes(key),
       isActiveSort: key === sortByKey,
       sortOrder: sortOrder,
-      i18nKey: this.cache.i18nKeys[this.cache.i18nkeysMap[key]]
+      i18nKey: this.cache.i18nKeys[this.cache.i18nkeysMap[key]],
+      showTooltip: this.getShowToolTipStatus(key),
+      tooltipText: this.cache.i18nKeys[this.cache.toolTipkeysMap[key]]
     }));
   }
 
@@ -410,6 +436,10 @@ class AllPayments {
         data: { noDataMessage: true, noDataFound: getI18n(this.cache.i18nKeys['noDataFound'])},
         target: '.tp-all-payments__table_wrapper',
         hidden: false
+      }, () => {
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       });
     }
     else {
@@ -418,6 +448,10 @@ class AllPayments {
         data: {...list, summary: list.summary, paginationObj: paginationObj },
         target: '.tp-all-payments__table_wrapper',
         hidden: false
+      }, () => {
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       });
     }
   }

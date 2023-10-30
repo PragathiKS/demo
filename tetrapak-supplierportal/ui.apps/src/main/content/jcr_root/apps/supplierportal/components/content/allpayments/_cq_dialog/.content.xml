@@ -162,32 +162,32 @@
                                 fieldLabel="Paid (i18N key)"
                                 name="./paid"
                                 required="true"/>
-							<paymentDetailsURL
+                            <paymentDetailsURL
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                 fieldLabel="Payment Details URL"
                                 name="./paymentDetailsURL"
                                 required="true"
 								rootPath="/content/tetrapak/supplierportal"/>
-							<showHideColumns
+                            <showHideColumns
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Show Hide Columns (i18N key)"
                                 name="./showHideColumns"
                                 required="true"/>
-							<columns
+                            <columns
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Columns (i18N key)"
                                 name="./columns"
                                 required="true"/>
-							<selectAll
+                            <selectAll
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Select All (i18N key)"
                                 name="./selectAll"
                                 required="true"/>
-							<applyFilter
+                            <applyFilter
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                 fieldLabel="Apply Filter (i18N key)"
@@ -195,6 +195,85 @@
                                 required="true"/>
                         </items>
                     </column1>
+                    <column2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Tool tips Configuration"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <invoiceDateToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Invoice Date Tool Tip Text (i18N key)"
+                                name="./invoiceDateTooltip"
+                                required="false"/>
+                            <companyToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Company Tool Tip Text (i18N key)"
+                                name="./companyTooltip"
+                                required="false"/>
+                            <companyCodeToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Company Code Tool Tip Text (i18N key)"
+                                name="./companyCodeTooltip"
+                                required="false"/>
+                            <countryToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Country Tool Tip Text (i18N key)"
+                                name="./countryTooltip"
+                                required="false"/>
+                            <amountIncludingTaxesToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Amount Including Taxes &#xa; Tool Tip Text (i18N key)"
+                                name="./amountIncludingTaxesTooltip"
+                                required="false"/>
+                            <withholdingtaxToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="With Holding Tax Tool Tip Text (i18N key)"
+                                name="./withHoldingTaxTooltip"
+                                required="false"/>
+                            <invoiceStatusToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Invoice Status Tool Tip Text (i18N key)"
+                                name="./statusTooltip"
+                                required="false"/>
+                            <invoiceNoToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Invoice No Tool Tip Text (i18N key)"
+                                name="./invoiceNoTooltip"
+                                required="false"/>
+                            <supplierToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Supplier Tool Tip Text (i18N key)"
+                                name="./supplierTooltip"
+                                required="false"/>
+                            <supplierCodeToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Supplier Code Tool Tip Text (i18N key)"
+                                name="./supplierCodeTooltip"
+                                required="false"/>
+                            <poNoToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Po No Tool Tip Text (i18N key)"
+                                name="./poNoTooltip"
+                                required="false"/>
+                            <dueDateToolTip
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Due Date Tool Tip Text (i18N key)"
+                                name="./dueDateTooltip"
+                                required="false"/>
+                        </items>
+                    </column2>
                 </items>
             </tabs>
         </items>
