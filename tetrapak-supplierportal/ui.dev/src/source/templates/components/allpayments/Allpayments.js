@@ -4,7 +4,6 @@ import { _paginate } from './allpayments.paginate';
 import { render } from '../../../scripts/utils/render';
 import {  _paginationAnalytics, _filterAnalytics } from './allpayments.analytics';
 import { getI18n } from '../../../scripts/common/common';
-// import { getFilterDateRange } from '../../../scripts/utils/dateRange';
 import AllPaymentsFilter from './allpayments.filter';
 import config from './allpayments.config';
 
@@ -298,11 +297,8 @@ class AllPayments {
 
   getPaymentApiUrl = () => {
     const paymentApi = this.cache.paymentApi.getAttribute('data-list-api');
-    // dataRange = this.cache.paymentApi.getAttribute('data-date-range');
     const { itemsPerPage, skipIndex, activeSortData, defaultSortParams } = this.cache;
 
-    // TODO: Need to remove this. For testing purpose we add this from date time.
-    // let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}${getFilterDateRange(dataRange)}`;
     let apiUrlRequest = `${paymentApi}?skip=${skipIndex}&count=${itemsPerPage}`;
     apiUrlRequest += `&${this.allPaymentsFilter.getFilterQueryString()}`;
 

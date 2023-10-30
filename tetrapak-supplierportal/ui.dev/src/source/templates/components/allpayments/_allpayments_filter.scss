@@ -120,11 +120,11 @@
         color: $color-congress-blue;
         box-sizing: border-box;
         border-radius: 22px;
-        font-weight: 500;
+        font-weight: $font-weight-normal;
         &:hover {
             box-shadow: inset 0 0 0 1px $color-congress-blue;
             &.active {
-                font-weight: 700;
+                font-weight: $font-weight-bold;
                 background-color: $color-wild-sand;
             }
             &:disabled {
@@ -133,7 +133,7 @@
         }
         &.active {
             box-shadow: inset 0 0 0 1px $color-congress-blue;
-            font-weight: 700;
+            font-weight: $font-weight-bold;
             background-color: $color-wild-sand;
             &:disabled {
                 box-shadow: none;

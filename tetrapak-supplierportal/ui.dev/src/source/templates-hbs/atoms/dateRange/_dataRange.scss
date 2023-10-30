@@ -18,9 +18,9 @@
         }
     }
     &__input-error {
+        @include font-size($font-xs);
         color: $color-red;
-        font-size: 10px;
-        font-weight: 500;
+        font-weight: $font-weight-normal;;
         margin-left: $padding-xxs;
 
         &.hide {
@@ -29,7 +29,7 @@
     }
     &__input-label {
         color: $color-tundora;
-        font-weight: 500;
+        font-weight: $font-weight-normal;;
         position: relative;
 
         .icon-Close_new {
