@@ -261,6 +261,7 @@ class MyEquipment {
     this.cache.$removeAllFiltersBtn.on('click', () => {
       this.deleteAllFilters();
       this.toggleRemoveAllFilters(false);
+      this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], true);
     });
 
     this.root.on('click', '.js-my-equipment__table-summary__sort',  (e) => {
