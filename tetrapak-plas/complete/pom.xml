@@ -19,8 +19,8 @@
     <!-- ====================================================================== -->
     <artifactId>tetrapak-plas.complete</artifactId>
     <packaging>content-package</packaging>
-    <name>Tetrapak Plas - Complete Package</name>
-    <description>Complete package of Tetrapak Plas Embedded in One</description>
+    <name>Tetrapak Plas - Complete</name>
+    <description>Complete package of Tetrapak Plas</description>
 
     <properties>
         <aem.host>localhost</aem.host>
@@ -61,24 +61,7 @@
                             <artifactId>tetrapak-plas.core</artifactId>
                             <target>/apps/plas/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>tetrapak-plas</groupId>
-                            <artifactId>tetrapak-plas.integration</artifactId>
-                            <target>/apps/plas/install</target>
-                        </embedded>
-                        <embedded>
-                            <groupId>tetrapak-plas</groupId>
-                            <artifactId>tetrapak-plas.it.launcher</artifactId>
-                            <target>/apps/plas/install</target>
-                        </embedded>
                     </embeddeds>
-                    <filters>
-                        <filter>
-                                    
-                            <root>${package.root}</root>
-                                
-                        </filter>
-                    </filters>
                     <subPackages>
                         <subPackage>
                             <type>content-package</type>
@@ -103,54 +86,27 @@
             <artifactId>tetrapak-plas.core</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--<dependency>
-            <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-plas.integration</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>tetrapak</groupId>
-            <artifactId>tetrapak-plas.it.launcher</artifactId>
-            <version>${project.version}</version>
-        </dependency>-->
         <dependency>
             <groupId>tetrapak-plas</groupId>
             <artifactId>tetrapak-plas.ui.dev</artifactId>
             <version>${project.version}</version>
             <type>content-package</type>
         </dependency>
-
-
-        <!-- actual dependencies -->
         <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.commons.json</artifactId>
-            <version>2.0.6</version>
+            <groupId>com.adobe.aem</groupId>
+            <artifactId>uber-jar</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.launchpad</artifactId>
-            <classifier>standalone</classifier>
-            <version>6</version>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>com.day.cq.wcm</groupId>
+            <artifactId>cq-wcm-taglib</artifactId>
         </dependency>
     </dependencies>
 
