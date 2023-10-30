@@ -330,6 +330,22 @@ describe('Allpayments', function () {
     expect(document.querySelector('.tp-all-payments-filter')).to.exist;
   });
 
+  it('should user can show the modal, when click on the filter chip button - invoice status', async function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    const modalContainer = document.body.querySelector('.js-filter-modal');
+    modalContainer.innerHTML = filterForInvoiceStatusTmpl();
+
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+    const evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    document.querySelector('.tp-all-payments__filter-button[data-key="invoiceStatuses"]').dispatchEvent(evt);
+    expect(document.querySelector('.tp-all-payments-filter')).to.exist;
+  });
+
   it('auto focus the first input box, when open the invoice no modal', async function() {
     fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
     this.allpayments.init();
@@ -660,6 +676,32 @@ describe('Allpayments', function () {
     document.querySelector('.js-date-range-input-to').value = '2023-07-22';
     this.allPaymentsDateRange.validateDateRange();
     expect( document.querySelector('.js-apply-filter-button').hasAttribute('disabled')).to.be.false;
+  });
+
+  it('should enable the apply filter button, if from and to date are valid - senario 2', function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+    const modalContainer = document.body.querySelector('.js-filter-modal');
+    modalContainer.innerHTML = filterFormInvoiceDateTmpl();
+    document.querySelector('#tpatomRadioother').checked = true;
+    document.querySelector('.js-date-range-input-from').value = '2023-22-22';
+    document.querySelector('.js-date-range-input-to').value = '2023-07-22';
+    this.allPaymentsDateRange.validateDateRange();
+    expect( document.querySelector('.js-apply-filter-button').hasAttribute('disabled')).to.be.true;
+  });
+
+  it('should enable the apply filter button, if from and to date are valid - senario 3', function() {
+    fetchStub.resolves({ json: () => Promise.resolve(allpaymentData)});
+    this.allpayments.init();
+    this.allpayments.itemsPerPage = 1;
+    const modalContainer = document.body.querySelector('.js-filter-modal');
+    modalContainer.innerHTML = filterFormInvoiceDateTmpl();
+    document.querySelector('#tpatomRadioother').checked = true;
+    document.querySelector('.js-date-range-input-from').value = '2023-07-10';
+    document.querySelector('.js-date-range-input-to').value = '2023-22-22';
+    this.allPaymentsDateRange.validateDateRange();
+    expect( document.querySelector('.js-apply-filter-button').hasAttribute('disabled')).to.be.true;
   });
 
   it('should disable the apply filter button, if from and to date are invalid', function() {

@@ -40,11 +40,26 @@ class AllPaymentsDateRange {
       toInput = dateWrapper.querySelector('.js-date-range-input-to').value,
       utils = this.allPaymentsUtils;
 
-    if (fromInput && toInput && utils.isNotValidDateRange(fromInput, toInput)) {
-      dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDateRange']);
-      dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
+    if (fromInput && toInput) {
+      dateWrapper.querySelector('.js-date-range-from-error').classList.add('hide');
       dateWrapper.querySelector('.js-date-range-to-error').classList.add('hide');
-      this.enableFilterApplyBtn(false);
+      this.enableFilterApplyBtn(true);
+
+      if (!utils.isValidDate(fromInput) || utils.isFutureDate(fromInput)) {
+        dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDate']);
+        dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
+        this.enableFilterApplyBtn(false);
+      }
+      if (!utils.isValidDate(toInput) || utils.isFutureDate(toInput)) {
+        dateWrapper.querySelector('.js-date-range-to-error').classList.remove('hide');
+        this.enableFilterApplyBtn(false);
+      }
+      if (utils.isNotValidDateRange(fromInput, toInput)) {
+        dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDateRange']);
+        dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
+        dateWrapper.querySelector('.js-date-range-to-error').classList.add('hide');
+        this.enableFilterApplyBtn(false);
+      }
     }
     else if (fromInput && (!utils.isValidDate(fromInput) || utils.isFutureDate(fromInput))) {
       dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDate']);
@@ -144,6 +159,16 @@ class AllPaymentsDateRange {
     this.cache.modal && this.cache.modal.addEventListener('change', function(e) {
       if (e.target.closest('.tp-all-payments-filter[auto_locator="invoiceDates"]') && e.target.closest('.tpatom-radio')) {
         self.toggleDateRange(e);
+      }
+    });
+
+    this.cache.modal && this.cache.modal.addEventListener('input', function(e) {
+      if (e.target.closest('.js-date-range')) {
+        const inputElement = e.target.closest('.js-date-range').value;
+
+        if (inputElement.length === 0) {
+          self.validateDateRange();
+        }
       }
     });
   }
