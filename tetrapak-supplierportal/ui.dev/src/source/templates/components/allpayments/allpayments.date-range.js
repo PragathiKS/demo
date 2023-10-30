@@ -40,17 +40,18 @@ class AllPaymentsDateRange {
       toInput = dateWrapper.querySelector('.js-date-range-input-to').value,
       utils = this.allPaymentsUtils;
 
-    if (fromInput && toInput && !utils.isToDateGreaterThanFromDate(fromInput, toInput)) {
+    if (fromInput && toInput && utils.isNotValidDateRange(fromInput, toInput)) {
       dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDateRange']);
       dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
+      dateWrapper.querySelector('.js-date-range-to-error').classList.add('hide');
       this.enableFilterApplyBtn(false);
     }
-    else if (fromInput && (!utils.isValidDate(fromInput) || !utils.isDateLessThanOrEqualToToday(fromInput))) {
+    else if (fromInput && (!utils.isValidDate(fromInput) || utils.isFutureDate(fromInput))) {
       dateWrapper.querySelector('.js-date-range-from-error').innerHTML = getI18n(this.cache.i18nKeys['invalidDate']);
       dateWrapper.querySelector('.js-date-range-from-error').classList.remove('hide');
       this.enableFilterApplyBtn(false);
     }
-    else if (toInput && (!utils.isValidDate(toInput) || !utils.isDateLessThanOrEqualToToday(toInput))) {
+    else if (toInput && (!utils.isValidDate(toInput) || utils.isFutureDate(toInput))) {
       dateWrapper.querySelector('.js-date-range-to-error').classList.remove('hide');
       this.enableFilterApplyBtn(false);
     }
@@ -95,6 +96,17 @@ class AllPaymentsDateRange {
     }
   }
 
+  //Check the to date is greater than today, then set today as to date
+  checkTodateIsFutureDate = (toDateVal) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set the time to midnight to compare only the dates
+    if (toDateVal.getTime() > today.getTime()) {
+      toDateVal = new Date();
+    }
+
+    return toDateVal;
+  }
+
   getDateRange = (fromDateVal, toDateVal, ISOFormat) => {
     const fromDate = (ISOFormat) ? `${fromDateVal.toISOString().slice(0, 11)}00:00:00` : `${fromDateVal.toISOString().slice(0, 10)}`;
     const toDate = (ISOFormat) ? `${toDateVal.toISOString().slice(0, 19)}` : `${toDateVal.toISOString().slice(0, 10)}`;
@@ -102,9 +114,13 @@ class AllPaymentsDateRange {
     return [fromDate, toDate];
   }
 
-  getFilterCustomDateRange = (ISOFormat) => {
+  getFilterCustomDateRange = (ISOFormat, customDateRange) => {
     const [fromDateInput, toDateInput] =  this.cache.modal.querySelectorAll('.js-date-range');
     let fromDateVal, toDateVal;
+
+    if(this.cache.modal.querySelectorAll('.js-date-range').length === 0 && customDateRange.length > 0) {
+      return this.getDateRange(new Date(customDateRange[0]), new Date(customDateRange[1]), ISOFormat);
+    }
 
     if (fromDateInput.value && toDateInput.value) {
       fromDateVal = new Date(fromDateInput.value);
@@ -113,6 +129,7 @@ class AllPaymentsDateRange {
     else if (fromDateInput.value && !toDateInput.value) {
       fromDateVal = new Date(fromDateInput.value);
       toDateVal = new Date(fromDateVal.getFullYear(), fromDateVal.getMonth(), fromDateVal.getDate() + Number(90));
+      toDateVal = this.checkTodateIsFutureDate(toDateVal);
     }
     else if (!fromDateInput.value && toDateInput.value) {
       toDateVal = new Date(toDateInput.value);

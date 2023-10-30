@@ -53,15 +53,19 @@ class AllPaymentsUtils {
   /**
    * Validate the From and To Date
    */
-  isToDateGreaterThanFromDate = (fromDateString, toDateString) => new Date(toDateString).getTime() >= new Date(fromDateString).getTime();
+  isNotValidDateRange = (fromDateString, toDateString) => new Date(toDateString).getTime() < new Date(fromDateString).getTime();
 
   /**
-   * Validate the date should be less than or equal today
+   * Check the date, whether it is future date or not
    */
-  isDateLessThanOrEqualToToday = (dateString) => {
+  isFutureDate = (dateString) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Set the time to midnight to compare only the dates
-    return new Date(dateString).getTime() <= today.getTime();
+
+    const dateVal = new Date(dateString);
+    dateVal.setHours(0, 0, 0, 0); // Set the time to midnight to compare only the dates
+
+    return dateVal.getTime() > today.getTime();
   }
 
   /**

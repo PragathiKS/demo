@@ -4,7 +4,8 @@ import AllPaymentsTag from './allpayments.tag';
 import AllPaymentsDateRange from './allpayments.date-range';
 import {sanitize, isMobileMode} from '../../../scripts/common/common';
 import AllPaymentsUtils from './allpayments.utils';
-import { FILTER_TYPE_TEXT, FILTER_TYPE_RADIO, FILTER_TYPE_CHECKBOX, TRIM_STRING_LENGTH } from './constant';
+import { FILTER_TYPE_TEXT, FILTER_TYPE_RADIO, FILTER_TYPE_CHECKBOX, TRIM_STRING_LENGTH, FILTER_DEFAULT_DAYS } from './constant';
+import { getI18n } from '../../../scripts/common/common';
 
 class AllPaymentsFilter {
   constructor (cache, root) {
@@ -34,15 +35,15 @@ class AllPaymentsFilter {
       },
       defaultActiveTagFilter: [
         {
-          invoiceDates: {
-            val: this.allPaymentsUtils.getFilterDateRange(90).join(' - '),
-            trimVal: this.trimStringInMobileView(this.allPaymentsUtils.getFilterDateRange(90).join(' - '))
+          invoiceStatuses: {
+            val: 'posted',
+            trimVal: this.trimStringInMobileView(getI18n(this.cache.i18nKeys[this.cache.keyMapping['posted']]))
           }
         },
         {
-          invoiceStatuses: {
-            val: 'posted',
-            trimVal: this.trimStringInMobileView(this.cache.i18nKeys[this.cache.keyMapping['posted']])
+          invoiceDates: {
+            val: 'last90Days',
+            trimVal: this.trimStringInMobileView(getI18n(this.cache.i18nKeys[this.cache.keyMapping['last90Days']]))
           }
         }
       ]
@@ -70,11 +71,11 @@ class AllPaymentsFilter {
         const value = this.cache.activeFilter[key];
         if (Array.isArray(value) && value.length > 0) {
           if (value.includes('last90Days')) {
-            const [fromDate, toDate] = self.allPaymentsUtils.getFilterDateRange(90, true);
+            const [fromDate, toDate] = self.allPaymentsUtils.getFilterDateRange(FILTER_DEFAULT_DAYS, true);
             return `fromdatetime=${fromDate}&todatetime=${toDate}`;
           }
           else if (value.includes('other')) {
-            const [fromDate, toDate] = self.allPaymentDateRange.getFilterCustomDateRange(true);
+            const [fromDate, toDate] = self.allPaymentDateRange.getFilterCustomDateRange(true, self.cache.customDateRange);
             return `fromdatetime=${fromDate}&todatetime=${toDate}`;
           }
           else {
@@ -116,14 +117,14 @@ class AllPaymentsFilter {
       activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
       if(field.value !== 'other') {
         this.cache.customDateRange = [];
-        activeTagFilter.splice(0, 0, {[activeForm]: {
-          val: self.allPaymentsUtils.getFilterDateRange(90).join(' - '),
-          trimVal: self.trimStringInMobileView(self.allPaymentsUtils.getFilterDateRange(90).join(' - '))
+        activeTagFilter.splice(1, 0, {[activeForm]: {
+          val: field.value,
+          trimVal: this.trimStringInMobileView(getI18n(this.cache.i18nKeys[this.cache.keyMapping[field.value]]))
         }});
       }
       else {
-        this.cache.customDateRange = this.allPaymentDateRange.getFilterCustomDateRange();
-        activeTagFilter.splice(0, 0, {[activeForm]: {
+        this.cache.customDateRange = this.allPaymentDateRange.getFilterCustomDateRange(false, self.cache.customDateRange);
+        activeTagFilter.splice(1, 0, {[activeForm]: {
           val: this.cache.customDateRange.join(' - '),
           trimVal: self.trimStringInMobileView(this.cache.customDateRange.join(' - '))
         }});
@@ -137,9 +138,9 @@ class AllPaymentsFilter {
     if(field.checked) {
       activeFilter[activeForm].push(field.value);
       activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
-      activeTagFilter.splice(1, 0, {[activeForm]: {
+      activeTagFilter.splice(0, 0, {[activeForm]: {
         val: field.value,
-        trimVal: this.trimStringInMobileView(this.cache.i18nKeys[this.cache.keyMapping[field.value]])
+        trimVal: this.trimStringInMobileView(getI18n(this.cache.i18nKeys[this.cache.keyMapping[field.value]]))
       }});
     }
 
