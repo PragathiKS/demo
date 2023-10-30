@@ -4,7 +4,7 @@ import { render } from '../../../scripts/utils/render';
 import { ajaxWrapper } from '../../../scripts/utils/ajax';
 import auth from '../../../scripts/utils/auth';
 import { ajaxMethods } from '../../../scripts/utils/constants';
-import { storageUtil } from '../../../scripts/common/common';
+import { getI18n, storageUtil } from '../../../scripts/common/common';
 import { logger } from '../../../scripts/utils/logger';
 
 /**
@@ -513,6 +513,10 @@ class Rebuildingkitdetails {
       this.cache.i18nKeys = {};
       logger.error(e);
     }
+    const i18nKeyyesval= getI18n('cuhu.rebuildingkit.yes');
+    this.cache.i18nKeys.i18nkeyyes = i18nKeyyesval;
+    const i18nKeyno= getI18n('cuhu.rebuildingkit.no');
+    this.cache.i18nKeys.i18nkeyno = i18nKeyno;
   }
   changePreferredLanguage(btn) {
     const $this = this;
