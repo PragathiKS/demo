@@ -10,7 +10,7 @@ a {
         color: $color-sky-blue;
     }
 }
-.pw-theme {
+.plas-theme {
     $self: &;
     &--grayscale-white {
         background-color: $color-white;
@@ -19,12 +19,12 @@ a {
         background-color: $color-wild-sand;
     }
 }
-.pw-margin {
+.plas-margin {
     &--zero {
         margin: $margin-zero;
     }
 }
-.pw-padding {
+.plas-padding {
     &--zero {
         @include padding($padding-zero $padding-l);
     }
