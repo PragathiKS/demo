@@ -41,7 +41,7 @@ class AllPayments {
       toolTipkeysMap: {
         'invoiceStatusCode': 'statusTooltip',
         'documentDate': 'invoiceDateTooltip',
-        'dueCalculationBaseDate': 'dueDateTooltip',
+        'planningDate': 'dueDateTooltip',
         'companyName': 'companyTooltip',
         'companyCode': 'companyCodeTooltip',
         'companyCountry': 'countryTooltip',
