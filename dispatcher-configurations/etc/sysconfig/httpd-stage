@@ -101,6 +101,12 @@ SUPPLIER_BasicAuth='AuthConfig'
 SUPPLIER_Require='valid-user'
 #SUPPLIER_Require='all granted'
 #
+## Tetraplas ##
+PLAS_URL='plas-stage.tetrapak.com'
+PLAS_DOCROOT='/mnt/var/www/html/plas'
+#PLAS_BasicAuth='None'
+
+
 ## Authconfig variable"
 STAGE_AUTH="AuthConfig"
 PROD_AUTH="None"
