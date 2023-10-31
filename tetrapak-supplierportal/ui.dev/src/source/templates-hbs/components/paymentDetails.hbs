@@ -92,8 +92,8 @@
 
 <div class="col-lg-8 col-md-8 col-sm-8 col-12 tp-payment-details__details-row">
     <h4 class="tp-payment-details__details-row-title" auto_locator="subsectionTitle">{{i18n key=i18nKeys.details}}</h4>
-    {{#if_noteq paymentData.amountInTransactionCurrency ""}}
-    {{#if_noteq paymentData.amountInTransactionCurrency null}}
+    {{#if_noteq paymentData.totalInvoiceAmount ""}}
+    {{#if_noteq paymentData.totalInvoiceAmount null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="subsectionTitle">{{i18n key=i18nKeys.totalAmount}}
             {{#if_noteq showToolTip.totalAmountTooltip ""}}
@@ -104,7 +104,7 @@
             </button>
             {{/if_noteq}}
         </div>
-        <div class="tp-payment-details__info-cell-2" auto_locator="subsectionTitle">{{paymentData.amountInTransactionCurrency}} {{paymentData.transactionCurrency}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="subsectionTitle">{{paymentData.totalInvoiceAmount}} {{paymentData.transactionCurrency}}</div>
     </div>
     {{/if_noteq}}
     {{/if_noteq}}
@@ -138,7 +138,10 @@
     </div>
     {{/if_noteq}}
     {{/if_noteq}}
-    {{!-- {{#if_noteq paymentData.netPayable ""}}
+    {{#if_noteq paymentData.amountInTransactionCurrency ""}}
+    {{#if_noteq paymentData.amountInTransactionCurrency null}}
+    {{#if_noteq paymentData.withholdingTaxAmmount ""}}
+    {{#if_noteq paymentData.withholdingTaxAmmount null}}
     <div class="tp-payment-details__details-line">
         <div class="tp-payment-details__details-cell" auto_locator="paymentDetailsSectionDataKey">{{i18n key=i18nKeys.netPayable}}
             {{#if_noteq showToolTip.netPayableTooltip ""}}
@@ -149,9 +152,12 @@
             </button>
             {{/if_noteq}}
         </div>
-        <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.netPayable}}</div>
+        <div class="tp-payment-details__info-cell-2" auto_locator="paymentDetailsSectionDataValue">{{paymentData.amountInTransactionCurrency}} {{paymentData.transactionCurrency}}</div>
     </div>
-    {{/if_noteq}} --}}
+    {{/if_noteq}}
+    {{/if_noteq}}
+    {{/if_noteq}}
+    {{/if_noteq}}
     {{#if_noteq paymentData.paymentTerms ""}}
     {{#if_noteq paymentData.paymentTerms null}}
     <div class="tp-payment-details__details-line">
