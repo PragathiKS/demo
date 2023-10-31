@@ -1,3 +1,5 @@
+import Handlebars from 'handlebars';
+
 class AllPaymentsUtils {
   /**
  * Get Default Date Range as 90 days
@@ -78,6 +80,11 @@ class AllPaymentsUtils {
 
     return str;
   }
+
+  sanitize = (input) => Handlebars.escapeExpression(input);
+
+  isMobileMode = () => (window.outerWidth < 768);
+
 }
 
 export default AllPaymentsUtils;

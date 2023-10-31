@@ -2,7 +2,6 @@ import $ from 'jquery';
 import { render } from '../../../scripts/utils/render';
 import AllPaymentsTag from './allpayments.tag';
 import AllPaymentsDateRange from './allpayments.date-range';
-import {sanitize, isMobileMode} from '../../../scripts/common/common';
 import AllPaymentsUtils from './allpayments.utils';
 import { FILTER_TYPE_TEXT, FILTER_TYPE_RADIO, FILTER_TYPE_CHECKBOX, TRIM_STRING_LENGTH, FILTER_DEFAULT_DAYS } from './constant';
 import { getI18n } from '../../../scripts/common/common';
@@ -56,7 +55,7 @@ class AllPaymentsFilter {
   }
 
   trimStringInMobileView = (str) => {
-    if (isMobileMode()) {
+    if (this.allPaymentsUtils.isMobileMode()) {
       return this.allPaymentsUtils.trimString(str, TRIM_STRING_LENGTH);
     }
 
@@ -171,7 +170,7 @@ class AllPaymentsFilter {
       activeTagFilter = activeTagFilter.filter(obj => !Object.prototype.hasOwnProperty.call(obj, activeForm));
 
       if (field.value) {
-        const sanitizeVal = sanitize(field.value); // To sanitize the value
+        const sanitizeVal = this.allPaymentsUtils.sanitize(field.value); // To sanitize the value
         activeFilter[activeForm].push(sanitizeVal);
         activeTagFilter.push({[activeForm]: {
           val: sanitizeVal,

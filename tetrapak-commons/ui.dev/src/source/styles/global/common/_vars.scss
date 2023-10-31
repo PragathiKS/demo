@@ -36,14 +36,21 @@ $zindex-nav: $zindex-header+1;
 $zindex-top: 9999;
 // Patternlab variables
 $spacing-big: 24px;
+$spacing-medium: 20px;
+$spacing-medium-half: 10px;
 $spacing-small: 16px;
 $spacing-baseline: 14px;
 $spacing-big-half: 12px;
 $spacing-small-half: 8px;
+$spacing-zero: 0px;
+
 /* Border Radius */
 
 $border-radius: 4px;
 $border-radius-sm: 8px;
+$border-radius-md-half: 10px;
+$border-radius-md: 20px;
+$border-radius-big: 22px;
 $color-text: $color-tundora;
 $color-heading: $color-congress-blue;
 

@@ -2,15 +2,10 @@
     .tp-all-payments-filter & {
         // Modal Style
         &__modal-content {
-            max-height: 80vh;
-
-            @media #{$desktop} {
-                max-height: 640px;
-            }
             .tp-close-btn {
-                @include top(9px);
-                @include right(9px);
-                @include padding(0);
+                @include top($font-xxs);
+                @include right($font-xxs);
+                @include padding($padding-zero);
                 @include font-size($font-normal);
                 color: $color-text;
                 position: absolute;
@@ -28,7 +23,7 @@
                 }
                 &:last-child {
                     .tpatom-checkbox__label {
-                        margin-bottom: 0;
+                        @include margin-bottom($margin-zero);
                     }
                 }
                 &__text {
@@ -42,20 +37,20 @@
                 }
                 &:nth-child(2) {
                     .tpatom-radio__label {
-                        margin-bottom: 0;
+                        @include margin-bottom($margin-zero);
                     }
                 }
                 &__icon {
-                    @include width(20px);
-                    @include height(20px);
-                    @include border-radius(20px);
+                    @include width($spacing-medium);
+                    @include height($spacing-medium);
+                    @include border-radius($border-radius-md);
                     display: inline-block;
                     position: relative;
 
                     &::before {
-                        @include width(8px);
-                        @include height(8px);
-                        @include border-radius(10px);
+                        @include width($spacing-small-half);
+                        @include height($spacing-small-half);
+                        @include border-radius($border-radius-md-half);
                         transform: translate(-50%, -50%);
                         top: 50%;
                         position: absolute;
@@ -116,10 +111,10 @@
         @include padding($padding-sm $padding-md);
         @include margin-right($margin-sm);
         @include margin-bottom($margin-md);
+        @include border-radius($border-radius-big);
         border: 1px solid $color-congress-blue;
         color: $color-congress-blue;
         box-sizing: border-box;
-        border-radius: 22px;
         font-weight: $font-weight-normal;
         &:hover {
             box-shadow: inset 0 0 0 1px $color-congress-blue;
@@ -162,11 +157,11 @@
         @include margin-bottom($margin-md);
         @include line-height($font-l, $font-m-sm);
         @include font-size($font-xs);
+        @include border-radius($border-radius-md);
         display: inline-block;
         color: $color-congress-blue;
         cursor: default;
         background-color: $color-wild-sand;
-        border-radius: 20px;
         font-weight: $font-weight-normal;
 
         .tpatom-btn__text {
@@ -185,7 +180,7 @@
 
     &__date-range-wrapper {
         @include margin-top($margin-zero);
-        height: 0;
+        @include height($spacing-zero);
         opacity: 0;
         overflow: hidden;
         transition: opacity 0.5s ease-in-out, height 0.5s, margin-top 0.5s;
@@ -197,7 +192,7 @@
         }
     }
     .tpatom-date-range__input-error {
+        @include bottom($spacing-medium-half);
         position: absolute;
-        bottom: 10px;
     }
 }

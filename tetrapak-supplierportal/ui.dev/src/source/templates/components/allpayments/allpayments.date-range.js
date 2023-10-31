@@ -15,7 +15,7 @@ class AllPaymentsDateRange {
       insertMode: false,
       insertModeVisual: false,
       postValidation: function (value, pos) {
-        if (pos === DEFAULT_DATE_INPUT_FORMAT.length -1 || this.isComplete()) {
+        if ((pos === DEFAULT_DATE_INPUT_FORMAT.length -1 && this.unmaskedvalue() !== '') || this.isComplete()) {
           self.validateDateRange();
         }
       }
