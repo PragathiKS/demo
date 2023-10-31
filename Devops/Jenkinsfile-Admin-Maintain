@@ -8,11 +8,11 @@ pipeline {
     }
 
     triggers {
-        cron('H 21 * * 6-7')
+        cron('H 21 * * *')
     }
 
     parameters {
-        text(name: 'purge_dirs', defaultValue: '/home/jenkinsadmin/jenkins/jenkins/workspace/CFE', description: 'Directories to purge')
+        text(name: 'purge_dirs', defaultValue: '/home/jenkinsadmin/jenkins/jenkins/workspace/*_ws-cleanup_*', description: 'Directories to purge')
         string(name: 'delay', defaultValue: '0', description: 'Delay before purge (in seconds)')
         booleanParam defaultValue: false, description: 'Should we prune docker to have some extra space?', name: 'docker_prune'
     }
