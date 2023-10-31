@@ -1,7 +1,5 @@
 @import './allpayments_filter';
 
-$color-red: #ff0000;
-
 .tp-all-payments {
     &__heading {
         @include font-size($font-xl);
