@@ -9,17 +9,24 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_CODE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COMPANY_TOOLTIP;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.CONFIRMED;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COUNTRY;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.COUNTRY_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.DUEDATE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.DUE_DATE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.FETCH_ERROR;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.FILTER_SELECTED;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.FROM;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.INVALID_DATE;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.INVALID_DATE_RANGE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_DATE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_DATE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.INVOICE_NO_TOOLTIP;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.LAST_90_DAYS;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.MULTI_PO_NO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.NO_DATA_FOUND;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.OTHER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_FIRST;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.PAGINATION_LAST;
@@ -39,9 +46,10 @@ import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_CODE_TOOLTIP;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.SUPPLIER_TOOLTIP;
+import static com.tetrapak.supplierportal.core.constants.I18Constants.TO;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX;
 import static com.tetrapak.supplierportal.core.constants.I18Constants.WITH_HOLDING_TAX_TOOLTIP;
-import static com.tetrapak.supplierportal.core.constants.I18Constants.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -248,200 +256,102 @@ public class AllPaymentsModel {
 		return resource;
 	}
 
-	public void setResource(Resource resource) {
-		this.resource = resource;
-	}
-
 	public String getAllPaymentsHeading() {
 		return allPaymentsHeading;
-	}
-
-	public void setAllPaymentsHeading(String allPaymentsHeading) {
-		this.allPaymentsHeading = allPaymentsHeading;
 	}
 
 	public String getInvoiceNo() {
 		return invoiceNo;
 	}
 
-	public void setInvoiceNo(String invoiceNo) {
-		this.invoiceNo = invoiceNo;
-	}
-
 	public String getInvoiceDate() {
 		return invoiceDate;
-	}
-
-	public void setInvoiceDate(String invoiceDate) {
-		this.invoiceDate = invoiceDate;
 	}
 
 	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
+	
 	public String getCompany() {
 		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
 	}
 
 	public String getCompanyCode() {
 		return companyCode;
 	}
 
-	public void setCompanyCode(String companyCode) {
-		this.companyCode = companyCode;
-	}
 
 	public String getCountry() {
 		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	public String getSupplier() {
 		return supplier;
 	}
 
-	public void setSupplier(String supplier) {
-		this.supplier = supplier;
-	}
-
 	public String getSupplierCode() {
 		return supplierCode;
-	}
-
-	public void setSupplierCode(String supplierCode) {
-		this.supplierCode = supplierCode;
 	}
 
 	public String getWithHoldingTax() {
 		return withHoldingTax;
 	}
 
-	public void setWithHoldingTax(String withHoldingTax) {
-		this.withHoldingTax = withHoldingTax;
-	}
-
 	public String getDueDate() {
 		return dueDate;
-	}
-
-	public void setDueDate(String dueDate) {
-		this.dueDate = dueDate;
 	}
 
 	public String getPoNo() {
 		return poNo;
 	}
 
-	public void setPoNo(String poNo) {
-		this.poNo = poNo;
-	}
-
 	public String getAmountIncludingTaxes() {
 		return amountIncludingTaxes;
-	}
-
-	public void setAmountIncludingTaxes(String amountIncludingTaxes) {
-		this.amountIncludingTaxes = amountIncludingTaxes;
 	}
 
 	public String getReset() {
 		return reset;
 	}
 
-	public void setReset(String reset) {
-		this.reset = reset;
-	}
-
 	public String getResults() {
 		return results;
-	}
-
-	public void setResults(String results) {
-		this.results = results;
 	}
 
 	public String getPagination() {
 		return pagination;
 	}
 
-	public void setPagination(String pagination) {
-		this.pagination = pagination;
-	}
-
 	public String getPaginationLast() {
 		return paginationLast;
-	}
-
-	public void setPaginationLast(String paginationLast) {
-		this.paginationLast = paginationLast;
 	}
 
 	public String getNoDataFound() {
 		return noDataFound;
 	}
 
-	public void setNoDataFound(String noDataFound) {
-		this.noDataFound = noDataFound;
-	}
-
 	public String getPaginationFirst() {
 		return paginationFirst;
-	}
-
-	public void setPaginationFirst(String paginationFirst) {
-		this.paginationFirst = paginationFirst;
 	}
 
 	public SlingSettingsService getSlingSettingsService() {
 		return slingSettingsService;
 	}
 
-	public void setSlingSettingsService(SlingSettingsService slingSettingsService) {
-		this.slingSettingsService = slingSettingsService;
-	}
-
 	public boolean isPublishEnvironment() {
 		return isPublishEnvironment;
-	}
-
-	public void setPublishEnvironment(boolean isPublishEnvironment) {
-		this.isPublishEnvironment = isPublishEnvironment;
 	}
 
 	public String getDownloadExcelServletUrl() {
 		return downloadExcelServletUrl;
 	}
 
-	public void setDownloadExcelServletUrl(String downloadExcelServletUrl) {
-		this.downloadExcelServletUrl = downloadExcelServletUrl;
-	}
-
 	public String getAllPaymentsApi() {
 		return allPaymentsApi;
 	}
 
-	public void setAllPaymentsApi(String allPaymentsApi) {
-		this.allPaymentsApi = allPaymentsApi;
-	}
-
 	public String getFilterApi() {
 		return filterApi;
-	}
-
-	public void setFilterApi(String filterApi) {
-		this.filterApi = filterApi;
 	}
 
 	@PostConstruct
@@ -517,58 +427,29 @@ public class AllPaymentsModel {
 		return i18nKeys;
 	}
 
-	public void setI18nKeys(String i18nKeys) {
-		this.i18nKeys = i18nKeys;
-	}
-
 	public String getFetcherror() {
 		return fetcherror;
-	}
-
-	public void setFetcherror(String fetcherror) {
-		this.fetcherror = fetcherror;
 	}
 
 	public String getMultipono() {
 		return multipono;
 	}
 
-	public void setMultipono(String multipono) {
-		this.multipono = multipono;
-	}
-
 	public String getPaginationPrev() {
 		return paginationPrev;
-	}
-
-	public void setPaginationPrev(String paginationPrev) {
-		this.paginationPrev = paginationPrev;
 	}
 
 	public String getPaginationNext() {
 		return paginationNext;
 	}
 
-	public void setPaginationNext(String paginationNext) {
-		this.paginationNext = paginationNext;
-	}
-
 	public String getPaid() {
 		return paid;
-	}
-
-	public void setPaid(String paid) {
-		this.paid = paid;
 	}
 
 	public int getPaymentsFromToDateGapInMonths() {
 		return paymentsFromToDateGapInMonths;
 	}
-
-	public void setPaymentsFromToDateGapInMonths(int paymentsFromToDateGapInMonths) {
-		this.paymentsFromToDateGapInMonths = paymentsFromToDateGapInMonths;
-	}
-	
 
 	/**
 	 * Get valid url to Payment Details URL
@@ -582,199 +463,102 @@ public class AllPaymentsModel {
 		return showHideColumns;
 	}
 
-	public void setShowHideColumns(String showHideColumns) {
-		this.showHideColumns = showHideColumns;
-	}
-
 	public String getColumns() {
 		return columns;
-	}
-
-	public void setColumns(String columns) {
-		this.columns = columns;
 	}
 
 	public String getSelectAll() {
 		return selectAll;
 	}
 
-	public void setSelectAll(String selectAll) {
-		this.selectAll = selectAll;
-	}
-
 	public String getApplyFilter() {
 		return applyFilter;
-	}
-
-	public void setApplyFilter(String applyFilter) {
-		this.applyFilter = applyFilter;
 	}
 
 	public String getInvoiceDateTooltip() {
 		return invoiceDateTooltip;
 	}
 
-	public void setInvoiceDateTooltip(String invoiceDateTooltip) {
-		this.invoiceDateTooltip = invoiceDateTooltip;
-	}
-
 	public String getDueDateTooltip() {
 		return dueDateTooltip;
-	}
-
-	public void setDueDateTooltip(String dueDateTooltip) {
-		this.dueDateTooltip = dueDateTooltip;
 	}
 
 	public String getCompanyTooltip() {
 		return companyTooltip;
 	}
 
-	public void setCompanyTooltip(String companyTooltip) {
-		this.companyTooltip = companyTooltip;
-	}
-
 	public String getCompanyCodeTooltip() {
 		return companyCodeTooltip;
-	}
-
-	public void setCompanyCodeTooltip(String companyCodeTooltip) {
-		this.companyCodeTooltip = companyCodeTooltip;
 	}
 
 	public String getCountryTooltip() {
 		return countryTooltip;
 	}
 
-	public void setCountryTooltip(String countryTooltip) {
-		this.countryTooltip = countryTooltip;
-	}
-
 	public String getAmountIncludingTaxesTooltip() {
 		return amountIncludingTaxesTooltip;
-	}
-
-	public void setAmountIncludingTaxesTooltip(String amountIncludingTaxesTooltip) {
-		this.amountIncludingTaxesTooltip = amountIncludingTaxesTooltip;
 	}
 
 	public String getStatusTooltip() {
 		return statusTooltip;
 	}
 
-	public void setStatusTooltip(String statusTooltip) {
-		this.statusTooltip = statusTooltip;
-	}
-
 	public String getInvoiceNoTooltip() {
 		return invoiceNoTooltip;
-	}
-
-	public void setInvoiceNoTooltip(String invoiceNoTooltip) {
-		this.invoiceNoTooltip = invoiceNoTooltip;
 	}
 
 	public String getSupplierTooltip() {
 		return supplierTooltip;
 	}
 
-	public void setSupplierTooltip(String supplierTooltip) {
-		this.supplierTooltip = supplierTooltip;
-	}
-
 	public String getSupplierCodeTooltip() {
 		return supplierCodeTooltip;
-	}
-
-	public void setSupplierCodeTooltip(String supplierCodeTooltip) {
-		this.supplierCodeTooltip = supplierCodeTooltip;
 	}
 
 	public String getPoNoTooltip() {
 		return poNoTooltip;
 	}
 
-	public void setPoNoTooltip(String poNoTooltip) {
-		this.poNoTooltip = poNoTooltip;
-	}
-
 	public String getWithHoldingTaxTooltip() {
 		return withHoldingTaxTooltip;
 	}
 
-	public void setWithHoldingTaxTooltip(String withHoldingTaxTooltip) {
-		this.withHoldingTaxTooltip = withHoldingTaxTooltip;
-	}
 
 	public InvoiceStatusService getInvoiceStatusService() {
 		return invoiceStatusService;
-	}
-
-	public void setInvoiceStatusService(InvoiceStatusService invoiceStatusService) {
-		this.invoiceStatusService = invoiceStatusService;
 	}
 
 	public String getLast90Days() {
 		return last90Days;
 	}
 
-	public void setLast90Days(String last90Days) {
-		this.last90Days = last90Days;
-	}
-
 	public String getOther() {
 		return other;
-	}
-
-	public void setOther(String other) {
-		this.other = other;
 	}
 
 	public String getFrom() {
 		return from;
 	}
 
-	public void setFrom(String from) {
-		this.from = from;
-	}
-
 	public String getTo() {
 		return to;
-	}
-
-	public void setTo(String to) {
-		this.to = to;
 	}
 
 	public String getInvalidDate() {
 		return invalidDate;
 	}
 
-	public void setInvalidDate(String invalidDate) {
-		this.invalidDate = invalidDate;
-	}
-
 	public String getInvalidDateRange() {
 		return invalidDateRange;
 	}
 
-	public void setInvalidDateRange(String invalidDateRange) {
-		this.invalidDateRange = invalidDateRange;
-	}
 
 	public String getConfirmed() {
 		return confirmed;
-	}
-
-	public void setConfirmed(String confirmed) {
-		this.confirmed = confirmed;
 	}
 
 	public String getFilterSelected() {
 		return filterSelected;
 	}
 
-	public void setFilterSelected(String filterSelected) {
-		this.filterSelected = filterSelected;
-	}
 }

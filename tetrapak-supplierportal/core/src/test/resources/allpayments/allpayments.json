@@ -31,7 +31,31 @@
 				 "filterApi":"https://api-mig.tetrapak.com/installedbase/equipments/countries",
 				 "paginationFirst":"sp.paymentDetails.paginationFirst",
 				 "paginationLast":"sp.paymentDetails.paginationLast",
-				 "allPaymentsHeading": "sp.paymentDetails.allPaymentsHeading"
+				 "allPaymentsHeading": "sp.paymentDetails.allPaymentsHeading",
+				 "showHideColumns": "sp.paymentDetails.showHideColumns",
+				 "columns": "sp.paymentDetails.columns",
+				 "selectAll": "sp.paymentDetails.selectAll",
+				 "applyFilter": "sp.paymentDetails.applyFilter",
+				 "invoiceNoTooltip": "sp.paymentDetails.invoiceNoTooltip",
+				 "invoiceDateTooltip": "sp.paymentDetails.invoiceDateTooltip",
+				 "statusTooltip": "sp.paymentDetails.statusTooltip",
+				 "companyTooltip": "sp.paymentDetails.companyTooltip",
+				 "companyCodeTooltip": "sp.paymentDetails.companyCodeTooltip",
+				 "countryTooltip": "sp.paymentDetails.countryTooltip",
+				 "supplierTooltip": "sp.paymentDetails.supplierTooltip",
+				 "supplierCodeTooltip": "sp.paymentDetails.supplierCodeTooltip",
+				 "withHoldingTaxTooltip": "sp.paymentDetails.withHoldingTaxTooltip",
+				 "dueDateTooltip": "sp.paymentDetails.dueDateTooltip",
+				 "poNoTooltip": "sp.paymentDetails.poNoTooltip",
+				 "last90Days": "sp.paymentDetails.last90Days",
+				 "other": "sp.paymentDetails.other",
+				 "from": "sp.paymentDetails.from",
+				 "to": "sp.paymentDetails.to",
+				 "invalidDate": "sp.paymentDetails.invalidDate",
+				 "invalidDateRange": "sp.paymentDetails.invalidDateRange",
+				 "confirmed": "sp.paymentDetails.confirmed",
+				 "filterSelected": "sp.paymentDetails.filterSelected",
+				 "amountIncludingTaxesTooltip": "sp.paymentDetails.amountIncludingTaxesTooltip"
             }
          }
       }
