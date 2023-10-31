@@ -128,7 +128,7 @@ public class MobileMegaMenuServlet extends SlingSafeMethodsServlet {
                     url = url.replaceAll(LANG_MASTERS,currentMarket);
                     url = LinkUtils.sanitizeLink(url,request);
                     jsonObject.addProperty(prop.getKey(),url);
-                    return;
+                    continue;
                 }
                 jsonObject.addProperty(prop.getKey(),prop.getValue().toString());
             }
