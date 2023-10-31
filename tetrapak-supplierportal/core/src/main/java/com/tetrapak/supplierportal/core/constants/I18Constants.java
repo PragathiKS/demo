@@ -144,4 +144,20 @@ public class I18Constants {
 	public static final String PAYMENT_METHOD_TOOLTIP = "paymentMethodTooltip";	
 	
 	public static final String DETAILS_PONO_TOOLTIP = "detailsPoNoTooltip";	
+	
+	public static final String LAST_90_DAYS = "last90Days";	
+	
+	public static final String OTHER = "other";	
+	
+	public static final String FROM = "from";	
+	
+	public static final String TO = "to";	
+	
+	public static final String INVALID_DATE = "invalidDate";	
+	
+	public static final String INVALID_DATE_RANGE = "invalidDateRange";	
+	
+	public static final String CONFIRMED = "confirmed";	
+	
+	public static final String FILTER_SELECTED = "filterSelected";	
 }

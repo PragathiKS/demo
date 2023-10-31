@@ -34,3 +34,17 @@ export const _paginationAnalytics = (target) => {
 
   trackAnalytics(linkClickObj, 'linkClick', 'paginationClick', undefined, false, eventObj);
 };
+
+
+export const _filterAnalytics = (activeFilter, type, searchResultCount) => {
+  const eventObj = {
+    event: 'Filter',
+    eventType: `search filter ${type}`
+  };
+
+  const searchObj = {
+    searchResults: searchResultCount,
+    searchFilters: activeFilter
+  };
+  trackAnalytics(searchObj, 'search', 'internalFilter', undefined, false, eventObj);
+};

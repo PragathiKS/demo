@@ -1,0 +1,47 @@
+.tpatom-date-range {
+    $root: &;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+
+    &__input-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        &.disabled {
+            opacity: 0.5;
+        }
+
+        &:first-child {
+            margin-right: $padding-sm;
+        }
+    }
+    &__input-error {
+        @include font-size($font-xs);
+        color: $color-red;
+        font-weight: $font-weight-normal;;
+        margin-left: $padding-xxs;
+
+        &.hide {
+            display: none;
+        }
+    }
+    &__input-label {
+        color: $color-tundora;
+        font-weight: $font-weight-normal;;
+        position: relative;
+
+        .icon-Close_new {
+            position: absolute;
+            bottom: $padding-sm;
+            right: $spacing-baseline;
+            cursor: pointer;
+            transform: scale(0.75);
+
+            &.disabled {
+                cursor: default;
+            }
+        }
+    }
+}

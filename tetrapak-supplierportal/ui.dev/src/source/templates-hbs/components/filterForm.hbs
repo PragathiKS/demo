@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-dialog-centered tp-modal-dialog" auto_locator="{{autoLocatorModal}}">
+<div class="modal-dialog modal-dialog-centered tp-modal-dialog {{#if isFilterModal}}tp-all-payments-filter{{/if}}" auto_locator="{{autoLocatorModal}}">
     <div class="modal-content tp-all-payments__modal-content tp-modal-content">
         <div class="modal-header tpmol-modal-header">
             <div class="js-all-payments__modal-header tp-all-payments__modal-header" auto_locator="headlineOverlay">
@@ -6,6 +6,7 @@
             </div>
             <button type="button" auto_locator="closebtnOverlay"
                     class="tp-close-btn icon-Close_new tpatom-btn tpatom-btn--close tpmol-modal-header__close js-close-btn" data-dismiss="modal">
+                <span class="sr-only">Close</span>
             </button>
         </div>
         <div class='modal-body tp-modal-body tp-all-payments__modal-body'>
@@ -29,13 +30,67 @@
                         </div>
                 {{/each}}
             {{/if}}
+            {{#if isDatePicker}}
+                <div
+                    class="js-dp"
+                    data-from-label="{{i18n key=fromDateText}}"
+                    data-to-label="{{i18n key=toDateText}}"
+                    data-error-label="{{i18n key=invalidDateText}}"
+                ></div>
+            {{else}}
+                {{#if isTextInput}}
+                    {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-all-payments-filter-input"}}
+                {{else}}
+                    <div class="tp-all-payments-filter-options">
+                        {{#if isRadio}}
+                            {{#each formData}}
+                                {{> atoms/radio/radio
+                                    value=option
+                                    text=optionDisplayText
+                                    check=isChecked
+                                    disabled=isDisabled
+                                    uniqueKey=option
+                                    name=@root.radioGroupName
+                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                }}
+                            {{/each}}
+                            <div class="tp-all-payments__date-range-wrapper js-data-range-wrapper {{#if @root.isInvoiceDateModal}} {{#if @root.customDateRange.length}} show {{/if}}{{/if}}">
+                                {{> atoms/dateRange/dateRange fromDateVal=customDateRange.[0] toDateVal=customDateRange.[1] }}
+                            </div>
+
+                        {{else}}
+                            {{#each formData}}
+                                {{> atoms/checkbox/checkbox
+                                    value=option
+                                    text=optionDisplayText
+                                    check=isChecked
+                                    disabled=isDisabled
+                                    uniqueKey=option
+                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                }}
+                            {{/each}}
+                        {{/if}}
+                    </div>
+                {{/if}}
+            {{/if}}
         </div>
         <div class="modal-footer tpmol-modal-footer tp-all-payments__modal-footer">
-            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
+            <button class="tpatom-btn tpatom-btn--primary js-apply-filter-button {{#if isFilterModal}}js-apply-filter-button-filter-modal{{/if}} tp-all-payments__apply-button" auto_locator="confirmbtnOverlay" data-dismiss="modal">
                 <span class="tpatom-btn__text sly-text">
                     {{i18n key=applyFilter}}
                 </span>
             </button>
+            {{#unless singleButton}}
+                <button class="tpatom-btn tp-all-payments__remove-button js-tp-all-payments__remove-button" auto_locator="removeAllOverlay">
+                    <i class="icon icon-Bin_X"></i>
+                    <span class="tpatom-btn__text sly-text">{{i18n key=removeAll}}</span>
+                </button>
+            {{/unless}}
+            {{#if isCheckBox}}
+                <div class="tp-all-payments__filter-select-count"><spna class="js-select-count">{{selectedItemsNo}}</spna> {{i18n key=filterSelected}}</div>
+            {{/if}}
         </div>
     </div>
 </div>

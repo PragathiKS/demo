@@ -1,0 +1,77 @@
+{
+  "meta": {
+      "version": 1
+  },
+  "data": {
+      "countries": [
+          {
+              "country": "SE"
+          }
+      ],
+      "companyCodes": [
+          {
+              "companyCode": "0111",
+              "companyName": "TP Technical Service AB"
+          },
+          {
+              "companyCode": "0138",
+              "companyName": "TP Processing Equipment"
+          }
+      ],
+      "invoiceStatuses": [
+          {
+              "invoiceStatusCode": "18",
+              "invoiceStatusName": "Blocked"
+          },
+          {
+              "invoiceStatusCode": "17",
+              "invoiceStatusName": "Cancelled"
+          },
+          {
+              "invoiceStatusCode": "XX",
+              "invoiceStatusName": "Paid"
+          }
+      ],
+      "documentReferenceIDs": [
+          {
+              "documentReferenceID": "79126788"
+          },
+          {
+              "documentReferenceID": "79124600"
+          },
+          {
+              "documentReferenceID": "79124499"
+          },
+          {
+              "documentReferenceID": "79124500"
+          },
+          {
+              "documentReferenceID": "79126801"
+          },
+          {
+              "documentReferenceID": "79126802"
+          },
+          {
+              "documentReferenceID": "79126803"
+          },
+          {
+              "documentReferenceID": "79126806"
+          },
+          {
+              "documentReferenceID": "79126807"
+          },
+          {
+              "documentReferenceID": "79126809"
+          },
+          {
+              "documentReferenceID": "79126810"
+          },
+          {
+              "documentReferenceID": "79126812"
+          },
+          {
+              "documentReferenceID": "79126811"
+          }
+      ]
+  }
+}
