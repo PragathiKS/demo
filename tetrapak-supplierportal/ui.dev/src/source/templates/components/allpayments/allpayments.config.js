@@ -62,7 +62,7 @@ const filterConfig = {
   queryParamMapping: {
     'invoiceDates': ['fromdatetime', 'todatetime'],
     'countries': ['companycountry'],
-    'companyCodes': ['companycode'],
+    'companyCodes': ['companyname'],
     'documentReferenceIDs': ['documentreferenceid'],
     'invoiceStatuses': ['status']
   },

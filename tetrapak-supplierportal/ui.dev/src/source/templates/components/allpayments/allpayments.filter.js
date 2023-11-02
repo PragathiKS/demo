@@ -247,8 +247,8 @@ class AllPaymentsFilter {
       return self.cache.filterModalData[key].map((item) => ({
         ...item,
         isChecked: self.cache.activeFilter[key].includes(item[target.getAttribute('data-key-field')]) ? true : false,
-        option: item[self.cache.keyMapping[key]],
-        optionDisplayText: item[self.cache.keyMapping[key]]
+        option: item[target.getAttribute('data-key-field')],
+        optionDisplayText: item[target.getAttribute('data-key-field')]
       }));
     }
   }
