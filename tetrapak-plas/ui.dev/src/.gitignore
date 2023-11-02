@@ -1,0 +1,10 @@
+app
+node_modules
+coverage
+TESTS-HeadlessChrome*
+TESTS-PhantomJS*
+sass-lint-report.html
+eslint-report.html
+.vscode
+patternmanifest.json
+patternImporterConfig.json

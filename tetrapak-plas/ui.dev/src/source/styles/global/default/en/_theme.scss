@@ -1,0 +1,41 @@
+body {
+    font-family: $font-monsterrat;
+    font-weight: 400;
+}
+a {
+    font-family: $font-monsterrat;
+    font-weight: 400;
+
+    &:hover {
+        color: $color-sky-blue;
+    }
+}
+.plas-theme {
+    $self: &;
+    &--grayscale-white {
+        background-color: $color-white;
+    }
+    &--grayscale-lighter {
+        background-color: $color-wild-sand;
+    }
+}
+.plas-margin {
+    &--zero {
+        margin: $margin-zero;
+    }
+}
+.plas-padding {
+    &--zero {
+        @include padding($padding-zero $padding-l);
+    }
+
+    &--regular {
+        @include padding($padding-l $padding-l $padding-zero $padding-l);
+        @media #{$desktop} {
+            @include padding($padding-l $padding-l $padding-zero $padding-l);
+        }
+    }
+}
+.white-bg {
+    background-color: $color-white;
+}
