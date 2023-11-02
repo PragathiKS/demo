@@ -29,50 +29,51 @@
                             {{/each}}
                         </div>
                 {{/each}}
-            {{/if}}
-            {{#if isDatePicker}}
-                <div
-                    class="js-dp"
-                    data-from-label="{{i18n key=fromDateText}}"
-                    data-to-label="{{i18n key=toDateText}}"
-                    data-error-label="{{i18n key=invalidDateText}}"
-                ></div>
             {{else}}
-                {{#if isTextInput}}
-                    {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-all-payments-filter-input"}}
+                {{#if isDatePicker}}
+                    <div
+                        class="js-dp"
+                        data-from-label="{{i18n key=fromDateText}}"
+                        data-to-label="{{i18n key=toDateText}}"
+                        data-error-label="{{i18n key=invalidDateText}}"
+                    ></div>
                 {{else}}
-                    <div class="tp-all-payments-filter-options">
-                        {{#if isRadio}}
-                            {{#each formData}}
-                                {{> atoms/radio/radio
-                                    value=option
-                                    text=optionDisplayText
-                                    check=isChecked
-                                    disabled=isDisabled
-                                    uniqueKey=option
-                                    name=@root.radioGroupName
-                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                }}
-                            {{/each}}
-                            <div class="tp-all-payments__date-range-wrapper js-data-range-wrapper {{#if @root.isInvoiceDateModal}} {{#if @root.customDateRange.length}} show {{/if}}{{/if}}">
-                                {{> atoms/dateRange/dateRange fromDateVal=customDateRange.[0] toDateVal=customDateRange.[1] }}
-                            </div>
+                    {{#if isTextInput}}
+                        {{> atoms/input/input defaultValue=formData autoLocator=autoLocatorInput eleClasses="js-tp-all-payments-filter-input"}}
+                    {{else}}
+                        <div class="tp-all-payments-filter-options">
+                            {{#if isRadio}}
+                                {{#each formData}}
+                                    {{> atoms/radio/radio
+                                        value=option
+                                        text=optionDisplayText
+                                        check=isChecked
+                                        disabled=isDisabled
+                                        uniqueKey=option
+                                        name=@root.radioGroupName
+                                        autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                    }}
+                                {{/each}}
+                                <div class="tp-all-payments__date-range-wrapper js-data-range-wrapper {{#if @root.isInvoiceDateModal}} {{#if @root.customDateRange.length}} show {{/if}}{{/if}}">
+                                    {{> atoms/dateRange/dateRange fromDateVal=customDateRange.[0] toDateVal=customDateRange.[1] }}
+                                </div>
 
-                        {{else}}
-                            {{#each formData}}
-                                {{> atoms/checkbox/checkbox
-                                    value=option
-                                    text=optionDisplayText
-                                    check=isChecked
-                                    disabled=isDisabled
-                                    uniqueKey=option
-                                    autoLocatorCheckbox=@root.autoLocatorCheckbox
-                                    autoLocatorCheckboxText=@root.autoLocatorCheckboxText
-                                }}
-                            {{/each}}
-                        {{/if}}
-                    </div>
+                            {{else}}
+                                {{#each formData}}
+                                    {{> atoms/checkbox/checkbox
+                                        value=option
+                                        text=optionDisplayText
+                                        check=isChecked
+                                        disabled=isDisabled
+                                        uniqueKey=option
+                                        autoLocatorCheckbox=@root.autoLocatorCheckbox
+                                        autoLocatorCheckboxText=@root.autoLocatorCheckboxText
+                                    }}
+                                {{/each}}
+                            {{/if}}
+                        </div>
+                    {{/if}}
                 {{/if}}
             {{/if}}
         </div>
