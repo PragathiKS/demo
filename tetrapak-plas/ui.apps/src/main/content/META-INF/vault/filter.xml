@@ -7,13 +7,12 @@
     <filter root="/apps/plas/config" mode="replace"/>
 	<filter root="/apps/plas/config.author" mode="replace"/>
 	<filter root="/apps/plas/config.publish" mode="replace"/>
+	<filter root="/apps/plas/config.dev.author" mode="replace"/>
 	<filter root="/apps/plas/config.dev.publish" mode="replace"/>
 	<filter root="/apps/plas/config.prod.author" mode="replace"/>
 	<filter root="/apps/plas/config.prod.publish" mode="replace"/>
 	<filter root="/apps/plas/config.qa.author" mode="replace"/>
 	<filter root="/apps/plas/config.qa.publish" mode="replace"/>
-	<filter root="/apps/plas/config.sapedev.author" mode="replace"/>
-	<filter root="/apps/plas/config.sapedev.publish" mode="replace"/>
 	<filter root="/apps/plas/config.stage.author" mode="replace"/>
 	<filter root="/apps/plas/config.stage.publish" mode="replace"/>
 	<filter root="/apps/plas/install" mode="update"/>
