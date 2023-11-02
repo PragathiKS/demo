@@ -61,6 +61,9 @@ public class PaymentInvoiceDownloadServiceImplTest {
     @Mock
 	private SlingSettingsService slingSettingsService;
     
+    @Mock
+	private PaymentDetailsModel paymentDetailsModel;
+    
     
     @Test
     public void retrievePaymentDetails() throws IOException {
@@ -92,44 +95,35 @@ public class PaymentInvoiceDownloadServiceImplTest {
 		PaymentDetailResponse results = gson.fromJson(HttpUtil.getStringFromJsonWithoutEscape(resultsResponse), PaymentDetailResponse.class);
 		when(urlService.getFontsUrl()).thenReturn("/paymentdetails/");
 		when(urlService.getImagesUrl()).thenReturn("/paymentdetails/");
-		PaymentDetailsModel model = initPaymentModel();
-		boolean flag = impl.preparePdf(results.getData().get(0), servletRequest, response, model);
+		when(paymentDetailsModel.getBankAccount()).thenReturn("sp.paymentDetails.bankDetails");
+		when(paymentDetailsModel.isPublishEnvironment()).thenReturn(true);
+		when(paymentDetailsModel.getCode()).thenReturn("sp.paymentDetails.code");
+		when(paymentDetailsModel.getCompany()).thenReturn("sp.paymentDetails.company");
+		when(paymentDetailsModel.getCompanyCode()).thenReturn("sp.paymentDetails.companyCode");
+		when(paymentDetailsModel.getCompanyInfo()).thenReturn("sp.paymentDetails.companyInfo");
+		when(paymentDetailsModel.getCountry()).thenReturn("sp.paymentDetails.country");
+		when(paymentDetailsModel.getDate()).thenReturn("sp.paymentDetails.date");
+		when(paymentDetailsModel.getDetails()).thenReturn("sp.paymentDetails.details");
+		when(paymentDetailsModel.getDueDate()).thenReturn("sp.paymentDetails.dueDate");
+		when(paymentDetailsModel.getEmptyPaymentDetails()).thenReturn("sp.paymentDetails.emptyPaymentDetails");
+		when(paymentDetailsModel.getFetchError()).thenReturn("sp.paymentDetails.fetchError");
+		when(paymentDetailsModel.getInvoiceInfo()).thenReturn("sp.paymentDetails.invoiceInfo");
+		when(paymentDetailsModel.getInvoiceNo()).thenReturn("sp.paymentDetails.invoiceNo");
+		when(paymentDetailsModel.getMultiPoNo()).thenReturn("sp.paymentDetails.multiPoNo");
+		when(paymentDetailsModel.getNetPayable()).thenReturn("sp.paymentDetails.netPayable");
+		when(paymentDetailsModel.getPaidDate()).thenReturn("sp.paymentDetails.paidDate");
+		when(paymentDetailsModel.getPaymentMethod()).thenReturn("sp.paymentDetails.paymentMethod");
+		when(paymentDetailsModel.getPaymentTerm()).thenReturn("sp.paymentDetails.paymentTerm");
+		when(paymentDetailsModel.getPoNo()).thenReturn("sp.paymentDetails.pono");
+		when(paymentDetailsModel.getStatus()).thenReturn("sp.paymentDetails.status");
+		when(paymentDetailsModel.getSupplier()).thenReturn("sp.paymentDetails.supplier");
+		when(paymentDetailsModel.getSupplierCode()).thenReturn("sp.paymentDetails.supplierCode");
+		when(paymentDetailsModel.getTax()).thenReturn("sp.paymentDetails.totalAmount");
+		when(paymentDetailsModel.getTotalAmount()).thenReturn("sp.paymentDetails.bankDetails");
+		when(paymentDetailsModel.getWithHoldingTaxes()).thenReturn("sp.paymentDetails.withHoldingTaxes");
+		when(paymentDetailsModel.getSupplierInfo()).thenReturn("sp.paymentDetails.supplierInfo");
+		when(paymentDetailsModel.getExportToPDF()).thenReturn("sp.paymentDetails.exportToPDF");
+		boolean flag = impl.preparePdf(results.getData().get(0), servletRequest, response, paymentDetailsModel);
 		assertFalse(flag);
     }
-    
-    private PaymentDetailsModel initPaymentModel() {
-    	PaymentDetailsModel model = new PaymentDetailsModel();
-    	model.setPublishEnvironment(true);
-		model.setBankAccount("sp.paymentDetails.bankDetails");
-		model.setCode("sp.paymentDetails.code");
-		model.setCompany("sp.paymentDetails.company");
-		model.setCompanyCode("sp.paymentDetails.companyCode");
-		model.setCompanyInfo("sp.paymentDetails.companyInfo");
-		model.setCountry("sp.paymentDetails.country");
-		model.setDate("sp.paymentDetails.date");
-		model.setDetails("sp.paymentDetails.details");
-		model.setDueDate("sp.paymentDetails.dueDate");
-		model.setEmptyPaymentDetails("sp.paymentDetails.emptyPaymentDetails");
-		model.setFetchError("sp.paymentDetails.fetchError");
-		model.setInvoiceInfo("sp.paymentDetails.invoiceInfo");		
-		model.setInvoiceNo("sp.paymentDetails.invoiceNo");
-		model.setMultiPoNo("sp.paymentDetails.multipono");
-		model.setNetPayable("sp.paymentDetails.netpayable");
-		model.setPaidDate("sp.paymentDetails.paidDate");
-		model.setPaymentMethod("sp.paymentDetails.paymentMethod");
-		model.setPaymentTerm("sp.paymentDetails.paymentTerm");
-		model.setPoNo("sp.paymentDetails.poNo");
-		model.setStatus("sp.paymentDetails.status");		
-		model.setSupplier("sp.paymentDetails.supplier");
-		model.setSupplierCode("sp.paymentDetails.supplierCode");
-	    model.setTax("sp.paymentDetails.tax");
-	    model.setTotalAmount("sp.paymentDetails.totalAmount");
-	    model.setWithHoldingTaxes("sp.paymentDetails.withHoldingTaxes");
-	    model.setSupplierInfo("sp.paymentDetails.supplierInformtaion");
-	    model.setExportToPDF("sp.paymentDetails.exportToPDF");
-	    return model;
-    }
-    
-    
-
 }
