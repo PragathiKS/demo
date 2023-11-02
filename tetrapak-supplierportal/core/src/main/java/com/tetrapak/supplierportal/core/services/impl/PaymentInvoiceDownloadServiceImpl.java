@@ -393,28 +393,50 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		emptyCell.setColspan(2);
 		table.addCell(emptyCell);
 
+		//SP-443.Total Invoice amount Inc. Tax should be <"amountInTransactionCurrency" + "withholdingTaxAmmount">
 		if (StringUtils.isNotBlank(paymentDetails.getAmountInTransactionCurrency())) {
 			String totalAmti18n = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
 					paymentDetailsModel.getTotalAmount(), language);
 			PdfPCell totAmtIncl = new PdfPCell(new Phrase(totalAmti18n, keyFont));
 			totAmtIncl.setBorder(Rectangle.NO_BORDER);
 			table.addCell(totAmtIncl);
-			PdfPCell totAmtInclVal = new PdfPCell(
-					new Phrase(paymentDetails.getAmountInTransactionCurrency()+" "+paymentDetails.getTransactionCurrency(), valueFont));
+			PdfPCell totAmtInclVal= null;
+			double netPayable = Double.parseDouble(paymentDetails.getAmountInTransactionCurrency());
+			if(StringUtils.isNotBlank(paymentDetails.getWithholdingTaxAmmount())) {
+				double withHoldTaxAmount = Double.parseDouble(paymentDetails.getWithholdingTaxAmmount());
+				totAmtInclVal = new PdfPCell(
+						new Phrase((netPayable+withHoldTaxAmount)+" "+paymentDetails.getTransactionCurrency(), valueFont));
+			}else {
+				totAmtInclVal = new PdfPCell(
+					new Phrase(netPayable+" "+paymentDetails.getTransactionCurrency(), valueFont));
+			}
 			totAmtInclVal.setBorder(Rectangle.NO_BORDER);
 			table.addCell(totAmtInclVal);
 		}
 		
-		if (StringUtils.isNotBlank(paymentDetails.getWithholdingTaxAmount())) {
+		//If there is WH Tax.Net Payable should be "amountInTransactionCurrency"
+		if (StringUtils.isNotBlank(paymentDetails.getWithholdingTaxAmmount())) {
 			String withHoldingTaxes = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
 					paymentDetailsModel.getWithHoldingTaxes(), language);
 			PdfPCell withHoldingTaxesKey = new PdfPCell(new Phrase(withHoldingTaxes, keyFont));
 			withHoldingTaxesKey.setBorder(Rectangle.NO_BORDER);
 			table.addCell(withHoldingTaxesKey);
 			PdfPCell withHoldingTaxesVal = new PdfPCell(
-					new Phrase(paymentDetails.getWithholdingTaxAmount()+" "+paymentDetails.getTransactionCurrency(), valueFont));
+					new Phrase(paymentDetails.getWithholdingTaxAmmount()+" "+paymentDetails.getTransactionCurrency(), valueFont));
 			withHoldingTaxesVal.setBorder(Rectangle.NO_BORDER);
 			table.addCell(withHoldingTaxesVal);
+			
+			if(StringUtils.isNotBlank(paymentDetails.getAmountInTransactionCurrency())) {
+				String netPayable = GlobalUtil.getI18nValueForThisLanguage(request, StringUtils.EMPTY,
+						paymentDetailsModel.getNetPayable(), language);
+				PdfPCell netPayableKey = new PdfPCell(new Phrase(netPayable, keyFont));
+				netPayableKey.setBorder(Rectangle.NO_BORDER);
+				table.addCell(netPayableKey);
+				PdfPCell netPayableVal = new PdfPCell(
+						new Phrase(paymentDetails.getAmountInTransactionCurrency()+" "+paymentDetails.getTransactionCurrency(), valueFont));
+				netPayableVal.setBorder(Rectangle.NO_BORDER);
+				table.addCell(netPayableVal);
+			}
 		}
 
 		if (StringUtils.isNotBlank(paymentDetails.getPaymentTerms())) {
