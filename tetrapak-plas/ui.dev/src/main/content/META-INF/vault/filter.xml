@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/plas/components" mode="replace"/>
+	<filter root="/apps/settings/wcm/designs/plas/clientlibs" mode="replace"/>
+</workspaceFilter>

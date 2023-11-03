@@ -49,6 +49,7 @@
         <sonar.coverage.exclusions>
             **/**.js,
             **/beans/**,
+            **/bean/**,
             **/constants/**,
             **/exceptions/**,
             **/utils/**,

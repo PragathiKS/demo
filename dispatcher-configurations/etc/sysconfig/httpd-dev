@@ -117,6 +117,11 @@ SUPPLIER_URL='supplier-dev.tetrapak.com'
 SUPPLIER_DOCROOT='/mnt/var/www/html/supplierportal'
 SUPLLIER_BasicAuth='None'
 
+## Tetraplas ##
+PLAS_URL='plas-dev.tetrapak.com'
+PLAS_DOCROOT='/mnt/var/www/html/plas'
+#PLAS_BasicAuth='None'
+
 
 ## ENV_TYPE is used for topology based includes and rules
 ENV_TYPE='dev'

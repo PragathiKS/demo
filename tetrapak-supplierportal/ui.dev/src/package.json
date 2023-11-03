@@ -5,9 +5,10 @@
     "argon-logger": "^0.1.2",
     "deparam.js": "^2.1.1",
     "focus-visible": "^5.2.0",
-    "lzstorage": "^1.0.8",
     "sanitize-html": "^1.21.1",
-    "vanilla-lazyload": "^8.17.0"
+    "vanilla-lazyload": "^8.17.0",
+    "lzstorage": "^1.0.8",
+    "inputmask": "^5.0.8"
   },
   "scripts": {
     "build": "grunt aem",

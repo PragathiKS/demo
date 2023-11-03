@@ -96,6 +96,11 @@ SUPPLIER_URL='supplier-qa.tetrapak.com'
 SUPPLIER_DOCROOT='/mnt/var/www/html/supplierportal'
 SUPLLIER_BasicAuth='None'
 
+## Tetraplas ##
+PLAS_URL='plas-qa.tetrapak.com'
+PLAS_DOCROOT='/mnt/var/www/html/plas'
+#PLAS_BasicAuth='None'
+
 ## Brand URL ###
 BRAND_URL="brandsource-qa.tetrapak.com"
 BRAND_DOCROOT='/mnt/var/www/html/designsystem'

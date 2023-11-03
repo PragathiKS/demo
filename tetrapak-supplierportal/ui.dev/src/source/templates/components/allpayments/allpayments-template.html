@@ -3,7 +3,7 @@
     <code class="d-none js-all-payments__config">
       ${data.i18nKeys}
     </code>
-    <div class="d-none js-payment-api" data-date-range="${data.paymentsFromToDateGapInMonths}" data-list-api="${data.allPaymentsApi}" data-payment-details-url="${data.paymentDetailsURL}"></div>
+    <div class="d-none js-payment-api" data-date-range="${data.paymentsFromToDateGapInMonths}" data-list-api="${data.allPaymentsApi}" data-payment-details-url="${data.paymentDetailsURL}" data-filter-api="${data.filterApi}"></div>
     <div class="tp-spinner d-none">
       <div class="tpatom-loader js-loader">
         <sly data-sly-use.tploader="/apps/commons/components/atoms/tploader/tploader-template.html" data-sly-call="${tploader.tploader_template}" />
@@ -29,6 +29,36 @@
               </div>
               </div>
           </div>
+        </div>
+      </div>
+      <div class="tp-all-payments__filter-wrapper">
+        <div class="tp-all-payments__filter-chips">
+          <button type="button" data-label="${data.status @i18n}" data-isRadio="true" data-key="invoiceStatuses" class="tp-all-payments__filter-button">
+            ${data.status @i18n}
+          </button>
+
+          <button type="button" data-label="${data.invoiceDate @i18n}" data-isRadio="true" data-key="invoiceDates" class="tp-all-payments__filter-button">
+            ${data.invoiceDate @i18n}
+          </button>
+
+          <button type="button" data-label="${data.invoiceNo @i18n}" data-isTextInput="true" data-key="documentReferenceIDs"  class="tp-all-payments__filter-button">
+            ${data.invoiceNo @i18n}
+          </button>
+
+          <button type="button" data-label="${data.company @i18n}" data-isCheckBox="true" data-key="companyCodes" data-key-field="companyName" class="tp-all-payments__filter-button">
+            ${data.company @i18n}
+          </button>
+
+          <button type="button" data-label="${data.country @i18n}" data-isCheckBox="true" data-key="countries" data-key-field="country" class="tp-all-payments__filter-button">
+            ${data.country @i18n}
+          </button>
+        </div>
+        <div class="tagContainer"></div>
+        <div>
+          <button class="tpatom-btn tp-all-payments__reset-button js-tp-all-payments__reset-button">
+            <i class="icon icon-Bin_X"></i>
+            <span class="tpatom-btn__text sly-text">${data.reset @i18n}</span>
+          </button>
         </div>
       </div>
       <div class="tp-all-payments__search-count"></div>

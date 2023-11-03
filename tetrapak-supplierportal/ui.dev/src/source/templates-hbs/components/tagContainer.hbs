@@ -1,0 +1,10 @@
+{{#each formData}}
+{{#each this}}
+<button class="tp-all-payments__tag {{#if_notin @root.defaultActiveTagFilter @key}}active-tag js-tag{{/if_notin}}">
+    <span class="tpatom-btn__text sly-text js-field" data-key="{{@key}}" data-value="{{this.val}}">{{this.trimVal}}</span>
+   {{#if_notin @root.defaultActiveTagFilter @key}}
+    <i class="icon icon-Close_new"></i>
+    {{/if_notin}}
+</button>
+{{/each}}
+{{/each}}

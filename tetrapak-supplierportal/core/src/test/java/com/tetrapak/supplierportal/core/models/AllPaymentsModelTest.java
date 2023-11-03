@@ -1,7 +1,9 @@
 package com.tetrapak.supplierportal.core.models;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
 import org.apache.sling.api.resource.Resource;
 import org.junit.Before;
 import org.junit.Rule;
@@ -50,53 +52,6 @@ public class AllPaymentsModelTest {
         aemContext.registerService(InvoiceStatusService.class, invoiceStatusService);
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		model = resource.adaptTo(AllPaymentsModel.class);
-		model.setPublishEnvironment(true);
-		model.setDownloadExcelServletUrl(RESOURCE_PATH);
-		model.setAllPaymentsApi(RESOURCE_PATH);
-		model.setFilterApi(RESOURCE_PATH);
-		model.setFetcherror(RESOURCE_PATH);
-		model.setPaginationNext("sp.paymentDetails.pageNationNext");
-		model.setPaginationPrev("sp.paymentDetails.PaginationPrev");
-		model.setMultipono("sp.paymentDetails.Multipono");
-		model.setAmountIncludingTaxes("sp.paymentDetails.amountIncludingTaxes");
-		model.setAllPaymentsHeading("sp.paymentDetails.allPaymentsHeading");
-		model.setCompany("sp.paymentDetails.company");
-		model.setCompanyCode("sp.paymentDetails.companyCode");
-		model.setCountry("sp.paymentDetails.country");		
-		model.setDueDate("sp.paymentDetails.dueDate");		
-		model.setInvoiceDate("sp.paymentDetails.invoiceDate");
-		model.setInvoiceNo("sp.paymentDetails.invoiceNo");
-		model.setNoDataFound("sp.paymentDetails.noDataFound");
-		model.setPagination("sp.paymentDetails.pagination");
-		model.setPaginationFirst("sp.paymentDetails.paginationFirst");
-		model.setPaginationLast("sp.paymentDetails.paginationLast");
-		model.setPoNo("sp.paymentDetails.poNo");
-		model.setReset("sp.paymentDetails.reset");
-		model.setResults("sp.paymentDetails.results");		
-		model.setStatus("sp.paymentDetails.status");
-		model.setSupplier("sp.paymentDetails.supplier");
-		model.setSupplierCode("sp.paymentDetails.supplierCode");
-	    model.setWithHoldingTax("sp.paymentDetails.withholdingtax");
-	    model.setPaid("sp.paymentDetails.Paid");
-	    model.setI18nKeys(RESOURCE_PATH);
-	    model.setResource(null);
-	    model.setSlingSettingsService(null);
-	    model.setApplyFilter("sp.paymentDetails.applyFilter");
-	    model.setColumns("sp.paymentDetails.columns");
-	    model.setShowHideColumns("sp.paymentDetails.showHideColumns");
-	    model.setSelectAll("sp.paymentDetails.selectAll");
-	    model.setInvoiceNoTooltip("sp.paymentDetails.invoiceNoTooltip");
-	    model.setInvoiceDateTooltip("sp.paymentDetails.invoiceDateTooltip");
-	    model.setStatusTooltip("sp.paymentDetails.statusTooltip");
-	    model.setCompanyTooltip("sp.paymentDetails.companyTooltip");
-	    model.setCompanyCodeTooltip("sp.paymentDetails.companyCodeTooltip");
-	    model.setCountryTooltip("sp.paymentDetails.countryTooltip");
-	    model.setSupplierTooltip("sp.paymentDetails.supplierTooltip");
-	    model.setSupplierCodeTooltip("sp.paymentDetails.supplierCodeTooltip");
-	    model.setWithHoldingTaxTooltip("sp.paymentDetails.withHoldingTaxTooltip");
-	    model.setDueDateTooltip("sp.paymentDetails.dueDateTooltip");
-	    model.setPoNoTooltip("sp.paymentDetails.poNoTooltip");
-	    model.setAmountIncludingTaxesTooltip("sp.paymentDetails.amountIncludingTaxesTooltip");
 	}
 	
 	/**
@@ -112,9 +67,9 @@ public class AllPaymentsModelTest {
 		assertNotNull( model.getAllPaymentsApi());
 		assertNotNull(model.getDownloadExcelServletUrl());
 		assertNotNull(model.getFilterApi());
-		assertNull(model.getSlingSettingsService());
+		assertNotNull(model.getSlingSettingsService());
 		assertNotNull(model.getI18nKeys());
-		assertNull(model.getResource());
+		assertNotNull(model.getResource());
 		assertEquals(3,model.getPaymentsFromToDateGapInMonths());
 		assertTrue(model.isPublishEnvironment());
 		assertEquals("sp.paymentDetails.amountIncludingTaxes", model.getAmountIncludingTaxes());
@@ -151,6 +106,14 @@ public class AllPaymentsModelTest {
 		assertEquals("sp.paymentDetails.withHoldingTaxTooltip", model.getWithHoldingTaxTooltip());
 		assertEquals("sp.paymentDetails.dueDateTooltip", model.getDueDateTooltip());
 		assertEquals("sp.paymentDetails.poNoTooltip", model.getPoNoTooltip());
+		assertEquals("sp.paymentDetails.last90Days", model.getLast90Days());
+		assertEquals("sp.paymentDetails.other", model.getOther());
+		assertEquals("sp.paymentDetails.from", model.getFrom());
+		assertEquals("sp.paymentDetails.to", model.getTo());
+		assertEquals("sp.paymentDetails.invalidDate", model.getInvalidDate());
+		assertEquals("sp.paymentDetails.invalidDateRange", model.getInvalidDateRange());
+		assertEquals("sp.paymentDetails.confirmed", model.getConfirmed());
+		assertEquals("sp.paymentDetails.filterSelected", model.getFilterSelected());
 		assertEquals("sp.paymentDetails.amountIncludingTaxesTooltip", model.getAmountIncludingTaxesTooltip());
 	}
 	

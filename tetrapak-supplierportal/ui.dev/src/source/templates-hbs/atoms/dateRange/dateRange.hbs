@@ -1,0 +1,16 @@
+<div class="tpatom-date-range js-date-range-wrapper">
+  <div class="tpatom-date-range__input-wrapper js-date-range-input-wrapper">
+    <label class="tpatom-date-range__input-label">{{i18n key=from}}
+        <input class="tpatom-input-box__input js-date-range js-date-range-input-from" {{#if fromDateVal}} value={{fromDateVal}} {{/if}} placeholder="YYYY-MM-DD" autofocus="autofocus" inputmode="text">
+        <i class="icon-Close_new js-date-range-clear-icon"></i>
+    </label>
+    <div class="tpatom-date-range__input-error js-date-range-error js-date-range-from-error hide">{{i18n key=invalidDate}}</div>
+  </div>
+  <div class="tpatom-date-range__input-wrapper js-date-range-input-wrapper">
+    <label class="tpatom-date-range__input-label">{{i18n key=to}}
+        <input class="tpatom-input-box__input js-date-range js-date-range-input-to" {{#if toDateVal}} value={{toDateVal}} {{/if}}  placeholder="YYYY-MM-DD" inputmode="text">
+        <i class="icon-Close_new js-date-range-clear-icon"></i>
+    </label>
+    <div class="tpatom-date-range__input-error js-date-range-error js-date-range-to-error hide">{{i18n key=invalidDate}}</div>
+  </div>
+</div>
