@@ -136,6 +136,10 @@ export const EQ_FILTERS = {
   COUNTRY: 'country',
   EQUIPMENTNAME: 'equipmentName',
   SERIALNUMBER: 'serialNumber',
-  USERNAME:'userName'
+  USERNAME:'userName',
+  EQUIPMENTSTATUSDESC:'equipmentStatusDesc',
+  CUSTOMER:'customer',
+  EQUIPMENTTYPE:'equipmentType',
+  LINECODE:'lineCode'
 };
 
