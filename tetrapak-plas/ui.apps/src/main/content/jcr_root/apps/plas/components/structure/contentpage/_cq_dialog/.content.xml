@@ -44,9 +44,9 @@
                                                     name="./pageType"
                                                     translateOptions="{Boolean}true">
                                                 <items jcr:primaryType="nt:unstructured">
-                                                    <learningContent jcr:primaryType="nt:unstructured"
-                                                               text="Learning Content"
-                                                               value="learning-content"/>
+                                                    <productLearningArchive jcr:primaryType="nt:unstructured"
+                                                               text="Product Learning Archive"
+                                                               value="product-learning-archive"/>
                                                     <coursePortal jcr:primaryType="nt:unstructured"
                                                              text="Course Portal"
                                                              value="course-portal"/>
