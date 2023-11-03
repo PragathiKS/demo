@@ -2,6 +2,7 @@
 import $ from 'jquery';
 // Local imports
 import './polyfill';
+import 'focus-visible';
 import bundleImport from '../bundle/imports';
 import bundleImporter from '../bundle/importer';
 import { templates } from '../utils/templates';

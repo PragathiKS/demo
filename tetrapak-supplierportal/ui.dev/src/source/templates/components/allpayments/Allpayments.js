@@ -243,12 +243,15 @@ class AllPayments {
       const dataObject = {
         row: []
       };
-
       showFields.forEach((val, index) => {
         dataObject.row[index] = {
           key: val,
           value: summary[val]
         };
+        if(summary['documentReferenceID']){
+          dataObject.rowLink = summary['documentReferenceID'];
+          dataObject.isClickable = true;
+        }
       });
 
       return dataObject;

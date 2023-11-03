@@ -273,7 +273,7 @@ class MyEquipment {
       const equipmentDetailsUrl = this.cache.equipmentApi.data('equip-details-url');
       const url = `${equipmentDetailsUrl}?id=${id}`;
       const $linkName = `${$(e.currentTarget).find('td').eq(4).text().trim()  }-${  id}`;
-
+      
       filters.setFilterChipInLocalStorage(EQ_TYPE,this.cache.combinedFiltersObj,this.getActiveCountryCode());
 
       _trackEquipmentLinkClick($linkName);
@@ -1022,14 +1022,43 @@ class MyEquipment {
                   this.cache.$equipmentDescFilterLabel.text(`${getI18n(this.cache.i18nKeys['equipmentDescription'])}: ${1}`);
                 }
               }
-
               if(this.cache.combinedFiltersObj[EQ_FILTERS.SERIALNUMBER]){
                 this.cache.$serialNumberFilterLabel.addClass('active');
                 if (this.cache.$serialNumberFilterLabel) {
                   this.cache.$serialNumberFilterLabel.text(`${getI18n(this.cache.i18nKeys['serialNumber'])}: ${1}`);
                 }
               }
-              this.getAllAvailableFilterVals(['statuses', 'types', 'lines', 'customers'], false);
+              if(this.cache.combinedFiltersObj[EQ_FILTERS.EQUIPMENTSTATUSDESC]){
+                const filterDataOfStatus=this.cache.combinedFiltersObj[EQ_FILTERS.EQUIPMENTSTATUSDESC];
+                this.cache.$statusFilterLabel.addClass('active');
+                if (this.cache.$statusFilterLabel) {
+                  this.cache.$statusFilterLabel.text(`${getI18n(this.cache.i18nKeys['equipmentStatus'])}: ${filterDataOfStatus.length}`);
+                }
+              }
+              if(this.cache.combinedFiltersObj[EQ_FILTERS.EQUIPMENTTYPE]){
+                const filterDataOfequipmentType=this.cache.combinedFiltersObj[EQ_FILTERS.EQUIPMENTTYPE];
+                this.cache.$equipmentTypeFilterLabel.addClass('active');
+                if (this.cache.$equipmentTypeFilterLabel) {
+                  this.cache.$equipmentTypeFilterLabel.text(`${getI18n(this.cache.i18nKeys['equipmentType'])}: ${filterDataOfequipmentType.length}`);
+                }
+              }
+              if(this.cache.combinedFiltersObj[EQ_FILTERS.LINECODE]){
+                const filterDataOflineCode=this.cache.combinedFiltersObj[EQ_FILTERS.LINECODE];
+                this.cache.$lineFilterLabel.addClass('active');
+                if (this.cache.$lineFilterLabel) {
+                  this.cache.$lineFilterLabel.text(`${getI18n(this.cache.i18nKeys['line'])}: ${filterDataOflineCode.length}`);
+                }
+              }
+
+              if(this.cache.combinedFiltersObj[EQ_FILTERS.CUSTOMER]){
+                const filterDataOfCustomer=this.cache.combinedFiltersObj[EQ_FILTERS.CUSTOMER];
+                this.cache.$customerFilterLabel.addClass('active');
+                if (this.cache.$customerFilterLabel) {
+                  this.cache.$customerFilterLabel.text(`${getI18n(this.cache.i18nKeys['customer'])}: ${filterDataOfCustomer.length}`);
+                }
+              }
+
+              this.getAllAvailableFilterVals(['statuses', 'types', 'lines',  'customers'], false);
             }
             else
             {

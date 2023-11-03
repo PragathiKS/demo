@@ -261,340 +261,171 @@ public class PaymentDetailsModel {
 		return invoiceInfo;
 	}
 
-	public void setInvoiceInfo(String invoiceInfo) {
-		this.invoiceInfo = invoiceInfo;
-	}
-
 	public String getCompanyInfo() {
 		return companyInfo;
-	}
-
-	public void setCompanyInfo(String companyInfo) {
-		this.companyInfo = companyInfo;
 	}
 
 	public String getSupplierInfo() {
 		return supplierInfo;
 	}
 
-	public void setSupplierInfo(String supplierInfo) {
-		this.supplierInfo = supplierInfo;
-	}
-
 	public String getDetails() {
 		return details;
-	}
-
-	public void setDetails(String details) {
-		this.details = details;
 	}
 
 	public String getInvoiceNo() {
 		return invoiceNo;
 	}
 
-	public void setInvoiceNo(String invoiceNo) {
-		this.invoiceNo = invoiceNo;
-	}
-
 	public String getDate() {
 		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getCompany() {
 		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
 	}
 
 	public String getCompanyCode() {
 		return companyCode;
 	}
 
-	public void setCompanyCode(String companyCode) {
-		this.companyCode = companyCode;
-	}
-
 	public String getCountry() {
 		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	public String getSupplierCode() {
 		return supplierCode;
 	}
 
-	public void setSupplierCode(String supplierCode) {
-		this.supplierCode = supplierCode;
-	}
-
 	public String getTotalAmount() {
 		return totalAmount;
-	}
-
-	public void setTotalAmount(String totalAmount) {
-		this.totalAmount = totalAmount;
 	}
 
 	public String getTax() {
 		return tax;
 	}
 
-	public void setTax(String tax) {
-		this.tax = tax;
-	}
-
 	public String getWithHoldingTaxes() {
 		return withHoldingTaxes;
-	}
-
-	public void setWithHoldingTaxes(String withHoldingTaxes) {
-		this.withHoldingTaxes = withHoldingTaxes;
 	}
 
 	public String getNetPayable() {
 		return netPayable;
 	}
 
-	public void setNetPayable(String netPayable) {
-		this.netPayable = netPayable;
-	}
-
 	public String getPaymentTerm() {
 		return paymentTerm;
-	}
-
-	public void setPaymentTerm(String paymentTerm) {
-		this.paymentTerm = paymentTerm;
 	}
 
 	public String getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(String dueDate) {
-		this.dueDate = dueDate;
-	}
-
 	public String getPaidDate() {
 		return paidDate;
-	}
-
-	public void setPaidDate(String paidDate) {
-		this.paidDate = paidDate;
 	}
 
 	public String getBankAccount() {
 		return bankAccount;
 	}
 
-	public void setBankAccount(String bankAccount) {
-		this.bankAccount = bankAccount;
-	}
-
 	public String getPaymentMethod() {
 		return paymentMethod;
-	}
-
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
 	}
 
 	public String getPoNo() {
 		return poNo;
 	}
 
-	public void setPoNo(String poNo) {
-		this.poNo = poNo;
-	}
-
 	public String getEmptyPaymentDetails() {
 		return emptyPaymentDetails;
-	}
-
-	public void setEmptyPaymentDetails(String emptyPaymentDetails) {
-		this.emptyPaymentDetails = emptyPaymentDetails;
 	}
 
 	public String getExportToPdfURL() {
 		return exportToPdfURL;
 	}
 
-	
 	public String getViewPaymentDataUrl() {
 		return viewPaymentDataUrl;
-	}
-
-	public void setViewPaymentDataUrl(String viewPaymentDataUrl) {
-		this.viewPaymentDataUrl = viewPaymentDataUrl;
 	}
 
 	public String getFetchError() {
 		return fetchError;
 	}
 
-	public void setFetchError(String fetchError) {
-		this.fetchError = fetchError;
-	}
-
 	public String getMultiPoNo() {
 		return multiPoNo;
-	}
-
-	public void setMultiPoNo(String multiPoNo) {
-		this.multiPoNo = multiPoNo;
 	}
 
 	public boolean isPublishEnvironment() {
 		return isPublishEnvironment;
 	}
 
-	public void setPublishEnvironment(boolean isPublishEnvironment) {
-		this.isPublishEnvironment = isPublishEnvironment;
-	}
-
 	public String getI18nKeys() {
 		return i18nKeys;
-	}
-
-	public void setI18nKeys(String i18nKeys) {
-		this.i18nKeys = i18nKeys;
 	}
 
 	public String getExportToPDF() {
 		return exportToPDF;
 	}
 
-	public void setExportToPDF(String exportToPDF) {
-		this.exportToPDF = exportToPDF;
-	}
-
 	public String getSupplier() {
 		return supplier;
-	}
-
-	public void setSupplier(String supplier) {
-		this.supplier = supplier;
 	}
 
 	public String getCode() {
 		return code;
 	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
 	
 	public Resource getResource() {
 		return resource;
-	}
-
-	public void setResource(Resource resource) {
-		this.resource = resource;
 	}
 	
 	public int getPaymentsFromToDateGapInMonths() {
 		return paymentsFromToDateGapInMonths;
 	}
 
-	public void setPaymentsFromToDateGapInMonths(int paymentsFromToDateGapInMonths) {
-		this.paymentsFromToDateGapInMonths = paymentsFromToDateGapInMonths;
-	}
-
 	public String getTotalAmountTooltip() {
 		return totalAmountTooltip;
-	}
-
-	public void setTotalAmountTooltip(String totalAmountTooltip) {
-		this.totalAmountTooltip = totalAmountTooltip;
 	}
 
 	public String getTaxTooltip() {
 		return taxTooltip;
 	}
 
-	public void setTaxTooltip(String taxTooltip) {
-		this.taxTooltip = taxTooltip;
-	}
-
 	public String getWithHoldingTaxesTooltip() {
 		return withHoldingTaxesTooltip;
-	}
-
-	public void setWithHoldingTaxesTooltip(String withHoldingTaxesTooltip) {
-		this.withHoldingTaxesTooltip = withHoldingTaxesTooltip;
 	}
 
 	public String getNetPayableTooltip() {
 		return netPayableTooltip;
 	}
 
-	public void setNetPayableTooltip(String netPayableTooltip) {
-		this.netPayableTooltip = netPayableTooltip;
-	}
-
 	public String getPaymentTermTooltip() {
 		return paymentTermTooltip;
-	}
-
-	public void setPaymentTermTooltip(String paymentTermTooltip) {
-		this.paymentTermTooltip = paymentTermTooltip;
 	}
 
 	public String getDetailsDueDateTooltip() {
 		return detailsDueDateTooltip;
 	}
 
-	public void setDetailsDueDateTooltip(String detailsDueDateTooltip) {
-		this.detailsDueDateTooltip = detailsDueDateTooltip;
-	}
-
 	public String getPaidDateTooltip() {
 		return paidDateTooltip;
-	}
-
-	public void setPaidDateTooltip(String paidDateTooltip) {
-		this.paidDateTooltip = paidDateTooltip;
 	}
 
 	public String getBankAccountTooltip() {
 		return bankAccountTooltip;
 	}
 
-	public void setBankAccountTooltip(String bankAccountTooltip) {
-		this.bankAccountTooltip = bankAccountTooltip;
-	}
-
 	public String getPaymentMethodTooltip() {
 		return paymentMethodTooltip;
 	}
 
-	public void setPaymentMethodTooltip(String paymentMethodTooltip) {
-		this.paymentMethodTooltip = paymentMethodTooltip;
-	}
-
 	public String getDetailsPoNoTooltip() {
 		return detailsPoNoTooltip;
-	}
-
-	public void setDetailsPoNoTooltip(String detailsPoNoTooltip) {
-		this.detailsPoNoTooltip = detailsPoNoTooltip;
 	}
 }

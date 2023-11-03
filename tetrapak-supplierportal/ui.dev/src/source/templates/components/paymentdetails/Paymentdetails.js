@@ -102,7 +102,7 @@ class Paymentdetails {
   }
   renderPaymentDetailsData(data, isFetchError = false){
     const { i18nKeys } = this.cache;
-    const isPaymentData = Object.keys(data).length > 0;
+    const isPaymentData = data?.isPaymentData || false;
     if (isPaymentData) {
       const showToolTip = {
         totalAmountTooltip: i18nKeys['totalAmountTooltip']?.trim() || '',
@@ -150,6 +150,22 @@ class Paymentdetails {
     }
     return '';
   };
+  getTotalAmount = (paymentData) => {
+    let amountInTransactionCurrency = paymentData?.amountInTransactionCurrency || '';
+    let withholdingTaxAmmount = paymentData?.withholdingTaxAmmount || '';
+    amountInTransactionCurrency = parseFloat(amountInTransactionCurrency);
+    withholdingTaxAmmount = parseFloat(withholdingTaxAmmount);
+    amountInTransactionCurrency = Number.isNaN(amountInTransactionCurrency) ? '' : amountInTransactionCurrency;
+    withholdingTaxAmmount = Number.isNaN(withholdingTaxAmmount) ? '' : withholdingTaxAmmount;
+    let totalInvoiceAmount = '';
+    if(typeof amountInTransactionCurrency === 'number'){
+      totalInvoiceAmount = amountInTransactionCurrency;
+    }
+    if(typeof withholdingTaxAmmount === 'number'){
+      totalInvoiceAmount = totalInvoiceAmount + withholdingTaxAmmount;
+    }
+    return { totalInvoiceAmount, amountInTransactionCurrency, withholdingTaxAmmount };
+  }
   renderPaymentDetails = () => {
     this.showLoader(true);
     auth.getToken(({ data: authData }) => {
@@ -158,9 +174,16 @@ class Paymentdetails {
           this.showLoader(false);
           const paymentData = response[0]?.data[0] || {};
           this.cache.statusMapping = response[1];
+          const isPaymentData = Object.keys(paymentData).length > 0;
+          let amountData = {};
+          if(isPaymentData){
+            amountData = this.getTotalAmount(paymentData);
+          }
           const data = {
             ...paymentData,
-            invoiceStatusName: this.getStatusName(paymentData?.invoiceStatusCode)
+            invoiceStatusName: this.getStatusName(paymentData?.invoiceStatusCode),
+            isPaymentData,
+            ...amountData
           };
           this.renderPaymentDetailsData(data);
         })

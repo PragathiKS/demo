@@ -52,47 +52,6 @@ public class PaymentDetailsModelTest {
         aemContext.registerService(InvoiceStatusService.class, invoiceStatusService);
 		Resource resource = aemContext.currentResource(RESOURCE_PATH);
 		model = resource.adaptTo(PaymentDetailsModel.class);
-		model.setResource(resource);
-		model.setPublishEnvironment(true);
-		model.setBankAccount("sp.paymentDetails.bankDetails");
-		model.setCode("sp.paymentDetails.code");
-		model.setCompany("sp.paymentDetails.company");
-		model.setCompanyCode("sp.paymentDetails.companyCode");
-		model.setCompanyInfo("sp.paymentDetails.companyInfo");
-		model.setCountry("sp.paymentDetails.country");
-		model.setDate("sp.paymentDetails.date");
-		model.setDetails("sp.paymentDetails.details");
-		model.setDueDate("sp.paymentDetails.dueDate");
-		model.setEmptyPaymentDetails("sp.paymentDetails.emptyPaymentDetails");
-		model.setFetchError("sp.paymentDetails.fetchError");
-		model.setInvoiceInfo("sp.paymentDetails.invoiceInfo");		
-		model.setInvoiceNo("sp.paymentDetails.invoiceNo");
-		model.setMultiPoNo("sp.paymentDetails.multipono");
-		model.setNetPayable("sp.paymentDetails.netpayable");
-		model.setPaidDate("sp.paymentDetails.paidDate");
-		model.setPaymentMethod("sp.paymentDetails.paymentMethod");
-		model.setPaymentTerm("sp.paymentDetails.paymentTerm");
-		model.setPoNo("sp.paymentDetails.poNo");
-		model.setStatus("sp.paymentDetails.status");		
-		model.setSupplier("sp.paymentDetails.supplier");
-		model.setSupplierCode("sp.paymentDetails.supplierCode");
-	    model.setTax("sp.paymentDetails.tax");
-	    model.setTotalAmount("sp.paymentDetails.totalAmount");
-	    model.setI18nKeys(RESOURCE_PATH);
-	    model.setWithHoldingTaxes("sp.paymentDetails.withHoldingTaxes");
-	    model.setSupplierInfo("sp.paymentDetails.supplierInformtaion");
-	    model.setExportToPDF("sp.paymentDetails.exportToPDF");
-	    model.setViewPaymentDataUrl(RESOURCE_PATH);
-	    model.setTotalAmountTooltip("sp.paymentDetails.totalAmountTooltip");
-	    model.setTaxTooltip("sp.paymentDetails.taxTooltip");
-	    model.setWithHoldingTaxesTooltip("sp.paymentDetails.withHoldingTaxesTooltip");
-	    model.setNetPayableTooltip("sp.paymentDetails.netPayableTooltip");
-	    model.setPaymentTermTooltip("sp.paymentDetails.paymentTermTooltip");
-	    model.setDetailsDueDateTooltip("sp.paymentDetails.detailsDueDateTooltip");
-	    model.setPaidDateTooltip("sp.paymentDetails.paidDateTooltip");
-	    model.setBankAccountTooltip("sp.paymentDetails.bankAccountTooltip");
-	    model.setPaymentMethodTooltip("sp.paymentDetails.paymentMethodTooltip");
-	    model.setDetailsPoNoTooltip("sp.paymentDetails.detailsPoNoTooltip");
 	}
 	
 	/**
@@ -110,7 +69,7 @@ public class PaymentDetailsModelTest {
 		assertNotNull(model.getViewPaymentDataUrl());
 		assertNotNull(model.getI18nKeys());
 		assertTrue(model.isPublishEnvironment());
-		assertEquals("sp.paymentDetails.bankDetails", model.getBankAccount());
+		assertEquals("sp.paymentDetails.bankAccount", model.getBankAccount());
 		assertEquals("sp.paymentDetails.code", model.getCode());
 		assertEquals("sp.paymentDetails.company", model.getCompany());
 		assertEquals("sp.paymentDetails.companyCode", model.getCompanyCode());
