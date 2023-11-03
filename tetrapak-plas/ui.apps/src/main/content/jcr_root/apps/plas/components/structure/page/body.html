@@ -1,0 +1,18 @@
+<sly data-sly-resource="${'header' @ resourceType='supplierportal/components/structure/header'}"/>
+<sly data-sly-resource="${'navigation' @ resourceType='supplierportal/components/structure/navigation'}"/>
+<div class="tp-container">
+    <div class="row">
+        <div class="col-lg-12 tp-column__content">
+            <sly data-sly-use.langModel="com.tetrapak.supplierportal.core.models.LanguageSelectorModel"  data-sly-test="${(properties.jcr:title != '404') && (properties.jcr:title != '500')}">
+                <h1 class="${properties.showTitle ? 'tp-page-title' : 'tp-page-title sr-only'}" data-sly-test.isI18ValuePresent="${properties.iconLabel}">${properties.iconLabel @i18n, locale=langModel.locale}</h1>
+                <h1 class="${properties.showTitle ? 'tp-page-title' : 'tp-page-title sr-only'}" data-sly-test=${!isI18ValuePresent}>${properties.jcr:title}</h1>
+            </sly>
+            <div>
+                <sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+                     data-sly-repeat.child="${templatedContainer.structureResources}"
+                     data-sly-resource="${child.path @ resourceType=child.resourceType}"></sly>
+            </div>
+
+        </div>
+    </div>
+</div>
