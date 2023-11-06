@@ -17,7 +17,7 @@ pipeline {
         booleanParam defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak'
 	    booleanParam defaultValue: false, description: 'Please check in case you want to build Tetralaval Module', name: 'Build_Tetralaval'
 	    booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal'
-        booleanParam defaultValue: false, description: 'Please check in case you want to build Next Generation Training Module', name: 'Build_NextGenerationTraining'
+        booleanParam defaultValue: false, description: 'Please check in case you want to build plas Module', name: 'Build_Plas'
         booleanParam defaultValue: true, description: 'Please uncheck in case you do not want to perform sonar analysis', name: 'Sonar_Analysis'
     }
 
@@ -105,7 +105,7 @@ pipeline {
                 }
 
                 script {
-                    if (params.Build_NextGenerationTraining) {
+                    if (params.Build_Plas) {
                         appname = "plas"
                         buildandsonarNGT()
                     }
@@ -301,16 +301,16 @@ def devdeployment() {
             }
         )
     }
-        if (params.Build_NextGenerationTraining) {
+        if (params.Build_Plas) {
         packageName = "tetrapak-plas.complete"
         repoName = "tetrapak-plas"
         fileName = "1.0.0-DEV${build_id_number}-SNAPSHOT"
         devartifactdownload()
         parallel (
-            "Author nextgenerationtraining" : {
+            "Author plas" : {
                 authordeploy()
             },
-            "Publisher nextgenerationtraining" : {
+            "Publisher plas" : {
                 publishdeploy()
             }
         )
@@ -357,7 +357,7 @@ def publishCoverageReport() {
 def cacheflush() {
     build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: 'DEV')], wait: true
 
-    build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: 'DEV'), booleanParam(name: 'Publicweb', value: params.Build_Publicweb), booleanParam(name: 'Customerhub', value: params.Build_MyTetraPak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.Build_Tetralaval), booleanParam(name: 'Supplierportal', value: params.Build_Supplierportal),booleanParam(name: 'Nextgenerationtraining', value: params.Build_NextGenerationTraining)], wait: true       
+    build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: 'DEV'), booleanParam(name: 'Publicweb', value: params.Build_Publicweb), booleanParam(name: 'Customerhub', value: params.Build_MyTetraPak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.Build_Tetralaval), booleanParam(name: 'Supplierportal', value: params.Build_Supplierportal),booleanParam(name: 'Plas', value: params.Build_Plas)], wait: true       
 }
 
 def sonarreport() {
