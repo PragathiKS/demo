@@ -206,7 +206,7 @@ pipeline {
         if (params.DeployPlas)    {
                 packageName = "tetrapak-plas.complete"
                 repoName = "tetrapak"
-                fileName = "1.0.0-DEV${Snapshot_Commons}-SNAPSHOT"
+                fileName = "1.0.0-DEV${Snapshot_Plas}-SNAPSHOT"
                 devartifactdownload()
                 parallel (
                     "Author plas" : {
