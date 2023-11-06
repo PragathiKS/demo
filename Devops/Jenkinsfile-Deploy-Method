@@ -23,6 +23,9 @@ pipeline {
 	    
         booleanParam defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'DeploySupplierportal'
         string(name: 'Snapshot_Supplierportal', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
+
+         booleanParam defaultValue: false, description: 'Please check in case you want to build plas Module', name: 'DeployPlas'
+        string(name: 'Snapshot_Plas', defaultValue: '', trim: true, description: 'If DEV202108270750 is your snapshot version, please input 202108270750 numeric part only')
     }
 
     options {
@@ -200,6 +203,21 @@ pipeline {
                     }
                 )
         }
+        if (params.DeployPlas)    {
+                packageName = "tetrapak-plas.complete"
+                repoName = "tetrapak"
+                fileName = "1.0.0-DEV${Snapshot_Commons}-SNAPSHOT"
+                devartifactdownload()
+                parallel (
+                    "Author plas" : {
+                        authordeploy()
+                    },
+                    "Publisher plas" : {
+                        publishdeploy()
+                    }
+                )
+
+            }
 
     }
     
@@ -329,18 +347,18 @@ pipeline {
     def cacheflush() { 
         build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: params.Environment)], wait: true
 
-        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: params.Environment), booleanParam(name: 'Publicweb', value: params.DeployPublicWeb), booleanParam(name: 'Customerhub', value: params.DeployMyTetrapak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.DeployTetraLaval), booleanParam(name: 'Supplierportal', value: params.DeploySupplierportal)], wait: true  
+        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: params.Environment), booleanParam(name: 'Publicweb', value: params.DeployPublicWeb), booleanParam(name: 'Customerhub', value: params.DeployMyTetrapak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.DeployTetraLaval), booleanParam(name: 'Supplierportal', value: params.DeployPlas),booleanParam(name: 'Plas', value: params.DeployPlas)], wait: true  
     }
 
    def precheck() {
-        if (!params.DeployCommons && !params.DeployMyTetrapak && !params.DeployPublicWeb && !params.DeploySupplierportal && !params.DeployTetraLaval) {
+        if (!params.DeployCommons && !params.DeployMyTetrapak && !params.DeployPublicWeb && !params.DeploySupplierportal && !params.DeployTetraLaval && !params.DeployPlas) {
             echo "Please Select atleast one project"
 			currentBuild.result = 'Failure'
 			error "Deployment failed due to incorrect parameter selection."
         }
         if ((params.DeployCommons && !params.Snapshot_Commons?.trim()) || (params.DeployMyTetrapak && !params.Snapshot_MyTetrapak?.trim()) ||
               (params.DeployPublicWeb && !params.Snapshot_PublicWeb?.trim()) || (params.DeployTetraLaval && !params.Snapshot_TetraLaval?.trim()) ||
-              (params.DeploySupplierportal && !params.Snapshot_Supplierportal?.trim())) {
+              (params.DeploySupplierportal && !params.Snapshot_Supplierportal?.trim())|| (params.DeployPlas && !params.Snapshot_Plas?.trim())) {
 				echo "Please enter corresponding SnapshotVersion field"
 				currentBuild.result = 'Failure'
 				error "Deployment failed due to Missing Snapshot Version"
