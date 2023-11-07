@@ -328,7 +328,7 @@ class AllPayments {
     return '';
   };
 
-  getApiPromise = (authData) => {
+  getApiPromise = (authData, fromFilter) => {
     const fetchHeaderOption = {
       method: 'GET',
       contentType: 'application/json',
@@ -337,21 +337,25 @@ class AllPayments {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    let statusApiPromise = this.cache.statusMapping;
+    let statusApiPromise = this.cache.statusMapping, filterApiPromise = true;
 
     const paymentApiPromise = fetch(this.getPaymentApiUrl(), fetchHeaderOption).then(resp => resp.json());
     if (Object.keys(this.cache.statusMapping).length === 0) {
       statusApiPromise = fetch(this.cache.statusApiUrl).then(resp => resp.json());
+      filterApiPromise = this.allPaymentsFilter.getAllFilters(authData);
+    }
+    if(fromFilter) {
+      filterApiPromise = this.allPaymentsFilter.getAllFilters(authData);
     }
 
-    return [paymentApiPromise, statusApiPromise, this.allPaymentsFilter.getAllFilters(authData)];
+    return [paymentApiPromise, statusApiPromise, filterApiPromise];
   }
 
   renderPayment = (fromFilter, filterData) => {
     this.showLoader(true);
 
     auth.getToken(({ data: authData }) => {
-      Promise.all(this.getApiPromise(authData))
+      Promise.all(this.getApiPromise(authData, fromFilter))
         .then(response => {
           this.showLoader(false);
           this.cache.tableData = response[0].data;
