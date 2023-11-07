@@ -147,7 +147,7 @@ class AllPayments {
   }
   getRedirectQueryParam = () => {
     const url = this.allPaymentsFilter.getFilterQueryString();
-    const { fromdatetime, todatetime, status} = this.getUrlQueryParams(url);
+    const { fromdatetime, todatetime, status} = this.getUrlQueryParams(`&${url}`);
     return `&fromdatetime=${fromdatetime}&todatetime=${todatetime}&status=${status}`;
   }
 
