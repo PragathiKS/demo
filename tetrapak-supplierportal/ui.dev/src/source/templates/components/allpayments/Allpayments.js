@@ -130,6 +130,8 @@ class AllPayments {
       }
     });
     this.root.addEventListener('FilterChanged', (e) => {
+      self.cache.activePage = 1;
+      self.cache.skipIndex = 0;
       self.renderPayment(true, e.detail);
     });
     this.allPaymentsFilter.bindEvents();
