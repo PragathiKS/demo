@@ -13,6 +13,7 @@ pipeline {
         booleanParam (defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_MyTetraPak')
 	    booleanParam (defaultValue: false, description: 'Please check in case you want to build My Tetra Pak Module', name: 'Build_Tetralaval')
 	    booleanParam (defaultValue: false, description: 'Please check in case you want to build Supplierportal Module', name: 'Build_Supplierportal')
+        booleanParam (defaultValue: false, description: 'Please check in case you want to build Plas Module', name: 'Build_Plas')
         string (description: "Type in branch name (e.g. release/develop-***)", name: 'Build_Branch', trim: true)
     }
 
@@ -96,6 +97,12 @@ pipeline {
                 script {
                     if (params.Build_Supplierportal) {
                         appname = "supplierportal"
+                        buildandsonar()
+                    }
+                }
+                script {
+                    if (params.Build_Plas) {
+                        appname = "plas"
                         buildandsonar()
                     }
                 }
@@ -209,6 +216,25 @@ pipeline {
             )
         }
 
+                if (params.Build_Plas) {
+            packageName = "tetrapak-plas.complete"
+            repoName = "tetrapak-plas"
+            fileName = "1.0.0-${build_id_number}"
+            prodartifactdownload()
+            parallel (
+                "Author plas" : {
+                    authordeploy()
+                },
+                "Publisher plas" : {
+                    publish_url = "https://publish1westeurope.stage65.tetrapak.adobecqms.net"
+                    publishdeploy()
+
+                    publish_url = "https://publish2westeurope.stage65.tetrapak.adobecqms.net"
+                    publishdeploy()
+                }
+            )
+        }
+
         if (params.Build_Publicweb) {
                 packageName = "tetrapak-publicweb.complete"
                 repoName = "tetrapak-publicweb"
@@ -279,5 +305,5 @@ pipeline {
     def cacheflush() {
         build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: 'STAGE')], wait: true
 
-        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: 'STAGE'), booleanParam(name: 'Publicweb', value: params.Build_Publicweb), booleanParam(name: 'Customerhub', value: params.Build_MyTetraPak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.Build_Tetralaval), booleanParam(name: 'Supplierportal', value: params.Build_Supplierportal)], wait: true 
+        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: 'STAGE'), booleanParam(name: 'Publicweb', value: params.Build_Publicweb), booleanParam(name: 'Customerhub', value: params.Build_MyTetraPak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.Build_Tetralaval), booleanParam(name: 'Supplierportal', value: params.Build_Supplierportal),booleanParam(name: 'Plas', value: params.Build_Plas)], wait: true 
     }
