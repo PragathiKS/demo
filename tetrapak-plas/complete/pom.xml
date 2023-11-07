@@ -88,6 +88,12 @@
         </dependency>
         <dependency>
             <groupId>tetrapak-plas</groupId>
+            <artifactId>tetrapak-plas.ui.content</artifactId>
+            <version>${project.version}</version>
+            <type>content-package</type>
+        </dependency>
+        <dependency>
+            <groupId>tetrapak-plas</groupId>
             <artifactId>tetrapak-plas.ui.dev</artifactId>
             <version>${project.version}</version>
             <type>content-package</type>
