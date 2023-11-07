@@ -37,9 +37,6 @@
     }
 }
 
-body.scrollOff {
-    overflow: hidden;
-}
 .tp-pw-headerv2-megamenu {
     @media #{$desktop} {
         margin: $margin-zero auto;

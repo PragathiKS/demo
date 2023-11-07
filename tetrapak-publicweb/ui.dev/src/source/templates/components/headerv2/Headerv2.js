@@ -445,9 +445,27 @@ throttleScroll = function () {
     }
   });
 };
+scrollOnHoverbody = function () {
+  $('.tp-pw-headerv2-megamenu').on('mousewheel DOMMouseScroll', function(event) {
+    var scrollTo = null;
+
+    if (event.type === 'mousewheel') {
+      scrollTo = (event.originalEvent.wheelDelta * -1);
+    }
+    else if (event.type === 'DOMMouseScroll') {
+      scrollTo = 40 * event.originalEvent.detail;
+    }
+
+    if (scrollTo) {
+      event.preventDefault();
+      $(this).scrollTop(scrollTo + $(this).scrollTop());
+    }
+  });
+};
 
   bindEvents = () => {
     this.throttleScroll();
+    this.scrollOnHoverbody();
     this.bindWindowSizeChangeEvent();
     this.bindSubmenuOpenEvent();
     this.bindSubmenuMobileOpenEvent();
@@ -466,6 +484,7 @@ throttleScroll = function () {
         $('.tp-pw-megamenuconfigv2').css('width', headerWidth - 96);
       }
     }
+    
   }
 
   buildMegaMenu = () => {
@@ -481,7 +500,6 @@ throttleScroll = function () {
     this.initCache();
     this.bindEvents();
     this.buildMegaMenu();
-   
   }
 }
 
