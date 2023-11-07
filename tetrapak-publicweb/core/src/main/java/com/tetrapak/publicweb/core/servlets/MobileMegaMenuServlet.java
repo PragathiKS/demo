@@ -117,6 +117,8 @@ public class MobileMegaMenuServlet extends SlingSafeMethodsServlet {
 
         }
         PrintWriter writer = response.getWriter();
+        response.setContentType(APPLICATION_JSON);
+        response.setCharacterEncoding(UTF_8);
         writer.print(new Gson().toJson(mobileJson));
     }
 
