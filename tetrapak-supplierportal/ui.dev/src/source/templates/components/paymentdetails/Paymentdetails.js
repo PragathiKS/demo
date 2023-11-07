@@ -4,7 +4,6 @@ import { logger } from '../../../scripts/utils/logger';
 import { ajaxMethods } from '../../../scripts/utils/constants';
 import auth from '../../../scripts/utils/auth';
 import file from '../../../scripts/utils/file';
-import { getFilterDateRange } from '../../../scripts/utils/dateRange';
 class Paymentdetails {
   constructor({ el }) {
     this.root = $(el);
@@ -42,11 +41,12 @@ class Paymentdetails {
     return params;
   }
   downloadPDf = () => {
-    const { documentreferenceid} = this.getUrlQueryParams();
+    const { documentreferenceid, fromdatetime, todatetime, status} = this.getUrlQueryParams();
+    const queryParam = `&fromdatetime=${fromdatetime}&todatetime=${todatetime}&status=${status}`;
     auth.getToken(() => {
       file.get({
         extension: 'pdf',
-        url: `${this.cache.exportToPdfURL}?documentreferenceid=${documentreferenceid}`,
+        url: `${this.cache.exportToPdfURL}?documentreferenceid=${documentreferenceid}${queryParam}`,
         method: ajaxMethods.GET
       });
     });
@@ -82,10 +82,10 @@ class Paymentdetails {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    const { documentreferenceid} = this.getUrlQueryParams();
-    const dateRange = getFilterDateRange(this.cache.dateRange);
+    const { documentreferenceid, fromdatetime, todatetime, status} = this.getUrlQueryParams();
+    const queryParam = `&fromdatetime=${fromdatetime}&todatetime=${todatetime}&status=${status}`;
     // TODO: Need to remove count query param. these are added only for testing purpose.
-    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1${dateRange}`;
+    const url = `${this.cache.detailsApi}?documentreferenceid=${documentreferenceid}&count=1${queryParam}`;
     const paymentApiPromise = fetch(url, fetchHeaderOption).then(resp => resp.json());
     const statusApiPromise = fetch(this.cache.statusApiUrl).then(resp => resp.json());
     return [paymentApiPromise, statusApiPromise];

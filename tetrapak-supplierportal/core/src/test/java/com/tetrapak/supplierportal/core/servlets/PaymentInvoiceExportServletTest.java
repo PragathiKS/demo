@@ -48,6 +48,12 @@ public class PaymentInvoiceExportServletTest {
 	private static final String AUTHTOKEN = "authToken";
 
 	private static final String STATUS_CODE = "status_code";
+	private static final String FROM_DATE_TIME_VAL = "2023-08-08T00:00:00";
+	private static final String TO_DATE_TIME_VAL = "2023-11-07T09:10:07";
+	private static final String STATUS_VAL = "inprocess";
+	public static final String TO_DATE_TIME = "todatetime";
+	public static final String FROM_DATE_TIME = "fromdatetime";
+	public static final String STATUS = "status";
 
 	@InjectMocks
 	private PaymentInvoiceExportServlet servlet;
@@ -87,7 +93,7 @@ public class PaymentInvoiceExportServletTest {
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty(STATUS_CODE, 200);
 		when(service.preparePdf(any(), any(), any(), any())).thenReturn(true);
-		when(service.retrievePaymentDetails(anyString(), anyString()))
+		when(service.retrievePaymentDetails(anyString(), anyString(),anyString(),anyString(),anyString()))
 				.thenReturn(jsonResponse);
 	}
 
@@ -104,6 +110,9 @@ public class PaymentInvoiceExportServletTest {
 	public void doGetWhenAuthTokenMissing() throws IOException, ServletException {
 		Map<String, Object> map = new HashMap<>();
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
+		map.put(FROM_DATE_TIME, FROM_DATE_TIME_VAL);
+		map.put(TO_DATE_TIME, TO_DATE_TIME_VAL);
+		map.put(STATUS, STATUS_VAL);
 		Mockito.when(request.getCookie(AUTHTOKEN)).thenReturn(null);
 		request.setParameterMap(map);
 		servlet.doGet(request, response);
@@ -114,6 +123,9 @@ public class PaymentInvoiceExportServletTest {
 	public void doGetWhenModelIsNull() throws IOException, ServletException {
 		Map<String, Object> map = new HashMap<>();
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
+		map.put(FROM_DATE_TIME, FROM_DATE_TIME_VAL);
+		map.put(TO_DATE_TIME, TO_DATE_TIME_VAL);
+		map.put(STATUS, STATUS_VAL);
 		request.setParameterMap(map);
 		servlet.doGet(request, response);
 		assertEquals("Status should be ok ", HttpStatus.SC_INTERNAL_SERVER_ERROR, response.getStatus());
@@ -123,12 +135,15 @@ public class PaymentInvoiceExportServletTest {
 	public void doGetWhenStatusIsNot200() throws IOException, ServletException {
 		Map<String, Object> map = new HashMap<>();
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
+		map.put(FROM_DATE_TIME, FROM_DATE_TIME_VAL);
+		map.put(TO_DATE_TIME, TO_DATE_TIME_VAL);
+		map.put(STATUS, STATUS_VAL);
 		request.setParameterMap(map);
 		JsonObject jsonResponse = new JsonObject();
 		jsonResponse.addProperty(STATUS_CODE, 400);
 		when(request.getResource()).thenReturn(resource);
 		when(resource.adaptTo(PaymentDetailsModel.class)).thenReturn(model);
-		when(service.retrievePaymentDetails(anyString(), anyString()))
+		when(service.retrievePaymentDetails(anyString(), anyString(),anyString(),anyString(),anyString()))
 				.thenReturn(jsonResponse);
 		servlet.doGet(request, response);
 		assertEquals("Status should be ok ", HttpStatus.SC_INTERNAL_SERVER_ERROR, response.getStatus());
@@ -138,6 +153,9 @@ public class PaymentInvoiceExportServletTest {
 	public void doGet() throws IOException, ServletException, URISyntaxException {
 		Map<String, Object> map = new HashMap<>();
 		map.put(DOCUMENT_REFERENCE_ID, "12345678");
+		map.put(FROM_DATE_TIME, FROM_DATE_TIME_VAL);
+		map.put(TO_DATE_TIME, TO_DATE_TIME_VAL);
+		map.put(STATUS, STATUS_VAL);
 		request.setParameterMap(map);
 		when(request.getResource()).thenReturn(resource);
 		when(resource.adaptTo(PaymentDetailsModel.class)).thenReturn(model);
@@ -147,7 +165,7 @@ public class PaymentInvoiceExportServletTest {
 		JsonElement element = gson.fromJson(content, JsonElement.class);
 		JsonObject jsonObj = element.getAsJsonObject();
 		jsonObj.addProperty(STATUS_CODE, 200);
-		when(service.retrievePaymentDetails(anyString(),anyString())).thenReturn(jsonObj);
+		when(service.retrievePaymentDetails(anyString(),anyString(),anyString(),anyString(),anyString())).thenReturn(jsonObj);
 		servlet.doGet(request, response);
 		assertEquals("Status should be ok ", HttpStatus.SC_OK, response.getStatus());
 	}

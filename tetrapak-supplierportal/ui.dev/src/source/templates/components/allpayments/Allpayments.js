@@ -75,9 +75,13 @@ class AllPayments {
         else if(e.target.closest('.tp-all-payments__table-summary__body .tp-all-payments__table-summary__row')){
           const row = e.target.closest('.tp-all-payments__table-summary__row');
           const id = row.querySelector('[data-key="documentReferenceID"]').textContent.trim();
-          const paymentDetailsURL = self.cache.paymentApi.getAttribute('data-payment-details-url');
-          const url = `${paymentDetailsURL}?documentreferenceid=${id}`;
-          window.open(url, '_blank');
+          if(id){
+            const queryParam = self.getRedirectQueryParam();
+            const paymentDetailsURL = self.cache.paymentApi.getAttribute('data-payment-details-url');
+            const url = `${paymentDetailsURL}?documentreferenceid=${id}${queryParam}`;
+            window.open(url, '_blank');
+          }
+
         }
       });
     }
@@ -135,6 +139,18 @@ class AllPayments {
       self.renderPayment(true, e.detail);
     });
     this.allPaymentsFilter.bindEvents();
+  }
+  getUrlQueryParams(url) {
+    const params = {};
+    url?.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (_, key, value) {
+      return (params[key] = value);
+    });
+    return params;
+  }
+  getRedirectQueryParam = () => {
+    const url = this.allPaymentsFilter.getFilterQueryString();
+    const { fromdatetime, todatetime, status} = this.getUrlQueryParams(`&${url}`);
+    return `&fromdatetime=${fromdatetime}&todatetime=${todatetime}&status=${status}`;
   }
 
   getCheckboxFilterData = () => {

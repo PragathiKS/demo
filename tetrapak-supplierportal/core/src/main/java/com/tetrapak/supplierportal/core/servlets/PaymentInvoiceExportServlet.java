@@ -2,9 +2,12 @@ package com.tetrapak.supplierportal.core.servlets;
 
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.AUTHTOKEN;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DOCUMENT_REFERENCE_ID;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.FROM_DATE_TIME;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESPONSE_STATUS_OK;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.RESULT;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.STATUS_CODE;
+import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.TO_DATE_TIME;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -74,12 +77,21 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 		LOGGER.debug("HTTP GET request from Payment Invoice Export Servlet");
 		JsonObject jsonObj = new JsonObject();
      	String documentReferenceId = request.getParameter(DOCUMENT_REFERENCE_ID);
-		if (StringUtils.isBlank(documentReferenceId)) {
+     	String fromDateTime =  request.getParameter(FROM_DATE_TIME);
+     	String toDateTime =  request.getParameter(TO_DATE_TIME);
+     	String status =  request.getParameter(STATUS);
+		if (StringUtils.isBlank(documentReferenceId)|| 
+				StringUtils.isBlank(fromDateTime) ||
+				StringUtils.isBlank(toDateTime) ||
+				StringUtils.isBlank(status)) {
 			response.setStatus(HttpStatus.SC_BAD_REQUEST);
-			response.getWriter().write("Invalid Input.DocumentReferenceId  Missing.");
+			response.getWriter().write("Invalid Input. DocumentReferenceId OR FromDate OR ToDate OR Status is Missing.");
 			return;
 		} else {
 			documentReferenceId = xssAPI.encodeForHTML(documentReferenceId);
+			fromDateTime = xssAPI.encodeForHTML(fromDateTime);
+			toDateTime = xssAPI.encodeForHTML(toDateTime);
+			status = xssAPI.encodeForHTML(status);
 		}
 
 		String authTokenStr;
@@ -95,7 +107,8 @@ public class PaymentInvoiceExportServlet extends SlingAllMethodsServlet {
 			return;
 		}
 
-		JsonObject jsonResponse = paymentInvoiceDownloadSevice.retrievePaymentDetails(authTokenStr,documentReferenceId);
+		JsonObject jsonResponse = paymentInvoiceDownloadSevice.retrievePaymentDetails(authTokenStr,documentReferenceId,
+				fromDateTime, toDateTime, status);
 		JsonElement statusResponse = jsonResponse.get(STATUS_CODE);
 
         boolean flag = false;
