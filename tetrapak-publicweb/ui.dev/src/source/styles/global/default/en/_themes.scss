@@ -1,8 +1,8 @@
-html {
-    @media #{$desktop} {
-        margin-left: calc(100vw - 100%); 
-    }
-}
+// html {
+//     @media #{$desktop} {
+//         margin-left: calc(100vw - 100%); 
+//     }
+// }
 body {
     @include line-height($font-l, $font-baseline);
     font-family: $font-monsterrat;
@@ -11,9 +11,10 @@ body {
     font-size: $font-baseline;
     font-style: normal;
     position: relative;
-    @media #{$desktop} {
-    margin-left: -($margin-twenty);
-    }
+    // @media #{$desktop} {
+    // margin-left: -($margin-twenty);
+    // }
+   
 }
 .bannercontainer {
     position: relative;
