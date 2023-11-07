@@ -10,7 +10,6 @@ import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.CONTENT_DISPOSITION;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.CONTENT_TYPE;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.COUNT;
-import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DATE_FORMAT;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.DOCUMENT_REFERENCE_ID;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.FROM_DATE_TIME;
 import static com.tetrapak.supplierportal.core.constants.SupplierPortalConstants.INVOICE_MAPPING;
@@ -31,8 +30,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -104,28 +101,22 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 	private PaymentDetailsModel paymentDetailsModel;
 	
 	
-	private HttpGet createRequest(final String apiURL, final String authTokenStr, final String docReferId)
+	private HttpGet createRequest(final String apiURL, final String authTokenStr, final String docReferId
+			,String fromDateTime,String toDateTime,String status)
 			throws UnsupportedEncodingException, URISyntaxException {
 		HttpGet getRequest = new HttpGet(apiURL);
 		getRequest.addHeader(AUTHORIZATION, BEARER + authTokenStr);
 		getRequest.addHeader(CONTENT_TYPE, APPLICATION_URL_ENCODED);
 		getRequest.addHeader(ACCEPT, APPLICATION_JSON);
-		int fromToDateGapInMonths = invoiceStatusService.getFromToDateGapInMonthsVal();
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-		LocalDateTime toDate = LocalDateTime.now();
-		LocalDateTime fromDate = toDate.minusMonths(fromToDateGapInMonths);
-		String toDateStr = toDate.format(dateTimeFormatter);
-		String fromDateStr = fromDate.format(dateTimeFormatter);
-
 		URI uri = new URIBuilder(getRequest.getURI()).addParameter(DOCUMENT_REFERENCE_ID, docReferId)
-				.addParameter(COUNT, "1").addParameter(FROM_DATE_TIME, fromDateStr)
-				.addParameter(TO_DATE_TIME, toDateStr).build();
+				.addParameter(COUNT, "1").addParameter(FROM_DATE_TIME, fromDateTime)
+				.addParameter(TO_DATE_TIME, toDateTime).addParameter(STATUS, status).build();
 		((HttpRequestBase) getRequest).setURI(uri);
 		return getRequest;
 	}
 
 	@Override
-	public JsonObject retrievePaymentDetails(String authTokenStr, String docReferId)
+	public JsonObject retrievePaymentDetails(String authTokenStr, String docReferId,String fromDateTime,String toDateTime,String status)
 			throws IOException {
 		LOGGER.debug("PaymentInvoiceDownloadServiceImpl#preparePdf-- Start");
 		JsonObject jsonResponse = new JsonObject();
@@ -134,7 +125,7 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		int statusCode = HttpStatus.SC_INTERNAL_SERVER_ERROR;
 		try {
-			HttpGet getRequest = createRequest(apiURL, authTokenStr, docReferId);
+			HttpGet getRequest = createRequest(apiURL, authTokenStr, docReferId,fromDateTime,toDateTime,status);
 			HttpResponse httpResponse = httpClient.execute(getRequest);
 			statusCode = httpResponse.getStatusLine().getStatusCode();
 			jsonResponse.addProperty(STATUS_CODE, statusCode);

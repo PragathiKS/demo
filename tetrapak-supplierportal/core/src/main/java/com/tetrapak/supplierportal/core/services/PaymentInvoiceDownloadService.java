@@ -11,7 +11,7 @@ import com.tetrapak.supplierportal.core.models.PaymentDetailsModel;
 
 public interface PaymentInvoiceDownloadService {
 	
-	JsonObject retrievePaymentDetails(String authTokenStr,String docReferId) throws IOException;
+	JsonObject retrievePaymentDetails(String authTokenStr,String docReferId,String fromDateTime,String toDateTime,String status) throws IOException;
 	
 	boolean preparePdf(PaymentDetails paymentDetails, SlingHttpServletRequest request,SlingHttpServletResponse response,PaymentDetailsModel paymentDetailsModel);
 
