@@ -447,7 +447,7 @@ throttleScroll = function () {
 };
 scrollOnHoverbody = function () {
   $('.tp-pw-headerv2-megamenu').on('mousewheel DOMMouseScroll', function(event) {
-    var scrollTo = null;
+    let scrollTo = null;
 
     if (event.type === 'mousewheel') {
       scrollTo = (event.originalEvent.wheelDelta * -1);
