@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import com.day.cq.wcm.api.Page;
+import com.tetrapak.publicweb.core.services.NoIndexNoFollowService;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -33,11 +34,22 @@ public class PageHeadModel {
     @OSGiService
     private BaiduMapService baiduMapService;
 
+    /** The NoIndexNoFollowService. */
+    @OSGiService
+    private NoIndexNoFollowService noIndexNoFollowService;
+
     /** The Baidu Map Key. */
     private String baiduMapkey;
 
-
+    /** The Page Title Country Suffix */
     private String pageTitleCountrySuffix;
+
+    /** The Application Name */
+    private String[] applicationName;
+
+    /** The No Index No follow */
+    private boolean noIndexNofollow=true;
+     
 
     /**
      * Inits the model.
@@ -55,6 +67,15 @@ public class PageHeadModel {
                 pageTitleCountrySuffix = countryPage.getTitle();
             }
         }
+
+        //set No index no follow property false for apps in OSGI config
+        String[] applications = noIndexNoFollowService.getApplicationName();
+        for (String appName : applications){
+            if(path.contains(appName))
+            {
+                noIndexNofollow=false;
+            }
+        }
     }
 
     /**
@@ -66,8 +87,31 @@ public class PageHeadModel {
         return baiduMapkey;
     }
 
-
+    /**
+     * Gets the Page Title Country Suffix.
+     *
+     * @return the Page Title Country Suffix
+     */
     public String getPageTitleCountrySuffix() {
         return pageTitleCountrySuffix;
     }
+
+    /**
+     * Gets the Application Name
+     *
+     * @return the Application Name
+     */
+    public String[] getApplicationName() {
+        return noIndexNoFollowService.getApplicationName();
+    }
+
+    /**
+     * Gets the No Index No follow
+     *
+     * @return the No Index No follow
+     */
+    public boolean getNoIndexNofollow() {
+        return noIndexNofollow;
+    }
+
 }
