@@ -1,99 +1,96 @@
 <template data-sly-template.head="${ @ page, digitalDataModel,pageHeadModel}"
-          data-sly-use.headlibRenderer="headlibs.html" data-sly-use.headResources="head.resources.html"
-          data-sly-use.thumbnailConfigModel="com.tetrapak.publicweb.core.models.ThumbnailConfigModel">
+  data-sly-use.headlibRenderer="headlibs.html" data-sly-use.headResources="head.resources.html"
+  data-sly-use.thumbnailConfigModel="com.tetrapak.publicweb.core.models.ThumbnailConfigModel">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <!-- When Online help meta valaues always will NoIndex and NoFollow -->
     <sly data-sly-test="${!pageHeadModel.noIndexNofollow}">
-        <sly data-sly-test.indexVal="noindex"
-             data-sly-test.followVal="noFollow" />
+      <sly data-sly-test.indexVal="noindex" data-sly-test.followVal="noFollow" />
     </sly>
-
     <!-- When Public Web meta valaues based on the page properties -->
     <sly data-sly-test="${pageHeadModel.noIndexNofollow}">
-        <sly data-sly-test.indexVal="${properties.noIndex ? 'noindex' : 'index'}"
-             data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" />
+      <sly data-sly-test.indexVal="${properties.noIndex ? 'noindex' : 'index'}"
+        data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" />
+
+  <title>
+    ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ?
+    inheritedPageProperties.titleSuffix : 'Tetra Pak'} ${pageHeadModel.pageTitleCountrySuffix}
+  </title>
+  <link rel="icon" type="image/png" href="/content/dam/tetrapak/publicweb/favicon.png">
+  <script type="text/javascript">
+    var digitalData = ${ digitalDataModel.digitalData @context="unsafe"};
+  </script>
+
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/pw-icons.woff" as="font" type="font/woff" crossorigin />
+
+  <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}" />
+  <meta data-sly-test.description="${properties['jcr:description']}" name="description"
+    content="${description @ context='scriptComment'}" />
+  <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="robots" content="${indexVal}, ${followVal}" />
+  <!--/* Start of SEO canonical and href functionality */-->
+  <sly data-sly-test="${indexVal != 'noindex' && followVal != 'nofollow' && digitalDataModel.isPublisher}">
+    <sly data-sly-test="${digitalDataModel.canonicalURL}">
+      <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
     </sly>
-
-    <title>
-        ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ?
-        inheritedPageProperties.titleSuffix : 'Tetra Pak'} ${pageHeadModel.pageTitleCountrySuffix}
-    </title>
-    <link rel="icon" type="image/png" href="/content/dam/tetrapak/publicweb/favicon.png">
-    <script type="text/javascript">
-        var digitalData = ${ digitalDataModel.digitalData @context="unsafe"};
-    </script>
-
-    <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-500.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/montserrat-v25-latin-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/apps/settings/wcm/designs/commons/clientlibs/global.publish/fonts/pw-icons.woff" as="font" type="font/woff" crossorigin />
-
-    <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}" />
-    <meta data-sly-test.description="${properties['jcr:description']}" name="description"
-          content="${description @ context='scriptComment'}" />
-    <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="robots" content="${indexVal}, ${followVal}" />
-    <!--/* Start of SEO canonical and href functionality */-->
-    <sly data-sly-test="${indexVal != 'noindex' && followVal != 'nofollow' && digitalDataModel.isPublisher}">
-        <sly data-sly-test="${digitalDataModel.canonicalURL}">
-            <link rel="canonical" href="${digitalDataModel.canonicalURL}" />
-        </sly>
-        <sly data-sly-test="${digitalDataModel.hreflangValues}">
-            <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
-                <link rel="alternate" hreflang="${hreflangData.locale}" href="${hreflangData.pageUrl}" />
-            </sly>
-        </sly>
+    <sly data-sly-test="${digitalDataModel.hreflangValues}">
+      <sly data-sly-list.hreflangData="${digitalDataModel.hreflangValues}">
+        <link rel="alternate" hreflang="${hreflangData.locale}" href="${hreflangData.pageUrl}" />
+      </sly>
     </sly>
-    <!--/* End of SEO canonical and href functionality */-->
+  </sly>
+  <!--/* End of SEO canonical and href functionality */-->
 
-    <meta data-sly-test="${properties['jcr:title']}" property="og:title"
-          content="${properties['jcr:title'] @ context='scriptComment'}" />
-    <meta data-sly-test="${properties['jcr:description']}" property="og:description"
-          content="${properties['jcr:description'] @ context='scriptComment'}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="${digitalDataModel.currentPageURL}" />
-    <meta data-sly-test="${properties['jcr:description']}" name="twitter:description"
-          content="${properties['jcr:description'] @ context='scriptComment'}" />
-    <meta data-sly-test="${properties['jcr:title']}" name="twitter:title"
-          content="${properties['jcr:title'] @ context='scriptComment'}" />
-    <meta name="twitter:site" content="@tetrapak" />
-    <meta name="twitter:card" content="summary" />
+  <meta data-sly-test="${properties['jcr:title']}" property="og:title"
+    content="${properties['jcr:title'] @ context='scriptComment'}" />
+  <meta data-sly-test="${properties['jcr:description']}" property="og:description"
+    content="${properties['jcr:description'] @ context='scriptComment'}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="${digitalDataModel.currentPageURL}" />
+  <meta data-sly-test="${properties['jcr:description']}" name="twitter:description"
+    content="${properties['jcr:description'] @ context='scriptComment'}" />
+  <meta data-sly-test="${properties['jcr:title']}" name="twitter:title"
+    content="${properties['jcr:title'] @ context='scriptComment'}" />
+  <meta name="twitter:site" content="@tetrapak" />
+  <meta name="twitter:card" content="summary" />
 
-    <sly data-sly-test="${thumbnailConfigModel.valid}"
-         data-sly-use.dynamicMetaImage="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=thumbnailConfigModel.openGraphImagePath, componentName='thumbnailConfig'}">
-        <meta property="og:image" content="${dynamicMetaImage.desktopUrl}" />
-        <meta name="twitter:image" content="${dynamicMetaImage.desktopUrl}" />
-    </sly>
+  <sly data-sly-test="${thumbnailConfigModel.valid}"
+    data-sly-use.dynamicMetaImage="${'com.tetrapak.publicweb.core.models.DynamicImageModel' @ imagePath=thumbnailConfigModel.openGraphImagePath, componentName='thumbnailConfig'}">
+    <meta property="og:image" content="${dynamicMetaImage.desktopUrl}" />
+    <meta name="twitter:image" content="${dynamicMetaImage.desktopUrl}" />
+  </sly>
+ 
+  <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${digitalDataModel.dataDomainScript}" ></script>
+  <script type="text/javascript">
+    function OptanonWrapper() { }
+  </script>
+ 
+ 
 
-    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="${digitalDataModel.dataDomainScript}"></script>
-    <script type="text/javascript">
-        function OptanonWrapper() { }
-    </script>
+  <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
+    <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js"></script>
+  </sly>
 
+  <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
+  </sly>
+  <!--/* script for DEV and QA */-->
+  <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
+    <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
+  </sly>
 
-
-    <sly data-sly-test="${digitalDataModel.production && digitalDataModel.isPublisher}">
-        <script src="//assets.adobedtm.com/launch-EN0d78cb162d36485d830065378e34eaa9.min.js"></script>
-    </sly>
-
-    <sly data-sly-test="${digitalDataModel.staging && digitalDataModel.isPublisher}">
-        <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
-    </sly>
-    <!--/* script for DEV and QA */-->
-    <sly data-sly-test="${digitalDataModel.development && digitalDataModel.isPublisher}">
-        <script src="//assets.adobedtm.com/launch-ENee1a586aa21a464abd3b7626503523ad-development.min.js"></script>
-    </sly>
-
-    <sly data-sly-include="customheaderlibs.html"></sly>
-    <sly data-sly-call="${headlibRenderer.headlibs @
+  <sly data-sly-include="customheaderlibs.html"></sly>
+  <sly data-sly-call="${headlibRenderer.headlibs @
                                 designPath         = page.designPath,
                                 staticDesignPath   = page.staticDesignPath,
                                 clientLibCategories = page.clientLibCategories,
                               clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
-    <sly data-sly-test.appResourcesPath=${page.appResourcesPath}
-         data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
+  <sly data-sly-test.appResourcesPath=${page.appResourcesPath}
+    data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
 </template>
