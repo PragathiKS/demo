@@ -5,14 +5,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <!-- When Online help meta valaues always will NoIndex and NoFollow -->
-    <sly data-sly-test="${!pageHeadModel.noIndexNofollow}">
-      <sly data-sly-test.indexVal="noindex" data-sly-test.followVal="noFollow" />
+    <sly data-sly-test="${pageHeadModel.noIndexNofollow}">
+      <sly data-sly-test.indexVal="noindex" data-sly-test.followVal="nofollow" />
     </sly>
     <!-- When Public Web meta valaues based on the page properties -->
-    <sly data-sly-test="${pageHeadModel.noIndexNofollow}">
+    <sly data-sly-test="${!pageHeadModel.noIndexNofollow}">
       <sly data-sly-test.indexVal="${properties.noIndex ? 'noindex' : 'index'}"
         data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" />
-
+      </sly>
   <title>
     ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ?
     inheritedPageProperties.titleSuffix : 'Tetra Pak'} ${pageHeadModel.pageTitleCountrySuffix}

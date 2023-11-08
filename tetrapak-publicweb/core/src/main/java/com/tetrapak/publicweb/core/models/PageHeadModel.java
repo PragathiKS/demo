@@ -48,7 +48,7 @@ public class PageHeadModel {
     private String[] applicationName;
 
     /** The No Index No follow */
-    private boolean noIndexNofollow=true;
+    private boolean noIndexNofollow=false;
      
 
     /**
@@ -73,7 +73,7 @@ public class PageHeadModel {
         for (String appName : applications){
             if(path.contains(appName))
             {
-                noIndexNofollow=false;
+                noIndexNofollow=true;
             }
         }
     }
