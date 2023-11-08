@@ -151,6 +151,8 @@ class Paymentdetails {
     return '';
   };
   getTotalAmount = (paymentData) => {
+    const clearingDate = paymentData?.clearingDate || '';
+    const planningDate = paymentData?.planningDate || '';
     let amountInTransactionCurrency = paymentData?.amountInTransactionCurrency || '';
     let withholdingTaxAmmount = paymentData?.withholdingTaxAmmount || '';
     amountInTransactionCurrency = parseFloat(amountInTransactionCurrency);
@@ -158,13 +160,14 @@ class Paymentdetails {
     amountInTransactionCurrency = Number.isNaN(amountInTransactionCurrency) ? '' : amountInTransactionCurrency;
     withholdingTaxAmmount = Number.isNaN(withholdingTaxAmmount) ? '' : withholdingTaxAmmount;
     let totalInvoiceAmount = '';
-    if(typeof amountInTransactionCurrency === 'number'){
+    if(amountInTransactionCurrency && typeof amountInTransactionCurrency === 'number'){
       totalInvoiceAmount = amountInTransactionCurrency;
     }
-    if(typeof withholdingTaxAmmount === 'number'){
+    if(withholdingTaxAmmount && typeof withholdingTaxAmmount === 'number'){
       totalInvoiceAmount = totalInvoiceAmount + withholdingTaxAmmount;
+      totalInvoiceAmount = totalInvoiceAmount.toFixed(2);
     }
-    return { totalInvoiceAmount, amountInTransactionCurrency, withholdingTaxAmmount };
+    return { totalInvoiceAmount, amountInTransactionCurrency, withholdingTaxAmmount, clearingDate, planningDate };
   }
   renderPaymentDetails = () => {
     this.showLoader(true);
