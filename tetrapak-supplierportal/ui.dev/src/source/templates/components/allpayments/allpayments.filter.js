@@ -78,7 +78,7 @@ class AllPaymentsFilter {
             return `fromdatetime=${fromDate}&todatetime=${toDate}`;
           }
           else {
-            return `${encodeURIComponent(self.cache.queryParamMapping[key])}=${value.map(val => encodeURIComponent(val)).join(',')}`;
+            return `${self.cache.queryParamMapping[key]}=${value.map(val => val).join(',')}`;
           }
         }
         else {
