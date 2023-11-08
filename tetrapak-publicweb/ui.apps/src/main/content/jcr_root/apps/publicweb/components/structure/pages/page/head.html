@@ -3,6 +3,16 @@
   data-sly-use.thumbnailConfigModel="com.tetrapak.publicweb.core.models.ThumbnailConfigModel">
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- When Online help meta valaues always will NoIndex and NoFollow -->
+    <sly data-sly-test="${!pageHeadModel.noIndexNofollow}">
+      <sly data-sly-test.indexVal="noindex" data-sly-test.followVal="noFollow" />
+    </sly>
+    <!-- When Public Web meta valaues based on the page properties -->
+    <sly data-sly-test="${pageHeadModel.noIndexNofollow}">
+      <sly data-sly-test.indexVal="${properties.noIndex ? 'noindex' : 'index'}"
+        data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}" />
+
   <title>
     ${page.title @ context='scriptComment'} | ${inheritedPageProperties.titleSuffix ?
     inheritedPageProperties.titleSuffix : 'Tetra Pak'} ${pageHeadModel.pageTitleCountrySuffix}
@@ -22,9 +32,7 @@
     content="${description @ context='scriptComment'}" />
   <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="robots" data-sly-test.indexVal="${properties.noIndex ? 'noindex' : 'index'}"
-    data-sly-test.followVal="${properties.noFollow ? properties.noFollow : 'follow'}"
-    content="${indexVal}, ${followVal}" />
+  <meta name="robots" content="${indexVal}, ${followVal}" />
   <!--/* Start of SEO canonical and href functionality */-->
   <sly data-sly-test="${indexVal != 'noindex' && followVal != 'nofollow' && digitalDataModel.isPublisher}">
     <sly data-sly-test="${digitalDataModel.canonicalURL}">

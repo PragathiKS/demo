@@ -2,7 +2,9 @@ package com.tetrapak.publicweb.core.models;
 
 import com.day.cq.wcm.api.Page;
 import com.tetrapak.publicweb.core.services.BaiduMapService;
+import com.tetrapak.publicweb.core.services.NoIndexNoFollowService;
 import com.tetrapak.publicweb.core.services.impl.BaiduMapServiceImpl;
+import com.tetrapak.publicweb.core.services.impl.NoIndexNoFollowServiceImpl;
 import com.tetrapak.publicweb.core.utils.PageUtil;
 import io.wcm.testing.mock.aem.junit.AemContext;
 import org.apache.sling.testing.mock.osgi.MockOsgi;
@@ -43,6 +45,9 @@ public class PageHeadModelTest {
     /** The BaiduMapService **/
     private BaiduMapService baiduMapService;
 
+    /** The BaiduMapService **/
+    private NoIndexNoFollowService noIndexNoFollowService;
+
     @Mock
     private Page countryPage;
 
@@ -58,11 +63,16 @@ public class PageHeadModelTest {
         final Map<String, Object> baiduConfig = new HashMap<>();
         baiduConfig.put("baiduMapKey","i2VwWovOU2OomMlYNPhXmGhMXcESpXVr");
         MockOsgi.activate(Objects.requireNonNull(context.getService(BaiduMapService.class)), context.bundleContext(), baiduConfig);
+        noIndexNoFollowService = new NoIndexNoFollowServiceImpl();
+        context.registerService(NoIndexNoFollowService.class, noIndexNoFollowService);
+        final Map<String, Object> noIndexNoFollowConfig = new HashMap<>();
+        baiduConfig.put("applicationName",null);
+        MockOsgi.activate(Objects.requireNonNull(context.getService(NoIndexNoFollowService.class)), context.bundleContext(), noIndexNoFollowConfig);
         request.setResource(context.resourceResolver().getResource(RESOURCE));
         context.currentPage(TEST_CONTENT_ROOT+"/zh/home");
         model = request.adaptTo(modelClass);
 
-    }
+             }
 
     /**
      * Test model, resource and all getters of the Page Head model.
@@ -73,6 +83,6 @@ public class PageHeadModelTest {
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("i2VwWovOU2OomMlYNPhXmGhMXcESpXVr", model.getBaiduMapkey());
         assertEquals("China", model.getPageTitleCountrySuffix());
+        assertEquals(true, model.getNoIndexNofollow());
     }
-
 }
