@@ -83,6 +83,6 @@ public class PageHeadModelTest {
     public void simpleLoadAndGettersTest() throws Exception {
         assertEquals("i2VwWovOU2OomMlYNPhXmGhMXcESpXVr", model.getBaiduMapkey());
         assertEquals("China", model.getPageTitleCountrySuffix());
-        assertEquals(true, model.getNoIndexNofollow());
+        assertEquals(false, model.getNoIndexNofollow());
     }
 }
