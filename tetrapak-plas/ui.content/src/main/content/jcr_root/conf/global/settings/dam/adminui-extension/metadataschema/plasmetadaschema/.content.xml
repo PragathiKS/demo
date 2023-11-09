@@ -1887,6 +1887,79 @@
                             sling:resourceType="granite/ui/components/coral/foundation/container"
                             listOrder="0">
                             <items jcr:primaryType="nt:unstructured">
+                                <_x0031_699511976350
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/schemafield"
+                                    fieldLabel="DocumentType"
+                                    name="./jcr:content/metadata/plasDocumentType"
+                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
+                                    <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-msm-lockable="./metadata/plasDocumentType"
+                                        metaType="text"
+                                        requiredCascading="default"
+                                        visibilityCascading="default"/>
+                                </_x0031_699511976350>
+                                <_x0031_699512003610
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/schemafield"
+                                    fieldLabel="MachineSystem"
+                                    name="./jcr:content/metadata/plasMachineSystem"
+                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
+                                    <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-msm-lockable="./metadata/plasMachineSystem"
+                                        metaType="text"
+                                        requiredCascading="default"
+                                        visibilityCascading="default"/>
+                                </_x0031_699512003610>
+                                <_x0031_699512041116
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/schemafield"
+                                    fieldLabel="DevelopmentStep"
+                                    name="./jcr:content/metadata/plasDevelopmentStep"
+                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
+                                    <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-msm-lockable="./metadata/plasDevelopmentStep"
+                                        metaType="text"
+                                        requiredCascading="default"
+                                        visibilityCascading="default"/>
+                                </_x0031_699512041116>
+                                <_x0031_699512131916
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/schemafield"
+                                    fieldLabel="Function"
+                                    name="./jcr:content/metadata/plasFunction"
+                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
+                                    <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-msm-lockable="./metadata/plasFunction"
+                                        metaType="text"
+                                        requiredCascading="default"
+                                        visibilityCascading="default"/>
+                                </_x0031_699512131916>
+                                <_x0031_699511816057
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/schemafield"
+                                    fieldLabel="Version"
+                                    name="./jcr:content/metadata/plasVersion"
+                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
+                                    <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-msm-lockable="./metadata/plasVersion"
+                                        metaType="text"
+                                        requiredCascading="default"
+                                        visibilityCascading="default"/>
+                                </_x0031_699511816057>
+                            </items>
+                        </col1>
+                        <col2
+                            granite:rel="aem-assets-metadata-form-column"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            listOrder="1">
+                            <items jcr:primaryType="nt:unstructured">
                                 <_x0031_699512203477
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="dam/gui/components/admin/schemafield"
@@ -1978,33 +2051,30 @@
                                         requiredCascading="default"
                                         visibilityCascading="default"/>
                                 </_x0031_699512546533>
-                                <_x0031_699512588838
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="dam/gui/components/admin/schemafield"
-                                    fieldLabel="History"
-                                    resourceType="granite/ui/components/coral/foundation/form/multifield">
-                                    <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        metaType="mvtext"
-                                        requiredCascading="default"
-                                        visibilityCascading="default"/>
-                                    <field
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        name="./jcr:content/metadata/plasHistory">
-                                        <granite:data
-                                            jcr:primaryType="nt:unstructured"
-                                            cq-msm-lockable="./metadata/plasHistory"/>
-                                    </field>
-                                </_x0031_699512588838>
                             </items>
-                        </col1>
-                        <col2
+                        </col2>
+                        <col3
                             granite:rel="aem-assets-metadata-form-column"
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/container"
-                            listOrder="1">
+                            listOrder="2">
                             <items jcr:primaryType="nt:unstructured">
+                                <_x0031_699511464140
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="dam/gui/components/admin/schemafield"
+                                    displayedFormat="YYYY-MM-DD HH:mm"
+                                    fieldLabel="Date"
+                                    name="./jcr:content/metadata/plasDate"
+                                    resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                    type="datetime">
+                                    <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-msm-lockable="./metadata/plasDate"
+                                        metaType="datepicker"
+                                        requiredCascading="default"
+                                        typeHint="Date"
+                                        visibilityCascading="default"/>
+                                </_x0031_699511464140>
                                 <_x0031_699509347829
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="dam/gui/components/admin/schemafield"
@@ -2024,95 +2094,25 @@
                                             cq-msm-lockable="./metadata/plasLinks"/>
                                     </field>
                                 </_x0031_699509347829>
-                                <_x0031_699511464140
+                                <_x0031_699512588838
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="dam/gui/components/admin/schemafield"
-                                    displayedFormat="YYYY-MM-DD HH:mm"
-                                    fieldLabel="Date"
-                                    name="./jcr:content/metadata/plasDate"
-                                    resourceType="granite/ui/components/coral/foundation/form/datepicker"
-                                    type="datetime">
+                                    fieldLabel="History"
+                                    resourceType="granite/ui/components/coral/foundation/form/multifield">
                                     <granite:data
                                         jcr:primaryType="nt:unstructured"
-                                        cq-msm-lockable="./metadata/plasDate"
-                                        metaType="datepicker"
+                                        metaType="mvtext"
                                         requiredCascading="default"
-                                        typeHint="Date"
                                         visibilityCascading="default"/>
-                                </_x0031_699511464140>
-                            </items>
-                        </col2>
-                        <col3
-                            granite:rel="aem-assets-metadata-form-column"
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/container"
-                            listOrder="2">
-                            <items jcr:primaryType="nt:unstructured">
-                                <_x0031_699511976350
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="dam/gui/components/admin/schemafield"
-                                    fieldLabel="DocumentType"
-                                    name="./jcr:content/metadata/plasDocumentType"
-                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
-                                    <granite:data
+                                    <field
                                         jcr:primaryType="nt:unstructured"
-                                        cq-msm-lockable="./metadata/plasDocumentType"
-                                        metaType="text"
-                                        requiredCascading="default"
-                                        visibilityCascading="default"/>
-                                </_x0031_699511976350>
-                                <_x0031_699511816057
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="dam/gui/components/admin/schemafield"
-                                    fieldLabel="Version"
-                                    name="./jcr:content/metadata/plasVersion"
-                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
-                                    <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        cq-msm-lockable="./metadata/plasVersion"
-                                        metaType="text"
-                                        requiredCascading="default"
-                                        visibilityCascading="default"/>
-                                </_x0031_699511816057>
-                                <_x0031_699512003610
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="dam/gui/components/admin/schemafield"
-                                    fieldLabel="MachineSystem"
-                                    name="./jcr:content/metadata/plasMachineSystem"
-                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
-                                    <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        cq-msm-lockable="./metadata/plasMachineSystem"
-                                        metaType="text"
-                                        requiredCascading="default"
-                                        visibilityCascading="default"/>
-                                </_x0031_699512003610>
-                                <_x0031_699512041116
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="dam/gui/components/admin/schemafield"
-                                    fieldLabel="DevelopmentStep"
-                                    name="./jcr:content/metadata/plasDevelopmentStep"
-                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
-                                    <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        cq-msm-lockable="./metadata/plasDevelopmentStep"
-                                        metaType="text"
-                                        requiredCascading="default"
-                                        visibilityCascading="default"/>
-                                </_x0031_699512041116>
-                                <_x0031_699512131916
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="dam/gui/components/admin/schemafield"
-                                    fieldLabel="Function"
-                                    name="./jcr:content/metadata/plasFunction"
-                                    resourceType="granite/ui/components/coral/foundation/form/textfield">
-                                    <granite:data
-                                        jcr:primaryType="nt:unstructured"
-                                        cq-msm-lockable="./metadata/plasFunction"
-                                        metaType="text"
-                                        requiredCascading="default"
-                                        visibilityCascading="default"/>
-                                </_x0031_699512131916>
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        name="./jcr:content/metadata/plasHistory">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            cq-msm-lockable="./metadata/plasHistory"/>
+                                    </field>
+                                </_x0031_699512588838>
                             </items>
                         </col3>
                     </items>
