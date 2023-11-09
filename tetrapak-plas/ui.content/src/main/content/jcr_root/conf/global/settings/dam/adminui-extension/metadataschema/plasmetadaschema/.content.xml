@@ -2112,7 +2112,7 @@
                                             jcr:primaryType="nt:unstructured"
                                             cq-msm-lockable="./metadata/plasHistory"/>
                                     </field>
-                                </_x0031_699512588838>
+                                </_x0031_699512588838> 
                             </items>
                         </col3>
                     </items>
