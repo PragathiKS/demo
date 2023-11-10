@@ -1,0 +1,16 @@
+- group_config:
+
+    - learning_designer:
+
+        - name: Learning Designer group
+          memberOf: Learning Designer
+          path: /home/groups/F/Ff1S3DVJZdZVxVQm-_HZ
+- ace_config:
+
+    - learning_designer:
+
+        - path: /content/dam/plcm
+          permission: allow
+          privileges: jcr:modifyAccessControl,crx:replicate,jcr:versionManagement,rep:write,jcr:lockManagement
+
+       
