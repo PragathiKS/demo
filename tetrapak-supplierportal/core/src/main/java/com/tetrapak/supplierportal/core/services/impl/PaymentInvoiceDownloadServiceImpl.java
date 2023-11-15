@@ -85,6 +85,7 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 	private static final String NEW_LINE = "\n";
 	private static final String COMMA = ",";
 	private static final String EMPTY_STRING = " ";
+	private static final String TWO_DECIMALS = "%.2f";
 
 	@Reference
 	private APIGEEService apiGeeService;
@@ -395,8 +396,9 @@ public class PaymentInvoiceDownloadServiceImpl implements PaymentInvoiceDownload
 			double netPayable = Double.parseDouble(paymentDetails.getAmountInTransactionCurrency());
 			if(StringUtils.isNotBlank(paymentDetails.getWithholdingTaxAmmount())) {
 				double withHoldTaxAmount = Double.parseDouble(paymentDetails.getWithholdingTaxAmmount());
+				double totalAmountVal = (netPayable > 0) ? (netPayable+withHoldTaxAmount) : (netPayable-withHoldTaxAmount);
 				totAmtInclVal = new PdfPCell(
-						new Phrase((netPayable+withHoldTaxAmount)+" "+paymentDetails.getTransactionCurrency(), valueFont));
+						new Phrase(String.format(TWO_DECIMALS, totalAmountVal)+" "+paymentDetails.getTransactionCurrency(), valueFont));
 			}else {
 				totAmtInclVal = new PdfPCell(
 					new Phrase(netPayable+" "+paymentDetails.getTransactionCurrency(), valueFont));
