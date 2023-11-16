@@ -164,7 +164,11 @@ class Paymentdetails {
       totalInvoiceAmount = amountInTransactionCurrency;
     }
     if(withholdingTaxAmmount && typeof withholdingTaxAmmount === 'number'){
-      totalInvoiceAmount = totalInvoiceAmount + withholdingTaxAmmount;
+      if(totalInvoiceAmount && totalInvoiceAmount < 0){
+        totalInvoiceAmount = totalInvoiceAmount - withholdingTaxAmmount;
+      } else {
+        totalInvoiceAmount = totalInvoiceAmount + withholdingTaxAmmount;
+      }
       totalInvoiceAmount = totalInvoiceAmount.toFixed(2);
     }
     return { totalInvoiceAmount, amountInTransactionCurrency, withholdingTaxAmmount, clearingDate, planningDate };
