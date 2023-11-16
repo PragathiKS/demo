@@ -1,0 +1,36 @@
+# PLAS groups
+#-------------
+- group_config:
+
+    - learning_designer:
+        - name: Learning Designer group
+          isMemberOf: contributor
+          path: plas
+
+- ace_config:
+
+    - learning_designer:
+
+        - path: /content
+          permission: deny
+          privileges: jcr:all
+          restrictions:
+            rep:glob: '*'
+
+        - path: /content
+          permission: allow
+          privileges: jcr:read
+          restrictions:
+            rep:glob: ''
+
+        - path: /content/dam
+          permission: allow
+          privileges: jcr:read
+          restrictions:
+            rep:glob: ''
+
+        - path: /content/dam/plcm
+          permission: allow
+          privileges: jcr:all
+          restrictions:
+            rep:glob: '*'
