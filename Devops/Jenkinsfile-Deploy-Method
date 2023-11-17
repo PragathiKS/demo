@@ -347,7 +347,7 @@ pipeline {
     def cacheflush() { 
         build job: 'CFE/CFE-HTTPD-Cache-Flush', parameters: [string(name: 'ENVIRONMENT', value: params.Environment)], wait: true
 
-        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: params.Environment), booleanParam(name: 'Publicweb', value: params.DeployPublicWeb), booleanParam(name: 'Customerhub', value: params.DeployMyTetrapak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.DeployTetraLaval), booleanParam(name: 'Supplierportal', value: params.DeployPlas),booleanParam(name: 'Plas', value: params.DeployPlas)], wait: true  
+        build job: 'CFE/CFE-Cdn-Cache', parameters: [string(name: 'Environment', value: params.Environment), booleanParam(name: 'Publicweb', value: params.DeployPublicWeb), booleanParam(name: 'Customerhub', value: params.DeployMyTetrapak), booleanParam(name: 'Brandsource', value: false), booleanParam(name: 'Tetralaval', value: params.DeployTetraLaval), booleanParam(name: 'Supplierportal', value: params.DeploySupplierportal)], wait: true  
     }
 
    def precheck() {
